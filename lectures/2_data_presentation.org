@@ -10,6 +10,10 @@
 
 #+LaTeX: \input{org-babel-document-preembule.tex}
 
+* List                                                             :noexport:
+** TODO No intro on R/knitr
+** TODO Update on dplyr and reshape
+** TODO link to cheatsheets
 * Data Visualization
 #+BEGIN_LaTeX
 \def\info{

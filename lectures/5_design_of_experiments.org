@@ -13,6 +13,13 @@
 
 #+LaTeX: \input{org-babel-document-preembule.tex}
 
+* List                                                             :noexport:
+** TODO Detail aov
+** TODO Uniformity/repartition in space for exploration, explain how to generate
+** TODO Explain sequential approach
+** TODO Explain variance reduction
+** TODO Mention kriging
+* Modeling Principles
 *** Motivation
   Computer scientists tend to either:
   \begin{itemize}
@@ -37,8 +44,6 @@
     perform to answer a given question under a given level of
     confidence.
   \end{itemize}
-
-* Modeling Principles
 ** Modeling Principles
 *** Experimental Design
   There are two key concepts:
@@ -211,6 +216,7 @@
     factors to be uncontrollable and to feed them with an external
     source of randomness.
   \end{itemize}
+** Factorial studies
 *** Typical case studies
 
   The typical case studies defined in the first step could include:

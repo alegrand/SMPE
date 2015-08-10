@@ -13,6 +13,9 @@
 
 #+LaTeX: \input{org-babel-document-preembule.tex}
 
+* List                                                             :noexport:
+** TODO Talk about extensions
+loess, krigging
 * Documents 							   :noexport:
   [[/home/alegrand/Archives/Cours/maths/ModeleLineaireRegrDegerine.pdf][Régression Linéaire]]   
   http://en.wikipedia.org/wiki/Simple_linear_regression
@@ -910,11 +913,6 @@ df_lines=data.frame(
       over the parameter space range
     - if your system is heteroscedastic, you will have to perform more
       measurements for parameters that lead to higher variance
-* Modeling							   :noexport:
-** Parsimony 
-** Observationnal vs. Experimental Data
-   Pirates: correlation/causation
-   2 variables peuvent être fortement correlées à une troisième (e.g., l'année)
 * ANOVA								   :noexport:
   Les éléments de X sont à valeur dans 0, 1
   p. 169 of [[file:~/Bureau/Stat/Faraway-PRA.pdf][ANOVA]].

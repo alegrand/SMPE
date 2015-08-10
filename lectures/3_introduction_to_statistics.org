@@ -21,6 +21,10 @@
   \includegraphics[width=.142\linewidth,page=7]{#1.pdf}
 }
 #+END_LaTeX
+* List                                                             :noexport:
+** TODO Translate to org
+** TODO Redo all figures
+** TODO Reorder (talk about median, min, etc earlier)
 * Have fun!
 *** Let's play
 Yeepee!
@@ -95,7 +99,6 @@ Yeepee!
   \end{itemize}
 
 * Estimation                                                       :noexport:
-
 ** How to estimate Expected value ?
 
   To empirically estimate the expected value of a random variable, one

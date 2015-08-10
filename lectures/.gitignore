@@ -15,3 +15,10 @@
 *.snm
 *.pyg.*
 *.bak
+
+### Automatically generated files
+1_reproducible_research.tex
+2_data_presentation.tex
+3_introduction_to_statistics.tex
+4_linear_model.tex
+5_design_of_experiments.tex
