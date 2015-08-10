@@ -1,0 +1,634 @@
+#+AUTHOR:      Arnaud Legrand
+#+TITLE:       Introduction to Probabilities and Statistics
+#+DATE:        MOSIG Lecture
+#+STARTUP: beamer overview indent
+#+TAGS: noexport(n)
+#+LaTeX_CLASS: beamer
+#+LaTeX_CLASS_OPTIONS: [11pt,xcolor=dvipsnames,presentation]
+#+OPTIONS:   H:3 num:t toc:nil \n:nil @:t ::t |:t ^:nil -:t f:t *:t <:t
+#+LATEX_HEADER: \input{org-babel-style-preembule.tex}
+
+#+LaTeX: \input{org-babel-document-preembule.tex}
+
+#+BEGIN_LaTeX
+\newcommand\distrib[1]{%
+  \includegraphics[width=.142\linewidth,page=1]{#1.pdf}&%
+  \includegraphics[width=.142\linewidth,page=2]{#1.pdf}&%
+  \includegraphics[width=.142\linewidth,page=3]{#1.pdf}&%
+  \includegraphics[width=.142\linewidth,page=4]{#1.pdf}&%
+  \includegraphics[width=.142\linewidth,page=5]{#1.pdf}&%
+  \includegraphics[width=.142\linewidth,page=6]{#1.pdf}&%
+  \includegraphics[width=.142\linewidth,page=7]{#1.pdf}
+}
+#+END_LaTeX
+* Have fun!
+*** Let's play
+Yeepee!
+* A probabilistic model                                            :noexport:
+** Continuous random variable
+  
+  \begin{itemize}
+  \item A \concept{random variable} (or stochastic variable) is,
+    roughly speaking, a variable whose value results from a
+    measurement.
+
+    Such a variable enables to model \concept{uncertainty} that may
+    result of \emph{incomplete information} or \emph{imprecise
+      measurements}.
+
+    Formally $(\Omega, \F, P)$ is a probability space where:
+    \begin{itemize}
+    \item $\Omega$, the sample space, is the set of all possible
+      outcomes (\eg $\{1,2,3,4,5,6\}$)
+    \item \F if the set of events where an event is a set containing
+      zero or more outcomes (\eg the event of having an odd number
+      $\{1,3,5\}$)
+    \item The probability measure $P:\F \to [0,1]$ is a function
+      returning an event's probability.
+    \end{itemize}
+  \item Since many computer science experiments are based on time
+    measurements, we focus on \concept{continuous} variables.
+    \begin{equation*}
+      X: \Omega \to \R
+    \end{equation*}
+    \end{itemize}
+
+** Probability Distribution
+  A \concept{probability distribution} (a.k.a. probability density
+  function or p.d.f.) is used to describe the probabilities of
+  different values occurring.\smallskip
+
+  A random variable $X$ has density $f$, where $f$ is a non-negative
+  and integrable function, if:
+  \begin{equation*}
+    P [a \leq X \leq b] = \int_a^b f(x) \, \mathrm{d}x 
+  \end{equation*}
+
+  \begin{center}
+    \includegraphics[width=.6\linewidth]{Gamma_distribution_pdf.pdf}
+  \end{center}
+
+** Expected value
+  \begin{itemize}
+  \item When one speaks of the "expected price", "expected height",
+    etc. one means the \concept{expected value} of a random variable
+    that is a price, a height, etc.
+    \begin{align*}
+      \E[X] & = x_1p_1 + x_2p_2 + \ldots + x_kp_k \\
+      & = \int_{-\infty}^\infty x f(x)\, \mathrm{d}x
+    \end{align*}
+    The expected value of $X$ is the ``average value'' of $X$.\smallskip
+
+    It is \textbf{not} the most probable value. The mean is one aspect
+    of the distribution of $X$. The median or the mode are other
+    interesting aspects.
+
+  \item The \concept{variance} is a measure of how far the values of a
+    random variable are spread out from each other.
+
+    If a random variable $X$ has the expected value (mean) $\mu =
+    \E[X]$, then the variance of $X$ is given by:
+    \begin{align*} 
+      \Var(X) &= \E\left[(X - \mu)^2
+      \right] = \int_{-\infty}^\infty  (x-\mu)^2 f(x)\, \mathrm{d}x
+    \end{align*}
+  \end{itemize}
+
+* Estimation                                                       :noexport:
+
+** How to estimate Expected value ?
+
+  To empirically estimate the expected value of a random variable, one
+  repeatedly measures observations of the variable and computes the
+  arithmetic mean of the results. \bigskip
+  
+  Unfortunately, if you repeat the estimation, you may get a different
+  value since $X$ is a random variable \dots
+
+** Central Limit Theorem
+
+  \begin{itemize}
+  \item Let $\{X_1, X_2, \dots, X_n\}$ be a random sample of size $n$
+    (\ie a sequence of \textbf{independent} and \textbf{identically
+      distributed} random variables with expected values $\mu$ and
+    variances $\sigma^2$).
+  \item The sample average of these random variables is:
+    \begin{equation*}
+      S_n =  \frac{1}{n} (X_1 + \dots + X_n)
+    \end{equation*}
+    $S_n$ is a random variable too.
+  \item For large n's, the distribution of $S_n$ is approximately
+    normal with mean $\mu$ and variance $\frac{\sigma^2}{n}$.
+    \begin{equation*}
+      S_n \xrightarrow[n\to\infty]{} \N\left(\mu,\frac{\sigma^2}{n}\right)
+    \end{equation*}
+  \end{itemize}
+
+** The Normal Distribution
+  \begin{center}
+    \begin{overlayarea}{.7\linewidth}{4.5cm}
+      \begin{center}%
+        \only<2>{\vspace{.5cm}}%
+        \includegraphics<1>[width=\linewidth]{Normal_Distribution_PDF.pdf}%
+        \includegraphics<2>[width=\linewidth]{Standard_deviation_diagram.pdf}%
+      \end{center}
+    \end{overlayarea}
+  \end{center}
+  \uncover<1->{The smaller the variance the more ``spiky'' the
+    distribution.}
+
+  \uncover<2->{
+    \begin{itemize}
+    \item Dark blue is less than one standard deviation from the
+      mean. For the normal distribution, this accounts for about 68\%
+      of the set.
+    \item Two standard deviations from the mean (medium and dark blue)
+      account for about 95\%
+    \item Three standard deviations (light, medium, and dark blue)
+      account for about 99.7\%
+    \end{itemize}}
+
+** CLT Illustration
+  
+  Start with an arbitrary distribution and compute the distribution of
+  $S_n$ for increasing values of $n$.\medskip
+  
+  \hspace{-.1\linewidth}
+  \begin{overlayarea}{1.15\linewidth}{6cm}
+    \begin{tabular}{@{}*7{c@{}}}
+      1 & 2 & 3 & 4 & 8 & 16 & 32 \\
+    \distrib{CLTuniform}\\
+    \distrib{CLTinverse}\\
+    \distrib{CLTtriangle}\\
+    \distrib{CLTparabola}\\
+  \end{tabular}
+  \end{overlayarea}
+
+** CLT consequence: confidence interval
+  \hspace{-.05\linewidth}%
+  \begin{minipage}{1.1\linewidth}
+    \begin{center}
+      \begin{overlayarea}{.9\linewidth}{4.5cm}
+        \begin{center}%
+          % \only<2>{\vspace{.5cm}}%
+
+          \includegraphics<1>[width=\linewidth]{Standard_deviation_diagram.pdf}%
+          \includegraphics<2>[height=4.5cm]{CI_illustration.pdf}%
+        \end{center}
+      \end{overlayarea}
+    \end{center}
+
+    When $n$ is large:
+    \begin{equation*}
+      \P\left(\mu\in
+        \left[S_n-2\frac{\sigma}{\sqrt{n}},S_n+2\frac{\sigma}{\sqrt{n}}\right]\right)
+      = \P\left(S_n\in
+        \left[\mu-2\frac{\sigma}{\sqrt{n}},\mu+2\frac{\sigma}{\sqrt{n}}\right]\right)
+      \approx  95\%
+    \end{equation*}
+    \uncover<2>{There is 95\% of chance that the \concept{true mean} lies
+      within 2$\frac{\sigma}{\sqrt{n}}$ of the \concept{sample mean}.}
+  \end{minipage}
+
+* Using Confidence Intervals                                       :noexport:
+
+** Comparing Two Alternatives}
+  Assume, you have evaluated two scheduling heuristics $A$ and $B$ on
+  $n$ different DAGs.
+  \begin{center}
+    \begin{overlayarea}{.9\linewidth}{4.5cm}
+      \begin{center}%
+        \includegraphics<1>[scale=.911,subfig=1]{2sample_comp.fig}%
+        \includegraphics<2>[scale=.911,subfig=2]{2sample_comp.fig}%
+        \includegraphics<3->[scale=.911,subfig=3]{2sample_comp.fig}%
+      \end{center}
+    \end{overlayarea}
+  \end{center}
+    \begin{overlayarea}{\linewidth}{1.5cm}%
+      \only<1>{The two 95\% confidence intervals do not overlap
+        $\leadsto$ $\P(\mu_A<\mu_B)>90\%$.\\}%
+      \only<2>{The two 95\% confidence intervals do overlap
+        $\leadsto$ ??.% \\
+        \begin{flushright}
+          Reduce C.I ?
+        \end{flushright}
+      }%
+      \only<3>{The two 70\% confidence intervals do not overlap
+        $\leadsto$ $\P(\mu_A<\mu_B)>49\%$.%\\
+        \begin{flushright}
+          Let's do more experiments instead.
+        \end{flushright}
+      }%
+      \only<4->{The width of the confidence interval is proportionnal
+        to $\frac{\sigma}{\sqrt{n}}$.
+        \begin{flushright}
+          Halving C.I. requires 4 times more experiments!
+        \end{flushright}
+        Try to \concept{reduce variance} if you can...
+      }
+    \end{overlayarea}
+
+** Comparing Two Alternatives with Blocking
+  \begin{itemize}
+  \item C.I.s overlap because variance is large. Some DAGS have an
+    intrinsically longer makespan than others, hence a large
+    $\Var(A)$ and $\Var(B)$
+    \begin{center}
+      \includegraphics<1>[scale=.7,subfig=2]{2sample_comp.fig}%
+      \includegraphics<2->[scale=.7,subfig=4]{2sample_comp.fig}%
+    \end{center}
+  \item<2-> The previous test estimates $\mu_A$ and $\mu_B$
+    \concept{independently}.
+
+    $\E[A]<\E[B] \Leftrightarrow \E[B-A]<0$. 
+
+    In the previous evaluation, the \concept{same} DAG is used for
+    measuring $A_i$ and $B_i$, hence we can focus on $B-A$.
+
+    Since $\Var(B-A)$ is much smaller than $\Var(A)$ and $\Var(B)$, we
+    can conclude that $\mu_A<\mu_B$ with 95\% of confidence.
+
+  \item<3-> Relying on such common points is called \concept{blocking}
+    and enable to \concept{reduce variance}.
+  \end{itemize}
+
+** How Many Replicates ?
+  \begin{itemize}
+  \item<+-> The CLT says that ``when $n$ goes large'', the sample mean
+    is normally distributed.
+
+    The CLT uses $\sigma = \sqrt{\Var(X)}$ but we only have the
+    sample variance, not the true variance.\\[0cm]
+    \begin{overlayarea}{\linewidth}{0cm}
+      \vspace{-1.3cm}
+      \begin{center}
+        \includegraphics<+>[width=.7\linewidth]{sample_var.pdf}
+      \end{center}
+    \end{overlayarea}
+    \uncover<+->{\textbf{Q:} How Many Replicates ?} \\
+    ~\hfill\uncover<+->{\textbf{A1:} How many can you afford ?}\\
+    ~\hfill\uncover<+->{\textbf{A2:} 30\dots\hspace{3.25cm}~\\
+    \textbf{Rule of thumb:} a sample of 30 or more is big sample but a
+    sample of 30 or less is a small one (doesn't always work).}
+  \item<+-> With less than 30, you need to make the $C.I.$ wider using
+    e.g. the \concept{Student law}.
+  \item<+-> Once you have a first C.I. with 30 samples, you can estimate
+    how many samples will be required to answer your question. If it
+    is too large, then either try to reduce variance (or the scope of
+    your experiments) or simply explain that the two alternatives are
+    hardly distinguishable...
+  \item<+-> \textbf{Running the right number of experiments enables to
+      get to conclusions more quickly and hence to test other
+      hypothesis.}
+  \end{itemize}
+
+** Key Hypothesis
+  The hypothesis of CLT are very weak. Yet, to qualify as replicates,
+  the repeated measurements:
+  \begin{itemize}
+  \item must be independent (take care of warm-up)
+  \item must not be part of a time series (the system behavior may
+    temporary change)
+  \item must not come from the same place (the machine may have a problem)
+  \item must be of appropriate spatial scale
+  \end{itemize}
+  \begin{center}
+    \textbf{Perform graphical checks}
+  \end{center}
+
+** Simple Graphical Check
+  \begin{center}
+    \includegraphics<1>[width=.45\linewidth]{4-plot-1.jpg}%
+    \includegraphics<2>[width=.45\linewidth]{4-plot-2.jpg}
+  \end{center}
+  \hspace{-.05\linewidth}
+  \begin{minipage}{1.1\linewidth}
+    \small
+    \vspace{-.5em}
+    \begin{description}
+    \item[Fixed Location:] If the fixed location assumption holds,
+      then the run sequence plot will be flat and non-drifting.\vspace{-.5em}
+    \item[Fixed Variation:] If the fixed variation assumption holds,
+      then the vertical spread in the run sequence plot will be the
+      approximately the same over the entire horizontal axis.\vspace{-.5em}
+    \item[Independence:] If the randomness assumption holds, then the
+      lag plot will be structureless and random.\vspace{-.5em}
+    \item[Fixed Distribution]: If the fixed distribution assumption
+      holds, in particular if the fixed normal distribution holds,
+      then\vspace{-.5em}
+      \begin{itemize}
+      \item the histogram will be bell-shaped, and
+      \item the normal probability plot will be linear.
+      \end{itemize}
+      If you see several modes, you may want to investigate further is
+      there is not another hidden parameter you should take into account.
+    \end{description}
+  \end{minipage}
+
+** Temporal Dependancy
+  \begin{center}
+    \includegraphics<1>[width=\linewidth,height=4cm]{simul/deptempo.pdf}%
+    \includegraphics<2>[width=\linewidth,height=4cm]{simul/deptempo-zoom.pdf}%
+  \end{center}
+  \begin{itemize}
+  \item Looks independant and statistically identical
+  \item<2> Danger: temporal correlation $\leadsto$ study stationnarity. 
+  \end{itemize}
+
+** Detect Trends
+  \begin{center}
+    \includegraphics[width=\linewidth,height=4cm]{simul/unifderiv.pdf}%
+  \end{center}
+  \begin{itemize}
+  \item Model the trend: here increase then saturates
+  \item Possibly remove the trend by compensating it (multiplicative
+    factor here)
+  \end{itemize}
+
+** Detect Periodicity
+  \begin{center}
+    \includegraphics[width=\linewidth,height=4cm]{simul/periode.pdf}%
+  \end{center}
+  May depend on sampling frequency or on horloge resolution.
+  \begin{itemize}
+  \item Study the period (Fourier)
+  \item Use time series
+  \end{itemize}
+* Design of Experiments: Early Intuition                           :noexport:
+
+** Comparing Two Alternatives (Blocking + Randomization)
+  \begin{itemize}[<+->]
+  \item When comparing A and B for different settings, doing $A, A, A,
+    A, A, A$ and then $B, B, B, B, B, B$ is a bad idea.
+  \item You should better do $A, B, \quad A, B,\quad A, B,\quad A, B,
+    \dots $.
+  \item Even better, randomize your run order. You should flip a coin
+    for each configuration and start with A on head and with B on
+    tail...
+    \begin{center}
+      $A, B,\quad B, A,\quad  B, A,\quad A, B, \dots $.
+    \end{center}
+    With such design, you will even be able to check whether being the
+    first alternative to run changes something or not.
+  \item Each configuration you test should be run on different
+    machines.
+    
+    You should record as much information as you can on how the
+    experiments was performed (\url{http://expo.gforge.inria.fr/}).
+  \end{itemize}
+
+** Experimental Design
+  There are two key concepts:
+  \begin{center}
+    \concept{replication} and \concept{randomization}
+  \end{center}
+  You replicate to \concept{increase reliability}. You randomize to
+  \concept{reduce bias}.
+
+  \begin{center}
+    \textbf{    If you replicate thoroughly and randomize properly, \\
+      you will not go far wrong.  }  \end{center} 
+  \pause
+  \begin{quote}\sf
+    It doesn't matter if you cannot do your own advanced statistical
+    analysis. If you designed your experiments properly, you may be
+    able to find somebody to help you with the statistics.\smallskip
+
+    If your experiments is not properly designed, then no matter how
+    good you are at statistics, you experimental effort will have been
+    wasted.
+  \end{quote}\vspace{-1em}
+  \begin{center}
+    \textbf{No amount of high-powered statistical analysis can turn a
+      bad experiment into a good one.}
+  \end{center}
+% Experimental Design (replication and randomization)
+% - general recommendations (parsimony, true randomization)
+% - replication vs. pseudo-replication
+% - Strong inference vs. weak inference
+
+* Getting rid of Outliers                                          :noexport:
+
+** Abnormal measurements
+  \begin{center}
+    \includegraphics<1>[width=\linewidth,height=3cm]{simul/cauchy1.pdf}%
+  \end{center}
+  \begin{itemize}
+  \item Rare events: interpretation
+  \item Get rid of it using:
+    \begin{itemize}
+    \item a threshold value: what is the right threshold ?
+    \item quantiles: what is the good rejection rate ?
+    \end{itemize}
+  \end{itemize}
+
+** Thresholds
+  \begin{center}
+    Reject values larger than 10 $\leadsto$ 5\% of rejection\\
+    \includegraphics<1>[width=\linewidth,height=3cm]{simul/cauchy-seuil10.pdf}%
+  \end{center}
+
+
+  \begin{center}
+    Reject values larger than 50 $\leadsto$ 1\% of rejection\\
+    \includegraphics<1>[width=\linewidth,height=3cm]{simul/cauchy-seuil1pc.pdf}%
+  \end{center}
+
+  Actually, here, the samples are generated using the Cauchy
+  distribution, which is pathological for most ideas you may come up
+  with. :)
+
+* Issues when studying something else than the mean                :noexport:
+** Summarizing the distribution
+  \begin{center}
+    \includegraphics[width=\linewidth,height=3cm]{simul/histogramme2.pdf}%
+  \end{center}
+  What is the shape of the histogram:
+  \begin{itemize}
+  \item uni/multi-modal
+  \item symmetrical or not ($\leadsto$ skewness)
+  \item Flat of not ($\leadsto$ kurtosis)
+  \end{itemize}
+  Summarize with \concept{central tendancy}
+
+** Summarizing the distribution
+  \begin{center}
+    \includegraphics[width=\linewidth,height=3cm]{simul/histogramme2.pdf}%
+  \end{center}
+  \begin{itemize}
+  \item Mode: the most probable value (higly depends on the
+    bin size)
+  \item Median: splits the samples in half (rather unstable)
+  \item Mean: average ``cost'' (can simply estimate confidence intervals)
+  \end{itemize}
+
+** Mode value
+{\bf histogram}
+\begin{center}
+\includegraphics[width=4.6cm]{simul/histogramme.pdf}
+\end{center}
+\begin{block}{Mode}
+\begin{itemize}
+\item  {\green{\bf Categorical data}}
+\item Most frequent value
+\item highly unstable value
+\item for continuous value distribution depends on the histogram step
+\item interpretation depends on the flatness of the histogram
+\end{itemize}
+\alert{\bf $\Longrightarrow$ Use it carefully} 
+
+\alert{\bf $\Longrightarrow$ Predictor function} 
+
+\end{block}
+
+** Median value
+{\bf histogram}
+\begin{center}
+%\includegraphics[width=4.6cm]{histogramme.pdf}
+\end{center}
+\begin{block}{Median}
+\begin{itemize}
+\item {\green{\bf Ordered data}}
+\item Split the sample in two equal parts 
+\[
+\sum_{i\leq Median}f_i \leq \frac 1 2 \leq \sum_{i\leq Median+1}f_i .\]
+\item more stable value
+\item does not depends on the histogram step 
+\item difficult to combine (two samples)
+\end{itemize}
+
+
+\alert{\bf $\Longrightarrow$ Randomized algorithms} 
+
+\end{block}
+
+** Mean value
+{\bf histogram}
+\begin{center}
+%\includegraphics[width=4.6cm]{histogramme.pdf}
+\end{center}
+\begin{block}{Mean}
+\begin{itemize}
+\item {\green{\bf Vector space}}
+\item Average of values 
+\[
+Mean = \frac 1 {Sample\_Size}\sum x_i = \sum_{x}x.f_x .\]
+\item stable value 
+\item does not depends on the histogram step 
+\item easy to combine (two samples $\Rightarrow$ weighted mean)
+\end{itemize}
+
+
+\alert{\bf $\Longrightarrow$ Additive problems (cost, durations, length,...)} 
+
+\end{block}
+
+** Central tendency
+{\bf histogram}
+\begin{center}
+\includegraphics[width=4.6cm]{simul/histogramme2.pdf}
+\end{center}
+\begin{block}{Complementarity}
+\begin{itemize}
+\item Valid if the sample is "Well-formed"
+\item {\green{\bf Semantic of the observation}}
+\item Goal of analysis 
+\end{itemize}
+
+\alert{\bf $\Longrightarrow$ Additive problems (cost, durations, length,...)} 
+
+\end{block}
+
+** Central tendency (2)
+\begin{block}{Summary of Means}
+\begin{itemize}
+\item Avoid means if possible\\
+Loses information
+\item  {\blue Arithmetic mean}\\
+ When sum of raw values has physical meaning\\
+Use for summarizing times (not rates)
+\item {\blue Harmonic mean}\\
+Use for summarizing rates (not times)
+\item {\blue Geometric mean}\\
+ Not useful when time is best measure of perf\\
+ Useful when multiplicative effects are in play
+\end{itemize}
+\end{block}
+
+** Computational aspects
+\begin{itemize}
+\item Mode : computation of the histogram steps, then computation of max  $O(n)$  ``off-line''
+\item Median : sort the sample $O(nlog(n))$ or $O(n)$ (subtile algorithm) ``off-line''
+\item Mean : sum values $O(n)$ ``on-line'' computation
+\end{itemize}
+\pause
+\begin{center}
+\alert{\large \bf Is the central tendency significant ? \\
+$\Rightarrow$ Explain variability.}
+\end{center}
+
+** Variability
+\begin{block}{Categorical data (finite set)}
+$f_i$ : empirical frequency of element $i$
+
+Empirical entropy
+\[
+H(f)=\sum_i f_i \log f_i.\]
+Measure the empirical distance with the uniform distribution
+\begin{itemize}
+\item $H(f)\geq 0$
+\item $H(f)=0$ iff the observations are reduced to a unique value
+\item $H(f)$ is maximal for the uniform distribution
+\end{itemize} 
+\end{block}
+\begin{frame}{Variability (2)}
+\begin{block}{Ordered data }
+
+Quantiles : quartiles, deciles, etc
+
+Sort the sample : 
+\[
+(x_1,x_2,\cdots ,x_n)\longrightarrow  (x_{(1)},x_{(2)},\cdots ,x_{(n)});\]
+\[
+Q_1=x_{(n/4)};\; Q_2=x_{(n/2)}=Median;\; Q_3=x_{(3n/4)}.\]
+
+For deciles
+\[
+d_i = argmax_i \{\sum_{j\leq i}f_j \leq \frac i {10}\}.\]
+Utilization as quantile/quantile plots to compare distributions
+\end{block}
+\begin{frame}{Variability (3)}
+\begin{block}{ Vectorial data }
+
+Quadratic error for the mean 
+\[
+Var(X)=\frac 1 n \sum_1^n (x_i-\bar{x}_n)^2.\]
+{\bf Properties:}
+\begin{eqnarray*}
+Var(X) & \geq & 0;\\
+Var(X)&=&\overline{x^2}-(\bar{x})^2, \;\;\mbox{o\`u} \;\;\overline{x^2}=\frac 1 n \sum_{i=1}^n x_i^2.\;\\
+Var(X+cste)&=&Var(X);\\
+Var(\lambda X)&=&\lambda^2 Var(X).
+\end{eqnarray*}
+
+\end{block}
+
+** Roadmap for a good data analysis
+\begin{enumerate}
+\item Plot the sample (various representations)
+\item Describe the results (data analysis)
+\item Preliminary processing : remove or flag outliers, estimate or flag  missing values
+\item Propose a stochastic model : establish the hypothesis : independence (time correlation, auto-correlation), stationarity, same probability law
+\item Summarize data by a  histogram
+\item Comment the shape (modal/skewness/flatness/...)
+\item Estimate the central tendency of the sample : choose the central index
+\item Estimate the accuracy of the result (confidence intervals)
+\item Propose a visualization
+\end{enumerate}
+
+** References
+   \nocite{Jain1991,Lilja200912,Ross201002,Montgomery200901}
+   \bibliographystyle{plain}
+   \bibliography{biblio}
+
+

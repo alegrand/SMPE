@@ -1,0 +1,17 @@
+### Emacs stuff
+\#*
+*~
+.Rhistory
+
+### LaTeX stuff
+*.vrb
+*.aux
+*.log
+*.bbl
+*.nav
+*.out
+*.mk
+*.toc
+*.snm
+*.pyg.*
+*.bak

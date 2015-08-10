@@ -1,0 +1,337 @@
+#+AUTHOR:      Arnaud Legrand
+#+TITLE:       Design of Experiments
+#+DATE:        MOSIG Lecture
+#+LaTeX_CLASS: beamer
+#+LaTeX_CLASS_OPTIONS: [11pt,xcolor=dvipsnames,presentation]
+#+OPTIONS:   H:3 num:t toc:nil \n:nil @:t ::t |:t ^:t -:t f:t *:t <:t
+#+STARTUP: beamer overview indent
+#+TAGS: noexport(n)
+#+LaTeX_CLASS: beamer
+#+LaTeX_CLASS_OPTIONS: [11pt,xcolor=dvipsnames,presentation]
+#+OPTIONS:   H:3 num:t toc:nil \n:nil @:t ::t |:t ^:nil -:t f:t *:t <:t
+#+LATEX_HEADER: \input{org-babel-style-preembule.tex}
+
+#+LaTeX: \input{org-babel-document-preembule.tex}
+
+*** Motivation
+  Computer scientists tend to either:
+  \begin{itemize}
+  \item vary one parameter at a time and use a very fine sampling of
+    the parameter range,
+  \item or run thousands of experiments for a week varying a lot of
+    parameters and then try to get something of it. Most of the time,
+    they (1) don't know how to analyze the results (2) realize
+    something went wrong and everything need to be done again.
+  \end{itemize}
+
+  These two flaws come from poor training and from the fact that
+  C.S. experiments are almost free and very fast to conduct.
+
+  Most strategies of experimentation have been designed to
+  \begin{itemize}
+  \item provide sound answers despite all the randomness and
+    uncontrollable factors;
+  \item maximize the amount of information provided by a given set of
+    experiments;
+  \item reduce as much as possible the number of experiments to
+    perform to answer a given question under a given level of
+    confidence.
+  \end{itemize}
+
+* Modeling Principles
+** Modeling Principles
+*** Experimental Design
+  There are two key concepts:
+  \begin{center}
+    *replication* and *randomization*
+  \end{center}
+  You replicate to *increase reliability*. You randomize to
+  *reduce bias*.
+
+  \begin{center}
+    \textbf{    If you replicate thoroughly and randomize properly, \\
+      you will not go far wrong.  }  \end{center} 
+  \pause
+  Other important issues:%\\[-1.5em]
+  \begin{itemize}
+  \item Parsimony
+  \item Pseudo-replication
+  \item Experimental vs. observational data
+  \end{itemize}
+  \pause
+  \begin{quote}\sf
+    It doesn't matter if you cannot do your own advanced statistical
+    analysis. If you designed your experiments properly, you may be
+    able to find somebody to help you with the statistics.\smallskip
+
+    If your experiments is not properly designed, then no matter how
+    good you are at statistics, you experimental effort will have been
+    wasted.
+  \end{quote}\vspace{-1em}
+  \begin{center}
+    \textbf{No amount of high-powered statistical analysis can turn a
+      bad experiment into a good one.}
+  \end{center}
+*** Parsimony
+  The principle of parsimony is attributed to the 14th century English
+  philosopher William of Occam:\\
+  \begin{quote}
+    ``Given a set of equally good explanations for a given phenomenon,
+    the correct explanation is the simplest explanation''
+  \end{quote}\vspace{-1.5em}
+  \pause
+  \begin{itemize}
+  \item Models should have as few parameters as possible
+  \item Linear models should be preferred to non-linear models
+  \item Models should be pared down until they are \emph{minimal
+      adequate}
+  \end{itemize}\smallskip
+  \pause
+  This means, a variable should be retained in the model only if it
+  causes a significant increase in deviance when removed from the
+  current model.
+  \begin{quote}
+    A model should be as simple as possible. But no simpler.\\[-1.2em]
+    \begin{flushright}
+      -- A. Einstein
+    \end{flushright}
+  \end{quote}
+*** Replication vs. Pseudo-replication
+  Measuring the same configuration several times is not
+  replication. It's *pseudo-replication* and may be
+  biased. 
+
+  Instead, test other configurations (with a good
+  randomization).\medskip
+
+  In case of pseudo-replication, here is what you can do:
+  \begin{itemize}
+  \item average away the pseudo-replication and carry out your
+    statistical analysis on the means
+  \item carry out separate analysis for each time period
+  \item use proper time series analysis
+  \end{itemize}
+*** Experimental data vs. Observational data
+  You need a good blend of *observation*, *theory* and
+  *experiments*.\medskip
+
+  Many scientific experiments appear to be carried out with no
+  hypothesis in mind at all, but simply to see what happens.
+
+  This may be OK in the early stages but drawing conclusions on such
+  observations is difficult (large number of equally plausible
+  explanations; without testable prediction no experimental ingenuity;
+  \dots).
+  \pause
+  \begin{description}
+  \item[Strong inference] Essential steps:
+    \begin{enumerate}
+    \item Formulate a clear hypothesis
+    \item devise an acceptable test
+    \end{enumerate}
+    \pause
+  \item[Weak inference] It would be silly to disregard all
+    observational data that do not come from designed
+    experiments. Often, they are the only we have (e.g. the trace of a
+    system).
+
+    But we need to keep the limitations of such data in mind. It is
+    possible to use it to derive hypothesis but not to test
+    hypothesis.
+  \end{description}
+
+*** Observationnal vs. Experimental Data
+    Pirates: correlation/causation
+    2 variables peuvent être fortement correlées à une troisième (e.g., l'année)
+
+* Design of Experiments
+** Main Steps
+*** Select the problem to study}
+  \begin{itemize}
+  \item Clearly define the kind of system to study, the kind of
+    phenomenon to observe (state or evolution of state through time),
+    the kind of study to conduct (descriptive, exploratory,
+    prediction, hypothesis testing, \dots).
+  \item For example, the set of experiments to perform when studying
+    the stabilization of a peer-to-peer algorithm under a high churn
+    is completely different from the ones to perform when trying to
+    assess the superiority of a scheduling algorithm compared to
+    another over a wide variety of platforms.
+  \item It would be also completely different of the experiments to
+    perform when trying to model the response time of a Web server
+    under a workload close to the server saturation.
+
+    \begin{center}
+      This first step enables to decide on which kind of design should
+      be used.
+    \end{center}
+  \end{itemize}
+
+*** Define the set of relevant \emph{response}
+
+  \begin{columns}
+    \begin{column}{.5\linewidth}
+      The system under study is generally modeled though a black-box
+      model:
+    \end{column}\hspace{-.5cm}
+    \begin{column}{.45\linewidth}
+      \includegraphics[width=\linewidth]{fig/wp4_black_box.fig}
+    \end{column}
+  \end{columns}\medskip
+  \begin{itemize}
+  \item In our case, the response could be the makespan of a
+    scheduling algorithm, the amount of messages exchanged in a
+    peer-to-peer system, the convergence time of distributed
+    algorithm, the average length of a random walk, \dots 
+  \item Some of these metrics are simple while others are the result of
+    complex aggregation of measurements. Many such responses should
+    thus generally be recorded so as to check their correctness.
+  \end{itemize}
+*** Determine the set of relevant \emph{factors} or \emph{variables}
+
+  \begin{columns}
+    \begin{column}{.5\linewidth}
+      Some of the variables ($x_1$,\dots,$x_p$) are controllable
+      whereas some others ($z_1$, \dots, $z_q$) are uncontrollable.
+    \end{column}\hspace{-.5cm}
+    \begin{column}{.45\linewidth}
+      \includegraphics[width=\linewidth]{fig/wp4_black_box.fig}
+    \end{column}
+  \end{columns}\medskip
+
+  \begin{itemize}
+  \item In our case typical controllable variables could be the
+    heuristic used (\eg FIFO, HEFT, \dots) or one of their parameter
+    (\eg an allowed replication factor, the time-to-live of
+    peer-to-peer requests, \dots), the size of the platform or their
+    degree of heterogeneity, \dots.
+  \item In the case of computer simulations, randomness should be
+    controlled and it should thus be possible to completely remove
+    uncontrollable factors. Yet, it may be relevant to consider some
+    factors to be uncontrollable and to feed them with an external
+    source of randomness.
+  \end{itemize}
+*** Typical case studies
+
+  The typical case studies defined in the first step could include:
+  \begin{itemize}
+  \item determining which variables are most influential on the
+    response $y$ (\emph{factorial designs}, \emph{screening
+      designs}). This allows to distinguish between \emph{primary
+      factors} whose influence on the response should be modeled and
+    \emph{secondary factors} whose impact should be averaged. This
+    also allows to determine whether some factors interact in the
+    response;
+  \item deriving an analytical model of the response $y$ as a function
+    of the primary factors $x$. This model can then be used to
+    determine where to set the primary factors $x$ so that response
+    $y$ is always close to a desired value or is minimized/maximized
+    (\emph{analysis of variance}, \emph{regression model},
+    \emph{response surface methodology}, \dots);
+  \item determining where to set the primary factors $x$ so that
+    variability in response $y$ is small;
+  \item determining where to set the primary factors $x$ so that the
+    effect of uncontrollable variables $z_1,\dots,z_q$ is minimized
+    (\emph{robust designs}, \emph{Taguchi designs}).
+  \end{itemize}
+*** Linear Regression
+    #+begin_src R :results output graphics :file  "./pdf_babel/linear_regression3.pdf" :exports none :width 3 :height 3 :session
+    library(ggplot2)
+    x=runif(50,min=-20,max=60)
+    a=5
+    b=.5
+    y=a+b*x+rnorm(50,sd=2)
+    df = data.frame(x=x,y=y,type="homoscedastic")
+    y=a+(b)*x + rnorm(50,sd=.15)*(x+20)
+    ggplot(data=df[df$type=="homoscedastic",],aes(x=x,y=y)) + theme_bw() + geom_hline(yintercept=0) + geom_vline(xintercept=0) +
+       geom_smooth(method='lm',color="red",size=1,se=F) + 
+       geom_point(color="blue") 
+    #+END_SRC
+
+    #+RESULTS:
+    [[file:./pdf_babel/linear_regression3.pdf]]
+
+  \begin{columns}
+    \begin{column}{.6\linewidth}
+      \begin{equation*}
+        Y = a + bX + \epsilon
+      \end{equation*}\vspace{-1em}
+      \begin{itemize}
+      \item $Y$ is the *response variable*
+      \item $X$ is a continuous explanatory variable
+      \item $a$ is the intercept
+      \item $b$ is the slope
+      \item $\epsilon$ is some noise
+      \end{itemize}
+    \end{column}
+    \begin{column}{.4\linewidth}
+      \includegraphics[width=\linewidth]{pdf_babel/linear_regression3.pdf}
+    \end{column}
+  \end{columns}
+  \pause When there are $2$ explanatory variables:
+  \begin{equation*}
+    Y = a + b^{(1)}X^{(1)} + b^{(2)}X^{(2)} + b^{(1,2)}X^{(1)}X^{(2)}
+    + \epsilon 
+  \end{equation*}
+  $\epsilon$ is generally assumed to be independent of $X^{(k)}$,
+  hence it needs to be checked once the regression is done.\pause
+
+  \begin{itemize}
+  \item Although your phenomenon is not linear, the linear model helps
+    for initial investigations (as a first crude approximation).
+  \item You should always wonder whether there is a way of looking at
+    your problem where it is linear.
+  \end{itemize}
+
+*** 2-level factorial design
+  \begin{overlayarea}{\linewidth}{6cm}
+    \begin{itemize}
+    \item<+-> Decide a *low* and a *high* value for
+      every
+      factor\\[-\baselineskip]
+      \begin{overlayarea}{\linewidth}{0cm}
+        \vspace{.5em}
+        \begin{center}
+          \includegraphics<.>[width=.9\linewidth]{fig/factor_impact.fig}
+        \end{center}
+      \end{overlayarea}
+    \item<+-> Test *every* ($2^p$) *combination* of
+      high and low values, possibly replicating for each combination.
+    \item<.-> By varying everything, we can detect
+      *interactions*
+      right away.\\[-\baselineskip]
+      \begin{overlayarea}{\linewidth}{0cm}
+        \vspace{.5em}
+        \begin{center}
+          \includegraphics<.>[width=.5\linewidth]{images/OFAT.jpg}
+        \end{center}
+      \end{overlayarea}
+    \item<+-> Standard way of analyzing this: ANOVA (*ANalysis
+        Of VAriance*) enable to *discriminate real effects
+        from noise*.
+      \begin{itemize}
+      \item[$\leadsto$] enable to prove that *some parameters
+          have little influence* and can be randomized over (possibly
+        with a more elaborate model)
+      \item[$\leadsto$] enable to easily know how to change factor
+        range when performing *steepest ascent method*.
+      \end{itemize}
+    \end{itemize}
+  \end{overlayarea}
+
+*** Exploiting and reducing variance
+*** Shape of the curve (sorina)
+* ANOVA								   :noexport:
+  Les éléments de X sont à valeur dans 0, 1
+  p. 169 of [[file:~/Bureau/Stat/Faraway-PRA.pdf][ANOVA]].
+* Documents 							   :noexport:
+  [[file:~/Bureau/Stat/Faraway-PRA.pdf][ANOVA]]
+  http://www.stat.sc.edu/~hendrixl/stat205/Lecture%20Notes/ANOVA.pdf‎
+
+  http://www.gs.washington.edu/academics/courses/akey/56008/lecture/lecture9.pdf‎
+
+  http://www2.mccombs.utexas.edu/faculty/carlos.carvalho/ Section1.pdf 
+
+#     p. 22 and Chapt 6 of [[file:~/Bureau/Stat/Faraway-PRA.pdf][ANOVA]].
+#     http://www2.mccombs.utexas.edu/faculty/carlos.carvalho/teaching/lecture2_Dallas.pdf
+
