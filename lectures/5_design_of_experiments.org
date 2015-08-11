@@ -16,9 +16,9 @@
 * List                                                             :noexport:
 ** TODO Detail aov
 ** TODO Uniformity/repartition in space for exploration, explain how to generate
-** TODO Explain sequential approach
+** TODO Explain sequential approach using lm, loess, or kriging
 ** TODO Explain variance reduction
-** TODO Mention kriging
+** TODO Explicit the general workflow: R for doe, measurement black box, R for analysis
 * Modeling Principles
 *** Motivation
   Computer scientists tend to either:
@@ -148,7 +148,7 @@
 *** Observationnal vs. Experimental Data
     Pirates: correlation/causation
     2 variables peuvent être fortement correlées à une troisième (e.g., l'année)
-
+    Beware, I did not explain what correlation is before
 * Design of Experiments
 ** Main Steps
 *** Select the problem to study}
