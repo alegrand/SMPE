@@ -1,4 +1,4 @@
-#+TITLE:     *Scientific Methodology and Performance Evaluation for Computer Scientists
+#+TITLE:     Scientific Methodology and Performance Evaluation for Computer Scientists
 #+AUTHOR:    Arnaud Legrand
 #+DATE: August 2015
 #+STARTUP: overview indent
