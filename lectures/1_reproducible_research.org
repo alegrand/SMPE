@@ -7,28 +7,74 @@
 #+LaTeX_CLASS_OPTIONS: [11pt,xcolor=dvipsnames,presentation]
 #+OPTIONS:   H:3 num:t toc:nil \n:nil @:t ::t |:t ^:nil -:t f:t *:t <:t
 #+LATEX_HEADER: \input{org-babel-style-preembule.tex}
+#+LATEX_HEADER: %\let\tmptableofcontents=\tableofcontents
+#+LATEX_HEADER: %\def\tableofcontents{}
 
+*** Course Organization
+#+BEGIN_CENTER
+\bf *Scientific Methodology and Performance Evaluation\\
+for Computer Scientists*
+#+END_CENTER
+- 5 lectures of 3 hours ::
+     #+LaTeX: ~
+  1. Reproducible research
+  2. Data visualization/presentation
+  3. Introduction to probabilities/statistics
+  4. Linear regression
+  5. Design of Experiments
+- Stuff to know about this course ::
+     #+LaTeX: ~
+  - Way too much stuff for so little time. The slides are extremely
+    dense and I speak very fast. *Don't panic*! Feel free to interrupt
+  - Slides are self-content with many [[https://github.com/alegrand/M2R-ParallelQuicksort][/links/]] and =code=  examples
+  - Try to *put into practice asap to get the most out of it* and *do not
+    worry about the grade*
+** 
 #+LaTeX: \input{org-babel-document-preembule.tex}
+#+LaTeX: %\let\tableofcontents=\tmptableofcontents
+#+LaTeX: %\tableofcontents
+* A Few Motivating Examples 
+*** Naicken computation                                          :noexport:
+#+tblname: naicken
+| Type        | Count |
+|-------------+-------|
+| None        |   146 |
+| Unspecified |    71 |
+| Custom      |    43 |
+| NS-2        |     8 |
+| Chord-(SFS) |     7 |
+| Javasim     |     2 |
+| Peersim     |     2 |
+| Aurora      |     1 |
+| CSIM-19     |     1 |
+| Modelnet    |     1 |
+| Nab         |     1 |
+| Narses      |     1 |
+| Neurogrid   |     1 |
+| P2PSim      |     1 |
+| SOSS        |     1 |
 
-* List                                                             :noexport:
-** TODO Update from [[file:2015_04_24_journee_trace.org]]
-** TODO No lecture on ggplot but only on R/knitr
-** TODO Fraud
-http://science21.blogs.courrierinternational.com/archive/2015/07/04/fraude-scientifique-l-affaire-de-dong-pyou-han-i-51017.html
-Fraude scientifique : l'affaire de Dong-Pyou Han (I)
-* Reproducible Research
-** Looks familiar?
-*** Frustration as a Reviewer
-This may be an interesting contribution but:
-- This *average value* must hide something
-- As usual, there is no *confidence interval*, I wonder about the
-  variability and whether the difference is *significant* or not
-- That can't be true, I'm sure they *removed some points*
-- Why is this graph in *logscale*? How would it look like otherwise?
-- The authors decided to show only a *subset of the data*. I wonder
-  what the rest looks like
-- There is no label/legend/... What is the *meaning of this graph*?
-  If only I could access the generation script
+#+begin_src R :results output graphics  :var df=naicken :file images/naicken.pdf :exports both :width 4 :height 4 :session
+  library(ggplot2)
+  df <- df[df$Type!="None",]
+  df[!(df$Type %in% c("Unspecified","Custom","NS-2","Chord-(SFS)")),]$Type = "Other"
+  df$Ratio = 100*df$Count / sum(df$Count)
+  pie <- ggplot(df, aes(x = "", y = Ratio, fill = Type)) + 
+         geom_bar(width = 1,  stat = "identity") + coord_polar(theta = "y") 
+  pie + scale_fill_brewer(palette="Set1") + theme_bw() + ylab("") + xlab("") + 
+        ggtitle("Simulator usage [Naicken06]")
+#+end_src
+
+#+RESULTS:
+[[file:images/naicken.pdf]]
+
+#+begin_src sh :results output :exports both
+  pdfcrop images/naicken.pdf images/naicken.pdf
+#+end_src
+
+#+RESULTS:
+: PDFCROP 1.38, 2012/11/02 - Copyright (c) 2002-2012 by Heiko Oberdiek.
+: ==> 1 page written on `images/naicken.pdf'.
 *** Frustration as an Author
 - I thought I used the same parameters but *I'm getting different
   results!*
@@ -41,6 +87,279 @@ This may be an interesting contribution but:
 - *Which code* and *which data set* did I use to generate this figure?
 - It *worked yesterday*!
 - 6 months later: *why* did I do that?
+*** Frustration as a Reviewer
+This may be an interesting contribution but:
+- This *average value* must hide something
+- As usual, there is no *confidence interval*, I wonder about the
+  variability and whether the difference is *significant* or not
+- That can't be true, I'm sure they *removed some points*
+- Why is this graph in *logscale*? How would it look like otherwise?
+- The authors decided to show only a *subset of the data*. I wonder
+  what the rest looks like
+- There is no label/legend/... What is the *meaning of this graph*?
+  If only I could access the generation script
+*** A Few Edifying Examples
+#+BEGIN_LaTeX
+  \begin{columns}
+    \begin{column}{.67\linewidth}
+      \bottomcite{Naicken, Stephen \textit{et Al.}, \textit{Towards Yet
+          Another Peer-to-Peer Simulator}, HET-NETs'06.}\medskip\\
+      \small
+      From 141 P2P sim.papers, 30\% use a custom tool, \alert{50\% don't report
+      used tool}\\ \medskip
+
+    \end{column}
+    \begin{column}{.33\linewidth}
+      \includegraphics[width=\linewidth]{images/naicken.pdf}
+    \end{column}
+  \end{columns}
+
+  \bottomcite{Collberg, Christian \textit{et Al.}, \textit{Measuring
+      Reproducibility in Computer Systems Research},
+    \url{http://reproducibility.cs.arizona.edu/}}
+
+  \begin{columns}
+    \begin{column}{.5\linewidth}
+      ~\hspace{-1.7em}\includegraphics[height=4.7cm]{images/repeatability_arizona.pdf}
+    \end{column}
+    \begin{column}{.5\linewidth}
+      \small
+      \begin{itemize}
+      \item 8 ACM conferences ({\scriptsize ASPLOS'12, CCS'12, OOPSLA'12, OSDI'12,
+        PLDI'12, SIGMOD'12, SOSP'11, VLDB'12}) and 5 journals
+      \item 
+        $\text{EM}^{\text{no}}$= \alert{the code cannot be provided}
+      \end{itemize}
+    \end{column}
+  \end{columns}
+#+END_LaTeX
+
+*** The Dog Ate my Homework !!!
+#+BEGIN_LaTeX
+  \vspace{-.4cm}
+  \begin{multicols}{2}
+    \begin{itemize}[<+->]
+    \item \alert<.>{Versionning Problems}
+    \item \alert<.>{Bad Backup Practices}
+    \item \alert<.>{Code Will be Available Soon}
+    \item \alert<.>{No Intention to Release}
+    \item \alert<.>{Programmer Left}
+    \item \alert<.>{Commercial Code}
+    \item \alert<.>{Proprietary Academic Code}
+    \item \alert<.>{Research vs. Sharing}
+    \item<.-> ...
+    \item<.-> ...
+    \end{itemize}
+  \end{multicols}
+%  \vspace{-.5cm}
+
+  \begin{block}{}
+  \vspace{-.4cm}
+  \begin{overlayarea}{\linewidth}{5cm}
+      \small
+      \only<1>{
+        \begin{quote}
+          Thanks for your interest in the implementation of our
+          paper. The good news is that I was able to find some code. I
+          am just \alert{hoping} that \alert{it} is a stable working
+          version of the code, and \alert{matches the implementation we
+            finally used for the paper}. Unfortunately, I have
+          \alert{lost some data} when \alert{my laptop was stolen} last
+          year. The bad news is that the code is not commented and/or
+          clean.
+        \end{quote}
+        \begin{quote}
+          Attached is the $\langle$system$\rangle$ source code of our
+          algorithm. I’m \alert{not} very \alert{sure whether it is the
+            final version of the code used in our paper}, but it should
+          be at least 99\% close. Hope it will help.
+        \end{quote}}%
+      \only<2>{
+        \begin{quote}
+          Unfortunately, the server in which my implementation was
+          stored had a \alert{disk crash in April and three disks
+            crashed simultaneously}. While the help desk made
+          significant effort to save the data, my entire implementation
+          for this paper was not found.
+        \end{quote}}
+      \only<3>{
+        \begin{quote}
+          Unfortunately the
+          current system is \alert{not mature enough at the moment}, so
+          it’s not yet publicly available. We are actively working on a
+          number of extensions and \alert{things are somewhat
+            volatile}. However, once things stabilize we plan to release
+          it to outside users. At that point, we would be happy to send
+          you a copy.
+        \end{quote}}%
+      \only<4>{
+        \begin{quote}
+          I am afraid that the source code was never released. The code
+          was \alert{never intended to be released so is not in any shape
+            for general use}.
+        \end{quote}}%
+      \only<5>{
+        \begin{quote}
+          $\langle$STUDENT$\rangle$ was a graduate student in our
+          program but \alert{he left a while back} so I am responding
+          instead. For the paper we used a prototype that included many
+          moving pieces that only $\langle$STUDENT$\rangle$ knew how to
+          operate and we did not have the time to integrate them in a
+          ready-to-share implementation before he left. Still, I hope
+          you can build on the ideas/technique of the paper. 
+        \end{quote}
+        \begin{quote}
+          Unfortunately, the author who has done most of the coding for
+          this paper has \alert{passed away} and the code is no longer
+          maintained.
+        \end{quote}
+      }%
+      \only<6>{
+        \begin{quote}
+          Since this work has been done at $\langle$COMPANY$\rangle$
+          \alert{we don't open-source code} unless there is a compelling
+          business reason to do so. So unfortunately I don’t think we’ll
+          be able to share it with you.
+        \end{quote}
+        \begin{quote}
+          The code \alert{owned by $\langle$COMPANY$\rangle$}, and AFAIK
+          the code is not open-source.  Your best bet is to reimplement
+          :( Sorry.
+        \end{quote}}%
+      \only<7>{
+        \begin{quote}
+          Unfortunately, the $\langle$SYSTEM$\rangle$
+          sources are \alert{not meant to be opensource} (the code is partially
+          \alert{property of $\langle$UNIVERSITY 1$\rangle$,
+            $\langle$UNIVERSITY 2$\rangle$ and $\langle$UNIVERSITY
+            3$\rangle$.})
+
+          If this will change I will let you know, albeit I do not
+          think there is an intention to make the
+          $\langle$SYSTEM$\rangle$ sources opensource in the near
+          future.
+        \end{quote}
+        \begin{quote}
+          If you're interested in obtaining the code, \alert{we only ask
+            for a description of the research project} that the code
+          will be used in (\alert{which may lead to some joint
+            research}), and we also have a software license agreement
+          that the University would need to sign.
+        \end{quote}}
+      \only<8>{
+        \begin{quote}
+          In the past when we attempted to share it, we found ourselves
+          spending more time getting outsiders up to speed than on our
+          own research. So \alert{I finally had to establish the policy
+            that we will not provide the source code outside the group}.
+        \end{quote}
+      }
+    \end{overlayarea}
+  \end{block}
+  \null\vspace{-.4cm}
+#+END_LaTeX
+* The Reproducible Research Movement
+** How does it work in other sciences?
+\includeslidesJF{2-7}
+# \includeslidesJF{11-14}
+# \includeslidesMG{26}
+*** A few Words on Scientific Foundation
+- *Falsifiability* or *refutability* of a statement, hypothesis, or
+  theory is an inherent possibility to prove it to be false (not
+  "/commit fraud/" but "/prove to be false/").
+- Karl Popper makes falsifiability the demarcation criterion to
+  *distinguish the scientific from the unscientific*
+
+  #+BEGIN_QUOTE
+  It is not only not right, it is not even wrong!
+
+  -- Wolfgang Pauli
+  #+END_QUOTE
+- Theories cannot be proved correct but they can be disproved. Only a
+  few stand the test of batteries of *critical experiments*.
+- It is not all black and white. There are many stories where
+  scientists stick with their theories despite evidences and
+  sometimes, they were even right to do so...
+#+BEGIN_CENTER
+  *Testing and checking is thus one of the basis of science*
+#+END_CENTER
+
+Further readings: *A Summary of Scientific Method*, Peter Kosso,
+Springer
+*** Why Are Scientific Studies so Difficult to Reproduce?
+#+LaTeX: \begin{overlayarea}{\linewidth}{7.6cm}\null\vspace{1cm}
+- Copyright/competition issue
+- Publication *bias* (only the idea matters, not the gory details)
+- Rewards for *positive results*
+- Experimenter *bias*
+- Programming *errors* or data manipulation *mistakes*
+- Poorly selected statistical tests
+- Multiple testing, multiple looks at the data, multiple
+  statistical analyses
+- +*Lack of easy-to-use tools*+
+
+#+LaTeX: \end{overlayarea} \begin{flushright}\scriptsize Courtesy of Adam J. Richards\end{flushright}
+*** Evidence for a Lack of Reproducibility
+#+LaTeX: \begin{overlayarea}{\linewidth}{7.6cm}\null\vspace{.6cm}
+- Studies showing that scientific papers commonly *leave out
+  experimental details essential for reproduction* and showing
+  *difficulties with replicating published experimental results*:
+  + J.P. Ioannidis. /[[http://www.plosmedicine.org/article/info:doi/10.1371/journal.pmed.0020124][Why Most Published Research Findings Are False]]/ PLoS
+    Med. 2005 August; 2(8)
+- High number of *failing clinical trials*.
+  + /[[http://mescal.imag.fr/membres/arnaud.legrand/teaching/2011/EP_epidemiology.pdf][Do We Really Know What Makes Us Healthy?]]/, New-York Times —
+    September 16, 2007
+  + /[[http://mescal.imag.fr/membres/arnaud.legrand/teaching/2011/EP_lies.pdf][Lies, Damned Lies, and Medical Science]]/, The Atlantic. 2010, Nov.
+- Increase in *retracted papers*:
+  + Steen RG, /[[http://dx.doi.org/10.1136/jme.2010.040923][Retractions in the scientific literature: is the
+    incidence of research fraud increasing?]]/ J Med Ethics 37:
+    249–253.
+#+LaTeX: \end{overlayarea} \begin{flushright}\scriptsize Courtesy of Adam J. Richards\end{flushright}
+*** A Reproducibility Crisis?
+#+LaTeX: \begin{overlayarea}{\linewidth}{7.6cm}\null\vspace{-.4cm}
+*[[http://www.nytimes.com/2011/07/08/health/research/08genes.html][The Duke University scandal with scientific misconduct on lung
+cancer]]*
+
+\vspace{-.2cm}\small
+- /Nature Medicine/ - 12, 1294 - 1300 (2006) *Genomic signatures to
+  guide the use of chemotherapeutics*, by
+  #+LaTeX: \bgroup\scriptsize
+  Anil Potti and 16 other researchers from Duke University and
+  University of South Florida
+  #+LaTeX: \egroup\vspace{-.2cm}
+- Major commercial labs licensed it and were about to start using it
+  before two statisticians discovered and publicized its faults
+  #+BEGIN_LaTeX
+  \begin{block}{}\scriptsize
+  Dr. Baggerly and Dr. Coombes found errors almost immediately. Some seemed careless — moving a row or a column over by one in a giant spreadsheet — while others seemed inexplicable. The Duke team shrugged them off as “clerical errors.”
+  \end{block}
+
+  \begin{block}{}\scriptsize
+  The Duke researchers continued to publish papers on their genomic signatures in prestigious journals. Meanwhile, they started three trials using the work to decide which drugs to give patients.
+  \end{block}
+  #+END_LaTeX
+- Retractions: January 2011. [[http://en.wikipedia.org/wiki/Anil_Potti][Ten papers that Potti coauthored in
+  prestigious journals were retracted for varying reasons]]
+- Some people die and may be getting worthless information that is
+  based on *bad science*
+#+LaTeX: \end{overlayarea} \begin{flushright}\scriptsize Courtesy of Adam J. Richards\end{flushright}
+*** Definitely
+- A recent scandal ::
+  In 2013, [[https://en.wikipedia.org/wiki/Dong-Pyou_Han][/Dong-Pyou Han/]], a former assistant professor of biomedical
+     sciences at Iowa State University was disgraced:
+  - Falsified blood results to make it appear as though a vaccine he was
+    working on had exhibited anti-HIV activity
+  - Han and his team received approximately \$19 million in grant money
+    from the National Institutes of Health.
+  - Retraction and resignation of university
+  - Han was sentenced in 2015 to 57 months imprisonment for fabricating
+    and falsifying data in HIV vaccine trials.
+  - He was also fined US \$7.2 million
+- Scientific fraud is sooo bad... \smiley :: Have a look at the wikipedia
+     [[https://en.wikipedia.org/wiki/Category:Academic_scandals][/list of academic scandals/]]. On a totally different aspect, do
+     not forget to also have a look at the [[https://en.wikipedia.org/wiki/Plagiarism][/plagiarism/]] and [[https://en.wikipedia.org/wiki/Paper_generator][/paper
+     generation/]] entries at [[https://hal.inria.fr/file/index/docid/713564/filename/TechReportV2.pdf][/having fun with h-index/]]
+** Is CS Concerned Really With This?
 *** My Feeling
 Computer scientists have an incredibly *poor training in
 probabilities, statistics, experiment management*
@@ -98,46 +417,26 @@ can start by reading *Jain's book on The Art of Computer Systems
 Performance Analysis*
 #+END_CENTER
 \normalsize
-** How does it work in other sciences?
-\includeslidesJF{2-7}
-# \includeslidesJF{11-14}
-# \includeslidesMG{26}
-*** A few Words on Scientific Foundation
-- *Falsifiability* or *refutability* of a statement, hypothesis, or
-  theory is an inherent possibility to prove it to be false (not
-  "/commit fraud/" but "/prove to be false/").
-- Karl Popper makes falsifiability the demarcation criterion to
-  *distinguish the scientific from the unscientific*
+*** But do we \textbf{really} have to care?
+\small
+*Yes*, although designed and built by human beings, computers are *so
+complex* that mistakes are easy to do...
 
-  #+BEGIN_QUOTE
-  It is not only not right, it is not even wrong!
+#+LaTeX: \begin{overlayarea}{1.07\linewidth}{1cm}\hspace{-.042\linewidth}\begin{minipage}{\linewidth}
+- T. Mytkowicz, A. Diwan, M. Hauswirth, and P. F. Sweeney. *[[http://doi.acm.org/10.1145/1508284.1508275][Producing wrong data without doing anything obviously wrong]]!*. SIGPLAN Not. 44(3), March 2009
+#+LaTeX: \end{minipage}\end{overlayarea}
 
-  -- Wolfgang Pauli
-  #+END_QUOTE
-- Theories cannot be proved correct but they can be disproved. Only a
-  few stand the test of batteries of *critical experiments*.
-- It is not all black and white. There are many stories where
-  scientists stick with their theories despite evidences and
-  sometimes, they were even right to do so...
-#+BEGIN_CENTER
-  *Testing and checking is thus one of the basis of science*
-#+END_CENTER
-
-Further readings: *A Summary of Scientific Method*, Peter Kosso,
-Springer
-*** Why Are Scientific Studies so Difficult to Reproduce?
-#+LaTeX: \begin{overlayarea}{\linewidth}{7.6cm}\null\vspace{1cm}
-- Copyright/competition issue
-- Publication *bias* (only the idea matters, not the gory details)
-- Rewards for *positive results*
-- Experimenter *bias*
-- Programming *errors* or data manipulation *mistakes*
-- Poorly selected statistical tests
-- Multiple testing, multiple looks at the data, multiple
-  statistical analyses
-- +*Lack of easy-to-use tools*+
-
-#+LaTeX: \end{overlayarea} \begin{flushright}\scriptsize Courtesy of Adam J. Richards\end{flushright}
+#+BEGIN_LaTeX
+\begin{overlayarea}{\linewidth}{4.4cm}
+\begin{center}
+\includegraphics<+>[width=.6\linewidth]{images/asplos09-producing-data_fig1.pdf}%
+\includegraphics<+->[width=.6\linewidth]{images/asplos09-producing-data_fig2.pdf}%
+\end{center}
+\end{overlayarea}
+#+END_LaTeX
+**** Key principles of experiment design
+- *Randomize* to *reduce bias*
+- *Replicate* (possibly in a smart way) to *increase reliability*
 ** Reproducible Research/Open Science
 *** Reproducible Research: the New Buzzword?
 **** H2020-EINFRA-2014-2015
@@ -173,70 +472,6 @@ Should be seen as opportunities to share experience.
 \end{flushright}
 \end{overlayarea}
 #+END_LaTeX
-*** Evidence for a Lack of Reproducibility
-#+LaTeX: \begin{overlayarea}{\linewidth}{7.6cm}\null\vspace{.6cm}
-- Studies showing that scientific papers commonly *leave out
-  experimental details essential for reproduction* and showing
-  *difficulties with replicating published experimental results*:
-  + J.P. Ioannidis. /[[http://www.plosmedicine.org/article/info:doi/10.1371/journal.pmed.0020124][Why Most Published Research Findings Are False]]/ PLoS
-    Med. 2005 August; 2(8)
-- High number of *failing clinical trials*.
-  + /[[http://mescal.imag.fr/membres/arnaud.legrand/teaching/2011/EP_epidemiology.pdf][Do We Really Know What Makes Us Healthy?]]/, New-York Times —
-    September 16, 2007
-  + /[[http://mescal.imag.fr/membres/arnaud.legrand/teaching/2011/EP_lies.pdf][Lies, Damned Lies, and Medical Science]]/, The Atlantic. 2010, Nov.
-- Increase in *retracted papers*:
-  + Steen RG, /[[http://dx.doi.org/10.1136/jme.2010.040923][Retractions in the scientific literature: is the
-    incidence of research fraud increasing?]]/ J Med Ethics 37:
-    249–253.
-#+LaTeX: \end{overlayarea} \begin{flushright}\scriptsize Courtesy of Adam J. Richards\end{flushright}
-*** Why Bother Making Our Work Reproducible?
-#+LaTeX: \begin{overlayarea}{\linewidth}{7.6cm}\null\vspace{-.4cm}
-*[[http://www.nytimes.com/2011/07/08/health/research/08genes.html][The Duke University scandal with scientific misconduct on lung
-cancer]]*
-
-\vspace{-.2cm}\small
-- /Nature Medicine/ - 12, 1294 - 1300 (2006) *Genomic signatures to
-  guide the use of chemotherapeutics*, by
-  #+LaTeX: \bgroup\scriptsize
-  Anil Potti and 16 other researchers from Duke University and
-  University of South Florida
-  #+LaTeX: \egroup\vspace{-.2cm}
-- Major commercial labs licensed it and were about to start using it
-  before two statisticians discovered and publicized its faults
-  #+BEGIN_LaTeX
-  \begin{block}{}\scriptsize
-  Dr. Baggerly and Dr. Coombes found errors almost immediately. Some seemed careless — moving a row or a column over by one in a giant spreadsheet — while others seemed inexplicable. The Duke team shrugged them off as “clerical errors.”
-  \end{block}
-
-  \begin{block}{}\scriptsize
-  The Duke researchers continued to publish papers on their genomic signatures in prestigious journals. Meanwhile, they started three trials using the work to decide which drugs to give patients.
-  \end{block}
-  #+END_LaTeX
-- Retractions: January 2011. [[http://en.wikipedia.org/wiki/Anil_Potti][Ten papers that Potti coauthored in
-  prestigious journals were retracted for varying reasons]]
-- Some people die and may be getting worthless information that is
-  based on *bad science*
-#+LaTeX: \end{overlayarea} \begin{flushright}\scriptsize Courtesy of Adam J. Richards\end{flushright}
-*** Is CS Concerned Really With This?
-\small
-*Yes*, although designed and built by human beings, computers are *so
-complex* that mistakes are easy to do...
-
-#+LaTeX: \begin{overlayarea}{1.07\linewidth}{1cm}\hspace{-.042\linewidth}\begin{minipage}{\linewidth}
-- T. Mytkowicz, A. Diwan, M. Hauswirth, and P. F. Sweeney. *[[http://doi.acm.org/10.1145/1508284.1508275][Producing wrong data without doing anything obviously wrong]]!*. SIGPLAN Not. 44(3), March 2009
-#+LaTeX: \end{minipage}\end{overlayarea}
-
-#+BEGIN_LaTeX
-\begin{overlayarea}{\linewidth}{4.4cm}
-\begin{center}
-\includegraphics<+>[width=.6\linewidth]{images/asplos09-producing-data_fig1.pdf}%
-\includegraphics<+->[width=.6\linewidth]{images/asplos09-producing-data_fig2.pdf}%
-\end{center}
-\end{overlayarea}
-#+END_LaTeX
-**** Key principles of experiment design
-- *Randomize* to *reduce bias*
-- *Replicate* to *increase reliability*
 *** Reproducible Research: Trying to Bridge the Gap
 #+BEGIN_LaTeX
   \hbox{\hspace{-.05\linewidth}%
@@ -249,6 +484,8 @@ complex* that mistakes are easy to do...
 \begin{flushright}
 {\scriptsize {\textbf{Inspired by Roger D. Peng's lecture on reproducible research, May 2014}}}
 \end{flushright}
+
+In this series of lectures, we'll go from right to left and see how we can improve.
 #+END_LaTeX
 *** Mythbusters: Science vs. Screwing Around                        :B_frame:
     :PROPERTIES:
@@ -266,6 +503,8 @@ complex* that mistakes are easy to do...
 #+BEGIN_CENTER
 Many different tools/approaches developped in various communities
 #+END_CENTER
+
+But mainly two approaches:
 **** Automatically keeping track of everything
 - the code that was run (source code, libraries, compilation
   procedure)
@@ -281,7 +520,8 @@ Many different tools/approaches developped in various communities
 #+BEGIN_CENTER
 *Laboratory notebook* and *recipes*
 #+END_CENTER
-*** A few Experiment Management Tools                            :noexport:
+** Interesting Approaches for [PD]C Reproducible experiments
+*** A few Experiment Management Tools
 - Naive way: sh + ssh + ... \medskip
   #+BEGIN_LaTeX
   \item \alert<1>{Expo} (2007-, G5K)
@@ -307,7 +547,7 @@ they have been designed
 
 - *A taxonomy of experiment management tools for distributed
   systems*, T. Buchert, C. Ruiz , L. Nussbaum, O. Richard, FGCS, 2014
-*** Expo                                                         :noexport:
+*** Expo
 - Grenoble (B. Videau, C. Ruis, O. Richard) \hfill
   http://expo.gforge.inria.fr/
 - *DSL* (Domain Specific Language) derived from *Ruby* and adapted to
@@ -330,7 +570,10 @@ reserv.run!
 ptask $all, "hostname"
 reserv.stop!
   #+END_SRC
-*** XPflow                                                       :noexport:
+  #+LaTeX: \normalsize
+- Inspired similar tools like *[[http://execo.gforge.inria.fr/][/Execo/]]* that provides a *Python*-based
+  API. Script-oriented, fork+sh+ssh or taktuk
+*** XPflow
 - Nancy (T. Buchert, L. Nussbaum)\hfill http://xpflow.gforge.inria.fr/
 - *DSL* (Domain Specific Language) derived from *Ruby* and adapted to
   the management of experiment
@@ -356,14 +599,7 @@ reserv.stop!
 \end{flushright}
 \end{overlayarea}
 #+END_LaTeX 
-*** Execo                                                        :noexport:
-- Lyon (M. Imbert, L. Pouilloux)\hfill http://execo.gforge.inria.fr/
-- *Python*-based API, script-oriented, fork+sh+ssh or taktuk
-- *Process*: start/wait/kill, error/exit_code, stdout/stderr
-- Heavy use of inheritence:
-  + Process $\leadsto$ SshProcess
-  + Engine $\leadsto$ g5k_cluster_engine/openstack_engine/vm5k
-*** A few Environment Management Tools                           :noexport:
+*** A few Environment Management Tools
 CDE automatically tracks and packages up the Code, Data, and
 Environment 
 
@@ -381,7 +617,7 @@ E.g., the Kameleon project
 - Ruby-based, *YAML* description of *recipes* with *steps* and
   *aliases*, execution in *contexts*
 - Automatically *checkpoints* to rebuild only what is required
-** Many Different Alternatives for Reproducible Analysis
+** Many Different Alternatives for Replicable Analysis
 *** Vistrails: a Workflow Engine for Provenance Tracking
 #+BEGIN_LaTeX
 \vspace{-.6em}
@@ -449,8 +685,127 @@ E.g., the Kameleon project
 And also: \textbf{Figshare}, \textbf{ActivePapers}, \textbf{Elsevier executable paper}, ...
 \end{overlayarea}
 #+END_LaTeX 
+* Reporting Results
+** An IMRAD Report
+*** Structure
+Research articles are often structured in this basic order:
+- Introduction ::  Why was the study undertaken? What was the research
+                   question, the tested hypothesis or the purpose of
+                   the research?
+- Methods :: When, where, and how was the study done? What
+             materials/hardware were used? How was it configured?
+- Results :: What answer was found to the research question; what did
+             the study find? Was the tested hypothesis true? *Present
+             useful results in a synthetic way with a logical order*.
+- Discussion :: What might the answer imply and why does it matter?
+                How does it fit in with what other researchers have
+                found? What are the possible bias and points to
+                improve? What are the perspectives for future
+                research?
 
-* R Crash Course                                                   :noexport:
+Such structure *facilitates literature review* and is a very effective
+way to convey information.
+
+If the report is a few pages long then *an abstract is required*.
+** Good Practice for Setting up a Laboratory Notebook
+*** Step 0: Taking Notes
+*Document* your:
++ *Hypotheses*: keep track of your ideas/line of thoughts
++ *Experiments*: details on how and why an experiment was run, including
+  failed or ambiguous attempts.
++ *Initial analysis or interpretation* of these experiments: was the
+  outcome conform to the expectation or not? does it (in)validate the
+  hypothesis?
++ *Organization*: keep track of things to do/fix/test/improve
+
+*Structure*:
+1. General information about the document and organization *conventions*
+   (e.g., directory structure, notebook structure, experimental result
+   storing mechanism, ...)
+2. Documentation of *commonly used commands* and of how to set up
+   experiments (e.g., git cloning, environment deployment, connection
+   to machines, compiling scripts)
+3. Experiment results can be either structured *by dates* ($\leadsto$ add
+   tags) or *by experiment campaigns* ($\leadsto$ add date/time)
+*** Which format should I use ?
+- *Wikis* are encouraged to favor collaboration but I do not find them
+  really effective
+- *Blogging* systems are also a way of managing such notebook but they
+  should rather be considered as an effective way to share information
+  with others
+- I recommend to use basic *plain-text* format and to *structure it
+  hierarchically*
+  #+BEGIN_CENTER 
+  Here is a *[[http://starpu-simgrid.gforge.inria.fr/misc/LabBook.html\#sec-8-1][link]]* to an excerpt of the journal of one of my PhD
+  student, managed with git/org-mode. More detailed links are given in
+  #+LaTeX: slide~\ref{orglabref}.
+  #+END_CENTER
+
+Last but not least:
+#+BEGIN_CENTER
+Provide links to *Raw Data*!!!
+#+END_CENTER
+*** When/How Often Should I Use it?
+I have a very intense usage (demo to *[[file:~/org/journal.org][general journal]]* and specific
+*[[file:~/Work/Documents/Articles/2013/2013_boinc_response_time_optimization/journal.org][BOINC journal]]*) and I tend to capture a lot of information but you do
+not have to be as extreme as I am. Here are a few advices:
+
+- Spending *more than an hour without* at least *writing* what you're
+  working on *is not right*...
+  + *Take a 5 minutes* break and ask yourself what you're doing, what is
+    keeping you busy and where all this is leading you
+- While working on something, you will often notice/think about
+  something you should fix/improve but you just don't want to do it
+  now. Take 20 seconds to write a *TODO* entry.
+- There are moments where you have to *wait for something* (compiling,
+  deployment, ...). It is generally the perfect time for improving
+  your notes (e.g., detail the steps to accomplish a TODO entry).
+- *By the end of the day*: daily (and weekly) *review!*
+  - Update your lists, write what the next steps are
+  - *Summarize in a 2-4 lines* (for your advisor) what you did, what was
+    difficult, what you learnt.
+*** Step 1: Sharing Code and Data
+#+LaTeX: \begin{overlayarea}{\linewidth}{7.6cm}\null\vspace{-.6cm}
+#+LaTeX: \begin{block}{What kinds of systems are available?}
+- "Good" - The cloud (Dropbox, Google Drive, *Figshare*)
+- *Better* - Version control systems (SVN, *Git* and Mercurial)
+- "Best" - Version control systems on the cloud (GitHub, Bitbucket)
+
+Depends on the level of privacy you expect but you probably already
+know these tools. 
+#+LaTeX: \hfill\textbf{\bf Few handle GB files}...\hfill\null
+#+LaTeX: \end{block}\begin{block}{Is this enough?}
+1. Use a workflow that *documents both data and process*
+2. Use the machine readable *CSV format*
+3. Provide *raw* data and *meta* data, not just statistical outputs
+4. *Never* do data manipulation and statistical tests *by hand*
+5. *Use R*, Python or another free software to read and process raw
+   data (*ideally* to *produce complete reports* with code, results
+   and prose)
+#+LaTeX: \end{block}
+
+#+LaTeX: \end{overlayarea} \begin{flushright}\scriptsize Courtesy of Adam J. Richards\end{flushright}
+*** Step 2: Literate Programming
+\small
+*Donald Knuth*: explanation of the program logic in a *natural language*
+*interspersed with snippets of* macros and traditional *source code*.
+
+#+BEGIN_CENTER
+I'm way too =3l33t= to program this way but that's \\
+*exactly what we need for writing a reproducible article/analysis!*
+#+END_CENTER
+#+LaTeX: \vspace{-.5em}
+
+**** Org-mode (requires emacs)
+My favorite tool.
+- plain text, very smooth, works both for html, pdf, ...
+- allows to combine all my favorite languages even with sessions
+**** Ipython notebook
+If you are a python user, go for it! Web app, easy to use/setup...
+**** KnitR (a.k.a. Sweave)
+For non-emacs users and as a first step toward /reproducible papers/:
+- Click and play with a modern IDE (e.g., Rstudio)
+* R/knitr Crash Course
 ** General Introduction
 *** Why R?
 R is a great language for data analysis and statistics
@@ -461,7 +816,7 @@ R is a great language for data analysis and statistics
 - Very active community
   + Documentation, FAQ on http://stackoverflow.com/questions/tagged/r
 - Great integration with other tools
-*** Why is R a pain for computer scientists?
+*** Why is such R a pain for computer scientists?
 - R is *not* really a *programming* language
 - Documentation is for statisticians
 - Default plots are +cumbersome+ (meaningful)
@@ -509,11 +864,14 @@ sudo apt-get install r-base
 #+BEGIN_SRC sh :results output :exports both :session
 R
 #+END_SRC
+
+#+RESULTS:
+
 \scriptsize
 #+RESULTS:
 #+begin_example
-R version 3.0.2 (2013-09-25) -- "Frisbee Sailing"
-Copyright (C) 2013 The R Foundation for Statistical Computing
+R version 3.2.0 (2015-04-16) -- "Full of Ingredients"
+Copyright (C) 2015 The R Foundation for Statistical Computing
 Platform: x86_64-pc-linux-gnu (64-bit)
 
 R is free software and comes with ABSOLUTELY NO WARRANTY.
@@ -527,6 +885,7 @@ Type 'contributors()' for more information and
 Type 'demo()' for some demos, 'help()' for on-line help, or
 'help.start()' for an HTML browser interface to help.
 Type 'q()' to quit R.
+
 > 
 #+end_example
 
@@ -535,8 +894,10 @@ R has it's own package management mechanism so just run R and type the
 following commands:
 - =ddply=, =reshape= and =ggplot2= by Hadley Wickham (http://had.co.nz/)
   #+begin_src R
-  install.packages("plyr")
-  install.packages("reshape")
+  install.packages("plyr")    
+    # or better: install.packages("dplyr")
+  install.packages("reshape") 
+    # or better; install.packages("tidyr")
   install.packages("ggplot2")
   #+end_src
 - =knitR= by (Yihui Xie) http://yihui.name/knitr/
@@ -704,13 +1065,13 @@ summary(mtcars);
 #+end_example
 *** Exploring Content (3)
 \small
-#+BEGIN_SRC R :results output graphics :file ./mtcars_plot.pdf :exports both :session
+#+BEGIN_SRC R :results output graphics :file ./pdf_babel/mtcars_plot.pdf :exports both :session
 plot(mtcars[names(mtcars) %in% c("cyl","wt","disp","qsec","gear")]);
 #+END_SRC
 
 #+ATTR_LaTeX: :width .6\linewidth
 #+RESULTS:
-[[file:./mtcars_plot.pdf]]
+[[file:./pdf_babel/mtcars_plot.pdf]]
 
 *** Accessing Content
 \small
@@ -760,267 +1121,31 @@ summary(mtcars$cost);
 :    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
 :  0.1261  0.2038  0.2353  0.3460  0.5202  0.5534
 
-#+BEGIN_SRC R :results output graphics :file ./mtcars_hist.pdf :exports both :session
+#+BEGIN_SRC R :results output graphics :file ./pdf_babel/mtcars_hist.pdf :exports both :session
 hist(mtcars$cost,breaks=20);
 #+END_SRC
 
 #+ATTR_LaTeX: :height 4.5cm
 #+RESULTS:
-[[file:./mtcars_hist.pdf]]
-
-** Needful Packages by Hadley Wickam
-*** plyr: the Split-Apply-Combine Strategy 
-Have a look at http://plyr.had.co.nz/09-user/ for a more detailed
-introduction.
-#+BEGIN_CENTER
- #+ATTR_LaTeX: :height 6cm
- [[./images/split-apply-combine.png]]
-#+END_CENTER
-*** plyr: Powerfull One-liners
-\small
-#+BEGIN_SRC R :results output :exports both :session
-library(plyr)
-mtcars_summarized = ddply(mtcars,c("cyl","carb"), summarize, 
-      num = length(wt), wt_mean = mean(wt), wt_sd = sd(wt),
-      qsec_mean = mean(qsec), qsec_sd = sd(qsec));
-mtcars_summarized
-#+END_SRC
-
-#+RESULTS:
-#+begin_example
-  cyl carb num  wt_mean     wt_sd qsec_mean   qsec_sd
-1   4    1   5 2.151000 0.2627118  19.37800 0.6121029
-2   4    2   6 2.398000 0.7485412  18.93667 2.2924368
-3   6    1   2 3.337500 0.1732412  19.83000 0.5515433
-4   6    4   4 3.093750 0.4131460  17.67000 1.1249296
-5   6    6   1 2.770000        NA  15.50000        NA
-6   8    2   4 3.560000 0.1939502  17.06000 0.1783255
-7   8    3   3 3.860000 0.1835756  17.66667 0.3055050
-8   8    4   6 4.433167 1.0171431  16.49500 1.4424112
-9   8    8   1 3.570000        NA  14.60000        NA
-#+end_example
-If your data is not in the right form *give a try to =reshapeP/melt=*.
-
-#+BEGIN_CENTER
-  #+LaTeX: {\bf plyr next generation = dplyr}
-#+END_CENTER
-*** ggplot2: Modularity in Action
-- =ggplot2= builds on plyr and on a modular *grammar of graphics*
-- +obnoxious function with dozens of arguments+
-- *combine* small functions using layers and transformations
-- *aesthetic* mapping between *observation characteristics* (data frame column
-  names) and *graphical* object *variables*
-- an incredible *documentation*: http://docs.ggplot2.org/current/
-  #+BEGIN_CENTER
-  #+ATTR_LaTeX: :height 6cm
-  [[./images/ggplot2_doc.png]]
-  #+END_CENTER
-*** ggplot2: Illustration (1)
-\small
-#+BEGIN_SRC R :results output graphics :file ./mtcars_ggplot1.pdf :width 5.5 :height 4 :exports  both :session
-ggplot(data = mtcars, aes(x=wt, y=qsec, color=cyl)) +  
-       geom_point();
-#+END_SRC
-
-#+BEGIN_CENTER
-#+ATTR_LaTeX: :height 6cm 
-#+RESULTS:
-[[file:./mtcars_ggplot1.pdf]]
-#+END_CENTER
-*** ggplot2: Illustration (2)
-\small
-#+BEGIN_SRC R :results output graphics :file ./mtcars_ggplot2.pdf :width 5.5 :height 4 :exports  both :session
-ggplot(data = mtcars, aes(x=wt, y=qsec, color=factor(cyl))) +  
-       geom_point();
-#+END_SRC
-
-#+BEGIN_CENTER
-#+ATTR_LaTeX: :height 6cm 
-#+RESULTS:
-[[file:./mtcars_ggplot2.pdf]]
-#+END_CENTER
-*** ggplot2: Illustration (3)
-\small
-#+BEGIN_SRC R :results output graphics :file ./mtcars_ggplot3.pdf :width 5.5 :height 4 :exports  both :session
-ggplot(data = mtcars, aes(x=wt, y=qsec, color=factor(cyl),
-       shape = factor(gear))) +  geom_point() + theme_bw() +
-       geom_smooth(method="lm");
-#+END_SRC
-
-#+BEGIN_CENTER
-#+ATTR_LaTeX: :height 6cm 
-#+RESULTS:
-[[file:./mtcars_ggplot3.pdf]]
-#+END_CENTER
-*** ggplot2: Illustration (4)
-\small
-#+BEGIN_SRC R :results output graphics :file ./mtcars_ggplot4.pdf :width 6 :height 4 :exports  both :session
-ggplot(data = mtcars, aes(x=wt, y=qsec, color=factor(cyl),
-       shape = factor(gear))) + geom_point() + theme_bw() +
-       geom_smooth(method="lm") + facet_wrap(~ cyl);
-#+END_SRC
-
-#+BEGIN_CENTER
-#+ATTR_LaTeX: :height 6cm 
-#+RESULTS:
-[[file:./mtcars_ggplot4.pdf]]
-#+END_CENTER
-*** ggplot2: Illustration (5)
-\small
-#+BEGIN_SRC R :results output graphics :file ./mtcars_ggplot5.pdf :width 6 :height 4 :exports  both :session
-ggplot(data = movies, aes(x=factor(year),y=rating)) + 
-       geom_boxplot() + facet_wrap(~Romance)
-#+END_SRC
-
-#+BEGIN_CENTER
-#+ATTR_LaTeX: :height 6cm 
-#+RESULTS:
-[[file:./mtcars_ggplot5.pdf]]
-#+END_CENTER
-*** ggplot2: Illustration (6)
-\small
-#+BEGIN_SRC R :results output graphics :file ./mtcars_ggplot6.pdf :width 6 :height 4 :exports  both :session
-ggplot(movies, aes(x = rating)) + geom_histogram(binwidth = 0.5)+
-       facet_grid(Action ~ Comedy) + theme_bw();
-#+END_SRC
-
-#+BEGIN_CENTER
-#+ATTR_LaTeX: :height 6cm 
-#+RESULTS:
-[[file:./mtcars_ggplot6.pdf]]
-#+END_CENTER
+[[file:./pdf_babel/mtcars_hist.pdf]]
 *** Take away Message
 - R is a great tool but is only a tool. There is no magic. You
   need to understand what you are doing and get a *minimal
   training in statistics*
 - It is one of the building block of *reproducible research* (the
   /reproducible analysis/ block) and *will save you a lot of time*
+- It provides you an access to any statistical method you ever dreamt
+  of
 - Read at least Jain's book: *The Art of Computer Systems Performance
   Analysis*
-- Jean-Marc Vincent and myself give a *set of tutorials on performance
-  evaluation* to M2R (links provided at the end of these slides)
-- There are introductory *online courses* on coursera (links provided
-  at the end of these slides)
-* Reporting Results
-** An IMRAD Report
-*** Structure
-Research articles are often structured in this basic order:
-- Introduction ::  Why was the study undertaken? What was the research
-                   question, the tested hypothesis or the purpose of
-                   the research?
-- Methods :: When, where, and how was the study done? What
-             materials/hardware were used? How was it configured?
-- Results :: What answer was found to the research question; what did
-             the study find? Was the tested hypothesis true? *Present
-             useful results in a synthetic way with a logical order*.
-- Discussion :: What might the answer imply and why does it matter?
-                How does it fit in with what other researchers have
-                found? What are the possible bias and points to
-                improve? What are the perspectives for future
-                research?
-
-Such structure *facilitates literature review* and is a very effective
-way to convey information.
-
-If the report is a few pages long then *an abstract is required*.
-** Good Practice for Setting up a Laboratory Notebook
-*** Step 0: Taking Notes
-*Document* your:
-+ *Hypotheses*: keep track of your ideas/line of thoughts
-+ *Experiments*: details on how and why an experiment was run, including
-  failed or ambiguous attempts.
-+ *Initial analysis or interpretation* of these experiments: was the
-  outcome conform to the expectation or not? does it (in)validate the
-  hypothesis?
-+ *Organization*: keep track of things to do/fix/test/improve
-
-*Structure*:
-1. General information about the document and organization *conventions*
-   (e.g., directory structure, notebook structure, experimental result
-   storing mechanism, ...)
-2. Documentation of *commonly used commands* and of how to set up
-   experiments (e.g., git cloning, environment deployment, connection
-   to machines, compiling scripts)
-3. Experiment results can be either structured *by dates* ($\leadsto$ add
-   tags) or *by experiment campaigns* ($\leadsto$ add date/time)
-*** Which format should I use ?
-- *Wikis* are encouraged to favor collaboration but I do not find them
-  really effective
-- *Blogging* systems are also a way of managing such notebook but they
-  should rather be considered as an effective way to share information
-  with others
-- I recommend to use basic *plain-text* format and to *structure it
-  hierarchically*
-  #+BEGIN_CENTER 
-  Here is a *[[https://gforge.inria.fr/scm/browser.php?group_id%3D6337][link]]* to one of my PhD student's journal \\
-  managed with git/org-mode.
-  #+END_CENTER
-
-Last but not least:
-#+BEGIN_CENTER
-Provide links to *Raw Data*!!!
-#+END_CENTER
-*** When/How Often Should I Use it?
-I have a very intense usage (demo to *[[file:~/org/journal.org][general journal]]* and specific
-*[[file:~/Work/Documents/Articles/2013/2013_boinc_response_time_optimization/journal.org][BOINC journal]]*) and I tend to capture a lot of information but you do
-not have to be as extreme as I am. Here are a few advices:
-
-- Spending *more than an hour without* at least *writing* what you're
-  working on *is not right*...
-  + *Take a 5 minutes* break and ask yourself what you're doing, what is
-    keeping you busy and where all this is leading you
-- While working on something, you will often notice/think about
-  something you should fix/improve but you just don't want to do it
-  now. Take 20 seconds to write a *TODO* entry.
-- There are moments where you have to *wait for something* (compiling,
-  deployment, ...). It is generally the perfect time for improving
-  your notes (e.g., detail the steps to accomplish a TODO entry).
-- *By the end of the day*: daily (and weekly) *review!*
-  - Update your lists, write what the next steps are
-  - *Summarize in a 2-4 lines* (for your advisor) what you did, what was
-    difficult, what you learnt.
-*** Step 1: Sharing Code and Data
-#+LaTeX: \begin{overlayarea}{\linewidth}{7.6cm}\null\vspace{-.6cm}
-#+LaTeX: \begin{block}{What kinds of systems are available?}
-- "Good" - The cloud (Dropbox, Google Drive, *Figshare*)
-- *Better* - Version control systems (SVN, *Git* and Mercurial)
-- "Best" - Version control systems on the cloud (GitHub, Bitbucket)
-
-Depends on the level of privacy you expect but you probably already
-know these tools. 
-#+LaTeX: \hfill\textbf{\bf Few handle GB files}...\hfill\null
-#+LaTeX: \end{block}\begin{block}{Is this enough?}
-1. Use a workflow that *documents both data and process*
-2. Use the machine readable *CSV format*
-3. Provide *raw* data and *meta* data, not just statistical outputs
-4. *Never* do data manipulation and statistical tests *by hand*
-5. *Use R*, Python or another free software to read and process raw
-   data (*ideally* to *produce complete reports* with code, results
-   and prose)
-#+LaTeX: \end{block}
-
-#+LaTeX: \end{overlayarea} \begin{flushright}\scriptsize Courtesy of Adam J. Richards\end{flushright}
-*** Step 2: Literate Programming
-\small
-*Donald Knuth*: explanation of the program logic in a *natural language*
-*interspersed with snippets of* macros and traditional *source code*.
-
-#+BEGIN_CENTER
-I'm way too =3l33t= to program this way but that's \\
-*exactly what we need for writing a reproducible article/analysis!*
-#+END_CENTER
-#+LaTeX: \vspace{-.5em}
-
-**** Org-mode (requires emacs)
-My favorite tool.
-- plain text, very smooth, works both for html, pdf, ...
-- allows to combine all my favorite languages even with sessions
-**** Ipython notebook
-If you are a python user, go for it! Web app, easy to use/setup...
-**** KnitR (a.k.a. Sweave)
-For non-emacs users and as a first step toward /reproducible papers/:
-- Click and play with a modern IDE (e.g., Rstudio)
-** Emacs Demo of How to Keep Things Tidy
+- There are introductory *online courses* (from John Hopkins university)
+  on coursera which you may want to follow
+* Emacs Demo of How to Keep Things Tidy
+*** toc
+#+BEGIN_LaTeX
+    \frametitle{Outline}
+    \tableofcontents[current,currentsubsection]
+#+END_LaTeX
 *** Literate Programming on a Daily Basis
 **** Mastering Emacs
 - =C-g=: get me out of here!
@@ -1036,12 +1161,24 @@ For non-emacs users and as a first step toward /reproducible papers/:
 - =C-c C-a=: *attach* a file
 - =C-c C-d=: set deadline, =C-c C-t=: TODO/DONE
 
-*** A Few Links to Learn More
-**** Emacs/Org-mode
-- /[[http://orgmode.org/worg/org-tutorials/org4beginners.html][Org for beginners]]/ (worg)
-- /[[http://mescal.imag.fr/membres/arnaud.legrand/misc/init.org][My emacs configuration]]/
-- /[[http://mescal.imag.fr/membres/arnaud.legrand/blog/2014/05/15/emacs_and_orgmode_on_macosx.php][For Mac OS X users]]/
-** To do for the Next Time
+*** Emacs/Org-mode Recap
+#+LaTeX: \label{orglabref}
+
+**** Key features
+- Plain text makes it *very robust* and *human readable*
+- Allow to *mix any language* and has a notion of session that makes its
+  use very effective
+- Allow to produce both =html documents=, classical \LaTeX articles,
+  \textsc{beamer} slides, =odt= documents, ... Native *pretty printing* on Github
+**** A Few Links to Learn More
+- /[[http://orgmode.org/worg/org-tutorials/org4beginners.html][Org for beginners]]/, /[[http://mescal.imag.fr/membres/arnaud.legrand/misc/init.org][my emacs configuration]]/ and /[[http://mescal.imag.fr/membres/arnaud.legrand/blog/2014/05/15/emacs_and_orgmode_on_macosx.php][tricks for Mac OS
+  X users]]/
+- A [[https://anonsvn:anonsvn@gforge.inria.fr/plugins/scmgit/cgi-bin/gitweb.cgi?p%3Dstarpu-simgrid/starpu-simgrid.git%3Ba%3Dblob%3Bf%3Drun_bench_StarPU.sh%3Bhb%3D41380b54a7#l220][/script/]] *capturing* and gathering many *information* into a 
+  [[https://anonsvn:anonsvn@gforge.inria.fr/plugins/scmgit/cgi-bin/gitweb.cgi?p%3Dstarpu-simgrid/starpu-simgrid.git%3Ba%3Dblob%3Bf%3Ddata/dataK40/K40chol/SoloStarpuData10.org%3Bh%3D1655becd0a%3Bhb%3Drefs/heads/data][/*single result document*/]]
+- A [[https://anonsvn:anonsvn@gforge.inria.fr/plugins/scmgit/cgi-bin/gitweb.cgi?p%3Dstarpu-simgrid/starpu-simgrid.git%3Ba%3Dblob%3Bf%3DLabbook.org%3Bh%3D01928ce013%3Bhb%3Drefs/heads/data#l272][/*laboratory notebook*/]] *with notes about all the experiments*
+  performed since the beginning of the project
+- [[https://anonsvn:anonsvn@gforge.inria.fr/plugins/scmgit/cgi-bin/gitweb.cgi?p%3Dstarpu-simgrid/starpu-simgrid.git%3Ba%3Dblob%3Bf%3DLabBook.org%3Bh%3D0b20e8abd5%3Bhb%3Drefs/heads/data#l950][/*Litterately conducting experiments*/]] using org-mode 
+* To do for the Next Time
 *** This was way too much information...
 
 ... but keep these slides in mind and re-read them later. You will
@@ -1060,8 +1197,16 @@ follow many links when you will realize what they can bring to you.
 #+END_QUOTE
 - After you have tried, we will *debrief* on what you did and *discuss
   how it could be improved*
-*** To do for the Next Time
-1. *Fork* on Github
+*** To do for the Next Time (1/1)
+1. *Install* R and Rstudio and all the packages I previously mentioned
+   (=plyr=, =dplyr=, =reshape=, =tidyr=, =ggplot2=) on your own machines.
+2. Make sure you know how to *create small reproducible analysis* and
+   publish them on! [[http://rpubs.com][rpubs]] with Rstudio.
+3. Start \alert{learn}ing *R* with [[http://swirlstats.com/students.html][/swirl/]]: You may want to have a look
+   at [[http://cran.r-project.org/doc/contrib/Paradis-rdebuts_en.pdf][/R for Beginners/]].
+4. *Setup* emacs *org-mode* and start playing with it.
+*** To do for the Next Time (2/2)
+1. *Fork* on Github and send me corresponding URL
    #+BEGIN_CENTER
    https://github.com/alegrand/M2R-ParallelQuicksort
    #+END_CENTER
