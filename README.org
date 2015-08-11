@@ -1,0 +1,154 @@
+#+TITLE:     *Scientific Methodology and Performance Evaluation for Computer Scientists
+#+AUTHOR:    Arnaud Legrand
+#+DATE: August 2015
+#+STARTUP: overview indent
+
+*Reporting errors*: Although I do my best there may definitely be typos
+and broken links. This is github so please report me everything you
+find so that I can improve for others. :)
+
+This website gather the series of lectures on applied performance
+evaluation avalaible that I was invited to give in various
+occasions. I have given this course with Jean-Marc Vincent several
+years (roughly from 2011 to 2015) in the second year of the [[http://mosig.imag.fr/][Master of
+Science in Informatics at Grenoble]] and more recently at [[http://www.ufrgs.br/][Federal
+University of Rio Grande do Sul]].
+
+* Content
+The aim of this course is to provide the fundamental basis for sound
+scientific methodology of performance evaluation of computer
+systems. This lecture emphasize on methodological aspects of
+measurement and on the statistics needed to analyze computer systems.
+I first sensibilize the audience to the experiment and analysis
+reproducibility issue in particular in computer science. Then I
+present tools that help answering the analysis problem and may also
+reveal useful for managing the experimental process through
+notebooks. The audience is given the basis of probabilities and
+statistics required to develop sound experiment designs. Unlike some
+other lectures, my goal is not to provide analysis recipes that people
+can readily apply but to make people really understand some simple
+tools so that they can then dig deeper later on.
+
+The course is organized in 5 very dense lectures of 3 hours
+  1. [[file:lectures/1_reproducible_research.pdf][Reproducible research]]. A video of a similar presentation (a
+     mixture of lecture 1 and 2 actually) is availableon [[https://www.canal-u.tv/][canal-u]] ([[https://www.canal-u.tv/video/inria/best_practices_for_reproducible_research_part_1.16684][Part
+     1]] and [[https://www.canal-u.tv/video/inria/best_practices_for_reproducible_research_part_2.16685][Part 2]]) and graal ([[http://graal.ens-lyon.fr/~alegrand/PUF_JLPC_Summer_School/1st%20PUF:JLPC%20Summer%20School%20-%20Best%20Practices%20for%20Reproducible%20Research%20-%20Arnaud%20Legrand.mp4][Part 1]] and [[http://graal.ens-lyon.fr/~alegrand/PUF_JLPC_Summer_School/1st%20PUF:JLPC%20Summer%20School%20-%20Best%20Practices%20for%20Reproducible%20Research%20-%20Arnaud%20Legrand%20-%20partie%202%20-%20demo.mp4][Part 2]]).
+  2. [[file:lectures/2_data_presentation.pdf][Data visualization/presentation]].
+  3. [[file:lectures/3_introduction_to_statistics.pdf][Introduction to probabilities/statistics]].
+  4. [[file:lectures/4_linear_model.pdf][Linear regression]].
+  5. [[5_design_of_experiments.pdf][Design of Experiments]].
+
+All the examples given in this series of lecture use the [[http://www.r-project.org/][R]] language
+and the source is provided so that people can reuse them. The slides
+are composed with org-mode/beamer.
+
+More precisely, I introduce the audience to the following tools:
+- [[http://www.r-project.org/][R]] and [[http://ggplot2.org/][ggplot2]] that provide a standard, efficient and flexible data
+  management and graph generation mechanism. Although R is quite
+  cumbersome at first for computer scientists, it quickly reveals an
+  incredible asset compared to spreadsheets, gnuplot or graphical
+  libraries like matplotlib or tikz.
+- [[http://yihui.name/knitr/][knitR]] is a tool that enables to integrate R commands within a LaTeX
+  or a Markdown document. It allows to fully automatize data
+  post-processing/analysis and figure generation down to their
+  integration to a report. Beyond the gain in term of ease of
+  generation, page layout, uniformity insurance, such integration
+  allows anyone to easily check what has been done during the analysis
+  and possibly to improve graphs or analysis.
+- I explain how to use these tools with [[http://www.rstudio.com/][Rstudio]], which is a
+  multi-platform and easy-to-use IDE for R. For example, using
+  [[http://www.rstudio.com/ide/docs/authoring/using_markdown][R+Markdown (Rmd files) in Rstudio]], it is extremely easy to export
+  the output result to [[http://www.rpubs.com/][Rpubs]] and hence make [[http://www.rpubs.com/tucano/zombies][the result of your
+  research available]] to others in no more than two clicks.
+- I also mention other alternatives such as [[http://orgmode.org/worg/org-contrib/babel/][org-mode and babel]] or the
+  [[http://ipython.org/notebook.html][ipython notebook]] that allow a day-to-day practice of reproducible
+  research in a somehow more fluent way than knitR but I am probably
+  not fully objective here. :)
+* Using R
+** Installing R and Rstudio
+Here is how to proceed on debian-based distributions:
+#+BEGIN_SRC sh
+sudo apt-get install r-base r-cran-ggplot2 r-cran-reshape 
+#+END_SRC
+Rstudio and knitr are unfortunately not packaged within debian so the
+easiest is to download the corresponding debian package on the [[http://www.rstudio.com/ide/download/desktop][Rstudio
+webpage]] and then to install it manually (depending on when you do
+this, you can obviously change the version number).
+#+BEGIN_SRC sh
+wget http://download1.rstudio.org/rstudio-0.97.551-amd64.deb ## actually, this archive is likely to be outdated now so get the most recent one.
+sudo dpkg -i rstudio-0.97.551-amd64.deb
+sudo apt-get -f install # to fix possibly missing dependencies
+#+END_SRC
+You will also need to install knitr. To this end, you should simply
+run R (or Rstudio) and use the following command.
+#+BEGIN_SRC R
+install.packages("knitr")
+#+END_SRC
+If =r-cran-ggplot2= or =r-cran-reshape= could not be installed for some
+reason, you can also install it through R by doing:
+#+BEGIN_SRC R
+install.packages("ggplot2")
+install.packages("reshape")
+#+END_SRC
+** Producing documents
+The easiest way to go is probably to [[http://www.rstudio.com/ide/docs/authoring/using_markdown][use R+Markdown (Rmd files) in
+Rstudio]] and to export them via [[http://www.rpubs.com/][Rpubs]] to make available [[http://www.rpubs.com/tucano/zombies][whatever you
+want]].
+
+We can roughly distinguish between three kinds of documents:
+1. Lab notebook (with everything you try and that is meant mainly
+   for yourself)
+2. Experimental report (selected results and explanations with
+   enough details to discuss with your advisor)
+3. Result description (rather short with only the main point and,
+   which could be embedded in an article)
+We expect you to provide us the last two ones and to make them
+publicly available so as to allow others to [[http://rpubs.com/RobinLovelace/ratmog11][comment]] on them.
+** Learning R
+For a quick start, you may want to look at [[http://cran.r-project.org/doc/contrib/Paradis-rdebuts_en.pdf][R for Beginners]]. A probably
+more entertaining way to go is to follow a good online lecture
+providing an introduction to R and to data analysis such as this one:
+https://www.coursera.org/course/compdata. 
+
+A quite effective way is to use [[http://swirlstats.com/students.html][SWIRL]], an interactive learning
+environment that will guide through self-paced lesson.
+#+begin_src R :results output :session :exports both
+install.packages("swirl")
+library(swirl)
+install_from_swirl("R Programming")
+swirl()
+#+end_src
+* References
++ R. Jain, [[http://www.cs.wustl.edu/~jain/books/perfbook.htm][The Art of Computer Systems Performance Analysis:
+  Techniques for Experimental Design, Measurement, Simulation, and
+  Modeling]], Wiley- Interscience, New York, NY, April 1991. [[%0Ahttp://www.amazon.com/Art-Computer-Systems-Performance-Analysis/dp/1118858425/ref%3Dsr_1_2?s%3Dbooks&ie%3DUTF8&qid%3D1435137636&sr%3D1-2&keywords%3Dperformance%2Bmeasurement%2Bcomputer%20][A new
+  edition will be available in September 2015]].
+  #+BEGIN_QUOTE
+  This is an easy-to-read self-content book for practical performance
+  evaluation. The numerous checklists make it a great book for
+  engineers and every CS experimental scientist should have read it.
+  #+END_QUOTE
++ David J. Lilja, Measuring Computer Performance: A Practitioner’s
+  Guide, Cambridge University Press 2005
+  #+BEGIN_QUOTE
+  I like the organization although I really don't like the content
+  that provides very little insight on why the theory applies or
+  not. I also think it is too general and lacks practical examples. It
+  may be interesting for those willing a quick and broad presentation
+  of the main concepts and "recipes" to apply.
+  #+END_QUOTE
++ Jean-Yves Le Boudec. [[http://www.cl.cam.ac.uk/~dq209/others/perf.pdf][Methods, practice and theory for the
+  performance evaluation of computer and communication
+  systems, 2006. EPFL electronic book]].
+  #+BEGIN_QUOTE
+  A very good book, with a much more theoretical treatment than the
+  Jain. It goes way farther on many aspects and I can only recommand
+  it.
+  #+END_QUOTE
++ R. Nelson, Probability stochastic processes and queuing theory: the
+  mathematics of computer performance modeling. Springer Verlag 1995
+  #+BEGIN_QUOTE
+  For those willing to know more about queuing theory.
+  #+END_QUOTE
+
+    
