@@ -1197,7 +1197,7 @@ follow many links when you will realize what they can bring to you.
 #+END_QUOTE
 - After you have tried, we will *debrief* on what you did and *discuss
   how it could be improved*
-*** To do for the Next Time (1/1)
+*** To do for the Next Time (1/2)
 1. *Install* R and Rstudio and all the packages I previously mentioned
    (=plyr=, =dplyr=, =reshape=, =tidyr=, =ggplot2=) on your own machines.
 2. Make sure you know how to *create small reproducible analysis* and
