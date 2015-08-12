@@ -5,6 +5,9 @@ TEX_SLIDES=$(subst .org,.tex,$(ORG_SOURCES))
 
 all: $(TEX_SLIDES)  $(PDF_SLIDES)
 
+crop:
+	for i in pdf_babel/*.pdf ; do pdfcrop $$i $$i ; done
+
 PDFLATEX=pdflatex -shell-escape
 
 include LaTeX.mk
