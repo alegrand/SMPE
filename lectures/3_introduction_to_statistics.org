@@ -19,7 +19,7 @@
 \def\P{\ensuremath{\operatorname{P}}\xspace}
 \def\E{\ensuremath{\operatorname{E}}\xspace}
 \def\Var{\ensuremath{\operatorname{Var}}\xspace}
-\def\rv#1{\ensuremath{\textcolor{blue}{#1}}\xspace}
+\def\rv#1{\ensuremath{\textcolor{DarkBlue}{#1}}\xspace}
 
 \newcommand\distrib[1]{%
   \includegraphics[width=.142\linewidth,page=1]{#1.pdf}&%
@@ -376,7 +376,6 @@ When $n$ is large:
   within 2$\frac{\sigma}{\sqrt{n}}$ of the \alert{sample mean}.}
 #+END_LaTeX
 * Using Confidence Intervals                                       :noexport:
-
 ** Comparing Two Alternatives
   Assume, you have evaluated two scheduling heuristics $A$ and $B$ on
   $n$ different DAGs.
