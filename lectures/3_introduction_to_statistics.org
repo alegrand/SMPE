@@ -539,6 +539,16 @@ When $n$ is large:
   \item Study the period (Fourier)
   \item Use time series
   \end{itemize}
+** Confidence...
+#+BEGIN_LaTeX
+\begin{center}
+  \begin{tabular}{c|c}
+    \includegraphics[scale=.32]{images/xkcd_significant_1.png}&
+    \includegraphics[scale=.32]{images/xkcd_significant_2.png}
+  \end{tabular}
+\end{center}
+#+END_LaTeX
+
 * Design of Experiments: Early Intuition                           :noexport:
 
 ** Comparing Two Alternatives (Blocking + Randomization)
