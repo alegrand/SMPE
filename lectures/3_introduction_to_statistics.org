@@ -7,10 +7,20 @@
 #+LaTeX_CLASS_OPTIONS: [11pt,xcolor=dvipsnames,presentation]
 #+OPTIONS:   H:3 num:t toc:nil \n:nil @:t ::t |:t ^:nil -:t f:t *:t <:t
 #+LATEX_HEADER: \input{org-babel-style-preembule.tex}
+#+LATEX_HEADER: \usepackage{commath}
 
 #+LaTeX: \input{org-babel-document-preembule.tex}
 
+
 #+BEGIN_LaTeX
+\def\R{\ensuremath{\mathbb{R}}\xspace}
+\def\F{\ensuremath{\mathcal{F}}\xspace}
+\def\N{\ensuremath{\mathcal{N}}\xspace}
+\def\P{\ensuremath{\operatorname{P}}\xspace}
+\def\E{\ensuremath{\operatorname{E}}\xspace}
+\def\Var{\ensuremath{\operatorname{Var}}\xspace}
+\def\rv#1{\ensuremath{\textcolor{blue}{#1}}\xspace}
+
 \newcommand\distrib[1]{%
   \includegraphics[width=.142\linewidth,page=1]{#1.pdf}&%
   \includegraphics[width=.142\linewidth,page=2]{#1.pdf}&%
@@ -25,177 +35,349 @@
 ** TODO Translate to org
 ** TODO Redo all figures
 ** TODO Reorder (talk about median, min, etc earlier)
-* Have fun!
-*** Let's play
-Yeepee!
-* A probabilistic model                                            :noexport:
-** Continuous random variable
-  
-  \begin{itemize}
-  \item A \concept{random variable} (or stochastic variable) is,
-    roughly speaking, a variable whose value results from a
-    measurement.
+* A probabilistic model
+** 
+*** Continuous random variable
+- A *random variable* (or stochastic variable) is, roughly speaking, a
+  variable whose value results from a measurement
 
-    Such a variable enables to model \concept{uncertainty} that may
-    result of \emph{incomplete information} or \emph{imprecise
-      measurements}.
+  Such a variable enables to model *uncertainty* that may result of
+  *incomplete information* or *imprecise measurements*
 
-    Formally $(\Omega, \F, P)$ is a probability space where:
-    \begin{itemize}
-    \item $\Omega$, the sample space, is the set of all possible
-      outcomes (\eg $\{1,2,3,4,5,6\}$)
-    \item \F if the set of events where an event is a set containing
-      zero or more outcomes (\eg the event of having an odd number
-      $\{1,3,5\}$)
-    \item The probability measure $P:\F \to [0,1]$ is a function
-      returning an event's probability.
-    \end{itemize}
-  \item Since many computer science experiments are based on time
-    measurements, we focus on \concept{continuous} variables.
-    \begin{equation*}
-      X: \Omega \to \R
-    \end{equation*}
-    \end{itemize}
-
-** Probability Distribution
-  A \concept{probability distribution} (a.k.a. probability density
-  function or p.d.f.) is used to describe the probabilities of
-  different values occurring.\smallskip
-
-  A random variable $X$ has density $f$, where $f$ is a non-negative
-  and integrable function, if:
+  You can think of it as a /box/. Every time you open the box, you get a
+  different value.
+- Formally $(\Omega, \F, \P)$ is a probability space where:
+  - $\Omega$, the sample space, is the set of all possible 
+    #+LaTeX: outcomes (\eg $\{Head,Tail,$ $Edge,Lost\}$)
+  - \F if the set of events where an event is a set containing zero or
+    more outcomes (\eg the event of "making a coin toss decision"
+    $\{Head,Tail\}$)
+  - The probability measure $\P:\F \to [0,1]$ is a function returning an
+    event's probability
+- A random variable associates a numerical value to outcomes.  Since
+  many computer science experiments are based on time measurements, we
+  focus on *continuous* variables.
   \begin{equation*}
-    P [a \leq X \leq b] = \int_a^b f(x) \, \mathrm{d}x 
+  \rv{X}: \Omega \to \R
   \end{equation*}
+*** Probability distribution
+A *probability distribution* (a.k.a. *probability density function* or
+p.d.f.) is used to describe the probabilities of different *values*
+occurring
 
-  \begin{center}
-    \includegraphics[width=.6\linewidth]{Gamma_distribution_pdf.pdf}
-  \end{center}
+A random variable \rv{X} has density $f$, where $f$ is a non-negative and
+integrable function, if:
+#+BEGIN_LaTeX
+\begin{equation*}
+\P[a \leq \rv{X} \leq b] = \int_a^b f(x) \, \dif x
+\end{equation*}
+#+END_LaTeX
 
-** Expected value
-  \begin{itemize}
-  \item When one speaks of the "expected price", "expected height",
-    etc. one means the \concept{expected value} of a random variable
-    that is a price, a height, etc.
-    \begin{align*}
-      \E[X] & = x_1p_1 + x_2p_2 + \ldots + x_kp_k \\
-      & = \int_{-\infty}^\infty x f(x)\, \mathrm{d}x
-    \end{align*}
-    The expected value of $X$ is the ``average value'' of $X$.\smallskip
+#+begin_src R :results output graphics :file "pdf_babel/Gamma_distribution.pdf" :exports none :width 6 :height 3 :session
+library(ggplot2)
+library(ggthemes)
+df = data.frame(x=c(-2,10), y=c(0,.3))
+func = dgamma
+pfunc = pgamma
+args = list(shape = 3)
+xmin = 1
+xmax = 6
+x = seq(from=xmin,to=xmax,length.out=50)
+y = do.call(func,c(list(x=x),args))
+area = data.frame(x=x, y=y)
+integral = diff(range(do.call(pfunc,c(list(q=c(xmin,xmax)),args))))
+label = paste("P(paste(",xmin," <= X) <= ",xmax,") == ", integral)
 
-    It is \textbf{not} the most probable value. The mean is one aspect
-    of the distribution of $X$. The median or the mode are other
-    interesting aspects.
+p = ggplot(data=df,aes(x=x,y=y)) + geom_point(size=0) + theme_classic() + 
+    stat_function(fun = func, colour = "darkgreen", arg = args) +
+        geom_area(data=area,aes(x=x,y=y),fill="lightskyblue2") + 
+            geom_text(x=.7*max(df$x),y=.7*max(df$y), label=label, parse=T) +
+            ylab("f(x)") + xlim(df$x)
+p
+# ggsave(p,file="pdf_babel/Gamma_distribution.pdf",width=6,height=4)
+#+end_src
 
-  \item The \concept{variance} is a measure of how far the values of a
-    random variable are spread out from each other.
+#+RESULTS:
+[[file:pdf_babel/Gamma_distribution.pdf]]
 
-    If a random variable $X$ has the expected value (mean) $\mu =
-    \E[X]$, then the variance of $X$ is given by:
-    \begin{align*} 
-      \Var(X) &= \E\left[(X - \mu)^2
-      \right] = \int_{-\infty}^\infty  (x-\mu)^2 f(x)\, \mathrm{d}x
-    \end{align*}
-  \end{itemize}
+#+BEGIN_CENTER
+\includegraphics[width=.8\linewidth]{pdf_babel/Gamma_distribution.pdf}
+#+END_CENTER
+*** Characterizing a random variable
+The probability density function fully characterizes the random
+variable but it is complex object. 
 
-* Estimation                                                       :noexport:
-** How to estimate Expected value ?
+- It may have one or several *modes*
+- It may have a bounded support or not, hence the random variable may
+  have a *minimal* and/or a *maximal* value
+- The *median* cuts the probabilities in half
+- It may be symmetrical or not
 
-  To empirically estimate the expected value of a random variable, one
-  repeatedly measures observations of the variable and computes the
-  arithmetic mean of the results. \bigskip
-  
-  Unfortunately, if you repeat the estimation, you may get a different
-  value since $X$ is a random variable \dots
+#+begin_src R :results output graphics :file "pdf_babel/distribution_characteristics.pdf" :exports none :width 6 :height 3 :session
+library(ggplot2)
+library(ggthemes)
+xmin = -2
+xmax = 10
+ymin = 0
+ymax = .3
 
-** Central Limit Theorem
+func = dgamma
+pfunc = pgamma
+args = list(shape = 3)
 
-  \begin{itemize}
-  \item Let $\{X_1, X_2, \dots, X_n\}$ be a random sample of size $n$
-    (\ie a sequence of \textbf{independent} and \textbf{identically
-      distributed} random variables with expected values $\mu$ and
-    variances $\sigma^2$).
-  \item The sample average of these random variables is:
-    \begin{equation*}
-      S_n =  \frac{1}{n} (X_1 + \dots + X_n)
-    \end{equation*}
-    $S_n$ is a random variable too.
-  \item For large n's, the distribution of $S_n$ is approximately
-    normal with mean $\mu$ and variance $\frac{\sigma^2}{n}$.
-    \begin{equation*}
-      S_n \xrightarrow[n\to\infty]{} \N\left(\mu,\frac{\sigma^2}{n}\right)
-    \end{equation*}
-  \end{itemize}
+x = seq(from=xmin,to=xmax,length.out=500)
+y = do.call(pfunc,c(list(q=x),args))
+dfminx = data.frame(x=x,y=y)
+minx = tail(dfminx[dfminx$y==0,],n=1)$x
+if(length(minx)==0) {minx=NA}
+maxx = head(dfminx[dfminx$y==1,],n=1)$x
+if(length(maxx)==0) {maxx=NA}
+medianx = tail(dfminx[dfminx$y<.5,],n=1)$x
+if(length(medianx)==0) {medianx=NA}
 
-** The Normal Distribution
-  \begin{center}
-    \begin{overlayarea}{.7\linewidth}{4.5cm}
-      \begin{center}%
-        \only<2>{\vspace{.5cm}}%
-        \includegraphics<1>[width=\linewidth]{Normal_Distribution_PDF.pdf}%
-        \includegraphics<2>[width=\linewidth]{Standard_deviation_diagram.pdf}%
-      \end{center}
-    \end{overlayarea}
-  \end{center}
+y = do.call(func,c(list(x=x),args))
+dfminx = data.frame(x=x,y=y)
+modex = dfminx[dfminx$y==max(dfminx$y),]$x
+espx = sum(dfminx$x*dfminx$y)*diff(range(head(dfminx$x,n=2)))
+
+dfstat = data.frame(name = c("min", "median", "max","mode","expected value"),
+                    x = c(minx,medianx,maxx,modex,espx),
+                    y = ymax)
+
+p = ggplot(data=dfstat,aes(x=x,y=y,color=name)) + geom_line(alpha=1) +
+    xlim(xmin,xmax) + ylim(ymin,ymax) + theme_classic() + ylab("f(x)") +
+    stat_function(fun = func, colour = "black", arg = args) +
+    geom_vline(aes(xintercept=x,color=name)) + guides(colour = guide_legend(""))
+
+p
+# ggsave(p,file="pdf_babel/Gamma_distribution.pdf",width=6,height=4)
+#+end_src
+
+#+RESULTS:
+[[file:pdf_babel/distribution_characteristics.pdf]]
+
+#+BEGIN_CENTER
+\includegraphics[width=.8\linewidth]{pdf_babel/distribution_characteristics.pdf}
+#+END_CENTER
+*** Expected value
+- When one speaks of the "expected price", "expected height", etc. one
+  means the *expected value* of a random variable that is a price, a
+  height, etc.o
+  \begin{align*}
+  \E[\rv{X}] & = x_1p_1 + x_2p_2 + \ldots + x_kp_k = \int_{-\infty}^\infty x f(x)\, \dif x
+  \end{align*}
+  The expected value of \rv{X} is the ``average value'' of \rv{X}.\smallskip
+
+  It is \textbf{not} the most probable value. The mean is _one_ aspect
+  of the distribution of \rv{X}. The *median* or the *mode* are other
+  interesting aspects.
+- The *variance* is a measure of how far the values of a
+  random variable are spread out from each other.
+
+  If a random variable \rv{X} has the expected value (mean) $\mu =
+  \E[\rv{X}]$, then the variance of \rv{X} is given by:
+  #+BEGIN_LaTeX
+  \begin{align*} 
+      \Var(\rv{X}) &= \E\left[(\rv{X} - \mu)^2
+      \right] = \int_{-\infty}^\infty  (x-\mu)^2 f(x)\, \dif x
+  \end{align*}
+  #+END_LaTeX
+- The *standard deviation $\sigma$* is the square root of the variance. This
+  normalization allows to compare it with the expected value
+* Estimation
+** 
+*** How to estimate the Expected value ?
+To empirically *estimate* the expected value of a random variable
+\rv{X}, one repeatedly measures observations of the variable and
+computes the arithmetic mean of the results \bigskip This is called
+the *sample mean*
+
+Unfortunately, if you repeat the estimation, you may get a different
+value since \rv{X} is a random variable \dots
+*** Central Limit Theorem
+- Let $\{\rv{X_1}, \rv{X_2}, \dots, \rv{X_n}\}$ be a random sample of size
+  $n$ (\ie a sequence of \textbf{independent} and \textbf{identically
+  distributed} random variables with expected values $\mu$ and variances
+  $\sigma^2$)
+- The sample average of these random variables is:
+  #+BEGIN_LaTeX
+  \begin{equation*}
+  \rv{S_n} =  \frac{1}{n} (\rv{X_1} + \dots + \rv{X_n})
+  \end{equation*}  
+  #+END_LaTeX
+  $\rv{S_n}$ is a random variable too!
+- For large n's, the distribution of $\rv{S_n}$ is approximately
+  normal with mean $\mu$ and variance $\frac{\sigma^2}{n}$
+  #+BEGIN_LaTeX
+  \begin{equation*}
+  \rv{S_n} \xrightarrow[n\to\infty]{} \N\left(\mu,\frac{\sigma^2}{n}\right)
+  \end{equation*}
+  #+END_LaTeX
+*** The Normal Distribution
+#+begin_src R :results output graphics :file "pdf_babel/normal_distribution.pdf" :exports none :width 6 :height 2.5 :session
+library(ggplot2)
+library(ggthemes)
+xmin = -5
+xmax = 5
+ymin = 0
+ymax = 1.5
+
+dfnorm = data.frame(mu=c(0,0,0,-2),sigma2=c(.1,1,5,.5))
+dfnorm$label = paste0("mu=",dfnorm$mu,", sigma^2=",dfnorm$sigma2)
+
+df = data.frame(x=c(xmin,xmax),y=c(ymin,ymax))
+
+p = ggplot(data=df,aes(x=x,y=y)) + 
+    xlim(xmin,xmax) + ylim(ymin,ymax) + theme_classic() +
+    guides(colour = guide_legend("")) + ylab("f(x)")
+
+## Argh, this does not work either. I have to do it "manually". :(
+# for(i in 1:dim(dfnorm)[1]) {
+#   d = dfnorm[i,]
+#   print(d$label)
+#   p = p + stat_function(fun = dnorm, 
+#                         arg = list(mean=d$mu, sd=d$sigma2), 
+#                         aes(color=dfnorm[i,]$label))
+# }
+
+p + stat_function(fun = dnorm, arg = list(mean=dfnorm[1,]$mu, sd=sqrt(dfnorm[1,]$sigma2)), aes(color=dfnorm[1,]$label)) +
+    stat_function(fun = dnorm, arg = list(mean=dfnorm[2,]$mu, sd=sqrt(dfnorm[2,]$sigma2)), aes(color=dfnorm[2,]$label)) +
+    stat_function(fun = dnorm, arg = list(mean=dfnorm[3,]$mu, sd=sqrt(dfnorm[3,]$sigma2)), aes(color=dfnorm[3,]$label)) +
+    stat_function(fun = dnorm, arg = list(mean=dfnorm[4,]$mu, sd=sqrt(dfnorm[4,]$sigma2)), aes(color=dfnorm[4,]$label))
+#+end_src
+
+#+RESULTS:
+[[file:pdf_babel/normal_distribution.pdf]]
+
+#+BEGIN_LaTeX
+  \begin{overlayarea}{\linewidth}{4.5cm}
+    \begin{center}%
+      \includegraphics<1>[height=4.5cm]{pdf_babel/normal_distribution.pdf}%
+      \includegraphics<2>[height=4.5cm]{images/Standard_deviation_diagram.pdf}%
+    \end{center}
+  \end{overlayarea}
   \uncover<1->{The smaller the variance the more ``spiky'' the
     distribution.}
-
   \uncover<2->{
-    \begin{itemize}
-    \item Dark blue is less than one standard deviation from the
-      mean. For the normal distribution, this accounts for about 68\%
-      of the set.
-    \item Two standard deviations from the mean (medium and dark blue)
-      account for about 95\%
-    \item Three standard deviations (light, medium, and dark blue)
-      account for about 99.7\%
-    \end{itemize}}
+#+END_LaTeX
+- Dark blue is less than one standard deviation from the mean. For the
+  normal distribution, this accounts for about 68% of the set.
+- Two standard deviations from the mean (medium and dark blue) account
+  for about 95%
+- Three standard deviations (light, medium, and dark blue) account for
+  about 99.7%
+#+LaTeX: }
+*** CLT Illustration
+#+begin_src R :results output graphics :file "pdf_babel/CLT_illustration.pdf" :exports none :width 9 :height 6 :session
+library(ggplot2)
+library(ggthemes)
 
-** CLT Illustration
+triangle <- function(n=10) {
+  sqrt(runif(n)) 
+}
+
+broken <- function(n=10) {
+  x=runif(n);
+  x/(1-x);
+}
+
+broken_mid <- function(n=10) {
+  x=(runif(n)+runif(n))/2;
+  x/(1-x);
+}
+
+
+generate <- function(n=50000,N=c(1,2,5,10,15,20,30,100), law=c("unif","binom","triangle")) {
+  df=data.frame();
+  for(l in law) {
+    for(p in N) {
+      X=rep.int(0,n);
+      for(i in 1:p) {
+        X = X + switch(l, unif = runif(n),
+                          binom = rbinom(n,1,.5), 
+                          exp=rexp(n,rate = 2), 
+                          norm=rnorm(n,mean = .5),
+                          triangle=triangle(n)-1/6,
+                          broken=broken(n),
+                          broken_mid=broken_mid(n));
+      }
+      X = X/p;
+      df=rbind(df,data.frame(N=p,SN=X,law=l));
+    }
+  } 
+  df;
+}
+d=generate()
+ggplot(data=d,aes(x=SN)) + geom_density(aes(y = ..density..)) + 
+     facet_grid(law~N) + theme_classic() + xlab("") + 
+     scale_x_continuous(breaks=c(0,.5,1))
+#+end_src
+
+#+RESULTS:
+[[file:pdf_babel/CLT_illustration.pdf]]
+
   
-  Start with an arbitrary distribution and compute the distribution of
-  $S_n$ for increasing values of $n$.\medskip
-  
-  \hspace{-.1\linewidth}
-  \begin{overlayarea}{1.15\linewidth}{6cm}
-    \begin{tabular}{@{}*7{c@{}}}
-      1 & 2 & 3 & 4 & 8 & 16 & 32 \\
-    \distrib{CLTuniform}\\
-    \distrib{CLTinverse}\\
-    \distrib{CLTtriangle}\\
-    \distrib{CLTparabola}\\
-  \end{tabular}
-  \end{overlayarea}
+Start with an arbitrary distribution and compute the distribution of
+$S_n$ for increasing values of $n$.
+#+BEGIN_CENTER
+#+LaTeX: \includegraphics<1>[width=.8\linewidth]{pdf_babel/CLT_illustration.pdf}
+#+END_CENTER
 
-** CLT consequence: confidence interval
-  \hspace{-.05\linewidth}%
-  \begin{minipage}{1.1\linewidth}
-    \begin{center}
-      \begin{overlayarea}{.9\linewidth}{4.5cm}
-        \begin{center}%
-          % \only<2>{\vspace{.5cm}}%
+*** CLT consequence: confidence interval
+#+begin_src R :results output graphics :file pdf_babel/CI_illustration.pdf :exports none :width 5 :height 3 :session
+mu = 500
+N = 30
+n = 40
+X = 0
+for (i in 1:N) {
+    X = X + mu + runif(n, min = -1, max = 1) # Hence var=1/3
+}
+# so sigma_n = sqrt(1/3)/sqrt(N)
+ci = 2*sqrt(1/3)/sqrt(N);
 
-          \includegraphics<1>[width=\linewidth]{Standard_deviation_diagram.pdf}%
-          \includegraphics<2>[height=4.5cm]{CI_illustration.pdf}%
-        \end{center}
-      \end{overlayarea}
-    \end{center}
+X = X/N
 
-    When $n$ is large:
-    \begin{equation*}
-      \P\left(\mu\in
-        \left[S_n-2\frac{\sigma}{\sqrt{n}},S_n+2\frac{\sigma}{\sqrt{n}}\right]\right)
-      = \P\left(S_n\in
-        \left[\mu-2\frac{\sigma}{\sqrt{n}},\mu+2\frac{\sigma}{\sqrt{n}}\right]\right)
-      \approx  95\%
-    \end{equation*}
-    \uncover<2>{There is 95\% of chance that the \concept{true mean} lies
-      within 2$\frac{\sigma}{\sqrt{n}}$ of the \concept{sample mean}.}
-  \end{minipage}
+# length(X[X >= 1775.5 & X <= 1776.6])/length(X)
 
+df = data.frame(x = X, y = seq(1:length(X)))
+df$valid = 1
+df[abs(df$x - mu) > ci, ]$valid = 0
+ggplot(df, aes(x = x, y = y, color = factor(valid))) + geom_point() + 
+    geom_errorbarh(aes(xmax = x - ci, xmin = x + ci)) + 
+    geom_vline(xintercept = mu) + 
+    theme_classic() + guides(colour = guide_legend("")) +
+    xlim(mu-3*ci,mu+3*ci) + 
+    ylab("Trial #") + xlab("Observed value")
+#+end_src
+
+#+RESULTS:
+[[file:pdf_babel/CI_illustration.pdf]]
+
+#+BEGIN_LaTeX
+\begin{overlayarea}{\linewidth}{4.5cm}
+  \begin{center}%
+    \includegraphics<1>[height=4.5cm]{images/Standard_deviation_diagram.pdf}%
+    \includegraphics<2>[height=4.5cm]{pdf_babel/CI_illustration.pdf}%
+  \end{center}
+\end{overlayarea}
+#+END_LaTeX
+
+When $n$ is large:
+#+BEGIN_LaTeX
+\begin{center}
+  \scalebox{.9}{$\displaystyle
+  \P\left(\mu\in
+    \left[\rv{S_n}-2\frac{\sigma}{\sqrt{n}},\rv{S_n}+2\frac{\sigma}{\sqrt{n}}\right]\right)
+  = \P\left(\rv{S_n}\in
+    \left[\mu-2\frac{\sigma}{\sqrt{n}},\mu+2\frac{\sigma}{\sqrt{n}}\right]\right)
+  \approx  95\%$}
+\end{center}
+\uncover<2>{There is 95\% of chance that the \alert{true mean} lies
+  within 2$\frac{\sigma}{\sqrt{n}}$ of the \alert{sample mean}.}
+#+END_LaTeX
 * Using Confidence Intervals                                       :noexport:
 
-** Comparing Two Alternatives}
+** Comparing Two Alternatives
   Assume, you have evaluated two scheduling heuristics $A$ and $B$ on
   $n$ different DAGs.
   \begin{center}
@@ -222,7 +404,7 @@ Yeepee!
           Let's do more experiments instead.
         \end{flushright}
       }%
-      \only<4->{The width of the confidence interval is proportionnal
+      \only<4->{The width of the confidence interval is proportional
         to $\frac{\sigma}{\sqrt{n}}$.
         \begin{flushright}
           Halving C.I. requires 4 times more experiments!
