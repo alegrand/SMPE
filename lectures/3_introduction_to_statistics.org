@@ -790,6 +790,7 @@ into account
 #+LaTeX: \end{minipage}
 *** Temporal Dependancy
 
+#+BEGIN_CENTER
 #+begin_src R :results output graphics :file pdf_babel/deptempo.pdf :exports results :width 6 :height 4 :session
 n = 1000
 Start=1:n
@@ -801,8 +802,11 @@ p2 = ggplot(head(df1,n=100),aes(x=Start,y=Value)) + geom_line() + ggtitle("Seque
 grid.arrange(p1,p2,nrow=1)
 #+end_src
 
+#+ATTR_LATEX: :height 5cm :center
 #+RESULTS:
 [[file:pdf_babel/deptempo.pdf]]
+#+END_CENTER
+
 
 - Looks independant and statistically identical
 - *Danger*: temporal correlation $\leadsto$ study *stationnarity*
@@ -810,6 +814,8 @@ grid.arrange(p1,p2,nrow=1)
   resolution.
   - Study the period (Fourier), use time series
 *** Detect Trends
+#+BEGIN_CENTER
+
 #+begin_src R :results output graphics :file pdf_babel/unifderiv.pdf :exports results :width 6 :height 4 :session
 n = 500
 Start=1:n
@@ -818,10 +824,14 @@ df1 = data.frame(Start=Start, Value=1+atan(Start/70)*(runif(n,min=.3,max=1)))
 ggplot(df1,aes(x=Start,y=Value)) + geom_line() + ggtitle("Sequence Plot")
 #+end_src
 
+#+ATTR_LATEX: :height 5cm :center
 #+RESULTS:
 [[file:pdf_babel/unifderiv.pdf]]
 
-- Model the trend: here increase then saturates
+#+END_CENTER
+
+
+- Model the trend: here increases then saturates
 - Possibly remove the trend by compensating it (multiplicative factor
   here) or removing what can be identified as a _warm-up_
 *** Confidence...
