@@ -31,7 +31,86 @@
 #+END_LaTeX
 
 ** Motivation
-*** Why do we need to visualise ? The Anscombe's Quartet
+*** Why do we need to visualize ? The Anscombe's Quartet         :noexport:
+#+begin_src R :results output :session :exports none
+library(ggplot2)
+library(plyr)
+library(reshape)
+anscombe$idx=1:length(anscombe$x1) 
+a = melt(anscombe,id=c("idx"))
+a$set=gsub("[^0-9]*","",as.character(a$variable))
+a$variable=gsub("[0-9]*","",as.character(a$variable))
+a = cast(a, idx+set~variable, mean) 
+# library(ggplot2)
+# library(dplyr)
+# library(tidyr)
+# anscombe$idx=1:length(anscombe$x1) 
+# a = anscombe %>% gather(variable, value,-idx)
+# a$set=gsub("[^0-9]*","",as.character(a$variable))
+# a$variable=gsub("[0-9]*","",as.character(a$variable))
+# a %>% spread(set,variable)
+a = cast(a, idx+set~variable, mean) 
+#+end_src
+
+#+RESULTS:
+: 
+: Attachement du package : ‘reshape’
+: 
+: The following objects are masked from ‘package:plyr’:
+: 
+:     rename, round_any
+: Erreur : Casting formula contains variables not found in molten data: variable
+
+#+LaTeX: \begin{columns}\begin{column}{.4\linewidth}
+#+begin_src R :results output :session :exports output
+a1=a[a$set==1,c("x","y")]
+a2=a[a$set==2,c("x","y")]
+a1
+#+end_src
+
+#+RESULTS:
+#+begin_example
+    x     y
+1  10  8.04
+5   8  6.95
+9  13  7.58
+13  9  8.81
+17 11  8.33
+21 14  9.96
+25  6  7.24
+29  4  4.26
+33 12 10.84
+37  7  4.82
+41  5  5.68
+#+end_example
+
+#+LaTeX: \end{column}\begin{column}{.6\linewidth}
+#+begin_src R :results output :session :exports both
+summary(a1)
+summary(a2)
+#+end_src
+
+#+RESULTS:
+#+begin_example
+       x              y         
+ Min.   : 4.0   Min.   : 4.260  
+ 1st Qu.: 6.5   1st Qu.: 6.315  
+ Median : 9.0   Median : 7.580  
+ Mean   : 9.0   Mean   : 7.501  
+ 3rd Qu.:11.5   3rd Qu.: 8.570  
+ Max.   :14.0   Max.   :10.840
+       x              y        
+ Min.   : 4.0   Min.   :3.100  
+ 1st Qu.: 6.5   1st Qu.:6.695  
+ Median : 9.0   Median :8.140  
+ Mean   : 9.0   Mean   :7.501  
+ 3rd Qu.:11.5   3rd Qu.:8.950  
+ Max.   :14.0   Max.   :9.260
+#+end_example
+
+#+LaTeX: \end{column}\end{columns}
+
+*** Why do we need to visualize ? The Anscombe's Quartet
 #+BEGIN_LaTeX
   \begin{columns}
     \begin{column}{.25\linewidth}
@@ -204,7 +283,7 @@
 
   Such approaches may *help formulating hypothesis* but these hypothesis
   have then to be tested upon new data-sets.  
-*** A ``simple'' graphical check for investigating speedup/scalability
+*** A ``simple'' graphical check for investigating scalability
 \small
 Plotting $T_p$ versus $p$.
 #+BEGIN_LaTeX
@@ -290,7 +369,7 @@ Propose a better representation
 - \textbf{R} :: is a system for statistical computation and graphics.
   - Avoid programming with R. Most things can be done with one liners.
   - Excellent graphic support with \textbf{ggplot2}.
-  - =knitr= allows to mix R with LaTeX or Markdown. Litterate
+  - =knitr= allows to mix R with LaTeX or Markdown. Literate
     programming to ease reproducible research.
 - \textbf{Rstudio} :: is an IDE a system for statistical
   computation and graphics. It is easy to use and allows publishing
@@ -306,7 +385,7 @@ introduction.
  #+ATTR_LaTeX: :height 6cm
  [[./images/split-apply-combine.png]]
 #+END_CENTER
-*** plyr: Powerfull One-liners
+*** plyr: Powerful One-liners
 \small
 #+BEGIN_SRC R :results output :exports both :session
 library(plyr)
@@ -329,7 +408,6 @@ mtcars_summarized
 8   8    4   6 4.433167 1.0171431  16.49500 1.4424112
 9   8    8   1 3.570000        NA  14.60000        NA
 #+end_example
-If your data is not in the right form *give a try to =reshapeP/melt=*.
 
 *** dplyr
 #+BEGIN_CENTER
@@ -452,11 +530,9 @@ ggplot(movies, aes(x = rating)) + geom_histogram(binwidth = 0.5)+
 [[file:./pdf_babel/mtcars_ggplot6.pdf]]
 #+END_CENTER
 ** Reshape and tydiR
-
-
 *** "Messy" data
-As I said earlier, if your data is not in the right form *give a try
-to reshape/melt*
+When using ggplot or plyr, your data may not in the right shape, in
+which case you should *give a try to reshape/melt*
 
 #+begin_src R :results output :session :exports both
 
@@ -480,7 +556,7 @@ messy
 : 3 Gregory 64 50
 
 - =a= and =b= are two different types of drugs and the values correspond to
-  heartrate
+  heart rate
 - ggplot faceting or coloring based on the drug type is a pain
 - we need a way to make "wide" data longer
 *** Reshape
@@ -502,7 +578,7 @@ cleaner
 
 *** Tidyr
 Just like plyr, reshape is a little magical. tidyr is the new
-generation (faster, "more expressive"). Again, the [[http://blog.rstudio.org/2014/07/22/introducing-tidyr/][/tutorial/]] is
+generation (faster, more coherent). Again, the [[http://blog.rstudio.org/2014/07/22/introducing-tidyr/][/tutorial/]] is
 great.
 
 #+begin_src R :results output :session :exports both
@@ -520,11 +596,121 @@ messy %>% gather(drug, heartrate, -name)
 : 5 Petunia    b        90
 : 6 Gregory    b        50
 
-*Hint:* Avoid mixing old-generation with new-generation as it overides
+*Hint:* Avoid mixing old-generation with new-generation as it overrides
 some function names and leads to weird behaviors
+** Now let's play!
+*** Summarizing information
+You may like these *cheat sheets*: 
+#+BEGIN_CENTER
+https://www.rstudio.com/resources/cheatsheets/
+#+END_CENTER
+
+#+begin_src R :results output :session :exports both
+df = read.csv("data/set1.csv",header=T)
+# Alternatively: read.csv("https://raw.githubusercontent.com/
+#            alegrand/SMPE/master/lectures/data/set1.csv")
+head(df,n=2)
+#+end_src
+
+#+RESULTS:
+:          A        B
+: 1 7.256717 8.261171
+: 2 3.813100 4.335301
+
+Get the following summary using =plyr/reshape= or =dplyr/tydir=:
+#+begin_src R :results output :session :exports results
+dfgg = df %>% gather(Alternative, Time) 
+dfsum = dfgg %>% 
+       group_by(Alternative) %>%
+       summarise(num = n(),
+                 mean = mean(Time),
+                 sd = sd(Time),
+		       min = min(Time),
+		       max = max(Time))
+dfsum
+#+end_src
+
+#+RESULTS:
+: Source: local data frame [2 x 6]
+: 
+:   Alternative num     mean       sd      min       max
+: 1           A  40 4.903817 1.544423 2.400016  9.172525
+: 2           B  40 5.783643 1.542987 3.539874 10.027147
+*** Plot the data
+#+begin_src R :results output graphics :file pdf_babel/set1_1.pdf :exports results :width 6 :height 4 :session
+ggplot(data=dfgg,aes(x=Alternative,y=Time,color=Alternative)) +
+    geom_point()
+#+end_src
+
+#+RESULTS:
+[[file:pdf_babel/set1_1.pdf]]
+
+*** Alleviate over-plotting
+#+begin_src R :results output graphics :file pdf_babel/set1_2.pdf :exports results :width 6 :height 4 :session
+ggplot(data=dfgg,aes(x=Alternative,y=Time,color=Alternative)) + 
+    geom_point(alpha=.4) + theme_bw()
+#+end_src
+
+#+RESULTS:
+[[file:pdf_babel/set1_2.pdf]]
+*** Avoid over-plotting
+#+begin_src R :results output graphics :file pdf_babel/set1_3.pdf :exports results :width 6 :height 4 :session
+ggplot(data=dfgg,aes(x=Alternative,y=Time,color=Alternative)) + 
+    geom_jitter(alpha=.4,position = position_jitter(width = .2)) + 
+    theme_bw()
+#+end_src
+
+#+RESULTS:
+[[file:pdf_babel/set1_3.pdf]]
+*** Add summary information
+#+begin_src R :results output graphics :file pdf_babel/set1_4.pdf :exports results :width 6 :height 4 :session
+ggplot(data=dfgg,aes(x=Alternative,y=Time,color=Alternative)) + 
+    geom_jitter(alpha=.4,position = position_jitter(width = .2)) + 
+    geom_pointrange(data=dfsum,
+                     aes(x=Alternative,y=mean,ymin=min,ymax=max)) +
+    theme_bw()
+#+end_src
+
+#+RESULTS:
+[[file:pdf_babel/set1_4.pdf]]
+*** Add more standard summaries
+#+begin_src R :results output graphics :file pdf_babel/set1_5.pdf :exports results :width 6 :height 4 :session
+ggplot(data=dfgg,aes(x=Alternative,y=Time,color=Alternative)) + 
+    geom_boxplot(width=.4) +
+    geom_jitter(alpha=.4,position = position_jitter(width = .2)) + 
+    theme_bw()
+#+end_src
+
+#+RESULTS:
+[[file:pdf_babel/set1_5.pdf]]
+*** Or use histograms...
+#+begin_src R :results output graphics :file pdf_babel/set1_6.pdf :exports results :width 6 :height 4 :session
+ggplot(data=dfgg,aes(x=Time,fill=Alternative)) + 
+    geom_histogram() + facet_wrap(~Alternative,ncol=1) +
+    theme_bw()
+#+end_src
+
+#+RESULTS:
+[[file:pdf_babel/set1_6.pdf]]
+*** Be careful with fancy plots you do not fully understand!
+#+begin_src R :results output graphics :file pdf_babel/set1_7.pdf :exports results :width 7 :height 4 :session
+library(gridExtra)
+p1 = ggplot(data=dfgg,aes(x=Time,fill=Alternative)) + 
+     geom_histogram(aes(y = ..density..)) + 
+     geom_density(alpha=.3) + facet_wrap(~Alternative,ncol=1) +
+     theme_bw()
+p2 = ggplot(data=dfgg,aes(x=Alternative,y=Time,fill=Alternative)) + 
+     geom_jitter(alpha=.4,position = position_jitter(width = .2)) + 
+     geom_dotplot(binaxis = "y", stackdir = "center") + 
+     geom_violin(scale="area",trim=FALSE,alpha=.4) + theme_bw()
+grid.arrange(p1,p2,nrow=1)
+#+end_src
+
+#+RESULTS:
+[[file:pdf_babel/set1_7.pdf]]
 ** Conclusion
 *** Take away Message
-- R, ggplot and other such tools are *incredibly powerfull for
+- R, ggplot and other such tools are *incredibly powerful for
   presenting data*. They are much more high level than any other tools
   I have seen so far.
 - Mastering it *will save you a lot of time* as it will allow to look at
@@ -532,13 +718,12 @@ some function names and leads to weird behaviors
   and *present* them *in the best possible way*
 - Read at least Jain's book: *The Art of Computer Systems Performance
   Analysis*
-*** To do for the Next Time
-Use what you just learnt to improve your data analysis, the article
-you're currently writing, ...\medskip
+- However, you may have started understanding that a visualization is
+  meant to check or to illustrate one particular aspect and that this
+  "aspect" relies on a *mathematical model*. I will thus explain you in
+  the next lecture what this model is.
 
-By the way, you may like these *cheatsheets*:
-#+BEGIN_CENTER
-https://www.rstudio.com/resources/cheatsheets/
-#+END_CENTER
+\textbf{To do for the Next Time}: Use what you just learned to improve
+your data analysis, the article you're currently writing, ...\medskip
 
 
