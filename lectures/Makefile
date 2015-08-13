@@ -8,6 +8,9 @@ all: $(TEX_SLIDES)  $(PDF_SLIDES)
 crop:
 	for i in pdf_babel/*.pdf ; do pdfcrop $$i $$i ; done
 
+smartcrop:
+	for i in `git status | grep babel | sed 's/.*pdf_babel/pdf_babel/'`; do pdfcrop $$i $$i ; done
+
 PDFLATEX=pdflatex -shell-escape
 
 include LaTeX.mk
