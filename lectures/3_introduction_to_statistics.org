@@ -19,7 +19,7 @@
 \def\P{\ensuremath{\operatorname{P}}\xspace}
 \def\E{\ensuremath{\operatorname{E}}\xspace}
 \def\Var{\ensuremath{\operatorname{Var}}\xspace}
-\def\rv#1{\ensuremath{\textcolor{DarkBlue}{#1}}\xspace}
+\def\rv#1{\ensuremath{\textcolor{blue}{#1}}\xspace} % DarkBlue
 
 \newcommand\distrib[1]{%
   \includegraphics[width=.142\linewidth,page=1]{#1.pdf}&%
@@ -35,44 +35,56 @@
 ** TODO Translate to org
 ** TODO Redo all figures
 ** TODO Reorder (talk about median, min, etc earlier)
-* A probabilistic model
+* A (mathematical) probabilistic model
 ** 
-*** Continuous random variable
+*** Continuous random variable (1/2)
+\vspace{-.3em}
 - A *random variable* (or stochastic variable) is, roughly speaking, a
-  variable whose value results from a measurement
+  variable whose value results from a measurement (or an observation)
 
   Such a variable enables to model *uncertainty* that may result of
-  *incomplete information* or *imprecise measurements*
+  *incomplete information* or *imprecise measurements* \pause
 
-  You can think of it as a /box/. Every time you open the box, you get a
-  different value.
-- Formally $(\Omega, \F, \P)$ is a probability space where:
-  - $\Omega$, the sample space, is the set of all possible 
-    #+LaTeX: outcomes (\eg $\{Head,Tail,$ $Edge,Lost\}$)
-  - \F if the set of events where an event is a set containing zero or
-    more outcomes (\eg the event of "making a coin toss decision"
-    $\{Head,Tail\}$)
-  - The probability measure $\P:\F \to [0,1]$ is a function returning an
-    event's probability
-- A random variable associates a numerical value to outcomes.  Since
-  many computer science experiments are based on time measurements, we
-  focus on *continuous* variables.
+  You can think of it as a *small box*:
+  - Every time you open the box, you get a _different_ value.
+  - I will use this box analogy throughout the whole lecture and I
+    encourage you to ask yourself what the box can be in your own
+    studies\medskip
+  \pause
+- Formally a *probability space* is defined by $(\Omega, \F, \P)$ where:
+  - $\Omega$, the *sample space*, is the set of all possible *outcomes*
+    - \Eg
+      all the possible combinations of your DNA with the one of your
+      {girl|boy}friend
+    - You may or may not be able to observe directly the outcome.
+    \pause
+  - \F if the set of *events* where an event is a set containing zero or
+    more outcomes
+    - \Eg the event of "the DNA corresponds to a girl with blue eyes"
+    - An event is somehow more tangible and can generally be observed
+    \pause
+  - The *probability measure* $\P:\F \to [0,1]$ is a function returning an
+    event's probability 
+    #+LaTeX: ($\P$("having a brown-eyed baby girl") = 0.0005)
+*** Continuous random variable (1/2)
+- A *random variable* associates a *numerical value* to *outcomes*
   \begin{equation*}
   \rv{X}: \Omega \to \R
   \end{equation*}
+  \vspace{-1.6em}
+  - \Eg the weight of the baby at birth (assuming it solely depends
+    on DNA, which is quite false but it's for the sake of the example)
+  - Since many computer science experiments are based on time
+    measurements, we focus on *continuous* variables
+- \textbf{Note:} To distinguish random variables, which are complex
+  objects, from other mathematical objects, they will always be
+  written in blue capital letters in this set of slides (\eg \rv{X})
+
+- The probability measure on \Omega induces probabilities on the
+  *values* of \rv{X}
+  - $\P(\rv{X}=0.5213)$ is generally 0 as the outcome never exactly matches
+  - $\P(0.5213\leq\rv{X}\leq0.5214)$ may however be non-zero
 *** Probability distribution
-A *probability distribution* (a.k.a. *probability density function* or
-p.d.f.) is used to describe the probabilities of different *values*
-occurring
-
-A random variable \rv{X} has density $f$, where $f$ is a non-negative and
-integrable function, if:
-#+BEGIN_LaTeX
-\begin{equation*}
-\P[a \leq \rv{X} \leq b] = \int_a^b f(x) \, \dif x
-\end{equation*}
-#+END_LaTeX
-
 #+begin_src R :results output graphics :file "pdf_babel/Gamma_distribution.pdf" :exports none :width 6 :height 3 :session
 library(ggplot2)
 library(ggthemes)
@@ -88,11 +100,15 @@ area = data.frame(x=x, y=y)
 integral = diff(range(do.call(pfunc,c(list(q=c(xmin,xmax)),args))))
 label = paste("P(paste(",xmin," <= X) <= ",xmax,") == ", integral)
 
+r2.value <- 0.90
+
+
 p = ggplot(data=df,aes(x=x,y=y)) + geom_point(size=0) + theme_classic() + 
     stat_function(fun = func, colour = "darkgreen", arg = args) +
         geom_area(data=area,aes(x=x,y=y),fill="lightskyblue2") + 
             geom_text(x=.7*max(df$x),y=.7*max(df$y), label=label, parse=T) +
-            ylab("f(x)") + xlim(df$x)
+            ylab(expression(paste(f[X],"(",italic(w),")"))) + xlim(df$x) +
+            xlab(expression(italic(w)))
 p
 # ggsave(p,file="pdf_babel/Gamma_distribution.pdf",width=6,height=4)
 #+end_src
@@ -100,18 +116,36 @@ p
 #+RESULTS:
 [[file:pdf_babel/Gamma_distribution.pdf]]
 
-#+BEGIN_CENTER
-\includegraphics[width=.8\linewidth]{pdf_babel/Gamma_distribution.pdf}
-#+END_CENTER
-*** Characterizing a random variable
-The probability density function fully characterizes the random
-variable but it is complex object. 
+A *probability distribution* (a.k.a. *probability density function* or
+p.d.f.) is used to describe the probabilities of different *values*
+occurring
 
+- A random variable \rv{X} has density $f_X$, where $f_X$ is a
+  non-negative and integrable function, if:
+  #+BEGIN_LaTeX
+  \vspace{-.6em}
+  \begin{equation*}
+  \P[a \leq \rv{X} \leq b] = \int_a^b f_X(w) \, \dif w
+  \end{equation*}\vspace{-.8em}
+  #+END_LaTeX
+  #+BEGIN_CENTER
+  \includegraphics[width=.7\linewidth]{pdf_babel/Gamma_distribution.pdf}
+  #+END_CENTER
+  \vspace{-.7em}
+- \textbf{Note}: people often confuse the sample space with the random
+  variable. Try to make the difference when modeling your system, it
+  will help you
+- \small Note: /the/ $\boxed{\text{X}}$ /in/ $\boxed{1\leq\text{X}\leq6}$ /in
+  the above figure should be in blue.../
+*** Characterizing a random variable
+The probability density function *fully characterizes* the random
+variable but it is also complex object
+
+- It may be symmetrical or not
 - It may have one or several *modes*
 - It may have a bounded support or not, hence the random variable may
   have a *minimal* and/or a *maximal* value
 - The *median* cuts the probabilities in half
-- It may be symmetrical or not
 
 #+begin_src R :results output graphics :file "pdf_babel/distribution_characteristics.pdf" :exports none :width 6 :height 3 :session
 library(ggplot2)
@@ -162,7 +196,7 @@ p
 *** Expected value
 - When one speaks of the "expected price", "expected height", etc. one
   means the *expected value* of a random variable that is a price, a
-  height, etc.o
+  height, etc.
   \begin{align*}
   \E[\rv{X}] & = x_1p_1 + x_2p_2 + \ldots + x_kp_k = \int_{-\infty}^\infty x f(x)\, \dif x
   \end{align*}
@@ -184,22 +218,22 @@ p
   #+END_LaTeX
 - The *standard deviation $\sigma$* is the square root of the variance. This
   normalization allows to compare it with the expected value
-* Estimation
-** 
+* Using the model to make Estimations
+** Estimating the Expected value
 *** How to estimate the Expected value ?
 To empirically *estimate* the expected value of a random variable
 \rv{X}, one repeatedly measures observations of the variable and
-computes the arithmetic mean of the results \bigskip This is called
-the *sample mean*
+computes the arithmetic mean of the results \bigskip 
+
+This is called the *sample mean* \bigskip 
 
 Unfortunately, if you repeat the estimation, you may get a different
 value since \rv{X} is a random variable \dots
-*** Central Limit Theorem
+*** Central Limit Theorem [\textbf{CLT}]
 - Let $\{\rv{X_1}, \rv{X_2}, \dots, \rv{X_n}\}$ be a random sample of size
-  $n$ (\ie a sequence of \textbf{independent} and \textbf{identically
-  distributed} random variables with expected values $\mu$ and variances
-  $\sigma^2$)
-- The sample average of these random variables is:
+  $n$ (\ie a sequence of *independent* and *identically distributed*
+  random variables with expected values $\mu$ and variances $\sigma^2$)
+- The *sample mean* of these random variables is:
   #+BEGIN_LaTeX
   \begin{equation*}
   \rv{S_n} =  \frac{1}{n} (\rv{X_1} + \dots + \rv{X_n})
@@ -207,66 +241,12 @@ value since \rv{X} is a random variable \dots
   #+END_LaTeX
   $\rv{S_n}$ is a random variable too!
 - For large n's, the distribution of $\rv{S_n}$ is approximately
-  normal with mean $\mu$ and variance $\frac{\sigma^2}{n}$
+  *normal* with *mean $\mu$* and *variance $\frac{\sigma^2}{n}$*
   #+BEGIN_LaTeX
   \begin{equation*}
   \rv{S_n} \xrightarrow[n\to\infty]{} \N\left(\mu,\frac{\sigma^2}{n}\right)
   \end{equation*}
   #+END_LaTeX
-*** The Normal Distribution
-#+begin_src R :results output graphics :file "pdf_babel/normal_distribution.pdf" :exports none :width 6 :height 2.5 :session
-library(ggplot2)
-library(ggthemes)
-xmin = -5
-xmax = 5
-ymin = 0
-ymax = 1.5
-
-dfnorm = data.frame(mu=c(0,0,0,-2),sigma2=c(.1,1,5,.5))
-dfnorm$label = paste0("mu=",dfnorm$mu,", sigma^2=",dfnorm$sigma2)
-
-df = data.frame(x=c(xmin,xmax),y=c(ymin,ymax))
-
-p = ggplot(data=df,aes(x=x,y=y)) + 
-    xlim(xmin,xmax) + ylim(ymin,ymax) + theme_classic() +
-    guides(colour = guide_legend("")) + ylab("f(x)")
-
-## Argh, this does not work either. I have to do it "manually". :(
-# for(i in 1:dim(dfnorm)[1]) {
-#   d = dfnorm[i,]
-#   print(d$label)
-#   p = p + stat_function(fun = dnorm, 
-#                         arg = list(mean=d$mu, sd=d$sigma2), 
-#                         aes(color=dfnorm[i,]$label))
-# }
-
-p + stat_function(fun = dnorm, arg = list(mean=dfnorm[1,]$mu, sd=sqrt(dfnorm[1,]$sigma2)), aes(color=dfnorm[1,]$label)) +
-    stat_function(fun = dnorm, arg = list(mean=dfnorm[2,]$mu, sd=sqrt(dfnorm[2,]$sigma2)), aes(color=dfnorm[2,]$label)) +
-    stat_function(fun = dnorm, arg = list(mean=dfnorm[3,]$mu, sd=sqrt(dfnorm[3,]$sigma2)), aes(color=dfnorm[3,]$label)) +
-    stat_function(fun = dnorm, arg = list(mean=dfnorm[4,]$mu, sd=sqrt(dfnorm[4,]$sigma2)), aes(color=dfnorm[4,]$label))
-#+end_src
-
-#+RESULTS:
-[[file:pdf_babel/normal_distribution.pdf]]
-
-#+BEGIN_LaTeX
-  \begin{overlayarea}{\linewidth}{4.5cm}
-    \begin{center}%
-      \includegraphics<1>[height=4.5cm]{pdf_babel/normal_distribution.pdf}%
-      \includegraphics<2>[height=4.5cm]{images/Standard_deviation_diagram.pdf}%
-    \end{center}
-  \end{overlayarea}
-  \uncover<1->{The smaller the variance the more ``spiky'' the
-    distribution.}
-  \uncover<2->{
-#+END_LaTeX
-- Dark blue is less than one standard deviation from the mean. For the
-  normal distribution, this accounts for about 68% of the set.
-- Two standard deviations from the mean (medium and dark blue) account
-  for about 95%
-- Three standard deviations (light, medium, and dark blue) account for
-  about 99.7%
-#+LaTeX: }
 *** CLT Illustration
 #+begin_src R :results output graphics :file "pdf_babel/CLT_illustration.pdf" :exports none :width 9 :height 6 :session
 library(ggplot2)
@@ -322,7 +302,62 @@ $S_n$ for increasing values of $n$.
 #+BEGIN_CENTER
 #+LaTeX: \includegraphics<1>[width=.8\linewidth]{pdf_babel/CLT_illustration.pdf}
 #+END_CENTER
+*** The Normal Distribution
+#+begin_src R :results output graphics :file "pdf_babel/normal_distribution.pdf" :exports none :width 6 :height 2.5 :session
+library(ggplot2)
+library(ggthemes)
+xmin = -5
+xmax = 5
+ymin = 0
+ymax = 1.5
 
+dfnorm = data.frame(mu=c(0,0,0,-2),sigma2=c(.1,1,5,.5))
+dfnorm$label = paste0("mu=",dfnorm$mu,", sigma^2=",dfnorm$sigma2)
+
+df = data.frame(x=c(xmin,xmax),y=c(ymin,ymax))
+
+p = ggplot(data=df,aes(x=x,y=y)) + 
+    xlim(xmin,xmax) + ylim(ymin,ymax) + theme_classic() +
+    guides(colour = guide_legend("")) + ylab("f(x)")
+
+## Argh, this does not work either. I have to do it "manually". :(
+# for(i in 1:dim(dfnorm)[1]) {
+#   d = dfnorm[i,]
+#   print(d$label)
+#   p = p + stat_function(fun = dnorm, 
+#                         arg = list(mean=d$mu, sd=d$sigma2), 
+#                         aes(color=dfnorm[i,]$label))
+# }
+
+p + stat_function(fun = dnorm, arg = list(mean=dfnorm[1,]$mu, sd=sqrt(dfnorm[1,]$sigma2)), aes(color=dfnorm[1,]$label)) +
+    stat_function(fun = dnorm, arg = list(mean=dfnorm[2,]$mu, sd=sqrt(dfnorm[2,]$sigma2)), aes(color=dfnorm[2,]$label)) +
+    stat_function(fun = dnorm, arg = list(mean=dfnorm[3,]$mu, sd=sqrt(dfnorm[3,]$sigma2)), aes(color=dfnorm[3,]$label)) +
+    stat_function(fun = dnorm, arg = list(mean=dfnorm[4,]$mu, sd=sqrt(dfnorm[4,]$sigma2)), aes(color=dfnorm[4,]$label))
+#+end_src
+
+#+RESULTS:
+[[file:pdf_babel/normal_distribution.pdf]]
+
+#+BEGIN_LaTeX
+  \begin{overlayarea}{\linewidth}{4.5cm}
+    \begin{center}%
+      \includegraphics<1>[height=4.5cm]{pdf_babel/normal_distribution.pdf}%
+      \includegraphics<2>[height=4.5cm]{images/Standard_deviation_diagram.pdf}%
+    \end{center}
+  \end{overlayarea}
+  \uncover<1->{The smaller the variance the more ``spiky'' the
+    distribution.}
+  \uncover<2->{
+#+END_LaTeX
+- Dark blue is less than one standard deviation from the mean. For the
+  normal distribution, this accounts for about 68% of the set.
+- Two standard deviations from the mean (medium and dark blue) account
+  for about 95%
+- Three standard deviations (light, medium, and dark blue) account for
+  about 99.7%
+#+LaTeX: }
+
+** Evaluating and Comparing Alternatives With Confidence Intervals
 *** CLT consequence: confidence interval
 #+begin_src R :results output graphics :file pdf_babel/CI_illustration.pdf :exports none :width 5 :height 3 :session
 mu = 500
@@ -347,7 +382,8 @@ ggplot(df, aes(x = x, y = y, color = factor(valid))) + geom_point() +
     geom_vline(xintercept = mu) + 
     theme_classic() + guides(colour = guide_legend("")) +
     xlim(mu-3*ci,mu+3*ci) + 
-    ylab("Trial #") + xlab("Observed value")
+    ylab("Trial #") + xlab("Observation: sample mean with \nconfidence interval") +
+    coord_flip() + ggtitle(paste(n," observations of the mean of ",N," samples"))
 #+end_src
 
 #+RESULTS:
@@ -375,112 +411,230 @@ When $n$ is large:
 \uncover<2>{There is 95\% of chance that the \alert{true mean} lies
   within 2$\frac{\sigma}{\sqrt{n}}$ of the \alert{sample mean}.}
 #+END_LaTeX
-* Using Confidence Intervals                                       :noexport:
-** Comparing Two Alternatives
-  Assume, you have evaluated two scheduling heuristics $A$ and $B$ on
-  $n$ different DAGs.
+*** Without any particular hypothesis
+- Assume, you have evaluated two *alternatives* $A$ and $B$ on $n$
+  different *setups*
+
+- You therefore consider the associated random variables \rv{A} and
+  \rv{B} and try to estimate there expected values $\mu_A$ and $\mu_B$
+#+BEGIN_LaTeX
   \begin{center}
     \begin{overlayarea}{.9\linewidth}{4.5cm}
       \begin{center}%
-        \includegraphics<1>[scale=.911,subfig=1]{2sample_comp.fig}%
-        \includegraphics<2>[scale=.911,subfig=2]{2sample_comp.fig}%
-        \includegraphics<3->[scale=.911,subfig=3]{2sample_comp.fig}%
+        \includegraphics<1>[scale=.911,subfig=1]{fig/2sample_comp.fig}%
+        \includegraphics<2>[scale=.911,subfig=2]{fig/2sample_comp.fig}%
+        \includegraphics<3->[scale=.911,subfig=3]{fig/2sample_comp.fig}%
       \end{center}
     \end{overlayarea}
   \end{center}
+  \vspace{-.8em}
     \begin{overlayarea}{\linewidth}{1.5cm}%
-      \only<1>{The two 95\% confidence intervals do not overlap
-        $\leadsto$ $\P(\mu_A<\mu_B)>90\%$.\\}%
-      \only<2>{The two 95\% confidence intervals do overlap
-        $\leadsto$ ??.% \\
+      \only<1>{The two 95\% confidence intervals do not overlap\vspace{-.8em}
         \begin{flushright}
+          $\leadsto \mu_A<\mu_B$ with more than 90\% of confidence
+          \smiley
+        \end{flushright}
+      }%
+      \only<2>{The two 95\% confidence intervals do overlap\vspace{-.8em}
+        \begin{flushright}
+          $\leadsto$ Nothing can be concluded \frowny\\
           Reduce C.I ?
         \end{flushright}
       }%
-      \only<3>{The two 70\% confidence intervals do not overlap
-        $\leadsto$ $\P(\mu_A<\mu_B)>49\%$.%\\
+      \only<3>{The two 70\% confidence intervals do not overlap\vspace{-.8em}
         \begin{flushright}
-          Let's do more experiments instead.
+          $\leadsto\mu_A<\mu_B$ with less than 50\% of confidence \frowny
+          $\leadsto$ more experiments...
         \end{flushright}
       }%
       \only<4->{The width of the confidence interval is proportional
-        to $\frac{\sigma}{\sqrt{n}}$.
+        to $\frac{\sigma}{\sqrt{n}}$\vspace{-.8em}
         \begin{flushright}
-          Halving C.I. requires 4 times more experiments!
+          Halving C.I. requires 4 times more experiments! \frowny\\
+          Try to \alert{reduce variance} if you can...\smiley
         \end{flushright}
-        Try to \concept{reduce variance} if you can...
       }
     \end{overlayarea}
+#+END_LaTeX
+*** Exploiting blocks
+#+BEGIN_LaTeX
+\begin{itemize}
+\item C.I.s overlap because variance is large. Some *setups* may have an
+  intrinsically longer duration than others, hence a large
+  $\Var(\rv{A})$ and $\Var(\rv{B})$
+  \begin{center}
+    \includegraphics<1>[scale=.7,subfig=2]{fig/2sample_comp.fig}%
+    \includegraphics<2->[scale=.7,subfig=4]{fig/2sample_comp.fig}%
+  \end{center}
+\item<2-> The previous test estimates $\mu_A$ and $\mu_B$
+  \alert{independently}.
 
-** Comparing Two Alternatives with Blocking
-  \begin{itemize}
-  \item C.I.s overlap because variance is large. Some DAGS have an
-    intrinsically longer makespan than others, hence a large
-    $\Var(A)$ and $\Var(B)$
+  $\E[\rv{A}]<\E[\rv{B}] \Leftrightarrow \E[\rv{B-A}]<0$.
+
+  In the previous evaluation, the \alert{same} setup $i$ is used for
+  measuring $\rv{A_i}$ and $\rv{B_i}$, hence we can focus on $\rv{B-A}$.
+
+  Since $\Var(\rv{B-A})$ is much smaller than $\Var(\rv{A})$ and
+  $\Var(\rv{B})$, we can conclude that $\mu_A<\mu_B$ with 95\% of
+  confidence.
+\item<3-> Relying on such common points is called \alert{blocking}
+  and enable to \alert{reduce variance}.
+\end{itemize}
+
+#+END_LaTeX
+*** Let's reuse a previous example
+#+begin_src R :results output graphics :file pdf_babel/comparing_2_alternatives.pdf :exports none :width 5 :height 3 :session
+library(ggplot2)
+library(dplyr)
+library(tidyr)
+set.seed(42);
+n = 40;
+setup_val=rgamma(n,shape=3)
+a = setup_val + 1.5 + runif(n)
+b = setup_val + 2.5 + runif(n)
+diff = .65
+df = data.frame(A=a,B=b)
+write.csv(df,file="data/set1.csv",row.names=FALSE);
+df$Diff=df$B-df$A
+dfgg = df %>% gather(Alternative, Time)
+dfsummary = dfgg %>% group_by(Alternative) %>%
+       summarise(num = n(),
+                 mean = mean(Time),
+                 sd = sd(Time),
+                 ci70 = sd(Time)/sqrt(n()),
+                 ci95 = 2*sd(Time)/sqrt(n()),
+                 ci99 = 3*sd(Time)/sqrt(n()))
+dfsummary = dfsummary %>% gather(CI,ci,ci70,ci95,ci99) 
+
+ggplot(dfgg,aes(x=Alternative,y=Time)) + theme_bw() +
+     scale_color_brewer(palette="Set1") +
+    guides(fill = "none") + 
+    geom_jitter(alpha=.2,position = position_jitter(width = .1)) +
+    geom_errorbar(data=dfsummary,width=.3,
+                  aes(y=mean,ymin=mean-ci,ymax=mean+ci,color=CI),
+                  position="dodge") +
+    geom_point(data=dfsummary,shape=21, position="dodge", 
+               aes(y=mean,color=CI)) + 
+    geom_rect(data=dfsummary[dfsummary$Alternative=="A" &
+                             dfsummary$CI=="ci95",], 
+              aes(y=mean, xmin="A",xmax="B",
+                  ymin=mean-ci,ymax=mean+ci),fill="blue",alpha=.3) +
+    geom_hline(yintercept=diff,color="azure4") + 
+    annotate("text",x="B",y=1.7*diff,label=diff,size=4,color="azure4")
+
+#+end_src
+
+#+RESULTS:
+[[file:pdf_babel/comparing_2_alternatives.pdf]]
+
+#+BEGIN_CENTER
+\includegraphics[width=.7\linewidth]{pdf_babel/comparing_2_alternatives.pdf}
+#+END_CENTER
+
+\vspace{-.8em} $\mu_A$ is 0.65 seconds smaller than $\mu_B$ with more than
+99\% of confidence \smiley\medskip
+
+You need to invest in a probabilistic model. Here we assumed:
+   - $\rv{A_i} = \boxed{\rv{S_i}} + \rv{A'_i}$
+   - $\rv{B_i} = \boxed{\rv{S_i}} + \rv{B'_i}$
+
+** What should I take care of?
+
+*** CLT hypothesis
+#+begin_src R :results output graphics :file pdf_babel/sample_var.pdf :exports none :width 5 :height 3 :session
+set.seed(42)
+df = data.frame(row.names = c("n", "sample_mean", "sample_var"))
+for (n in seq(2, 32)) {
+    for (N in 1:30) {
+        x = rnorm(n, 5, 1)
+        df = rbind(df, data.frame(n = c(n), sample_mean = mean(x), sample_var = var(x)))
+    }
+}
+ggplot(df, aes(x = n, y = sample_var)) + theme_classic() +
+    geom_point(alpha=.15) + ylab("Samples of 'sample variance'") +
+    geom_hline(yintercept = 1,color="darkred") + 
+    annotate(geom="text",label="True variance", x = 25, y = 1.5, 
+             color="darkred")
+        
+#+end_src
+
+#+RESULTS:
+[[file:pdf_babel/sample_var.pdf]]
+
+\null\vspace{-2em}
+- The CLT hypothesis are very weak. It *does not assume any particular
+  distribution* (\eg normality) for \rv{X}
+
+  But, the CLT says that /when $n$ goes large/, the sample mean is
+  /normally distributed/. We have seen it holds true quickly\\[0pt]
+  #+BEGIN_LaTeX
+  \begin{overlayarea}{\linewidth}{0cm}
+    \vspace{-1em}
     \begin{center}
-      \includegraphics<1>[scale=.7,subfig=2]{2sample_comp.fig}%
-      \includegraphics<2->[scale=.7,subfig=4]{2sample_comp.fig}%
+      \includegraphics<1>[width=.7\linewidth]{pdf_babel/CLT_illustration.pdf}
     \end{center}
-  \item<2-> The previous test estimates $\mu_A$ and $\mu_B$
-    \concept{independently}.
+  \end{overlayarea}
+  \vspace{-2em}
+  #+END_LaTeX
+- 
+  #+BEGIN_LaTeX
+  \uncover<2->{%
+    However, the CLT uses $\sigma = \sqrt{\Var(X)}$ but we only have the
+    \alert{sample variance}, not the \alert{true variance}
+  }
 
-    $\E[A]<\E[B] \Leftrightarrow \E[B-A]<0$. 
+  \uncover<3>{%
+    So you should always try to either find an \alert{upper bound on the
+      true variance} or \alert{overestimate the sample variance}
+  }
 
-    In the previous evaluation, the \concept{same} DAG is used for
-    measuring $A_i$ and $B_i$, hence we can focus on $B-A$.
+  \begin{overlayarea}{\linewidth}{4cm}
+    \vspace{-1em}
+    \begin{center}
+      \includegraphics<2->[width=.7\linewidth]{pdf_babel/sample_var.pdf}
+    \end{center}
+  \end{overlayarea}
+#+END_LaTeX
 
-    Since $\Var(B-A)$ is much smaller than $\Var(A)$ and $\Var(B)$, we
-    can conclude that $\mu_A<\mu_B$ with 95\% of confidence.
+*** How many replicates ?
 
-  \item<3-> Relying on such common points is called \concept{blocking}
-    and enable to \concept{reduce variance}.
-  \end{itemize}
-
-** How Many Replicates ?
-  \begin{itemize}
-  \item<+-> The CLT says that ``when $n$ goes large'', the sample mean
-    is normally distributed.
-
-    The CLT uses $\sigma = \sqrt{\Var(X)}$ but we only have the
-    sample variance, not the true variance.\\[0cm]
-    \begin{overlayarea}{\linewidth}{0cm}
-      \vspace{-1.3cm}
-      \begin{center}
-        \includegraphics<+>[width=.7\linewidth]{sample_var.pdf}
-      \end{center}
-    \end{overlayarea}
-    \uncover<+->{\textbf{Q:} How Many Replicates ?} \\
-    ~\hfill\uncover<+->{\textbf{A1:} How many can you afford ?}\\
-    ~\hfill\uncover<+->{\textbf{A2:} 30\dots\hspace{3.25cm}~\\
+#+BEGIN_LaTeX
+\small
+\begin{itemize}
+\item<+-> 
+  \uncover<.->{\textbf{Q:} How Many Replicates ?} \\
+  ~\hfill\uncover<+->{\textbf{A1:} How many can you afford ?}\\
+  ~\hfill\uncover<+->{\textbf{A2:} 30\dots\hspace{3.25cm}~\\
     \textbf{Rule of thumb:} a sample of 30 or more is big sample but a
-    sample of 30 or less is a small one (doesn't always work).}
-  \item<+-> With less than 30, you need to make the $C.I.$ wider using
-    e.g. the \concept{Student law}.
-  \item<+-> Once you have a first C.I. with 30 samples, you can estimate
-    how many samples will be required to answer your question. If it
-    is too large, then either try to reduce variance (or the scope of
-    your experiments) or simply explain that the two alternatives are
-    hardly distinguishable...
-  \item<+-> \textbf{Running the right number of experiments enables to
-      get to conclusions more quickly and hence to test other
-      hypothesis.}
-  \end{itemize}
+    sample of 30 or less is a small one (\uline{doesn't always work})}
 
-** Key Hypothesis
+\item<+-> With less than 30, you should make the C.I. wider using
+  \eg the \alert{Student law}.
+
+\item<+-> Once you have a first C.I. with 30 samples, you can estimate
+  how many samples will be required to answer your question. If it is
+  too large, then either try to reduce variance (or the scope of your
+  experiments) or simply explain that the two alternatives are hardly
+  distinguishable... You need a \alert{sequential approach}.
+
+\item<+-> \textbf{Running the right number of experiments enables to
+    get to conclusions more quickly and hence to test other
+    hypothesis.}
+\end{itemize}
+#+END_LaTeX
+*** Key Hypothesis
   The hypothesis of CLT are very weak. Yet, to qualify as replicates,
   the repeated measurements:
-  \begin{itemize}
-  \item must be independent (take care of warm-up)
-  \item must not be part of a time series (the system behavior may
+  - must be *independent* (take care of warm-up)
+  - must *not* be part of a *time series* (the system behavior may
     temporary change)
-  \item must not come from the same place (the machine may have a problem)
-  \item must be of appropriate spatial scale
-  \end{itemize}
-  \begin{center}
-    \textbf{Perform graphical checks}
-  \end{center}
+  - must *not* come *from the same place* (the machine may have a problem)
+  - must be of appropriate *spatial scale*
 
-** Simple Graphical Check
+    #+BEGIN_CENTER
+    \textbf{Perform graphical checks}
+    #+END_CENTER
+*** Simple Graphical Check                                       :noexport:
   \begin{center}
     \includegraphics<1>[width=.45\linewidth]{4-plot-1.jpg}%
     \includegraphics<2>[width=.45\linewidth]{4-plot-2.jpg}
@@ -508,8 +662,7 @@ When $n$ is large:
       there is not another hidden parameter you should take into account.
     \end{description}
   \end{minipage}
-
-** Temporal Dependancy
+*** Temporal Dependancy                                          :noexport:
   \begin{center}
     \includegraphics<1>[width=\linewidth,height=4cm]{simul/deptempo.pdf}%
     \includegraphics<2>[width=\linewidth,height=4cm]{simul/deptempo-zoom.pdf}%
@@ -519,7 +672,7 @@ When $n$ is large:
   \item<2> Danger: temporal correlation $\leadsto$ study stationnarity. 
   \end{itemize}
 
-** Detect Trends
+*** Detect Trends                                                :noexport:
   \begin{center}
     \includegraphics[width=\linewidth,height=4cm]{simul/unifderiv.pdf}%
   \end{center}
@@ -529,7 +682,7 @@ When $n$ is large:
     factor here)
   \end{itemize}
 
-** Detect Periodicity
+*** Detect Periodicity                                           :noexport:
   \begin{center}
     \includegraphics[width=\linewidth,height=4cm]{simul/periode.pdf}%
   \end{center}
@@ -538,7 +691,7 @@ When $n$ is large:
   \item Study the period (Fourier)
   \item Use time series
   \end{itemize}
-** Confidence...
+*** Confidence...
 #+BEGIN_LaTeX
 \begin{center}
   \begin{tabular}{c|c}
@@ -548,9 +701,9 @@ When $n$ is large:
 \end{center}
 #+END_LaTeX
 
-* Design of Experiments: Early Intuition                           :noexport:
-
-** Comparing Two Alternatives (Blocking + Randomization)
+* Design of Experiments: Early Intuition
+** 
+*** Comparing Two Alternatives (Blocking + Randomization)
   \begin{itemize}[<+->]
   \item When comparing A and B for different settings, doing $A, A, A,
     A, A, A$ and then $B, B, B, B, B, B$ is a bad idea.
@@ -571,38 +724,38 @@ When $n$ is large:
     experiments was performed (\url{http://expo.gforge.inria.fr/}).
   \end{itemize}
 
-** Experimental Design
-  There are two key concepts:
-  \begin{center}
-    \concept{replication} and \concept{randomization}
-  \end{center}
-  You replicate to \concept{increase reliability}. You randomize to
-  \concept{reduce bias}.
+*** Experimental Design
+There are two key concepts:
+#+BEGIN_CENTER
+  *replication* and *randomization*
+#+END_CENTER
+You replicate to *increase reliability*. You randomize to *reduce bias*.
+#+BEGIN_CENTER
+    \textbf{If you replicate thoroughly and randomize properly, \\ you will not go far wrong.}  
+#+END_CENTER
+\pause
+#+BEGIN_QUOTE
+  \sf
+  It doesn't matter if you cannot do your own advanced statistical
+  analysis. If you designed your experiments properly, you may be able
+  to find somebody to help you with the statistics.\smallskip
 
-  \begin{center}
-    \textbf{    If you replicate thoroughly and randomize properly, \\
-      you will not go far wrong.  }  \end{center} 
-  \pause
-  \begin{quote}\sf
-    It doesn't matter if you cannot do your own advanced statistical
-    analysis. If you designed your experiments properly, you may be
-    able to find somebody to help you with the statistics.\smallskip
+  If your experiments is not properly designed, then no matter how
+  good you are at statistics, you experimental effort will have been
+  wasted.
+#+END_QUOTE
+\vspace{-1em}
+#+BEGIN_CENTER
+  \textbf{No amount of high-powered statistical analysis can turn a bad experiment into a good one.}
+#+END_CENTER
 
-    If your experiments is not properly designed, then no matter how
-    good you are at statistics, you experimental effort will have been
-    wasted.
-  \end{quote}\vspace{-1em}
-  \begin{center}
-    \textbf{No amount of high-powered statistical analysis can turn a
-      bad experiment into a good one.}
-  \end{center}
-% Experimental Design (replication and randomization)
-% - general recommendations (parsimony, true randomization)
-% - replication vs. pseudo-replication
-% - Strong inference vs. weak inference
+*** TO DO
+Experimental Design (replication and randomization)
+- general recommendations (parsimony, true randomization)
+- replication vs. pseudo-replication
+- Strong inference vs. weak inference
 
 * Getting rid of Outliers                                          :noexport:
-
 ** Abnormal measurements
   \begin{center}
     \includegraphics<1>[width=\linewidth,height=3cm]{simul/cauchy1.pdf}%
@@ -643,7 +796,7 @@ When $n$ is large:
   \item symmetrical or not ($\leadsto$ skewness)
   \item Flat of not ($\leadsto$ kurtosis)
   \end{itemize}
-  Summarize with \concept{central tendancy}
+  Summarize with \alert{central tendancy}
 
 ** Summarizing the distribution
   \begin{center}
