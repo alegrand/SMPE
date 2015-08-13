@@ -542,9 +542,34 @@ You need to invest in a probabilistic model. Here we assumed:
 So we could subtract them \smiley \\
 Dividing them would have been a very bad idea...\frowny
 #+LaTeX: \end{column}\end{columns}
+*** How to compute and plot CI in R: code
+\small
+#+begin_src R :results output graphics :file pdf_babel/comparing_2_alternatives2.pdf :exports code :width 5 :height 3 :session
+library(ggplot2)
+library(dplyr)
+library(tidyr)
+df = read.csv("data/set1.csv",header=T)
+df$Diff=df$B-df$A # Assuming observations are paired!
+dfgg = df %>% gather(Alternative, Time) 
+dfsum = dfgg %>% 
+       group_by(Alternative) %>%
+       summarise(num = n(), mean = mean(Time), sd = sd(Time),
+                 se = 2*sd/sqrt(num))
+ggplot(dfgg,aes(x=Alternative,y=Time,color=Alternative)) + 
+     scale_color_brewer(palette="Set1") + theme_bw() +
+     geom_jitter(alpha=.2,position = position_jitter(width = .1)) +
+     geom_errorbar(data=dfsum,width=.2,
+                   aes(y=mean,ymin=mean-se,ymax=mean+se),
+                   position="dodge") +
+     geom_point(data=dfsum,shape=21, position="dodge", size=3,
+                aes(y=mean,color=Alternative))
+#+end_src
 
-** What should I take care of?                                    :noexport:
-
+#+RESULTS:
+[[file:pdf_babel/comparing_2_alternatives2.pdf]]
+*** How to compute and plot CI in R: output
+[[file:pdf_babel/comparing_2_alternatives2.pdf]]
+** What should I take care of?
 *** CLT hypothesis
 #+begin_src R :results output graphics :file pdf_babel/sample_var.pdf :exports none :width 5 :height 3 :session
 set.seed(42)
@@ -556,7 +581,8 @@ for (n in seq(2, 32)) {
     }
 }
 ggplot(df, aes(x = n, y = sample_var)) + theme_classic() +
-    geom_point(alpha=.15) + ylab("Samples of 'sample variance'") +
+    geom_point(alpha=.15) + ylab('Samples of "sample variance"') +
+    ggtitle("Each dot is the sample variance of n values") +
     geom_hline(yintercept = 1,color="darkred") + 
     annotate(geom="text",label="True variance", x = 25, y = 1.5, 
              color="darkred")
@@ -567,7 +593,7 @@ ggplot(df, aes(x = n, y = sample_var)) + theme_classic() +
 [[file:pdf_babel/sample_var.pdf]]
 
 \null\vspace{-2em}
-- The CLT hypothesis are very weak. It *does not assume any particular
+- The CLT hypothesis are very weak: it *does not assume any particular
   distribution* (\eg normality) for \rv{X}
 
   But, the CLT says that /when $n$ goes large/, the sample mean is
@@ -579,7 +605,7 @@ ggplot(df, aes(x = n, y = sample_var)) + theme_classic() +
       \includegraphics<1>[width=.7\linewidth]{pdf_babel/CLT_illustration.pdf}
     \end{center}
   \end{overlayarea}
-  \vspace{-2em}
+  \vspace{-2.4em}
   #+END_LaTeX
 - 
   #+BEGIN_LaTeX
@@ -590,7 +616,7 @@ ggplot(df, aes(x = n, y = sample_var)) + theme_classic() +
 
   \uncover<3>{%
     So you should always try to either find an \alert{upper bound on the
-      true variance} or \alert{overestimate the sample variance}
+      true variance} or \alert{overestimate the sample variance}\bigskip
   }
 
   \begin{overlayarea}{\linewidth}{4cm}
@@ -639,63 +665,165 @@ ggplot(df, aes(x = n, y = sample_var)) + theme_classic() +
     #+BEGIN_CENTER
     \textbf{Perform graphical checks}
     #+END_CENTER
-*** Simple Graphical Check                                       :noexport:
+*** Simple Graphical Checks                                        :noexport:
+#+begin_src R :results output :session :exports both
+# From http://rpubs.com/sinhrks/plot_tsstats
+library(devtools)
+install_github('sinhrks/ggfortify')
+#+end_src
+
+#+begin_src R :results output :session :exports both
+library(gridExtra)
+library(ggplot2)
+# library(ggfortify)
+
+four_plot = function (df) {
+    p1 = ggplot(df,aes(x=Start,y=Value)) + geom_line() + 
+         theme_bw() + ggtitle("Sequence Plot");
+    X = df$Value
+    df_lag = data.frame(x1=X[1:length(X)-1],x2=X[2:length(X)])
+    p2 = ggplot(df_lag,aes(x=x1,y=x2)) + geom_point(alpha=.4) + 
+         theme_bw() + ggtitle("Lag Plot") + xlab("Value[i]") + 
+         ylab("Value[i+1]");;
+    # Or alternatively, if ggfortify is installed, give a try 
+    # to gglagplot...
+    p3 = ggplot(df,aes(x=Value)) + geom_histogram() +
+         theme_bw() + ggtitle("Histogram");
+    p4 = ggplot(df,aes(sample=Value)) + stat_qq() + 
+         theme_bw() + ggtitle("Normal Probability Plot");
+    grid.arrange(p1,p2,p3,p4,nrow=2);
+}
+#+end_src
+
+#+RESULTS:
+
+#+begin_src R :results output graphics :file pdf_babel/4plot1.pdf :exports both :width 6 :height 4 :session
+n = 200
+df1 = data.frame(Start=1:n, Value=10+rnorm(n))
+four_plot(df1)
+#+end_src
+#+RESULTS:
+[[file:pdf_babel/4plot1.pdf]]
+
+#+begin_src R :results output graphics :file pdf_babel/4plot2.pdf :exports both :width 6 :height 4 :session
+n = 1000
+df1 = data.frame(Start=1:n, Value=10+rnorm(n))
+four_plot(df1)
+#+end_src
+
+#+RESULTS:
+[[file:pdf_babel/4plot2.pdf]]
+
+#+begin_src R :results output graphics :file pdf_babel/4plot3.pdf :exports both :width 6 :height 4 :session
+n = 500
+Start=1:n
+df1 = data.frame(Start=Start, Value=sin(Start)+.15*rnorm(n))
+
+four_plot(df1)
+#+end_src
+
+#+RESULTS:
+[[file:pdf_babel/4plot3.pdf]]
+
+
+#+begin_src R :results output graphics :file pdf_babel/4plot3bis.pdf :exports both :width 6 :height 4 :session
+n = 500
+Start=1:n
+
+four_plot(head(df1,n=100))
+#+end_src
+
+#+RESULTS:
+[[file:pdf_babel/4plot3bis.pdf]]
+
+
+#+begin_src R :results output graphics :file pdf_babel/4plot4.pdf :exports both :width 6 :height 4 :session
+n = 500
+Start=1:n
+df1 = data.frame(Start=Start, Value=20+4*sin(.01*Start)+1*rnorm(n)*4*sin(.01*Start))
+
+four_plot(df1)
+#+end_src
+
+#+RESULTS:
+[[file:pdf_babel/4plot4.pdf]]
+
+#+begin_src R :results output graphics :file pdf_babel/4plot5.pdf :exports both :width 6 :height 4 :session
+n = 500
+Start=1:n
+df1 = data.frame(Start=Start, Value=rgamma(n,shape=.5))
+
+four_plot(df1)
+#+end_src
+
+#+RESULTS:
+[[file:pdf_babel/4plot5.pdf]]
+
+*** Simple Graphical Checks
+#+BEGIN_LaTeX
+  \vspace{-.8em}
   \begin{center}
-    \includegraphics<1>[width=.45\linewidth]{4-plot-1.jpg}%
-    \includegraphics<2>[width=.45\linewidth]{4-plot-2.jpg}
+    \includegraphics<1>[height=5cm]{pdf_babel/4plot1.pdf}%
+    \includegraphics<2>[height=5cm]{pdf_babel/4plot2.pdf}%
+    \includegraphics<3>[height=5cm]{pdf_babel/4plot3.pdf}%
+    \includegraphics<4>[height=5cm]{pdf_babel/4plot3bis.pdf}%
+    \includegraphics<5>[height=5cm]{pdf_babel/4plot4.pdf}%
+    \includegraphics<6>[height=5cm]{pdf_babel/4plot5.pdf}%
   \end{center}
-  \hspace{-.05\linewidth}
-  \begin{minipage}{1.1\linewidth}
+  \vspace{-.8em}
+  %  \hspace{-.05\linewidth}
+  \begin{minipage}{1\linewidth}
     \small
-    \vspace{-.5em}
-    \begin{description}
-    \item[Fixed Location:] If the fixed location assumption holds,
-      then the run sequence plot will be flat and non-drifting.\vspace{-.5em}
-    \item[Fixed Variation:] If the fixed variation assumption holds,
-      then the vertical spread in the run sequence plot will be the
-      approximately the same over the entire horizontal axis.\vspace{-.5em}
-    \item[Independence:] If the randomness assumption holds, then the
-      lag plot will be structureless and random.\vspace{-.5em}
-    \item[Fixed Distribution]: If the fixed distribution assumption
-      holds, in particular if the fixed normal distribution holds,
-      then\vspace{-.5em}
-      \begin{itemize}
-      \item the histogram will be bell-shaped, and
-      \item the normal probability plot will be linear.
-      \end{itemize}
-      If you see several modes, you may want to investigate further is
-      there is not another hidden parameter you should take into account.
-    \end{description}
-  \end{minipage}
-*** Temporal Dependancy                                          :noexport:
-  \begin{center}
-    \includegraphics<1>[width=\linewidth,height=4cm]{simul/deptempo.pdf}%
-    \includegraphics<2>[width=\linewidth,height=4cm]{simul/deptempo-zoom.pdf}%
-  \end{center}
-  \begin{itemize}
-  \item Looks independant and statistically identical
-  \item<2> Danger: temporal correlation $\leadsto$ study stationnarity. 
-  \end{itemize}
+#+END_LaTeX
+- Fixed Location :: the run sequence plot should be _flat_ and
+                    _non-drifting_\vspace{-.5em}
+- Fixed Variation ::  the vertical _spread_ in the run sequence plot
+     should _approximately the same_ over the entire horizontal
+     axis\vspace{-.5em}
+- Independence :: the lag plot should be _structureless_\vspace{-.5em}
+- Fixed Distribution :: (, in particular if the /fixed normal
+     distribution/ assumption holds)\\[-1.7em]
+  - the histogram should be bell-shaped, and
+  - the normal probability plot should be linear \vspace{-.9em}
+If you see _several modes_, there may be an _hidden parameter_ to take
+into account
+#+LaTeX: \end{minipage}
+*** Temporal Dependancy
 
-*** Detect Trends                                                :noexport:
-  \begin{center}
-    \includegraphics[width=\linewidth,height=4cm]{simul/unifderiv.pdf}%
-  \end{center}
-  \begin{itemize}
-  \item Model the trend: here increase then saturates
-  \item Possibly remove the trend by compensating it (multiplicative
-    factor here)
-  \end{itemize}
+#+begin_src R :results output graphics :file pdf_babel/deptempo.pdf :exports results :width 6 :height 4 :session
+n = 1000
+Start=1:n
+df1 = data.frame(Start=Start, Value=.5*sin(.1*Start)+.5*rnorm(n))
+#df1 = data.frame(Start=Start, Value=20+4*sin(.01*Start)+1*rnorm(n)*4*sin(.01*Start))
 
-*** Detect Periodicity                                           :noexport:
-  \begin{center}
-    \includegraphics[width=\linewidth,height=4cm]{simul/periode.pdf}%
-  \end{center}
-  May depend on sampling frequency or on horloge resolution.
-  \begin{itemize}
-  \item Study the period (Fourier)
-  \item Use time series
-  \end{itemize}
+p1 = ggplot(df1,aes(x=Start,y=Value)) + geom_line() + ggtitle("Sequence Plot")
+p2 = ggplot(head(df1,n=100),aes(x=Start,y=Value)) + geom_line() + ggtitle("Sequence Plot (zoom)")
+grid.arrange(p1,p2,nrow=1)
+#+end_src
+
+#+RESULTS:
+[[file:pdf_babel/deptempo.pdf]]
+
+- Looks independant and statistically identical
+- *Danger*: temporal correlation $\leadsto$ study *stationnarity*
+- *Periodicity* : May depend on sampling frequency or on horloge
+  resolution.
+  - Study the period (Fourier), use time series
+*** Detect Trends
+#+begin_src R :results output graphics :file pdf_babel/unifderiv.pdf :exports results :width 6 :height 4 :session
+n = 500
+Start=1:n
+df1 = data.frame(Start=Start, Value=1+atan(Start/70)*(runif(n,min=.3,max=1)))
+
+ggplot(df1,aes(x=Start,y=Value)) + geom_line() + ggtitle("Sequence Plot")
+#+end_src
+
+#+RESULTS:
+[[file:pdf_babel/unifderiv.pdf]]
+
+- Model the trend: here increase then saturates
+- Possibly remove the trend by compensating it (multiplicative factor
+  here) or removing what can be identified as a _warm-up_
 *** Confidence...
 #+BEGIN_LaTeX
 \begin{center}
@@ -705,7 +833,6 @@ ggplot(df, aes(x = n, y = sample_var)) + theme_classic() +
   \end{tabular}
 \end{center}
 #+END_LaTeX
-
 * Design of Experiments: Early Intuition                           :noexport:
 ** 
 *** Comparing Two Alternatives (Blocking + Randomization)
