@@ -237,7 +237,7 @@ value since \rv{X} is a random variable \dots
   #+BEGIN_LaTeX
   \begin{equation*}
   \rv{S_n} =  \frac{1}{n} (\rv{X_1} + \dots + \rv{X_n})
-  \end{equation*}  
+  \end{equation*}
   #+END_LaTeX
   $\rv{S_n}$ is a random variable too!
 - For large n's, the distribution of $\rv{S_n}$ is approximately
@@ -469,7 +469,7 @@ When $n$ is large:
 \item<2-> The previous test estimates $\mu_A$ and $\mu_B$
   \alert{independently}.
 
-  $\E[\rv{A}]<\E[\rv{B}] \Leftrightarrow \E[\rv{B-A}]<0$.
+  $\E[\rv{A}]<\E[\rv{B}] \Leftrightarrow \E[\rv{B-A}]>0$.
 
   In the previous evaluation, the \alert{same} setup $i$ is used for
   measuring $\rv{A_i}$ and $\rv{B_i}$, hence we can focus on $\rv{B-A}$.
@@ -535,10 +535,15 @@ ggplot(dfgg,aes(x=Alternative,y=Time)) + theme_bw() +
 99\% of confidence \smiley\medskip
 
 You need to invest in a probabilistic model. Here we assumed:
-   - $\rv{A_i} = \boxed{\rv{S_i}} + \rv{A'_i}$
-   - $\rv{B_i} = \boxed{\rv{S_i}} + \rv{B'_i}$
+#+LaTeX: \begin{columns}\begin{column}{.3\linewidth}
+- $\rv{A_i} = \boxed{\rv{S_i}} + \rv{A'_i}$
+- $\rv{B_i} = \boxed{\rv{S_i}} + \rv{B'_i}$
+#+LaTeX: \end{column}\begin{column}{.7\linewidth}~\\[-.6em]
+So we could subtract them \smiley \\
+Dividing them would have been a very bad idea...\frowny
+#+LaTeX: \end{column}\end{columns}
 
-** What should I take care of?
+** What should I take care of?                                    :noexport:
 
 *** CLT hypothesis
 #+begin_src R :results output graphics :file pdf_babel/sample_var.pdf :exports none :width 5 :height 3 :session
@@ -701,7 +706,7 @@ ggplot(df, aes(x = n, y = sample_var)) + theme_classic() +
 \end{center}
 #+END_LaTeX
 
-* Design of Experiments: Early Intuition
+* Design of Experiments: Early Intuition                           :noexport:
 ** 
 *** Comparing Two Alternatives (Blocking + Randomization)
   \begin{itemize}[<+->]
