@@ -139,7 +139,7 @@ This may be an interesting contribution but:
   \vspace{-.4cm}
   \begin{multicols}{2}
     \begin{itemize}[<+->]
-    \item \alert<.>{Versionning Problems}
+    \item \alert<.>{Versioning Problems}
     \item \alert<.>{Bad Backup Practices}
     \item \alert<.>{Code Will be Available Soon}
     \item \alert<.>{No Intention to Release}
@@ -501,7 +501,7 @@ In this series of lectures, we'll go from right to left and see how we can impro
 #+END_LaTeX
 *** A Difficult Trade-off
 #+BEGIN_CENTER
-Many different tools/approaches developped in various communities
+Many different tools/approaches developed in various communities
 #+END_CENTER
 
 But mainly two approaches:
