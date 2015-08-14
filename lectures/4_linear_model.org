@@ -571,7 +571,7 @@ linear unbiased estimate
     =~= reads "is modeled as a function of " and
     =lm(y~x)= means $\rv{y} = \alpha + \beta x + \rv{\epsilon}$ \medskip
 
-    On the right-hand side, on should specify how the explanatory
+    On the right-hand side, one should specify how the explanatory
     variables are combined. The symbols used here have a *different
     meaning* than in arithmetic expressions
     - =+= indicates a variable inclusion (not an addition)

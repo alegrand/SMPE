@@ -14,6 +14,8 @@
 #+LaTeX: \input{org-babel-document-preembule.tex}
 
 * List                                                             :noexport:
+** TODO Sequential Modeling/Invalidation Approach:
+   130307_simutools13/130307-keynote-simutools.pdf
 ** TODO Detail aov
 ** TODO Uniformity/repartition in space for exploration, explain how to generate
 ** TODO Explain sequential approach using lm, loess, or kriging

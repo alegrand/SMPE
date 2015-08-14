@@ -15,14 +15,8 @@
 #+BEGIN_LaTeX
 #+END_LaTeX
 * List                                                             :noexport:
-** TODO Translate to org
-** TODO Redo all figures
-** TODO Reorder (talk about median, min, etc earlier)
-** TODO Experimental Design (replication and randomization)
-- general recommendations (parsimony, true randomization)
-- replication vs. pseudo-replication
-- Strong inference vs. weak inference
-
+** TODO wikipedia correlation figure
+** TODO link figures to source code
 * A (mathematical) probabilistic model
 ** 
 *** Probabilities
@@ -817,11 +811,11 @@ grid.arrange(p1,p2,nrow=1)
 #+END_CENTER
 
 
-- Looks independent and statistically identical
-- *Danger*: temporal correlation $\leadsto$ study *stationarity*
+- Should look independent and statistically identical
 - *Periodicity* : May depend on sampling frequency or on clock
   resolution
   - Study the period (Fourier), use time series
+- *Danger*: temporal correlation $\leadsto$ study *stationarity*
 *** Detect Trends
 #+BEGIN_CENTER
 
@@ -1195,7 +1189,25 @@ unless you know what you do...
               depends on the distribution so just overestimate...
 ** Statistical Tests
 *** Tests
-Not today\dots We have already seen way enough concepts.
+We have seen how to build *estimators* of specific characteristics of
+$f_X$ based on observations of \rv{X}
+- Having an estimator is worth only if you can provide *confidence* on
+  this estimation
+
+Estimates can be used to *test* hypothesis
+- We have seen how we could test whether $\mu_A < \mu_B$ from estimates of
+  $\mu_A$ and $\mu_B$
+
+But there may be other more efficient ways to test such hypothesis
+- if you know observations are paired
+- if you know something about the underlying distribution
+
+Other kind of complex hypothesis may tested
+- median(\rv{A}) = median(\rv{B})
+- \rv{A} and \rv{B} follow the same distribution
+
+\bf We could give a whole lecture on this topic\dots Only use the tests you
+truly understand
 ** References
 *** Roadmap for a good data analysis (Jain)
 1. Plot the sample (various representations)
