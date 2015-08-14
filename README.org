@@ -145,10 +145,16 @@ swirl()
   Jain. It goes way farther on many aspects and I can only recommand
   it.
   #+END_QUOTE
++ Douglas C. Montgomery, [[http://www.wiley.com/WileyCDA/WileyTitle/productCd-EHEP002024.html][Design and Analysis of Experiments]], 8th
+  Edition. Wiley 2013.
+  #+BEGIN_QUOTE
+  This is a good and thorough textbook on design of experiments. It's
+  so unfortunate it relies on "exotic" softwares like JMP and minitab
+  instead of R...
+  #+END_QUOTE
 + R. Nelson, Probability stochastic processes and queuing theory: the
-  mathematics of computer performance modeling. Springer Verlag 1995
+  mathematics of computer performance modeling. Springer Verlag 1995.
   #+BEGIN_QUOTE
   For those willing to know more about queuing theory.
   #+END_QUOTE
-
     
