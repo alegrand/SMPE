@@ -132,7 +132,7 @@ df_lines=data.frame(
     #+END_SRC
 
     #+BEGIN_CENTER
-    #+ATTR_LATEX: :width .5\linewidth
+    #+ATTR_LATEX: :height 5cm
     [[file:./pdf_babel/scatterplot_eyeball.pdf]]
     \vspace{-1em}
     #+END_CENTER
@@ -155,11 +155,11 @@ df_lines=data.frame(
     #+END_SRC
 
     #+BEGIN_CENTER
-    #+ATTR_LATEX: :width .5\linewidth
+    #+ATTR_LATEX: :height 5cm
     [[file:./pdf_babel/scatterplot_leastsquares.pdf]]
     #+END_CENTER
 
-    \vspace{-2em}
+    \vspace{-1em}
     Intuitively, a large error is /much/ more important than a small
     one. We could try to minimize
     $\displaystyle F(\alpha,\beta) = \sum_{i}
@@ -168,6 +168,7 @@ df_lines=data.frame(
     - If they were all zero we would have a perfect line
     - Trade-off between moving closer to some points and at the same
       time moving away from other points
+    \vspace{-1em}
 *** Least Squares Line (2): Simple Formula
     \vspace{-1em}
     #+BEGIN_LaTeX
@@ -188,7 +189,7 @@ df_lines=data.frame(
     - $\bar x$ and $\bar y$ are the sample mean of $x$ and $y$
     - $r_{xy}$ is the sample correlation coefficient between $x$ and $y$
     - $s_x$ and $s_y$ are the sample standard deviation of $x$ and $y$
-    Also has a good geometric interpretation (*orthogonal projection*)
+    Also it has a good geometric interpretation (*orthogonal projection*)
     #+BEGIN_SRC R :session :exports none :results none graphics :file "./pdf_babel/scatterplot_leastsquares2.pdf" :width 3 :height 3
     intercept_lsx = df_lines[df_lines$label=="Least Squares \n (y~x)",]$intercept
     slope_lsx = df_lines[df_lines$label=="Least Squares \n (y~x)",]$slope
@@ -200,7 +201,6 @@ df_lines=data.frame(
        geom_abline(data=df_lines[df_lines$label=="Eyeball",], aes(intercept=intercept,slope=slope),color="gray")
     #+END_SRC
 *** Least Squares Line (3): y as a function of x or the opposite?
-    \vspace{-1em}
 
     #+BEGIN_SRC R :session :exports none :results none graphics :file "./pdf_babel/scatterplot_leastsquares3.pdf" :width 3 :height 3
     intercept_lsy = df_lines[df_lines$label=="Least Squares (x~y)",]$intercept
@@ -216,17 +216,16 @@ df_lines=data.frame(
 
     #+BEGIN_CENTER
     #+LaTeX: \only<1>{%
-      #+ATTR_LATEX: :width .5\linewidth
+      #+ATTR_LATEX: :height 5cm
       [[file:./pdf_babel/scatterplot_leastsquares2.pdf]]
     #+LaTeX: }\only<2->{%
-      #+ATTR_LATEX: :width .5\linewidth
+      #+ATTR_LATEX: :height 5cm
       [[file:./pdf_babel/scatterplot_leastsquares3.pdf]]
     #+LaTeX: }
     #+END_CENTER
 
     #+LaTeX: \uncover<3>{\centerline{OK, do we have less asymetrical options?}}\vspace{10cm}
 *** Least Distances Line (a.k.a. Deming Regression)
-    \vspace{-1em}
     #+BEGIN_SRC R :session :exports none :results none graphics :file "./pdf_babel/scatterplot_deming.pdf" :width 3 :height 3
     intercept_deming = df_lines[df_lines$label=="Least Distance",]$intercept
     slope_deming = df_lines[df_lines$label=="Least Distance",]$slope
@@ -246,7 +245,7 @@ df_lines=data.frame(
     #+END_SRC
 
     #+BEGIN_CENTER
-      #+ATTR_LATEX: :width .5\linewidth
+      #+ATTR_LATEX: :height 5cm
       [[file:./pdf_babel/scatterplot_deming.pdf]]
     #+END_CENTER
 
@@ -254,7 +253,6 @@ df_lines=data.frame(
       plot, i.e., if $x$ and $y$ have the same units
     #+LaTeX: \vspace{10cm}
 *** Least Rectangles Line
-    \vspace{-1em}
     #+BEGIN_SRC R :session :exports none :results none graphics :file "./pdf_babel/scatterplot_rectangle.pdf" :width 3 :height 3
     intercept_rect = df_lines[df_lines$label=="Least Rectangles",]$intercept
     slope_rect = df_lines[df_lines$label=="Least Rectangles",]$slope
@@ -269,7 +267,7 @@ df_lines=data.frame(
     #+END_SRC
 
     #+BEGIN_CENTER
-      #+ATTR_LATEX: :width .5\linewidth
+      #+ATTR_LATEX: :height 5cm
       [[file:./pdf_babel/scatterplot_rectangle.pdf]]
     #+END_CENTER
 
@@ -280,8 +278,6 @@ df_lines=data.frame(
       $y=\frac{s_y}{s_x}(x-\bar{x}) + \bar{y}$.
     #+LaTeX: \vspace{10cm}
 *** Least Squares (in Both Directions) Line
-    \vspace{-1em}
-
     #+BEGIN_SRC R :session :exports none :results none graphics :file "./pdf_babel/scatterplot_squares.pdf" :width 3 :height 3
     intercept_ls = df_lines[df_lines$label=="Least Squares",]$intercept
     slope_ls = df_lines[df_lines$label=="Least Squares",]$slope
@@ -295,7 +291,7 @@ df_lines=data.frame(
     #+END_SRC
 
     #+BEGIN_CENTER
-      #+ATTR_LATEX: :width .5\linewidth
+      #+ATTR_LATEX: :height 5cm
       [[file:./pdf_babel/scatterplot_squares.pdf]]
     #+END_CENTER
 
@@ -305,7 +301,6 @@ df_lines=data.frame(
     - Has to be computed analytically
     #+LaTeX: \vspace{10cm}
 *** Which line to choose?
-    \vspace{-1em}
 #   http://i.imgur.com/egd5f.png
     #+BEGIN_SRC R :session :exports none :results none graphics :file "./pdf_babel/linear_regressions.pdf" :width 7 :height 5
      ggplot() + geom_abline(data=df_lines,aes(intercept=intercept,slope=slope,color=color),size=.8) + 
@@ -347,13 +342,13 @@ df_lines=data.frame(
 #+LaTeX:   \begin{columns}
 #+LaTeX:     \begin{column}{.62\linewidth}
     We need to invest in a *probability model*
-    \centerline{$\displaystyle Y = a + b X + \epsilon$}
+    #+LaTeX: \centerline{$\displaystyle \rv{Y} = a + b X + \rv{\epsilon}$}
     
-    - $Y$ is the *response variable*
+    - \rv{Y} is the *response variable*
       #+LaTeX: \item$X$~is~a~continuous~explanatory~variable
     - $a$ is the intercept
     - $b$ is the slope
-    - $\epsilon$ is some noise
+    - \rv{\epsilon} is some noise
 #+LaTeX:     \end{column}\hspace{-2em}
 #+LaTeX:     \begin{column}{.3\linewidth}
       #+ATTR_LATEX: :width \linewidth
@@ -362,23 +357,23 @@ df_lines=data.frame(
 #+LaTeX:   \end{columns}
 
     - $a + b X$ represents the “true line”, the part of
-      $Y$ that depends on $X$
-    - The error term $\epsilon$ is independent “idosyncratic noise”,
-      i.e., the part of $Y$ not associated with $X$
+      \rv{Y} that depends on $X$
+    - The error term \rv{\epsilon} is independent “idosyncratic noise”,
+      \ie the part of \rv{Y} not associated with $X$
     \pause
 ****** Gauss-Markov Theorem
-       Under a few assumptions, the least squares regression is the
-       best linear unbiased estimate
-	+ $\Esp(\hat \beta) = b$ and $\Esp(\hat \alpha) = a$ \hfil
-          \usebeamertemplate{itemize item} $\Var(\hat \beta)$ and
-          $\Var(\hat \alpha)$ are minimal\hfil
+Under a few assumptions, the least squares regression is the best
+linear unbiased estimate
++ $\E[\rv{\hat\beta}] = b$ and $\E[\rv{\hat\alpha}] = a$ 
+  #+LaTeX: \hfil \usebeamertemplate{itemize item}
+   $\Var(\rv{\hat\beta})$ and $\Var(\rv{\hat\alpha})$ are minimal\hfil
 *** Multiple explanatory variables
     - The same results hold true when there are *several* explanatory
       variables:\smallskip
 
       #+BEGIN_LaTeX
-      \centerline{$Y = a + b^{(1)}X^{(1)} + b^{(2)}X^{(2)} +
-        b^{(1,2)}X^{(1)}X^{(2)} + \epsilon $}
+      \centerline{$\rv{Y} = a + b^{(1)}X^{(1)} + b^{(2)}X^{(2)} +
+        b^{(1,2)}X^{(1)}X^{(2)} + \rv{\epsilon} $}
       #+END_LaTeX
       \smallskip
 
@@ -388,8 +383,8 @@ df_lines=data.frame(
       hence \smallskip
 
       #+BEGIN_LaTeX
-      \centerline{$Y = a + b^{(1)}X + b^{(2)}\frac{1}{X} + b^{(3)}X^3 +
-      \epsilon $}    
+      \centerline{$\rv{Y} = a + b^{(1)}X + b^{(2)}\frac{1}{X} + b^{(3)}X^3 +
+      \rv{\epsilon} $}    
       #+END_LaTeX
       \smallskip
       is also a linear model
@@ -414,8 +409,9 @@ df_lines=data.frame(
                     restrictive. This trick is used, for example, in
                     *polynomial regression*, but beware of
                     *overfitting*
-    - Independance of Errors :: if several responses $Y_1$ and $Y_2$
-         are fit, $\epsilon_1$ and $\epsilon_2$ should be independant
+    - Independance of Errors :: if several responses $\rv{Y_1}$ and
+         $\rv{Y_2}$ are fit, $\rv{\epsilon_1}$ and $\rv{\epsilon_2}$ should be
+         independant
 *** Other Very Important Hypothesis
     #+BEGIN_SRC R :session :exports none :results none graphics :file "./pdf_babel/homoscedasticity.pdf" :width 6 :height 3
     x=runif(50,min=-20,max=60)
@@ -442,8 +438,8 @@ df_lines=data.frame(
          #+END_CENTER
 	 \vspace{-2em}
       - Variance is independant of $X$
-      - If several responses $Y_1$ and $Y_2$ are fit, $\epsilon_1$ and
-        $\epsilon_2$ should have the same variance
+      - If several responses $\rv{Y_1}$ and $\rv{Y_2}$ are fit,
+        $\rv{\epsilon_1}$ and $\rv{\epsilon_2}$ should have the same variance
       - Either normalize $Y$ or use an other estimator
 *** Dummy							   :noexport:
     #+BEGIN_SRC R :session :exports none :results none graphics :file "./pdf_babel/data_sets.pdf" :width 8 :height 3
@@ -456,7 +452,7 @@ df_lines=data.frame(
     - Normal and iid errors :: This is *not* an assumption of the
          Gauss Markov Theorem. Yet, it is quite convenient to build
          confidence intervals of the regression
-    - Arrangement of the predictor variables $X$ :: it has a major
+    - Arrangement of the predictor variables \rv{X} :: it has a major
          influence on the precision of estimates of $\beta$ (remember
          Anscombe's quartet). 
           #+BEGIN_SRC R :session :exports none :results none graphics :file "./pdf_babel/anscombe.pdf" :width 8 :height 3
@@ -475,9 +471,10 @@ df_lines=data.frame(
          #+END_CENTER
 	 \vspace{-1em}
       This is part of your design of experiments:
-      - If you want to test linearity, $X$ should be uniformly distributed
-      - If you want the best estimation, you should use extreme
-        values of $X$
+      - If you want to test linearity, $\rv{X}$ should be uniformly
+        distributed
+      - If you want the best estimation, you should use extreme values
+        of $\rv{X}$
 ** Checking hypothesis
 *** Linearity: Residuals vs. Explanatory Variable
    #+BEGIN_SRC R :session :exports none :results none graphics :file "./pdf_babel/linearity_check.pdf" :width 6 :height 3
@@ -572,7 +569,7 @@ df_lines=data.frame(
     *response variable* =~= *explanatory variable(s)*
     #+END_CENTER
     =~= reads "is modeled as a function of " and
-    =lm(y~x)= means $y = \alpha + \beta x + \epsilon$ \medskip
+    =lm(y~x)= means $\rv{y} = \alpha + \beta x + \rv{\epsilon}$ \medskip
 
     On the right-hand side, on should specify how the explanatory
     variables are combined. The symbols used here have a *different
@@ -583,26 +580,25 @@ df_lines=data.frame(
     - =:= means an interaction
     
     Therefore
-    - =z~x+y= means $z = \alpha + \beta_1 x + \beta_2 y + \epsilon$
-    - =z~x*y= means $z = \alpha + \beta_1 x + \beta_2 y + \beta_3 xy +
-      \epsilon$
+    - =z~x+y= means $\rv{z} = \alpha + \beta_1 x + \beta_2 y + \rv{\epsilon}$
+    - =z~x*y= means $\rv{z} = \alpha + \beta_1 x + \beta_2 y + \beta_3 xy +
+      \rv{\epsilon}$
     - =z~(x+y)^2= means the same
-    - =log(y)~I(1/x)+x+I(x^2)= means $z = \alpha + \beta_1
-      \times \frac{1}{x} + \beta_2 x + \beta_3 x^2 + \epsilon$
+    - =log(y)~I(1/x)+x+I(x^2)= means $\rv{z} = \alpha + \beta_1
+      \times \frac{1}{x} + \beta_2 x + \beta_3 x^2 + \rv{\epsilon}$
 *** Checking the model with R
-**** 
      \small
      #+BEGIN_SRC R :session :exports code :results none graphics :file "./pdf_babel/model_standardcheck.pdf" :width 5 :height 5
      reg <- lm(data=df[df$type=="heteroscedastic",],y~x)
      par(mfrow=c(2,2));   plot(reg);   par(mfrow=c(1,1))
      #+END_SRC
 **** 
-     #+LaTeX: \vspace{-2em}
+     #+LaTeX: %\vspace{-2em}
     #+BEGIN_CENTER
-      #+ATTR_LATEX: :width .65\linewidth
+      #+ATTR_LATEX: :height 6.5cm
       [[file:./pdf_babel/model_standardcheck.pdf]] 
     #+END_CENTER
-     #+LaTeX: \vspace{-2em}
+     #+LaTeX: %\vspace{-2em}
 ** Decomposing the Variance
 *** Decomposing the Variance
     #+BEGIN_CENTER
@@ -694,7 +690,7 @@ df_lines=data.frame(
     (Intercept)  4.56481    0.33165   13.76   <2e-16 ***
     x            0.50645    0.01154   43.89   <2e-16 ***
     ---
-    Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+    Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
     Residual standard error: 1.816 on 48 degrees of freedom
     Multiple R-squared:  0.9757,	Adjusted R-squared:  0.9752 
@@ -733,7 +729,7 @@ df_lines=data.frame(
     (Intercept)  4.98800    1.41061   3.536 0.000911 ***
     x            0.56002    0.04908  11.411 2.83e-15 ***
     ---
-    Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+    Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
     Residual standard error: 7.722 on 48 degrees of freedom
     Multiple R-squared:  0.7306,	Adjusted R-squared:  0.725 
@@ -773,7 +769,7 @@ df_lines=data.frame(
     (Intercept)  7.05330    1.41238   4.994 8.23e-06 ***
     x            0.65517    0.04914  13.333  < 2e-16 ***
     ---
-    Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+    Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
     Residual standard error: 7.732 on 48 degrees of freedom
     Multiple R-squared:  0.7874,	Adjusted R-squared:  0.783 
@@ -815,7 +811,7 @@ df_lines=data.frame(
     x           0.0036098  0.0252807   0.143    0.887    
     x2          0.0164635  0.0005694  28.913   <2e-16 ***
     ---
-    Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+    Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
     Residual standard error: 1.803 on 47 degrees of freedom
     Multiple R-squared:  0.9887,	Adjusted R-squared:  0.9882 
@@ -862,7 +858,7 @@ df_lines=data.frame(
     head(a,10)
     #+END_SRC
 
-#+LaTeX: \defverbatim{\foo}{%
+#+LaTeX:
     #+RESULTS:
     #+begin_example
        idx set  x    y
@@ -877,12 +873,12 @@ df_lines=data.frame(
     9    3   1 13 7.58
     10   3   2 13 8.74
 #+end_example
-#+LaTeX: }\only<+>{\foo}
+#+LaTeX:\pause\vspace{-5.7cm}
 **** Confidence intervals with ggplot
      :PROPERTIES:
      :BEAMER_act: <+>
      :END:
-    #+BEGIN_SRC R :session :exports both :results output graphics :file "./pdf_babel/anscombe.pdf" :width 8 :height 3
+    #+BEGIN_SRC R :session :exports code :results output graphics :file "./pdf_babel/anscombe.pdf" :width 8 :height 3
     ggplot(data=a,aes(x=x,y=y)) + theme_bw() + 
       facet_wrap(~set,nrow=1) + geom_point(color="blue") + 
       geom_smooth(method='lm',color="red")
