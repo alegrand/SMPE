@@ -13,13 +13,6 @@
 
 
 #+BEGIN_LaTeX
-\def\R{\ensuremath{\mathbb{R}}\xspace}
-\def\F{\ensuremath{\mathcal{F}}\xspace}
-\def\N{\ensuremath{\mathcal{N}}\xspace}
-\def\P{\ensuremath{\operatorname{P}}\xspace}
-\def\E{\ensuremath{\operatorname{E}}\xspace}
-\def\Var{\ensuremath{\operatorname{Var}}\xspace}
-\def\rv#1{\ensuremath{\textcolor{blue}{#1}}\xspace} % DarkBlue
 #+END_LaTeX
 * List                                                             :noexport:
 ** TODO Translate to org
