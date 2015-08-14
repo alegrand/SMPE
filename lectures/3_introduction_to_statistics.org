@@ -20,30 +20,27 @@
 \def\E{\ensuremath{\operatorname{E}}\xspace}
 \def\Var{\ensuremath{\operatorname{Var}}\xspace}
 \def\rv#1{\ensuremath{\textcolor{blue}{#1}}\xspace} % DarkBlue
-
-\newcommand\distrib[1]{%
-  \includegraphics[width=.142\linewidth,page=1]{#1.pdf}&%
-  \includegraphics[width=.142\linewidth,page=2]{#1.pdf}&%
-  \includegraphics[width=.142\linewidth,page=3]{#1.pdf}&%
-  \includegraphics[width=.142\linewidth,page=4]{#1.pdf}&%
-  \includegraphics[width=.142\linewidth,page=5]{#1.pdf}&%
-  \includegraphics[width=.142\linewidth,page=6]{#1.pdf}&%
-  \includegraphics[width=.142\linewidth,page=7]{#1.pdf}
-}
 #+END_LaTeX
 * List                                                             :noexport:
 ** TODO Translate to org
 ** TODO Redo all figures
 ** TODO Reorder (talk about median, min, etc earlier)
+** TODO Experimental Design (replication and randomization)
+- general recommendations (parsimony, true randomization)
+- replication vs. pseudo-replication
+- Strong inference vs. weak inference
+
 * A (mathematical) probabilistic model
 ** 
-*** Continuous random variable (1/2)
+*** Probabilities
 \vspace{-.3em}
-- A *random variable* (or stochastic variable) is, roughly speaking, a
-  variable whose value results from a measurement (or an observation)
+- Using probabilities enables to model *uncertainty* that may result of
+  *incomplete information* or *imprecise measurements* 
 
-  Such a variable enables to model *uncertainty* that may result of
-  *incomplete information* or *imprecise measurements* \pause
+  \pause
+
+  A *random variable* (or stochastic variable) is, roughly speaking, a
+  variable whose value results from a measurement (or an observation)
 
   You can think of it as a *small box*:
   - Every time you open the box, you get a _different_ value.
@@ -66,7 +63,7 @@
   - The *probability measure* $\P:\F \to [0,1]$ is a function returning an
     event's probability 
     #+LaTeX: ($\P$("having a brown-eyed baby girl") = 0.0005)
-*** Continuous random variable (1/2)
+*** Continuous random variable
 - A *random variable* associates a *numerical value* to *outcomes*
   \begin{equation*}
   \rv{X}: \Omega \to \R
@@ -121,22 +118,27 @@ p.d.f.) is used to describe the probabilities of different *values*
 occurring
 
 - A random variable \rv{X} has density $f_X$, where $f_X$ is a
-  non-negative and integrable function, if:
+  non-negative and integrable function, if: \qquad\quad
+  $\displaystyle \boxed{\P[a \leq \rv{X} \leq b] = \int_a^b f_X(w) \, \dif w}$
   #+BEGIN_LaTeX
-  \vspace{-.6em}
-  \begin{equation*}
-  \P[a \leq \rv{X} \leq b] = \int_a^b f_X(w) \, \dif w
-  \end{equation*}\vspace{-.8em}
+%\vspace{-.5em}
+\begin{columns}
+  \begin{column}{.7\linewidth}
+    \includegraphics[width=\linewidth]{pdf_babel/Gamma_distribution.pdf}
+  \end{column}
+  \begin{column}{.3\linewidth}
+    \begin{boxedminipage}{1.1\linewidth}
+      \scriptsize Note: \texttt{the} $\text{X}$ in
+      \hbox{$1\leq\text{X}\leq6$} \textit{should be in blue...}
+    \end{boxedminipage}
+  \end{column}
+\end{columns}
+
   #+END_LaTeX
-  #+BEGIN_CENTER
-  \includegraphics[width=.7\linewidth]{pdf_babel/Gamma_distribution.pdf}
-  #+END_CENTER
-  \vspace{-.7em}
+#  \vspace{-.5em}
 - \textbf{Note}: people often confuse the sample space with the random
   variable. Try to make the difference when modeling your system, it
   will help you
-- \small Note: /the/ $\boxed{\text{X}}$ /in/ $\boxed{1\leq\text{X}\leq6}$ /in
-  the above figure should be in blue.../
 *** Characterizing a random variable
 The probability density function *fully characterizes* the random
 variable but it is also complex object
@@ -191,14 +193,18 @@ p
 [[file:pdf_babel/distribution_characteristics.pdf]]
 
 #+BEGIN_CENTER
-\includegraphics[width=.8\linewidth]{pdf_babel/distribution_characteristics.pdf}
+\includegraphics[width=.7\linewidth]{pdf_babel/distribution_characteristics.pdf}
 #+END_CENTER
-*** Expected value
+\vspace{-1em}
+
+\bf These are interesting aspects of $\mathbf{f_X}$ but they barely
+summarize it
+*** Expected value and variance
 - When one speaks of the "expected price", "expected height", etc. one
   means the *expected value* of a random variable that is a price, a
   height, etc.
   \begin{align*}
-  \E[\rv{X}] & = x_1p_1 + x_2p_2 + \ldots + x_kp_k = \int_{-\infty}^\infty x f(x)\, \dif x
+  \E[\rv{X}] & = x_1p_1 + x_2p_2 + \ldots + x_kp_k = \int_{-\infty}^\infty x f_X(x)\, \dif x
   \end{align*}
   The expected value of \rv{X} is the ``average value'' of \rv{X}.\smallskip
 
@@ -213,14 +219,14 @@ p
   #+BEGIN_LaTeX
   \begin{align*} 
       \Var(\rv{X}) &= \E\left[(\rv{X} - \mu)^2
-      \right] = \int_{-\infty}^\infty  (x-\mu)^2 f(x)\, \dif x
+      \right] = \int_{-\infty}^\infty  (x-\mu)^2 f_X(x)\, \dif x
   \end{align*}
   #+END_LaTeX
 - The *standard deviation $\sigma$* is the square root of the variance. This
   normalization allows to compare it with the expected value
-* Using the model to make Estimations
-** Estimating the Expected value
-*** How to estimate the Expected value ?
+* Using the model to estimate the expected value
+** Estimation
+*** How to estimate the Expected value?
 To empirically *estimate* the expected value of a random variable
 \rv{X}, one repeatedly measures observations of the variable and
 computes the arithmetic mean of the results \bigskip 
@@ -247,7 +253,7 @@ value since \rv{X} is a random variable \dots
   \rv{S_n} \xrightarrow[n\to\infty]{} \N\left(\mu,\frac{\sigma^2}{n}\right)
   \end{equation*}
   #+END_LaTeX
-*** CLT Illustration
+*** CLT Illustration: the mean smooths distributions
 #+begin_src R :results output graphics :file "pdf_babel/CLT_illustration.pdf" :exports none :width 9 :height 6 :session
 library(ggplot2)
 library(ggthemes)
@@ -297,7 +303,7 @@ ggplot(data=d,aes(x=SN)) + geom_density(aes(y = ..density..)) +
 [[file:pdf_babel/CLT_illustration.pdf]]
 
   
-Start with an arbitrary distribution and compute the distribution of
+Start with an *arbitrary* distribution and compute the distribution of
 $S_n$ for increasing values of $n$.
 #+BEGIN_CENTER
 #+LaTeX: \includegraphics<1>[width=.8\linewidth]{pdf_babel/CLT_illustration.pdf}
@@ -438,7 +444,7 @@ When $n$ is large:
       \only<2>{The two 95\% confidence intervals do overlap\vspace{-.8em}
         \begin{flushright}
           $\leadsto$ Nothing can be concluded \frowny\\
-          Reduce C.I ?
+          Reduce C.I?
         \end{flushright}
       }%
       \only<3>{The two 70\% confidence intervals do not overlap\vspace{-.8em}
@@ -559,9 +565,8 @@ ggplot(dfgg,aes(x=Alternative,y=Time,color=Alternative)) +
      scale_color_brewer(palette="Set1") + theme_bw() +
      geom_jitter(alpha=.2,position = position_jitter(width = .1)) +
      geom_errorbar(data=dfsum,width=.2,
-                   aes(y=mean,ymin=mean-se,ymax=mean+se),
-                   position="dodge") +
-     geom_point(data=dfsum,shape=21, position="dodge", size=3,
+                   aes(y=mean,ymin=mean-se,ymax=mean+se)) +
+     geom_point(data=dfsum,shape=21, size=3,
                 aes(y=mean,color=Alternative))
 #+end_src
 
@@ -616,7 +621,8 @@ ggplot(df, aes(x = n, y = sample_var)) + theme_classic() +
 
   \uncover<3>{%
     So you should always try to either find an \alert{upper bound on the
-      true variance} or \alert{overestimate the sample variance}\bigskip
+      true variance} or \alert{overestimate the sample variance}
+      (\eg \fbox{\texttt{se=\alert{4}*sd/sqrt(num)}})\bigskip
   }
 
   \begin{overlayarea}{\linewidth}{4cm}
@@ -627,14 +633,14 @@ ggplot(df, aes(x = n, y = sample_var)) + theme_classic() +
   \end{overlayarea}
 #+END_LaTeX
 
-*** How many replicates ?
+*** How many replicates?
 
 #+BEGIN_LaTeX
 \small
 \begin{itemize}
 \item<+-> 
-  \uncover<.->{\textbf{Q:} How Many Replicates ?} \\
-  ~\hfill\uncover<+->{\textbf{A1:} How many can you afford ?}\\
+  \uncover<.->{\textbf{Q:} How Many Replicates?} \\
+  ~\hfill\uncover<+->{\textbf{A1:} How many can you afford?}\\
   ~\hfill\uncover<+->{\textbf{A2:} 30\dots\hspace{3.25cm}~\\
     \textbf{Rule of thumb:} a sample of 30 or more is big sample but a
     sample of 30 or less is a small one (\uline{doesn't always work})}
@@ -676,17 +682,25 @@ install_github('sinhrks/ggfortify')
 library(gridExtra)
 library(ggplot2)
 # library(ggfortify)
-
-four_plot = function (df) {
-    p1 = ggplot(df,aes(x=Start,y=Value)) + geom_line() + 
+sequence_plot = function (df) {
+   df$Start=1:nrow(df);
+   ggplot(df,aes(x=Start,y=Value)) + geom_line() + 
          theme_bw() + ggtitle("Sequence Plot");
-    X = df$Value
+}
+
+lag_plot = function (df) {
+     X = df$Value
     df_lag = data.frame(x1=X[1:length(X)-1],x2=X[2:length(X)])
-    p2 = ggplot(df_lag,aes(x=x1,y=x2)) + geom_point(alpha=.4) + 
+    ggplot(df_lag,aes(x=x1,y=x2)) + geom_point(alpha=.4) + 
          theme_bw() + ggtitle("Lag Plot") + xlab("Value[i]") + 
          ylab("Value[i+1]");;
     # Or alternatively, if ggfortify is installed, give a try 
     # to gglagplot...
+}
+
+four_plot = function (df) {
+    p1 = sequence_plot(df);
+    p2 = lag_plot(df);
     p3 = ggplot(df,aes(x=Value)) + geom_histogram() +
          theme_bw() + ggtitle("Histogram");
     p4 = ggplot(df,aes(sample=Value)) + stat_qq() + 
@@ -797,21 +811,23 @@ Start=1:n
 df1 = data.frame(Start=Start, Value=.5*sin(.1*Start)+.5*rnorm(n))
 #df1 = data.frame(Start=Start, Value=20+4*sin(.01*Start)+1*rnorm(n)*4*sin(.01*Start))
 
-p1 = ggplot(df1,aes(x=Start,y=Value)) + geom_line() + ggtitle("Sequence Plot")
-p2 = ggplot(head(df1,n=100),aes(x=Start,y=Value)) + geom_line() + ggtitle("Sequence Plot (zoom)")
+p1 = ggplot(df1,aes(x=Start,y=Value)) + geom_line() + 
+       theme_bw() + ggtitle("Sequence Plot")
+p2 = ggplot(head(df1,n=100),aes(x=Start,y=Value)) + geom_line() +
+       theme_bw() +  ggtitle("Sequence Plot (zoom)")
 grid.arrange(p1,p2,nrow=1)
 #+end_src
 
-#+ATTR_LATEX: :height 5cm :center
+#+ATTR_LATEX: :height 5cm
 #+RESULTS:
 [[file:pdf_babel/deptempo.pdf]]
 #+END_CENTER
 
 
-- Looks independant and statistically identical
-- *Danger*: temporal correlation $\leadsto$ study *stationnarity*
-- *Periodicity* : May depend on sampling frequency or on horloge
-  resolution.
+- Looks independent and statistically identical
+- *Danger*: temporal correlation $\leadsto$ study *stationarity*
+- *Periodicity* : May depend on sampling frequency or on clock
+  resolution
   - Study the period (Fourier), use time series
 *** Detect Trends
 #+BEGIN_CENTER
@@ -821,10 +837,11 @@ n = 500
 Start=1:n
 df1 = data.frame(Start=Start, Value=1+atan(Start/70)*(runif(n,min=.3,max=1)))
 
-ggplot(df1,aes(x=Start,y=Value)) + geom_line() + ggtitle("Sequence Plot")
+ggplot(df1,aes(x=Start,y=Value)) + geom_line() + 
+        theme_bw() + ggtitle("Sequence Plot")
 #+end_src
 
-#+ATTR_LATEX: :height 5cm :center
+#+ATTR_LATEX: :height 5cm
 #+RESULTS:
 [[file:pdf_babel/unifderiv.pdf]]
 
@@ -834,7 +851,7 @@ ggplot(df1,aes(x=Start,y=Value)) + geom_line() + ggtitle("Sequence Plot")
 - Model the trend: here increases then saturates
 - Possibly remove the trend by compensating it (multiplicative factor
   here) or removing what can be identified as a _warm-up_
-*** Confidence...
+*** Confidence\dots
 #+BEGIN_LaTeX
 \begin{center}
   \begin{tabular}{c|c}
@@ -843,27 +860,27 @@ ggplot(df1,aes(x=Start,y=Value)) + geom_line() + ggtitle("Sequence Plot")
   \end{tabular}
 \end{center}
 #+END_LaTeX
-* Design of Experiments: Early Intuition                           :noexport:
-** 
+* Design of Experiments
+** Early Intuition and Key Concepts
 *** Comparing Two Alternatives (Blocking + Randomization)
   \begin{itemize}[<+->]
   \item When comparing A and B for different settings, doing $A, A, A,
-    A, A, A$ and then $B, B, B, B, B, B$ is a bad idea.
+    A, A, A$ and then $B, B, B, B, B, B$ is a bad idea
   \item You should better do $A, B, \quad A, B,\quad A, B,\quad A, B,
     \dots $.
   \item Even better, randomize your run order. You should flip a coin
     for each configuration and start with A on head and with B on
-    tail...
+    tail\dots
     \begin{center}
       $A, B,\quad B, A,\quad  B, A,\quad A, B, \dots $.
     \end{center}
     With such design, you will even be able to check whether being the
-    first alternative to run changes something or not.
+    first alternative to run changes something or not
   \item Each configuration you test should be run on different
-    machines.
+    machines
     
     You should record as much information as you can on how the
-    experiments was performed (\url{http://expo.gforge.inria.fr/}).
+    experiments was performed
   \end{itemize}
 
 *** Experimental Design
@@ -873,11 +890,11 @@ There are two key concepts:
 #+END_CENTER
 You replicate to *increase reliability*. You randomize to *reduce bias*.
 #+BEGIN_CENTER
-    \textbf{If you replicate thoroughly and randomize properly, \\ you will not go far wrong.}  
+  \textbf{If you replicate thoroughly and randomize properly, \\ you will not go far wrong.}
 #+END_CENTER
 \pause
 #+BEGIN_QUOTE
-  \sf
+  \it\small
   It doesn't matter if you cannot do your own advanced statistical
   analysis. If you designed your experiments properly, you may be able
   to find somebody to help you with the statistics.\smallskip
@@ -891,233 +908,315 @@ You replicate to *increase reliability*. You randomize to *reduce bias*.
   \textbf{No amount of high-powered statistical analysis can turn a bad experiment into a good one.}
 #+END_CENTER
 
-*** TO DO
-Experimental Design (replication and randomization)
-- general recommendations (parsimony, true randomization)
-- replication vs. pseudo-replication
-- Strong inference vs. weak inference
+Other important concepts:
+#+LaTeX: \vspace{-.5em}\begin{columns}\begin{column}{.35\linewidth}
+# - *Parsimony*
+- *Pseudo-replication*
+#+LaTeX: \end{column}\begin{column}{.62\linewidth}
+- *Experimental* vs. *observational* data
+#+LaTeX: \end{column}\end{columns}
+*** Parsimony                                                    :noexport:
+The principle of *parsimony* is attributed to the 14th century English
+philosopher *William of Occam*:
 
-* Getting rid of Outliers                                          :noexport:
-** Abnormal measurements
-  \begin{center}
-    \includegraphics<1>[width=\linewidth,height=3cm]{simul/cauchy1.pdf}%
-  \end{center}
-  \begin{itemize}
-  \item Rare events: interpretation
-  \item Get rid of it using:
-    \begin{itemize}
-    \item a threshold value: what is the right threshold ?
-    \item quantiles: what is the good rejection rate ?
-    \end{itemize}
-  \end{itemize}
+  #+BEGIN_QUOTE
+    ``Given a set of equally good explanations for a given phenomenon,
+    the correct explanation is the simplest explanation''  
+  #+END_QUOTE
+  \vspace{-.5em}
 
-** Thresholds
-  \begin{center}
-    Reject values larger than 10 $\leadsto$ 5\% of rejection\\
-    \includegraphics<1>[width=\linewidth,height=3cm]{simul/cauchy-seuil10.pdf}%
-  \end{center}
+  \pause
+  - Models should have as few parameters as possible
+  - Linear models should be preferred to non-linear models
+  - Models should be pared down until they are /minimal adequate/
+
+  \pause
+  This means, a variable should be retained in the model only if it
+  causes a significant increase in deviance when removed from the
+  current model
+  #+BEGIN_QUOTE
+    A model should be as simple as possible. But no simpler.\\[-1.2em]
+    \begin{flushright}
+      -- A. Einstein
+    \end{flushright}
+  #+END_QUOTE
+*** Replication vs. Pseudo-replication
+Measuring the same configuration several times is not
+replication. It's *pseudo-replication* and is generally biased\smallskip
+
+Instead, test *other* configurations (with a good
+randomization)\medskip
+
+In case of pseudo-replication, here is what you can do:
+- average away the pseudo-replication and carry out your
+  statistical analysis on the means
+- carry out separate analysis for each time period
+- use proper time series analysis
+*** Experimental data vs. Observational data
+You need a good blend of *observation*, *theory* and
+*experiments*\medskip
+
+- Many scientific experiments appear to be carried out with no
+  hypothesis in mind at all, but simply to see what happens.
+
+- This may be OK in the early stages but drawing conclusions on such
+  observations is difficult (large number of equally plausible
+  explanations; without testable prediction no experimental ingenuity;
+  \dots).\pause
 
 
-  \begin{center}
-    Reject values larger than 50 $\leadsto$ 1\% of rejection\\
-    \includegraphics<1>[width=\linewidth,height=3cm]{simul/cauchy-seuil1pc.pdf}%
-  \end{center}
 
-  Actually, here, the samples are generated using the Cauchy
-  distribution, which is pathological for most ideas you may come up
-  with. :)
+- Strong inference :: Essential steps:
+  1. Formulate a clear hypothesis
+  2. Devise an acceptable test\medskip
+- Weak inference :: It would be silly to disregard all observational
+                    data that do not come from designed
+                    experiments. Often, they are the only we have
+                    (e.g. the trace of a system).
 
-* Issues when studying something else than the mean                :noexport:
+                    But we need to keep the limitations of such data
+                    in mind. It is possible to use it to *derive
+                    hypothesis* but not to *test hypothesis* (\ie *claim
+                    facts*).
+*** Correlation and Causation
+Let me illustrate this inference story with a few examples.
+
+It may be the case that two random variables \rv{X} and \rv{Y} are
+*dependent*
+
+- \Eg Let's pick a student at random and measure its
+  \rv{TimeSpentStudying} and its \rv{TestScore}
+  - In most cases, studying more should improve your test score \smiley
+The *correlation* of two variables \rv{X} and \rv{Y} is defined as:
+  #+BEGIN_LaTeX
+  \begin{equation*}
+    \text{corr}(\rv{X},\rv{Y}) =
+    \frac{\text{cov}(\rv{X},\rv{Y})}{\sigma_X \sigma_Y} = 
+  \frac{\E[(\rv{X}-\mu_X)(\rv{Y}-\mu_Y)]}{\sigma_X\sigma_Y} 
+  \end{equation*}\vspace{-1em}
+  #+END_LaTeX
+  - The correlation is symmetrical 
+    ($\text{corr}(\rv{X},\rv{Y})=\text{corr}(\rv{Y},\rv{X})$)
+  - The correlation is in $[-1,1]$
+  - $\text{corr}(\rv{Y},\rv{X})=1$ or $-1$ $\Rightarrow$ perfectly linear
+    relationship
+  - \rv{X} independent of \rv{Y} $\Rightarrow \text{corr}(\rv{X},\rv{Y})=0$
+  - \rv{Y} grows when \rv{X} grows $\Rightarrow \text{corr}(\rv{X},\rv{Y})>0$
+
+It is thus very tempting to use *sample correlation* as a way of knowing
+whether some variables are *dependant*
+*** Correlation does not imply Causation
+#+BEGIN_CENTER
+#+ATTR_LATEX: :height 5cm
+file:images/PiratesVsTemp.pdf
+
+\scriptsize
+Mikhail Ryazanov (talk) - PiratesVsTemp.svg. \\
+Licensed under CC BY-SA 3.0 via Wikimedia Commons
+#+END_CENTER
+- 2 variables peuvent être fortement correlées à une troisième
+  (\eg year)
+- Btw, what is wrong with this figure? \winkey
+*** Spurious Suicide                                             :noexport:
+#+tblname: spurious_suicide
+| Year     | 1999 | 2000 | 2001 | 2002 | 2003 | 2004 | 2005 | 2006 | 2007 | 2008 | 2009 |
+| Colonies | 2652 | 2622 | 2550 | 2574 | 2599 | 2554 | 2409 | 2394 | 2443 | 2342 | 2498 |
+| Divorces |  3.8 |  3.8 |  3.6 |  3.4 |  3.3 |  3.2 |  2.9 |  2.9 |    3 |  2.8 |    3 |
+
+#+begin_src R :results output graphics :file pdf_babel/spurious_divorce.pdf :exports both :width 7 :height 4 :session :var df=spurious_suicide
+df = df %>% gather(key,val,-V1) %>% spread(V1,val) %>% select(-key)
+cor_label = paste("Correlation: ", round(cor(df$Colonies,df$Divorces), digits=3))
+p1 = ggplot(df,aes(y=Divorces,x=Colonies)) + geom_point() + theme_classic() +
+     geom_smooth(method="lm") + 
+     annotate("text",x=2440,y=3.5,label=cor_label,size=4) +
+     ylab("Divorce rate in South Carolina\nDivorces per 1000 people\n(US Census)") +
+     xlab("Honey producing bee colonies (US)\n Thousands of colonies (USDA)")
+
+df = df %>% gather(Event,Value,-Year)
+p2 = ggplot(df,aes(x=Year,y=Value,color=Event)) + geom_point() + 
+     scale_color_brewer(palette="Set1") +
+     theme_classic() + facet_wrap(~Event,scale="free_y",nrow=2) +
+     geom_line() +  theme(legend.position = "none") + ylab("")
+grid.arrange(p1,p2,nrow=1)
+#+end_src
+
+#+RESULTS:
+[[file:pdf_babel/spurious_divorce.pdf]]
+
+*** Observational vs. Experimental Data Illustration
+
+#+BEGIN_CENTER
+#+ATTR_LATEX: :width .9\linewidth
+file:pdf_babel/spurious_divorce.pdf
+
+#+END_CENTER
+Source: [[http://tylervigen.com/][/Spurious correlations/]]. For the good of the US society, we
+should try to get rid of honey bees \winkey
+*** Correlation does not imply Causation
+
+For any two correlated events, A and B, the following relationships
+are possible:
+- A causes B (direct causation)\hfill\smiley
+- A causes B and B causes A (bidirectional or cyclic causation)\hfill\smiley
+- A causes C which causes B (indirect causation)\hfill\smiley
+- B causes A; (reverse causation)\hfill\frowny
+- A and B are consequences of a common cause, but do not cause each
+  other\hfill\frowny
+- There is no connection between A and B; it is a coincidence\hfill\frowny\\[-.8\baselineskip]
+  - But *designed experiments* can help you ruling this option out
+
+#+BEGIN_CENTER
+#+ATTR_LATEX: :height 3cm
+file:images/xkcd_correlation.png
+\qquad\winkey
+#+END_CENTER
+* Other random topics
+** Getting rid of Outliers
+*** Abnormal measurements
+#+begin_src R :results output graphics :file pdf_babel/cauchy_4plot1.pdf :exports none :width 6 :height 4 :session
+n = 1000
+df1 = data.frame(Start=1:n, Value=abs(rcauchy(n)))
+sequence_plot(df1)
+#+end_src
+
+#+RESULTS:
+[[file:pdf_babel/cauchy_4plot1.pdf]]
+
+#+begin_src R :results output graphics :file pdf_babel/cauchy_4plot2.pdf :exports none :width 6 :height 4 :session
+sequence_plot(df1[df1$Value<100,])
+#+end_src
+
+#+RESULTS:
+[[file:pdf_babel/cauchy_4plot2.pdf]]
+
+#+begin_src R :results output graphics :file pdf_babel/cauchy_4plot3.pdf :exports none :width 6 :height 4 :session
+sequence_plot(df1[df1$Value<10,])
+#+end_src
+
+#+RESULTS:
+[[file:pdf_babel/cauchy_4plot3.pdf]]
+
+#+BEGIN_LaTeX
+\begin{columns}
+  \begin{column}{.5\linewidth}
+#+END_LaTeX
+- *Rare events:* interpretation
+- Get rid of it using \eg *quantiles*:\\[-\baselineskip]
+  - What is the good *rejection rate*? \Eg "above Q3 + 1.5 x (IQR)"
+    (boxplot, Tukey, 1977), \ie above $\mu+2\sigma$ for a normal
+    distribution?
+#+BEGIN_LaTeX
+  \end{column}
+  \begin{column}{.5\linewidth}
+    \includegraphics<+>[height=4cm]{pdf_babel/cauchy_4plot1.pdf}
+    \includegraphics<+>[height=4cm]{pdf_babel/cauchy_4plot2.pdf}
+    \includegraphics<+>[height=4cm]{pdf_babel/cauchy_4plot3.pdf}
+  \end{column}
+\end{columns}
+#+END_LaTeX
+  - A threshold value: what is the right threshold?
+    - Reject values larger than 100 $\leadsto$ .6\% of rejection
+    - Reject values larger than  50 $\leadsto$ 1\% of rejection
+    - Reject values larger than  10 $\leadsto$ 6\% of rejection
+
+#+LaTeX: \uncover<3>{%
+Actually, I generated these samples using the Cauchy distribution,
+which is pathological for most idea you'll come up with \winkey
+
+There is *no mathematical definition of what constitutes an
+outlier*. It's related to the experimenter's interpretation and is
+subjective\dots
+#+LaTeX: }
+
 ** Summarizing the distribution
-  \begin{center}
-    \includegraphics[width=\linewidth,height=3cm]{simul/histogramme2.pdf}%
-  \end{center}
-  What is the shape of the histogram:
-  \begin{itemize}
-  \item uni/multi-modal
-  \item symmetrical or not ($\leadsto$ skewness)
-  \item Flat of not ($\leadsto$ kurtosis)
-  \end{itemize}
-  Summarize with \alert{central tendancy}
+*** Summarizing the distribution
+#+begin_src R :results output graphics :file pdf_babel/dist_summary1.pdf :exports none :width 6 :height 3 :session
+library(gridExtra)
+dist_summary = function (df,binwidth=.5,trim=FALSE) {
+  p1 = ggplot(data=df,aes(x=Time,fill=Alternative)) + 
+       geom_histogram(binwidth=binwidth,color="black") + 
+       theme_bw() + guides(fill = "none")
+  p2 = ggplot(data=df,aes(x=Alternative,y=Time,fill=Alternative)) + 
+       geom_jitter(alpha=.4,position = position_jitter(width = .2)) + 
+       geom_boxplot(width=.4) + theme_bw() + guides(fill = "none")
+  p3 = ggplot(data=df,aes(x=Alternative,y=Time,fill=Alternative)) + 
+       geom_jitter(alpha=.4,position = position_jitter(width = .2)) + 
+       geom_dotplot(binaxis = "y", stackdir = "center") + 
+       geom_violin(scale="area",alpha=.4,trim=trim) + # 
+       theme_bw() + guides(fill = "none")  + ggtitle("Please avoid\n this...")
+  grid.arrange(p1,p2,p3,nrow=1,widths=c(2,1,1))
+}
+dist_summary(dfgg[dfgg$Alternative=="A",])
+#+end_src
 
-** Summarizing the distribution
-  \begin{center}
-    \includegraphics[width=\linewidth,height=3cm]{simul/histogramme2.pdf}%
-  \end{center}
-  \begin{itemize}
-  \item Mode: the most probable value (higly depends on the
-    bin size)
-  \item Median: splits the samples in half (rather unstable)
-  \item Mean: average ``cost'' (can simply estimate confidence intervals)
-  \end{itemize}
+#+RESULTS:
+[[file:pdf_babel/dist_summary1.pdf]]
 
-** Mode value
-{\bf histogram}
+#+begin_src R :results output graphics :file pdf_babel/dist_summary2.pdf :exports none :width 6 :height 3 :session
+n = 100
+df = data.frame(Alternative = "A", Time = floor(2*runif(n)) + .05*rnorm(n))
+dist_summary(df,binwidth=.1,trim=T)
+#+end_src
+
+#+RESULTS:
+[[file:pdf_babel/dist_summary2.pdf]]
+
+
+#+BEGIN_LaTeX
 \begin{center}
-\includegraphics[width=4.6cm]{simul/histogramme.pdf}
+  \includegraphics<+>[height=4cm]{pdf_babel/dist_summary1.pdf}
+  \includegraphics<+>[height=4cm]{pdf_babel/dist_summary2.pdf}
 \end{center}
-\begin{block}{Mode}
-\begin{itemize}
-\item  {\green{\bf Categorical data}}
-\item Most frequent value
-\item highly unstable value
-\item for continuous value distribution depends on the histogram step
-\item interpretation depends on the flatness of the histogram
-\end{itemize}
-\alert{\bf $\Longrightarrow$ Use it carefully} 
+#+END_LaTeX
 
-\alert{\bf $\Longrightarrow$ Predictor function} 
+What is the shape of the histogram:
+- Uni/multi-modal:
+  - If uni-modal, summarize with \alert{central tendancy} (mean, mode,
+    median)
+  - Symmetrical or not ($\leadsto$ skewness)
+  - Flat of not ($\leadsto$ kurtosis)
 
-\end{block}
-
-** Median value
-{\bf histogram}
-\begin{center}
-%\includegraphics[width=4.6cm]{histogramme.pdf}
-\end{center}
-\begin{block}{Median}
-\begin{itemize}
-\item {\green{\bf Ordered data}}
-\item Split the sample in two equal parts 
-\[
-\sum_{i\leq Median}f_i \leq \frac 1 2 \leq \sum_{i\leq Median+1}f_i .\]
-\item more stable value
-\item does not depends on the histogram step 
-\item difficult to combine (two samples)
-\end{itemize}
-
-
-\alert{\bf $\Longrightarrow$ Randomized algorithms} 
-
-\end{block}
-
-** Mean value
-{\bf histogram}
-\begin{center}
-%\includegraphics[width=4.6cm]{histogramme.pdf}
-\end{center}
-\begin{block}{Mean}
-\begin{itemize}
-\item {\green{\bf Vector space}}
-\item Average of values 
-\[
-Mean = \frac 1 {Sample\_Size}\sum x_i = \sum_{x}x.f_x .\]
-\item stable value 
-\item does not depends on the histogram step 
-\item easy to combine (two samples $\Rightarrow$ weighted mean)
-\end{itemize}
-
-
-\alert{\bf $\Longrightarrow$ Additive problems (cost, durations, length,...)} 
-
-\end{block}
-
-** Central tendency
-{\bf histogram}
-\begin{center}
-\includegraphics[width=4.6cm]{simul/histogramme2.pdf}
-\end{center}
-\begin{block}{Complementarity}
-\begin{itemize}
-\item Valid if the sample is "Well-formed"
-\item {\green{\bf Semantic of the observation}}
-\item Goal of analysis 
-\end{itemize}
-
-\alert{\bf $\Longrightarrow$ Additive problems (cost, durations, length,...)} 
-
-\end{block}
-
-** Central tendency (2)
-\begin{block}{Summary of Means}
-\begin{itemize}
-\item Avoid means if possible\\
-Loses information
-\item  {\blue Arithmetic mean}\\
- When sum of raw values has physical meaning\\
-Use for summarizing times (not rates)
-\item {\blue Harmonic mean}\\
-Use for summarizing rates (not times)
-\item {\blue Geometric mean}\\
- Not useful when time is best measure of perf\\
- Useful when multiplicative effects are in play
-\end{itemize}
-\end{block}
-
-** Computational aspects
-\begin{itemize}
-\item Mode : computation of the histogram steps, then computation of max  $O(n)$  ``off-line''
-\item Median : sort the sample $O(nlog(n))$ or $O(n)$ (subtile algorithm) ``off-line''
-\item Mean : sum values $O(n)$ ``on-line'' computation
-\end{itemize}
-\pause
-\begin{center}
-\alert{\large \bf Is the central tendency significant ? \\
-$\Rightarrow$ Explain variability.}
-\end{center}
-
-** Variability
-\begin{block}{Categorical data (finite set)}
-$f_i$ : empirical frequency of element $i$
-
-Empirical entropy
-\[
-H(f)=\sum_i f_i \log f_i.\]
-Measure the empirical distance with the uniform distribution
-\begin{itemize}
-\item $H(f)\geq 0$
-\item $H(f)=0$ iff the observations are reduced to a unique value
-\item $H(f)$ is maximal for the uniform distribution
-\end{itemize} 
-\end{block}
-\begin{frame}{Variability (2)}
-\begin{block}{Ordered data }
-
-Quantiles : quartiles, deciles, etc
-
-Sort the sample : 
-\[
-(x_1,x_2,\cdots ,x_n)\longrightarrow  (x_{(1)},x_{(2)},\cdots ,x_{(n)});\]
-\[
-Q_1=x_{(n/4)};\; Q_2=x_{(n/2)}=Median;\; Q_3=x_{(3n/4)}.\]
-
-For deciles
-\[
-d_i = argmax_i \{\sum_{j\leq i}f_j \leq \frac i {10}\}.\]
-Utilization as quantile/quantile plots to compare distributions
-\end{block}
-\begin{frame}{Variability (3)}
-\begin{block}{ Vectorial data }
-
-Quadratic error for the mean 
-\[
-Var(X)=\frac 1 n \sum_1^n (x_i-\bar{x}_n)^2.\]
-{\bf Properties:}
-\begin{eqnarray*}
-Var(X) & \geq & 0;\\
-Var(X)&=&\overline{x^2}-(\bar{x})^2, \;\;\mbox{o\`u} \;\;\overline{x^2}=\frac 1 n \sum_{i=1}^n x_i^2.\;\\
-Var(X+cste)&=&Var(X);\\
-Var(\lambda X)&=&\lambda^2 Var(X).
-\end{eqnarray*}
-
-\end{block}
-
-** Roadmap for a good data analysis
-\begin{enumerate}
-\item Plot the sample (various representations)
-\item Describe the results (data analysis)
-\item Preliminary processing : remove or flag outliers, estimate or flag  missing values
-\item Propose a stochastic model : establish the hypothesis : independence (time correlation, auto-correlation), stationarity, same probability law
-\item Summarize data by a  histogram
-\item Comment the shape (modal/skewness/flatness/...)
-\item Estimate the central tendency of the sample : choose the central index
-\item Estimate the accuracy of the result (confidence intervals)
-\item Propose a visualization
-\end{enumerate}
-
+If uni-modal you can go for a boxplot but avoid other fancy plots
+unless you know what you do...
+** Estimating something else than the mean
+*** Biased and unbiased estimators...
+- Expected value :: the /sample mean/ is unbiased but is "sensitive" to
+                    outliers. This is not an excuse for estimating
+                    something else!  Furthermore, there is an easy way
+                    to compute confidence intervals.
+- Mode :: the /naive estimate/ is unstable and depends on the
+          histogram's bin width. Still ongoing research on this:\\
+  #+BEGIN_LaTeX
+  \scalebox{.95}{\bottomcite{\Eg Bickela and Frühwirthb, \textit{On a fast, robust
+      estimator of the mode: Comparisons to other robust estimators with
+      applications}, Computational Statistics \& Data Analysis 2006}}
+  #+END_LaTeX
+- Median :: the /sample median/ is robust to outliers but it is quite
+            sensitive to discrete distributions\dots There exists other
+            more involved estimators but is median really what you
+            want to estimate?
+- Minimum and Maximum :: the /sample minimum/ is always too large, hence
+     it is biased...
+- Variance :: =var= is a unbiased estimator or variance but =sd= is a
+              biased estimator of standard deviation. Unbiasing
+              depends on the distribution so just overestimate...
+** Statistical Tests
+*** Tests
+Not today\dots We have already seen way enough concepts.
 ** References
-   \nocite{Jain1991,Lilja200912,Ross201002,Montgomery200901}
-   \bibliographystyle{plain}
-   \bibliography{biblio}
+*** Roadmap for a good data analysis (Jain)
+1. Plot the sample (various representations)
+2. Describe the results (data analysis)
+3. Preliminary processing : remove or flag outliers, estimate or flag
+   missing values
+4. Propose a stochastic model. Establish the hypothesis: independence
+   (time correlation, auto-correlation), stationarity, same
+   probability law
+5. Summarize data by a histogram
+6. Comment the shape (modal/skewness/flatness/...)
+7. Estimate the central tendency of the sample : choose the central
+   index
+8. Estimate the accuracy of the result (confidence intervals)
+9. Propose a visualization
 
 
