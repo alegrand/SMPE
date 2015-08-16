@@ -16,7 +16,15 @@ years (roughly from 2011 to 2015) in the second year of the [[http://mosig.imag.
 Science in Informatics at Grenoble]] and more recently at [[http://www.ufrgs.br/][Federal
 University of Rio Grande do Sul]].
 
-* Content
+* Table of Contents                                                     :TOC:
+ - [[#course-objective-and-organization][Course Objective and Organization]]
+ - [[#using-r][Using R]]
+     - [[#installing-r-and-rstudio][Installing R and Rstudio]]
+     - [[#producing-documents][Producing documents]]
+     - [[#learning-r][Learning R]]
+ - [[#references][References]]
+
+* Course Objective and Organization
 The aim of this course is to provide the fundamental basis for sound
 scientific methodology of performance evaluation of computer
 systems. This lecture emphasize on methodological aspects of
