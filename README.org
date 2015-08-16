@@ -41,7 +41,7 @@ tools so that they can then dig deeper later on.
 
 The course is organized in 5 very dense lectures of 3 hours
   1. [[file:lectures/1_reproducible_research.pdf][Reproducible research]]. A video of a similar presentation (a
-     mixture of lecture 1 and 2 actually) is availableon [[https://www.canal-u.tv/][canal-u]] ([[https://www.canal-u.tv/video/inria/best_practices_for_reproducible_research_part_1.16684][Part
+     mixture of lecture 1 and 2 actually) is available on [[https://www.canal-u.tv/][canal-u]] ([[https://www.canal-u.tv/video/inria/best_practices_for_reproducible_research_part_1.16684][Part
      1]] and [[https://www.canal-u.tv/video/inria/best_practices_for_reproducible_research_part_2.16685][Part 2]]) and graal ([[http://graal.ens-lyon.fr/~alegrand/PUF_JLPC_Summer_School/1st%20PUF:JLPC%20Summer%20School%20-%20Best%20Practices%20for%20Reproducible%20Research%20-%20Arnaud%20Legrand.mp4][Part 1]] and [[http://graal.ens-lyon.fr/~alegrand/PUF_JLPC_Summer_School/1st%20PUF:JLPC%20Summer%20School%20-%20Best%20Practices%20for%20Reproducible%20Research%20-%20Arnaud%20Legrand%20-%20partie%202%20-%20demo.mp4][Part 2]]).
   2. [[file:lectures/2_data_presentation.pdf][Data visualization/presentation]].
   3. [[file:lectures/3_introduction_to_statistics.pdf][Introduction to probabilities/statistics]].
@@ -56,8 +56,8 @@ More precisely, I introduce the audience to the following tools:
 - [[http://www.r-project.org/][R]] and [[http://ggplot2.org/][ggplot2]] that provide a standard, efficient and flexible data
   management and graph generation mechanism. Although R is quite
   cumbersome at first for computer scientists, it quickly reveals an
-  incredible asset compared to spreadsheets, gnuplot or graphical
-  libraries like matplotlib or tikz.
+  incredible asset compared to spreadsheets, =gnuplot= or graphical
+  libraries like =matplotlib= or =tikz=.
 - [[http://yihui.name/knitr/][knitR]] is a tool that enables to integrate R commands within a LaTeX
   or a Markdown document. It allows to fully automatize data
   post-processing/analysis and figure generation down to their
@@ -141,8 +141,9 @@ swirl()
 + David J. Lilja, Measuring Computer Performance: A Practitioner’s
   Guide, Cambridge University Press 2005
   #+BEGIN_QUOTE
-  I like the organization although I really don't like the content
-  that provides very little insight on why the theory applies or
+  A short book suited for brief presentations. I follow a similar
+  organization but I really don't like the content of this book. I
+  feel it provides very little insight on why the theory applies or
   not. I also think it is too general and lacks practical examples. It
   may be interesting for those willing a quick and broad presentation
   of the main concepts and "recipes" to apply.
@@ -162,7 +163,7 @@ swirl()
   so unfortunate it relies on "exotic" softwares like JMP and minitab
   instead of R...
   #+END_QUOTE
-+ [[https://cran.r-project.org/doc/contrib/Faraway-PRA.pdf][Practical Regression and Anova using R]] by Julian J. Faraway,
++ Julian J. Faraway, [[https://cran.r-project.org/doc/contrib/Faraway-PRA.pdf][Practical Regression and Anova using R]],
   University of Bath, 2002.
   #+BEGIN_QUOTE
   This book is derived from material that Pr. Faraway used in a Master
@@ -172,7 +173,7 @@ swirl()
   examples in details and is very pleasant to read. A must-read if you
   want to understand this topic more thoroughly.
   #+END_QUOTE
-+ [[http://www.amazon.fr/Summary-Scientific-Method-Peter-Kosso-ebook/dp/B008D5IYU2][A Summary of Scientific Method]], Peter Kosso, Springer, 2011. [[[http://hemija.pmf.ukim.edu.mk/materials/download/6d31fd3f53a82da9de163833806722ae][hidden
++ Peter Kosso, [[http://www.amazon.fr/Summary-Scientific-Method-Peter-Kosso-ebook/dp/B008D5IYU2][A Summary of Scientific Method]], Springer, 2011. [[[http://hemija.pmf.ukim.edu.mk/materials/download/6d31fd3f53a82da9de163833806722ae][hidden
   PDF that google found on the webpage of a university in Macedonia]]
   #+BEGIN_QUOTE
   A short nice book summarizing the main steps of the scientific
