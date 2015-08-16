@@ -131,8 +131,8 @@ swirl()
 * References
 + R. Jain, [[http://www.cs.wustl.edu/~jain/books/perfbook.htm][The Art of Computer Systems Performance Analysis:
   Techniques for Experimental Design, Measurement, Simulation, and
-  Modeling]], Wiley- Interscience, New York, NY, April 1991. [[%0Ahttp://www.amazon.com/Art-Computer-Systems-Performance-Analysis/dp/1118858425/ref%3Dsr_1_2?s%3Dbooks&ie%3DUTF8&qid%3D1435137636&sr%3D1-2&keywords%3Dperformance%2Bmeasurement%2Bcomputer%20][A new
-  edition will be available in September 2015]].
+  Modeling]], Wiley-Interscience, New York, NY, April 1991.
+  [[%0Ahttp://www.amazon.com/Art-Computer-Systems-Performance-Analysis/dp/1118858425/ref%3Dsr_1_2?s%3Dbooks&ie%3DUTF8&qid%3D1435137636&sr%3D1-2&keywords%3Dperformance%2Bmeasurement%2Bcomputer%20][A new edition will be available in September 2015]].
   #+BEGIN_QUOTE
   This is an easy-to-read self-content book for practical performance
   evaluation. The numerous checklists make it a great book for
