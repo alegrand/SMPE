@@ -52,7 +52,7 @@ All the examples given in this series of lecture use the [[http://www.r-project.
 and the source is provided so that people can reuse them. The slides
 are composed with org-mode/beamer.
 
-More precisely, I introduce the audience to the following tools:
+In practice, I introduce the audience to the following tools:
 - [[http://www.r-project.org/][R]] and [[http://ggplot2.org/][ggplot2]] that provide a standard, efficient and flexible data
   management and graph generation mechanism. Although R is quite
   cumbersome at first for computer scientists, it quickly reveals an
@@ -74,6 +74,12 @@ More precisely, I introduce the audience to the following tools:
   [[http://ipython.org/notebook.html][ipython notebook]] that allow a day-to-day practice of reproducible
   research in a somehow more fluent way than knitR but I am probably
   not fully objective here. :)
+- I present the basis of probabilities and statistics and explain how
+  to compute confidence intervals and to perform linear regressions
+  and analysis of variance with R. 
+- I give an overview of the main classes of experiment designs and I
+  explain how to easily generate and analyze them using
+  [[http://www.stats.bris.ac.uk/R/web/packages/RcmdrPlugin.DoE/index.html][RcmdrPlugin.DoE]] from the [[http://www.rcommander.com/][Rcommander]] GUI.
 * Using R
 ** Installing R and Rstudio
 Here is how to proceed on debian-based distributions:
