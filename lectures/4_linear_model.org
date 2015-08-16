@@ -569,7 +569,7 @@ linear unbiased estimate
     *response variable* =~= *explanatory variable(s)*
     #+END_CENTER
     =~= reads "is modeled as a function of " and
-    =lm(y~x)= means $\rv{y} = \alpha + \beta x + \rv{\epsilon}$ \medskip
+    =lm(y~x)= means $\rv{y} = a + b x + \rv{\epsilon}$ \medskip
 
     On the right-hand side, one should specify how the explanatory
     variables are combined. The symbols used here have a *different
@@ -580,12 +580,12 @@ linear unbiased estimate
     - =:= means an interaction
     
     Therefore
-    - =z~x+y= means $\rv{z} = \alpha + \beta_1 x + \beta_2 y + \rv{\epsilon}$
-    - =z~x*y= means $\rv{z} = \alpha + \beta_1 x + \beta_2 y + \beta_3 xy +
+    - =z~x+y= means $\rv{z} = a + b_1 x + b_2 y + \rv{\epsilon}$
+    - =z~x*y= means $\rv{z} = \alpha + b_1 x + b_2 y + b_3 xy +
       \rv{\epsilon}$
     - =z~(x+y)^2= means the same
-    - =log(y)~I(1/x)+x+I(x^2)= means $\rv{z} = \alpha + \beta_1
-      \times \frac{1}{x} + \beta_2 x + \beta_3 x^2 + \rv{\epsilon}$
+    - =log(y)~I(1/x)+x+I(x^2)= means $\rv{z} = \alpha + b_1
+      \frac{1}{x} + b_2 x + b_3 x^2 + \rv{\epsilon}$
 *** Checking the model with R
      \small
      #+BEGIN_SRC R :session :exports code :results none graphics :file "./pdf_babel/model_standardcheck.pdf" :width 5 :height 5
@@ -618,45 +618,56 @@ linear unbiased estimate
 	#+END_CENTER
     #+LaTeX: }\uncover<+->{
     
-    Remember that $Y=\hat{Y}+\epsilon$ \qquad ($\hat{Y}$ is the "true mean").
+    We have $\rv{Y}=\hat{Y}(\rv{X})+\rv{\epsilon}$
+    \hfill
+    ($\hat{Y}$ is the "true mean"; we note $\rv{\hat{Y}}=\hat{Y}(\rv{X})$).
 
-    Since $\hat{Y}$ and $\epsilon$ are uncorrelated, we have
+    Since $\rv{\hat{Y}}$ and $\rv{\epsilon}$ are uncorrelated, we have
     #+BEGIN_LaTeX
     \begin{align*}
-      \Var(Y) & = \Var(\hat{Y}+\epsilon) = \Var(\hat{Y}) + \Var(\epsilon) \\
-      \frac{1}{n-1}\sum_{i=1}^n (Y_i - \bar{Y})^2 & =
-      \frac{1}{n-1}\sum_{i=1}^n (\hat{Y}_i - \bar{\hat{Y}})^2 + 
-      \frac{1}{n-1}\sum_{i=1}^n (\epsilon_i - \bar{\epsilon})^2\\[-.7em]
-    \intertext{Since $\bar{\epsilon} = 0$ and $\bar{Y} = \bar{\hat{Y}}$, we have\vspace{-.7em}}
-      \underbrace{\sum_{i=1}^n (Y_i - \bar{Y})^2}_{\text{Total Sum of Squares}} & =
-      \underbrace{\sum_{i=1}^n (\hat{Y}_i - \bar{Y})^2}_{\text{Regression SS}} + 
-      \underbrace{\sum_{i=1}^n \bar{\epsilon}^2}_{\text{Error SS}}
+      \Var(\rv{Y}) & = \Var(\rv{\hat{Y}}+\rv{\epsilon}) = \Var(\rv{\hat{Y}}) + \Var(\rv{\epsilon}) \\
+      \frac{1}{n-1}\sum_{i=1}^n (\rv{Y_i} - \rv{\bar{Y}})^2 & =
+      \frac{1}{n-1}\sum_{i=1}^n (\rv{\hat{Y}_i} - \rv{\overline{\hat{Y}}})^2 + 
+      \frac{1}{n-1}\sum_{i=1}^n (\rv{\epsilon_i} - \rv{\bar{\epsilon}})^2\\[-.7em]
+    \intertext{Since $\rv{\bar{\epsilon}} = 0$ and $\rv{\bar{Y}} = \rv{\overline{\hat{Y}}}$, we have\vspace{-.7em}}
+      \underbrace{\sum_{i=1}^n (\rv{Y_i} - \rv{\bar{Y}})^2}_{\text{Total Sum of Squares}} & =
+      \underbrace{\sum_{i=1}^n (\rv{\hat{Y}_i} - \rv{\bar{Y}})^2}_{\text{Regression SS}} + 
+      \underbrace{\sum_{i=1}^n \rv{\epsilon_i}^2}_{\text{Error SS}}
     \end{align*}
     #+END_LaTeX
 
-    - $SSR$ = Variation in $Y$ explained by the regression line
-    - $SSE$ = Variation in $Y$ that is left unexplained
+    - $SSR$ = Variation in $\rv{Y}$ explained by the regression line
+    - $SSE$ = Variation in $\rv{Y}$ that is left unexplained
 
     #+BEGIN_CENTER
         *$SSR$ = $SST$ $\Rightarrow$ perfect fit*
     #+END_CENTER
     #+LaTeX: }
 *** A Goodness of Fit Measure: \RR
-    The *coefficient of determination*, denoted by $R^2$, measures
+    The *coefficient of determination*, denoted by *$R^2$*, measures
     goodness of fit:
     #+BEGIN_CENTER
-    #+LaTeX: $\displaystyle R^2=\frac{SSR}{SST}= 1-\frac{SSE}{SST}$
+    #+BEGIN_LaTeX
+    $\displaystyle R^2= 1-\frac{SSE}{SST} = 
+     1 - \frac{\sum_{i=1}^n (y_i - \hat{y}(x_i))^2}{\sum_{i=1}^n (y_i -
+       \bar{y})^2} =
+     1 - \frac{\text{\alert{the error knowing $x$}}}{\text{\alert{the error without knowing $x$}}}
+     $
+    #+END_LaTeX
     #+END_CENTER
     - $0\leq R^2 \leq 1$
     - The closer $R^2$ is to $1$, the better the fit
 
     Warning:
     - A not so low $R^2$ may mean important noise or bad model
+      - In biology or social sciences, an $R^2$ of .6 can be
+        considered as good
+      - In physics/engineering, an $R^2$ of .6 would be considered as low
     - As you add parameters to a model, you inevitably improve the
-      fit. 
-
-      There is a trade-off beteween model simplicity and fit. Strive
-      for simplicity!
+      fit
+      - The *adjusted R^2* tries to compensate this
+      - There is a trade-off beteween model simplicity and fit. Strive
+        for simplicity!
 *** Illustration with R (homoscedastic data)
     #+LaTeX: \only<+>{
       #+ATTR_LATEX: :width \linewidth
@@ -696,6 +707,22 @@ linear unbiased estimate
     Multiple R-squared:  0.9757,	Adjusted R-squared:  0.9752 
     F-statistic:  1926 on 1 and 48 DF,  p-value: < 2.2e-16
 #+end_example
+**** 
+    :PROPERTIES:
+    :BEAMER_act: <+>
+    :END:
+#+LaTeX: \begin{overlayarea}{\linewidth}{0cm}\vspace{-8.8cm}\begin{block}{}
+
+
+- =Std. Error= = $\sigma/\sqrt{n}$ and can be used are used to compute C.I on
+  the regression estimates
+- =t-value= and =Pr(>|t|)=: $t$-test whether $\mu\neq0$
+  - Easy to read significance codes
+  - Assumes normality
+- =F-statistic=: test the null hypothesis that all of the model
+  coefficients are 0
+#+LaTeX: \end{block}\end{overlayarea}
+
 *** Illustration with R (heteroscedastic data)
     #+LaTeX: \only<+>{
       #+ATTR_LATEX: :width \linewidth
@@ -909,6 +936,3 @@ linear unbiased estimate
       over the parameter space range
     - if your system is heteroscedastic, you will have to perform more
       measurements for parameters that lead to higher variance
-* ANOVA								   :noexport:
-  Les éléments de X sont à valeur dans 0, 1
-  p. 169 of [[file:~/Bureau/Stat/Faraway-PRA.pdf][ANOVA]].
