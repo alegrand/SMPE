@@ -3,9 +3,11 @@
 #+DATE: August 2015
 #+STARTUP: overview indent
 
+#+BEGIN_QUOTE
 *Reporting errors*: Although I do my best there may definitely be typos
 and broken links. This is github so please report me everything you
 find so that I can improve for others. :)
+#+END_QUOTE
 
 This website gather the series of lectures on applied performance
 evaluation avalaible that I was invited to give in various
@@ -151,6 +153,25 @@ swirl()
   This is a good and thorough textbook on design of experiments. It's
   so unfortunate it relies on "exotic" softwares like JMP and minitab
   instead of R...
+  #+END_QUOTE
++ [[https://cran.r-project.org/doc/contrib/Faraway-PRA.pdf][Practical Regression and Anova using R]] by Julian J. Faraway,
+  University of Bath, 2002.
+  #+BEGIN_QUOTE
+  This book is derived from material that Pr. Faraway used in a Master
+  level class on Statistics at the University of Michigan. It is
+  mathematically involved but presents in details how linear
+  regression, ANOVA work and can be done with R. It works out many
+  examples in details and is very pleasant to read. A must-read if you
+  want to understand this topic more thoroughly.
+  #+END_QUOTE
++ [[http://www.amazon.fr/Summary-Scientific-Method-Peter-Kosso-ebook/dp/B008D5IYU2][A Summary of Scientific Method]], Peter Kosso, Springer, 2011. [[[http://hemija.pmf.ukim.edu.mk/materials/download/6d31fd3f53a82da9de163833806722ae][hidden
+  PDF that google found on the webpage of a university in Macedonia]]
+  #+BEGIN_QUOTE
+  A short nice book summarizing the main steps of the scientific
+  method and why having a clear definition is not that simple. It
+  illustrates these points with several nice historical examples that
+  allow the reader to take some perspective on this epistemological
+  question.
   #+END_QUOTE
 + R. Nelson, Probability stochastic processes and queuing theory: the
   mathematics of computer performance modeling. Springer Verlag 1995.
