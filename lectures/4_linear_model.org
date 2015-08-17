@@ -665,7 +665,7 @@ linear unbiased estimate
       - In physics/engineering, an $R^2$ of .6 would be considered as low
     - As you add parameters to a model, you inevitably improve the
       fit
-      - The *adjusted R^2* tries to compensate this
+      - The *adjusted $R^2$* tries to compensate this
       - There is a trade-off beteween model simplicity and fit. Strive
         for simplicity!
 *** Illustration with R (homoscedastic data)
