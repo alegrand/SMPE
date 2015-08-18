@@ -135,6 +135,9 @@ library(swirl)
 install_from_swirl("R Programming")
 swirl()
 #+end_src
+
+Finally, you may want to read this [[http://ww2.coastal.edu/kingw/statistics/R-tutorials/dataframes.html][excellent tutorial on data frames]]
+(=attach=, =with=, =rownames=, =dimnames=, notions of scope...)
 ** Learning ggplot2, _plyr_ / dplyr, _reshape_ / tidyR
 I recently stumbled on this [[http://seananderson.ca/ggplot2-FISH554/][nice ggplot2 tutorial]].
 
