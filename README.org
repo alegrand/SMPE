@@ -22,6 +22,7 @@ University of Rio Grande do Sul]].
      - [[#installing-r-and-rstudio][Installing R and Rstudio]]
      - [[#producing-documents][Producing documents]]
      - [[#learning-r][Learning R]]
+     - [[#learning-ggplot2-_plyr_--dplyr-_reshape_--tidyr][Learning ggplot2, _plyr_ / dplyr, _reshape_ / tidyR]]
  - [[#references][References]]
 
 * Course Objective and Organization
@@ -134,6 +135,14 @@ library(swirl)
 install_from_swirl("R Programming")
 swirl()
 #+end_src
+** Learning ggplot2, _plyr_ / dplyr, _reshape_ / tidyR
+I recently stumbled on this [[http://seananderson.ca/ggplot2-FISH554/][nice ggplot2 tutorial]].
+
+Hadley Wickam provides a [[https://cran.rstudio.com/web/packages/dplyr/vignettes/introduction.html][nice tour of dplyr]] and [[http://blog.rstudio.org/2014/07/22/introducing-tidyr/][gentle introduction to
+tidyR]].
+
+The Rstudio team has designed a [[https://www.rstudio.com/resources/cheatsheets/][nice series of cheatsheets on R]] and in
+particular one on [[https://www.rstudio.com/wp-content/uploads/2015/05/ggplot2-cheatsheet.pdf][ggplot2]] and on [[https://www.rstudio.com/wp-content/uploads/2015/02/rmarkdown-cheatsheet.pdf][R/markdown/knitr]].
 * References
 + R. Jain, [[http://www.cs.wustl.edu/~jain/books/perfbook.htm][The Art of Computer Systems Performance Analysis:
   Techniques for Experimental Design, Measurement, Simulation, and
