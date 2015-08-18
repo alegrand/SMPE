@@ -927,6 +927,8 @@ linear unbiased estimate
     
     This model will allow you to:
     1. *Assess* and *quantify the effect* of parameters on the response
+       - Parameters are estimated as a whole, using \textbf{all} the
+         measurements
     2. *Extrapolate within the range* of parameters you tried
     3. Detect *outstanding* points (those with a high residual and/or
        with a high lever)
