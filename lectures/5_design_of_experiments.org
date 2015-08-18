@@ -73,6 +73,39 @@ http://www.cs.ubc.ca/~hoos/Courses/Trento-06/module-6.2-slides.pdf
 (i.e. add measurements where there is variability) using lm, loess, or
 kriging
 * Design of Experiments
+*** Key concepts
+There are two key concepts:
+#+BEGIN_CENTER
+  *replication* and *randomization*
+#+END_CENTER
+You replicate to *increase reliability*. You randomize to *reduce bias*.
+#+BEGIN_CENTER
+  \textbf{If you replicate thoroughly and randomize properly, \\ you will not go far wrong.}
+#+END_CENTER
+\pause
+#+BEGIN_QUOTE
+  \it\small
+  It doesn't matter if you cannot do your own advanced statistical
+  analysis. If you designed your experiments properly, you may be able
+  to find somebody to help you with the statistics.\smallskip
+
+  If your experiments is not properly designed, then no matter how
+  good you are at statistics, you experimental effort will have been
+  wasted.
+#+END_QUOTE
+\vspace{-1em}
+#+BEGIN_CENTER
+  \textbf{No amount of high-powered statistical analysis can turn a bad experiment into a good one.}
+#+END_CENTER
+
+Other important concepts:
+#+LaTeX: \vspace{-.5em}\begin{columns}\begin{column}{.35\linewidth}
+# - *Parsimony*
+- *Pseudo-replication*
+#+LaTeX: \end{column}\begin{column}{.62\linewidth}
+- *Experimental* vs. *observational* data
+#+LaTeX: \end{column}\end{columns}
+
 *** Select the problem to study
 Clearly define the kind of *system* to study, the kind of *phenomenon* to
 observe (state, evolution of state through time), the kind of *study* to
@@ -573,6 +606,7 @@ plot(aov(Response ~ (A + B + C)^2, data=d1))
       \bf \alert{Use Rcmdr and Rcmdplugin.DoE}\\
       (by Ulrike Grömping)
     \end{center}
+    Simply \texttt{library(Rcmdr)}\dots
   \end{column}
   \begin{column}{.45\linewidth}
     \includegraphics[width=\linewidth]{images/rcmdr_doe.png}
@@ -1193,7 +1227,7 @@ ggplot(data=df, aes(x=x,y=y)) + theme_bw() +
 #+RESULTS:
 [[file:pdf_babel/var_red_biased.pdf]]
 #+LaTeX: \end{column}\begin{column}{.5\linewidth}
-The $R^2$ will never exceed $.66$ because our model fails fully
+The $R^2$ will never exceed $0.66$ because our model fails fully
 explaining variance
 
 - We should thus rather *replicate* for large values of x and *average
@@ -1295,15 +1329,60 @@ file:pdf_babel/loess_FGCS.pdf
 * Model Estimation
 ** Optimal Designs
 *** D optimality
-Estimating Model Parameters
-  - Optimal Designs for a given Model
+When estimating model coefficients, it is intuitively better not to
+spread inputs but rather to use extreme values
+- Note: this approach assumes that the model is correct
+
+This intuitive notion can be formalized for linear models (see [[http://www.cs.ubc.ca/~hoos/Courses/Trento-06/module-6.2-slides.pdf][Hoos]]):
+- Minimize generalized variance of *least squares estimates of model
+  parameters* (determinant of covariance matrix) \\
+  $\leadsto$ *D-optimal designs*
+- Minimize average variance (trace of covariance matrix)\\
+  $\leadsto$ *A-optimal designs*
+- Minimize average of predicted response over experimental
+  region\\
+  $\leadsto$ *I-optimal designs*\\
+*** D-optimal Designs with R
+\small
+#+begin_src R :results output :session :exports both
+d7 <- lhs.design(type= "maximin", nruns= 200 , nfactors= 3, 
+                 digits=NULL, seed= 20521, 
+                 factor.names=list( A=c(0,1),B=c(0,1),C=c(0,1)))
+d7.Dopt <- Dopt.design(25, data=d7, formula="~A +B:C", nRepeat= 5, 
+                       randomize= TRUE, seed=19583)
+#+end_src
+
+#+RESULTS:
+
+#+begin_src R :results output graphics :file pdf_babel/dopt_1.pdf :exports none :width 4 :height 4 :session
+plot(d7, select = c( "A","B","C" ), "Space filling design")
+#+end_src
+
+#+RESULTS:
+[[file:pdf_babel/dopt_1.pdf]]
+
+#+begin_src R :results output graphics :file pdf_babel/dopt_2.pdf :exports none :width 4 :height 4 :session
+plot(d7.Dopt , select = c( "A","B","C" ), , "D-optimized design")
+#+end_src
+
+#+RESULTS:
+[[file:pdf_babel/dopt_2.pdf]]
+
+#+BEGIN_LaTeX
+\begin{center}
+  \includegraphics<1>[height=5.5cm]{pdf_babel/dopt_1.pdf}
+  \includegraphics<2>[height=5.5cm]{pdf_babel/dopt_2.pdf}
+\end{center}
+#+END_LaTeX
+
 * Conclusion
 ** 
 *** Conclusion
+- Designing experiments can be fun! \winkey
 - Proceed carefully
   - The analysis is not simple but skilled statisticians can help you
-  - The *crucial part* is the *modeling*, when you identify the factors,
-    the response, and the kind of study
+  - The *crucial part* is actually the *modeling*, when you identify the
+    factors, the response, and the kind of study
 - This lecture only gives an *overview* but may already have *changed
   your point of view* on how to conduct experiments
 - Remind the benefits of the sequential approach:
@@ -1320,8 +1399,8 @@ Estimating Model Parameters
    - A probabilistic model allows you to assess the confidence of your
      claims
 4. Linear regression
-   - Adding knowledge about the system allows you to improve estimates
    - The linear model is quite general
+   - This knowledge about the system allows you to improve estimates
 5. Design of Experiments
    - Sequential approach
    - Designs/analysis suited to every study
