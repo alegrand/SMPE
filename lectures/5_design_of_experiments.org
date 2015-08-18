@@ -14,63 +14,15 @@
 #+LaTeX: \input{org-babel-document-preembule.tex}
 
 * List                                                             :noexport:
-** 
 ** TODO Explicit the general workflow (Main Steps): 
-R for doe, measurement black box, R for analysis
-
-First step = modeling, i.e., identify the knobs, then identify what
-the question about the box is
-
-Will involve modeling and testing, hence sequential approach
-
-130307_simutools13/130307-keynote-simutools.pdf
-** TODO Typical designs depending on the case study
-*** Do the knobs have an influence ?
-**** 2-level factorial design
-  - Go for 2 levels, coding -1,1
-  - The bad approach: OFAT, bad coverage of the space.
-  - When few knobs, test all combinations: full factorial.
-  - Analysis: ANOVA
-**** ANOVA
-  - 1 knob \Rightarrow C.I, t-test
-  - several knobs
-    - \Rightarrow can't use all C.I at the same time...   [[file:~/Bureau/Stat/Faraway-PRA.pdf][ANOVA]], p. 173s
-    - Want to test wether some of the combinations have a
-      significantly different expected value. This is what the ANOVA
-      does
-    - Decompose variance, assumes normality for testing
-    - Example to explain how it is read
-
-- Good and worked out example:
-  http://web.grinnell.edu/individuals/kuipers/stat2labs/Handouts/DOE%20Introductionh.pdf
-- Good graph on page 5 of
-  http://www.unt.edu/rss/class/mike/5710/FactorialAnova.pdf
-- Les éléments de X sont à valeur dans 0, 1
-  p. 169 of [[file:~/Bureau/Stat/Faraway-PRA.pdf][ANOVA]].
-**** Fractional design
-- Reduce so that projections are balanced
-**** Screening design
-- Exemple
-- Only a preliminary to further study
-**** General factorial designs
-More complicated. You can still go for all combinations. Still relies
-on ANOVA.
-
-You could sample from it but the sample is likely to be not well
-balanced and the estimation may not be that good and slightly biased
-because of this.
-*** Investigating a model (e.g., testing for linearity or other)
-http://www.cs.ubc.ca/~hoos/Courses/Trento-06/module-6.2-slides.pdf
-  - Uniformity/repartition in space for exploration \Rightarrow regular grid over
-    experimental region
-  - Need to randomize \Rightarrow simple uniform random sampling
-  - Better: LHS approaches
-  - Rcmdr demo
-*** Estimating Model Parameters
-  - Optimal Designs for a given Model
+May want to reuse the pictures of
+130307_simutools13/130307-keynote-simutools.pdf from Pedro Velho's PhD
+thesis.
 ** TODO Remind the benefit of sequential approach
 (i.e. add measurements where there is variability) using lm, loess, or
 kriging
+
+... or not. There is already too much content.
 * Design of Experiments
 *** Key concepts
 There are two key concepts:
