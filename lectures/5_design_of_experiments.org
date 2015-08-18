@@ -266,6 +266,31 @@ But when having more factors and/or levels, we want to test whether
 | Actual overall Type I error | 5% | 12.2% | 20.3% | 28.6% | 36.6% |
 \hfill (See 16.1.5 of [[https://cran.r-project.org/doc/contrib/Faraway-PRA.pdf][/Practical Regression and Anova using R/]] by
 Julian Faraway)\medskip
+*** Quick illustration of the difficulty of multiple testing
+\small
+#+begin_src R :results output :session :exports both
+se = .1; mean = 7 ;
+N = 10000;
+df = data.frame(
+    x1=rnorm(N,mean=mean,sd=se),
+    x2=rnorm(N,mean=mean,sd=se),
+    x3=rnorm(N,mean=mean,sd=se))
+df$eq1 = abs(df$x1-mean)<2*se
+df$eq2 = abs(df$x1-df$x2)<2*se
+df$eq3 = abs(df$x1-df$x2)<2*se & 
+         abs(df$x1-df$x3)<2*se & 
+         abs(df$x2-df$x3)<2*se
+
+mean(df$eq1)
+mean(df$eq2)
+mean(df$eq3)
+#+end_src
+
+#+RESULTS:
+: [1] 0.9538
+: [1] 0.8435
+: [1] 0.6596
+
 *** Analysis of Variance (ANOVA)
 #+BEGIN_SRC dot :file fig/var_anova.pdf :results output graphics :exports none
 # From   http://www.unt.edu/rss/class/mike/5710/FactorialAnova.pdf
