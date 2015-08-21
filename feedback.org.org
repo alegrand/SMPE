@@ -11,10 +11,10 @@
 ** Answers
 *** Participation
 There was about 40 students officially enrolled and much more on the
-first day. 56 peopled started filling the survey but in the end, only 49
-actually completed it. All the ones who started and did not complete
-actually didn't provide any answer in the form so it was probably a
-technical mistake.
+first day. 56 peopled started filling the survey but in the end, only
+*49 actually completed* it. All the ones who started and did not
+complete actually didn't provide any answer in the form so it was
+probably a technical mistake.
 *** Student's position
 
 [[file:pdf_babel/ufrgs1.png]]
@@ -41,11 +41,26 @@ Here is the decoding:
 
 *** Coding languages
 [[file:pdf_babel/ufrgs4.png]]
+
+The range is from 0 (knows nothing/never heard of it) to 5 (expert)
 *** OS used for daily work
 [[file:pdf_babel/ufrgs5.png]]
+
+Here LinuxEdge means a very recent distribution, possibly testing or unstable.
 *** Typesetting tools
 [[file:pdf_babel/ufrgs6.png]]
+
+0 means "never heard about it", 1 means "trying not to use it" and 5
+means "used it a lot and knows how to trick it".
 *** Analysis tools
 [[file:pdf_babel/ufrgs7.png]]
+
+Same legend as before
 *** Theoretical skills
 [[file:pdf_babel/ufrgs8.png]]
+
+0 means "never heard about it" while 5 means "fully understanding the
+notion and possible limits".
+
+It would be fun to correlate these answers as well as those on tools
+and languages to research areas.
