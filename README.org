@@ -53,6 +53,20 @@ All the examples given in this series of lecture use the [[http://www.r-project.
 and the source is provided so that people can reuse them. The slides
 are composed with [[http://orgmode.org][org-mode]], beamer, and verbments.
 
+As an exercise, I propose the audience to fork this small [[https://github.com/generoso/M2R-ParallelQuicksort][project]]
+which is toy experiment regarding measuring the performance of a
+simple parallel quicksort implementation:
+#+BEGIN_QUOTE
+  One of your colleague just implemented a multi-threaded version of
+  the quicksort algorithm for multi-core machines. He's convinced his
+  code can save significant time saving but unfortunately, he did not
+  follow the performance evaluation lecture and he would like your
+  help to promote his code.
+#+END_QUOTE
+Students should fork it, play with it and possibly improve (it's not
+hard as the stub is purposely basic) and then send me with their git
+URL so that I can comment on it.
+
 In practice, I introduce the audience to the following tools:
 - [[http://www.r-project.org/][R]] and [[http://ggplot2.org/][ggplot2]] that provide a standard, efficient and flexible data
   management and graph generation mechanism. Although R is quite
@@ -205,4 +219,3 @@ particular one on [[https://www.rstudio.com/wp-content/uploads/2015/05/ggplot2-c
   #+BEGIN_QUOTE
   For those willing to know more about queuing theory.
   #+END_QUOTE
-    
