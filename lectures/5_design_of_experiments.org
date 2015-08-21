@@ -579,10 +579,10 @@ plot(aov(Response ~ (A + B + C)^2, data=d1))
   \begin{column}{.55\linewidth}
     For the R commands, there is a trick: \winkey
     \begin{center}
-      \bf \alert{Use Rcmdr and Rcmdplugin.DoE}\\
+      \bf \alert{Use Rcmdr and RcmdrPlugin.DoE}\\
       (by Ulrike Grömping)
     \end{center}
-    Simply \texttt{library(Rcmdr)}\dots
+    Simply \texttt{library(RcmdrPlugin.DoE)}\dots
   \end{column}
   \begin{column}{.45\linewidth}
     \includegraphics[width=\linewidth]{images/rcmdr_doe.png}
