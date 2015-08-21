@@ -16,20 +16,16 @@ actually completed it. All the ones who started and did not complete
 actually didn't provide any answer in the form so it was probably a
 technical mistake.
 *** Student's position
-#+RESULTS: 
 
-#+RESULTS: 
 [[file:pdf_babel/ufrgs1.png]]
 
 Damned limesurvey CSV export. There is an empty value that could be
 Software or Research engineer, Full-time professor or Post-doc!
 Unbelievable. That's sufficient to have an idea any way.
 *** Research Domain
-#+RESULTS: 
 [[file:pdf_babel/ufrgs2.png]]
 
 Here is a zoom on the most common ones
-#+RESULTS: 
 [[file:pdf_babel/ufrgs3.png]]
 
 Here is the decoding:
@@ -44,17 +40,12 @@ Here is the decoding:
 | PF | Performance                    |
 
 *** Coding languages
-#+RESULTS: 
 [[file:pdf_babel/ufrgs4.png]]
 *** OS used for daily work
-#+RESULTS: 
 [[file:pdf_babel/ufrgs5.png]]
 *** Typesetting tools
-#+RESULTS: 
 [[file:pdf_babel/ufrgs6.png]]
 *** Analysis tools
-#+RESULTS: 
 [[file:pdf_babel/ufrgs7.png]]
 *** Theoretical skills
-#+RESULTS: 
 [[file:pdf_babel/ufrgs8.png]]
