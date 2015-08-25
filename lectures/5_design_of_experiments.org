@@ -707,7 +707,7 @@ class=design, type= pb
 #+END_LaTeX
 ** General factorial designs
 *** What about having more than two levels?
-Before even considering the generation, how would this be be analyzed?
+Before even considering the generation, how would this  analyzed?
 - ANOVA still works and interpretation is OK when there are one (1-way
   ANOVA) or two (2-way ANOVA) factors (with several levels)
 #  http://www.personality-project.org/r/r.anova.html
