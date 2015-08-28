@@ -15,8 +15,18 @@
 #+BEGIN_LaTeX
 #+END_LaTeX
 * List                                                             :noexport:
-** TODO wikipedia correlation figure
 ** TODO link figures to source code
+** TODO Ratio games
+- Jain example
+- +10% -10% is generally not 0%. Convert to time that you can safely
+  sum to avoid problems. This may require to "normalize" or
+  "homogeneify" durations in blocks.
+- mean of ratio \neq ratio of means. In most cases, you actually care
+  abou ratio of means.
+- Confidence intervals on a ratio of means:
+  - Naive way for Y/X = [ymin/xmax:ymax/xmin].
+  - Smarter way:
+    http://stats.stackexchange.com/questions/164738/confidence-interval-of-ratio-estimator
 * A (mathematical) probabilistic model
 ** 
 *** Probabilities

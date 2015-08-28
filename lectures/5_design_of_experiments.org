@@ -18,11 +18,21 @@
 May want to reuse the pictures of
 130307_simutools13/130307-keynote-simutools.pdf from Pedro Velho's PhD
 thesis.
-** TODO Remind the benefit of sequential approach
-(i.e. add measurements where there is variability) using lm, loess, or
-kriging
+** TODO Deeper explanation on pairwise t-test
+* Documents                                                        :noexport:
+** [[file:~/Bureau/Stat/Faraway-PRA.pdf][ANOVA]]
+http://www.stat.sc.edu/~hendrixl/stat205/Lecture%20Notes/ANOVA.pdf‎
 
-... or not. There is already too much content.
+http://www.gs.washington.edu/academics/courses/akey/56008/lecture/lecture9.pdf‎
+
+http://www2.mccombs.utexas.edu/faculty/carlos.carvalho/ Section1.pdf
+
+#     p. 22 and Chapt 6 of [[file:~/Bureau/Stat/Faraway-PRA.pdf][ANOVA]].
+#     http://www2.mccombs.utexas.edu/faculty/carlos.carvalho/teaching/lecture2_Dallas.pdf
+** ANOVA + pairwise t-test (for lecture 5)
+http://rtutorialseries.blogspot.co.at/2011/01/r-tutorial-series-two-way-anova-with.html
+http://rtutorialseries.blogspot.co.at/2011/02/r-tutorial-series-two-way-anova-with.html
+
 * Design of Experiments
 *** Key concepts
 There are two key concepts:

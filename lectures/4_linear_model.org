@@ -15,21 +15,16 @@
 
 * List                                                             :noexport:
 ** TODO Talk about extensions
-loess, krigging
+krigging ?? generalized linear model ?
 * Documents 							   :noexport:
-  [[/home/alegrand/Archives/Cours/maths/ModeleLineaireRegrDegerine.pdf][Régression Linéaire]]   
+** [[/home/alegrand/Archives/Cours/maths/ModeleLineaireRegrDegerine.pdf][Régression Linéaire]]
   http://en.wikipedia.org/wiki/Simple_linear_regression
   http://en.wikipedia.org/wiki/Linear_regression_model
 
-  [[file:~/Bureau/Stat/Faraway-PRA.pdf][ANOVA]]
-  http://www.stat.sc.edu/~hendrixl/stat205/Lecture%20Notes/ANOVA.pdf‎
+** Generalized Linear model
+http://statmath.wu.ac.at/courses/heather_turner/glmCourse_001.pdf
 
-  http://www.gs.washington.edu/academics/courses/akey/56008/lecture/lecture9.pdf‎
-
-  http://www2.mccombs.utexas.edu/faculty/carlos.carvalho/ Section1.pdf 
-
-#     p. 22 and Chapt 6 of [[file:~/Bureau/Stat/Faraway-PRA.pdf][ANOVA]].
-#     http://www2.mccombs.utexas.edu/faculty/carlos.carvalho/teaching/lecture2_Dallas.pdf
+http://data.princeton.edu/wws509/notes/a2.pdf
   
 * Simple Linear Regression
 ** General Introduction
