@@ -508,7 +508,7 @@ ggplot(data = mtcars, aes(x=wt, y=qsec, color=factor(cyl),
 *** ggplot2: Illustration (5)
 \small
 #+BEGIN_SRC R :results output graphics :file ./pdf_babel/mtcars_ggplot5.pdf :width 6 :height 4 :exports  both :session
-ggplot(data = movies, aes(x=factor(year),y=rating)) + 
+ggplot(data = movies, aes(x=year,y=rating,group=factor(year))) + 
        geom_boxplot() + facet_wrap(~Romance)
 #+END_SRC
 
