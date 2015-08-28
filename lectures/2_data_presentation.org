@@ -519,9 +519,27 @@ ggplot(data = movies, aes(x=year,y=rating,group=factor(year))) +
 #+END_CENTER
 *** ggplot2: Illustration (6)
 \small
+# From [[http://www.cookbook-r.com/Graphs/Facets_(ggplot2)/#modifying-facet-label-text]]
+#+begin_src R :results output :session :exports none
+mf_labeller <- function(var, value){
+    value <- as.character(value)
+    if (var=="Action") { 
+        value[value=="0"] <- "No action :("
+        value[value=="1"]   <- "Action"
+    }
+    if (var=="Comedy") { 
+        value[value=="0"] <- "Serious stuff!"
+        value[value=="1"]   <- "Comedy :D"
+    }
+    return(value)
+}
+#+end_src
+
+#+RESULTS:
+
 #+BEGIN_SRC R :results output graphics :file ./pdf_babel/mtcars_ggplot6.pdf :width 6 :height 4 :exports  both :session
 ggplot(movies, aes(x = rating)) + geom_histogram(binwidth = 0.5)+
-       facet_grid(Action ~ Comedy) + theme_bw();
+       facet_grid(Action ~ Comedy, labeller=mf_labeller) + theme_bw();
 #+END_SRC
 
 #+BEGIN_CENTER
