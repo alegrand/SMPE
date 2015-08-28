@@ -704,6 +704,20 @@ ggplot(data=dfgg,aes(x=Alternative,y=Time,color=Alternative)) +
 
 #+RESULTS:
 [[file:pdf_babel/set1_5.pdf]]
+*** Or depict confidence intervals
+#+begin_src R :results output graphics :file pdf_babel/set1_8.pdf :exports results :width 6 :height 4 :session
+dfgg %>% group_by(Alternative) %>% 
+         summarize(num=n(), sd=sd(Time), se=sd/sqrt(num), Time=mean(Time)) %>%
+    ggplot(aes(x=Alternative,y=Time)) + 
+#        geom_boxplot(data=dfgg,color="gray") +
+        geom_point(shape=21,size=3) + 
+        geom_errorbar(aes(ymin=Time-2*se,ymax=Time+2*se), width=.1) + 
+        ylim(0,NA) + ylab("Time (s) \n with 95% confidence intervals") +
+        theme_bw()
+#+end_src
+
+#+RESULTS:
+[[file:pdf_babel/set1_8.pdf]]
 *** Or use histograms...
 #+begin_src R :results output graphics :file pdf_babel/set1_6.pdf :exports results :width 6 :height 4 :session
 ggplot(data=dfgg,aes(x=Time,fill=Alternative)) + 
