@@ -509,7 +509,9 @@ ggplot(data = mtcars, aes(x=wt, y=qsec, color=factor(cyl),
 \small
 #+BEGIN_SRC R :results output graphics :file ./pdf_babel/mtcars_ggplot5.pdf :width 6 :height 4 :exports  both :session
 ggplot(data = movies, aes(x=year,y=rating,group=factor(year))) + 
-       geom_boxplot() + facet_wrap(~Romance)
+       geom_boxplot() + facet_wrap(~Romance) + theme_bw() +
+       theme(axis.text.x = element_text(angle = 45, hjust = 1), 
+             panel.margin = unit(2, "lines"));
 #+END_SRC
 
 #+BEGIN_CENTER
@@ -531,7 +533,7 @@ mf_labeller <- function(var, value){
         value[value=="0"] <- "Serious stuff!"
         value[value=="1"]   <- "Comedy :D"
     }
-    return(value)
+    return(value);
 }
 #+end_src
 
@@ -539,7 +541,8 @@ mf_labeller <- function(var, value){
 
 #+BEGIN_SRC R :results output graphics :file ./pdf_babel/mtcars_ggplot6.pdf :width 6 :height 4 :exports  both :session
 ggplot(movies, aes(x = rating)) + geom_histogram(binwidth = 0.5)+
-       facet_grid(Action ~ Comedy, labeller=mf_labeller) + theme_bw();
+       facet_grid(Action ~ Comedy, labeller=mf_labeller) + 
+       theme_bw() + theme(panel.margin = unit(.5, "lines"));
 #+END_SRC
 
 #+BEGIN_CENTER
