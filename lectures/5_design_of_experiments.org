@@ -14,11 +14,12 @@
 #+LaTeX: \input{org-babel-document-preembule.tex}
 
 * List                                                             :noexport:
-** TODO Explicit the general workflow (Main Steps): 
+** TODO Explicit the general invalidation workflow (Main Steps): 
 May want to reuse the pictures of
 130307_simutools13/130307-keynote-simutools.pdf from Pedro Velho's PhD
 thesis.
 ** TODO Deeper explanation on pairwise t-test
+** TODO work out a two-way anova example to the end along with ME estimates
 * Documents                                                        :noexport:
 ** [[file:~/Bureau/Stat/Faraway-PRA.pdf][ANOVA]]
 http://www.stat.sc.edu/~hendrixl/stat205/Lecture%20Notes/ANOVA.pdf‎
@@ -1390,18 +1391,5 @@ plot(d7.Dopt , select = c( "A","B","C" ), , "D-optimized design")
 5. Design of Experiments
    - Sequential approach
    - Designs/analysis suited to every study
-* ANOVA								   :noexport:
-* Documents 							   :noexport:
-  [[file:~/Bureau/Stat/Faraway-PRA.pdf][ANOVA]]
-  http://www.stat.sc.edu/~hendrixl/stat205/Lecture%20Notes/ANOVA.pdf‎
-
-  http://www.gs.washington.edu/academics/courses/akey/56008/lecture/lecture9.pdf‎
-
-  http://www2.mccombs.utexas.edu/faculty/carlos.carvalho/ Section1.pdf 
-
-  http://www.personality-project.org/r/r.anova.html
-
-#     p. 22 and Chapt 6 of [[file:~/Bureau/Stat/Faraway-PRA.pdf][ANOVA]].
-#     http://www2.mccombs.utexas.edu/faculty/carlos.carvalho/teaching/lecture2_Dallas.pdf
 
   
