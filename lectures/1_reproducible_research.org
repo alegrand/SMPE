@@ -9,7 +9,9 @@
 #+LATEX_HEADER: \input{org-babel-style-preembule.tex}
 #+LATEX_HEADER: %\let\tmptableofcontents=\tableofcontents
 #+LATEX_HEADER: %\def\tableofcontents{}
-
+*** List                                                           :noexport:
+- broken links (at least when reading .org from GitHub directly) on
+  slides 44, 45, 69
 *** Course Organization
 #+BEGIN_CENTER
 \bf *Scientific Methodology and Performance Evaluation\\
