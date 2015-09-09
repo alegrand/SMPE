@@ -101,13 +101,33 @@ Here is how to proceed on debian-based distributions:
 #+BEGIN_SRC sh
 sudo apt-get install r-base r-cran-ggplot2 r-cran-reshape 
 #+END_SRC
+Make sure you have a recent (>= 3.2.0) version or R. For example, here
+is what I have on my machine:
+#+begin_src sh :results output :exports both
+R --version
+#+end_src
+
+#+RESULTS:
+#+begin_example
+R version 3.2.0 (2015-04-16) -- "Full of Ingredients"
+Copyright (C) 2015 The R Foundation for Statistical Computing
+Platform: x86_64-pc-linux-gnu (64-bit)
+
+R is free software and comes with ABSOLUTELY NO WARRANTY.
+You are welcome to redistribute it under the terms of the
+GNU General Public License versions 2 or 3.
+For more information about these matters see
+http://www.gnu.org/licenses/.
+#+end_example
+
 Rstudio and knitr are unfortunately not packaged within debian so the
 easiest is to download the corresponding debian package on the [[http://www.rstudio.com/ide/download/desktop][Rstudio
 webpage]] and then to install it manually (depending on when you do
 this, you can obviously change the version number).
+
 #+BEGIN_SRC sh
-wget http://download1.rstudio.org/rstudio-0.97.551-amd64.deb ## actually, this archive is likely to be outdated now so get the most recent one.
-sudo dpkg -i rstudio-0.97.551-amd64.deb
+wget http://download1.rstudio.org/rstudio-0.99.484-amd64.deb
+sudo dpkg -i rstudio-0.99.484-amd64.deb
 sudo apt-get -f install # to fix possibly missing dependencies
 #+END_SRC
 You will also need to install knitr. To this end, you should simply
