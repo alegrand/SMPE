@@ -22,7 +22,7 @@ University of Rio Grande do Sul]].
      - [[#installing-r-and-rstudio][Installing R and Rstudio]]
      - [[#producing-documents][Producing documents]]
      - [[#learning-r][Learning R]]
-     - [[#learning-ggplot2-_plyr_--dplyr-_reshape_--tidyr][Learning ggplot2, _plyr_ / dplyr, _reshape_ / tidyR]]
+     - [[#learning-ggplot2-plyr-_dplyr_-reshape--_tidyr_][Learning ggplot2, plyr/ _dplyr_, reshape / _tidyR_]]
  - [[#references][References]]
 
 * Course Objective and Organization
@@ -152,11 +152,11 @@ swirl()
 
 Finally, you may want to read this [[http://ww2.coastal.edu/kingw/statistics/R-tutorials/dataframes.html][excellent tutorial on data frames]]
 (=attach=, =with=, =rownames=, =dimnames=, notions of scope...)
-** Learning ggplot2, _plyr_ / dplyr, _reshape_ / tidyR
+** Learning ggplot2, plyr/ _dplyr_, reshape / _tidyR_
 I recently stumbled on this [[http://seananderson.ca/ggplot2-FISH554/][nice ggplot2 tutorial]].
 
 Hadley Wickam provides a [[https://cran.rstudio.com/web/packages/dplyr/vignettes/introduction.html][nice tour of dplyr]] and [[http://blog.rstudio.org/2014/07/22/introducing-tidyr/][gentle introduction to
-tidyR]].
+tidyR]]. Here is a nice link on [[https://stat545-ubc.github.io/bit001_dplyr-cheatsheet.html][merging data frames]].
 
 The Rstudio team has designed a [[https://www.rstudio.com/resources/cheatsheets/][nice series of cheatsheets on R]] and in
 particular one on [[https://www.rstudio.com/wp-content/uploads/2015/05/ggplot2-cheatsheet.pdf][ggplot2]] and on [[https://www.rstudio.com/wp-content/uploads/2015/02/rmarkdown-cheatsheet.pdf][R/markdown/knitr]].
