@@ -11,13 +11,16 @@
 
 #+LaTeX: \input{org-babel-document-preembule.tex}
 
-* Context
-** Motivation
-*** I just got new tees!
+# http://www.cse.wustl.edu/~jain/cse567-08/ftp/k_12smd.pdf
+
+* Descriptive statistics of an univariate sample
+** Initial step
+*** I just got new Tees!
 - A series of *measurements* (one value per measurement)
 - *Nature* of the measurements
-  - Factors
+  - Factors (*nominal data*)
     #+begin_src R :results output :session :exports results
+    set.seed(42);
     options(width=58);
     T_color = sample(size=20, 
         factor(c("Black","Red","Blue","White","Green")), 
@@ -26,12 +29,12 @@
     #+end_src
 
     #+RESULTS:
-    :  [1] Black Black Black White White White Red   Black Red  
-    : [10] Black White Black Green Black Black Black Black White
-    : [19] Black Blue 
+    :  [1] Red   Red   Black Green Blue  Black White Black Blue 
+    : [10] White Black White Red   Black Black Red   Red   Black
+    : [19] Black Black
     : Levels: Black Blue Green Red White
 
-  - Ordered factors
+  - Ordered factors (*ordinal data*)
     #+begin_src R :results output :session :exports results
     options(width=55);
     sizes = c("S","M","L","XL");
@@ -42,11 +45,11 @@
     #+end_src
 
     #+RESULTS:
-    :  [1] S  M  M  M  M  XL M  M  M  M  M  M  L  M  M  M  M 
-    : [18] M  M  M 
+    :  [1] XL M  S  XL M  M  M  XL M  L  M  L  M  M  M  L  M 
+    : [18] M  XL M 
     : Levels: S < M < L < XL
 
-  - Numbers (e.g., price, duration, \dots)
+  - Numbers (e.g., price, duration, \dots) (*numerical data*)
     #+begin_src R :results output :session :exports results
     options(width=58);
     T_price = round(10+rnorm(20,sd=3),digit=1);
@@ -54,8 +57,16 @@
     #+end_src
 
     #+RESULTS:
-    :  [1] 14.5 13.1  9.3  6.9  8.6  7.2  7.3 12.4 13.1 16.0
-    : [11]  5.2 12.1  8.8  5.3  5.2  9.7  8.6 11.5 14.1 10.3
+    :  [1]  9.1  4.7  9.5 13.6 15.7  8.7  9.2  4.7 11.4  8.1
+    : [11] 11.4 12.1 13.1  8.2 11.5  4.8  7.6  7.4  2.8 10.1
+
+#+begin_src R :results output :session :exports both
+str(T_size); # May want to use the str function
+#+end_src
+
+#+RESULTS:
+:  Ord.factor w/ 4 levels "S"<"M"<"L"<"XL": 4 2 1 4 2 2 2 4 2 3 ...
+
 *** Are these sample "structured" ?
 #+LaTeX: \begin{columns}\begin{column}{.5\linewidth}
 Use =plot.ts= (for *time series*)
@@ -87,7 +98,7 @@ grid.arrange(p1,p2,p3,ncol=1);
 #+end_src
 
 #+BEGIN_CENTER
-  #+ATTR_LaTeX: :width .65\linewidth
+  #+ATTR_LaTeX: :width .6\linewidth
   #+RESULTS:
   [[file:pdf_babel/ds_ts2.pdf]]
 #+END_CENTER
@@ -125,9 +136,10 @@ par(mfrow=c(1,1));
 
 This preliminary study will:
 - guide your analysis
-- provide feedback on your experimental setup
+- provide feedback on your experimental setup\smallskip
 
 This may be harder to do than it looks...
+
 #+begin_src R :results output graphics :file pdf_babel/ds_ts4.pdf :exports results :width 8 :height 3 :session
 ggplot(data.frame(Time=1:5000,Price=rnorm(5000)),aes(x=Time,y=Price)) +
      geom_line(color="gray") + geom_point() + theme_bw();
@@ -248,7 +260,7 @@ ggplot(data.frame(Time=1:length(T_price),Price=T_price),
 *At which value should the bin start?*
 - In most cases, the binning is aligned on human readable values,
   which can create nasty artifacts (nice illustration from
-  [[http://stats.stackexchange.com/questions/51718/assessing-approximate-distribution-of-data-based-on-a-histogram/51753#51753][/stackexchange/]])
+  [[http://stats.stackexchange.com/questions/51718/assessing-approximate-distribution-of-data-based-on-a-histogram/][/stackexchange/]])
 #+begin_src R :results output graphics :file pdf_babel/ds_bar4.pdf :exports results :width 7 :height 4 :session
 A <- c(3.15,5.46,3.28,4.2,1.98,2.28,3.12,4.1,3.42,3.91,2.06,5.53,
        5.19,2.39,1.88,3.43,5.51,2.54,3.64,4.33,4.85,5.56,1.89,4.84,
@@ -343,4 +355,363 @@ grid.arrange(p1,p2,p3,p4,p5,p6,nrow=2);
   #+RESULTS:
   [[file:pdf_babel/ds_bar5.pdf]]
 #+END_CENTER
+
+** Single mode: central tendency
+*** Nominal Values
+#+LaTeX: \begin{columns}\begin{column}{.6\linewidth}
+- What is the *mode* (most frequent value)?
+- Sort values according to their frequency...
+  #+begin_src R :results output :session :exports both
+  summary(T_color)
+  #+end_src
+
+  #+RESULTS:
+  : Black  Blue Green   Red White 
+  :    11     1     1     2     5
+
+#+LaTeX: \end{column}\begin{column}{.4\linewidth}
+  [[file:pdf_babel/ct_bar1.pdf]]
+
+#+LaTeX: \end{column}\end{columns}\bigskip
+
+\small
+#+begin_src R :results output graphics :file pdf_babel/ct_bar1.pdf :exports code :width 4.5 :height 4 :session
+col_freq=table(T_color);
+T_color <- factor(T_color,
+    levels = names(col_freq[order(col_freq, decreasing = TRUE)]));
+plot(T_color);
+#+end_src
+
+#+RESULTS:
+[[file:pdf_babel/ct_bar1.pdf]]
+
+*** Ordinal Values
+#+LaTeX: \begin{columns}\begin{column}{.5\linewidth}
+- What is the *mode* (most frequent value)?
+  #+begin_src R :results output :session :exports both
+  summary(T_size)
+  #+end_src
+
+  #+RESULTS:
+  :  S  M  L XL 
+  :  1 17  1  1
+- May still want to sort values according to their frequency...
+- *Median*: not implemented in standard R, as it's not well defined
+
+#+LaTeX: \end{column}\begin{column}{.5\linewidth}
+  [[file:pdf_babel/ct_bar2.pdf]]
+
+#+LaTeX: \end{column}\end{columns}
+
+\small
+
+#+begin_src R :results output :session :exports both
+median(T_size)
+library(DescTools)
+median(T_size) # :(
+#+end_src
+
+#+RESULTS:
+: Error in median.default(T_size) : requires numerical data
+: [1] NA
+
+#+begin_src R :results output graphics :file pdf_babel/ct_bar2.pdf :exports none :width 4.5 :height 4 :session
+plot(T_size);
+#+end_src
+
+#+RESULTS:
+[[file:pdf_babel/ct_bar2.pdf]]
+*** Numerical Values
+#+begin_src R :results output :session :exports both
+str(T_price);
+#+end_src
+
+#+RESULTS:
+:  num [1:20] 14.5 13.1 9.3 6.9 8.6 7.2 7.3 12.4 13.1 16 ...
+
+#+begin_src R :results output :session :exports both
+summary(T_price);
+#+end_src
+
+#+RESULTS:
+:    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+:   5.200   7.275   9.500   9.960  12.580  16.000
+
+- Median: 50% of values are smaller than 7.275\\\quad (a possible measure of *central tendency*)
+
+*** Numerical Values
+The *mode* and the *median* are measures of *central tendency* (typical
+value)
+- *Note*: There may be several modes and it depends on binning...
+
+There is also the (arithmetic) *mean*: $A = \overline{x} = \frac{1}{N}\sum_{i=1}^N x_i$
+#+begin_src R :results output :session :exports both
+mean(T_price)
+#+end_src
+
+#+RESULTS:
+: [1] 9.96
+
+#+begin_src R :results output graphics :file pdf_babel/ct_hist.pdf :exports results :width 6 :height 3 :session
+df = data.frame(x=rgamma(1000,shape=2));
+bw = .5;
+
+bks = hist(df$x,plot=F,breaks=ceiling(diff(range(df$x))/bw));
+ibks = bks$counts==max(bks$counts)
+Mode = mean(c(bks$breaks[c(ibks,F)], bks$breaks[c(F,ibks)]));
+
+ct = rbind(data.frame(x=median(df$x), label="Median", y=.3),
+           data.frame(x=mean(df$x), label="Mean", y=.2),
+           data.frame(x=Mode, label="Mode", y=.4));
+
+ggplot(df, aes(x=x, y=..density..)) + theme_bw() +
+     geom_histogram(alpha=.3,color="black", fill="gray", binwidth=bw)  +
+     geom_vline(data=ct, aes(xintercept=x,color=label),linetype = "longdash") +
+     geom_text(data=ct, aes(x=x+.2,y=y,label=label,color=label),hjust=0) +
+     scale_color_brewer(palette="Set1");
+#+end_src
+
+#+RESULTS:
+[[file:pdf_babel/ct_hist.pdf]]
+
+*** Things to know about the mean
+- This measure is sensitive to "*outliers*".
+  - One aberrant (say very large) value will drag the mean to the
+    right while it would not change the median
+- The key question is *what makes sense* ?
+  + Your favorite pair has been added a +20% mark-up in August but you
+    have a -20% discount as a regular customer. Is the price the same ?
+    + No, you actually saved 4% of the original price ($1.2\times.8 = .96$).
+  + You drove half the way at 50mph and half of the way at 100mph. Did
+    you drive on average at 75mph ?
+    + Obviously not...
+  + Although you can compute the average of gains/loss, it is not at
+    all what you would consider as the average gain.
+  + May want to consider the geometric or the harmonic mean...  $$G =
+    \sqrt[n]{\prod_{i=1}^N x_i} \text{ or } H = \frac{1}{\frac{1}{N}\sum_{i=1}^N
+    \frac{1}{x_i}}$$
+*** What should I look for?
+- If the distribution is unimodal and symmetrical, then 
+  #+BEGIN_CENTER
+  mean =  mode = median\bigskip
+  #+END_CENTER
+- Depending on the problem, one or the other may be more
+  relevant\bigskip
+- Anyway, reporting such measure with no indication about variability
+  is generally useless
+** Dispersion: Variability around the central tendency
+*** Variance
+We expect most values to be "around" the mean
+#+begin_src R :results output graphics :file pdf_babel/var_1.pdf :exports results :width 6 :height 3 :session
+N = 1000;
+df = rbind(data.frame(x=rnorm(N,mean=3,sd=1), set="A"),
+           data.frame(x=rnorm(N,mean=3,sd=.1), set="B"),
+           data.frame(x=rnorm(N,mean=3,sd=3), set="C"));
+ggplot(df,aes(x=x,y=..density..)) + geom_histogram(color="black", fill="gray") + 
+       facet_wrap(~set) + 
+       geom_vline(xintercept=3,color="red",linetype = "longdash");
+#+end_src
+
+#+RESULTS:
+[[file:pdf_babel/var_1.pdf]]
+
+Departure from the mean:
+- Mean absolute deviation: $\frac{1}{N} \sum_{i=1}^N |x_i-A|$
+  - Rarely used
+- *Variance*: $V = \frac{1}{N} \sum_{i=1}^N (x_i-A)^2$
+  - squared to have only positive values and to give more importance
+    to large deviations
+  - not homogeneous to the mean (units)
+- *Standard deviation*: $SD = \sqrt{V}$
+*** Quantile
+#+begin_src R :results output :session :exports both
+quantile(T_price,c(.05,.25,.5,.75,.95))
+#+end_src
+
+#+RESULTS:
+:     5%    25%    50%    75%    95% 
+:  4.605  7.550  9.150 11.425 13.705
+
+Inter-Quantile Range:
+- *Inter-quartile range*: $IQR = Q_{75}-Q_{25}$
+- But other values are possible, e.g., $Q_{95}-Q_{5}$
+- *Range*: $\max - \min$ (may grow unbounded)
+  - quite difficult to use
+*** What about nominal or ordinal values ?
+There is for example the notion of *Entropy*: how many bits are required
+to encode the sample ?
+
+Say there is a fraction $f_v$ of items with value $v$.
+
+$$H = - \sum_{v\in V} f_v\log_2(f_v)$$
+
+$-(x+y)\log_2(x+y)<-x\log_2(x)-y\log_2(y)$ so the smaller the entropy, the
+more condensed/predictable the sample distribution
+- $H([0,1,0,0])=0$
+- $H([.25,.25,.25,.25])=2$ \medskip
+
+This notion can be extended to numerical values (but depends on
+binning...)
+
+** Going further
+*** Skewness
+Remember the *mean* and the *variance*: 
+- $A = \overline{x} = \frac{1}{N} \sum_{i=1}^N x_i$
+- $V = \frac{1}{N} \sum_{i=1}^N (x_i-\overline{x})^2$
+
+Could we measure the asymmetry of the samples around the mean ?
+
+- Proposal 1: $\frac{1}{N} \sum_{i=1}^N (x_i-\overline{x})$ \hfill (always 0... \frowny)
+- Proposal 2: $\frac{1}{N} \sum_{i=1}^N (x_i-\overline{x})^3$ \hfill (not
+  well normalized... \frowny)
+
+$$S = \frac{\displaystyle\frac{1}{n} \sum_{i=1}^n
+(x_i-\overline{x})^3}{\Bigg[\underbrace{\frac{1}{n-1} \sum_{i=1}^n
+(x_i-\overline{x})^2}_{\text{variance}}\Bigg]^{3/2}}$$
+*** Skewness
+Could we illustrate this a bit ? 
+#+begin_src R :results output :session :exports both
+library(moments)
+skewness(runif(1000))
+#+end_src
+
+#+RESULTS:
+: [1] 0.04626483
+
+#+begin_src R :results output graphics :file pdf_babel/var_2.pdf :exports results :width 6 :height 4 :session
+df_skew = function (x) {
+  s=skewness(x);
+  l=paste("Skewness = ",round(s,digits=3));
+  data.frame(x=x,label=l);
+}
+
+df = rbind(df_skew(runif(1000,min=0,max=5)),
+           df_skew(rnorm(1000)),
+           df_skew(rgamma(1000,shape=3)),
+           df_skew(10-rgamma(1000,shape=3)));
+
+ggplot(df,aes(x=x,y=..density..)) + theme_bw() +
+    geom_histogram(fill="gray",color="black") + facet_wrap(~label);
+#+end_src
+
+#+BEGIN_CENTER
+  #+ATTR_LaTeX: :width .8\linewidth
+  #+RESULTS:
+  [[file:pdf_babel/var_2.pdf]]
+#+END_CENTER
+*** Kurtosis
+- peakedness (width of peak), tail weight, lack of shoulders...
+- measure infrequent extreme deviations, as opposed to frequent
+  modestly sized deviations
+
+$$K = \frac{\tfrac{1}{n} \sum_{i=1}^n (x_i -
+\overline{x})^4}{\Bigg[\underbrace{\tfrac{1}{n} \sum_{i=1}^n (x_i -
+\overline{x})^2}_{\text{variance}}\Bigg]^2} - 3$$
+
+The *-3* is here so that normal distribution have a Kurtosis of 0
+
+#+begin_src R :results output :session :exports both
+library(moments)
+x = rnorm(1000) ; var(x);
+kurtosis(x)-3
+#+end_src
+
+#+RESULTS:
+: [1] 1.039743
+: [1] 0.01825114
+
+*** Kurtosis
+
+#+begin_src R :results output graphics :file pdf_babel/var_3.pdf :exports results :width 6 :height 4 :session
+df_kurtosis = function (x) {
+  s=kurtosis(x)-3;
+  l=paste("Kurtosis = ",round(s,digits=3));
+  data.frame(x=x,label=l);
+}
+
+df = rbind(df_kurtosis(runif(1000,min=0,max=5)),
+           df_kurtosis(rnorm(1000)),
+           df_kurtosis(rgamma(1000,shape=3)),
+           df_kurtosis(rgamma(1000,shape=.4)));
+
+ggplot(df,aes(x=x,y=..density..)) + theme_bw() +
+    geom_histogram(fill="gray",color="black") + facet_wrap(~label);
+#+end_src
+
+#+BEGIN_CENTER
+  #+ATTR_LaTeX: :width \linewidth
+  #+RESULTS:
+  [[file:pdf_babel/var_3.pdf]]
+#+END_CENTER
+
+** Summarizing a distribution
+*** Classical information
+#+begin_src R :results output :session :exports none
+x = rgamma(100,shape=3)
+dfx=data.frame(val=x);
+#+end_src
+
+#+RESULTS:
+
+#+begin_src R :results output graphics :file pdf_babel/summary_1.pdf :exports results :width 6 :height 3 :session
+gghist = function(x) {
+  breaks=ceiling(log2(length(x)+1));
+  bw = diff(range(x))/breaks;
+  ggplot(data.frame(x=x),aes(x=x,y=..density..)) + theme_bw() +
+      geom_histogram(fill="gray",color="black",binwidth=bw);
+}
+gghist(x);
+#+end_src
+
+#+RESULTS:
+[[file:pdf_babel/summary_1.pdf]]
+
+#+begin_src R :results output :session :exports both
+summary(x)
+var(x)
+#+end_src
+
+#+RESULTS:
+:    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+:  0.4065  1.8430  2.5020  2.8660  3.6310  7.0220
+: [1] 2.117541
+*** Good and bad summaries
+
+#+begin_src R :results output graphics :file pdf_babel/summary_2.pdf :exports results :width 6 :height 4 :session
+dfx=rbind(data.frame(val=x,label="min/max"),
+          data.frame(val=x,label="+/- sd"),
+          data.frame(val=x,label="boxplot"),
+          data.frame(val=x,label="confidence\ninterval"))
+
+dfx$label = factor(dfx$label, 
+    levels = c("min/max", "+/- sd", "boxplot", "confidence\ninterval"));
+
+ggplot(data=dfx,aes(y=val, x=as.factor(label))) + theme_bw() + xlab("Method") + 
+    geom_boxplot(data=dfx[dfx$label=="boxplot",],width =.3, color="dark green") + 
+    geom_jitter(data=dfx,alpha=.2,position = position_jitter(width = .1)) +
+    stat_summary(data=dfx[dfx$label=="boxplot",], fun.y="mean", geom = "point", shape=8, , color="dark green") +
+    geom_pointrange(aes(x="min/max",y=mean(dfx$val),
+                    ymin=min(dfx$val),ymax=max(dfx$val)), color="dark red") +
+    geom_pointrange(aes(x="+/- sd",y=mean(dfx$val),
+                    ymin=mean(dfx$val)-sd(dfx$val),ymax=mean(dfx$val)+sd(dfx$val)), color="dark red") +
+    stat_summary(data=dfx[dfx$label=="confidence\ninterval",], fun.data="mean_cl_normal", geom = "errorbar", width=.1, , color="dark green") +
+    stat_summary(data=dfx[dfx$label=="confidence\ninterval",], fun.y="mean", geom = "point", shape=21, , color="dark green")
+
+#+end_src
+
+#+BEGIN_CENTER
+  #+ATTR_LaTeX: :width \linewidth
+  #+RESULTS:
+  [[file:pdf_babel/summary_2.pdf]]
+#+END_CENTER
+
+*** Be careful with fancy plots you do not fully understand!
+
+#+BEGIN_LaTeX
+\begin{center}
+  \includegraphics<+>[height=6cm]{pdf_babel/set1_7.pdf}
+  \includegraphics<+>[height=5cm]{pdf_babel/dist_summary1.pdf}
+  \includegraphics<+>[height=5cm]{pdf_babel/dist_summary2.pdf}
+\end{center}
+#+END_LaTeX
 
