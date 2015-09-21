@@ -502,7 +502,8 @@ ggplot(df, aes(x=x, y=..density..)) + theme_bw() +
 ** Dispersion: Variability around the central tendency
 *** Variance
 We expect most values to be "around" the mean
-#+begin_src R :results output graphics :file pdf_babel/var_1.pdf :exports results :width 6 :height 3 :session
+
+#+begin_src R :results output graphics :file pdf_babel/var_1.pdf :exports results :width 7 :height 3 :session
 N = 1000;
 df = rbind(data.frame(x=rnorm(N,mean=3,sd=1), set="A"),
            data.frame(x=rnorm(N,mean=3,sd=.1), set="B"),
@@ -512,16 +513,19 @@ ggplot(df,aes(x=x,y=..density..)) + geom_histogram(color="black", fill="gray") +
        geom_vline(xintercept=3,color="red",linetype = "longdash");
 #+end_src
 
-#+RESULTS:
-[[file:pdf_babel/var_1.pdf]]
+#+BEGIN_CENTER
+  #+ATTR_LaTeX: :width .8\linewidth
+  #+RESULTS:
+  [[file:pdf_babel/var_1.pdf]]
+#+END_CENTER
 
 Departure from the mean:
 - Mean absolute deviation: $\frac{1}{N} \sum_{i=1}^N |x_i-A|$
   - Rarely used
 - *Variance*: $V = \frac{1}{N} \sum_{i=1}^N (x_i-A)^2$
-  - squared to have only positive values and to give more importance
-    to large deviations
-  - not homogeneous to the mean (units)
+  - only positive values and gives more importance to large
+    deviations \smiley
+  - not homogeneous to the mean (units) \frowny
 - *Standard deviation*: $SD = \sqrt{V}$
 *** Quantile
 #+begin_src R :results output :session :exports both
