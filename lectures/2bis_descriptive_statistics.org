@@ -1,0 +1,346 @@
+#+TITLE:     Descriptive Statistics
+#+AUTHOR:    Nicolas Gast, \textbf{Arnaud Legrand}, Jean-Marc Vincent
+#+DATE: RICM4 Probability and Simulation Lecture
+#+STARTUP: beamer overview indent
+#+TAGS: noexport(n)
+#+LaTeX_CLASS: beamer
+#+LaTeX_CLASS_OPTIONS: [11pt,xcolor=dvipsnames,presentation]
+#+OPTIONS:   H:3 num:t toc:nil \n:nil @:t ::t |:t ^:nil -:t f:t *:t <:t
+#+LATEX_HEADER: \input{org-babel-style-preembule.tex}
+#+LATEX_HEADER: \AtBeginDocument{\date{RICM4 Probabilities and Simulations\\Grenoble, France, October 2015}}
+
+#+LaTeX: \input{org-babel-document-preembule.tex}
+
+* Context
+** Motivation
+*** I just got new tees!
+- A series of *measurements* (one value per measurement)
+- *Nature* of the measurements
+  - Factors
+    #+begin_src R :results output :session :exports results
+    options(width=58);
+    T_color = sample(size=20, 
+        factor(c("Black","Red","Blue","White","Green")), 
+        prob=c(.6,.1,.1,.1,.1),replace=T);
+    T_color
+    #+end_src
+
+    #+RESULTS:
+    :  [1] Black Black Black White White White Red   Black Red  
+    : [10] Black White Black Green Black Black Black Black White
+    : [19] Black Blue 
+    : Levels: Black Blue Green Red White
+
+  - Ordered factors
+    #+begin_src R :results output :session :exports results
+    options(width=55);
+    sizes = c("S","M","L","XL");
+    sizes = factor(sizes, levels=sizes, ordered=T)
+    T_size = sample(size=20, sizes,
+                    prob=c(.05,.75,.1,.05),replace=T);
+    T_size
+    #+end_src
+
+    #+RESULTS:
+    :  [1] S  M  M  M  M  XL M  M  M  M  M  M  L  M  M  M  M 
+    : [18] M  M  M 
+    : Levels: S < M < L < XL
+
+  - Numbers (e.g., price, duration, \dots)
+    #+begin_src R :results output :session :exports results
+    options(width=58);
+    T_price = round(10+rnorm(20,sd=3),digit=1);
+    T_price
+    #+end_src
+
+    #+RESULTS:
+    :  [1] 14.5 13.1  9.3  6.9  8.6  7.2  7.3 12.4 13.1 16.0
+    : [11]  5.2 12.1  8.8  5.3  5.2  9.7  8.6 11.5 14.1 10.3
+*** Are these sample "structured" ?
+#+LaTeX: \begin{columns}\begin{column}{.5\linewidth}
+Use =plot.ts= (for *time series*)
+
+#+begin_src R :results output graphics :file pdf_babel/ds_ts1.pdf :exports both :width 4 :height 6 :session
+par(mfrow=c(3,1));
+plot.ts(T_color,xy.lines=F);
+plot.ts(T_size,xy.lines=F);
+plot.ts(T_price,xy.lines=F);
+#+end_src
+#+LaTeX: \end{column}\begin{column}{.5\linewidth}
+#+RESULTS:
+[[file:pdf_babel/ds_ts1.pdf]]
+#+LaTeX: \end{column}\end{columns}
+*** Are these sample "structured" ?
+Fancier output can be built using =ggplot2=
+#+begin_src R :results output graphics :file pdf_babel/ds_ts2.pdf :exports results :width 5 :height 5 :session
+library(ggplot2)
+library(gridExtra)
+p1 = ggplot(data.frame(Time=1:length(T_color),Color=T_color),
+            aes(x=Time,y=Color,fill=Color)) +
+     geom_point(shape=21)  + theme_bw() + 
+     scale_fill_manual(values = tolower(as.character(levels(T_color))))
+p2 = ggplot(data.frame(Time=1:length(T_size),Size=T_size),aes(x=Time,y=Size,size=Size)) +
+     geom_point() + theme_bw();
+p3 = ggplot(data.frame(Time=1:length(T_price),Price=T_price),aes(x=Time,y=Price)) +
+     geom_line(color="gray") + geom_point() + theme_bw();
+grid.arrange(p1,p2,p3,ncol=1);
+#+end_src
+
+#+BEGIN_CENTER
+  #+ATTR_LaTeX: :width .65\linewidth
+  #+RESULTS:
+  [[file:pdf_babel/ds_ts2.pdf]]
+#+END_CENTER
+*** There could indeed be "trends"
+#+begin_src R :results output :session :exports none
+set.seed(42);
+N=100;
+T_price_time = 1:N;
+T_price_trend = round(10+.07*T_price_time + rnorm(20,sd=3) + rnorm(N,sd=.5),digit=1);
+T_price_trend2 = atan(T_price_time/10)+.2*rnorm(N);
+T_price_trend2[60:64] = 0;
+T_price_trend3 = 2+sin(T_price_time/5)*(1+rnorm(N))+.2*rnorm(N);
+T_price_trend4 = 5+atan(T_price_time-N/2)+runif(N);
+T_price_trend4[30] = 12
+#+end_src
+
+#+RESULTS:
+
+#+begin_src R :results output graphics :file pdf_babel/ds_ts3.pdf :exports results :width 8 :height 6 :session
+par(mfrow=c(2,2));
+plot.ts(T_price_trend);
+plot.ts(T_price_trend2);
+plot.ts(T_price_trend3);
+plot.ts(T_price_trend4);
+par(mfrow=c(1,1));
+#+end_src
+
+#+RESULTS:
+[[file:pdf_babel/ds_ts3.pdf]]
+*** What should we look for?
+- Structured/unstructured
+- Trend, evolution
+- Localization/order of magnitude
+- Outliers, aberrant values
+
+This preliminary study will:
+- guide your analysis
+- provide feedback on your experimental setup
+
+This may be harder to do than it looks...
+#+begin_src R :results output graphics :file pdf_babel/ds_ts4.pdf :exports results :width 8 :height 3 :session
+ggplot(data.frame(Time=1:5000,Price=rnorm(5000)),aes(x=Time,y=Price)) +
+     geom_line(color="gray") + geom_point() + theme_bw();
+#+end_src
+
+#+RESULTS:
+[[file:pdf_babel/ds_ts4.pdf]]
+
+** Histograms of "Stable" samples
+*** Bar charts vs. Histograms
+#+LaTeX: \begin{columns}\begin{column}{.5\linewidth}
+#+begin_src R :results output graphics :file pdf_babel/ds_bar1.pdf :exports both :width 4 :height 6 :session
+par(mfrow=c(3,1));
+plot(T_color,xy.lines=F);
+plot(T_size,xy.lines=F);
+hist(T_price,xy.lines=F);
+#+end_src
+#+LaTeX: \end{column}\begin{column}{.5\linewidth}
+#+RESULTS:
+[[file:pdf_babel/ds_bar1.pdf]]
+#+LaTeX: \end{column}\end{columns}
+*** Bar charts vs. Histograms
+Again, fancier output can be built using =ggplot2=
+#+begin_src R :results output graphics :file pdf_babel/ds_bar2.pdf :exports results :width 5 :height 5 :session
+library(ggplot2)
+library(gridExtra)
+p1 = ggplot(data.frame(Time=1:length(T_color),Color=T_color),
+            aes(x=Color,fill=Color)) + 
+     geom_bar(color="black")  + 
+     scale_fill_manual(values = tolower(as.character(levels(T_color))))
+p2 = ggplot(data.frame(Time=1:length(T_size),Size=T_size),
+            aes(x=Size)) +
+     geom_bar(fill="gray",color="black") + theme_bw();
+p3 = ggplot(data.frame(Time=1:length(T_price),Price=T_price),
+            aes(x=Price)) +
+     geom_histogram(fill="gray",color="black") + theme_bw();
+grid.arrange(p1,p2,p3,ncol=1);
+#+end_src
+
+#+BEGIN_CENTER
+  #+ATTR_LaTeX: :width .6\linewidth
+  #+RESULTS:
+  [[file:pdf_babel/ds_bar2.pdf]]
+#+END_CENTER
+*** Wait, why are these histograms so different ?
+#+begin_src R :results output graphics :file pdf_babel/ds_bar3_1.pdf :exports none :width 5 :height 3.5 :session
+hist(T_price,xy.lines=F);
+#+end_src
+
+#+RESULTS:
+[[file:pdf_babel/ds_bar3_1.pdf]]
+
+#+begin_src R :results output graphics :file pdf_babel/ds_bar3_2.pdf :exports none :width 5 :height 3.5 :session
+hist(T_price,xy.lines=F,probability=T);
+#+end_src
+
+#+RESULTS:
+[[file:pdf_babel/ds_bar3_2.pdf]]
+
+#+begin_src R :results output graphics :file pdf_babel/ds_bar3_3.pdf :exports none :width 5 :height 2.3 :session
+ggplot(data.frame(Time=1:length(T_price),Price=T_price),
+            aes(x=Price)) +
+     geom_histogram(fill="gray",color="black") + theme_bw();
+#+end_src
+
+#+RESULTS:
+[[file:pdf_babel/ds_bar3_3.pdf]]
+
+#+begin_src R :results output graphics :file pdf_babel/ds_bar3_4.pdf :exports none :width 5 :height 2.3 :session
+ggplot(data.frame(Time=1:length(T_price),Price=T_price),
+            aes(x=Price, y=..density..)) +
+     geom_histogram(fill="gray",color="black") + theme_bw();
+#+end_src
+
+#+RESULTS:
+[[file:pdf_babel/ds_bar3_4.pdf]]
+
+#+begin_src R :results output graphics :file pdf_babel/ds_bar3_5.pdf :exports none :width 5 :height 2.3 :session
+ggplot(data.frame(Time=1:length(T_price),Price=T_price),
+            aes(x=Price, y=..density..)) +
+     geom_histogram(fill="gray",color="black",binwidth=2) + theme_bw();
+#+end_src
+
+#+RESULTS:
+[[file:pdf_babel/ds_bar3_5.pdf]]
+
+#+LaTeX: \begin{columns}\begin{column}{.5\linewidth}
+  #+ATTR_LaTeX: :width \linewidth
+  [[file:pdf_babel/ds_bar3_1.pdf]]
+
+  #+ATTR_LaTeX: :width \linewidth
+  [[file:pdf_babel/ds_bar3_2.pdf]]
+#+LaTeX: \end{column}\begin{column}{.5\linewidth}
+  #+ATTR_LaTeX: :width \linewidth
+  [[file:pdf_babel/ds_bar3_3.pdf]]
+
+  #+ATTR_LaTeX: :width \linewidth
+  [[file:pdf_babel/ds_bar3_4.pdf]]
+
+  #+ATTR_LaTeX: :width \linewidth
+  [[file:pdf_babel/ds_bar3_5.pdf]]
+#+LaTeX: \end{column}\end{columns}
+*** Beware of histograms
+#+BEGIN_CENTER
+  \textbf{Rather indicate density than count} \medskip
+#+END_CENTER
+
+*How many bins? Which binwidth?*
+- =ggplot= defaults to $k=30$ bins of width $h$ = =range/30= \frowny
+- Square-root choice: $k = \sqrt{n}$ (Excel, \frowny)
+- Sturges: $k = \lceil \log_2 n + 1 \rceil$ (default for =hist= in R)
+- Rice: $k = \lceil 2 n^{1/3}\rceil$
+- Scott: $k = \left \lceil \frac{\max x - \min x}{h}
+  \right \rceil$, where: $h = \frac{3.5 \hat \sigma}{n^{1/3}}$ (equivalent to Rice
+  under some conditions)
+- ...
+*** Beware of Histograms
+*At which value should the bin start?*
+- In most cases, the binning is aligned on human readable values,
+  which can create nasty artifacts (nice illustration from
+  [[http://stats.stackexchange.com/questions/51718/assessing-approximate-distribution-of-data-based-on-a-histogram/51753#51753][/stackexchange/]])
+#+begin_src R :results output graphics :file pdf_babel/ds_bar4.pdf :exports results :width 7 :height 4 :session
+A <- c(3.15,5.46,3.28,4.2,1.98,2.28,3.12,4.1,3.42,3.91,2.06,5.53,
+       5.19,2.39,1.88,3.43,5.51,2.54,3.64,4.33,4.85,5.56,1.89,4.84,
+       5.74,3.22, 5.52,1.84,4.31,2.01,4.01,5.31,2.56,5.11,2.58,4.43,
+       4.96,1.9,5.6,1.92);
+
+df = rbind(data.frame(val=A,set="A"),
+           data.frame(val=A-.25,set="B"),
+           data.frame(val=A-.5, set="C"),
+           data.frame(val=A-.75,set="D"))
+p1 = ggplot(df,aes(x=val)) + theme_bw() + xlab("Values") +
+     facet_wrap(~set,ncol=2) + 
+     geom_histogram(binwidth=1,fill="gray",color="black") + 
+     geom_point(y=5,shape=21,size=2,fill="white");
+p2 = ggplot(df,aes(y=factor(set, levels = rev(levels(set))),x=val)) + theme_bw() +
+       geom_vline(xintercept=1:6, colour="green", linetype = "longdash") +
+       geom_point(shape=21,size=3) + xlim(0,7) + ylab("Set") + xlab("Values");
+
+
+x <- c(1.03, 1.24, 1.47, 1.52, 1.92, 1.93, 1.94, 1.95, 1.96, 1.97, 1.98, 
+  1.99, 2.72, 2.75, 2.78, 2.81, 2.84, 2.87, 2.9, 2.93, 2.96, 2.99, 3.6, 
+  3.64, 3.66, 3.72, 3.77, 3.88, 3.91, 4.14, 4.54, 4.77, 4.81, 5.62)
+p3_1 = ggplot(data.frame(val=x),aes(x=val)) + theme_bw() + xlab("Values") + xlim(0,6) +
+       geom_histogram(binwidth=1,fill="gray",color="black") + 
+       geom_point(y=2.5,shape=21,size=3);
+p3_2 = ggplot(data.frame(val=x),aes(x=val)) + theme_bw() + xlab("Values") + xlim(0,6) +
+       geom_histogram(binwidth=.8,origin=.3,fill="gray",color="black") + 
+       geom_point(y=2.5,shape=21,size=3);
+
+df = rbind(data.frame(val=x,set="E",binwidth=1,origin=1),
+           data.frame(val=x,set="E ",binwidth=.8,origin=.3));
+df$y= 5;
+p3 = ggplot(df,aes(x=val)) + 
+       theme_bw() + xlab("Values") + xlim(0,6) +
+       facet_wrap(~set,ncol=1) + 
+       geom_histogram(data=df[df$binwidth==1,],binwidth=1,origin=1,fill="gray",color="black") + 
+       geom_histogram(data=df[df$binwidth==.8,],binwidth=.8,origin=.3,fill="gray",color="black") +
+       geom_point(aes(y=y),shape=21,fill="white",size=3) +
+       geom_vline(xintercept=1:6, colour="green", linetype = "longdash");
+
+grid.arrange(p1,p3,nrow=1,widths=c(1.5,1));
+# grid.arrange(p1,p2,nrow=1);
+# grid.arrange(p3_1,p3_2,ncol=1);
+#+end_src
+
+#+BEGIN_CENTER
+  #+ATTR_LaTeX: :width \linewidth
+  #+RESULTS:
+  [[file:pdf_babel/ds_bar4.pdf]]
+#+END_CENTER
+
+*** What should we look for?
+*Shape*: flat ? symmetrical ? multi-modal ? Play with =binwidth= (and
+=origin= if you have few samples) to uncover the full story behind your
+data...
+
+#+begin_src R :results output graphics :file pdf_babel/ds_bar5.pdf :exports results :width 7 :height 4 :session
+library(ggplot2)
+library(gridExtra)
+p1 = ggplot(data.frame(x=rnorm(1000,mean=5,sd=2)),
+            aes(x=x, y=..density..)) + theme_bw() +
+     geom_histogram(color="black",fill="gray",binwidth=1) 
+p2 = ggplot(data.frame(x=runif(1000,min=2,max=40)),
+            aes(x=x, y=..density..)) + theme_bw() +
+     geom_histogram(color="black",fill="gray",binwidth=5) 
+
+x = rbinom(1000,size=1,prob=.3)
+x = 4*x + rnorm(1000)
+p3 = ggplot(data.frame(x=x),
+            aes(x=x, y=..density..)) + theme_bw() +
+     geom_histogram(color="black",fill="gray",binwidth=1) 
+
+x = rbinom(1000,size=1,prob=.3)
+x = 4*x + rexp(1000) + .1*rnorm(1000)
+p4 = ggplot(data.frame(x=x),
+            aes(x=x, y=..density..)) + theme_bw() +
+     geom_histogram(color="black",fill="gray",binwidth=1) 
+
+p5 = ggplot(data.frame(x=rgamma(1000,shape=.2)),
+            aes(x=x, y=..density..)) + theme_bw() +
+     geom_histogram(color="black",fill="gray",binwidth=.5) 
+
+p6 = ggplot(data.frame(x=rlnorm(1000)),
+            aes(x=x, y=..density..)) + theme_bw() +
+     geom_histogram(color="black",fill="gray",binwidth=1) 
+
+grid.arrange(p1,p2,p3,p4,p5,p6,nrow=2);
+#+end_src
+
+#+BEGIN_CENTER
+  #+ATTR_LaTeX: :width \linewidth
+  #+RESULTS:
+  [[file:pdf_babel/ds_bar5.pdf]]
+#+END_CENTER
+
