@@ -1,3 +1,4 @@
+
 #+TITLE:     Descriptive Statistics
 #+AUTHOR:    Nicolas Gast, \textbf{Arnaud Legrand}, Jean-Marc Vincent
 #+DATE: RICM4 Probability and Simulation Lecture
@@ -304,35 +305,37 @@ A <- c(3.15,5.46,3.28,4.2,1.98,2.28,3.12,4.1,3.42,3.91,2.06,5.53,
 df = rbind(data.frame(val=A,set="A"),
            data.frame(val=A-.25,set="B"),
            data.frame(val=A-.5, set="C"),
-           data.frame(val=A-.75,set="D"))
+           data.frame(val=A-.75,set="D"));
+df$y = runif(length(A),min=3,max=6);
+
 p1 = ggplot(df,aes(x=val)) + theme_bw() + xlab("Values") +
      facet_wrap(~set,ncol=2) + 
      geom_histogram(binwidth=1,fill="gray",color="black") + 
-     geom_point(y=5,shape=21,size=2,fill="white");
-p2 = ggplot(df,aes(y=factor(set, levels = rev(levels(set))),x=val)) + theme_bw() +
-       geom_vline(xintercept=1:6, colour="green", linetype = "longdash") +
-       geom_point(shape=21,size=3) + xlim(0,7) + ylab("Set") + xlab("Values");
+     geom_point(data=df,aes(x=val,y=y),shape=21,size=2,fill="white",alpha=.5);
+# p2 = ggplot(df,aes(y=factor(set, levels = rev(levels(set))),x=val)) + theme_bw() +
+#        geom_vline(xintercept=1:6, colour="green", linetype = "longdash") +
+#        geom_point(shape=21,size=3) + xlim(0,7) + ylab("Set") + xlab("Values");
 
 
 x <- c(1.03, 1.24, 1.47, 1.52, 1.92, 1.93, 1.94, 1.95, 1.96, 1.97, 1.98, 
   1.99, 2.72, 2.75, 2.78, 2.81, 2.84, 2.87, 2.9, 2.93, 2.96, 2.99, 3.6, 
   3.64, 3.66, 3.72, 3.77, 3.88, 3.91, 4.14, 4.54, 4.77, 4.81, 5.62)
-p3_1 = ggplot(data.frame(val=x),aes(x=val)) + theme_bw() + xlab("Values") + xlim(0,6) +
-       geom_histogram(binwidth=1,fill="gray",color="black") + 
-       geom_point(y=2.5,shape=21,size=3);
-p3_2 = ggplot(data.frame(val=x),aes(x=val)) + theme_bw() + xlab("Values") + xlim(0,6) +
-       geom_histogram(binwidth=.8,origin=.3,fill="gray",color="black") + 
-       geom_point(y=2.5,shape=21,size=3);
+# p3_1 = ggplot(data.frame(val=x),aes(x=val)) + theme_bw() + xlab("Values") + xlim(0,6) +
+#        geom_histogram(binwidth=1,fill="gray",color="black") + 
+#        geom_point(y=2.5,shape=21,size=3);
+# p3_2 = ggplot(data.frame(val=x),aes(x=val)) + theme_bw() + xlab("Values") + xlim(0,6) +
+#        geom_histogram(binwidth=.8,origin=.3,fill="gray",color="black") + 
+#        geom_point(y=2.5,shape=21,size=3);
 
 df = rbind(data.frame(val=x,set="E",binwidth=1,origin=1),
            data.frame(val=x,set="E ",binwidth=.8,origin=.3));
-df$y= 5;
+df$y= runif(length(x),min=3,max=6);
 p3 = ggplot(df,aes(x=val)) + 
        theme_bw() + xlab("Values") + xlim(0,6) +
        facet_wrap(~set,ncol=1) + 
        geom_histogram(data=df[df$binwidth==1,],binwidth=1,origin=1,fill="gray",color="black") + 
        geom_histogram(data=df[df$binwidth==.8,],binwidth=.8,origin=.3,fill="gray",color="black") +
-       geom_point(aes(y=y),shape=21,fill="white",size=3) +
+       geom_point(aes(y=y),shape=21,fill="white",size=3,alpha=.5) +
        geom_vline(xintercept=1:6, colour="green", linetype = "longdash");
 
 grid.arrange(p1,p3,nrow=1,widths=c(1.5,1));
