@@ -14,6 +14,40 @@
 # http://www.cse.wustl.edu/~jain/cse567-08/ftp/k_12smd.pdf
 
 * Descriptive statistics of an univariate sample
+** Motivation
+*** Motivation
+We have set up a world where we keep collecting data, *huge amount of
+data*...
+
+Sweet, what knowledge can we exctract from such data? How do we
+summarize a data set? 
+
+With a few numbers, some graphics? How? Why is this difficult? \medskip
+
+**** 
+#+BEGIN_QUOTE
+There are three kinds of lies: lies, damned lies and statistics\vspace{-1.5em}
+#+END_QUOTE
+#+LaTeX: \begin{flushright}
+-- Mark Twain’s Autobiography
+# The Chapters from the North American Review
+#+LaTeX: \end{flushright}
+
+#+BEGIN_QUOTE
+Statistical thinking will one day be as necessary for efficient
+citizenship as the ability to read or write\vspace{-1.5em}
+#+END_QUOTE
+#+LaTeX: \begin{flushright}
+    -- Attributed to H. G. Wells 
+#+LaTeX: \end{flushright}
+
+#+BEGIN_QUOTE
+The only statistics you can trust are those you falsified yourself\vspace{-1.5em}
+#+END_QUOTE
+#+LaTeX: \begin{flushright}
+    -- Winston Churchill
+#+LaTeX: \end{flushright}
+
 ** Initial step
 *** I just got new Tees!
 - A series of *measurements* (one value per measurement)
@@ -67,7 +101,7 @@ str(T_size); # May want to use the str function
 #+RESULTS:
 :  Ord.factor w/ 4 levels "S"<"M"<"L"<"XL": 4 2 1 4 2 2 2 4 2 3 ...
 
-*** Are these sample "structured" ?
+*** Are these sample "structured"?
 #+LaTeX: \begin{columns}\begin{column}{.5\linewidth}
 Use =plot.ts= (for *time series*)
 
@@ -81,7 +115,7 @@ plot.ts(T_price,xy.lines=F);
 #+RESULTS:
 [[file:pdf_babel/ds_ts1.pdf]]
 #+LaTeX: \end{column}\end{columns}
-*** Are these sample "structured" ?
+*** Are these sample "structured"?
 Fancier output can be built using =ggplot2=
 #+begin_src R :results output graphics :file pdf_babel/ds_ts2.pdf :exports results :width 5 :height 5 :session
 library(ggplot2)
@@ -184,7 +218,7 @@ grid.arrange(p1,p2,p3,ncol=1);
   #+RESULTS:
   [[file:pdf_babel/ds_bar2.pdf]]
 #+END_CENTER
-*** Wait, why are these histograms so different ?
+*** Wait, why are these histograms so different?
 #+begin_src R :results output graphics :file pdf_babel/ds_bar3_1.pdf :exports none :width 5 :height 3.5 :session
 hist(T_price,xy.lines=F);
 #+end_src
@@ -313,7 +347,7 @@ grid.arrange(p1,p3,nrow=1,widths=c(1.5,1));
 #+END_CENTER
 
 *** What should we look for?
-*Shape*: flat ? symmetrical ? multi-modal ? Play with =binwidth= (and
+*Shape*: flat? symmetrical? multi-modal? Play with =binwidth= (and
 =origin= if you have few samples) to uncover the full story behind your
 data...
 
@@ -396,7 +430,8 @@ plot(T_color);
   :  S  M  L XL 
   :  1 17  1  1
 - May still want to sort values according to their frequency...
-- *Median*: not implemented in standard R, as it's not well defined
+- *Median*: not implemented in standard R for ordinal values, as it's
+  not well defined
 
 #+LaTeX: \end{column}\begin{column}{.5\linewidth}
   [[file:pdf_babel/ct_bar2.pdf]]
@@ -437,7 +472,8 @@ summary(T_price);
 :    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
 :   5.200   7.275   9.500   9.960  12.580  16.000
 
-- Median: 50% of values are smaller than 7.275\\\quad (a possible measure of *central tendency*)
+- =min=, =max=, =median= in R
+- Median: 50% of values are smaller than 9.5\\\quad (a possible measure of *central tendency*)
 
 *** Numerical Values
 The *mode* and the *median* are measures of *central tendency* (typical
@@ -478,12 +514,12 @@ ggplot(df, aes(x=x, y=..density..)) + theme_bw() +
 - This measure is sensitive to "*outliers*".
   - One aberrant (say very large) value will drag the mean to the
     right while it would not change the median
-- The key question is *what makes sense* ?
+- The key question is *what makes sense*?
   + Your favorite pair has been added a +20% mark-up in August but you
-    have a -20% discount as a regular customer. Is the price the same ?
+    have a -20% discount as a regular customer. Is the price the same?
     + No, you actually saved 4% of the original price ($1.2\times.8 = .96$).
   + You drove half the way at 50mph and half of the way at 100mph. Did
-    you drive on average at 75mph ?
+    you drive on average at 75mph?
     + Obviously not...
   + Although you can compute the average of gains/loss, it is not at
     all what you would consider as the average gain.
@@ -540,22 +576,24 @@ Inter-Quantile Range:
 - *Inter-quartile range*: $IQR = Q_{75}-Q_{25}$
 - But other values are possible, e.g., $Q_{95}-Q_{5}$
 - *Range*: $\max - \min$ (may grow unbounded)
-  - quite difficult to use
-*** What about nominal or ordinal values ?
+  - $\leadsto$ quite difficult to use
+*** What about nominal or ordinal values?
 There is for example the notion of *Entropy*: how many bits are required
-to encode the sample ?
+to encode the sample?
 
 Say there is a fraction $f_v$ of items with value $v$.
 
 $$H = - \sum_{v\in V} f_v\log_2(f_v)$$
 
-$-(x+y)\log_2(x+y)<-x\log_2(x)-y\log_2(y)$ so the smaller the entropy, the
-more condensed/predictable the sample distribution
+$-(x+y)\log_2(x+y)<-x\log_2(x)-y\log_2(y)$ so *the smaller the
+entropy, the more condensed/predictable the sample distribution*
 - $H([0,1,0,0])=0$
-- $H([.25,.25,.25,.25])=2$ \medskip
+- $H([.25,.25,.25,.25])=2$
+- $H([1/n, \dots, 1/n])=\log_2(n)$ so you generally normalize $H$ by
+  $\log_2(n)$ \medskip
 
-This notion can be extended to numerical values (but depends on
-binning...)
+This notion can be *extended to numerical values* (but the computation
+is complex as it depends on the binning...)
 
 ** Going further
 *** Skewness
@@ -563,17 +601,17 @@ Remember the *mean* and the *variance*:
 - $A = \overline{x} = \frac{1}{N} \sum_{i=1}^N x_i$
 - $V = \frac{1}{N} \sum_{i=1}^N (x_i-\overline{x})^2$
 
-Could we measure the asymmetry of the samples around the mean ?
+Could we measure the asymmetry of the samples around the mean?
 
 - Proposal 1: $\frac{1}{N} \sum_{i=1}^N (x_i-\overline{x})$ \hfill (always 0... \frowny)
 - Proposal 2: $\frac{1}{N} \sum_{i=1}^N (x_i-\overline{x})^3$ \hfill (not
   well normalized... \frowny)
 
 $$S = \frac{\displaystyle\frac{1}{n} \sum_{i=1}^n
-(x_i-\overline{x})^3}{\Bigg[\underbrace{\frac{1}{n-1} \sum_{i=1}^n
+(x_i-\overline{x})^3}{\Bigg[\underbrace{\frac{1}{n} \sum_{i=1}^n
 (x_i-\overline{x})^2}_{\text{variance}}\Bigg]^{3/2}}$$
 *** Skewness
-Could we illustrate this a bit ? 
+Could we illustrate this a bit? 
 #+begin_src R :results output :session :exports both
 library(moments)
 skewness(runif(1000))
@@ -589,7 +627,7 @@ df_skew = function (x) {
   data.frame(x=x,label=l);
 }
 
-df = rbind(df_skew(runif(1000,min=0,max=5)),
+df = rbind(df_skew(runif(1000,min=-3,max=3)),
            df_skew(rnorm(1000)),
            df_skew(rgamma(1000,shape=3)),
            df_skew(10-rgamma(1000,shape=3)));
@@ -633,10 +671,11 @@ df_kurtosis = function (x) {
   data.frame(x=x,label=l);
 }
 
-df = rbind(df_kurtosis(runif(1000,min=0,max=5)),
-           df_kurtosis(rnorm(1000)),
-           df_kurtosis(rgamma(1000,shape=3)),
-           df_kurtosis(rgamma(1000,shape=.4)));
+n=1000
+df = rbind(df_kurtosis(runif(n,min=0,max=5)),
+           df_kurtosis(rnorm(n)),
+           df_kurtosis((2*floor(runif(n,min=0,max=2))-1)*rgamma(n,shape=5)),
+           df_kurtosis((2*floor(runif(n,min=0,max=2))-1)*rgamma(n,shape=.4)));
 
 ggplot(df,aes(x=x,y=..density..)) + theme_bw() +
     geom_histogram(fill="gray",color="black") + facet_wrap(~label);
@@ -718,4 +757,13 @@ ggplot(data=dfx,aes(y=val, x=as.factor(label))) + theme_bw() + xlab("Method") +
   \includegraphics<+>[height=5cm]{pdf_babel/dist_summary2.pdf}
 \end{center}
 #+END_LaTeX
+
+**** 
+#+BEGIN_QUOTE
+The average human has one breast and one testicle\vspace{-1.5em}
+#+END_QUOTE
+#+LaTeX: \begin{flushright}
+    -- Des McHale
+#+LaTeX: \end{flushright}
+
 
