@@ -51,13 +51,13 @@ You replicate to *increase reliability*. You randomize to *reduce bias*.
   analysis. If you designed your experiments properly, you may be able
   to find somebody to help you with the statistics.\smallskip
 
-  If your experiments is not properly designed, then no matter how
-  good you are at statistics, you experimental effort will have been
-  wasted.
+  If your experiments are not properly designed, then no matter how
+  good you are at statistics, your experimental efforts will have been
+  in vain.
 #+END_QUOTE
 \vspace{-1em}
 #+BEGIN_CENTER
-  \textbf{No amount of high-powered statistical analysis can turn a bad experiment into a good one.}
+  \textbf{Not even the most sophisticated statistical analysis can turn a flawed experiment into a good one.}
 #+END_CENTER
 
 Other important concepts:
@@ -75,7 +75,7 @@ conduct (descriptive, exploratory, prediction, hypothesis testing,
 \dots)\medskip
 
 This is quite important as the set of experiments to perform will be
-completely different when:
+completely different when you are:
 - studying the stabilization of a peer-to-peer algorithm under a
   high churn
 - trying to compare various scheduling algorithms or code versions
@@ -84,12 +84,12 @@ completely different when:
 - \dots
 
 #+BEGIN_CENTER
-This first step enables to decide on *which kind of design* should be
-used
+This step will help you to determine *which kind of experiment design* you should
+use.
 #+END_CENTER
 *** Define the set of relevant \emph{response}
 #+LaTeX: \begin{columns}\begin{column}{.55\linewidth}
-The system under study is generally modeled though a *black-box* model:\\[-1.5em]
+The system under study is generally modeled through a *black-box* model:\\[-1.5em]
 - some *output* variable/\alert{response}($y$)
 - some inputs are fully unknown
 - some *input variables* ($x_1$,\dots,$x_p$) are *controllable*
