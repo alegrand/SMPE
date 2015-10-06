@@ -348,19 +348,53 @@ cancer]]*
 *** Definitely
 - A recent scandal ::
   In 2013, [[https://en.wikipedia.org/wiki/Dong-Pyou_Han][/Dong-Pyou Han/]], a former assistant professor of biomedical
-     sciences at Iowa State University was disgraced:
+     sciences at Iowa State University was disgraced:\footnotesize
   - Falsified blood results to make it appear as though a vaccine he was
     working on had exhibited anti-HIV activity
-  - Han and his team received approximately \$19 million in grant money
-    from the National Institutes of Health.
+  - Han and his team received $\approx$ \$19 million from NIH
   - Retraction and resignation of university
-  - Han was sentenced in 2015 to 57 months imprisonment for fabricating
-    and falsifying data in HIV vaccine trials.
-  - He was also fined US \$7.2 million
-- Scientific fraud is sooo bad... \smiley :: Have a look at the wikipedia
-     [[https://en.wikipedia.org/wiki/Category:Academic_scandals][/list of academic scandals/]]. On a totally different aspect, do
-     not forget to also have a look at the [[https://en.wikipedia.org/wiki/Plagiarism][/plagiarism/]] and [[https://en.wikipedia.org/wiki/Paper_generator][/paper
-     generation/]] entries at [[https://hal.inria.fr/file/index/docid/713564/filename/TechReportV2.pdf][/having fun with h-index/]]
+  - Han was sentenced in 2015 to 57 months imprisonment for
+    fabricating and falsifying data in HIV vaccine trials. He was also
+    fined US \$7.2 million!
+- \normalsize We should avoid witch-hunt :: 
+  #+LaTeX: ~\footnotesize
+  - August 5, 2014, Yoshiki Sasai (stem cell, considered for Nobel
+    Prize) hanged in his laboratory at the RIKEN
+    (Japan). Fraud suspicion...
+  - In 1986, a young postdoctoral fellow at MIT accused her director,
+    Thereza Imanishi-Kari, of falsifying the results of a study
+    published in Cell and co-signed by the Nobel laureate David
+    Baltimore. [..] Declared guilty, Univ. presidency resignation, and
+    finally cleared. This put the careers of two outstanding
+    researchers on hold for ten years based on unfounded accusations.
+- \normalsize Scientific fraud is bad but let's be careful :: \footnotesize Have a look at the
+     wikipedia [[https://en.wikipedia.org/wiki/Category:Academic_scandals][/list of academic scandals/]]. On a totally different
+     aspect, do not forget to also have a look at the [[https://en.wikipedia.org/wiki/Plagiarism][/plagiarism/]] and
+     [[https://en.wikipedia.org/wiki/Paper_generator][/paper generation/]] entries at [[https://hal.inria.fr/file/index/docid/713564/filename/TechReportV2.pdf][/having fun with h-index/]]
+#+BEGIN_CENTER
+   [[http://www.cnrs.fr/fr/pdf/cim/CIM36.pdf][/The Battle against Scientific Fraud/ in the CNRS International
+   Magazine]]
+#+END_CENTER
+*** Is Fraud a new phenomenon?
+#+BEGIN_LaTeX
+  \begin{columns}
+    \begin{column}{.4\linewidth}
+      \includegraphics[width=\linewidth]{images/CNRS_CIM_36_biomed_fraud.png}
+    \end{column}
+    \begin{column}{.6\linewidth}
+   
+      \begin{center}
+        \includegraphics[width=.7\linewidth]{images/CNRS_CIM_36_scientists.pdf}
+      \end{center}
+
+#+END_LaTeX
+
+- Galileo (data fabrication), Ptolemy (plagiarism), Mendel (data
+  enhancement), [[http://lascienceenfraude.blogspot.fr/2012/05/limposture-de-pasteur.html][Pasteur]] (rigorous but hided failures), ...
+#+BEGIN_LaTeX
+    \end{column}
+  \end{columns}
+#+END_LaTeX
 ** Is CS Concerned Really With This?
 *** My Feeling
 Computer scientists have an incredibly *poor training in
