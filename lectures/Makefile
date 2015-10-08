@@ -15,8 +15,13 @@ PDFLATEX=pdflatex -shell-escape
 
 include LaTeX.mk
 
+
 %.tex: %.org
-	emacs -batch --eval "(setq enable-local-eval t)" --eval "(setq enable-local-variables t)" $^  --funcall org-beamer-export-to-latex
+	emacs -batch --eval "(setq enable-local-eval t)" \
+                     --eval "(setq enable-local-variables t)" \
+                     --eval "(setq org-export-babel-evaluate nil)" \
+                     --eval "(setq org-confirm-babel-evaluate nil)" \
+                 $^  --funcall org-beamer-export-to-latex
 	mv $@ $@.bak
 	echo '\\def\\raggedright{}' > $@
 	echo "\PassOptionsToPackage{svgnames}{xcolor}" >> $@
