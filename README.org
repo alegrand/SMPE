@@ -169,9 +169,18 @@ library(swirl)
 install_from_swirl("R Programming")
 swirl()
 #+end_src
+I suggest in particular to follow the following lessons from R
+programming (max 10 minutes each):
+#+BEGIN_EXAMPLE
+ 1: Basic Building Blocks      2: Workspace and Files     
+ 3: Sequences of Numbers       4: Vectors                 
+ 5: Missing Values             6: Subsetting Vectors      
+ 7: Matrices and Data Frames   8: Logic                   
+ 9: Functions                 12: Looking at Data         
+#+END_EXAMPLE
 
 Finally, you may want to read this [[http://ww2.coastal.edu/kingw/statistics/R-tutorials/dataframes.html][excellent tutorial on data frames]]
-(=attach=, =with=, =rownames=, =dimnames=, notions of scope...)
+(=attach=, =with=, =rownames=, =dimnames=, notions of scope...).
 ** Learning ggplot2, plyr/dplyr, reshape/tidyR
 All these packages have been developed by hadley wickam.
 - Although the package is called =ggplot2=, it provides you the =ggplot=
