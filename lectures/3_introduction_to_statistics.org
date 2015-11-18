@@ -460,31 +460,28 @@ When $n$ is large:
     \end{overlayarea}
 #+END_LaTeX
 *** Exploiting blocks
-#+BEGIN_LaTeX
-\begin{itemize}
-\item C.I.s overlap because variance is large. Some *setups* may have an
+- C.I.s overlap because variance is large. Some *setups* may have an
   intrinsically longer duration than others, hence a large
   $\Var(\rv{A})$ and $\Var(\rv{B})$
+  #+BEGIN_LaTeX
   \begin{center}
     \includegraphics<1>[scale=.7,subfig=2]{fig/2sample_comp.fig}%
     \includegraphics<2->[scale=.7,subfig=4]{fig/2sample_comp.fig}%
   \end{center}
-\item<2-> The previous test estimates $\mu_A$ and $\mu_B$
-  \alert{independently}.
+  #+END_LaTeX
+  \pause
+- The previous test estimates $\mu_A$ and $\mu_B$ *independently*.
 
-  $\E[\rv{A}]<\E[\rv{B}] \Leftrightarrow \E[\rv{B-A}]>0$.
+  But note that $\E[\rv{A}]<\E[\rv{B}] \Leftrightarrow \E[\rv{B-A}]>0$.
 
   In the previous evaluation, the \alert{same} setup $i$ is used for
   measuring $\rv{A_i}$ and $\rv{B_i}$, hence we can focus on $\rv{B-A}$.
 
   Since $\Var(\rv{B-A})$ is much smaller than $\Var(\rv{A})$ and
   $\Var(\rv{B})$, we can conclude that $\mu_A<\mu_B$ with 95\% of
-  confidence.
-\item<3-> Relying on such common points is called \alert{blocking}
-  and enable to \alert{reduce variance}.
-\end{itemize}
-
-#+END_LaTeX
+  confidence.\pause
+- Relying on such common points is called \alert{blocking}
+  and enables to *reduce variance*.
 *** Let's reuse a previous example
 #+begin_src R :results output graphics :file pdf_babel/comparing_2_alternatives.pdf :exports none :width 5 :height 3 :session
 library(ggplot2)
