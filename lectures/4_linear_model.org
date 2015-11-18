@@ -394,7 +394,7 @@ linear unbiased estimate
 
          Although not realistic in many settings, dropping this
          assumption leads to significantly more difficult
-         errors-in-variables models
+         /errors-in-variables/ models
     - Linearity ::  the mean of the response variable is a linear
                     combination of the parameters (regression
                     coefficients) and the predictor variables
@@ -446,8 +446,8 @@ linear unbiased estimate
 *** Other Classical Hypothesis (3)
     - Normal and iid errors :: This is *not* an assumption of the
          Gauss Markov Theorem. Yet, it is quite convenient to build
-         confidence intervals of the regression
-    - Arrangement of the predictor variables \rv{X} :: it has a major
+         /precise/ confidence intervals of the regression
+    - Arrangement of the predictor variables $X$ :: it has a major
          influence on the precision of estimates of $\beta$ (remember
          Anscombe's quartet). 
           #+BEGIN_SRC R :session :exports none :results none graphics :file "./pdf_babel/anscombe.pdf" :width 8 :height 3
@@ -466,10 +466,10 @@ linear unbiased estimate
          #+END_CENTER
 	 \vspace{-1em}
       This is part of your design of experiments:
-      - If you want to test linearity, $\rv{X}$ should be uniformly
+      - If you want to test linearity, $X$ should be uniformly
         distributed
       - If you want the best estimation, you should use extreme values
-        of $\rv{X}$
+        of $X$
 ** Checking hypothesis
 *** Linearity: Residuals vs. Explanatory Variable
    #+BEGIN_SRC R :session :exports none :results none graphics :file "./pdf_babel/linearity_check.pdf" :width 6 :height 3
@@ -498,7 +498,8 @@ linear unbiased estimate
 	#+END_CENTER
 
     When there are several factors, you have to check for every
-    dimension...
+    dimension... \frowny That's why one generally study residuals as a
+    function of fitted values.
     \vspace{10cm}
 *** Homoscedasticity: Residuals vs. Fitted values
    #+BEGIN_SRC R :session :exports none :results none graphics :file "./pdf_babel/homoscedasticity_check.pdf" :width 6 :height 3

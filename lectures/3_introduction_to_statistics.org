@@ -243,6 +243,7 @@ value since \rv{X} is a random variable \dots
   \end{equation*}
   #+END_LaTeX
   $\rv{S_n}$ is a random variable too!
+- It is *unbiased*, \ie $\E[\rv{S_n}]=\E[\rv{X}]$
 - For large n's, the distribution of $\rv{S_n}$ is approximately
   *normal* with *mean $\mu$* and *variance $\frac{\sigma^2}{n}$*
   #+BEGIN_LaTeX
@@ -1008,7 +1009,7 @@ file:images/PiratesVsTemp.pdf
 Mikhail Ryazanov (talk) - PiratesVsTemp.svg. \\
 Licensed under CC BY-SA 3.0 via Wikimedia Commons
 #+END_CENTER
-- 2 variables peuvent être fortement correlées à une troisième
+- 2 variables can be strongly correlated to a third one
   (\eg year)
 - Btw, what is wrong with this figure? \winkey
 *** Spurious Suicide                                             :noexport:
@@ -1096,9 +1097,11 @@ sequence_plot(df1[df1$Value<10,])
 #+END_LaTeX
 - *Rare events:* interpretation
 - Get rid of it using \eg *quantiles*:\\[-\baselineskip]
-  - What is the good *rejection rate*? \Eg "above Q3 + 1.5 x (IQR)"
-    (boxplot, Tukey, 1977), \ie above $\mu+2\sigma$ for a normal
-    distribution?
+  - What is the good *rejection rate*? (5% ???)
+- A threshold value:
+  - what is the right *threshold*?
+  - \Eg "above Q3 + 1.5 x (IQR)" (boxplot, Tukey, 1977), \ie above
+    $\mu+2\sigma$ for a normal distribution?
 #+BEGIN_LaTeX
   \end{column}
   \begin{column}{.5\linewidth}
@@ -1108,13 +1111,13 @@ sequence_plot(df1[df1$Value<10,])
   \end{column}
 \end{columns}
 #+END_LaTeX
-  - A threshold value: what is the right threshold?
+\scriptsize
     - Reject values larger than 100 $\leadsto$ .6\% of rejection
     - Reject values larger than  50 $\leadsto$ 1\% of rejection
     - Reject values larger than  10 $\leadsto$ 6\% of rejection
-
+\normalsize
 #+LaTeX: \uncover<3>{%
-Actually, I generated these samples using the Cauchy distribution,
+Actually, I generated these samples using the /Cauchy distribution/,
 which is pathological for most idea you'll come up with \winkey
 
 There is *no mathematical definition of what constitutes an
@@ -1191,7 +1194,7 @@ unless you know what you do...
             want to estimate?
 - Minimum and Maximum :: the /sample minimum/ is always too large, hence
      it is biased...
-- Variance :: =var= is a unbiased estimator or variance but =sd= is a
+- Variance :: =var= is a unbiased estimator of variance but =sd= is a
               biased estimator of standard deviation. Unbiasing
               depends on the distribution so just overestimate...
 ** Statistical Tests
@@ -1210,7 +1213,7 @@ But there may be other more efficient ways to test such hypothesis
 - if you know something about the underlying distribution
 
 Other kind of complex hypothesis may tested
-- median(\rv{A}) = median(\rv{B})
+- median(\rv{A}) = median(\rv{B}), $\E[\rv{A}] = \E[\rv{B}]$, \dots
 - \rv{A} and \rv{B} follow the same distribution
 
 \bf We could give a whole lecture on this topic\dots Only use the tests you
