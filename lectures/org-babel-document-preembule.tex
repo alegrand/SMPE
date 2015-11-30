@@ -11,11 +11,15 @@
 \def\R{\ensuremath{\mathbb{R}}\xspace}
 \def\F{\ensuremath{\mathcal{F}}\xspace}
 \def\N{\ensuremath{\mathcal{N}}\xspace}
+\def\L{\ensuremath{\mathcal{L}}\xspace}
+\newcommand{\M}[1][\rv{X}]{\ensuremath{\operatorname{M}_{#1}(t)}\xspace}
+\newcommand{\MM}[1][\rv{X}]{\ensuremath{\operatorname{M}_{#1}}\xspace}
 \def\P{\ensuremath{\operatorname{P}}\xspace}
 \def\E{\ensuremath{\operatorname{E}}\xspace}
 \def\Var{\ensuremath{\operatorname{Var}}\xspace}
 \def\rv#1{\ensuremath{\textcolor{blue}{#1}}\xspace} % DarkBlue
-
+\newcommand{\widesim}[2][1.5]{\mathrel{\underset{#2}{\scalebox{#1}[1]{$\sim$}}}}
+\def\equi#1{\mathrel{\mathop{\kern 0pt\widesim}\limits_{#1}}} 
 \def\RR{\ensuremath{R^2}\xspace}
 
 

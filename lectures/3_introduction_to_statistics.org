@@ -420,7 +420,7 @@ When $n$ is large:
   different *setups*
 
 - You therefore consider the associated random variables \rv{A} and
-  \rv{B} and try to estimate there expected values $\mu_A$ and $\mu_B$
+  \rv{B} and try to estimate their expected values $\mu_A$ and $\mu_B$
 #+BEGIN_LaTeX
   \begin{center}
     \begin{overlayarea}{.9\linewidth}{4.5cm}
