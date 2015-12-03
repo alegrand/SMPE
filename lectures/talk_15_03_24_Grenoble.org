@@ -1,0 +1,532 @@
+# -*- coding: utf-8 -*-
+# -*- mode: org -*-
+#+startup: beamer
+#+STARTUP: overview
+#+STARTUP: indent
+#+TAGS: noexport(n)
+
+#+Title: Reproducible Research
+#+Author: Arnaud Legrand
+#+DATE: Journée Traces, Grenoble\newline March 24, 2015
+
+#+EPRESENT_FRAME_LEVEL: 2
+
+#+LaTeX_CLASS: beamer
+#+LaTeX_CLASS_OPTIONS: [11pt,xcolor=dvipsnames,presentation]
+#+OPTIONS:   H:2 num:t toc:nil \n:nil @:t ::t |:t ^:nil -:t f:t *:t <:t
+
+#+LATEX_HEADER: \usedescriptionitemofwidthas{bl}
+#+LATEX_HEADER: \usepackage[T1]{fontenc}
+#+LATEX_HEADER: \usepackage[utf8]{inputenc}
+#+LATEX_HEADER: \usepackage[francais]{babel}
+#+LATEX_HEADER: \usepackage{ifthen,figlatex,amsmath,amstext,gensymb,amssymb}
+#+LATEX_HEADER: \usepackage{boxedminipage,xspace,multicol}
+#+LATEX_HEADER: %%%%%%%%% Begin of Beamer Layout %%%%%%%%%%%%%
+#+LATEX_HEADER: \ProcessOptionsBeamer
+#+LATEX_HEADER: \usecolortheme{whale}
+#+LATEX_HEADER: \usecolortheme[named=BrickRed]{structure}
+#+LATEX_HEADER: \useinnertheme{rounded}
+#+LATEX_HEADER: \useoutertheme{infolines}
+#+LATEX_HEADER: \setbeamertemplate{footline}[frame number]
+#+LATEX_HEADER: \setbeamertemplate{headline}[default]
+#+LATEX_HEADER: \setbeamertemplate{navigation symbols}{}
+#+LATEX_HEADER: \defbeamertemplate*{headline}{info theme}{}
+#+LATEX_HEADER: \defbeamertemplate*{footline}{info theme}{\leavevmode%
+#+LATEX_HEADER:   \hbox{%
+#+LATEX_HEADER:     \begin{beamercolorbox}[wd=.2\paperwidth,ht=2.25ex,dp=1ex,center]{author in head/foot}%
+#+LATEX_HEADER:       \usebeamerfont{author in head/foot}\insertshortauthor
+#+LATEX_HEADER:     \end{beamercolorbox}%
+#+LATEX_HEADER:   \begin{beamercolorbox}[wd=.71\paperwidth,ht=2.25ex,dp=1ex,center]{title in head/foot}%
+#+LATEX_HEADER:     \usebeamerfont{title in head/foot}\insertsectionhead
+#+LATEX_HEADER:   \end{beamercolorbox}%
+#+LATEX_HEADER:   \begin{beamercolorbox}[wd=.09\paperwidth,ht=2.25ex,dp=1ex,right]{section in head/foot}%
+#+LATEX_HEADER:     \usebeamerfont{section in head/foot}\insertframenumber{}~/~\inserttotalframenumber\hspace*{2ex} 
+#+LATEX_HEADER:   \end{beamercolorbox}
+#+LATEX_HEADER:   }\vskip0pt}
+#+LATEX_HEADER: \setbeamertemplate{footline}[info theme]
+#+LATEX_HEADER: %%%%%%%%% End of Beamer Layout %%%%%%%%%%%%%
+#+LATEX_HEADER: %\usepackage{verbments}
+#+LATEX_HEADER: \usepackage{cutwin}
+#+LATEX_HEADER: \usepackage{xcolor}
+#+LATEX_HEADER: \usepackage{color}
+#+LATEX_HEADER: \usepackage{url} \urlstyle{sf}
+
+#+LATEX_HEADER: \let\alert=\structure % to make sure the org * * works of tools
+#+LATEX_HEADER: \usepackage{pdfpages}
+#+LATEX_HEADER: \makeatletter
+#+LATEX_HEADER: \gdef\fsvtpage{\ps@navigation\refstepcounter{framenumber}}%
+#+LATEX_HEADER: \makeatother
+#+LATEX_HEADER: \setbeamercolor{background canvas}{bg=}
+
+#+BEGIN_LaTeX
+  \newcommand{\restorefootline}{\setbeamertemplate{navigation symbols}{}}
+  \newcommand{\setfootline}[1]{\setbeamertemplate{navigation symbols}{\textcolor{black}{\textbf{#1}}}}
+  \newcommand{\includeslides}[3]{%
+    \setfootline{#1}%
+    \includepdf[pages={#2},pagecommand={\fsvtpage},turn=false,noautoscale=false,column=false,columnstrict=false,openright=false]{pdf_sources/#3}%
+  %  \includepdf[pages={#2},pagecommand={\fsvtpage},scale=.8,offset=20
+  %  -23,turn=false,noautoscale=false,column=false,columnstrict=false,openright=false]{pdf_sources/#3}%
+    \restorefootline%
+  }
+  \newcommand{\includeslidesJF}[1]{%
+    \includeslides{Courtesy of Juliana Freire (AMP Workshop on
+      Reproducible research)}{#1}{2011-amp-reproducible-research.pdf}
+  }
+
+  \newcommand{\includeslidesAD}[1]{%
+    \includeslides{Courtesy of Andrew Davison (AMP Workshop on
+      Reproducible research)}{#1}{sumatra_amp2011.pdf}
+  }
+
+  % \frame<handout:0>
+  % {
+  %   \frametitle{Outline}
+  %   \tableofcontents
+  % }
+
+  % \makeatletter
+  % \AtBeginSubsection[]
+  % {
+  %   \frame<handout:0>
+  %   {
+  %     \frametitle{Outline}
+  %     \tableofcontents[current,currentsubsection]
+  %   }
+  % }
+  % \makeatother
+
+  \newcommand{\bottomcite}[1]{\fbox{\vbox{\footnotesize #1}}}
+#+END_LaTeX
+
+* Fun Examples
+** Naicken computation                                             :noexport:
+#+tblname: naicken
+| Type        | Count |
+|-------------+-------|
+| None        |   146 |
+| Unspecified |    71 |
+| Custom      |    43 |
+| NS-2        |     8 |
+| Chord-(SFS) |     7 |
+| Javasim     |     2 |
+| Peersim     |     2 |
+| Aurora      |     1 |
+| CSIM-19     |     1 |
+| Modelnet    |     1 |
+| Nab         |     1 |
+| Narses      |     1 |
+| Neurogrid   |     1 |
+| P2PSim      |     1 |
+| SOSS        |     1 |
+
+#+begin_src R :results output graphics  :var df=naicken :file images/naicken.pdf :exports both :width 4 :height 4 :session
+  library(ggplot2)
+  df <- df[df$Type!="None",]
+  df[!(df$Type %in% c("Unspecified","Custom","NS-2","Chord-(SFS)")),]$Type = "Other"
+  df$Ratio = 100*df$Count / sum(df$Count)
+  pie <- ggplot(df, aes(x = "", y = Ratio, fill = Type)) + 
+         geom_bar(width = 1,  stat = "identity") + coord_polar(theta = "y") 
+  pie + scale_fill_brewer(palette="Set1") + theme_bw() + ylab("") + xlab("") + 
+        ggtitle("Simulator usage [Naicken06]")
+#+end_src
+
+#+RESULTS:
+[[file:images/naicken.pdf]]
+
+#+begin_src sh :results output :exports both
+  pdfcrop naicken.pdf naicken.pdf
+#+end_src
+
+#+RESULTS:
+: PDFCROP 1.38, 2012/11/02 - Copyright (c) 2002-2012 by Heiko Oberdiek.
+: ==> 1 page written on `naicken.pdf'.
+
+** A Few Edifying Examples
+#+BEGIN_LaTeX
+  \begin{columns}
+    \begin{column}{.67\linewidth}
+      \bottomcite{Naicken, Stephen \textit{et Al.}, \textit{Towards Yet
+          Another Peer-to-Peer Simulator}, HET-NETs'06.}\medskip\\
+      \small
+      From 141 P2P sim.papers, 30\% use a custom tool, \alert{50\% don't report
+      used tool}\\ \medskip
+
+    \end{column}
+    \begin{column}{.33\linewidth}
+      \includegraphics[width=\linewidth]{images/naicken.pdf}
+    \end{column}
+  \end{columns}
+
+  \bottomcite{Collberg, Christian \textit{et Al.}, \textit{Measuring
+      Reproducibility in Computer Systems Research},
+    \url{http://reproducibility.cs.arizona.edu/}}
+
+  \begin{columns}
+    \begin{column}{.5\linewidth}
+      ~\hspace{-1.7em}\includegraphics[height=4.7cm]{images/repeatability_arizona.pdf}
+    \end{column}
+    \begin{column}{.5\linewidth}
+      \small
+      \begin{itemize}
+      \item 8 ACM conferences ({\scriptsize ASPLOS'12, CCS'12, OOPSLA'12, OSDI'12,
+        PLDI'12, SIGMOD'12, SOSP'11, VLDB'12}) and 5 journals
+      \item 
+        $\text{EM}^{\text{no}}$= \alert{the code cannot be provided}
+      \end{itemize}
+    \end{column}
+  \end{columns}
+#+END_LaTeX
+
+** The Dog Ate my Homework !!!
+#+BEGIN_LaTeX
+  \vspace{-1cm}
+  \begin{multicols}{2}
+    \begin{itemize}[<+->]
+    \item \alert<.>{Versionning Problems}
+    \item \alert<.>{Bad Backup Practices}
+    \item \alert<.>{Code Will be Available Soon}
+    \item \alert<.>{No Intention to Release}
+    \item \alert<.>{Programmer Left}
+    \item \alert<.>{Commercial Code}
+    \item \alert<.>{Proprietary Academic Code}
+    \item \alert<.>{Research vs. Sharing}
+    \item<.-> ...
+    \item<.-> ...
+    \end{itemize}
+  \end{multicols}
+
+  \begin{block}{}
+  \vspace{-1cm}
+    \begin{overlayarea}{\linewidth}{4cm}
+      \small
+      \only<1>{
+        \begin{quote}
+          Thanks for your interest in the implementation of our
+          paper. The good news is that I was able to find some code. I
+          am just \alert{hoping} that \alert{it} is a stable working
+          version of the code, and \alert{matches the implementation we
+            finally used for the paper}. Unfortunately, I have
+          \alert{lost some data} when \alert{my laptop was stolen} last
+          year. The bad news is that the code is not commented and/or
+          clean.
+        \end{quote}
+        \begin{quote}
+          Attached is the $\langle$system$\rangle$ source code of our
+          algorithm. I’m \alert{not} very \alert{sure whether it is the
+            final version of the code used in our paper}, but it should
+          be at least 99\% close. Hope it will help.
+        \end{quote}}%
+      \only<2>{
+        \begin{quote}
+          Unfortunately, the server in which my implementation was
+          stored had a \alert{disk crash in April and three disks
+            crashed simultaneously}. While the help desk made
+          significant effort to save the data, my entire implementation
+          for this paper was not found.
+        \end{quote}}
+      \only<3>{
+        \begin{quote}
+          Unfortunately the
+          current system is \alert{not mature enough at the moment}, so
+          it’s not yet publicly available. We are actively working on a
+          number of extensions and \alert{things are somewhat
+            volatile}. However, once things stabilize we plan to release
+          it to outside users. At that point, we would be happy to send
+          you a copy.
+        \end{quote}}%
+      \only<4>{
+        \begin{quote}
+          I am afraid that the source code was never released. The code
+          was \alert{never intended to be released so is not in any shape
+            for general use}.
+        \end{quote}}%
+      \only<5>{
+        \begin{quote}
+          $\langle$STUDENT$\rangle$ was a graduate student in our
+          program but \alert{he left a while back} so I am responding
+          instead. For the paper we used a prototype that included many
+          moving pieces that only $\langle$STUDENT$\rangle$ knew how to
+          operate and we did not have the time to integrate them in a
+          ready-to-share implementation before he left. Still, I hope
+          you can build on the ideas/technique of the paper. 
+        \end{quote}
+        \begin{quote}
+          Unfortunately, the author who has done most of the coding for
+          this paper has \alert{passed away} and the code is no longer
+          maintained.
+        \end{quote}
+      }%
+      \only<6>{
+        \begin{quote}
+          Since this work has been done at $\langle$COMPANY$\rangle$
+          \alert{we don't open-source code} unless there is a compelling
+          business reason to do so. So unfortunately I don’t think we’ll
+          be able to share it with you.
+        \end{quote}
+        \begin{quote}
+          The code \alert{owned by $\langle$COMPANY$\rangle$}, and AFAIK
+          the code is not open-source.  Your best bet is to reimplement
+          :( Sorry.
+        \end{quote}}%
+      \only<7>{
+        \begin{quote}
+          Unfortunately, the $\langle$SYSTEM$\rangle$
+          sources are \alert{not meant to be opensource} (the code is partially
+          \alert{property of $\langle$UNIVERSITY 1$\rangle$,
+            $\langle$UNIVERSITY 2$\rangle$ and $\langle$UNIVERSITY
+            3$\rangle$.})
+
+          If this will change I will let you know, albeit I do not
+          think there is an intention to make the
+          $\langle$SYSTEM$\rangle$ sources opensource in the near
+          future.
+        \end{quote}
+        \begin{quote}
+          If you're interested in obtaining the code, \alert{we only ask
+            for a description of the research project} that the code
+          will be used in (\alert{which may lead to some joint
+            research}), and we also have a software license agreement
+          that the University would need to sign.
+        \end{quote}}
+      \only<8>{
+        \begin{quote}
+          In the past when we attempted to share it, we found ourselves
+          spending more time getting outsiders up to speed than on our
+          own research. So \alert{I finally had to establish the policy
+            that we will not provide the source code outside the group}.
+        \end{quote}
+      }
+    \end{overlayarea}
+  \end{block}
+#+END_LaTeX
+#+BEGIN_QUOTE
+
+#+END_QUOTE
+* How does it work in other sciences?
+\includeslidesJF{2-7}
+# \includeslidesJF{11-14}
+# \includeslidesMG{26}
+** A Reproducibility Crisis ?                                     :noexport:
+#+LaTeX: \begin{overlayarea}{\linewidth}{7.6cm}\null\vspace{-.4cm}
+*[[http://www.nytimes.com/2011/07/08/health/research/08genes.html][The Duke University scandal with scientific misconduct on lung
+cancer]]*
+
+\vspace{-.2cm}\small
+- /Nature Medicine/ - 12, 1294 - 1300 (2006) *Genomic signatures to
+  guide the use of chemotherapeutics*, by
+  #+LaTeX: \bgroup\scriptsize
+  Anil Potti and 16 other researchers from Duke University and
+  University of South Florida
+  #+LaTeX: \egroup\vspace{-.2cm}
+- Major commercial labs licensed it and were about to start using it
+  before two statisticians discovered and publicized its faults
+  #+BEGIN_LaTeX
+  \begin{block}{}\scriptsize
+  Dr. Baggerly and Dr. Coombes found errors almost immediately. Some seemed careless — moving a row or a column over by one in a giant spreadsheet — while others seemed inexplicable. The Duke team shrugged them off as “clerical errors.”
+  \end{block}
+
+  \begin{block}{}\scriptsize
+  The Duke researchers continued to publish papers on their genomic signatures in prestigious journals. Meanwhile, they started three trials using the work to decide which drugs to give patients.
+  \end{block}
+  #+END_LaTeX
+- Retractions: January 2011. [[http://en.wikipedia.org/wiki/Anil_Potti][Ten papers that Potti coauthored in
+  prestigious journals were retracted for varying reasons]]
+- Some people die and may be getting worthless information that is
+  based on *bad science*
+#+LaTeX: \end{overlayarea} \begin{flushright}\scriptsize Courtesy of Adam J. Richards\end{flushright}
+** Evidence for a Lack of Reproducibility
+#+LaTeX: \begin{overlayarea}{\linewidth}{7.6cm}\null\vspace{.6cm}
+- Studies showing that scientific papers commonly *leave out
+  experimental details essential for reproduction* and showing
+  *difficulties with replicating published experimental results*:
+  + J.P. Ioannidis. /[[http://www.plosmedicine.org/article/info:doi/10.1371/journal.pmed.0020124][Why Most Published Research Findings Are False]]/ PLoS
+    Med. 2005 August; 2(8)
+- High number of *failing clinical trials*.
+  + /[[http://mescal.imag.fr/membres/arnaud.legrand/teaching/2011/EP_epidemiology.pdf][Do We Really Know What Makes Us Healthy?]]/, New-York Times —
+    September 16, 2007
+  + /[[http://mescal.imag.fr/membres/arnaud.legrand/teaching/2011/EP_lies.pdf][Lies, Damned Lies, and Medical Science]]/, The Atlantic. 2010, Nov.
+- Increase in *retracted papers*:
+  + Steen RG, /[[http://dx.doi.org/10.1136/jme.2010.040923][Retractions in the scientific literature: is the
+    incidence of research fraud increasing?]]/ J Med Ethics 37:
+    249–253.
+#+LaTeX: \end{overlayarea} \begin{flushright}\scriptsize Courtesy of Adam J. Richards\end{flushright}
+* What about us ?
+** Experimenting in the Wild
+#+BEGIN_CENTER
+ \includegraphics[width=.95\linewidth]{images/phdcomic.pdf}\\
+#+END_CENTER
+#+LaTeX: \vspace{-.5cm}
+*** Experiments in HPC: Even Worse!
+    - Rely on large, distributed, hybrid, prototype hardware/software
+    - Measure execution times (makespans, traces, ...)
+    - Many parameters, very costly and hard to */reproduce/*
+** Reproducing in the Wild
+*** In my Community
+Reproducing results of others is not in the culture
+- Rewards for *positive results* and *novelty* rather than consolidating existing results 
+- Excuse #1: Hardware and software evolve very quickly
+- Excuse #2: Reproducible research is not mandatory
+*** Why is it so Hard in General? 
+- Copyright/competition issue (would give advantage to "others")
+- Publication *bias* (only the idea matters, not the gory details)
+- Experimenter *bias*
+- Programming *errors* or data manipulation/analysis *mistakes*
+- +*Lack of easy-to-use tools*+
+***                                                       :B_ignoreheading:
+     :PROPERTIES:
+     :BEAMER_env: ignoreheading
+     :END:
+#+BEGIN_CENTER
+\textbf{Why bother?}
+#+END_CENTER
+*** Motivation for Reproducible Research                         :noexport:
+      - Build on others' work
+      - Mistakes are easily done (compiler, OS, ...)
+      - Compare with others (or even with your previous solutions...)
+
+** A few Words on Scientific Foundation                           :noexport:
+- *Falsifiability* or *refutability* of a statement, hypothesis, or
+  theory is an inherent possibility to prove it to be false (not
+  "/commit fraud/" but "/prove to be false/").
+- Karl Popper makes falsifiability the demarcation criterion to
+  *distinguish the scientific from the unscientific*
+
+  #+BEGIN_QUOTE
+  It is not only not right, it is not even wrong!
+
+  -- Wolfgang Pauli
+  #+END_QUOTE
+- Theories cannot be proved correct but they can be disproved. Only a
+  few stand the test of batteries of *critical experiments*.
+- It is not all black and white. There are many stories where
+  scientists stick with their theories despite evidences and
+  sometimes, they were even right to do so...
+#+BEGIN_CENTER
+  *Testing and checking is thus one of the basis of science*
+#+END_CENTER
+
+Further readings: *A Summary of Scientific Method*, Peter Kosso,
+Springer
+** Why Are Scientific Studies so Difficult to Reproduce?          :noexport:
+#+LaTeX: \begin{overlayarea}{\linewidth}{7.6cm}\null\vspace{1cm}
+- Copyright/competition issue
+- Publication *bias* (only the idea matters, not the gory details)
+- Rewards for *positive results*
+- Experimenter *bias*
+- Programming *errors* or data manipulation *mistakes*
+- Poorly selected statistical tests
+- Multiple testing, multiple looks at the data, multiple
+  statistical analyses
+- +*Lack of easy-to-use tools*+
+
+#+LaTeX: \end{overlayarea} \begin{flushright}\scriptsize Courtesy of Adam J. Richards\end{flushright}
+** Reproducibility: What Are We Talking About?                    :noexport:
+#+BEGIN_LaTeX
+\vspace{-.6em}
+\begin{overlayarea}{\linewidth}{9cm}
+\hbox{\hspace{-.05\linewidth}\includegraphics[page=5,width=1.1\linewidth]{pdf_sources/sumatra_amp2011.pdf}}
+
+\vspace{-2cm}
+\begin{flushright}
+  {\scriptsize Courtesy of Andrew Davison (AMP Workshop on Reproducible research)}
+\end{flushright}
+\end{overlayarea}
+#+END_LaTeX
+* Bridging The Gap
+** Reproducible Research: Trying to Bridge the Gap
+#+BEGIN_LaTeX
+  \hbox{\hspace{-.05\linewidth}%
+  \includegraphics<1>[width=1.07\linewidth,subfig=1]{fig/author_reader_rr.fig}%
+  \includegraphics<2>[width=1.07\linewidth,subfig=2]{fig/author_reader_rr.fig}%
+  \includegraphics<3>[width=1.07\linewidth,subfig=3]{fig/author_reader_rr.fig}%
+%  \includegraphics<4>[width=1.07\linewidth,subfig=4]{fig/author_reader_rr.fig}%
+  \hspace{-.05\linewidth}}
+\vspace{-.4cm}
+\begin{flushright}
+{\scriptsize {\textbf{Inspired by Roger D. Peng's lecture on reproducible research, May 2014}}}
+\end{flushright}
+#+END_LaTeX
+** Mythbusters: Science vs. Screwing Around                        :B_frame:
+    :PROPERTIES:
+    :BEAMER_env: frame
+    :BEAMER_OPT: plain
+    :END:
+
+#+BEGIN_LaTeX
+\begin{overlayarea}{\linewidth}{0cm}
+\vspace{-4cm}
+\hbox{\hspace{-.1\linewidth}\includegraphics[width=1.2\linewidth,height=9cm]{images/remember_kids.jpg}}
+\end{overlayarea}
+#+END_LaTeX
+** Reproducible Research: Trying to Bridge the Gap
+#+BEGIN_LaTeX
+  \hbox{\hspace{-.05\linewidth}%
+  \includegraphics<1>[width=1.07\linewidth,subfig=4]{fig/author_reader_rr.fig}%
+  \hspace{-.05\linewidth}}
+\vspace{-.4cm}
+\begin{flushright}
+{\scriptsize {\textbf{Inspired by Roger D. Peng's lecture on reproducible research, May 2014}}}
+\end{flushright}
+#+END_LaTeX
+** A Difficult Trade-off                                          :noexport:
+#+BEGIN_CENTER
+Many different tools/approaches developped in various communities
+#+END_CENTER
+*** Automatically keeping track of everything
+- the code that was run (source code, libraries, compilation
+  procedure)
+- processor architecture, OS, machine, date, ...
+#+LaTeX: \vspace{-\baselineskip}
+#+BEGIN_CENTER
+*VM-based solutions* and *experiment engines*
+#+END_CENTER
+*** Ensuring others can understand/adapt what was done
+- Why did I run this?
+- Does it still work when I change this piece of code for this one?
+#+LaTeX: \vspace{-\baselineskip}
+#+BEGIN_CENTER
+*Laboratory notebook* and *recipes*
+#+END_CENTER
+* Many Alternatives for Reproducible Analysis
+** So Many New Tools
+#+BEGIN_LaTeX
+\vspace{-.6em}
+\begin{overlayarea}{\linewidth}{9cm}
+\hbox{\hspace{-.05\linewidth}%
+\includegraphics[page=13,width=1.1\linewidth]{pdf_sources/DavisFeb132014-STODDEN.pdf}%
+}
+\vspace{-1.5cm}
+\begin{flushright}
+  {\scriptsize {\textbf{Courtesy of Victoria Stodden (UC Davis, Feb 13, 2014)}}}
+\end{flushright}
+\vspace{.8cm}
+\scalebox{.97}{And also: \textbf{Figshare/Zenodo}, \textbf{ActivePapers}, \textbf{Elsevier executable paper},\dots}
+\end{overlayarea}
+#+END_LaTeX 
+** Reproducible Research: the New Buzzword?
+*** H2020-EINFRA-2014-2015
+#+BEGIN_QUOTE
+A key element will be capacity building to link literature and data in
+order to enable a more transparent evaluation of research and
+*reproducibility* of results.
+#+END_QUOTE
+\vspace{-1em}
+*** More and more workshops
+#+LaTeX: \scriptsize
+- [[http://www.eecg.toronto.edu/~enright/wddd/][Workshop on Duplicating, Deconstructing and Debunking (WDDD)]] ([[http://cag.engr.uconn.edu/isca2014/workshop_tutorial.html][2014 edition]])
+- \normalsize *[[http://www.stodden.net/AMP2011/][Reproducible Research: Tools and Strategies for Scientific
+  Computing]]* \scriptsize(2011)
+- [[http://wssspe.researchcomputing.org.uk/][Working towards Sustainable Software for Science: Practice and
+  Experiences]] (2013)
+- [[https://www.xsede.org/web/reproducibility][Reproducibility@XSEDE: An XSEDE14 Workshop]]
+  #+LaTeX: \item \href{http://www.ctuning.org/cm/wiki/index.php?title\%3DEvents:TRUST2014}{TRUST 2014}
+- *[[http://reppar.org/][REPPAR'15: 2nd International Workshop on Reproducibility in
+  Parallel Computing]]*
+- *[[http://www.ntms-conf.org/ntms-2015/index.php/workshops/reproducibility-of-computation-based-research-workshop%20][Reproducibility of Computation Based Research/NTMS'15]]*
+
+\normalsize 
+Should be seen as opportunities to share experience.
+#+LaTeX: \begin{center}
+*recherche-reproductible@listes.univ-orleans.fr*
+#+LaTeX: \end{center}
+

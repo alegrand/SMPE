@@ -1,0 +1,752 @@
+#+TITLE:     Reproducible Research with R
+#+AUTHOR:    Arnaud Legrand
+#+DATE: COMPAS tutorials, Neuchâtel, April 2014
+#+startup: beamer
+#+STARTUP: overview
+#+STARTUP: indent
+#+TAGS: noexport(n)
+#+LaTeX_CLASS: beamer
+#+LaTeX_CLASS_OPTIONS: [11pt,xcolor=dvipsnames,presentation]
+#+OPTIONS:   H:3 num:t toc:nil \n:nil @:t ::t |:t ^:t -:t f:t *:t <:t
+#+LATEX_HEADER: \usedescriptionitemofwidthas{bl}
+#+LATEX_HEADER: \usepackage[T1]{fontenc}
+#+LATEX_HEADER: \usepackage[utf8]{inputenc}
+#+LATEX_HEADER: \usepackage{ifthen,graphicx,amsmath,amstext,gensymb,amssymb}
+#+LATEX_HEADER: \usepackage{boxedminipage,xspace,multicol}
+#+LATEX_HEADER: \usetheme{Madrid}
+#+LATEX_HEADER: \usecolortheme[named=BrickRed]{structure}
+#+LATEX_HEADER: \setbeamertemplate{footline}[frame number]
+#+LATEX_HEADER: \setbeamertemplate{navigation symbols}{}
+#+LATEX_HEADER: \usepackage{verbments}
+#+LATEX_HEADER: \usepackage{xcolor}
+#+LATEX_HEADER: \usepackage{color}
+#+LATEX_HEADER: \usepackage{url} \urlstyle{sf}
+#+LATEX_HEADER: \usepackage[american]{babel}
+
+#+LATEX_HEADER: \let\alert=\structure % to make sure the org * * works
+
+#+LATEX_HEADER: \usepackage{pdfpages}
+#+LATEX_HEADER: \makeatletter
+#+LATEX_HEADER: \gdef\fsvtpage{\ps@navigation\refstepcounter{framenumber}}%
+#+LATEX_HEADER: \makeatother
+#+LATEX_HEADER: \setbeamercolor{background canvas}{bg=}
+
+
+
+#+BEGIN_LaTeX
+\definecolor{keywords}{RGB}{255,0,90}
+\definecolor{comments}{RGB}{60,179,113}
+\definecolor{fore}{RGB}{249,242,215}
+\definecolor{back}{RGB}{51,51,51}
+%\lstset{
+%  basicstyle=\color{fore},
+%  keywordstyle=\color{keywords},
+%  commentstyle=\color{comments},
+%  backgroundcolor=\color{back}
+%}
+#+END_LaTeX
+
+#+BEGIN_LaTeX
+\newcommand{\restorefootline}{\setbeamertemplate{navigation symbols}{}}
+\newcommand{\setfootline}[1]{\setbeamertemplate{navigation symbols}{\textcolor{black}{\textbf{#1}}}}
+\newcommand{\includeslides}[3]{%
+  \setfootline{#1}%
+  \includepdf[pages={#2},pagecommand={\fsvtpage},turn=false,noautoscale=false,column=false,columnstrict=false,openright=false]{pdf_sources/#3}%
+%  \includepdf[pages={#2},pagecommand={\fsvtpage},scale=.8,offset=20
+%  -23,turn=false,noautoscale=false,column=false,columnstrict=false,openright=false]{pdf_sources/#3}%
+  \restorefootline%
+}
+\newcommand{\includeslidesJF}[1]{%
+  \includeslides{Courtesy of Juliana Freire (AMP Workshop on
+    Reproducible research)}{#1}{2011-amp-reproducible-research.pdf}
+}
+
+\newcommand{\includeslidesAD}[1]{%
+  \includeslides{Courtesy of Andrew Davison (AMP Workshop on
+    Reproducible research)}{#1}{sumatra_amp2011.pdf}
+}
+
+\frame<handout:0>
+{
+  \frametitle{Outline}
+  \tableofcontents
+}
+
+\makeatletter
+\AtBeginSubsection[]
+{
+  \frame<handout:0>
+  {
+    \frametitle{Outline}
+    \tableofcontents[current,currentsubsection]
+  }
+}
+\makeatother
+#+END_LaTeX
+
+* Reproducible Research
+** Looks familiar ?
+*** As a Reviewer
+This may be an interesting contribution but:
+- This *average value* must hide something.
+- As usual, there is no *confidence interval*, I wonder about the
+  variability and whether the difference is *significant* or not.
+- That can't be true, I'm sure they *removed some points*.
+- Why is this graph in *logscale* ? How would it look like otherwise ?
+- The authors decided to show only a *subset of the data*. I wonder
+  what the rest looks like.
+- There is no label/legend/... What is the *meaning of this graph* ?
+  If only I could access the generation script.
+*** As an Author
+- I thought I used the same parameters but *I'm getting different
+  results!*
+- The new student wants to compare with *the method I proposed last
+  year*.
+- The damn reviewer asked for a major revision and wants me to *change
+  this figure*. :(
+- *Which code* and *which data set* did I use to generate this figure?
+- It *worked yesterday*!
+- *Why* did I do that?
+*** My Feeling
+Computer scientists have an incredibly *poor training in
+probabilities and statistics*
+  
+\medskip
+
+Why should we ? Computer are *deterministic* machines after all, right?
+;)
+
+\medskip
+
+Eight years ago, I've started realizing how *lame* the articles I
+reviewed (as well as those I wrote) were in term of experimental
+methodology.
+  
++ Yeah, I know, your method/algorithm is better than the others as
+  demonstrated by the figures
++ Not enough information to *discriminate real effects from noise*
++ Little information about the *workload*
++ Would the ``conclusion'' still hold with a slightly different
+  workload?
++ I'm tired of awful combination of tools (perl, gnuplot, sql, ...)
+  and *bad methodology*
+*** Current practice in CS
+\small
+Computer scientists tend to either:
+- vary *one factor at a time*, use a very fine sampling of the
+  parameter range,
+- *run millions of experiments* for a week varying a lot of
+  parameters and then try to get something of it. Most of the time,
+  they (1) don’t know how to analyze the results (2) realize
+  something went wrong...
+#+BEGIN_LaTeX
+\vspace{-1em}
+\centerline{\begin{minipage}{.7\linewidth}
+  \begin{block}{}Interestingly, most other scientists do \structure{the exact
+  opposite}.
+  \end{block}
+\end{minipage}}
+\vspace{.5em}
+#+END_LaTeX
+
+These two flaws come from poor training and from the fact that C.S.
+experiments are *almost* free and very fast to conduct.
+- Most strategies of experimentation have been designed to *provide
+  sound answers despite* all the *randomness and uncontrollable
+  factors*;
+- *Maximize the amount of information* provided by a given set of
+  experiments;
+- *Reduce* as much as possible *the number of experiments* to perform
+  to answer a given question under a given level of confidence.
+**** 
+#+BEGIN_CENTER
+Takes a few lectures on *Design of Experiments* to improve but anyone
+can start by reading *Jain's book on The Art of Computer Systems
+Performance Analysis*
+#+END_CENTER
+\normalsize
+
+** 
+\includeslidesJF{2-7}
+# \includeslidesJF{11-14}
+# \includeslidesMG{26}
+*** Reproducibility: What Are We Talking About ?
+#+BEGIN_LaTeX
+\vspace{-.6em}
+\begin{overlayarea}{\linewidth}{9cm}
+\hbox{\hspace{-.05\linewidth}\includegraphics[page=5,width=1.1\linewidth]{pdf_sources/sumatra_amp2011.pdf}}
+
+\vspace{-2cm}
+\begin{flushright}
+  {\scriptsize Courtesy of Andrew Davison (AMP Workshop on Reproducible research)}
+\end{flushright}
+\end{overlayarea}
+#+END_LaTeX
+*** A Difficult Trade-off
+**** Automatically keeping track of everything
+- the code that was run (source code, libraries, compilation
+  procedure)
+- processor architecture, OS, machine, date, ...
+#+BEGIN_CENTER
+*VM-based solutions* 
+#+END_CENTER
+**** Ensuring others can redo/understand what you did
+- Why did I run this?
+- Does it still work when I change this piece of code for this one?
+*Laboratory notebook* and *recipes*
+*** Reproducible Research: the New Buzzword ?
+**** H2020-EINFRA-2014-2015
+#+BEGIN_QUOTE
+A key element will be capacity building to link literature and data in
+order to enable a more transparent evaluation of research and
+*reproducibility* of results.
+#+END_QUOTE
+**** More and more workshops
+#+LaTeX: \scriptsize
+- [[http://www.eecg.toronto.edu/~enright/wddd/][Workshop on Duplicating, Deconstructing and Debunking (WDDD)]] ([[http://cag.engr.uconn.edu/isca2014/workshop_tutorial.html][2014 edition]])
+- \normalsize *[[http://www.stodden.net/AMP2011/][Reproducible Research: Tools and Strategies for Scientific
+  Computing]]* \scriptsize(2011)
+- [[http://wssspe.researchcomputing.org.uk/][Working towards Sustainable Software for Science: Practice and
+  Experiences]] (2013)
+- *[[http://hunoldscience.net/conf/reppar14/pc.html][REPPAR'14: 1st International Workshop on Reproducibility in
+  Parallel Computing]]*
+- [[https://www.xsede.org/web/reproducibility][Reproducibility@XSEDE: An XSEDE14 Workshop]]
+- [[http://www.occamportal.org/reproduce][Reproduce/HPCA 2014]]
+  #+LaTeX: \item \href{http://www.ctuning.org/cm/wiki/index.php?title\%3DEvents:TRUST2014}{TRUST 2014}
+# - [[http://www.ctuning.org/cm/wiki/index.php?title%3DEvents:TRUST2014][TRUST 2014]]
+\normalsize 
+Should be seen as opportunities to share experience.
+** Many Different Alternatives
+*** Vistrails: a Workflow Engine for Provenance Tracking
+#+BEGIN_LaTeX
+\vspace{-.6em}
+\begin{overlayarea}{\linewidth}{9cm}
+\hbox{\hspace{-.05\linewidth}%
+\includegraphics<+>[page=14,width=1.1\linewidth]{pdf_sources/2011-amp-reproducible-research.pdf}%
+\includegraphics<+>[page=15,width=1.1\linewidth]{pdf_sources/2011-amp-reproducible-research.pdf}%
+}
+
+\vspace{-2cm}
+\begin{flushright}
+  {\scriptsize Courtesy of Juliana Freire (AMP Workshop on
+    Reproducible research)}
+\end{flushright}
+\end{overlayarea}
+#+END_LaTeX
+*** VCR: A Universal Identifier for Computational Results
+#+BEGIN_LaTeX
+\vspace{-.6em}
+\begin{overlayarea}{\linewidth}{9cm}
+\hbox{\hspace{-.05\linewidth}%
+\includegraphics<+>[page=76,width=1.1\linewidth]{pdf_sources/amp-ver1MATAN.pdf}%
+\includegraphics<+>[page=78,width=1.1\linewidth]{pdf_sources/amp-ver1MATAN.pdf}%
+\includegraphics<+>[page=113,width=1.1\linewidth]{pdf_sources/amp-ver1MATAN.pdf}%
+\includegraphics<+>[page=26,width=1.1\linewidth]{pdf_sources/amp-ver1MATAN.pdf}%
+}
+
+\vspace{-2cm}
+\begin{flushright}
+  {\scriptsize Courtesy of Matan Gavish and David Donoho (AMP Workshop on
+    Reproducible research)}
+\end{flushright}
+\end{overlayarea}
+#+END_LaTeX 
+*** Sumatra: a lab notebook
+#+BEGIN_LaTeX
+\vspace{-.6em}
+\begin{overlayarea}{\linewidth}{9cm}
+\hbox{\hspace{-.05\linewidth}%
+\includegraphics<+>[page=35,width=1.1\linewidth]{pdf_sources/sumatra_amp2011.pdf}%
+\includegraphics<+>[page=39,width=1.1\linewidth]{pdf_sources/sumatra_amp2011.pdf}%
+\includegraphics<+>[page=40,width=1.1\linewidth]{pdf_sources/sumatra_amp2011.pdf}%
+\includegraphics<+>[page=46,width=1.1\linewidth]{pdf_sources/sumatra_amp2011.pdf}%
+}
+
+\vspace{-2cm}
+\begin{flushright}
+  {\scriptsize Courtesy of Andrew Davison (AMP Workshop on
+    Reproducible research)}
+\end{flushright}
+\end{overlayarea}
+#+END_LaTeX
+*** So many new tools
+#+BEGIN_LaTeX
+\vspace{-.6em}
+\begin{overlayarea}{\linewidth}{9cm}
+\hbox{\hspace{-.05\linewidth}%
+\includegraphics[page=13,width=1.1\linewidth]{pdf_sources/DavisFeb132014-STODDEN.pdf}%
+}
+\vspace{-1.5cm}
+\begin{flushright}
+  {\scriptsize {\textbf{Courtesy of Victoria Stodden (UC Davis, Feb 13, 2014)}}}
+\end{flushright}
+\vspace{.8cm}
+And also: Figshare, ActivePapers, Elsevier executable paper, ...
+\end{overlayarea}
+#+END_LaTeX 
+*** Litterate programming
+\small
+*Donald Knuth*: explanation of the program logic in a *natural language*
+*interspersed with snippets of* macros and traditional *source code*.
+
+#+BEGIN_CENTER
+I'm way too =3l33t= to program this way but that's \\
+*exactly what we need for writing a reproducible article/analysis!*
+#+END_CENTER
+#+LaTeX: \vspace{-.5em}
+
+**** Org-mode (requires emacs)
+My favorite tool.
+- plain text, very smooth, works both for html, pdf, ...
+- allows to combine all my favorite languages
+**** Ipython notebook
+If you are a python user, go for it! Web app, easy to use/setup...
+**** KnitR (a.k.a. Sweave)
+For non-emacs users and as a first step toward reproducible papers:
+- Click and play with a modern IDE
+* R
+** General Introduction
+*** Why R?
+R is a great language for data analysis and statistics
+- Open-source and multi-platform
+- Very expressive with high-level constructs
+- Excellent graphics
+- Widely used in academia and business
+- Very active community
+  + Documentation, FAQ on http://stackoverflow.com/questions/tagged/r
+- Great integration with other tools
+*** Why is R a pain for computer scientists ?
+- R is *not* really a *programming* language
+- Documentation is for statisticians
+- Default plots are +cumbersome+ (meaningful)
+- Summaries are +cryptic+ (precise)
+- *Steep learning curve* even for us, computer scientists whereas we
+  generally switch seamlessly from a language to another!  That's
+  frustrating! ;)
+*** Do's and dont's
++R is high level, I'll do everything myself+
+- CTAN comprises 4,334 TeX, LaTeX, and related packages and
+  tools. Most of you do not use plain TeX.
+- Currently, the CRAN package repository features 4,030 available
+  packages.
+- How do you know which one to use ??? Many of them are highly
+  exotic (not to say useless to you).
+  #+BEGIN_CENTER
+  I learnt with http://www.r-bloggers.com/
+  #+END_CENTER
+	
+
+- Lots of introductions but not necessarily what you're looking
+  for so *I'll give you a short tour*. 
+
+  You should quickly realize though that you need proper training
+  in statistics and data analysis if you do not want tell
+  nonsense.
+
+- Again, you should read *Jain's book on The Art of Computer Systems
+  Performance Analysis*
+
+- You may want to *follow online courses*:
+  + https://www.coursera.org/course/compdata
+  + https://www.coursera.org/course/repdata
+*** Install and run R on debian
+\small
+#+begin_src sh
+apt-cache search r
+#+end_src
+Err, that'is not very useful :) It's the same when searching on
+google but once the filter bubble is set up, it gets better...
+#+begin_src sh
+sudo apt-get install r-base
+#+end_src
+
+#+BEGIN_SRC sh :results output :exports both :session
+R
+#+END_SRC
+\scriptsize
+#+RESULTS:
+#+begin_example
+R version 3.0.2 (2013-09-25) -- "Frisbee Sailing"
+Copyright (C) 2013 The R Foundation for Statistical Computing
+Platform: x86_64-pc-linux-gnu (64-bit)
+
+R is free software and comes with ABSOLUTELY NO WARRANTY.
+You are welcome to redistribute it under certain conditions.
+Type 'license()' or 'licence()' for distribution details.
+
+R is a collaborative project with many contributors.
+Type 'contributors()' for more information and
+'citation()' on how to cite R or R packages in publications.
+
+Type 'demo()' for some demos, 'help()' for on-line help, or
+'help.start()' for an HTML browser interface to help.
+Type 'q()' to quit R.
+> 
+#+end_example
+
+*** Install a few cool packages
+R has it's own package management mechanism so just run R and type the
+following commands:
+- =ddply=, =reshape= and =ggplot2= by Hadley Wickham (http://had.co.nz/)
+  #+begin_src R
+  install.packages("plyr")
+  install.packages("reshape")
+  install.packages("ggplot2")
+  #+end_src
+- =knitR= by (Yihui Xie) http://yihui.name/knitr/
+  #+begin_src R
+  install.packages("knitr")
+  #+end_src
+*** IDE
+Using R interactively is nice but quickly becomes painful so at some
+point, you'll want an IDE.
+
+\medskip
+
+Emacs is great but you'll need /Emacs Speaks Statistics/
+#+begin_src sh
+sudo apt-get install ess
+#+end_src
+\medskip
+
+#+BEGIN_CENTER
+In this tutorial, we will use *rstudio* (https://www.rstudio.com/).
+#+END_CENTER
+** Reproducible Documents: knitR
+*** Rstudio screenshot
+#+BEGIN_LaTeX
+\vspace{-.5cm}
+\begin{center}
+  \includegraphics[height=9cm]{./images/rstudio_shot.png}
+\end{center}
+#+END_LaTeX
+*** Reproducible analysis in Markdown + R
+- Create a new *R Markdown* document (Rmd) in rstudio
+- R chunks are interspersed with =```{r}= and =```=
+- Inline R code: =`r sin(2+2)`=
+- You can *knit* the document and share it via *rpubs*
+- R chunks can be sent to the top-level with =Alt-Ctrl-c=
+- I usually work mostly with the current environment and only knit in
+  the end
+- Other engines can be used (use rstudio *completion*)
+  #+BEGIN_SRC 
+  ```{r engine='sh'}
+  ls /tmp/
+  ```
+  #+END_SRC
+- Makes *reproducible analysis as simple as one click*
+- Great tool for quick analysis for self and colleagues, homeworks, ...
+*** Reproducible articles with LaTeX + R
+- Create a new *R Sweave* document (Rnw) in rstudio
+- R chunks are interspersed with 
+  #+LaTeX: \texttt{<\null<>\null>=} 
+  and =@=
+- You can *knit* the document to produce a pdf
+- You'll probably quickly want to *change default behavior* (activate
+  the cache, hide code, ...). In the preembule:
+  #+BEGIN_EXAMPLE
+  <<echo=FALSE>>=
+  opts_chunk$set(cache=TRUE,dpi=300,echo=FALSE,fig.width=7,
+                  warning=FALSE,message=FALSE)
+  @
+  #+END_EXAMPLE
+- Great for journal articles, theses, books, ...
+** Introduction to R
+*** Data frames
+\small
+A data frame is a data tables (with columns and rows). =mtcars= is a
+built-in data frame that we will use in the sequel
+#+BEGIN_SRC R :results output :exports both :session
+head(mtcars);
+#+END_SRC
+
+#+RESULTS:
+:                    mpg cyl disp  hp drat    wt  qsec vs am gear carb
+: Mazda RX4         21.0   6  160 110 3.90 2.620 16.46  0  1    4    4
+: Mazda RX4 Wag     21.0   6  160 110 3.90 2.875 17.02  0  1    4    4
+: Datsun 710        22.8   4  108  93 3.85 2.320 18.61  1  1    4    1
+: Hornet 4 Drive    21.4   6  258 110 3.08 3.215 19.44  1  0    3    1
+: Hornet Sportabout 18.7   8  360 175 3.15 3.440 17.02  0  0    3    2
+: Valiant           18.1   6  225 105 2.76 3.460 20.22  1  0    3    1
+
+You can also load a data frame from a CSV file:
+#+BEGIN_SRC R :results output :exports both :session
+df <- read.csv("http://foo.org/mydata.csv", header=T, 
+               strip.white=TRUE);
+#+END_SRC
+You will *get help* by using =?=:
+#+BEGIN_SRC R :results output :exports both :session
+?data.frame
+?rbind
+?cbind
+#+END_SRC
+*** Exploring Content (1)
+\small
+#+BEGIN_SRC R :results output :exports both :session
+names(mtcars);
+#+END_SRC
+
+#+RESULTS:
+:  [1] "mpg"  "cyl"  "disp" "hp"   "drat" "wt"   "qsec" "vs"   "am"   "gear"
+: [11] "carb"
+
+#+BEGIN_SRC R :results output :exports both :session
+str(mtcars);
+#+END_SRC
+
+#+RESULTS:
+#+begin_example
+'data.frame':	32 obs. of  11 variables:
+ $ mpg : num  21 21 22.8 21.4 18.7 18.1 14.3 24.4 22.8 19.2 ...
+ $ cyl : num  6 6 4 6 8 6 8 4 4 6 ...
+ $ disp: num  160 160 108 258 360 ...
+ $ hp  : num  110 110 93 110 175 105 245 62 95 123 ...
+ $ drat: num  3.9 3.9 3.85 3.08 3.15 2.76 3.21 3.69 3.92 3.92 ...
+ $ wt  : num  2.62 2.88 2.32 3.21 3.44 ...
+ $ qsec: num  16.5 17 18.6 19.4 17 ...
+ $ vs  : num  0 0 1 1 0 1 0 1 1 1 ...
+ $ am  : num  1 1 1 0 0 0 0 0 0 0 ...
+ $ gear: num  4 4 4 3 3 3 3 4 4 4 ...
+ $ carb: num  4 4 1 1 2 1 4 2 2 4 ...
+#+end_example
+*** Exploring Content (2)
+\small
+#+BEGIN_SRC R :results output :exports both :session
+dim(mtcars);
+length(mtcars);
+#+END_SRC
+
+#+RESULTS:
+: [1] 32 11
+: [1] 11
+
+#+BEGIN_SRC R :results output :exports both :session
+summary(mtcars);
+#+END_SRC
+
+#+RESULTS:
+#+begin_example
+      mpg             cyl             disp             hp       
+ Min.   :10.40   Min.   :4.000   Min.   : 71.1   Min.   : 52.0  
+ 1st Qu.:15.43   1st Qu.:4.000   1st Qu.:120.8   1st Qu.: 96.5  
+ Median :19.20   Median :6.000   Median :196.3   Median :123.0  
+ Mean   :20.09   Mean   :6.188   Mean   :230.7   Mean   :146.7  
+ 3rd Qu.:22.80   3rd Qu.:8.000   3rd Qu.:326.0   3rd Qu.:180.0  
+ Max.   :33.90   Max.   :8.000   Max.   :472.0   Max.   :335.0  
+      drat             wt             qsec             vs        
+ Min.   :2.760   Min.   :1.513   Min.   :14.50   Min.   :0.0000  
+ 1st Qu.:3.080   1st Qu.:2.581   1st Qu.:16.89   1st Qu.:0.0000  
+ Median :3.695   Median :3.325   Median :17.71   Median :0.0000  
+ Mean   :3.597   Mean   :3.217   Mean   :17.85   Mean   :0.4375  
+ 3rd Qu.:3.920   3rd Qu.:3.610   3rd Qu.:18.90   3rd Qu.:1.0000  
+ Max.   :4.930   Max.   :5.424   Max.   :22.90   Max.   :1.0000  
+       am              gear            carb      
+ Min.   :0.0000   Min.   :3.000   Min.   :1.000  
+ 1st Qu.:0.0000   1st Qu.:3.000   1st Qu.:2.000  
+ Median :0.0000   Median :4.000   Median :2.000  
+ Mean   :0.4062   Mean   :3.688   Mean   :2.812  
+ 3rd Qu.:1.0000   3rd Qu.:4.000   3rd Qu.:4.000  
+ Max.   :1.0000   Max.   :5.000   Max.   :8.000
+#+end_example
+*** Exploring Content (3)
+\small
+#+BEGIN_SRC R :results output graphics :file ./mtcars_plot.pdf :exports both :session
+plot(mtcars[names(mtcars) %in% c("cyl","wt","disp","qsec","gear")]);
+#+END_SRC
+
+#+ATTR_LaTeX: :width .6\linewidth
+#+RESULTS:
+[[file:./mtcars_plot.pdf]]
+
+*** Accessing Content
+\small
+#+BEGIN_SRC R :results output :exports both :session
+mtcars$mpg
+#+END_SRC
+
+#+RESULTS:
+:  [1] 21.0 21.0 22.8 21.4 18.7 18.1 14.3 24.4 22.8 19.2 17.8 16.4 17.3 15.2 10.4
+: [16] 10.4 14.7 32.4 30.4 33.9 21.5 15.5 15.2 13.3 19.2 27.3 26.0 30.4 15.8 19.7
+: [31] 15.0 21.4
+
+#+BEGIN_SRC R :results output :exports both :session
+mtcars[2:5,]$mpg
+#+END_SRC
+
+#+RESULTS:
+: [1] 21.0 22.8 21.4 18.7
+
+#+BEGIN_SRC R :results output :exports both :session
+mtcars[mtcars$mpg == 21.0,]
+#+END_SRC
+
+#+RESULTS:
+:               mpg cyl disp  hp drat    wt  qsec vs am gear carb
+: Mazda RX4      21   6  160 110  3.9 2.620 16.46  0  1    4    4
+: Mazda RX4 Wag  21   6  160 110  3.9 2.875 17.02  0  1    4    4
+
+#+BEGIN_SRC R :results output :exports both :session
+mtcars[mtcars$mpg == 21.0 & mtcars$wt > 2.7,]
+#+END_SRC
+
+#+RESULTS:
+:               mpg cyl disp  hp drat    wt  qsec vs am gear carb
+: Mazda RX4 Wag  21   6  160 110  3.9 2.875 17.02  0  1    4    4
+*** Extending Content
+\small
+#+BEGIN_SRC R :results output :exports both :session
+mtcars$cost = log(mtcars$hp)*atan(mtcars$disp)/
+                 sqrt(mtcars$gear**5);
+mean(mtcars$cost);
+summary(mtcars$cost);
+#+END_SRC
+
+#+RESULTS:
+: [1] 0.345994
+:    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+:  0.1261  0.2038  0.2353  0.3460  0.5202  0.5534
+
+#+BEGIN_SRC R :results output graphics :file ./mtcars_hist.pdf :exports both :session
+hist(mtcars$cost,breaks=20);
+#+END_SRC
+
+#+ATTR_LaTeX: :height 4.5cm
+#+RESULTS:
+[[file:./mtcars_hist.pdf]]
+
+** Needful Packages by Hadley Wickam
+*** plyr: the Split-Apply-Combine Strategy 
+Have a look at http://plyr.had.co.nz/09-user/ for a more detailed
+introduction.
+#+BEGIN_CENTER
+ #+ATTR_LaTeX: :height 6cm
+ [[./images/split-apply-combine.png]]
+#+END_CENTER
+*** plyr: Powerfull One-liners
+\small
+#+BEGIN_SRC R :results output :exports both :session
+library(plyr)
+mtcars_summarized = ddply(mtcars,c("cyl","carb"), summarize, 
+      num = length(wt), wt_mean = mean(wt), wt_sd = sd(wt),
+      qsec_mean = mean(qsec), qsec_sd = sd(qsec));
+mtcars_summarized
+#+END_SRC
+
+#+RESULTS:
+#+begin_example
+  cyl carb num  wt_mean     wt_sd qsec_mean   qsec_sd
+1   4    1   5 2.151000 0.2627118  19.37800 0.6121029
+2   4    2   6 2.398000 0.7485412  18.93667 2.2924368
+3   6    1   2 3.337500 0.1732412  19.83000 0.5515433
+4   6    4   4 3.093750 0.4131460  17.67000 1.1249296
+5   6    6   1 2.770000        NA  15.50000        NA
+6   8    2   4 3.560000 0.1939502  17.06000 0.1783255
+7   8    3   3 3.860000 0.1835756  17.66667 0.3055050
+8   8    4   6 4.433167 1.0171431  16.49500 1.4424112
+9   8    8   1 3.570000        NA  14.60000        NA
+#+end_example
+If your data is not in the right form *give a try to =reshapeP/melt=*.
+*** ggplot2: Modularity in Action
+- =ggplot2= builds on plyr and on a modular *grammar of graphics*
+- +obnoxious function with dozens of arguments+
+- *combine* small functions using layers and transformations
+- *aesthetic* mapping between *observation characteristics* (data frame column
+  names) and *graphical* object *variables*
+- an incredible *documentation*: http://docs.ggplot2.org/current/
+  #+BEGIN_CENTER
+  #+ATTR_LaTeX: :height 6cm
+  [[./images/ggplot2_doc.png]]
+  #+END_CENTER
+*** ggplot2: Illustration (1)
+\small
+#+BEGIN_SRC R :results output graphics :file ./mtcars_ggplot1.pdf :width 5.5 :height 4 :exports  both :session
+ggplot(data = mtcars, aes(x=wt, y=qsec, color=cyl)) +  
+       geom_point();
+#+END_SRC
+
+#+BEGIN_CENTER
+#+ATTR_LaTeX: :height 6cm 
+#+RESULTS:
+[[file:./mtcars_ggplot1.pdf]]
+#+END_CENTER
+*** ggplot2: Illustration (2)
+\small
+#+BEGIN_SRC R :results output graphics :file ./mtcars_ggplot2.pdf :width 5.5 :height 4 :exports  both :session
+ggplot(data = mtcars, aes(x=wt, y=qsec, color=factor(cyl))) +  
+       geom_point();
+#+END_SRC
+
+#+BEGIN_CENTER
+#+ATTR_LaTeX: :height 6cm 
+#+RESULTS:
+[[file:./mtcars_ggplot2.pdf]]
+#+END_CENTER
+*** ggplot2: Illustration (3)
+\small
+#+BEGIN_SRC R :results output graphics :file ./mtcars_ggplot3.pdf :width 5.5 :height 4 :exports  both :session
+ggplot(data = mtcars, aes(x=wt, y=qsec, color=factor(cyl),
+       shape = factor(gear))) +  geom_point() + theme_bw() +
+       geom_smooth(method="lm");
+#+END_SRC
+
+#+BEGIN_CENTER
+#+ATTR_LaTeX: :height 6cm 
+#+RESULTS:
+[[file:./mtcars_ggplot3.pdf]]
+#+END_CENTER
+*** ggplot2: Illustration (4)
+\small
+#+BEGIN_SRC R :results output graphics :file ./mtcars_ggplot4.pdf :width 6 :height 4 :exports  both :session
+ggplot(data = mtcars, aes(x=wt, y=qsec, color=factor(cyl),
+       shape = factor(gear))) + geom_point() + theme_bw() +
+       geom_smooth(method="lm") + facet_wrap(~ cyl);
+#+END_SRC
+
+#+BEGIN_CENTER
+#+ATTR_LaTeX: :height 6cm 
+#+RESULTS:
+[[file:./mtcars_ggplot4.pdf]]
+#+END_CENTER
+*** ggplot2: Illustration (5)
+\small
+#+BEGIN_SRC R :results output graphics :file ./mtcars_ggplot5.pdf :width 6 :height 4 :exports  both :session
+ggplot(data = movies, aes(x=factor(year),y=rating)) + 
+       geom_boxplot() + facet_wrap(~Romance)
+#+END_SRC
+
+#+BEGIN_CENTER
+#+ATTR_LaTeX: :height 6cm 
+#+RESULTS:
+[[file:./mtcars_ggplot5.pdf]]
+#+END_CENTER
+*** ggplot2: Illustration (6)
+\small
+#+BEGIN_SRC R :results output graphics :file ./mtcars_ggplot6.pdf :width 6 :height 4 :exports  both :session
+ggplot(movies, aes(x = rating)) + geom_histogram(binwidth = 0.5)+
+       facet_grid(Action ~ Comedy) + theme_bw();
+#+END_SRC
+
+#+BEGIN_CENTER
+#+ATTR_LaTeX: :height 6cm 
+#+RESULTS:
+[[file:./mtcars_ggplot6.pdf]]
+#+END_CENTER
+*** Take away Message
+- R is a great tool but is only a tool. There is no magic. You
+  need to understand what you are doing and get a minimal
+  training in statistics.
+- It is one of the building block of *reproducible research* (the
+  /reproducible analysis/ block) and *will save you a lot of time*.
+- Read at least Jain's book: /The Art of Computer Systems Performance
+  Analysis/.
+- Jean-Marc Vincent and myself give a *set of tutorials on performance
+  evaluation* in M2R:
+  #+BEGIN_CENTER
+    http://mescal.imag.fr/membres/arnaud.legrand/teaching/2013/M2R_EP.php
+  #+END_CENTER
+- There are interesting *online courses* on coursera
+  + https://www.coursera.org/course/compdata
+  + https://www.coursera.org/course/repdata
+*** About these slides
+They have been composed in =org-mode= and generated with =emacs=,
+=beamer=, and =pyglist/pygments= for the pretty printing.
