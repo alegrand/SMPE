@@ -19,6 +19,12 @@
 \def\smiley{\Smiley[1][green!80!white]}
 \def\frowny{\Sadey[1][red!80!white]}
 \def\winkey{\Winkey[1][yellow]}
+\usepackage{stackengine}
+\usepackage{scalerel}
+\newcommand\dangersign[1][2ex]{%
+  \renewcommand\stacktype{L}%
+    \scaleto{\stackon[1.3pt]{\color{red}$\triangle$}{\tiny !}}{#1}%
+}
 %\AtBeginDocument{\date{\today}}
 \AtBeginDocument{\date{Scientific Methodology and Performance
     Evaluation\\M2R MOSIG, Grenoble, September-December
