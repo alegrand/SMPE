@@ -128,6 +128,7 @@ _*As a Reviewer*_ This may be an interesting contribution but:
       \begin{itemize}
       \item 8 ACM conferences ({\scriptsize ASPLOS'12, CCS'12, OOPSLA'12, OSDI'12,
         PLDI'12, SIGMOD'12, SOSP'11, VLDB'12}) and 5 journals
+      \item Original study = 80\% of non reproducible work
       \item 
         $\text{EM}^{\text{no}}$= \alert{the code cannot be provided}
       \end{itemize}
@@ -646,16 +647,16 @@ And also: \textbf{Org-Mode \smiley}, \textbf{Figshare}, \textbf{Zenodo}, \textbf
 ** And In Practice ?
 *** A Difficult Trade-off
 #+BEGIN_CENTER
-Many different tools/approaches developed in various communities
+\vspace{-.2em}Many different tools/approaches developed in various communities\vspace{-.2em}
 #+END_CENTER
 *But mainly two approaches:*
-- Automatically keeping track of everything
+- \textbf{Automatically keeping track of everything}
   - the code that was run (source code, libraries, compilation
     procedure)
   - processor architecture, OS, machine, date, ...
-- Ensuring others can understand/adapt what was done
+- \textbf{Ensuring others can understand/adapt what was done}
   - Why did I run this? Does it still work when I change this piece of
-    code for this one?\smallskip
+    code for this one?\smallskip\pause
 
 ****                                                           :B_columns:
 :PROPERTIES:
@@ -672,7 +673,7 @@ Many different tools/approaches developed in various communities
 3. Logging and backup your data
 4. Organizing your data
 5. Capturing your environment
-6. Controlling your Experiments
+6. Controlling your experiments
 7. Making your data/code/article available
 ***** Picture                                                :B_column:BMCOL:
 :PROPERTIES:
@@ -683,7 +684,7 @@ Many different tools/approaches developed in various communities
 #+LaTeX: \hspace{-2cm}\includegraphics[width=1.4\linewidth]{fig/author_reader_rr_4.fig}
 
 
-*** Replicable article \qquad (Literate programming)
+*** 1. Replicable article \qquad (Literate programming)
 \small
 *Donald Knuth*: explanation of the program logic in a *natural language*
 *interspersed with snippets of* macros and traditional *source code*.
@@ -697,7 +698,7 @@ I'm way too =3l33t= to program this way \winkey but that's \\
 **** \small Org-mode (my favorite! requires emacs though)
 # My favorite tool\vspace{-.5em}
 - [[http://orgmode.org/][Org-mode]] is plain text, very smooth, works both for html, pdf, ...\vspace{-.5em}
-- allows to combine all my favorite languages
+- Allows to combine all my favorite languages
 **** \small Ipython/Jupyter notebook
 Python user $\leadsto$ go for [[http://jupyter.org/][Jupyter]]. Web app, easy to
 use/setup... Writing replicable article may be tricky though
@@ -717,10 +718,10 @@ Sparse Linear Algebra Solvers]] at ICPADS 2015.
 
 Here are the following important features to exploit:
 - Structure :: highly hierarchical
-  - Sectionning, fonts, itemize, enumerate
+  - Sectioning, itemize, enumerate, fonts
   - Tags to control what will be exported
 - Export :: in several output formats
-  - Control with =#+BEGIN_LaTeX=
+  - Fine control with =#+BEGIN_LaTeX=
   - Unfortunate need for verbose headers (because of \LaTeX $\frowny$) and
     black magic in the end of the file (for emacs portability $\frowny$)
 - Babel :: (the literate programming part of org-mode). Many possible
@@ -731,7 +732,7 @@ Here are the following important features to exploit:
   - Dependencies can be expressed
   - Caching mechanism
   - Side effects are the enemy of reproducibility
-*** Logging your activity \qquad (Laboratory Notebook)
+*** 2. Logging your activity \qquad (Laboratory Notebook)
 \small Pionneered by Mathematica (TBOMK)
 - [[http://jupyter.org/][Jupyter]] project (formerly known as the IPython notebook)
 - [[http://orgmode.org/][Org-mode]] again!
@@ -755,17 +756,17 @@ I have a very intense usage and so do all my master/PhD students
   your notes (e.g., detail the steps to accomplish a TODO entry)\vspace{-.5em}
 - *By the end of the day*: daily (and weekly) *review!* \vspace{-.5em}
   - Update your lists, decide the next steps, summarize what you did/learnt,...
-*** Logging and backup your data
+*** 3. Logging and backup your data
 What are the options?
 - Nothing $\frowny$ (remember the funny examples from the beginning... \winkey)
 - Incremental backup mechanisms (e.g., time machine)
-- The cloud! (Dropbox $\frowny$, Google Drive, ...)
+- The cloud! (e.g., Dropbox and Google Drive $\frowny$ ...)
 - Flexible version control systems (e.g. git $\smiley$) where you're in
   control of what's happening
-  - Can be in a crontab if you really do not want to think about it
+  - Use a crontab if you really do not want to think about it
   - We have come up with a specific [[https://hal.inria.fr/hal-01112795/document][git branching workflow]] for
     managing experimental results
-*** Organizing your data
+*** 4. Organizing your data
 - Use the machine readable *CSV format*
 - Provide *raw* data and *meta* data, not just statistical outputs
 - Organization
@@ -775,30 +776,32 @@ What are the options?
 - *Use R*, Python or another free software to read and process raw
   data.
   - Use a workflow that *documents both data and process*
-  - The org tangling mechanism may help
-*** Capturing your environment
+  - The org-mode tangling mechanism may help
+*** 5. Capturing your environment
 What are the options?
 - Nothing \winkey
-- Restrict your tools/dependencies to the bare minimum and list them
-  all. This may not be sufficient but it will help.
-- Have custom shell scripts that log all the dependencies you are
-  aware of and ask your friends to check whether this information is
-  sufficient...
-- Restrict your tools/dependencies and combine everythin in an
-  [[http://www.activepapers.org/][/activepapers/]], i.e., an HDFS5 file combining datasets and programs
-  working on these datasets in a single package, along with meta data,
-  history, ...
+- _Restrict your tools/dependencies_ to the bare minimum (e.g., python)
+  - List them all manually in a README
+  - Use custom shell scripts or [[http://sos.readthedocs.org/][=sosreport=]] that _log all the
+    dependencies you are aware_. Ask your friends to check whether this
+    is sufficient...
+  - Combine everything in [[http://www.activepapers.org/][/activepapers/]], i.e., an HDFS5 file
+    combining datasets and programs working on these datasets in a
+    single package, along with meta data, history, ...
+- Create and distribute your own _virtual image_ (VM, docker,
+  [[http://gmkurtzer.github.io/singularity/][Singularity]])
 - Have tools that *automatically* keep track of dependencies/files
   and packages up the Code, Data, and Environment 
-  - [[http://www.pgbovine.net/cde.html][CDE]] (Guo et al., 2011) [[https://vida-nyu.github.io/reprozip/][ReproZip]] (Freire et al., 2013) or more
-    recently [[http://reproducible.io/][CARE]] (Janin et al., 2014)
-- Create and distribute your own virtual image (VM, docker,
-  [[http://gmkurtzer.github.io/singularity/][Singularity]] ...)
-- Use a specific tool to generate customized *appliances* (kvm, LXC,
+  - [[http://www.pgbovine.net/cde.html][CDE]] (Guo et al., 2011) [[https://vida-nyu.github.io/reprozip/][ReproZip]] (Freire et al., 2013), [[http://reproducible.io/][CARE]] (Janin
+    et al., 2014), 
+  - See [[http://ccl.cse.nd.edu/research/papers/techniques-ipres-2015.pdf][Preserve the Mess or Encourage Cleanliness?]] (Thain et al., 2015)
+- Use a specific tool to _generate customized *appliances*_ (kvm, LXC,
   Virtualbox, iso, ...): *recipes* with *steps* and *aliases*, execution in
   *contexts*, *checkpoints*, ... ([[http://kameleon.imag.fr/][/Kameleon/]])
-*** Controlling your Experiments
-- Naive way: sh + ssh + ... \medskip
+*** 6. Controlling your experiments
+- Naive way: sh + ssh + ... \medskip\\
+  _Parallel/distributed experiments differ from computational science
+  and come with their own difficulties_
   #+BEGIN_LaTeX
   \item \alert<1>{\href{http://expo.gforge.inria.fr}{Expo}} (2007-, G5K)
   \item \alert<1>{\href{http://xpflow.gforge.inria.fr}{XPflow}} (2012-, G5K)
@@ -815,8 +818,7 @@ What are the options?
   #+END_LaTeX
 - Plush (2006-, PlanetLab)
 - OMF (2009-, Wireless testbeds and Planetlab)
-- Splay (2008, distributed algorithm comparison)
-- ...
+- Splay (2008, distributed algorithm comparison), ...
 
 They differ in the underlying paradigms and the platforms for which
 they have been designed
@@ -824,7 +826,7 @@ they have been designed
 - [[https://hal.inria.fr/hal-01087519/document][A survey of general-purpose experiment management tools for
   distributed systems]], T. Buchert, C. Ruiz, L. Nussbaum, O. Richard,
   FGCS, 2014
-*** Making your data/code/article available
+*** 7. Making your data/code/article available
 - Your webpage $\frowny$
 - Figshare, Zenodo $\smiley$, ...
 - Companion websites ([[https://www.elsevier.com/physical-sciences/computer-science/share-a-web-portal-for-creating-and-sharing-executable-research][elsevier executable paper]] $\frowny$,
