@@ -25,9 +25,39 @@
 #+LATEX_HEADER:   \let\reset@color\beamerorig@reset@color}
 #+LATEX_HEADER: \makeatother
 
-*** List                                                           :noexport:
-- broken links (at least when reading .org from GitHub directly) on
-  slides 44, 45, 69
+
+*** List of ideas for the next "edition"                           :noexport:
+- Nice ideas may be taken from
+  http://link.springer.com/article/10.1007/s10816-015-9272-9/fulltext.html
+- Slide "My feeling" is irrelevant at that point
+- But do we really have to care in CS ? should be extended to other
+  use cases (E.g., graphics, data mining ?)
+- Trying to Bridge the Gap: should start wit only the Published article
+- After the Sumatra example: add Jupyter screenshot, possibly a
+  CARE/CDE example, and exec&share.
+- Difficult Trade-off: Automatic vs. Explicit
+- 6. Controlling your experiment: 
+  - Mention workflow
+  - Mention numerical reproducibility
+- Link "reproducible research actions" with "following key points"
+
+**** TODO Webinars [3/4]
+- [X] Requirement and installation page:
+  - emacs >= 24.4
+  - org-mode >= 8.3
+  - R/LaTeX installed
+- [X] Provide
+  - simple .el file
+  - template journal.org
+  - template article.org
+- [X] Advertising
+  - asr, rsd, G5K, R4, Pierre Riteau, Kate
+
+- [ ] Organisation
+  1. Arnaud: replicable article and laboratory notebook
+  2. controling your experimental environment (care, cde, ...)
+  3. numerical reproducibility
+
 ** 
 #+LaTeX: \input{org-babel-document-preembule.tex}
 #+LaTeX: %\let\tableofcontents=\tmptableofcontents
@@ -672,7 +702,7 @@ And also: \textbf{Org-Mode \smiley}, \textbf{Figshare}, \textbf{Zenodo}, \textbf
 2. Logging your activity
 3. Logging and backup your data
 4. Organizing your data
-5. Capturing your environment
+5. Mastering your environment
 6. Controlling your experiments
 7. Making your data/code/article available
 ***** Picture                                                :B_column:BMCOL:
@@ -777,12 +807,12 @@ What are the options?
   data.
   - Use a workflow that *documents both data and process*
   - The org-mode tangling mechanism may help
-*** 5. Capturing your environment
+*** 5. Mastering your environment
 What are the options?
 - Nothing \winkey
 - _Restrict your tools/dependencies_ to the bare minimum (e.g., python)
   - List them all manually in a README
-  - Use custom shell scripts or [[http://sos.readthedocs.org/][=sosreport=]] that _log all the
+  - Use [[https://github.com/inria-traces/trace.archive/blob/master/src/capture_metadata.sh][custom shell scripts]] or [[http://sos.readthedocs.org/][=sosreport=]] that _log all the
     dependencies you are aware_. Ask your friends to check whether this
     is sufficient...
   - Combine everything in [[http://www.activepapers.org/][/activepapers/]], i.e., an HDFS5 file
@@ -882,6 +912,6 @@ Webinars (1/month ?) with interactions, hands on keyboards when relevant.
 
 
 #+BEGIN_CENTER
-\bf We intend to start on March 8, 2016
+\bf We intend to start on March 7, 2016
 #+END_CENTER
 
