@@ -25,39 +25,6 @@
 #+LATEX_HEADER:   \let\reset@color\beamerorig@reset@color}
 #+LATEX_HEADER: \makeatother
 
-
-*** List of ideas for the next "edition"                           :noexport:
-- Nice ideas may be taken from
-  http://link.springer.com/article/10.1007/s10816-015-9272-9/fulltext.html
-- Slide "My feeling" is irrelevant at that point
-- But do we really have to care in CS ? should be extended to other
-  use cases (E.g., graphics, data mining ?)
-- Trying to Bridge the Gap: should start wit only the Published article
-- After the Sumatra example: add Jupyter screenshot, possibly a
-  CARE/CDE example, and exec&share.
-- Difficult Trade-off: Automatic vs. Explicit
-- 6. Controlling your experiment: 
-  - Mention workflow
-  - Mention numerical reproducibility
-- Link "reproducible research actions" with "following key points"
-
-**** TODO Webinars [3/4]
-- [X] Requirement and installation page:
-  - emacs >= 24.4
-  - org-mode >= 8.3
-  - R/LaTeX installed
-- [X] Provide
-  - simple .el file
-  - template journal.org
-  - template article.org
-- [X] Advertising
-  - asr, rsd, G5K, R4, Pierre Riteau, Kate
-
-- [ ] Organisation
-  1. Arnaud: replicable article and laboratory notebook
-  2. controling your experimental environment (care, cde, ...)
-  3. numerical reproducibility
-
 ** 
 #+LaTeX: \input{org-babel-document-preembule.tex}
 #+LaTeX: %\let\tableofcontents=\tmptableofcontents
