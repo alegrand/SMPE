@@ -1,0 +1,453 @@
+#+TITLE:     Causality, Dependency, Correlation,\newline and Designed Experiments
+#+AUTHOR:    Arnaud Legrand
+#+DATE: Performance Evaluation Lecture
+#+STARTUP: beamer overview indent
+#+TAGS: noexport(n)
+#+LaTeX_CLASS: beamer
+#+LaTeX_CLASS_OPTIONS: [11pt,xcolor=dvipsnames,presentation]
+#+OPTIONS:   H:3 num:t toc:nil \n:nil @:t ::t |:t ^:nil -:t f:t *:t <:t
+#+LATEX_HEADER: \input{org-babel-style-preembule.tex}
+#+LATEX_HEADER: %\let\tmptableofcontents=\tableofcontents
+#+LATEX_HEADER: %\def\tableofcontents{}
+#+LATEX_HEADER:  \usepackage{color,soul}
+#+LATEX_HEADER:  \definecolor{lightblue}{rgb}{1,.9,.7}
+#+LATEX_HEADER:  \sethlcolor{lightblue}
+#+LATEX_HEADER:  \let\hrefold=\href
+#+LATEX_HEADER:  \renewcommand{\href}[2]{\hrefold{#1}{\SoulColor\hl{#2}}}
+#+LATEX_HEADER: \newcommand{\muuline}[1]{\SoulColor\hl{#1}}
+#+LATEX_HEADER: \makeatletter
+#+LATEX_HEADER: \newcommand\SoulColor{%
+#+LATEX_HEADER:   \let\set@color\beamerorig@set@color
+#+LATEX_HEADER:   \let\reset@color\beamerorig@reset@color}
+#+LATEX_HEADER: \makeatother
+
+
+#+LaTeX: \input{org-babel-document-preembule.tex}
+#+LaTeX: %\let\tableofcontents=\tmptableofcontents
+#+LaTeX: %\tableofcontents
+
+* Spurious Correlations
+
+** Let's consider real data this time
+*** A vivid debate: Cholesterol and Statins
+
+#+BEGIN_CENTER
+[[http://future.arte.tv/fr/cholesterol][Cholesterol: le grand bluff (Arte, 18/10/2016 @ 20h50)]]
+#+END_CENTER
+
+#+BEGIN_LaTeX
+\begin{center}
+  \includegraphics<1>[width=.8\linewidth]{images/arte_cholesterol_2.png}%
+  \includegraphics<2>[width=.8\linewidth]{images/arte_cholesterol_1.png}
+\end{center}
+#+END_LaTeX
+\pause
+#+BEGIN_CENTER
+"Careful" selection of data and influence from the industry $\frowny$
+#+END_CENTER
+
+But that's not what I want to illustrate now... Even if data hadn't
+been removed, could we really conclude something from such data?
+*** Correlation and Causation
+Let me illustrate this inference story with a few examples.
+
+It may be the case that two random variables \rv{X} and \rv{Y} are
+*dependent*
+
+- \Eg Let's pick a student at random and measure its
+  \rv{DrinkingHabit} and its \rv{TestScore}
+  - In general, the more a student drinks the more his test goes down $\smiley$
+The *correlation* of two variables \rv{X} and \rv{Y} is defined as:
+  #+BEGIN_LaTeX
+  \begin{equation*}
+    \text{corr}(\rv{X},\rv{Y}) =
+    \frac{\text{cov}(\rv{X},\rv{Y})}{\sigma_X \sigma_Y} = 
+  \frac{\E[(\rv{X}-\mu_X)(\rv{Y}-\mu_Y)]}{\sigma_X\sigma_Y} 
+  \end{equation*}\vspace{-1em}
+  #+END_LaTeX
+  - The correlation is symmetrical 
+    ($\text{corr}(\rv{X},\rv{Y})=\text{corr}(\rv{Y},\rv{X})$)
+  - The correlation is in $[-1,1]$
+  - $\text{corr}(\rv{Y},\rv{X})=1$ or $-1$ $\Rightarrow$ perfectly linear
+    relationship
+  - \rv{X} independent of \rv{Y} $\Rightarrow \text{corr}(\rv{X},\rv{Y})=0$
+  - \rv{Y} grows when \rv{X} grows $\Rightarrow \text{corr}(\rv{X},\rv{Y})>0$
+
+It is thus very tempting to use *sample correlation* as a way of knowing
+whether some variables are *dependant*
+*** Scatter plot and correlation
+#+BEGIN_CENTER
+#+ATTR_LATEX: :height 5cm
+file:images/Correlation_examples2.pdf
+#+END_CENTER
+
+Non-linear relations or hidden variables are not be well trapped by
+correlation
+
+*** Correlation does not imply Causation
+#+BEGIN_CENTER
+#+ATTR_LATEX: :height 5cm
+file:images/PiratesVsTemp.pdf
+
+\scriptsize
+Mikhail Ryazanov (talk) - PiratesVsTemp.svg. \\
+Licensed under CC BY-SA 3.0 via Wikimedia Commons
+#+END_CENTER
+- 2 variables can be strongly correlated to a third one
+  (\eg year)
+- Btw, what is wrong with this figure? \winkey
+*** Spurious Suicide                                             :noexport:
+#+tblname: spurious_suicide
+| Year     | 1999 | 2000 | 2001 | 2002 | 2003 | 2004 | 2005 | 2006 | 2007 | 2008 | 2009 |
+| Colonies | 2652 | 2622 | 2550 | 2574 | 2599 | 2554 | 2409 | 2394 | 2443 | 2342 | 2498 |
+| Divorces |  3.8 |  3.8 |  3.6 |  3.4 |  3.3 |  3.2 |  2.9 |  2.9 |    3 |  2.8 |    3 |
+
+#+begin_src R :results output graphics :file pdf_babel/spurious_divorce.pdf :exports both :width 7 :height 4 :session :var df=spurious_suicide
+df = df %>% gather(key,val,-V1) %>% spread(V1,val) %>% select(-key)
+cor_label = paste("Correlation: ", round(cor(df$Colonies,df$Divorces), digits=3))
+p1 = ggplot(df,aes(y=Divorces,x=Colonies)) + geom_point() + theme_classic() +
+     geom_smooth(method="lm") + 
+     annotate("text",x=2440,y=3.5,label=cor_label,size=4) +
+     ylab("Divorce rate in South Carolina\nDivorces per 1000 people\n(US Census)") +
+     xlab("Honey producing bee colonies (US)\n Thousands of colonies (USDA)")
+
+df = df %>% gather(Event,Value,-Year)
+p2 = ggplot(df,aes(x=Year,y=Value,color=Event)) + geom_point() + 
+     scale_color_brewer(palette="Set1") +
+     theme_classic() + facet_wrap(~Event,scale="free_y",nrow=2) +
+     geom_line() +  theme(legend.position = "none") + ylab("")
+grid.arrange(p1,p2,nrow=1)
+#+end_src
+
+#+RESULTS:
+[[file:pdf_babel/spurious_divorce.pdf]]
+
+*** Observational vs. Experimental Data Illustration
+
+#+BEGIN_CENTER
+#+ATTR_LATEX: :width .9\linewidth
+file:pdf_babel/spurious_divorce.pdf
+
+#+END_CENTER
+Source: [[http://tylervigen.com/][/Spurious correlations/]]. For the good of the US society, we
+should try to get rid of honey bees \winkey
+*** The Deluge of Spurious Correlations in Big Data
+[[https://researchspace.auckland.ac.nz/handle/2292/27857][The Deluge of Spurious Correlations in Big Data]], by C. Calude and G. Longo,
+Foundations of ScienceMarch 2016)
+
+Is Data science is the end of science ?
+  - Powerful algorithms can now explore huge databases and find
+    therein correlations and regularities.
+  - Properly defining "meaning" or "content" of such correlations is
+    very difficult. But do we need to ?
+
+
+- Ergodic Theory ::
+     #+LaTeX: \quad
+  - Almost every trajectory (even deterministic and chaotic) will
+    eventually iterate in a similar way
+  - So regularity is expected but it does not mean that prediction can
+    be done.
+- Ramsey Theory :: 
+     #+LaTeX: \quad
+  - Any sufficiently long string contains an arithmetic progression
+    - _0_, 1, 1, 0, _0_, 1, 1, 0, _0_
+    - 0, 1, _1_, 0, 0, _1_, 1, 0, _1_
+  - Similar result for $n$ ary relations
+
+*** Simpson's Paradox
+
+UC Berkeley admission figures in fall 1973.
+
+| _Men_        |          | _Women_      |          |
+| Applicants | Admitted | Applicants | Admitted |
+|------------+----------+------------+----------|
+| 8442       | *44%*      | 4321       |      35% |
+
+\pause
+
+|   |        _Men_ |          |      _Women_ |          |
+|   | Applicants | Admitted | Applicants | Admitted |
+|---+------------+----------+------------+----------|
+| A |        825 |      62% |        108 | *82%*      |
+| B |        560 |      63% |        25 | *68%*      |
+| C |        325 |      *37%* |        593 | 34%      |
+| D |        417 |      33% |        375 | *35%*      |
+| E |        191 |      *28%* |        393 | 24%      |
+| F |        373 |       6% |        341 | *7%*       |
+
+#+BEGIN_LaTeX
+\pause\vspace{-5cm}
+\begin{center}
+  \includegraphics[width=.8\linewidth]{images/simpson_paradox.pdf}
+\end{center}
+#+END_LaTeX
+
+*** Correlation does not imply Causation
+For any two correlated events, A and B, the following relationships
+are possible:
+- A causes B (direct causation)\hfill$\smiley$
+  # - alcohol makes people stupid
+  # - the students who tend to drink tend to be poorer students
+  # - people who are hung-over from a drinking binge tend to skip class
+- A causes B and B causes A (bidirectional or cyclic
+  causation)\hfill$\smiley$
+  # - sweet, then removing alcohol should help
+- A causes C which causes B (indirect causation)\hfill$\smiley$
+- B causes A; (reverse causation)\hfill$\frowny$
+  # - students in academic trouble drink in order to drown their sorrows
+- A and B are consequences of a common cause, but do not cause each
+  other\hfill$\frowny$
+- There is no connection between A and B; it is a "coincidence"
+  #+LaTeX: \hfill$\frowny$%\\[-.8\baselineskip]
+  - But *designed experiments* can help you ruling this option out
+
+#+BEGIN_CENTER
+#+ATTR_LATEX: :height 3cm
+file:images/xkcd_correlation.png
+\qquad\winkey
+#+END_CENTER
+
+** Early Intuition and Key Concepts
+*** Experimental data vs. Observational data
+You need a good blend of *observation*, *theory* and
+*experiments*\medskip
+
+- Many scientific experiments appear to be carried out with no
+  hypothesis in mind at all, but simply to see what happens.
+
+- This may be OK in the early stages but drawing conclusions on such
+  observations is difficult (large number of equally plausible
+  explanations; without testable prediction no experimental ingenuity;
+  \dots).\pause
+
+
+
+- Strong inference :: Essential steps:
+  1. Formulate a clear hypothesis
+  2. Devise an acceptable test\medskip
+- Weak inference :: It would be silly to disregard all observational
+                    data that do not come from designed
+                    experiments. Often, they are the only we have
+                    (e.g. the trace of a system).
+
+                    But we need to keep the limitations of such data
+                    in mind. It is possible to use it to *derive
+                    hypothesis* but not to *test hypothesis* (\ie *claim
+                    facts*).
+*** Experimental Design
+There are two key concepts:
+#+BEGIN_CENTER
+  *replication* and *randomization*
+#+END_CENTER
+You replicate to *increase reliability*. You randomize to *reduce bias*.
+#+BEGIN_CENTER
+  \textbf{If you replicate thoroughly and randomize properly, \\ you will not go far wrong.}
+#+END_CENTER
+\pause
+#+BEGIN_QUOTE
+  \it\small
+  It doesn't matter if you cannot do your own advanced statistical
+  analysis. If you designed your experiments properly, you may be able
+  to find somebody to help you with the statistics.\smallskip
+
+  If your experiments is not properly designed, then no matter how
+  good you are at statistics, you experimental effort will have been
+  wasted.
+#+END_QUOTE
+\vspace{-1em}
+#+BEGIN_CENTER
+  \textbf{No amount of high-powered statistical analysis can turn a bad experiment into a good one.}
+#+END_CENTER
+
+Other important concepts:
+#+LaTeX: \vspace{-.5em}\begin{columns}\begin{column}{.35\linewidth}
+# - *Parsimony*
+- *Pseudo-replication*
+#+LaTeX: \end{column}\begin{column}{.62\linewidth}
+- *Experimental* vs. *observational* data
+#+LaTeX: \end{column}\end{columns}
+*** Replication vs. Pseudo-replication
+Measuring the same configuration several times is not
+replication. It's *pseudo-replication* and is generally biased\smallskip
+
+Instead, test *other* configurations (with a good
+randomization)\medskip
+
+In case of pseudo-replication, here is what you can do:
+- average away the pseudo-replication and carry out your
+  statistical analysis on the means
+- carry out separate analysis for each time period
+- use proper time series analysis
+** Designed Experiments
+*** Select the problem to study
+Clearly define the kind of *system* to study, the kind of *phenomenon* to
+observe (state, evolution of state through time), the kind of *study* to
+conduct (descriptive, exploratory, prediction, hypothesis testing,
+\dots)\medskip
+
+This is quite important as the set of experiments to perform will be
+completely different when you are:
+- studying the stabilization of a peer-to-peer algorithm under a
+  high churn
+- trying to compare various scheduling algorithms or code versions
+- modeling the response time of a server under a workload close to the
+  server saturation
+- \dots
+
+#+BEGIN_CENTER
+This step will help you to determine *which kind of experiment design* you should
+use.
+#+END_CENTER
+*** Determine the set of relevant \emph{factors} and \emph{responses}
+#+LaTeX: \begin{columns}\begin{column}{.55\linewidth}
+The system under study is generally modeled though a *black-box* model:
+#+LaTeX: \\[-.6em]
+- some *output* variable/\alert{response}($y$)
+  #+LaTeX: \vspace{-.6em}
+- some inputs are fully unknown
+  #+LaTeX: \vspace{-.6em}
+- some *input variables* ($x_1$,\dots,$x_p$) are *controllable*
+  #+LaTeX: \vspace{-.6em}
+- whereas some others ($z_1$, \dots, $z_q$) are *uncontrollable*
+
+#+LaTeX: \end{column}\begin{column}{.45\linewidth}
+      \includegraphics[width=\linewidth]{fig/wp4_black_box.fig}
+#+LaTeX: \end{column}\end{columns}
+
+Typical controllable variables could be:
+#+LaTeX: \\[-.5em]\bgroup\small
+- the heuristic used (\eg FIFO, HEFT, \dots)
+  #+LaTeX: \vspace{-.6em}
+- one of their parameters (\eg replication factor, a threshold, \dots)
+  #+LaTeX: \vspace{-.6em}
+- the size of the platform
+  #+LaTeX: \vspace{-.6em}
+- the degree of heterogeneity
+  #+LaTeX: \vspace{-.6em}
+- the version of the compiler
+  #+LaTeX: \vspace{-.6em}
+\egroup
+
+Uncontrollable variables could be:
+#+LaTeX: \\[-.5em]\bgroup\small
+- temperature, humidity, moon phase, road surface conditions
+  #+LaTeX: \vspace{-.6em}
+- someone using the machine and interfering with the
+  experiment
+  #+LaTeX: \vspace{-.6em}
+
+\egroup
+You can organize them in a *dogbone diagram*
+
+You should *carefully record* all the factors you can think of
+*** Typical case studies
+The typical case studies defined in the first step could include:
+- Determining which variables are most influential on the response $y$
+  (*factorial designs*, *screening designs*, *analysis of variance*)
+  - Allows to distinguish between *primary factors* whose influence
+    on the response should be modeled and *secondary factors* whose
+    impact should be averaged
+  - Allows to determine whether some factors *interact* in the response
+- Devise an *analytical model* of the response $y$ as a function of
+  the primary factors $x$ (*regression*, *lhs designs*)
+- Fit a an *analytical model* (*regression*, *response surface methodology*,
+  *optimal designs*)
+  - Can then be used to determine where to set the primary factors $x$
+    so that response $y$ is always close to a desired value or is
+    minimized/maximized
+- Determining where to set the primary factors $x$ so that variability
+  in response $y$ is small \ie so that the effect of uncontrollable
+  variables $z_1,\dots,z_q$ is minimized (*robust designs*, *Taguchi
+  designs*)
+*** General Workflow
+#+ATTR_LATEX: :width \linewidth
+[[file:images/R_workflow.pdf]]
+
+
+* Practical Session: Critical Thinking
+** Linux and the Penises
+*** Linux Users Got Bigger Ding Dong $\textcolor{black}\winkey$
+#+BEGIN_QUOTE
+The world famous Kinsey institutes for Sex Studies have proved that
+the average Linux user has a bigger penis than the average Windows PC
+user. 
+
+The study, carried out over a 6 month period showed that just using
+Linux for six months caused an average growth of 1 cm in the overall
+girth of a man's penis. 
+
+Scientist at first theorize that since the average Linux user spends
+more time in front of his computer than a windows user, that perhaps
+radiation from the monitor is responsible for the increase is size.
+
+#+LaTeX: \begin{flushright}
+  --   https://forums.pcbsd.org/thread-4392.html
+#+LaTeX: \end{flushright}
+#+END_QUOTE
+
+#+BEGIN_CENTER
+(Heavily inspired from [[http://www.zetetique.fr/index.php/dossiers/98-linux-penis][Richard Monvoisin's post]].)
+#+END_CENTER
+*** What would such a study look like ?
+1. Measure the size of the penis of sample of linux users
+   - representative ?
+   - number of samples ?
+2. Sum these measurements and divide by the number by the number of
+   samples
+3. Conduct a similar study with Windows and Mac OS X users.
+   - Same number of samples as before ?
+4. Conclude
+*** Bias #1: Uncertainty
+No information about the *standard error* (variability).
+
+Let's imagine they gathered the following data (in cm):
+- Windows: 10, 10, 10, 10, 10 $\leadsto$ 10 on average
+- Linux: 8, 9, 9, 9, 40  $\leadsto$ 15 on average \winkey
+
+If I repeat the experiment, will I get the same results ? similar
+results ? What are the odds ? \pause
+
+#+BEGIN_CENTER
+Handle "outliers", confidence intervals 
+#+END_CENTER
+
+No information about the protocol:
+- volunteer users / rewarded / random sampling ?
+- room temperature ?
+*** Bias #2: Does such a computation make any sense ?
+What does this even mean ?
+- Is the average of penises representative of the "average penis"?
+- Can we transpose relations between populations to individuals ?
+- The average human has one breast and one testicle... $\winkey$
+  - By the way how did they handle female linux users ?
+- Anyway, "The bigger the better"?
+
+\medskip
+Similar disturbing fact:
+- High child mortality rate is corelated with the number of doctors
+- Can we conclude that we should decrease the number of doctors ?
+*** Bias #3: The stork effect 
+- Maybe men with a larger penis tend to use linux rather than other OS. \pause
+
+- A "better" explanation: Linux makes you look cool, hence the linux
+  users were mostly teenagers in full growth... $\winkey$
+
+- Maybe linux users were easier to find at University than in
+  companies, hence they belong to a different population
+
+
+*The Stork effect*:
+- Cities that host storks tend to have a higher birth rate.
+- Stork probably bring babies ;)
+- Or Cities that host storks are more likely found in rural
+  environment where birth rate is higher for socio-economical
+  reasons...
+*** Citing Sources and Reproducible Research
+On 10 October 2006, the number of sites that relayed this information
+has exploded... 
+
+But although there exists a Kinsey Institute, there has never been any
+such news nor data that would support such a study... \medskip
+
+- Just imagine what it is like now that we have twitter $\winkey$
