@@ -59,8 +59,10 @@ I'm progressively slicing it up in smaller chunks as follows:
 5. [[file:lectures/lecture_descriptive_univariate.pdf][Descriptive statistics of univariate data]]
 6. [[file:lectures/lecture_data_presentation.pdf][Data presentation]]
 7. [[file:lectures/lecture_correlation_causation.pdf][Correlation and causation]]
-8. [[file:lectures/lecture_central_limit_theorem.pdf][Proof of the Central limit theorem]]
-
+8. [[file:lectures/3_introduction_to_statistics.pdf][Introduction to probabilities/statistics]] ([[file:lectures/lecture_central_limit_theorem.pdf][Proof of the Central
+   limit theorem]])
+9. [[file:lectures/4_linear_model.pdf][Linear regression]]
+10. [[file:lectures/4_linear_model.pdf][Design of Experiments]]
 
 All the examples given in this series of lecture use the [[http://www.r-project.org/][R]] language
 and the source is provided so that people can reuse them. The slides
