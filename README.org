@@ -52,14 +52,14 @@ hours:
   5. *[[file:lectures/5_design_of_experiments.pdf][Design of Experiments]]*.
 
 I'm progressively slicing it up in smaller chunks as follows:
-1. file:lectures/lecture_epistemology.pdf
-2. file:lectures/lecture_reproducible_research.pdf
-3. file:lectures/lecture_literate_programming.pdf
-4. file:lectures/lecture_R_crash_course.pdf
-5. file:lectures/lecture_descriptive_univariate.pdf
-6. file:lectures/lecture_data_presentation.pdf
-7. file:lectures/lecture_correlation_causation.pdf
-8. file:lectures/lecture_central_limit_theorem.pdf
+1. [[file:lectures/lecture_epistemology.pdf][Epistomology]]
+2. [[file:lectures/lecture_reproducible_research.pdf][Reproducible research]]
+3. [[file:lectures/lecture_literate_programming.pdf][Literate programming]]
+4. [[file:lectures/lecture_R_crash_course.pdf][R crash course]]
+5. [[file:lectures/lecture_descriptive_univariate.pdf][Descriptive statistics of univariate data]]
+6. [[file:lectures/lecture_data_presentation.pdf][Data presentation]]
+7. [[file:lectures/lecture_correlation_causation.pdf][Correlation and causation]]
+8. [[file:lectures/lecture_central_limit_theorem.pdf][Proof of the Central limit theorem]]
 
 
 All the examples given in this series of lecture use the [[http://www.r-project.org/][R]] language
