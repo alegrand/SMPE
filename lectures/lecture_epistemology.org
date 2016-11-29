@@ -1,0 +1,334 @@
+#+TITLE:     A bit of Epistemology...
+#+AUTHOR:    Arnaud Legrand
+#+DATE: Performance Evaluation Lecture
+#+STARTUP: beamer overview indent
+#+TAGS: noexport(n)
+#+LaTeX_CLASS: beamer
+#+LaTeX_CLASS_OPTIONS: [11pt,xcolor=dvipsnames,presentation]
+#+OPTIONS:   H:3 num:t toc:nil \n:nil @:t ::t |:t ^:nil -:t f:t *:t <:t
+#+LATEX_HEADER: \input{org-babel-style-preembule.tex}
+#+LATEX_HEADER: %\let\tmptableofcontents=\tableofcontents
+#+LATEX_HEADER: %\def\tableofcontents{}
+#+LATEX_HEADER:  \usepackage{color,soul}
+#+LATEX_HEADER:  \definecolor{lightblue}{rgb}{1,.9,.7}
+#+LATEX_HEADER:  \sethlcolor{lightblue}
+#+LATEX_HEADER:  \let\hrefold=\href
+#+LATEX_HEADER:  \renewcommand{\href}[2]{\hrefold{#1}{\SoulColor\hl{#2}}}
+#+LATEX_HEADER: \newcommand{\muuline}[1]{\SoulColor\hl{#1}}
+#+LATEX_HEADER: \makeatletter
+#+LATEX_HEADER: \newcommand\SoulColor{%
+#+LATEX_HEADER:   \let\set@color\beamerorig@set@color
+#+LATEX_HEADER:   \let\reset@color\beamerorig@reset@color}
+#+LATEX_HEADER: \makeatother
+
+
+#+LaTeX: \input{org-babel-document-preembule.tex}
+#+LaTeX: %\let\tableofcontents=\tmptableofcontents
+#+LaTeX: %\tableofcontents
+* Organization
+*** Outline
+Please, take notes, share thoughts/questions/ideas/answers here:
+#+BEGIN_CENTER
+  #+LaTeX: \href{http://tinyurl.com/SMPE-ENSL}{http://tinyurl.com/SMPE-ENSL}
+#+END_CENTER
+
+_Tentative (and evolving) agenda_:
+- *Monday* Epistemology + Reproducible research ; R crash course
+- *Tuesday* Data visualization/presentation with R; literate programming
+- *Wednesday* Introduction to probabilities/statistics ; Linear regression
+- *Thursday* Design of Experiments
+
+_Stuff to know about this course_:
+- Way too much stuff for so little time. The slides are extremely
+  dense and I speak very fast. *Don't panic! Feel free to interrupt*
+- Slides are self-content with many [[https://github.com/alegrand/SMPE][links]] and =code examples=
+- Try to put into practice asap to get the most out of it and do not
+  worry about the grade
+* \textsc{Science}: What is this thing called Science ?
+*** Outline
+\tableofcontents
+*** About Science
+
+#+BEGIN_CENTER
+*Question 1*: _In less than 5 lines give a definition of "Science" _
+#+END_CENTER
+\pause\small
+
+- "Le Robert" (wikipedia) :: 
+  Ce que l’on sait pour l’avoir appris, ce que l’on tient pour vrai au
+     sens large. L’ensemble de connaissances, d’études d’une valeur
+     universelle, caractérisées par un objet (domaine) et une méthode
+     déterminés, et fondées sur des relations objectives vérifiables
+     [sens restreint]
+- Trésor de la Langue Française Informatisé :: II. Ensemble structuré
+     de connaissances qui se rapportent à des faits obéissant à des
+     lois objective* (ou considérés comme tels) et dont la mise au
+     point exige systématisation et méthode.
+- Dictionary of science and technology ::  science noun 
+  1. the study of the physical and natural world and phenomena,
+     especially by using systematic observation and experiment
+  2. a particular area of study or knowledge of the physical world
+  3. a systematically organized body of knowledge about a particular
+     subject
+- New Oxford Dictionary :: the intellectual and practical activity
+     encompassing the systematic study of the structure and behavior
+     of the physical and natural world through observation and
+     experiment : the world of science and technology.
+  1. a particular area of this : veterinary science | the agricultural
+     sciences.
+  2. a systematically organized body of knowledge on a particular
+     subject : the science of criminology.
+  3. archaic knowledge of any kind.
+*** Scientific facts
+- *Brainstorming* 
+  - Give 5 examples of scientific facts in computer science
+  - Give 5 examples of non scientific facts
+  \pause
+- *Question 2*: In less than 5 lines give the definition of a scientific fact.
+  \pause
+  #+BEGIN_QUOTE
+  A scientific fact is an *hypothesis* that have been confirmed by a
+  *specific* experience.
+  #+END_QUOTE
+  \pause
+- *Question 3*:
+  1. Write in less than 5 lines a scientific hypothesis and propose an
+     experiment to validate it\pause
+  2. Switch your hypothesis with your neighbor. Propose an experiment
+     to invalidate the hypothesis.
+* Schools of Thoughts
+**   
+*** Claude Bernard (1813-1878) and the scientific method
+
+_3 steps of the scientific method:_
+1. observation of the reality is possible without premises ;
+2. formulation of an hypothesis (theory) from scientist creativity ;
+3. experimental verification by confrontation of the hypothesis with
+   the reality (which is always true).
+
+*Inductivism* (reasoning from the particular case to the general
+situation) : "The best theory is the one check by the more numbers of
+facts."
+
+#+BEGIN_LaTeX
+\begin{center}
+  \includegraphics[height=5cm]{images/claude_bernard1.png}\qquad
+  \includegraphics[height=5cm]{images/claude_bernard2.png}
+\end{center}
+#+END_LaTeX
+*** Karl Popper (1902-1994) and Falsifiability
+- Criteria to separate science and non-science : \\
+  *Is scientific a theory that could be falsifiable*, that could be
+  submitted by empirical falsification = refutable by facts
+
+- I Asymmetry between verification and falsification. It is an epistemology logical and normative.
+  Theories should be clearly formulated, as precisely as possible, can’t be suppressed without a
+  ’good reason’ (falsification, or theory with "superior degree of falsifiability"), can’t be
+  immunized.
+
+- The non-ended play of science.
+  - World 1 : the world of physical objects and events, including biological entities
+  - World 2 : the world of mental objects and events
+  - World 3 : objective knowledge.
+*** Karl Popper (1/2)
+In the following text K.R Popper try to answer the questions : "*When a
+theory get a scientific status ?*" "*Does it exist a criteria to assert
+the nature or the scientific status of a theory ?*"
+\small\it
+1. It is easy to obtain confirmations, or verifications, for nearly
+   every theory-if we look for confirmations.
+2. Confirmations should count only if they are the result of risky
+   predictions ; that is to say, if, unenlightened by the theory in
+   question, we should have expected an event which was incompatible
+   with the theory–an event which would have refuted the theory.
+3. Every ’good’ scientific theory is a prohibition : it forbids
+   certain things to happen. The more a theory forbids, the better it
+   is.
+4. A theory which is not refutable by any conceivable event is
+   nonscientific. Irrefutability is not a virtue of a theory (as
+   people often think) but a vice.
+5. Every genuine test of a theory is an attempt to falsify it, or to
+   refute it. Testability is falsifiability ; but there are degrees of
+   testability : some theories are more testable, more exposed to
+   refutation, than others ; they take, as it were, greater risks.
+*** Karl Popper (2/2)
+\small\it
+
+6. Confirming evidence should not count except when it is the result
+   of a genuine test of the theory ; and this means that it can be
+   presented as a serious but unsuccessful attempt to falsify the
+   theory. (I now speak in such cases of ’corroborating evidence’.)
+7. Some genuinely testable theories, when found to be false, are still
+   upheld by their admirers–for example by introducing ad hoc some
+   auxiliary assumption, or by re-interpreting the theory ad hoc in
+   such a way that it escapes refutation. Such a procedure is always
+   possible, but it rescues the theory from refutation only at the
+   price of destroying, or at least lowering, its scientific
+   status. 
+   # (I later described such a rescuing operation as a
+   # ’conventionalist twist’ or a ’conventionalist stratagem’.)
+
+#+BEGIN_LaTeX
+\begin{columns}
+  \begin{column}{.5\linewidth}
+    One can sum up all this by saying that the criterion of the
+    scientific status of a theory is its \alert{falsifiability}, or,
+    \alert{refutability}, or \alert{testability}.\mesdkip
+
+    \begin{flushright}
+      \sf K.R. Popper\\
+      Conjectures and refutations.
+    \end{flushright}
+  \end{column}
+  \begin{column}{.5\linewidth}
+    \includegraphics[height=4cm]{images/karl_popper1.png}%
+    \includegraphics[height=4cm]{images/karl_popper2.png}
+  \end{column}
+\end{columns}
+#+END_LaTeX
+*** Thomas Kuhn (1922-1996) : Science, a dynamical process
+\scriptsize
+- Phase 1 :: It exists only once and is the pre-paradigm phase, in
+     which there is no consensus on any particular theory, though the
+     research being carried out can be considered scientific in
+     nature. This phase is characterized by several incompatible and
+     incomplete theories. If the actors in the pre-paradigm community
+     eventually gravitate to one of these conceptual frameworks and
+     ultimately to a widespread consensus on the appropriate choice of
+     methods, terminology and on the kinds of experiment that are
+     likely to contribute to increased insights.
+- Phase 2 :: Normal Science, begins, in which puzzles are solved
+     within the context of the dominant paradigm. As long as there is
+     consensus within the discipline, normal science continues. Over
+     time, progress in normal science may reveal anomalies, facts that
+     are difficult to explain within the context of the existing
+     paradigm. While usually these anomalies are resolved, in some
+     cases they may accumulate to the point where normal science
+     becomes difficult and where weaknesses in the old paradigm are
+     revealed.
+- Phase 3 :: This phase is a crisis. Crises are often resolved within
+     the context of normal science. However, after significant efforts
+     of normal science within a paradigm fail, science may enter the
+     next phase.
+- Phase 4 :: Scientific revolution is the phase in which the
+     underlying assumptions of the field are reexamined and a new
+     paradigm is established.
+- Phase 5 :: Post-Revolution, the new paradigm’s dominance is
+     established and so scientists return to normal science, solving
+     puzzles within the new paradigm.
+\small
+A science may go through these cycles repeatedly, though Kuhn notes
+that it is a good thing for science that such shifts do not occur
+often or easily
+*** Thomas Kuhn
+#+BEGIN_LaTeX
+\begin{columns}
+  \begin{column}{.5\linewidth}
+#+END_LaTeX
+*Pre-science*
+1. debate on the bases ;
+2. no selection of facts ;
+3. no scientific domain.
+#+BEGIN_LaTeX
+  \end{column}
+  \begin{column}{.5\linewidth}
+    \begin{flushright}
+      \includegraphics[height=3.2cm]{images/thomas_kuhn1.png}%
+      \includegraphics[height=3.2cm]{images/thomas_kuhn2.png}
+    \end{flushright}
+  \end{column}
+\end{columns}
+#+END_LaTeX
+*Normal Science* existence of a paradigm, a matrix for the domain:
+1. common language for the "tribe"
+2. shared believes (ontologies, metaphors and analogies) ;
+3. shared values (values, methodological, epistemological norms) ;
+4. socialization examples. Normal science check that the paradigm is
+   right, never contradictory facts
+
+*Scientific revolution*
+- Strong anomalies : fundamental questioning of the basic paradigms at
+  a psychological, sociological, political level.
+- Incommensurability between the old and the new paradigm.
+*** Imre Lakatos (1922-1974): Science, a social process
+#+BEGIN_LaTeX
+\begin{columns}
+  \begin{column}{.8\linewidth}
+#+END_LaTeX
+- Research Program :: hard core values and fundamental beliefs,
+     fundamental ontologies and methodology (ideology of the group)
+     are never questioned ("negative heuristic").
+- Protecting belt :: theories confirming observed facts and protecting
+     the hard core from critics.
+  - We falsify at the protecting belt level, never at the hard core
+    level. We evaluate series of theories rather than falsifying a
+    particular one (as Popper did).
+#+BEGIN_LaTeX
+  \end{column}
+  \begin{column}{.2\linewidth}
+    \begin{flushright}
+      \includegraphics[height=3.2cm]{images/imre_lakatos.png}%
+    \end{flushright}
+  \end{column}
+\end{columns}
+#+END_LaTeX
+- Main Science :: characterized by several concurrent research
+     programs
+- Progressive Program :: progress at the theoretical level (increase
+     coherence) and at the empirical level (new facts).
+- Degenerated Program :: no progress at the theoretical (no
+     improvements) / empirical (no unpredictable facts) level
+* Computer Science
+**  
+*** A short history of Computer Science
+
+#+LaTeX: \centerline{\includegraphics[width=.85\linewidth]{images/cs_history.png}}
+#+LaTeX: \begin{flushright}\scriptsize Courtesy of S. Krakowiak 2016\end{flushright}
+*** Defining Computer Science (Dowek and others)
+#+BEGIN_LaTeX
+\begin{columns}[t]
+  \begin{column}{.5\linewidth}
+#+END_LaTeX
+_Computing_
+- A science: Science of artificial... but not only
+- A technology, an industry (Hardware, software, network,
+  services,...)
+- Applications: increasing area
+- Social impact: numerical/Information society
+#+BEGIN_LaTeX
+  \end{column}\pause
+  \begin{column}{.5\linewidth}
+#+END_LaTeX
+_Computer Science_
+
+*Concepts* \small
+  - Information: Representation, communication, compression,...
+  - Algorithm: Operative process
+  - Programming Language: link between levels of abstraction
+  - Architecture (Computing Engine): abstraction of the physical world
+  - Human in the loop 
+*Methods*: Back and forth between theory and experimentation.
+  Automatic abstraction transform. Self-generated tools.
+
+*Human organization* with social rules
+#+BEGIN_LaTeX
+  \end{column}
+\end{columns}
+#+END_LaTeX
+* Conclusion
+**  
+*** Recap
+- Scientific Method :: Falsifiability is the logical possibility that
+     an assertion can be shown false by an observation or a physical
+     experiment. [Popper 1930]\pause
+
+     #+BEGIN_CENTER
+     *Modeling (abstract representation) comes before experimenting* \pause     
+     #+END_CENTER
+- Modeling principles [J-Y LB] :: \quad
+  - (Occam :) if two models explain some observations equally well, the simplest one is preferable
+  - (Dijkstra :) It is when you cannot remove a single piece that your design is complete.
+  - (Common Sense :) Use the adequate level of sophistication. \pause
+- Science is a Social Phenomena :: \quad
+  - collaborative construction of knowledge
+  - dynamic evolution of knowledge
