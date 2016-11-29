@@ -1,0 +1,378 @@
+#+TITLE:     Presentation of Scientific Results
+#+AUTHOR:    Arnaud Legrand
+#+DATE: Performance Evaluation Lecture
+#+STARTUP: beamer overview indent
+#+TAGS: noexport(n)
+#+LaTeX_CLASS: beamer
+#+LaTeX_CLASS_OPTIONS: [11pt,xcolor=dvipsnames,presentation]
+#+OPTIONS:   H:3 num:t toc:nil \n:nil @:t ::t |:t ^:nil -:t f:t *:t <:t
+#+LATEX_HEADER: \input{org-babel-style-preembule.tex}
+
+#+LaTeX: \input{org-babel-document-preembule.tex}
+
+
+* List                                                             :noexport:
+* Data Visualization
+#+BEGIN_LaTeX
+\def\info{
+      \resizebox{\linewidth}{!}{
+        \begin{minipage}{1.1\linewidth}
+          \small
+  $N = 11$ samples\\
+  Mean of $X$ = 9.0\\
+  Mean of $Y$ = 7.5\\%
+  \uncover<2->{Intercept = 3\\
+  Slope = 0.5\\
+  Res. stdev = 1.237\\}%
+  Correlation = 0.816
+        \end{minipage}
+      }
+}
+#+END_LaTeX
+
+** Motivation
+*** Why do we need to visualize ? The Anscombe's Quartet         :noexport:
+#+begin_src R :results output :session :exports none
+library(ggplot2)
+library(plyr)
+library(reshape)
+anscombe$idx=1:length(anscombe$x1) 
+a = melt(anscombe,id=c("idx"))
+a$set=gsub("[^0-9]*","",as.character(a$variable))
+a$variable=gsub("[0-9]*","",as.character(a$variable))
+a = cast(a, idx+set~variable, mean) 
+# library(ggplot2)
+# library(dplyr)
+# library(tidyr)
+# anscombe$idx=1:length(anscombe$x1) 
+# a = anscombe %>% gather(variable, value,-idx)
+# a$set=gsub("[^0-9]*","",as.character(a$variable))
+# a$variable=gsub("[0-9]*","",as.character(a$variable))
+# a %>% spread(set,variable)
+a = cast(a, idx+set~variable, mean) 
+#+end_src
+
+#+RESULTS:
+: 
+: Attachement du package : ‘reshape’
+: 
+: The following objects are masked from ‘package:plyr’:
+: 
+:     rename, round_any
+: Erreur : Casting formula contains variables not found in molten data: variable
+
+#+LaTeX: \begin{columns}\begin{column}{.4\linewidth}
+#+begin_src R :results output :session :exports output
+a1=a[a$set==1,c("x","y")]
+a2=a[a$set==2,c("x","y")]
+a1
+#+end_src
+
+#+RESULTS:
+#+begin_example
+    x     y
+1  10  8.04
+5   8  6.95
+9  13  7.58
+13  9  8.81
+17 11  8.33
+21 14  9.96
+25  6  7.24
+29  4  4.26
+33 12 10.84
+37  7  4.82
+41  5  5.68
+#+end_example
+
+#+LaTeX: \end{column}\begin{column}{.6\linewidth}
+#+begin_src R :results output :session :exports both
+summary(a1)
+summary(a2)
+#+end_src
+
+#+RESULTS:
+#+begin_example
+       x              y         
+ Min.   : 4.0   Min.   : 4.260  
+ 1st Qu.: 6.5   1st Qu.: 6.315  
+ Median : 9.0   Median : 7.580  
+ Mean   : 9.0   Mean   : 7.501  
+ 3rd Qu.:11.5   3rd Qu.: 8.570  
+ Max.   :14.0   Max.   :10.840
+       x              y        
+ Min.   : 4.0   Min.   :3.100  
+ 1st Qu.: 6.5   1st Qu.:6.695  
+ Median : 9.0   Median :8.140  
+ Mean   : 9.0   Mean   :7.501  
+ 3rd Qu.:11.5   3rd Qu.:8.950  
+ Max.   :14.0   Max.   :9.260
+#+end_example
+
+#+LaTeX: \end{column}\end{columns}
+
+*** Why do we need to visualize ? The Anscombe's Quartet
+#+BEGIN_LaTeX
+  \begin{columns}
+    \begin{column}{.25\linewidth}
+      $\small
+      \begin{array}{|r|r|}\hline
+        X^{(1)} & Y^{(1)} \n
+        10.00 & 8.04  \n
+        8.00  & 6.95  \n
+        13.00 & 7.58  \n
+        9.00  & 8.81  \n
+        11.00 & 8.33  \n
+        14.00 & 9.96  \n
+        6.00  & 7.24  \n
+        4.00  & 4.26  \n
+        12.00 & 10.24 \n
+        7.00  & 4.82  \n
+        5.00  & 5.68  \n
+      \end{array}
+      $\medskip\\
+      \info
+    \end{column}
+%
+    \begin{column}{.25\linewidth}
+      \only<4->{
+      $\small
+      \begin{array}{|r|r|}\hline
+        X^{(2)} & Y^{(2)} \n
+        10.00 & 9.14  \n
+        8.00  & 8.14  \n
+        13.00 & 8.74  \n
+        9.00  & 8.77  \n
+        11.00 & 9.26  \n
+        14.00 & 8.10  \n
+        6.00  & 6.13  \n
+        4.00  & 3.10  \n
+        12.00 & 9.13 \n
+        7.00  & 7.26  \n
+        5.00  & 4.74  \n
+      \end{array}
+      $\medskip\\
+      \info
+    }
+    \end{column}
+%
+    \begin{column}{.25\linewidth}
+      \only<4->{
+      $\small
+      \begin{array}{|r|r|}\hline
+        X^{(3)} & Y^{(3)} \n
+        10.00 & 7.46  \n
+        8.00  & 6.77  \n
+        13.00 & 12.74  \n
+        9.00  & 7.11  \n
+        11.00 & 7.81  \n
+        14.00 & 8.84  \n
+        6.00  & 6.08  \n
+        4.00  & 5.39  \n
+        12.00 & 8.15 \n
+        7.00  & 6.42  \n
+        5.00  & 5.73  \n
+      \end{array}
+      $\medskip\\
+      \info
+    }
+    \end{column}
+%
+    \begin{column}{.25\linewidth}
+      \only<4->{
+      $\small
+      \begin{array}{|r|r|}\hline
+        X^{(4)} & Y^{(4)} \n
+        8.00  & 6.58  \n
+        8.00  & 5.76  \n
+        8.00  & 7.71  \n
+        8.00  & 8.84  \n
+        8.00  & 8.47  \n
+        8.00  & 7.04  \n
+        8.00  & 5.25  \n
+        19.00 &12.50  \n
+        8.00  & 5.56 \n
+        8.00  & 7.91  \n
+        8.00  & 6.89  \n
+      \end{array}
+      $\medskip\\
+      \info}
+    \end{column}
+  \end{columns}
+  \begin{overlayarea}{1.1\linewidth}{0cm}
+    \vspace{-8.2cm}\hspace{.15\linewidth}%
+    \only<2-3,5-6>{%
+      \begin{minipage}{.84\linewidth}
+        \begin{alertblock}{}%
+          \begin{columns}
+          \null\hspace{-.6cm}%
+            \begin{column}{.45\linewidth}
+              \begin{block}{Scatter plot}
+                \includegraphics<2-3>[width=\linewidth]{images/scat1.pdf}%
+                \includegraphics<5-6>[width=\linewidth]{images/scat2.pdf}%
+              \end{block}
+            \end{column}\hspace{-.15\linewidth}
+            \begin{column}{.5\linewidth}
+              \small \only<3>{
+                \begin{enumerate}
+                \item The data set "behaves like" a linear curve with
+                  some scatter;
+                \item There is no justification for a more complicated
+                  model (e.g., quadratic);
+                \item There are no outliers;
+                \item The vertical spread of the data appears to be of
+                  equal height irrespective of the X-value; \\
+                  this indicates that the data are equally-precise
+                  throughout and so a "regular" (that is,
+                  equi-weighted) fit is appropriate.
+                \end{enumerate}}%
+              \only<6>{
+                \begin{enumerate}
+                \item data set 1 is clearly linear with some scatter.
+                \item data set 2 is clearly quadratic.
+                \item data set 3 clearly has an outlier.
+                \item data set 4 is obviously the victim of a poor
+                  experimental design with a single point far removed
+                  from the bulk of the data "wagging the dog".
+                \end{enumerate}}
+            \end{column}
+%            \hspace{-2cm}
+          \end{columns}
+        \end{alertblock}
+      \end{minipage}
+    }
+  \end{overlayarea}
+
+#+END_LaTeX
+
+*** Problem statement
+- All *analysis* we perform rely on (sometimes implicit) *assumptions*. If
+  these assumptions do not hold, the analysis will be a *complete
+  non-sense*.
+- Checking these assumptions is not always easy and sometimes, it may
+  even be difficult to *list* all these assumptions and *formally state*
+  them.
+  #+BEGIN_CENTER
+  \textbf{A visualization can help to check these assumptions.}
+  #+END_CENTER
+- Visual representation resort to our *cognitive faculties* to check
+  properties.
+  
+  The visualization is meant to let us detect *expected and
+  unexpected behavior* with respect to a given model.
+*** Using the ``right'' representations
+- The problem is to represent on a limited space, typically a screen
+  with a fixed resolution, a meaningful information about the behavior
+  of an application or system.
+- $\leadsto$ need to aggregate data and be aware of what information
+  loss this incurs.
+- Every visualization *emphasizes* some characteristics and
+  *hides* others. Being aware of the underlying models helps
+  choosing the right representation.
+*** Visualization and intuition
+- Visualization can also be used to *guide your intuition*.
+
+  Sometimes, you do not know exactly what you are looking for and
+  looking at the data just helps.
+- Some techniques (*Exploratory Data Analysis*) even build on
+  this and propose to summarize main characteristics in
+  easy-to-understand form, often with visual graphs, without using a
+  statistical model or having formulated a hypothesis.
+- \textbf{Use with care}, visualizations always have underlying
+   models: when visualization is not adapted, what you may observe may
+   be meaningless.
+
+  Such approaches may *help formulating hypothesis* but these hypothesis
+  have then to be tested upon new data-sets.  
+*** A ``simple'' graphical check for investigating scalability
+\small
+Plotting $T_p$ versus $p$.
+#+BEGIN_LaTeX
+  \begin{center}
+    \begin{overlayarea}{.6\linewidth}{4.4cm}
+      \includegraphics<1-2>[width=\linewidth]{images/ipdps_plot_2.pdf}
+      \includegraphics<3->[width=\linewidth]{images/ipdps_plot_1.pdf}
+    \end{overlayarea}
+  \end{center}
+  \begin{overlayarea}{\linewidth}{2cm}
+    \only<2>{
+      \begin{itemize}
+      \item y-axis does not start at 0, which makes speedup look more
+        impressive\vspace{-.5em}
+      \item x-axis is linear with an outlier.
+      \end{itemize}
+   }%
+   \only<4>{
+     \begin{itemize}
+     \item y-axis uses log-scale\vspace{-.5em}
+     \item x-axis is neither linear nor logarithmic so we cannot
+       reason about the shape of the curve\vspace{-.5em}
+     \end{itemize}
+     Say, we want to test for Amhdal's law. Propose a better
+     representation.}
+  \end{overlayarea}
+#+END_LaTeX
+*** Graphically checking which alternative is better ?
+\small 5 different alternatives (=FT-DWD_2=, =FT-DWD_5=, =FT-DWD_10=,
+=RT-DWD=, =RT-BWD=), each tested 10 times.
+#+BEGIN_CENTER
+\begin{overlayarea}{.6\linewidth}{4cm}
+\includegraphics[width=\linewidth]{images/ipdps_plot_3.pdf}
+\end{overlayarea}
+#+END_CENTER
+\pause 
+Outcomes have been sorted by increasing value for each alternative and
+are then linked together
+- The shape of the lines do not make any sense. The lines group
+  related values\vspace{-.5em}
+- Experiment order does not make any sense and makes it look like
+  alternatives have been evaluated in 10 different settings (, which
+  suggests the values can be compared with each others for each
+  setting)\vspace{-.5em}
+Propose a better representation
+** Jain, Chapter 10
+*** Read the basics
+- For all such kind of ``general'' graphs where you summarize the
+  results of several experiments, the very least you need to *read* is
+  *Jain's book*: *The Art of Computer Systems Performance Analysis*. A new
+  edition is expected in sept. 2015
+- It has *check lists* for ``Good graphics'', which I made
+  more or less available on the lecture's webpage
+- It presents the most common pitfalls in data representation
+- It will teach how to cheat with your figures\dots
+- \dots and how to *detect cheaters*. ;)
+*** Guidelines
+1. Require minimum effort to the reader: get the message (legends,
+   labels, trends, annotations, ...)
+2. Maximize information (self-sufficient, clear labels, units, ...)
+3. Minimize Ink (avoid cluttered information\dots)
+4. Use commonly accepted practices (effect along the y-axis, scales)
+5. Avoid Ambiguity (coordinates, scales, colors, only one variable, ...)
+#+BEGIN_LaTeX
+  \begin{center}
+    \includegraphics<+>[height=4cm]{images/jain/10-02.jpg}
+    \includegraphics<+>[height=4cm]{images/jain/10-03.jpg}
+    \includegraphics<+>[height=4cm]{images/jain/10-04.jpg}
+    \includegraphics<+>[height=4cm]{images/jain/10-05.jpg}
+    \includegraphics<+>[height=4cm]{images/jain/10-06.jpg}
+    \includegraphics<+>[height=4cm]{images/jain/10-07.jpg}
+    \includegraphics<+>[height=4cm]{images/jain/10-08.jpg}
+    \includegraphics<+>[height=4cm]{images/jain/10-13.jpg}
+    \includegraphics<+>[height=4cm]{images/jain/10-09.jpg}
+    \includegraphics<+>[height=4cm]{images/jain/10-10.jpg}
+  \end{center}
+#+END_LaTeX
+*** What about these ones ?
+#+BEGIN_CENTER
+#+LaTeX: \includegraphics<+>[height=7cm]{images/jain/10-27.jpg}
+#+END_CENTER
+*** Use the right tools
+- \textbf{R} :: is a system for statistical computation and graphics.
+  - Avoid programming with R. Most things can be done with one liners.
+  - Excellent graphic support with \textbf{ggplot2}.
+  - =knitr= allows to mix R with LaTeX or Markdown. Literate
+    programming to ease reproducible research.
+- \textbf{Rstudio} :: is an IDE a system for statistical
+  computation and graphics. It is easy to use and allows publishing
+  on \textbf{rpubs}.
+- \textbf{Org-mode} ::  Allows to mix sh, perl, R, \dots within plain text
+     documents and export to LaTeX, HTML, ...  
