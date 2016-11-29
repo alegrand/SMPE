@@ -23,10 +23,20 @@
 #+LATEX_HEADER: \newcommand\SoulColor{%
 #+LATEX_HEADER:   \let\set@color\beamerorig@set@color
 #+LATEX_HEADER:   \let\reset@color\beamerorig@reset@color}
-#+LTAEX_HEADER: \makeatother
+#+LATEX_HEADER: \makeatother
 
 * 
 #+LaTeX: \input{org-babel-document-preembule.tex}
+
+
+*** Références                                                   :noexport:
+http://www.irisa.fr/metiss/gribonval/Talks/2014/Reproductibilite.pdf
+- Everything we eat both causes and prevents cancer - ScienceAlert
+- https://www.youtube.com/watch?v=0Rnq1NpHdmw
+- http://soft-dev.org/events/bench16/
+- http://calcul.math.cnrs.fr/spip.php?article268
+- http://www.nature.com/news/reality-check-on-reproducibility-1.19961
+- http://www.nature.com/news/1-500-scientists-lift-the-lid-on-reproducibility-1.19970
 *** Inconsistencies
 #+LaTeX: \only<1>{
 [[http://ajcn.nutrition.org/content/early/2012/11/27/ajcn.112.047142.full.pdf][Is everything we eat associated with cancer? A systematic cookbook
@@ -266,4 +276,3 @@ $\leadsto$ *Train* our researchers and *students* \bigskip
   #+LaTeX: \vspace{-.4em}
   #+LaTeX: \href{https://github.com/alegrand/RR_webinars/blob/master/README.org}{https://github.com/alegrand/RR\_webinars}
 #+END_CENTER
-
