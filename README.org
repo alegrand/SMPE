@@ -40,7 +40,9 @@ other lectures, my goal is not to provide analysis recipes that people
 can readily apply but to make people really understand some simple
 tools so that they can then dig deeper later on.
 
-The course is organized in 5 very dense lectures of 3 hours
+
+Originally, the course is organized in 5 very dense lectures of 3
+hours:
   1. *[[file:lectures/1_reproducible_research.pdf][Reproducible research]]*. A video of a similar presentation (a
      mixture of lecture 1 and 2 actually) is available on [[https://www.canal-u.tv/][canal-u]]
      ([[https://www.canal-u.tv/video/inria/best_practices_for_reproducible_research_part_1.16684][Part 1]] and [[https://www.canal-u.tv/video/inria/best_practices_for_reproducible_research_part_2.16685][Part 2]]) and graal ([[http://graal.ens-lyon.fr/~alegrand/PUF_JLPC_Summer_School/1st%20PUF:JLPC%20Summer%20School%20-%20Best%20Practices%20for%20Reproducible%20Research%20-%20Arnaud%20Legrand.mp4][Part 1]] and [[http://graal.ens-lyon.fr/~alegrand/PUF_JLPC_Summer_School/1st%20PUF:JLPC%20Summer%20School%20-%20Best%20Practices%20for%20Reproducible%20Research%20-%20Arnaud%20Legrand%20-%20partie%202%20-%20demo.mp4][Part 2]]).
@@ -48,6 +50,17 @@ The course is organized in 5 very dense lectures of 3 hours
   3. *[[file:lectures/3_introduction_to_statistics.pdf][Introduction to probabilities/statistics]]*.
   4. *[[file:lectures/4_linear_model.pdf][Linear regression]]*.
   5. *[[file:lectures/5_design_of_experiments.pdf][Design of Experiments]]*.
+
+I'm progressively slicing it up in smaller chunks as follows:
+1. file:lectures/lecture_epistemology.pdf
+2. file:lectures/lecture_reproducible_research.pdf
+3. file:lectures/lecture_literate_programming.pdf
+4. file:lectures/lecture_R_crash_course.pdf
+5. file:lectures/lecture_descriptive_univariate.pdf
+6. file:lectures/lecture_data_presentation.pdf
+7. file:lectures/lecture_correlation_causation.pdf
+8. file:lectures/lecture_central_limit_theorem.pdf
+
 
 All the examples given in this series of lecture use the [[http://www.r-project.org/][R]] language
 and the source is provided so that people can reuse them. The slides
