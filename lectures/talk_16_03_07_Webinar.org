@@ -165,7 +165,7 @@ _*As an Author*_
   - A new student wants to compare with *the method I proposed last
     year*
   - The damned fourth reviewer asked for a major revision and wants me
-    to *change figure 3* :( *Which code* and *which data set* did I use to
+    to *change figure 3*. $\frowny$ *Which code* and *which data set* did I use to
     generate this figure?
   - 6 months later: *Why* did I do that?
 _*As a Reviewer*_ This may be an interesting contribution but:
