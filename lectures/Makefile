@@ -1,5 +1,5 @@
-ORG_SOURCES=1_reproducible_research.org  2_data_presentation.org  3_introduction_to_statistics.org  4_linear_model.org  5_design_of_experiments.org 2bis_descriptive_statistics.org
-
+ORG_SOURCES:= $(wildcard lecture_*.org)
+# 1_reproducible_research.org  2_data_presentation.org  3_introduction_to_statistics.org  4_linear_model.org  5_design_of_experiments.org 2bis_descriptive_statistics.org 
 PDF_SLIDES=$(subst .org,.pdf,$(ORG_SOURCES))
 TEX_SLIDES=$(subst .org,.tex,$(ORG_SOURCES))
 

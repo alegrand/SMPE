@@ -173,7 +173,7 @@ the nature or the scientific status of a theory ?*"
   \begin{column}{.5\linewidth}
     One can sum up all this by saying that the criterion of the
     scientific status of a theory is its \alert{falsifiability}, or,
-    \alert{refutability}, or \alert{testability}.\mesdkip
+    \alert{refutability}, or \alert{testability}.\medskip
 
     \begin{flushright}
       \sf K.R. Popper\\
