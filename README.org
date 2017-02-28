@@ -62,7 +62,7 @@ I'm progressively slicing it up in smaller chunks as follows:
 8. [[file:lectures/3_introduction_to_statistics.pdf][Introduction to probabilities/statistics]] ([[file:lectures/lecture_central_limit_theorem.pdf][Proof of the Central
    limit theorem]])
 9. [[file:lectures/4_linear_model.pdf][Linear regression]]
-10. [[file:lectures/4_linear_model.pdf][Design of Experiments]]
+10. [[file:lectures/5_design_of_experiments.pdf][Design of Experiments]]
 
 All the examples given in this series of lecture use the [[http://www.r-project.org/][R]] language
 and the source is provided so that people can reuse them. The slides
