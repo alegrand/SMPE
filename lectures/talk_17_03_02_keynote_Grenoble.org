@@ -1,6 +1,6 @@
 #+TITLE:     Reproducible Research: Where Do We Stand?
 #+AUTHOR:    Arnaud Legrand\newline CNRS, Inria/POLARIS, University of Grenoble
-#+DATE: February 28, 2017 -- ENS Rennes
+#+DATE: March 2, 2017 -- Grenoble
 #+STARTUP: beamer overview indent
 #+TAGS: noexport(n)
 #+LaTeX_CLASS: beamer
@@ -37,7 +37,7 @@ http://www.irisa.fr/metiss/gribonval/Talks/2014/Reproductibilite.pdf
 - http://calcul.math.cnrs.fr/spip.php?article268
 - http://www.nature.com/news/reality-check-on-reproducibility-1.19961
 - http://www.nature.com/news/1-500-scientists-lift-the-lid-on-reproducibility-1.19970
-*** A vivid debate: Cholesterol and Statins
+*** A vivid debate: Cholesterol and Statins                      :noexport:
 #+BEGIN_CENTER
 [[http://future.arte.tv/fr/cholesterol][Cholesterol: le grand bluff (Arte, 18/10/2016 @ 20h50)]]
 #+END_CENTER
@@ -54,7 +54,7 @@ http://www.irisa.fr/metiss/gribonval/Talks/2014/Reproductibilite.pdf
 #+END_CENTER
 
 *** Inconsistencies
-What should we eat then?\medskip
+What should we eat?\medskip
 
 #+LaTeX: \begin{overlayarea}{\linewidth}{6.5cm}
 \vfill
@@ -154,17 +154,17 @@ ones
 \pause
 
 #+LaTeX: \begin{columns}
-#+LaTeX:   \begin{column}{.8\linewidth}
+#+LaTeX:   \begin{column}{.77\linewidth}
 *1934*: \textbf{Karl Popper} puts the notions of *falsifiability* and
 *crucial experiment* as the *hallmark of science*
-#+LaTeX:   \end{column}\begin{column}{.17\linewidth}
-#+ATTR_LaTeX: :height 1.7cm
+#+LaTeX:   \end{column}\begin{column}{.2\linewidth}
+#+ATTR_LaTeX: :height 1.9cm
 file:images/karl_popper1.png
-#+ATTR_LaTeX: :height 1.7cm
+#+ATTR_LaTeX: :height 1.9cm
 file:images/karl_popper2.png
 #+LaTeX:   \end{column}
 #+LaTeX: \end{columns}
-*** A Reproducibility Crisis?
+*** A Reproducibility Crisis?                                    :noexport:
 #+LaTeX: \begin{overlayarea}{\linewidth}{7.6cm}\null\vspace{-.4cm}
 *[[http://www.nytimes.com/2011/07/08/health/research/08genes.html][The Duke University scandal with scientific misconduct on lung
 cancer]]*
@@ -197,7 +197,7 @@ cancer]]*
 in people's mind if they get worthless/unreliable information?
 #+END_CENTER
 #+LaTeX: \end{overlayarea}
-*** Definitely
+*** Definitely                                                   :noexport:
 - \normalsize Similar scandals :: in social psychology, stem cells, organic
      transistors ([[https://papers.ssrn.com/sol3/papers.cfm?abstract_id=2908716][The Economics of Replication]]).
 - A recent scandal ::
@@ -226,6 +226,42 @@ in people's mind if they get worthless/unreliable information?
      wikipedia [[https://en.wikipedia.org/wiki/Category:Academic_scandals][/list of academic scandals/]]. On a totally different
      aspect, do not forget to also have a look at the [[https://en.wikipedia.org/wiki/Plagiarism][/plagiarism/]] and
      [[https://en.wikipedia.org/wiki/Paper_generator][/paper generation/]] entries at [[https://hal.inria.fr/file/index/docid/713564/filename/TechReportV2.pdf][/having fun with h-index/]]
+# #+BEGIN_CENTER
+#    [[http://www.cnrs.fr/fr/pdf/cim/CIM36.pdf][/The Battle against Scientific Fraud/ in the CNRS International
+#    Magazine]]
+# #+END_CENTER
+*** A Reproducibility Crisis?
+- \normalsize Many scandals :: in social psychology, stem cells,
+     organic transistors ([[https://papers.ssrn.com/sol3/papers.cfm?abstract_id=2908716][The Economics of Replication]]) leading to
+     retractation/resignation.
+  #+LaTeX: ~\footnotesize
+  - At CNRS, we recently had the Olivier Viannet case and it appears
+    we'll have the sequel with Susana Rivas at INRA $\frowny$
+- \normalsize A recent scandal :: \normalsize 
+  In 2013, [[https://en.wikipedia.org/wiki/Dong-Pyou_Han][/Dong-Pyou Han/]], a former assistant professor of biomedical
+     sciences at Iowa State University was disgraced:\footnotesize
+  - Falsified blood results to make it appear as though a vaccine he was
+    working on had exhibited anti-HIV activity
+  - Han and his team received 
+    #+LaTeX: $\approx \$19$ million from NIH
+  - Retraction and resignation of university
+  - Han was sentenced in 2015 to 57 months imprisonment for
+    fabricating and falsifying data in HIV vaccine trials. He was also
+    fined US 
+    #+LaTeX: $\$7.2$ million!\pause
+- \normalsize Loosing trust :: \normalsize What's the difference
+     between science and charlatanism in people's mind if they get
+     worthless/unreliable information?
+- \normalsize Scientific fraud is bad but we should avoid witch-hunt :: 
+  #+LaTeX: ~\footnotesize
+  - August 5, 2014, Yoshiki Sasai (stem cell, considered for Nobel
+    Prize) hanged in his laboratory at the RIKEN
+    (Japan). Fraud _suspicion_...
+  # - In 1986, a young postdoctoral fellow at MIT accused her director,
+  #   Thereza Imanishi-Kari, of falsifying the results of a study
+  #   published in Cell and co-signed by the Nobel laureate David
+  #   Baltimore. [..] Declared guilty, Univ. presidency resignation, and
+  #   _finally cleared_. On hold carreer for ten years...
 # #+BEGIN_CENTER
 #    [[http://www.cnrs.fr/fr/pdf/cim/CIM36.pdf][/The Battle against Scientific Fraud/ in the CNRS International
 #    Magazine]]
@@ -280,7 +316,7 @@ _*Methodological or technical causes*_ \small
   mistakes*, *computational errors*)
 - *Lack of information, code/raw data unavailable*  
 \normalsize _*Social causes*_ \small
-- Fraud, conflict of interest (pharmaceutic)
+- Fraud, conflict of interest (pharmaceutic, \dots)
 - *No incentive* to reproduce/check our own work (afap), nor the
   work of others (big results!), nor to allow others to check
   (competition)
@@ -308,7 +344,7 @@ _*Methodological or technical causes*_ \small
 # \includeslidesJF{2-7}
 * What about Computer Science ?
 #+LaTeX: \begin{frame}{Outline}\tableofcontents[current]\end{frame}
-*** Defining Computer Science (Dowek and others)
+*** Defining Computer Science (Dowek and others)                 :noexport:
 #+BEGIN_LaTeX
 \begin{columns}[t]
   \begin{column}{.5\linewidth}
@@ -342,7 +378,7 @@ _Computer Science_
 *** All this is about Natural Sciences. Should we care ?
 
 _Computer Science_ is young and inherits from _Mathematics_, _Engineering_,
-_Nat. Sciences_, _Linguistic_, \dots\medskip
+_Nat. Sciences_, _Linguistic_, \dots\bigskip
 
 Purely theoretical scientists whose practice is close to mathematics
 may not be concerned (can't publish a math article without
@@ -466,134 +502,6 @@ Did I mention we have *parallel machines* nowadays? $\winkey$
 \end{overlayarea}
 \begin{flushright}\scriptsize Courtesy of P. Langlois and R. Nheili\end{flushright}
 #+END_LaTeX
-*** Controling what's happening
-Both the *scientific process* and the *software environment* has become
-extremely complex
-
-Computational biologists and physicist have pushed forward with the
-development of many tools:
-
-- Software environment preservation/reconstruction
-- Workflow engines, data provenance
-- Laboratory notebooks, litterate programming, replicable articles
-- Dissemination platforms
-
-And this landscape is rapidly evolving
-
-
-* Reproducible Research/Open Science: Illustrating Nice Ideas Through Different Tools
-#+LaTeX: \begin{frame}{Outline}\tableofcontents[current]\end{frame}
-*** Reproducibility: What Are We Talking About?
-#+BEGIN_LaTeX
-\vspace{-.6em}
-\begin{overlayarea}{\linewidth}{9cm}
-\hbox{\hspace{-.05\linewidth}\includegraphics[page=5,width=1.1\linewidth]{pdf_sources/sumatra_amp2011.pdf}}
-
-\vspace{-3.5cm}
-\begin{flushleft}
-  Note that the \textbf{terminology varies} (repetition, replication, reproduction, corroboration, ...)
-\end{flushleft}
-\begin{flushright}
-  {\scriptsize Courtesy of Andrew Davison (AMP Workshop on Reproducible research)}
-\end{flushright}
-\end{overlayarea}
-#+END_LaTeX
-*** Reproducible Research: Trying to Bridge the Gap
-#+BEGIN_LaTeX
-  \hbox{\hspace{-.05\linewidth}%
-  \includegraphics<1>[width=1.07\linewidth]{fig/author_reader_rr_1.fig}%
-  \includegraphics<2>[width=1.07\linewidth]{fig/author_reader_rr_2.fig}%
-  \includegraphics<3>[width=1.07\linewidth]{fig/author_reader_rr_3.fig}%
-  \includegraphics<4>[width=1.07\linewidth]{fig/author_reader_rr_4.fig}%
-  \hspace{-.05\linewidth}}
-\vspace{-.4cm}
-\begin{flushright}
-{\scriptsize {\textbf{Inspired by Roger D. Peng's lecture on reproducible research, May 2014}}}
-\end{flushright}
-
-In this series of lectures, we'll go from right to left and see how we can improve.
-#+END_LaTeX
-*** Vistrails: a Workflow Engine for Provenance Tracking
-#+BEGIN_LaTeX
-\vspace{-.6em}
-\begin{overlayarea}{\linewidth}{9cm}
-\hbox{\hspace{-.05\linewidth}%
-\includegraphics<+>[page=14,width=1.1\linewidth]{pdf_sources/2011-amp-reproducible-research.pdf}%
-\includegraphics<+>[page=15,width=1.1\linewidth]{pdf_sources/2011-amp-reproducible-research.pdf}%
-}
-
-\vspace{-2cm}
-\begin{flushright}
-  {\scriptsize Courtesy of Juliana Freire (AMP Workshop on
-    Reproducible research)}
-\end{flushright}
-\end{overlayarea}
-#+END_LaTeX
-*** VCR: A Universal Identifier for Computational Results
-#+BEGIN_LaTeX
-\vspace{-.6em}
-\begin{overlayarea}{\linewidth}{9cm}
-\hbox{\hspace{-.05\linewidth}%
-\includegraphics<+>[page=76,width=1.1\linewidth]{pdf_sources/amp-ver1MATAN.pdf}%
-\includegraphics<+>[page=78,width=1.1\linewidth]{pdf_sources/amp-ver1MATAN.pdf}%
-\includegraphics<+>[page=113,width=1.1\linewidth]{pdf_sources/amp-ver1MATAN.pdf}%
-\includegraphics<+>[page=26,width=1.1\linewidth]{pdf_sources/amp-ver1MATAN.pdf}%
-}
-
-\vspace{-2cm}
-\begin{flushright}
-  {\scriptsize Courtesy of Matan Gavish and David Donoho (AMP Workshop on
-    Reproducible research)}
-\end{flushright}
-\end{overlayarea}
-#+END_LaTeX 
-*** Sumatra: an "experiment engine" that helps taking notes
-#+BEGIN_LaTeX
-\vspace{-.6em}
-\begin{overlayarea}{\linewidth}{9cm}
-\hbox{\hspace{-.05\linewidth}%
-\includegraphics<+>[page=35,width=1.1\linewidth]{pdf_sources/sumatra_amp2011.pdf}%
-\includegraphics<+>[page=39,width=1.1\linewidth]{pdf_sources/sumatra_amp2011.pdf}%
-\includegraphics<+>[page=40,width=1.1\linewidth]{pdf_sources/sumatra_amp2011.pdf}%
-\includegraphics<+>[page=46,width=1.1\linewidth]{pdf_sources/sumatra_amp2011.pdf}%
-}
-
-\vspace{-2cm}
-\begin{flushright}
-  {\scriptsize Courtesy of Andrew Davison (AMP Workshop on
-    Reproducible research)}
-\end{flushright}
-\end{overlayarea}
-#+END_LaTeX
-*** Ipython/Jupyter Notebook
-*Web app*: create and share documents that contain live code, equations,
-visualizations, and \\
-explanatory text\vspace{-2.8em}
-#+LaTeX: \begin{flushright}
-#+ATTR_LaTeX: :width .93\linewidth
-file:images/jupyterpreview.png
-#+LaTeX: \end{flushright}
-*** Reprozip
-Automagically pack your experiment to fight *dependency hell*
-#+BEGIN_CENTER
-#+ATTR_LaTeX: :width .93\linewidth
-file:images/reprozip.png
-#+END_CENTER
-*** So many new tools
-#+BEGIN_LaTeX
-\vspace{-.6em}
-\begin{overlayarea}{\linewidth}{9cm}
-\hbox{\hspace{-.05\linewidth}%
-\includegraphics[page=13,width=1.1\linewidth]{pdf_sources/DavisFeb132014-STODDEN.pdf}%
-}
-\vspace{-1.5cm}
-\begin{flushright}
-  {\scriptsize {\textbf{Courtesy of Victoria Stodden (UC Davis, Feb 13, 2014)}}}
-\end{flushright}
-\vspace{.6cm}
-And also: \textbf{Org-Mode \smiley}, \textbf{Figshare}, \textbf{Zenodo}, \textbf{ActivePapers \smiley}, \textbf{Elsevier executable paper \frowny}, ...
-\end{overlayarea}
-#+END_LaTeX 
 ** 
 *** A Few Edifying Examples                                      :noexport:
 #+BEGIN_LaTeX
@@ -756,6 +664,132 @@ And also: \textbf{Org-Mode \smiley}, \textbf{Figshare}, \textbf{Zenodo}, \textbf
   \null\vspace{-.4cm}
 #+END_LaTeX
 
+*** Reproducible Research: Trying to Bridge the Gap
+#+BEGIN_LaTeX
+  \hbox{\hspace{-.05\linewidth}%
+  \includegraphics<1>[width=1.07\linewidth]{fig/author_reader_rr_1.fig}%
+  \includegraphics<2>[width=1.07\linewidth]{fig/author_reader_rr_2.fig}%
+  \includegraphics<3>[width=1.07\linewidth]{fig/author_reader_rr_3.fig}%
+  \includegraphics<4>[width=1.07\linewidth]{fig/author_reader_rr_4.fig}%
+  \hspace{-.05\linewidth}}
+\vspace{-.4cm}
+\begin{flushright}
+{\scriptsize {\textbf{Inspired by Roger D. Peng's lecture on reproducible research, May 2014}}}
+\end{flushright}
+
+%In this series of lectures, we'll go from right to left and see how we can improve.
+#+END_LaTeX
+*** Controling what's happening
+Both the *scientific process* and the *software environment* has become
+extremely complex
+
+Computational biologists and physicist have pushed forward with the
+development of many tools:
+
+- Software and environment preservation/reconstruction
+- Workflow engines, data provenance
+- Dissemination platforms, workload archive
+- Laboratory notebooks, litterate programming, replicable articles
+
+And this landscape is rapidly evolving
+* Reproducible Research/Open Science: Illustrating Nice Ideas Through Different Tools
+#+LaTeX: \begin{frame}{Outline}\tableofcontents[current]\end{frame}
+*** Reproducibility: What Are We Talking About?
+#+BEGIN_LaTeX
+\vspace{-.6em}
+\begin{overlayarea}{\linewidth}{9cm}
+\hbox{\hspace{-.05\linewidth}\includegraphics[page=5,width=1.1\linewidth]{pdf_sources/sumatra_amp2011.pdf}}
+
+\vspace{-3.5cm}
+\begin{flushleft}
+  Note that the \textbf{terminology varies} (repetition, replication, reproduction, corroboration, ...)
+\end{flushleft}
+\begin{flushright}
+  {\scriptsize Courtesy of Andrew Davison (AMP Workshop on Reproducible research)}
+\end{flushright}
+\end{overlayarea}
+#+END_LaTeX
+*** Vistrails: a Workflow Engine for Provenance Tracking
+#+BEGIN_LaTeX
+\vspace{-2.1em}
+\begin{overlayarea}{\linewidth}{9cm}
+\hbox{\hspace{-.1\linewidth}%
+%\includegraphics<+>[page=14,width=1.1\linewidth]{pdf_sources/2011-amp-reproducible-research.pdf}%
+\includegraphics<+>[page=15,width=1.2\linewidth]{pdf_sources/2011-amp-reproducible-research.pdf}%
+}
+
+\vspace{-2.5cm}
+\begin{flushright}
+  {\scriptsize Courtesy of Juliana Freire (AMP Workshop on
+    Reproducible research)}
+\end{flushright}
+\end{overlayarea}
+#+END_LaTeX
+*** VCR: A Universal Identifier for Computational Results
+#+BEGIN_LaTeX
+\vspace{-.6em}
+\begin{overlayarea}{\linewidth}{9cm}
+\hbox{\hspace{-.05\linewidth}%
+\includegraphics<+>[page=76,width=1.1\linewidth]{pdf_sources/amp-ver1MATAN.pdf}%
+\includegraphics<+>[page=78,width=1.1\linewidth]{pdf_sources/amp-ver1MATAN.pdf}%
+\includegraphics<+>[page=113,width=1.1\linewidth]{pdf_sources/amp-ver1MATAN.pdf}%
+\includegraphics<+>[page=26,width=1.1\linewidth]{pdf_sources/amp-ver1MATAN.pdf}%
+}
+
+\vspace{-2cm}
+\begin{flushright}
+  {\scriptsize Courtesy of Matan Gavish and David Donoho (AMP Workshop on
+    Reproducible research)}
+\end{flushright}
+\end{overlayarea}
+#+END_LaTeX 
+*** Sumatra: an "experiment engine" that helps taking notes
+#+BEGIN_LaTeX
+\vspace{-.6em}
+\begin{overlayarea}{\linewidth}{9cm}
+\hbox{\hspace{-.05\linewidth}%
+\includegraphics<+>[page=35,width=1.1\linewidth]{pdf_sources/sumatra_amp2011.pdf}%
+\includegraphics<+>[page=39,width=1.1\linewidth]{pdf_sources/sumatra_amp2011.pdf}%
+\includegraphics<+>[page=40,width=1.1\linewidth]{pdf_sources/sumatra_amp2011.pdf}%
+\includegraphics<+>[page=46,width=1.1\linewidth]{pdf_sources/sumatra_amp2011.pdf}%
+}
+
+\vspace{-2cm}
+\begin{flushright}
+  {\scriptsize Courtesy of Andrew Davison (AMP Workshop on
+    Reproducible research)}
+\end{flushright}
+\end{overlayarea}
+#+END_LaTeX
+*** Ipython/Jupyter Notebook
+*Web app*: create and share documents that contain live code, equations,
+visualizations, and \\
+explanatory text\vspace{-2.8em}
+#+LaTeX: \begin{flushright}
+#+ATTR_LaTeX: :width .93\linewidth
+file:images/jupyterpreview.png
+#+LaTeX: \end{flushright}
+*** Reprozip
+Automagically pack your experiment to fight *dependency hell*
+#+BEGIN_CENTER
+#+ATTR_LaTeX: :width .93\linewidth
+file:images/reprozip.png
+#+END_CENTER
+*** So many new tools
+#+BEGIN_LaTeX
+\vspace{-.6em}
+\begin{overlayarea}{\linewidth}{9cm}
+\hbox{\hspace{-.05\linewidth}%
+\includegraphics[page=13,width=1.1\linewidth]{pdf_sources/DavisFeb132014-STODDEN.pdf}%
+}
+\vspace{-1.5cm}
+\begin{flushright}
+  {\scriptsize {\textbf{Courtesy of Victoria Stodden (UC Davis, Feb 13, 2014)}}}
+\end{flushright}
+\vspace{.6cm}
+And also: \textbf{Org-Mode \smiley}, \textbf{Figshare}, \textbf{Zenodo}, \textbf{ActivePapers \smiley}, \textbf{Elsevier executable paper \frowny}, ...
+\end{overlayarea}
+#+END_LaTeX 
 * What can Computer Scientists do ?
 #+LaTeX: \begin{frame}{Outline}\tableofcontents[current]\end{frame}
 *** On the "technical" side (1/2)
@@ -792,6 +826,9 @@ And also: \textbf{Org-Mode \smiley}, \textbf{Figshare}, \textbf{Zenodo}, \textbf
   - Storage, evolving workload, cleaning/curating data, meta data to
     know how to use it, anonymization
 *** On the "social" side
+Slight *cultural changes* in our *relation to publication* and *daily
+practice*
+
 - Changing *our _social model_ to favor adoption of better practice*
   - Artifact evaluation, open reviews, ... (e.g., IPOL, *ReScience*)
   - Promote a different model
@@ -800,13 +837,13 @@ And also: \textbf{Org-Mode \smiley}, \textbf{Figshare}, \textbf{Zenodo}, \textbf
   - Better teaching/understanding of statistics, experimental
     practice, design of experiments
 
-\hspace{2cm} _It's up to us. \textbf{We} should \textbf{care} and \textbf{take the lead}_\bigskip
+\hspace{2cm} _It's up to us. \textbf{We} should \textbf{care} and \textbf{take the lead}_\medskip
 
-  - Slight *cultural changes* in our *relation to publication* and *daily
-    practice*\medskip
+
+_Main benefit:_
   - *Higher confidence* in our work $\leadsto$ definite *competitive
     advantage* \medskip
-  - Our research will become *sound*, *deeper*, *auditable*, *more visible*,
+  - Our research becomes *sound*, *deeper*, *auditable*, *more visible*,
     *reusable*, \dots \bigskip
 *** Webinars: Learning by Doing
 # for i in `find /home/alegrand/Work/Documents/Enseignements/RR_webinars/ -name 'video_thn.png'` ; do cp $i `echo $i | sed -e 's/.*webinars\///' -e 's/\/.*/.png/'`; done
