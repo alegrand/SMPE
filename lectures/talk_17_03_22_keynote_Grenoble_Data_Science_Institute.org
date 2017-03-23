@@ -569,9 +569,27 @@ _*Methodological or technical causes*_ \small
 \includegraphics<+>[page=4,width=1.2\linewidth]{pdf_sources/2011-amp-reproducible-research.pdf}
 \includegraphics<+>[page=5,width=1.2\linewidth]{pdf_sources/2011-amp-reproducible-research.pdf}
 \includegraphics<+>[page=6,width=1.2\linewidth]{pdf_sources/2011-amp-reproducible-research.pdf}
-\end{tabular}
-\vspace{-3cm}~\begin{flushright}\scriptsize \bf Courtesy of Juliana
-  Freire (AMP Workshop on Reproducible research, 2011)\end{flushright}
+\end{tabular}%
+\vspace{-5.2cm}%
+
+\hspace{-.5em}\begin{overlayarea}{8cm}{2.4cm}
+\uncover<.>{%
+\small
+#+END_LaTeX
+\bgroup\bf Software is an essential component of modern scientific research
+[[http://www.nature.com/news/the-top-100-papers-1.16224][Top 100 papers]] (Nature, 2014)\egroup\vspace{-.5em}
+   \begin{quote}
+     [...] the vast majority describe experimental methods or
+     sofware that have become essential in their fields.
+   \end{quote}
+\vspace{-1.8em}
+#+BEGIN_LaTeX
+}
+\end{overlayarea}
+\begin{flushright}
+  \scriptsize \bf Courtesy of Juliana
+  Freire (AMP Workshop on Reproducible research, 2011)
+\end{flushright}
 #+END_LaTeX
 
 # \includeslidesJF{2-7}
@@ -799,8 +817,8 @@ And *this landscape is rapidly evolving*
 #+LaTeX: \vspace{-.2em}
 \small
 1. For Every Result, Keep Track of How It Was Produced
-2. Avoid Manual Data Manipulation Steps
-3. Archive the Exact Versions of All External Programs Used
+2. Avoid Manual Data Manipulation Steps (and [[https://qz.com/768334/years-of-genomics-research-is-riddled-with-errors-thanks-to-a-bunch-of-botched-excel-spreadsheets/][Avoid Spreadsheets]]! \winkey)
+3. Archive the Exact Versions of All External _(Open-Source! \winkey)_ Programs Used
 4. Version Control All Custom Scripts
 5. Record All Intermediate Results, When Possible in Standardized Formats
 6. For Analyses That Include Randomness, Note Underlying Random Seeds
@@ -898,7 +916,8 @@ file:images/reprozip.png
   {\scriptsize {\textbf{Courtesy of Victoria Stodden (UC Davis, Feb 13, 2014)}}}
 \end{flushright}
 \vspace{.6cm}
-And also: \textbf{Org-Mode \smiley}, \textbf{Figshare}, \textbf{Zenodo}, \textbf{ActivePapers \smiley}, \textbf{Elsevier executable paper \frowny}, ...
+And also: \textbf{Org-Mode \smiley}, \textbf{ActivePapers},\textbf{Figshare}, \textbf{Zenodo}, \textbf{Elsevier executable paper \frowny}, 
+\textbf{Code Ocean}, ...
 \end{overlayarea}
 #+END_LaTeX 
 
