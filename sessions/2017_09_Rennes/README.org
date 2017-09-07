@@ -1,0 +1,227 @@
+#+TITLE:     Scientific Methodology and Performance Evaluation for Computer Scientists
+#+AUTHOR:    Arnaud Legrand
+#+DATE: November 2017
+#+STARTUP: overview indent
+
+#+BEGIN_QUOTE
+*Reporting errors*: Although I do my best there may definitely be typos
+and broken links. This is github so please report me everything you
+find so that I can improve for others. :)
+#+END_QUOTE
+
+This webpage gathers information about the lectures given at the
+University of Rennes at the 2nd year Master students in Computer
+Science.
+
+* Course Objective and Organization
+The aim of this course is to provide the fundamental basis for sound
+scientific methodology of performance evaluation of computer
+systems. This lecture emphasize on methodological aspects of
+measurement and on the statistics needed to analyze computer systems.
+I first sensibilize the audience to the experiment and analysis
+reproducibility issue in particular in computer science. Then I
+present tools that help answering the analysis problem and may also
+reveal useful for managing the experimental process through
+notebooks. The audience is given the basis of probabilities and
+statistics required to develop sound experiment designs. Unlike some
+other lectures, my goal is not to provide analysis recipes that people
+can readily apply but to make people really understand some simple
+tools so that they can then dig deeper later on.
+
+The lecture will be based on the following set of slides, which I will
+probably adapt to the audience on the fly.
+1. [[file:../../lectures/lecture_epistemology.pdf][Epistomology]]
+2. [[file:../../lectures/lecture_reproducible_research.pdf][Reproducible research]]
+3. [[file:../../lectures/lecture_literate_programming.pdf][Literate programming]]
+4. [[file:../../lectures/lecture_R_crash_course.pdf][R crash course]]
+5. [[file:../../lectures/lecture_descriptive_univariate.pdf][Descriptive statistics of univariate data]]
+6. [[file:../../lectures/lecture_data_presentation.pdf][Data presentation]]
+7. [[file:../../lectures/lecture_correlation_causation.pdf][Correlation and causation]]
+8. [[file:../../lectures/3_introduction_to_statistics.pdf][Introduction to probabilities/statistics]] ([[file:../../lectures/lecture_central_limit_theorem.pdf][Proof of the Central
+   limit theorem]])
+9. [[file:../../lectures/4_linear_model.pdf][Linear regression]]
+10. [[file:../../lectures/5_design_of_experiments.pdf][Design of Experiments]]
+
+All the examples given in this series of lecture use the [[http://www.r-project.org/][R]] language
+and the source is provided so that people can reuse them. The slides
+are composed with [[http://orgmode.org][org-mode]], beamer, and verbments.
+
+* Requirements 
+All the examples given in this series of lecture use the [[http://www.r-project.org/][R]] language
+and the source is provided so that people can reuse them. The slides
+are composed with [[http://orgmode.org][org-mode]], beamer, and verbments.
+
+It is not expected that students already knows the R language as I
+will briefly present it. However, they should have already installed
+Rstudio and R (check the next section if you need information) on
+their laptop so as to try out the examples I provide for themselves.
+* Using R
+** Installing R and Rstudio
+Here is how to proceed on debian-based distributions:
+#+BEGIN_SRC sh
+sudo apt-get install r-base r-cran-ggplot2 r-cran-reshape 
+#+END_SRC
+Make sure you have a recent (>= 3.2.0) version or R. For example, here
+is what I have on my machine:
+#+begin_src sh :results output :exports both
+R --version
+#+end_src
+
+#+RESULTS:
+#+begin_example
+R version 3.3.1 (2016-06-21) -- "Bug in Your Hair"
+Copyright (C) 2016 The R Foundation for Statistical Computing
+Platform: x86_64-pc-linux-gnu (64-bit)
+
+R is free software and comes with ABSOLUTELY NO WARRANTY.
+You are welcome to redistribute it under the terms of the
+GNU General Public License versions 2 or 3.
+For more information about these matters see
+http://www.gnu.org/licenses/.
+#+end_example
+
+Rstudio and knitr are unfortunately not packaged within debian so the
+easiest is to download the corresponding debian package on the [[http://www.rstudio.com/ide/download/desktop][Rstudio
+webpage]] and then to install it manually (depending on when you do this
+and on the version of your OS, you can obviously change the version
+number).
+
+#+BEGIN_SRC sh
+wget https://download1.rstudio.org/rstudio-xenial-1.0.153-amd64.deb
+sudo dpkg -i rstudio-xenial-1.0.153-amd64.deb
+sudo apt-get -f install # to fix possibly missing dependencies
+#+END_SRC
+You will also need to install knitr. To this end, you should simply
+run R (or Rstudio) and use the following command.
+#+BEGIN_SRC R
+install.packages("knitr")
+#+END_SRC
+If =r-cran-ggplot2= or =r-cran-reshape= could not be installed for some
+reason, you can also install it through R by doing:
+#+BEGIN_SRC R
+install.packages("ggplot2")
+install.packages("reshape")
+#+END_SRC
+** Producing documents
+The easiest way to go is probably to [[http://www.rstudio.com/ide/docs/authoring/using_markdown][use R+Markdown (Rmd files) in
+Rstudio]] and to export them via [[http://www.rpubs.com/][Rpubs]] to make available [[http://www.rpubs.com/tucano/zombies][whatever you
+want]].
+
+We can roughly distinguish between three kinds of documents:
+1. Lab notebook (with everything you try and that is meant mainly
+   for yourself)
+2. Experimental report (selected results and explanations with
+   enough details to discuss with your advisor)
+3. Result description (rather short with only the main point and,
+   which could be embedded in an article)
+We expect you to provide us the last two ones and to make them
+publicly available so as to allow others to [[http://rpubs.com/RobinLovelace/ratmog11][comment]] on them.
+** Learning R
+For a quick start, you may want to look at [[http://cran.r-project.org/doc/contrib/Paradis-rdebuts_en.pdf][R for Beginners]]. A probably
+more entertaining way to go is to follow a good online lecture
+providing an introduction to R and to data analysis such as this one:
+https://www.coursera.org/course/compdata. 
+
+A quite effective way is to use [[http://swirlstats.com/students.html][SWIRL]], an interactive learning
+environment that will guide through self-paced lesson.
+#+begin_src R :results output :session :exports both
+install.packages("swirl")
+library(swirl)
+install_from_swirl("R Programming")
+swirl()
+#+end_src
+I suggest in particular to follow the following lessons from R
+programming (max 10 minutes each):
+#+BEGIN_EXAMPLE
+ 1: Basic Building Blocks      2: Workspace and Files     
+ 3: Sequences of Numbers       4: Vectors                 
+ 5: Missing Values             6: Subsetting Vectors      
+ 7: Matrices and Data Frames   8: Logic                   
+ 9: Functions                 12: Looking at Data         
+#+END_EXAMPLE
+
+Finally, you may want to read this [[http://ww2.coastal.edu/kingw/statistics/R-tutorials/dataframes.html][excellent tutorial on data frames]]
+(=attach=, =with=, =rownames=, =dimnames=, notions of scope...).
+** Learning ggplot2, plyr/dplyr, reshape/tidyR
+All these packages have been developed by hadley wickam.
+- Although the package is called =ggplot2=, it provides you the =ggplot=
+  command. This package allows you to produce nice looking and highly
+  configurable graphics.
+- Old generation: =plyr= allows you expressively compute aggregate
+  statistics on your data-frames and =reshape= allows you to reshape
+  your data-frames if they're not in the right shape for =ggplot2= or
+  =plyr=.
+- New generation: =dplyr= is the new generation of =plyr= and allows you
+  to expressively compute aggregate statistics on your
+  data-frames. =tidyr= is the new generation of =reshape= and allows you
+  to reshape your data-frames if they're not in the right shape for
+  =ggplot2= or =dplyr=. If you have a recent R installation, go for these
+  new packages. Their syntax is better and their implementation is
+  much faster.
+
+I recently stumbled on this [[http://seananderson.ca/ggplot2-FISH554/][nice ggplot2 tutorial]].
+
+Hadley Wickam provides a [[https://cran.rstudio.com/web/packages/dplyr/vignettes/introduction.html][nice tour of dplyr]] and [[http://blog.rstudio.org/2014/07/22/introducing-tidyr/][gentle introduction to
+tidyR]]. Here is a nice link on [[https://stat545-ubc.github.io/bit001_dplyr-cheatsheet.html][merging data frames]].
+
+The Rstudio team has designed a [[https://www.rstudio.com/resources/cheatsheets/][nice series of cheatsheets on R]] and in
+particular one on [[https://www.rstudio.com/wp-content/uploads/2015/05/ggplot2-cheatsheet.pdf][ggplot2]] and on [[https://www.rstudio.com/wp-content/uploads/2015/02/rmarkdown-cheatsheet.pdf][R/markdown/knitr]].
+* References
++ R. Jain, [[http://www.cs.wustl.edu/~jain/books/perfbook.htm][The Art of Computer Systems Performance Analysis:
+  Techniques for Experimental Design, Measurement, Simulation, and
+  Modeling]], Wiley-Interscience, New York, NY, April 1991.
+  [[http://www.amazon.com/Art-Computer-Systems-Performance-Analysis/dp/1118858425/ref%3Dsr_1_2?s%3Dbooks&ie%3DUTF8&qid%3D1435137636&sr%3D1-2&keywords%3Dperformance%2Bmeasurement%2Bcomputer][A new edition will be available in September 2015]].
+  #+BEGIN_QUOTE
+  This is an easy-to-read self-content book for practical performance
+  evaluation. The numerous checklists make it a great book for
+  engineers and every CS experimental scientist should have read it.
+  #+END_QUOTE
++ David J. Lilja, Measuring Computer Performance: A Practitioner’s
+  Guide, Cambridge University Press 2005
+  #+BEGIN_QUOTE
+  A short book suited for brief presentations. I follow a similar
+  organization but I really don't like the content of this book. I
+  feel it provides very little insight on why the theory applies or
+  not. I also think it is too general and lacks practical examples. It
+  may be interesting for those willing a quick and broad presentation
+  of the main concepts and "recipes" to apply.
+  #+END_QUOTE
++ Jean-Yves Le Boudec. [[http://www.cl.cam.ac.uk/~dq209/others/perf.pdf][Methods, practice and theory for the
+  performance evaluation of computer and communication
+  systems, 2006. EPFL electronic book]].
+  #+BEGIN_QUOTE
+  A very good book, with a much more theoretical treatment than the
+  Jain. It goes way farther on many aspects and I can only recommand
+  it.
+  #+END_QUOTE
++ Douglas C. Montgomery, [[http://www.wiley.com/WileyCDA/WileyTitle/productCd-EHEP002024.html][Design and Analysis of Experiments]], 8th
+  Edition. Wiley 2013.
+  #+BEGIN_QUOTE
+  This is a good and thorough textbook on design of experiments. It's
+  so unfortunate it relies on "exotic" softwares like JMP and minitab
+  instead of R...
+  #+END_QUOTE
++ Julian J. Faraway, [[https://cran.r-project.org/doc/contrib/Faraway-PRA.pdf][Practical Regression and Anova using R]],
+  University of Bath, 2002.
+  #+BEGIN_QUOTE
+  This book is derived from material that Pr. Faraway used in a Master
+  level class on Statistics at the University of Michigan. It is
+  mathematically involved but presents in details how linear
+  regression, ANOVA work and can be done with R. It works out many
+  examples in details and is very pleasant to read. A must-read if you
+  want to understand this topic more thoroughly.
+  #+END_QUOTE
++ Peter Kosso, [[http://www.amazon.fr/Summary-Scientific-Method-Peter-Kosso-ebook/dp/B008D5IYU2][A Summary of Scientific Method]], Springer, 2011. [[[http://hemija.pmf.ukim.edu.mk/materials/download/6d31fd3f53a82da9de163833806722ae][hidden
+  PDF that google found on the webpage of a university in Macedonia]]
+  #+BEGIN_QUOTE
+  A short nice book summarizing the main steps of the scientific
+  method and why having a clear definition is not that simple. It
+  illustrates these points with several nice historical examples that
+  allow the reader to take some perspective on this epistemological
+  question.
+  #+END_QUOTE
++ R. Nelson, Probability stochastic processes and queuing theory: the
+  mathematics of computer performance modeling. Springer Verlag 1995.
+  #+BEGIN_QUOTE
+  For those willing to know more about queuing theory.
+  #+END_QUOTE
