@@ -68,7 +68,53 @@ file:images/Medical_studies-05.0.png
 \includeslidesJF{2-7}
 # \includeslidesJF{11-14}
 # \includeslidesMG{26}
-*** A few Words on Scientific Foundation
+*** \scalebox{.95}{Reproducibility of experimental results is the hallmark of science}
+#+BEGIN_LaTeX
+\vspace{-.4em}
+\begin{tabular}{@{\hspace{-1em}}c@{\hspace{-1em}}c@{\hspace{-.6em}}c@{}}
+\includegraphics[height=4cm]{images/Newton.jpg}&
+\begin{minipage}[b]{.6\linewidth}
+  \begin{quote}
+    What Descartes did was a good step. You have added much several ways [..]
+    If I have seen further it is by standing on the shoulders of Giants.
+
+    \hfill -- \textbf{Isaac Newton}, February \alert{1676}
+  \end{quote}
+  \begin{center}
+    \uncover<2->{In a letter to his rival Robert Hooke} \medskip
+  \end{center}
+\end{minipage}&
+\includegraphics[height=4cm]{images/Hooke.jpg}
+\end{tabular}\hspace{-1em}%
+#+END_LaTeX
+
+#+BEGIN_CENTER
+Science allows to discover truth by building on previous discoveries.
+#+END_CENTER
+
+\pause
+
+*1662:* \textbf{Robert Hooke}, Curator of Experiments for the Royal Society, coins
+the term */experimentum crucis/*.
+#+BEGIN_CENTER
+Only good experiments allow to build sound theories and refute bad
+ones
+#+END_CENTER
+\pause
+
+#+LaTeX: \begin{columns}
+#+LaTeX:   \begin{column}{.77\linewidth}
+*1934*: \textbf{Karl Popper} puts the notions of *falsifiability* and
+*crucial experiment* as the *hallmark of science*
+#+LaTeX:   \end{column}\begin{column}{.2\linewidth}
+#+ATTR_LaTeX: :height 1.9cm
+file:images/karl_popper1.png
+#+ATTR_LaTeX: :height 1.9cm
+file:images/karl_popper2.png
+#+LaTeX:   \end{column}
+#+LaTeX: \end{columns}
+
+*** A few Words on Scientific Foundation                         :noexport:
 - *Falsifiability* or *refutability* of a statement, hypothesis, or
   theory is an inherent possibility to prove it to be false (not
   "/commit fraud/" but "/prove to be false/").
@@ -91,19 +137,6 @@ file:images/Medical_studies-05.0.png
 
 Further readings: *A Summary of Scientific Method*, Peter Kosso,
 Springer
-*** Why Are Scientific Studies so Difficult to Reproduce?
-#+LaTeX: \begin{overlayarea}{\linewidth}{7.6cm}\null\vspace{1cm}
-- Copyright/competition issue
-- Publication *bias* (only the idea matters, not the gory details)
-- Rewards for *positive results*
-- Experimenter *bias*
-- Programming *errors* or data manipulation *mistakes*
-- Poorly selected statistical tests
-- Multiple testing, multiple looks at the data, multiple
-  statistical analyses
-- +*Lack of easy-to-use tools*+
-
-#+LaTeX: \end{overlayarea} \begin{flushright}\scriptsize Courtesy of Adam J. Richards\end{flushright}
 *** Evidence for a Lack of Reproducibility                       :noexport:
 #+LaTeX: \begin{overlayarea}{\linewidth}{7.6cm}\null\vspace{.6cm}
 - Studies showing that scientific papers commonly *leave out
@@ -183,135 +216,130 @@ cancer]]*
 *** Is Fraud a new phenomenon?
 #+BEGIN_LaTeX
   \begin{columns}
-    \begin{column}{.4\linewidth}
+    \begin{column}{.37\linewidth}
       \includegraphics[width=\linewidth]{images/CNRS_CIM_36_biomed_fraud.png}
-    \end{column}
+    \end{column}\hfill
     \begin{column}{.6\linewidth}
-   
       \begin{center}
         \includegraphics[width=.7\linewidth]{images/CNRS_CIM_36_scientists.pdf}
-      \end{center}
-
+      \end{center}\vspace{-1em}
 #+END_LaTeX
-
 - Galileo (data fabrication), Ptolemy (plagiarism), Mendel (data
   enhancement), [[http://lascienceenfraude.blogspot.fr/2012/05/limposture-de-pasteur.html][Pasteur]] (rigorous but hided failures), ...
 #+BEGIN_LaTeX
     \end{column}
   \end{columns}
 #+END_LaTeX
+#+BEGIN_CENTER
+   *Is it only a matter of Fraud ?*
+#+END_CENTER
+*** Austerity in Fiscal Policy
+- 2010 ::
+  #+BEGIN_QUOTE
+  "gross debt [..] exceeding 90 percent of the economy has a
+  significant negative effect on economic growth"
+  
+  \hfill -- [[https://en.wikipedia.org/wiki/Growth_in_a_Time_of_Debt][Reinhart et Rogoff]]: Growth in a Time of Debt
+  #+END_QUOTE
+
+- 2013 :: 
+  #+BEGIN_QUOTE
+  /While using RR's working spreadsheet, we identified *coding
+  errors*, *selective exclusion* of/ /available data, and *unconventional*
+  weighting of summary *statistics*./
+
+  \hfill -- Herndon, Ash and Pollin
+  #+END_QUOTE
+  #+BEGIN_QUOTE
+  /combining data across centuries, exchange rate regimes, public
+  and private/ /debt, and debt denominated in foreign currency as well
+  as domestic currency/ 
+
+  \hfill -- Wray
+  #+END_QUOTE
+
+For 3 years, austerity was not presented as an option but as a necessity.
+\medskip
+Yet, a scientific debate has at least been possible.
+*** FRMI
+#+LaTeX: \centering{\includegraphics[width=.5\linewidth]{images/FRMI.jpg}}
+
+- 2010: [[https://www.researchgate.net/publication/255651552_Neural_correlates_of_interspecies_perspective_taking_in_the_post-mortem_Atlantic_Salmon_an_argument_for_multiple_comparisons_correction][Bennett et al. and the dead salmon]] $\smiley$
+- 2016: [[http://www.pnas.org/content/113/28/7900.abstract][Eklund, Nichols, and Knutsson]]. [[http://www.sciencealert.com/a-bug-in-fmri-software-could-invalidate-decades-of-brain-research-scientists-discover][A bug in fmri software could
+  invalidate 15 years of brain research]] (/40,000 articles/, although it
+  is a bit [[https://www.cogneurosociety.org/debunking-the-myth-that-fmri-studies-are-invalid/][more subtle than this]]).
+- 2016: [[http://blogs.warwick.ac.uk/nichols/entry/bibliometrics_of_cluster/][Nichols]]. /\approx 3 600 articles may have to be revisited for
+  confirmation./
+
+These article do not necessarily invalidate everything but force the
+community to improve their practice.
+*** Geoffray Chang's incorrect protein structures
+#+BEGIN_LaTeX
+  \begin{columns}
+    \begin{column}{.37\linewidth}
+       \includegraphics[width=\linewidth]{images/Chang_proteins.png}
+    \end{column}\hfill
+    \begin{column}{.6\linewidth}
+#+END_LaTeX
+*Geoffrey Chang* (Scripps, UCSD) works on crystalography and studies the
+structure of cell membrane proteins. 
+
+He specialized in structures of *multidrug resistant transporter
+proteins in bacteria*: MsbA de Escheria Choli (Science, 2001), Vibrio
+cholera (Mol. Biology, 2003), Salmonella typhimurium (Science, 2005)
+\bigskip
+#+BEGIN_LaTeX
+    \end{column}
+  \end{columns}
+#+END_LaTeX
+
+*2006*: Inconsistencies reveal [[https://people.ligo-wa.caltech.edu/~michael.landry/calibration/S5/getsignright.pdf][a programming mistake]] \newline\vspace{-1em}
+   #+BEGIN_QUOTE
+   a homemade data-analysis program had flipped two columns of data,
+   inverting the electron-density map from which his team had derived
+   the protein structure.
+   #+END_QUOTE
+\medskip
+
+\textbf{5 retractations} that motivate improved software engineering
+practices in computational biology
+*** Why are scientific studies so difficult to reproduce?
+#+BEGIN_LaTeX
+\vspace{-.7cm}
+\null\hspace{-.2cm}\hbox{
+\begin{columns}
+  \begin{column}{.4\linewidth}
+    \begin{overlayarea}{\linewidth}{8cm}
+      \includegraphics[scale=.21]{images/reproducibility-graphic-online2.jpg}\\
+      \includegraphics[scale=.21]{images/reproducibility-graphic-online3.jpg}
+      % \includegraphics<3>[scale=.25]{images/reproducibility-graphic-online4.jpg}%
+      % \includegraphics<4>[scale=.25]{images/reproducibility-graphic-online5.jpg}
+    \end{overlayarea}
+  \end{column}\hspace{-.2cm}%
+  \begin{column}{.66\linewidth}\begin{overlayarea}{\linewidth}{8cm}\vspace{-.7em}
+#+END_LaTeX
+[[http://www.nature.com/news/1-500-scientists-lift-the-lid-on-reproducibility-1.19970][1,500 scientists lift the lid on reproducibility]], Nature, May 2016
+
+\normalsize _*Social causes*_ \small
+- Fraud, conflict of interest (pharmaceutic, \dots)
+- *No incentive* to reproduce/check our own work (afap), nor the
+  work of others (big results!), nor to allow others to check
+  (competition)
+- Peer review does not scale: 1+ million articles per year!
+_*Methodological or technical causes*_ \small
+- The many biases (apophenia, confirmation, hindsight,
+  experimenter, ...): *bad designs*
+- Selective reporting, weak analysis (*statistics*, *data manipulation
+  mistakes*, *computational errors*)
+- *Lack of information, code/raw data unavailable*  
+
+#+BEGIN_LaTeX
+    \end{overlayarea}
+  \end{column}
+\end{columns}}
+#+END_LaTeX
 ** Is CS Concerned Really With This?
-*** All this is about Natural Sciences. Should we care ?
-Although designed and built by human beings, computer systems are *so
-complex* that mistakes could easily slip in...
-*** Do we \textbf{really} have to care?
-\small
-Machines are _real_!
-
-#+BEGIN_LaTeX
-\begin{center}
-  \hrefold{https://www.youtube.com/watch?v=tDacjrSCeq4}{\includegraphics[width=.8\linewidth]{images/shouting_in_the_data_center.jpg}}
-\end{center}
-#+END_LaTeX
-**** Key principles of experiment design                        :noexport:
-- *Randomize* to *reduce bias* \vspace{-.5em}
-- *Replicate* (possibly in a smart way) to *increase reliability*
-  \vspace{-.5em}
-- Takes a few lectures on *Design of Experiments* to improve. 
-*** Do we \textbf{really} have to care?
-\small
-Real machines are _complex_ ! $\frowny$
-#+BEGIN_LaTeX
-\begin{columns}[t]
-  \begin{column}{.5\textwidth}
-    \begin{overlayarea}{\linewidth}{7cm}
-      \begin{center}
-        \includegraphics[width=\linewidth,height=1.5cm]{images/cache_layout.pdf}
-      \end{center}
-      \begin{block}{MultiMAPS({\em size\/},{\em stride\/},{\em nloops\/})} 
-        allocate buffer {\em size\/}; \\
-        timer start; \\
-        for(i=1:{\em nloops\/}) \\
-        \null\hspace{0.5cm} access elements in buffer \\
-        \null\hspace{0.5cm} by {\em stride\/}; \\
-        timer stop; \\
-        bandwidth=\#accesses/time; \\
-        deallocate buffer; \\
-      \end{block} 
-    \end{overlayarea}
-  \end{column}
-  \begin{column}{.5\textwidth}   
-    \begin{overlayarea}{\linewidth}{7cm}
-      \null\vspace{-2em}
-      \includegraphics[width=\linewidth]{images/cache_expected.png}
-      \pause
-      
-      Our first experiments:\\
-      \includegraphics<+>[width=\linewidth]{images/cache_ugly.png}
-      \includegraphics<+>[width=\linewidth]{images/cache_cleaner.png}
-    \end{overlayarea}
-  \end{column}
-\end{columns}
-#+END_LaTeX
-*** Do we \textbf{really} have to care?
-\small
-Real machines are _messy_ and randomized ! $\frowny$
-- Same input parameters, consecutive experiments
-- Results from ARM Dual Cortex A9 1GHz (Snowball):
-- 42 repetitions for each memory size, NO NOISE!
-
-#+BEGIN_LaTeX
-\begin{overlayarea}{\linewidth}{6cm}
-  \includegraphics<+>[scale=.4]{images/cache_arm1.png}%
-  \includegraphics<+>[scale=.4]{images/cache_arm2.png}%
-\end{overlayarea}
-#+END_LaTeX
-*** Do we \textbf{really} have to care?
-\small
-Software is really complex!
-
- T. Mytkowicz, A. Diwan, M. Hauswirth, and P. F. Sweeney. *[[http://doi.acm.org/10.1145/1508284.1508275][Producing wrong data without doing anything obviously wrong]]!*. SIGPLAN Not. 44(3), March 2009
-
-#+BEGIN_LaTeX
-\begin{overlayarea}{\linewidth}{4.4cm}
-\begin{center}
-\includegraphics<+>[width=.6\linewidth]{images/asplos09-producing-data_fig1.pdf}%
-\includegraphics<+->[width=.6\linewidth]{images/asplos09-producing-data_fig2.pdf}%
-\end{center}
-\end{overlayarea}
-#+END_LaTeX
-**** Key principles of experiment design
-- *Randomize* to *reduce bias* \vspace{-.5em}
-- *Replicate* (possibly in a smart way) to *increase reliability*
-  \vspace{-.5em}
-- Takes a few lectures on *Design of Experiments* to improve. 
-*** Do we \textbf{really} have to care?
-\small
-Did I mention we have parallel machines nowadays
-#+BEGIN_LaTeX
-\begin{overlayarea}{\linewidth}{7cm}
-\begin{center}
-\includegraphics<+>[width=.9\linewidth, page=13]{pdf_sources/langlois.pdf}%
-\includegraphics<+>[width=.9\linewidth, page=14]{pdf_sources/langlois.pdf}%
-\includegraphics<+>[width=.9\linewidth, page=15]{pdf_sources/langlois.pdf}%
-\includegraphics<+>[width=.9\linewidth, page=16]{pdf_sources/langlois.pdf}%
-\includegraphics<+>[width=.9\linewidth, page=17]{pdf_sources/langlois.pdf}%
-\includegraphics<+>[width=.9\linewidth, page=18]{pdf_sources/langlois.pdf}%
-\includegraphics<+>[width=.9\linewidth, page=19]{pdf_sources/langlois.pdf}%
-\includegraphics<+>[width=.9\linewidth, page=20]{pdf_sources/langlois.pdf}%
-\includegraphics<+>[width=.9\linewidth, page=21]{pdf_sources/langlois.pdf}%
-\includegraphics<+>[width=.9\linewidth, page=22]{pdf_sources/langlois.pdf}%
-\includegraphics<+>[width=.9\linewidth, page=23]{pdf_sources/langlois.pdf}%
-\includegraphics<+>[width=.9\linewidth, page=24]{pdf_sources/langlois.pdf}%
-\includegraphics<+>[width=.9\linewidth, page=25]{pdf_sources/langlois.pdf}%
-\includegraphics<+>[width=.9\linewidth, page=26]{pdf_sources/langlois.pdf}%
-\includegraphics<+>[width=.9\linewidth, page=27]{pdf_sources/langlois.pdf}%
-\includegraphics<+>[width=.9\linewidth, page=28]{pdf_sources/langlois.pdf}%
-\end{center}
-\end{overlayarea}
-\begin{flushright}\scriptsize Courtesy of P. Langlois and R. Nheili\end{flushright}
-#+END_LaTeX
-*** All this is about Natural Sciences. Should we care ?
+*** All this is about Natural Sciences. Should we care ?         :noexport:
 #+LaTeX: \begin{overlayarea}{\linewidth}{8cm}
 \small *Yes*. \quad _Computer Science_ is young and inherits from _Mathematics_, _Engineering_,
 _Nat. Sciences_, \dots\medskip
@@ -344,6 +372,132 @@ in...
   happens. [[http://arxiv.org/abs/1312.3300][Ever tried to exploit a parallel architecture ?]] $\winkey$
 
 #+LaTeX: \end{overlayarea}
+*** All this is about Natural Sciences. Should we care ?
+_Computer Science_ is young and inherits from _Mathematics_, _Engineering_,
+_Nat. Sciences_, _Linguistic_, \dots\bigskip
+
+Purely theoretical scientists whose practice is close to mathematics
+may not be concerned (can't publish a math article without
+releasing the proofs).
+
+#+BEGIN_QUOTE
+Computer science is not more related to computers than Astronomy to
+telescopes\vspace{-.6em}
+\flushright              -- Dijkstra
+#+END_QUOTE
+
+Right, why should we care about computers? They are *deterministic*
+machines after all, right?  \winkey \medskip
+
+\textbf{Model $\neq$ Reality}. Although designed and built by human
+beings, computer systems are *so complex* that mistakes easily slip
+in...
+*** Experimenting with computers
+#+BEGIN_LaTeX
+\begin{tabular}{@{\hspace{-1em}}cc@{\hspace{-1em}}}
+  \alert{Machines are \uline{real}!} & 
+  \alert{Machines are \uline{complicated}} \vspace{.2cm}\\
+  {\parbox{.5\linewidth}{\includegraphics[width=\linewidth]{images/shouting_in_the_data_center.jpg}}} &
+ % \begin{overlayarea}{.5\linewidth}{1cm}
+   {\parbox{.5\linewidth}{\vspace{-1cm}\includegraphics[width=\linewidth]{images/asplos09-producing-data_fig1.pdf}}}
+ % \end{overlayarea}
+\\
+  \scalebox{.9}{\small \href{https://www.youtube.com/watch?v=tDacjrSCeq4}{Brendan Gregg: Shouting in the data center}}
+  &\begin{minipage}{.5\linewidth}\small
+#+END_LaTeX
+
+  \vspace{-.7cm}Mytkowicz et al. *[[http://doi.acm.org/10.1145/1508284.1508275][Producing wrong data without doing anything
+  obviously wrong]]!* ACM SIGPLAN Not. 44(3), March 2009 
+
+#+BEGIN_LaTeX
+  \end{minipage}
+\end{tabular}\medskip
+#+END_LaTeX
+
+*Our reality evolves!!!* The hardware keeps evolving so most results on
+old platforms quickly become obsolete (although, we keep building on
+such results \winkey).
+- We need to regularly revisit and allow others to build on our work!
+ 
+*** Computer performance ? Well, I design algorithms!
+
+- "Real" problems are all NP-hard, Log-APX, etc.
+
+- Real workload = +NP-completeness proof widgets+, regularities and
+  properties (difficult to formally state but that should be exploited)
+
+Algorithms are evaluated on particular *workloads* that impact \\
+both their running time and the quality of the solutions\pause 
+
+
+*Machine Learning*:  [[http://www.economist.com/news/briefing/21588057-scientists-think-science-self-correcting-alarming-degree-it-not-trouble][Trouble at the lab]], The Economist 2013
+
+  #+BEGIN_QUOTE
+    According to some estimates, three-quarters of published scientific
+    papers in the field of machine learning are bunk because of this
+    "overfitting". \hfill -- Sandy Pentland (MIT)
+  #+END_QUOTE
+#+LaTeX: \begin{flushright}\vspace{-3.6cm}\includegraphics[width=.13\linewidth]{images/Sandy-Pentland.jpg}\end{flushright}\vspace{1cm}
+\pause 
+
+*Image Processing*: [[http://mescal.imag.fr/membres/arnaud.legrand/research/meinhardt_canum2016.pdf][True horror stories]], E. Meinhardt-Llopis, CANUM 2016
+#+LaTeX: \begin{columns}\begin{column}{.6\linewidth}
+- /The proposed multigrid algorithm converges to the solution of the
+  problem in O(N)/ using biharmonic functions
+- Surprisingly, our naive multi-scale Gauss-Seidel converges much
+  faster\pause
+#+LaTeX: \end{column}\begin{column}{.4\linewidth}
+  #+LaTeX: \includegraphics[width=\linewidth]{images/meinhardt_canum2016_workload.pdf}
+#+LaTeX: \end{column}\end{columns}
+  
+*** All I care about is the algorithm output
+Did I mention we have *parallel machines* nowadays? $\winkey$
+
+#+BEGIN_LaTeX
+\begin{overlayarea}{\linewidth}{7cm}
+  \begin{center}
+    \includegraphics<+>[width=.9\linewidth, page=13]{pdf_sources/langlois.pdf}%
+    \includegraphics<+>[width=.9\linewidth, page=14]{pdf_sources/langlois.pdf}%
+    \includegraphics<+>[width=.9\linewidth, page=15]{pdf_sources/langlois.pdf}%
+    \includegraphics<+>[width=.9\linewidth, page=16]{pdf_sources/langlois.pdf}%
+    \includegraphics<+>[width=.9\linewidth, page=17]{pdf_sources/langlois.pdf}%
+    \includegraphics<+>[width=.9\linewidth, page=18]{pdf_sources/langlois.pdf}%
+    \includegraphics<+>[width=.9\linewidth, page=19]{pdf_sources/langlois.pdf}%
+    \includegraphics<+>[width=.9\linewidth, page=20]{pdf_sources/langlois.pdf}%
+    \includegraphics<+>[width=.9\linewidth, page=21]{pdf_sources/langlois.pdf}%
+    \includegraphics<+>[width=.9\linewidth, page=22]{pdf_sources/langlois.pdf}%
+    \includegraphics<+>[width=.9\linewidth, page=23]{pdf_sources/langlois.pdf}%
+    \includegraphics<+>[width=.9\linewidth, page=24]{pdf_sources/langlois.pdf}%
+    \includegraphics<+>[width=.9\linewidth, page=25]{pdf_sources/langlois.pdf}%
+    \includegraphics<+>[width=.9\linewidth, page=26]{pdf_sources/langlois.pdf}%
+    \includegraphics<+>[width=.9\linewidth, page=27]{pdf_sources/langlois.pdf}%
+    \includegraphics<+>[width=.9\linewidth, page=28]{pdf_sources/langlois.pdf}%
+    \only<+>{
+      \begin{flushright}
+        \includegraphics[height=4cm]{images/langlois_malpasset.png}\vspace{-4cm}
+      \end{flushright}\bigskip
+      \begin{flushleft}
+        These numerical issues can become \\ quite harmful in real use
+        cases.
+      \end{flushleft}
+      \vspace{1cm}
+          TABLE 1.1: Reproducibility failure of the Malpasset test case
+
+      \begin{tabular}{c|c|c|c}
+        & The sequential run & a 64 procs run & a 128 procs run \\\hline
+        depth H & 0.3500122E-01 & 0.2\alert{748817}E-01 & 0.\alert{1327634}E-01 \\\hline
+        velocity U & 0.4029747E-02 & 0.4\alert{935279}E-02 & 0.4\alert{512116}E-02 \\\hline
+        velocity V & 0.7570773E-02 & 0.\alert{3422730}E-02 & 0.75\alert{45233}E-02
+      \end{tabular}}
+  \end{center}
+  \only<.>{
+  {\bf \alert{Numerical reproducibility?}}: Approximations in the model, in
+  in the algorithm, in its implementation, in its execution. \medskip
+
+  The whole chain needs to be revisited.}
+\end{overlayarea}
+\begin{flushright}\scriptsize Courtesy of P. Langlois and R. Nheili\end{flushright}
+#+END_LaTeX
 
 *** My Feeling                                                   :noexport:
 Computer scientists have an incredibly *poor training in
