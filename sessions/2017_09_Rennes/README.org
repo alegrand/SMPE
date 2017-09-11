@@ -13,6 +13,13 @@ This webpage gathers information about the lectures given at the
 University of Rennes at the 2nd year Master students in Computer
 Science.
 
+* Useful links 
+- Here is the [[https://pad.inria.fr/p/XnvGwiFh1mFHzUFg][Pad]] you will use to collaborate.
+- Here is a [[https://sondages.inria.fr/index.php/646461/lang-en][poll]]. Please fill it as soon as you have a few minutes but
+  do not waste your time doing it during the lecture.
+
+Links to the slides are provided below.
+
 * Course Objective and Organization
 The aim of this course is to provide the fundamental basis for sound
 scientific methodology of performance evaluation of computer
