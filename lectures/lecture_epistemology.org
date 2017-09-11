@@ -27,23 +27,24 @@
 #+LaTeX: %\tableofcontents
 * Organization
 *** Outline
-Please, take notes, share thoughts/questions/ideas/answers here:
+Look at the course's webpage:
 #+BEGIN_CENTER
-  #+LaTeX: \href{http://tinyurl.com/SMPE-ENSL}{http://tinyurl.com/SMPE-ENSL}
+  #+LaTeX: \href{https://tinyurl.com/SMPE-Rennes}{https://tinyurl.com/SMPE-Rennes}
 #+END_CENTER
+Please, take notes, share thoughts/questions/ideas/answers in the
+*pad*. Answer the *poll*.
+
 
 _Tentative (and evolving) agenda_:
-- *Monday* Epistemology + Reproducible research ; R crash course
-- *Tuesday* Data visualization/presentation with R; literate programming
-- *Wednesday* Introduction to probabilities/statistics ; Linear regression
-- *Thursday* Design of Experiments
+- *Tuesday* Epistemology + Reproducible research ; R crash course ; literate programming
+- *Wednesday* Data visualization/presentation with R; Introduction to probabilities/statistics ; Linear regression
+- *Thursday* Playing with your own data; Design of Experiments 
 
 _Stuff to know about this course_:
 - Way too much stuff for so little time. The slides are extremely
   dense and I speak very fast. *Don't panic! Feel free to interrupt*
 - Slides are self-content with many [[https://github.com/alegrand/SMPE][links]] and =code examples=
-- Try to put into practice asap to get the most out of it and do not
-  worry about the grade
+- Try to put into practice asap to get the most out of it
 * \textsc{Science}: What is this thing called Science ?
 *** Outline
 \tableofcontents
