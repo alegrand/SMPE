@@ -98,6 +98,7 @@ _Stuff to know about this course_:
      to invalidate the hypothesis.
 * Schools of Thoughts
 **   
+
 *** Claude Bernard (1813-1878) and the scientific method
 
 _3 steps of the scientific method:_
@@ -131,10 +132,9 @@ facts."
   - World 2 : the world of mental objects and events
   - World 3 : objective knowledge.
 *** Karl Popper (1/2)
-In the following text K.R Popper try to answer the questions : "*When a
-theory get a scientific status ?*" "*Does it exist a criteria to assert
-the nature or the scientific status of a theory ?*"
-\small\it
+In the following text K.R Popper try to answer the questions : "*When
+does a theory get a scientific status ?*" "*Is there a criteria to
+assert the nature or the scientific status of a theory ?*" \small\it
 1. It is easy to obtain confirmations, or verifications, for nearly
    every theory-if we look for confirmations.
 2. Confirmations should count only if they are the result of risky
@@ -186,6 +186,62 @@ the nature or the scientific status of a theory ?*"
   \end{column}
 \end{columns}
 #+END_LaTeX
+*** \scalebox{.95}{Reproducibility of experimental results is the hallmark of science}
+#+BEGIN_LaTeX
+\vspace{-.4em}
+\begin{tabular}{@{\hspace{-1em}}c@{\hspace{-1em}}c@{\hspace{-.6em}}c@{}}
+\includegraphics[height=3.5cm]{images/Newton.jpg}&
+\begin{minipage}[b]{.68\linewidth}
+  \begin{quote}
+    What Descartes did was a good step. You have added much several ways [..]
+    If I have seen further it is by standing on the shoulders of Giants.
+
+    \hfill -- \textbf{Isaac Newton}, February \alert{1676}
+  \end{quote}\vspace{-.8em}
+  \begin{center}
+    \uncover<2->{In a letter to his rival Robert Hooke} \medskip
+  \end{center}
+\end{minipage}&
+\includegraphics[height=3.5cm]{images/Hooke.jpg}
+\end{tabular}\hspace{-1em}%
+#+END_LaTeX
+
+#+BEGIN_CENTER
+Science allows to discover truth by building on previous discoveries.
+#+END_CENTER
+
+\pause
+#+LaTeX: \small
+
+*1662:* \textbf{Robert Hooke}, Curator of Experiments for the Royal Society, coins
+the term */experimentum crucis/*.
+#+BEGIN_CENTER
+Only good experiments allow to build sound theories and refute bad
+ones
+#+END_CENTER
+\pause
+
+# #+LaTeX: \begin{columns}
+# #+LaTeX:   \begin{column}{.77\linewidth}
+# *1934*: \textbf{Karl Popper} puts the notions of *falsifiability* and
+# *crucial experiment* as the *hallmark of science*
+# #+LaTeX:   \end{column}\begin{column}{.2\linewidth}
+# #+ATTR_LaTeX: :height 1.9cm
+# file:images/karl_popper1.png
+# #+ATTR_LaTeX: :height 1.9cm
+# file:images/karl_popper2.png
+# #+LaTeX:   \end{column}
+# #+LaTeX: \end{columns}
+
+\vspace{-.4em}
+- Theories cannot be proved correct but they can be disproved. Only a
+  few stand the test of batteries of *critical experiments*. \vspace{-.4em}
+- It is not all black and white. Many stories where scientists stick
+  with their theories despite evidences they were even right to do
+  so... \vspace{-.4em}
+
+Further readings: *A Summary of Scientific Method*, Peter Kosso,
+Springer
 *** Thomas Kuhn (1922-1996) : Science, a dynamical process
 \scriptsize
 - Phase 1 :: It exists only once and is the pre-paradigm phase, in
@@ -332,3 +388,4 @@ _Computer Science_
 - Science is a Social Phenomena :: \quad
   - collaborative construction of knowledge
   - dynamic evolution of knowledge
+
