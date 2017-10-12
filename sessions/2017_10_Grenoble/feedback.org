@@ -1,0 +1,453 @@
+#+TITLE:     Q&A session at UFRGS in August 2015
+#+AUTHOR:    Arnaud Legrand
+#+DATE: August 2015
+#+STARTUP: overview indent
+#+TAGS: noexport(n)
+
+# Trick: M-x org-org-export-to-org to export to org and anonymize
+
+* Survey at the beginning of the lecture
+
+https://sondages.inria.fr/index.php/646461/lang-en
+
+** Answers
+*** Initial import and cleanups                                  :noexport:
+#+begin_src R :results output :session :exports results
+df = read.csv("results-survey665963.csv", header=T)
+#+end_src
+
+#+RESULTS:
+
+Wow, this sucks. This really sucks! :(
+
+#+begin_src R :results output :session :exports results
+names(df)
+#+end_src
+
+#+RESULTS:
+#+begin_example
+  [1] "Response.ID"                                                                                                                                                                                                                                                                                                                                                                                                                                             
+  [2] "Date.submitted"                                                                                                                                                                                                                                                                                                                                                                                                                                          
+  [3] "Last.page"                                                                                                                                                                                                                                                                                                                                                                                                                                               
+  [4] "Start.language"                                                                                                                                                                                                                                                                                                                                                                                                                                          
+  [5] "Date.started"                                                                                                                                                                                                                                                                                                                                                                                                                                            
+  [6] "Date.last.action"                                                                                                                                                                                                                                                                                                                                                                                                                                        
+  [7] "IP.address"                                                                                                                                                                                                                                                                                                                                                                                                                                              
+  [8] "Referrer.URL"                                                                                                                                                                                                                                                                                                                                                                                                                                            
+  [9] "Not.so.anonymous....I.may.start.another.survey.at.some.point.and.want.to.correlate.future.answers.with.past.ones..Please.provide.me.with.a.name.or.a.pseudo.I.could.reuse.later.on.for.statistical.analysis.purpose."                                                                                                                                                                                                                                    
+ [10] "What.is.your.current.position"                                                                                                                                                                                                                                                                                                                                                                                                                           
+ [11] "Please.check.the.topics.that.describe.the.best.you.current.or.expected.research.activity..Sorry.about.the.long.list..I.just.want.to.make.sure.I.m.not.forgetting.anyone......See.CORR.for.more.details.......AI...Artificial.Intelligence."                                                                                                                                                                                                              
+ [12] "Please.check.the.topics.that.describe.the.best.you.current.or.expected.research.activity..Sorry.about.the.long.list..I.just.want.to.make.sure.I.m.not.forgetting.anyone......See.CORR.for.more.details.......CC...Computational.Complexity."                                                                                                                                                                                                             
+ [13] "Please.check.the.topics.that.describe.the.best.you.current.or.expected.research.activity..Sorry.about.the.long.list..I.just.want.to.make.sure.I.m.not.forgetting.anyone......See.CORR.for.more.details.......CG...Computational.Geometry."                                                                                                                                                                                                               
+ [14] "Please.check.the.topics.that.describe.the.best.you.current.or.expected.research.activity..Sorry.about.the.long.list..I.just.want.to.make.sure.I.m.not.forgetting.anyone......See.CORR.for.more.details.......CE...Computational.Engineering..Finance..and.Science."                                                                                                                                                                                      
+ [15] "Please.check.the.topics.that.describe.the.best.you.current.or.expected.research.activity..Sorry.about.the.long.list..I.just.want.to.make.sure.I.m.not.forgetting.anyone......See.CORR.for.more.details.......CL...Computation.and.Language..Computational.Linguistics.and.Natural.Language.and.Speech.Processing.."                                                                                                                                      
+ [16] "Please.check.the.topics.that.describe.the.best.you.current.or.expected.research.activity..Sorry.about.the.long.list..I.just.want.to.make.sure.I.m.not.forgetting.anyone......See.CORR.for.more.details.......CV...Computer.Vision.and.Pattern.Recognition."                                                                                                                                                                                              
+ [17] "Please.check.the.topics.that.describe.the.best.you.current.or.expected.research.activity..Sorry.about.the.long.list..I.just.want.to.make.sure.I.m.not.forgetting.anyone......See.CORR.for.more.details.......CY...Computers.and.Society..ethics..information.technology.and.public.policy..legal.aspects.of.computing..computers.and.education.."                                                                                                        
+ [18] "Please.check.the.topics.that.describe.the.best.you.current.or.expected.research.activity..Sorry.about.the.long.list..I.just.want.to.make.sure.I.m.not.forgetting.anyone......See.CORR.for.more.details.......CR...Cryptography.and.Security."                                                                                                                                                                                                            
+ [19] "Please.check.the.topics.that.describe.the.best.you.current.or.expected.research.activity..Sorry.about.the.long.list..I.just.want.to.make.sure.I.m.not.forgetting.anyone......See.CORR.for.more.details.......DB...Databases."                                                                                                                                                                                                                            
+ [20] "Please.check.the.topics.that.describe.the.best.you.current.or.expected.research.activity..Sorry.about.the.long.list..I.just.want.to.make.sure.I.m.not.forgetting.anyone......See.CORR.for.more.details.......DS...Data.Structures.and.Algorithms."                                                                                                                                                                                                       
+ [21] "Please.check.the.topics.that.describe.the.best.you.current.or.expected.research.activity..Sorry.about.the.long.list..I.just.want.to.make.sure.I.m.not.forgetting.anyone......See.CORR.for.more.details.......DL...Digital.Libraries."                                                                                                                                                                                                                    
+ [22] "Please.check.the.topics.that.describe.the.best.you.current.or.expected.research.activity..Sorry.about.the.long.list..I.just.want.to.make.sure.I.m.not.forgetting.anyone......See.CORR.for.more.details.......DM...Discrete.Mathematics..combinatorics..graph.theory..applications.of.probability.."                                                                                                                                                      
+ [23] "Please.check.the.topics.that.describe.the.best.you.current.or.expected.research.activity..Sorry.about.the.long.list..I.just.want.to.make.sure.I.m.not.forgetting.anyone......See.CORR.for.more.details.......DC...Distributed..Parallel..and.Cluster.Computing."                                                                                                                                                                                         
+ [24] "Please.check.the.topics.that.describe.the.best.you.current.or.expected.research.activity..Sorry.about.the.long.list..I.just.want.to.make.sure.I.m.not.forgetting.anyone......See.CORR.for.more.details.......ET...Emerging.Technologies..alternatives.to.silicon.CMOS.based.technologies..such.as.nanoscale.electronic..photonic..spin.based..superconducting..mechanical..bio.chemical.and.quantum.technologies.."                                      
+ [25] "Please.check.the.topics.that.describe.the.best.you.current.or.expected.research.activity..Sorry.about.the.long.list..I.just.want.to.make.sure.I.m.not.forgetting.anyone......See.CORR.for.more.details.......FL...Formal.Languages.and.Automata.Theory."                                                                                                                                                                                                 
+ [26] "Please.check.the.topics.that.describe.the.best.you.current.or.expected.research.activity..Sorry.about.the.long.list..I.just.want.to.make.sure.I.m.not.forgetting.anyone......See.CORR.for.more.details.......GT...Computer.Science.and.Game.Theory."                                                                                                                                                                                                     
+ [27] "Please.check.the.topics.that.describe.the.best.you.current.or.expected.research.activity..Sorry.about.the.long.list..I.just.want.to.make.sure.I.m.not.forgetting.anyone......See.CORR.for.more.details.......GL...General.Literature."                                                                                                                                                                                                                   
+ [28] "Please.check.the.topics.that.describe.the.best.you.current.or.expected.research.activity..Sorry.about.the.long.list..I.just.want.to.make.sure.I.m.not.forgetting.anyone......See.CORR.for.more.details.......GR...Graphics."                                                                                                                                                                                                                             
+ [29] "Please.check.the.topics.that.describe.the.best.you.current.or.expected.research.activity..Sorry.about.the.long.list..I.just.want.to.make.sure.I.m.not.forgetting.anyone......See.CORR.for.more.details.......AR...Hardware.Architecture."                                                                                                                                                                                                                
+ [30] "Please.check.the.topics.that.describe.the.best.you.current.or.expected.research.activity..Sorry.about.the.long.list..I.just.want.to.make.sure.I.m.not.forgetting.anyone......See.CORR.for.more.details.......HC...Human.Computer.Interaction."                                                                                                                                                                                                           
+ [31] "Please.check.the.topics.that.describe.the.best.you.current.or.expected.research.activity..Sorry.about.the.long.list..I.just.want.to.make.sure.I.m.not.forgetting.anyone......See.CORR.for.more.details.......IR...Information.Retrieval."                                                                                                                                                                                                                
+ [32] "Please.check.the.topics.that.describe.the.best.you.current.or.expected.research.activity..Sorry.about.the.long.list..I.just.want.to.make.sure.I.m.not.forgetting.anyone......See.CORR.for.more.details.......IT...Information.Theory."                                                                                                                                                                                                                   
+ [33] "Please.check.the.topics.that.describe.the.best.you.current.or.expected.research.activity..Sorry.about.the.long.list..I.just.want.to.make.sure.I.m.not.forgetting.anyone......See.CORR.for.more.details.......LG...Machine.Learning."                                                                                                                                                                                                                     
+ [34] "Please.check.the.topics.that.describe.the.best.you.current.or.expected.research.activity..Sorry.about.the.long.list..I.just.want.to.make.sure.I.m.not.forgetting.anyone......See.CORR.for.more.details.......LO...Logic.in.Computer.Science."                                                                                                                                                                                                            
+ [35] "Please.check.the.topics.that.describe.the.best.you.current.or.expected.research.activity..Sorry.about.the.long.list..I.just.want.to.make.sure.I.m.not.forgetting.anyone......See.CORR.for.more.details.......MS...Mathematical.Software."                                                                                                                                                                                                                
+ [36] "Please.check.the.topics.that.describe.the.best.you.current.or.expected.research.activity..Sorry.about.the.long.list..I.just.want.to.make.sure.I.m.not.forgetting.anyone......See.CORR.for.more.details.......MA...Multiagent.Systems."                                                                                                                                                                                                                   
+ [37] "Please.check.the.topics.that.describe.the.best.you.current.or.expected.research.activity..Sorry.about.the.long.list..I.just.want.to.make.sure.I.m.not.forgetting.anyone......See.CORR.for.more.details.......MM...Multimedia."                                                                                                                                                                                                                           
+ [38] "Please.check.the.topics.that.describe.the.best.you.current.or.expected.research.activity..Sorry.about.the.long.list..I.just.want.to.make.sure.I.m.not.forgetting.anyone......See.CORR.for.more.details.......NI...Networking.and.Internet.Architecture."                                                                                                                                                                                                 
+ [39] "Please.check.the.topics.that.describe.the.best.you.current.or.expected.research.activity..Sorry.about.the.long.list..I.just.want.to.make.sure.I.m.not.forgetting.anyone......See.CORR.for.more.details.......NE...Neural.and.Evolutionary.Computation."                                                                                                                                                                                                  
+ [40] "Please.check.the.topics.that.describe.the.best.you.current.or.expected.research.activity..Sorry.about.the.long.list..I.just.want.to.make.sure.I.m.not.forgetting.anyone......See.CORR.for.more.details.......NA...Numerical.Analysis."                                                                                                                                                                                                                   
+ [41] "Please.check.the.topics.that.describe.the.best.you.current.or.expected.research.activity..Sorry.about.the.long.list..I.just.want.to.make.sure.I.m.not.forgetting.anyone......See.CORR.for.more.details.......OS...Operating.Systems."                                                                                                                                                                                                                    
+ [42] "Please.check.the.topics.that.describe.the.best.you.current.or.expected.research.activity..Sorry.about.the.long.list..I.just.want.to.make.sure.I.m.not.forgetting.anyone......See.CORR.for.more.details.......OH...Other."                                                                                                                                                                                                                                
+ [43] "Please.check.the.topics.that.describe.the.best.you.current.or.expected.research.activity..Sorry.about.the.long.list..I.just.want.to.make.sure.I.m.not.forgetting.anyone......See.CORR.for.more.details.......PF...Performance..performance.measurement.and.evaluation..queueing..and.simulation.."                                                                                                                                                       
+ [44] "Please.check.the.topics.that.describe.the.best.you.current.or.expected.research.activity..Sorry.about.the.long.list..I.just.want.to.make.sure.I.m.not.forgetting.anyone......See.CORR.for.more.details.......PL...Programming.Languages."                                                                                                                                                                                                                
+ [45] "Please.check.the.topics.that.describe.the.best.you.current.or.expected.research.activity..Sorry.about.the.long.list..I.just.want.to.make.sure.I.m.not.forgetting.anyone......See.CORR.for.more.details.......RO...Robotics...Bruce.Donald."                                                                                                                                                                                                              
+ [46] "Please.check.the.topics.that.describe.the.best.you.current.or.expected.research.activity..Sorry.about.the.long.list..I.just.want.to.make.sure.I.m.not.forgetting.anyone......See.CORR.for.more.details.......SI...Social.and.Information.Networks."                                                                                                                                                                                                      
+ [47] "Please.check.the.topics.that.describe.the.best.you.current.or.expected.research.activity..Sorry.about.the.long.list..I.just.want.to.make.sure.I.m.not.forgetting.anyone......See.CORR.for.more.details.......SE...Software.Engineering."                                                                                                                                                                                                                 
+ [48] "Please.check.the.topics.that.describe.the.best.you.current.or.expected.research.activity..Sorry.about.the.long.list..I.just.want.to.make.sure.I.m.not.forgetting.anyone......See.CORR.for.more.details.......SD...Sound."                                                                                                                                                                                                                                
+ [49] "Please.check.the.topics.that.describe.the.best.you.current.or.expected.research.activity..Sorry.about.the.long.list..I.just.want.to.make.sure.I.m.not.forgetting.anyone......See.CORR.for.more.details.......SC...Symbolic.Computation."                                                                                                                                                                                                                 
+ [50] "Please.check.the.topics.that.describe.the.best.you.current.or.expected.research.activity..Sorry.about.the.long.list..I.just.want.to.make.sure.I.m.not.forgetting.anyone......See.CORR.for.more.details.......SY...Systems.and.Control."                                                                                                                                                                                                                  
+ [51] "Other.information.you.would.like.to.provide"                                                                                                                                                                                                                                                                                                                                                                                                             
+ [52] "Describe.your.coding.skills.in.the.following.languages..Use.the.following.rating.....know.the.basics..should.be.able.to.read.....know.the.basics..should.be.able.to.write.....common.user..already.developped.small.projects.....good.knowledge..develops.medium.projects.....expert.....Providing.no.answer.means.you.never.heard.about.it.or.were.never.in.contact.with.this.language...C."                                                            
+ [53] "Describe.your.coding.skills.in.the.following.languages..Use.the.following.rating.....know.the.basics..should.be.able.to.read.....know.the.basics..should.be.able.to.write.....common.user..already.developped.small.projects.....good.knowledge..develops.medium.projects.....expert.....Providing.no.answer.means.you.never.heard.about.it.or.were.never.in.contact.with.this.language...C..."                                                          
+ [54] "Describe.your.coding.skills.in.the.following.languages..Use.the.following.rating.....know.the.basics..should.be.able.to.read.....know.the.basics..should.be.able.to.write.....common.user..already.developped.small.projects.....good.knowledge..develops.medium.projects.....expert.....Providing.no.answer.means.you.never.heard.about.it.or.were.never.in.contact.with.this.language...C.."                                                           
+ [55] "Describe.your.coding.skills.in.the.following.languages..Use.the.following.rating.....know.the.basics..should.be.able.to.read.....know.the.basics..should.be.able.to.write.....common.user..already.developped.small.projects.....good.knowledge..develops.medium.projects.....expert.....Providing.no.answer.means.you.never.heard.about.it.or.were.never.in.contact.with.this.language...Objective.C."                                                  
+ [56] "Describe.your.coding.skills.in.the.following.languages..Use.the.following.rating.....know.the.basics..should.be.able.to.read.....know.the.basics..should.be.able.to.write.....common.user..already.developped.small.projects.....good.knowledge..develops.medium.projects.....expert.....Providing.no.answer.means.you.never.heard.about.it.or.were.never.in.contact.with.this.language...FORTRAN."                                                      
+ [57] "Describe.your.coding.skills.in.the.following.languages..Use.the.following.rating.....know.the.basics..should.be.able.to.read.....know.the.basics..should.be.able.to.write.....common.user..already.developped.small.projects.....good.knowledge..develops.medium.projects.....expert.....Providing.no.answer.means.you.never.heard.about.it.or.were.never.in.contact.with.this.language...Java."                                                         
+ [58] "Describe.your.coding.skills.in.the.following.languages..Use.the.following.rating.....know.the.basics..should.be.able.to.read.....know.the.basics..should.be.able.to.write.....common.user..already.developped.small.projects.....good.knowledge..develops.medium.projects.....expert.....Providing.no.answer.means.you.never.heard.about.it.or.were.never.in.contact.with.this.language...PHP."                                                          
+ [59] "Describe.your.coding.skills.in.the.following.languages..Use.the.following.rating.....know.the.basics..should.be.able.to.read.....know.the.basics..should.be.able.to.write.....common.user..already.developped.small.projects.....good.knowledge..develops.medium.projects.....expert.....Providing.no.answer.means.you.never.heard.about.it.or.were.never.in.contact.with.this.language...javascript."                                                   
+ [60] "Describe.your.coding.skills.in.the.following.languages..Use.the.following.rating.....know.the.basics..should.be.able.to.read.....know.the.basics..should.be.able.to.write.....common.user..already.developped.small.projects.....good.knowledge..develops.medium.projects.....expert.....Providing.no.answer.means.you.never.heard.about.it.or.were.never.in.contact.with.this.language...SQL."                                                          
+ [61] "Describe.your.coding.skills.in.the.following.languages..Use.the.following.rating.....know.the.basics..should.be.able.to.read.....know.the.basics..should.be.able.to.write.....common.user..already.developped.small.projects.....good.knowledge..develops.medium.projects.....expert.....Providing.no.answer.means.you.never.heard.about.it.or.were.never.in.contact.with.this.language...shell.scripting..sh.bash.."                                    
+ [62] "Describe.your.coding.skills.in.the.following.languages..Use.the.following.rating.....know.the.basics..should.be.able.to.read.....know.the.basics..should.be.able.to.write.....common.user..already.developped.small.projects.....good.knowledge..develops.medium.projects.....expert.....Providing.no.answer.means.you.never.heard.about.it.or.were.never.in.contact.with.this.language...perl."                                                         
+ [63] "Describe.your.coding.skills.in.the.following.languages..Use.the.following.rating.....know.the.basics..should.be.able.to.read.....know.the.basics..should.be.able.to.write.....common.user..already.developped.small.projects.....good.knowledge..develops.medium.projects.....expert.....Providing.no.answer.means.you.never.heard.about.it.or.were.never.in.contact.with.this.language...python."                                                       
+ [64] "Describe.your.coding.skills.in.the.following.languages..Use.the.following.rating.....know.the.basics..should.be.able.to.read.....know.the.basics..should.be.able.to.write.....common.user..already.developped.small.projects.....good.knowledge..develops.medium.projects.....expert.....Providing.no.answer.means.you.never.heard.about.it.or.were.never.in.contact.with.this.language...ruby."                                                         
+ [65] "Describe.your.coding.skills.in.the.following.languages..Use.the.following.rating.....know.the.basics..should.be.able.to.read.....know.the.basics..should.be.able.to.write.....common.user..already.developped.small.projects.....good.knowledge..develops.medium.projects.....expert.....Providing.no.answer.means.you.never.heard.about.it.or.were.never.in.contact.with.this.language...ML.CAML."                                                      
+ [66] "Describe.your.coding.skills.in.the.following.languages..Use.the.following.rating.....know.the.basics..should.be.able.to.read.....know.the.basics..should.be.able.to.write.....common.user..already.developped.small.projects.....good.knowledge..develops.medium.projects.....expert.....Providing.no.answer.means.you.never.heard.about.it.or.were.never.in.contact.with.this.language...LISP."                                                         
+ [67] "Describe.your.coding.skills.in.the.following.languages..Use.the.following.rating.....know.the.basics..should.be.able.to.read.....know.the.basics..should.be.able.to.write.....common.user..already.developped.small.projects.....good.knowledge..develops.medium.projects.....expert.....Providing.no.answer.means.you.never.heard.about.it.or.were.never.in.contact.with.this.language...R.or.other.statistical.softwares..precise.in.the.comment.box.."
+ [68] "Describe.your.coding.skills.in.the.following.languages..Use.the.following.rating.....know.the.basics..should.be.able.to.read.....know.the.basics..should.be.able.to.write.....common.user..already.developped.small.projects.....good.knowledge..develops.medium.projects.....expert.....Providing.no.answer.means.you.never.heard.about.it.or.were.never.in.contact.with.this.language...Prolog."                                                       
+ [69] "Revision.Control.Systems..Please.use.the.following.rating....Never.used.....Already.used.a.few.times.but.no.more.....Regular.user..simple.usage.on.a.daily.basis......Advanced.user..e.g...knows.how.to.handle.branches.and.navigate.in.the.history..how.to.fork...........Expert..bisect..flow.........Not.answering.means.you.never.heard.about.it...CVS."                                                                                             
+ [70] "Revision.Control.Systems..Please.use.the.following.rating....Never.used.....Already.used.a.few.times.but.no.more.....Regular.user..simple.usage.on.a.daily.basis......Advanced.user..e.g...knows.how.to.handle.branches.and.navigate.in.the.history..how.to.fork...........Expert..bisect..flow.........Not.answering.means.you.never.heard.about.it...SVN."                                                                                             
+ [71] "Revision.Control.Systems..Please.use.the.following.rating....Never.used.....Already.used.a.few.times.but.no.more.....Regular.user..simple.usage.on.a.daily.basis......Advanced.user..e.g...knows.how.to.handle.branches.and.navigate.in.the.history..how.to.fork...........Expert..bisect..flow.........Not.answering.means.you.never.heard.about.it...GIT."                                                                                             
+ [72] "Revision.Control.Systems..Please.use.the.following.rating....Never.used.....Already.used.a.few.times.but.no.more.....Regular.user..simple.usage.on.a.daily.basis......Advanced.user..e.g...knows.how.to.handle.branches.and.navigate.in.the.history..how.to.fork...........Expert..bisect..flow.........Not.answering.means.you.never.heard.about.it...Mercurial."                                                                                       
+ [73] "Revision.Control.Systems..Please.use.the.following.rating....Never.used.....Already.used.a.few.times.but.no.more.....Regular.user..simple.usage.on.a.daily.basis......Advanced.user..e.g...knows.how.to.handle.branches.and.navigate.in.the.history..how.to.fork...........Expert..bisect..flow.........Not.answering.means.you.never.heard.about.it...Google.docs.or.alike."                                                                            
+ [74] "Revision.Control.Systems..Please.use.the.following.rating....Never.used.....Already.used.a.few.times.but.no.more.....Regular.user..simple.usage.on.a.daily.basis......Advanced.user..e.g...knows.how.to.handle.branches.and.navigate.in.the.history..how.to.fork...........Expert..bisect..flow.........Not.answering.means.you.never.heard.about.it...Dropbox."                                                                                         
+ [75] "Revision.Control.Systems..Please.use.the.following.rating....Never.used.....Already.used.a.few.times.but.no.more.....Regular.user..simple.usage.on.a.daily.basis......Advanced.user..e.g...knows.how.to.handle.branches.and.navigate.in.the.history..how.to.fork...........Expert..bisect..flow.........Not.answering.means.you.never.heard.about.it...GitHub."                                                                                          
+ [76] "What.are.the.operating.systems.you.commonly.use.for.work...Linux..stable.version.ubuntu.or.alike."                                                                                                                                                                                                                                                                                                                                                       
+ [77] "What.are.the.operating.systems.you.commonly.use.for.work...Linux..very.recent.version..e.g...debian.testing.or.unstable.."                                                                                                                                                                                                                                                                                                                               
+ [78] "What.are.the.operating.systems.you.commonly.use.for.work...MacOS.X."                                                                                                                                                                                                                                                                                                                                                                                     
+ [79] "What.are.the.operating.systems.you.commonly.use.for.work...Windows."                                                                                                                                                                                                                                                                                                                                                                                     
+ [80] "What.are.the.operating.systems.you.commonly.use.for.work...Other."                                                                                                                                                                                                                                                                                                                                                                                       
+ [81] "Other.information.you.would.like.to.provide.1"                                                                                                                                                                                                                                                                                                                                                                                                           
+ [82] "Please.describe.how.well.you.use.the.following.tools.to.typeset.articles..Not.aswering.means.you.never.heard.about.this.tool.....I.try.not.to.use.it......I.make.a.very.basic.usage.of.it.....I.use.it.a.lot.but.I.stick.with.standard.functionnalities.....I.always.know.how.to.tweak.it.so.that.it.does.what.I.want.....Expert..TeX.LaTeX."                                                                                                            
+ [83] "Please.describe.how.well.you.use.the.following.tools.to.typeset.articles..Not.aswering.means.you.never.heard.about.this.tool.....I.try.not.to.use.it......I.make.a.very.basic.usage.of.it.....I.use.it.a.lot.but.I.stick.with.standard.functionnalities.....I.always.know.how.to.tweak.it.so.that.it.does.what.I.want.....Expert..Word.office."                                                                                                          
+ [84] "Please.describe.how.well.you.use.the.following.tools.to.typeset.articles..Not.aswering.means.you.never.heard.about.this.tool.....I.try.not.to.use.it......I.make.a.very.basic.usage.of.it.....I.use.it.a.lot.but.I.stick.with.standard.functionnalities.....I.always.know.how.to.tweak.it.so.that.it.does.what.I.want.....Expert..Markdown.Org....."                                                                                                     
+ [85] "Please.describe.how.well.you.use.the.following.tools.to.typeset.articles..Not.aswering.means.you.never.heard.about.this.tool.....I.try.not.to.use.it......I.make.a.very.basic.usage.of.it.....I.use.it.a.lot.but.I.stick.with.standard.functionnalities.....I.always.know.how.to.tweak.it.so.that.it.does.what.I.want.....Expert..Others."                                                                                                               
+ [86] "Please.describe.how.well.you.use.the.following.tools.to.typeset.slides..The.answering.convention.is.the.same.as.for.the.previous.question...TeX.LaTeX."                                                                                                                                                                                                                                                                                                  
+ [87] "Please.describe.how.well.you.use.the.following.tools.to.typeset.slides..The.answering.convention.is.the.same.as.for.the.previous.question...Word.office."                                                                                                                                                                                                                                                                                                
+ [88] "Please.describe.how.well.you.use.the.following.tools.to.typeset.slides..The.answering.convention.is.the.same.as.for.the.previous.question...Markdown.Org....."                                                                                                                                                                                                                                                                                           
+ [89] "Please.describe.how.well.you.use.the.following.tools.to.typeset.slides..The.answering.convention.is.the.same.as.for.the.previous.question...Others."                                                                                                                                                                                                                                                                                                     
+ [90] "Please.describe.how.well.you.use.the.following.tools.to.typeset.articles..Not.aswering.means.you.never.heard.about.this.tool.....I.try.not.to.use.it......I.make.a.very.basic.usage.of.it.....I.use.it.a.lot.but.I.stick.with.standard.functionnalities.....I.always.know.how.to.tweak.it.so.that.it.does.what.I.want.....Expert..Matlab.octave....."                                                                                                    
+ [91] "Please.describe.how.well.you.use.the.following.tools.to.typeset.articles..Not.aswering.means.you.never.heard.about.this.tool.....I.try.not.to.use.it......I.make.a.very.basic.usage.of.it.....I.use.it.a.lot.but.I.stick.with.standard.functionnalities.....I.always.know.how.to.tweak.it.so.that.it.does.what.I.want.....Expert..Gnuplot."                                                                                                              
+ [92] "Please.describe.how.well.you.use.the.following.tools.to.typeset.articles..Not.aswering.means.you.never.heard.about.this.tool.....I.try.not.to.use.it......I.make.a.very.basic.usage.of.it.....I.use.it.a.lot.but.I.stick.with.standard.functionnalities.....I.always.know.how.to.tweak.it.so.that.it.does.what.I.want.....Expert..R."                                                                                                                    
+ [93] "Please.describe.how.well.you.use.the.following.tools.to.typeset.articles..Not.aswering.means.you.never.heard.about.this.tool.....I.try.not.to.use.it......I.make.a.very.basic.usage.of.it.....I.use.it.a.lot.but.I.stick.with.standard.functionnalities.....I.always.know.how.to.tweak.it.so.that.it.does.what.I.want.....Expert..Spreadsheet..excel..office......."                                                                                     
+ [94] "Please.describe.how.well.you.use.the.following.tools.to.typeset.articles..Not.aswering.means.you.never.heard.about.this.tool.....I.try.not.to.use.it......I.make.a.very.basic.usage.of.it.....I.use.it.a.lot.but.I.stick.with.standard.functionnalities.....I.always.know.how.to.tweak.it.so.that.it.does.what.I.want.....Expert..Python."                                                                                                               
+ [95] "Please.describe.how.well.you.use.the.following.tools.to.typeset.articles..Not.aswering.means.you.never.heard.about.this.tool.....I.try.not.to.use.it......I.make.a.very.basic.usage.of.it.....I.use.it.a.lot.but.I.stick.with.standard.functionnalities.....I.always.know.how.to.tweak.it.so.that.it.does.what.I.want.....Expert..Others..which.one...."                                                                                                 
+ [96] "Other.information.you.would.like.to.provide.2"                                                                                                                                                                                                                                                                                                                                                                                                           
+ [97] "Not.answering.means.you.never.heard.about.it..Please.use.the.following.rating.....I.guess.I.heard.about.it.but.I.m.not.sure.I.would.be.able.to.explain.....I.have.an.intuitive.notion.of.what.this.is.and.how.it.can.be.used.....I.can.give.a.definition.....I.commonly.use.this.notion.....Expert..I.understand.the.limitations.of.the.notion.or.of.the.approach...integral.calculus."                                                                  
+ [98] "Not.answering.means.you.never.heard.about.it..Please.use.the.following.rating.....I.guess.I.heard.about.it.but.I.m.not.sure.I.would.be.able.to.explain.....I.have.an.intuitive.notion.of.what.this.is.and.how.it.can.be.used.....I.can.give.a.definition.....I.commonly.use.this.notion.....Expert..I.understand.the.limitations.of.the.notion.or.of.the.approach...differential.calculus."                                                              
+ [99] "Not.answering.means.you.never.heard.about.it..Please.use.the.following.rating.....I.guess.I.heard.about.it.but.I.m.not.sure.I.would.be.able.to.explain.....I.have.an.intuitive.notion.of.what.this.is.and.how.it.can.be.used.....I.can.give.a.definition.....I.commonly.use.this.notion.....Expert..I.understand.the.limitations.of.the.notion.or.of.the.approach...random.variable."                                                                    
+[100] "Not.answering.means.you.never.heard.about.it..Please.use.the.following.rating.....I.guess.I.heard.about.it.but.I.m.not.sure.I.would.be.able.to.explain.....I.have.an.intuitive.notion.of.what.this.is.and.how.it.can.be.used.....I.can.give.a.definition.....I.commonly.use.this.notion.....Expert..I.understand.the.limitations.of.the.notion.or.of.the.approach...probability.distribution."                                                           
+[101] "Not.answering.means.you.never.heard.about.it..Please.use.the.following.rating.....I.guess.I.heard.about.it.but.I.m.not.sure.I.would.be.able.to.explain.....I.have.an.intuitive.notion.of.what.this.is.and.how.it.can.be.used.....I.can.give.a.definition.....I.commonly.use.this.notion.....Expert..I.understand.the.limitations.of.the.notion.or.of.the.approach...confidence.interval."                                                                
+[102] "Not.answering.means.you.never.heard.about.it..Please.use.the.following.rating.....I.guess.I.heard.about.it.but.I.m.not.sure.I.would.be.able.to.explain.....I.have.an.intuitive.notion.of.what.this.is.and.how.it.can.be.used.....I.can.give.a.definition.....I.commonly.use.this.notion.....Expert..I.understand.the.limitations.of.the.notion.or.of.the.approach...linear.regression."                                                                  
+[103] "Not.answering.means.you.never.heard.about.it..Please.use.the.following.rating.....I.guess.I.heard.about.it.but.I.m.not.sure.I.would.be.able.to.explain.....I.have.an.intuitive.notion.of.what.this.is.and.how.it.can.be.used.....I.can.give.a.definition.....I.commonly.use.this.notion.....Expert..I.understand.the.limitations.of.the.notion.or.of.the.approach...regression.vs..interpolation."                                                       
+[104] "Not.answering.means.you.never.heard.about.it..Please.use.the.following.rating.....I.guess.I.heard.about.it.but.I.m.not.sure.I.would.be.able.to.explain.....I.have.an.intuitive.notion.of.what.this.is.and.how.it.can.be.used.....I.can.give.a.definition.....I.commonly.use.this.notion.....Expert..I.understand.the.limitations.of.the.notion.or.of.the.approach...factorial.design."                                                                   
+[105] "Not.answering.means.you.never.heard.about.it..Please.use.the.following.rating.....I.guess.I.heard.about.it.but.I.m.not.sure.I.would.be.able.to.explain.....I.have.an.intuitive.notion.of.what.this.is.and.how.it.can.be.used.....I.can.give.a.definition.....I.commonly.use.this.notion.....Expert..I.understand.the.limitations.of.the.notion.or.of.the.approach...Markov.chains."                                                                      
+[106] "Not.answering.means.you.never.heard.about.it..Please.use.the.following.rating.....I.guess.I.heard.about.it.but.I.m.not.sure.I.would.be.able.to.explain.....I.have.an.intuitive.notion.of.what.this.is.and.how.it.can.be.used.....I.can.give.a.definition.....I.commonly.use.this.notion.....Expert..I.understand.the.limitations.of.the.notion.or.of.the.approach...queuing.theory."                                                                     
+[107] "Not.answering.means.you.never.heard.about.it..Please.use.the.following.rating.....I.guess.I.heard.about.it.but.I.m.not.sure.I.would.be.able.to.explain.....I.have.an.intuitive.notion.of.what.this.is.and.how.it.can.be.used.....I.can.give.a.definition.....I.commonly.use.this.notion.....Expert..I.understand.the.limitations.of.the.notion.or.of.the.approach...Bayesian.inference."                                                                 
+[108] "Not.answering.means.you.never.heard.about.it..Please.use.the.following.rating.....I.guess.I.heard.about.it.but.I.m.not.sure.I.would.be.able.to.explain.....I.have.an.intuitive.notion.of.what.this.is.and.how.it.can.be.used.....I.can.give.a.definition.....I.commonly.use.this.notion.....Expert..I.understand.the.limitations.of.the.notion.or.of.the.approach...machine.learning."                                                                   
+[109] "Not.answering.means.you.never.heard.about.it..Please.use.the.following.rating.....I.guess.I.heard.about.it.but.I.m.not.sure.I.would.be.able.to.explain.....I.have.an.intuitive.notion.of.what.this.is.and.how.it.can.be.used.....I.can.give.a.definition.....I.commonly.use.this.notion.....Expert..I.understand.the.limitations.of.the.notion.or.of.the.approach...steepest.ascent.descent.method..a.k.a.gradient.."                                    
+[110] "Other.information.you.would.like.to.provide.3"
+#+end_example
+
+Let's write a few functions to clean up this mess.
+
+#+begin_src R :results output :session :exports results
+library(dplyr)
+library(tidyr)
+library(ggplot2)
+
+lime_clean_name = function(df, grep, sub=c("",""), NAclean=T) {
+   n = names(df)
+   idx = c()
+   for(pat in grep) {
+      idx = c(idx,grep(pat,n,perl=T));
+   }
+   #   print(idx);
+   df = df[idx];
+   names_df = names(df);
+   #   print(names_df);
+
+   n = length(sub)/2;
+   inp_pat = sub[1+2*(0:(n-1))]
+   out_pat = sub[2+2*(0:(n-1))]
+   for(i in 1:n) {
+   #   print(inp_pat[i]);
+   #   print(out_pat[i]);
+   #   print(head(names_df));
+      names_df = gsub(inp_pat[i],out_pat[i],names_df, perl=T)
+   }
+   names(df) = names_df;
+
+   # if(NAclean) {
+   #   df = df[df[2]!="N/A",]
+   # }
+   df
+}
+
+lime_flatten_yn = function(df) {
+   df = df %>% gather(Field, yn, -Response.ID);
+   df[df$yn=="Yes",]$yn=1;
+   df[!is.na(df$yn) & df$yn!=1,]$yn=0;
+   df$yn = as.numeric(df$yn);
+   df
+}
+
+filter_NA = function(df,colid=2) {
+   df[df[colid]!="N/A",]
+}
+
+setNALeveltozero = function(df) {
+   df[is.na(df$Level),]$Level=0;
+   df;
+}
+
+#+end_src
+
+#+RESULTS:
+#+begin_example
+
+Attachement du package : ‘dplyr’
+
+The following objects are masked from ‘package:stats’:
+
+    filter, lag
+
+The following objects are masked from ‘package:base’:
+
+    intersect, setdiff, setequal, union
+#+end_example
+
+#+begin_src R :results output :session :exports results
+dim(df)
+df = filter_NA(df,11) # getting rid of person that did not complete the form
+dim(df)
+#+end_src
+
+#+RESULTS:
+: [1]  12 110
+: [1]   7 110
+
+*** Participation
+There is about 30 students officially enrolled. I can't believe so few
+people filled the survey. :(
+*** Student's position
+#+begin_src R :results output :session :exports results
+Q1_position = lime_clean_name(df,
+       grep=c("Response.ID", "current.position"));
+
+#+end_src
+
+#+RESULTS:
+
+#+begin_src R :results output graphics :file pdf_babel/img1.png :exports results :width 600 :height 400 :session
+ggplot(data = Q1_position, aes(x=What.is.your.current.position)) +  geom_bar() + theme_bw()
+#+end_src
+
+#+RESULTS:
+[[file:pdf_babel/img1.png]]
+
+
+Well, mostly master student around here.
+*** Research Domain
+#+begin_src R :results output :session :exports none
+Q1_research = lime_clean_name(
+       df,
+       grep=c("Response.ID", "expected.research.activity"),
+       sub=c("^.*expected.research.activity..*details","",
+                  "^\\.*","",
+                  "\\..*$","",
+                  "NA","N.A",
+                  "Response", "Response.ID"))
+print(head(Q1_research));
+#+end_src
+
+#+RESULTS:
+#+begin_example
+   Response.ID  AI CC CG  CE  CL  CV  CY CR  DB DS DL DM  DC ET FL GT GL  GR AR
+4            4  No No No  No  No  No  No No  No No No No Yes No No No No  No No
+5            5  No No No  No  No  No  No No  No No No No  No No No No No Yes No
+6            6 Yes No No  No Yes Yes  No No  No No No No  No No No No No  No No
+8            8 Yes No No Yes  No Yes  No No Yes No No No  No No No No No  No No
+10          10  No No No  No  No  No  No No  No No No No  No No No No No  No No
+11          11  No No No  No  No  No Yes No  No No No No  No No No No No  No No
+    HC  IR IT  LG LO MS MA MM NI  NE N.A  OS OH  PF PL  RO SI SE SD SC SY
+4   No  No No  No No No No No No  No  No Yes No  No No  No No No No No No
+5   No  No No  No No No No No No  No  No  No No  No No  No No No No No No
+6   No Yes No Yes No No No No No  No  No  No No  No No  No No No No No No
+8   No Yes No Yes No No No No No Yes  No  No No  No No Yes No No No No No
+10  No  No No  No No No No No No  No  No Yes No Yes No  No No No No No No
+11 Yes  No No  No No No No No No  No  No  No No  No No  No No No No No No
+#+end_example
+
+#+begin_src R :results output :session :exports none
+Q1_research_gg = (lime_flatten_yn(Q1_research))  %>%  group_by(Field) %>%
+      summarise(num = n(), mean = mean(yn), count=sum(yn))
+#+end_src
+
+#+RESULTS:
+: Warning message:
+: attributes are not identical across measure variables; they will be dropped
+
+#+begin_src R :results output graphics :file pdf_babel/img2.png :exports results :width 600 :height 400 :session
+library(ggplot2)
+ggplot(data= Q1_research_gg, aes(x=Field,y=100*mean,size=100*mean)) + 
+    geom_point() + theme_bw() + xlab("Research Area") + ylab("Fraction") +
+    guides(size="none")
+#+end_src
+
+#+RESULTS:
+[[file:pdf_babel/img2.png]]
+
+Here is a zoom on the most common ones
+#+begin_src R :results output graphics :file pdf_babel/img3.png :exports results :width 600 :height 400 :session
+library(ggplot2)
+ggplot(data= Q1_research_gg[Q1_research_gg$mean>.1,], 
+       aes(x=Field,y=mean*100,color=Field)) + geom_point(size=5) + 
+       xlab("Research Area") + ylab("Fraction") + guides(size="none") + 
+       ylim(0,NA) + theme_bw()
+#+end_src
+
+#+RESULTS:
+[[file:pdf_babel/img3.png]]
+
+Here is the decoding:
+| AI | Artificial Intelligence                                                                         |
+| AR | Hardware Architecture                                                                           |
+| CL | Computation and Language (Computational Linguistics and Natural Language and Speech Processing) |
+| CR | Cryptography and Security                                                                       |
+| DB | Databases                                                                                       |
+| DC | Distributed Computing and HPC                                                                   |
+| DS | DS - Data Structures and Algorithms                                                             |
+| FL | Formal Languages and Automata Theory                                                            |
+| GT | Computer Science and Game Theory                                                                |
+| HC | Human-Computer Interaction                                                                      |
+| LG | Machine Learning                                                                                |
+| NE | Neural and Evolutionary Computation                                                             |
+| SE | Software Engineering                                                                            |
+
+*** Coding languages
+#+begin_src R :results output :session :exports none
+Q2_coding = lime_clean_name(
+       df,
+       grep=c("Response.ID", ".coding.skills."),
+       sub=c("^.*language\\.\\.\\.","",
+             "shell.scripting..sh.","",
+             ".*statistical.*","R",
+             "\\.$","",
+             "^C\\.\\.$","Cpp",
+             "^C\\.$","Csharp",
+             "\\.$",""), NAclean=F)
+# print(head(Q2_coding));
+
+Q2_coding_flat = Q2_coding %>% gather(Language, Level, -Response.ID);
+Q2_coding_flat[is.na(Q2_coding_flat$Level),]$Level=0;
+# head(Q2_coding_flat)
+#+end_src
+
+#+RESULTS:
+
+#+begin_src R :results output graphics :file pdf_babel/img4.png :exports results :width 800 :height 400 :session
+ggplot(data = Q2_coding_flat, aes(x=Level,fill=Language)) + theme_bw() +
+    geom_histogram(binwidth=1) + facet_wrap(~Language) + xlim(0,5)
+#+end_src
+
+#+RESULTS:
+[[file:pdf_babel/img4.png]]
+
+The range is from 0 (knows nothing/never heard of it) to 5 (expert)
+*** OS used for daily work
+#+begin_src R :results output :session :exports none
+Q2_OS = lime_clean_name(
+       df,
+       grep=c("Response.ID", ".operating.systems.you.commonly.use"),
+       sub=c("^.*.use.for.work\\.\\.\\.","",
+             ".*Linux..stable.*","LinuxStable",
+             ".*Linux..very.*","LinuxEdge",
+             "\\.$",""));
+Q2_OS = filter_NA(Q2_OS,3);
+Q2_OS$Other = NULL;
+Q2_OS_flat = (lime_flatten_yn(Q2_OS))  %>%  group_by(Field) %>%
+      summarise(num = n(), mean = mean(yn), count=sum(yn))
+names(Q2_OS_flat)[1] = "OS"
+Q2_OS_flat$mean = Q2_OS_flat$mean*100;
+#+end_src
+
+#+RESULTS:
+
+#+begin_src R :results output graphics :file pdf_babel/img5.png :exports results :width 400 :height 400 :session
+ggplot(data = Q2_OS_flat, aes(x=OS, fill = OS, y=mean)) + 
+    geom_bar(stat="identity") + ylab("Percentage") + theme_bw()
+#+end_src
+
+#+RESULTS:
+[[file:pdf_babel/img5.png]]
+
+Here LinuxEdge means a very recent distribution, possibly testing or
+unstable. 
+*** Typesetting tools
+#+begin_src R :results output :session :exports none
+Q3_typesetting_articles = lime_clean_name(
+       df,
+       grep=c("Response.ID", "to.typeset.articles"),
+       sub=c("^.*Expert\\.*","",
+             "\\.*$","",
+             "\\.$",""), NAclean=F)
+#print(head(Q3_typesetting_articles));
+Q3_analysis = Q3_typesetting_articles[c(1,6:11)]
+Q3_typesetting_articles = Q3_typesetting_articles[1:5]
+Q3_typesetting_slides = lime_clean_name(
+       df,
+       grep=c("Response.ID", "to.typeset.slides"),
+       sub=c("^.*question\\.*","",
+             "\\.*$","",
+             "\\.$",""), NAclean=F)
+# head(Q3_typesetting_slides)
+# head(Q3_typesetting_articles)
+# head(Q3_analysis)
+
+Q3_typesetting_slides = Q3_typesetting_slides %>% gather(Tool, Level, -Response.ID) %>% setNALeveltozero;
+Q3_typesetting_articles = Q3_typesetting_articles %>% gather(Tool, Level, -Response.ID) %>% setNALeveltozero;
+Q3_analysis = Q3_analysis %>% gather(Tool, Level, -Response.ID) %>% setNALeveltozero;
+Q3_typesetting_articles$Type="Article";
+Q3_typesetting_slides$Type="Slides";
+Q3_typesetting = rbind(Q3_typesetting_articles,Q3_typesetting_slides)
+#+end_src
+
+#+RESULTS:
+
+#+begin_src R :results output graphics :file pdf_babel/img6.png :exports results :width 800 :height 400 :session
+ggplot(data = Q3_typesetting, aes(x=Level,fill=Tool)) + theme_bw() +
+    geom_histogram(binwidth=1) + facet_grid(Type~Tool) + xlim(0,5)
+#+end_src
+
+#+RESULTS:
+[[file:pdf_babel/img6.png]]
+
+0 means "never heard about it", 1 means "trying not to use it" and 5
+means "used it a lot and knows how to trick it".
+*** Analysis tools
+#+begin_src R :results output graphics :file pdf_babel/img7.png :exports results :width 600 :height 400 :session
+ggplot(data = Q3_analysis, aes(x=Level,fill=Tool)) + theme_bw() + 
+    geom_histogram(binwidth=1) + facet_wrap(~Tool) + xlim(0,5)
+#+end_src
+
+#+RESULTS:
+[[file:pdf_babel/img7.png]]
+
+Same legend as before
+*** Theoretical skills
+#+begin_src R :results output :session :exports none
+Q4_theory = lime_clean_name(
+       df,
+       grep=c("Response.ID", ".limitations.of.the.notion"),
+       sub=c("^.*approach\\.\\.\\.","",
+             "steepest.ascent.*","gradient.methods",
+             "\\.*$",""), NAclean=F) %>% gather(Tool, Level, -Response.ID) %>% setNALeveltozero;
+#+end_src
+
+#+RESULTS:
+
+#+begin_src R :results output graphics :file pdf_babel/img8.png :exports results :width 800 :height 400 :session
+ggplot(data = Q4_theory, aes(x=Level,fill=Tool)) + theme_bw() +
+    geom_histogram(binwidth=1) + facet_wrap(~Tool) + xlim(0,5)
+#+end_src
+
+#+RESULTS:
+[[file:pdf_babel/img8.png]]
+
+0 means "never heard about it" while 5 means "fully understanding the
+notion and possible limits".
+
+It would be fun to correlate these answers as well as those on tools
+and languages to research areas.
+** Students feedback                                              :noexport:
+** Other random comments                                          :noexport:
