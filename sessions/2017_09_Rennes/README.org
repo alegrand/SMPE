@@ -50,9 +50,9 @@ probably adapt to the audience on the fly.
      - [[http://swcarpentry.github.io/r-novice-gapminder/04-data-structures-part1/][R data structures 1]], [[http://swcarpentry.github.io/r-novice-gapminder/05-data-structures-part2/][Data structures 2 (data frames)]], although
        I will not go into as much detail as this tutorial in my crash
        course.
+     - [[http://swcarpentry.github.io/r-novice-gapminder/08-plot-ggplot2/][Beautiful graphics with ggplot2]].
 5. [[file:../../lectures/lecture_descriptive_univariate.pdf][Descriptive statistics of univariate data]]
 6. [[file:../../lectures/lecture_data_presentation.pdf][Data presentation]]
-   - You may want to look at the [[http://swcarpentry.github.io/r-novice-gapminder/08-plot-ggplot2/][software carpentry tutorial on ggplot2]].
 7. [[file:../../lectures/lecture_correlation_causation.pdf][Correlation and causation]]
 8. [[file:../../lectures/3_introduction_to_statistics.pdf][Introduction to probabilities/statistics]] ([[file:../../lectures/lecture_central_limit_theorem.pdf][Proof of the Central
    limit theorem]])
