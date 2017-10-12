@@ -1,6 +1,6 @@
-#+TITLE:     Q&A session at UFRGS in August 2015
+#+TITLE:     Q&A session at Grenoble in October 2017
 #+AUTHOR:    Arnaud Legrand
-#+DATE: August 2015
+#+DATE: October 2017
 #+STARTUP: overview indent
 #+TAGS: noexport(n)
 
@@ -8,7 +8,7 @@
 
 * Survey at the beginning of the lecture
 
-https://sondages.inria.fr/index.php/646461/lang-en
+https://sondages.inria.fr/index.php/665963/lang-en
 
 ** Answers
 *** Initial import and cleanups                                  :noexport:
