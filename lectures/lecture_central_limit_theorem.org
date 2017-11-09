@@ -129,7 +129,7 @@ occurring
 - A random variable \rv{X} has density $f_X$, where $f_X$ is a
   non-negative and integrable function, if: \qquad\quad
   $\displaystyle \boxed{\P[a \leq \rv{X} \leq b] = \int_a^b f_X(w) \, \dif w}$
-  #+BEGIN_LaTeX
+  #+BEGIN_EXPORT latex
 %\vspace{-.5em}
 \begin{columns}
   \begin{column}{.7\linewidth}
@@ -143,7 +143,7 @@ occurring
   \end{column}
 \end{columns}
 
-  #+END_LaTeX
+  #+END_EXPORT
 #  \vspace{-.5em}
 - \textbf{Note}: people often confuse the sample space with the random
   variable. Try to make the difference when modeling your system, it
@@ -225,12 +225,12 @@ summarize it
 
   If a random variable \rv{X} has the expected value (mean) $\mu =
   \E[\rv{X}]$, then the variance of \rv{X} is given by:
-  #+BEGIN_LaTeX
+  #+BEGIN_EXPORT latex
   \begin{align*} 
       \Var(\rv{X}) &= \E\left[(\rv{X} - \mu)^2
       \right] = \int_{-\infty}^\infty  (x-\mu)^2 f_X(x)\, \dif x
   \end{align*}
-  #+END_LaTeX
+  #+END_EXPORT
 - The *standard deviation $\sigma$* is the square root of the variance. This
   normalization allows to compare it with the expected value
 * Moment Generating Function
@@ -247,13 +247,13 @@ How could we summarize a random variable ?
   lot about $f_{\rv{X}}$.
 
 Let's define the *moment generating function* \M as follows:
-#+BEGIN_LaTeX
+#+BEGIN_EXPORT latex
 \begin{align*}
   \M & = \E\left(e^{t\rv{X}}\right) = \E\left(\sum_{k=0}^\infty \frac{t^k\rv{X}^k}{k!}\right)
      = \E\left(\sum_{k=0}^\infty \frac{t^k\rv{X}^k}{k!}\right) = \sum_{k=0}^\infty \mu_k\frac{t^k}{k!}\\
      & = \int e^{tx}f_{\rv{X}}(x)dx 
 \end{align*}
-#+END_LaTeX
+#+END_EXPORT
 *** Deriving moments with the mgf
 Remember we have $\displaystyle \M = \sum_{k=0}^\infty \mu_k\frac{t^k}{k!}$
 
@@ -281,7 +281,7 @@ Proving the same results when $\rv{X}$ is continuous, requires to go
 through Fourier transform.
 ** Properties
 *** Convenient properties
-#+BEGIN_LaTeX
+#+BEGIN_EXPORT latex
 \begin{align*}
   \M[a\rv{X}+b] & = \E\left(e^{t(a\rv{X}+b)}\right) 
                   = \E\left(e^{bt}e^{at\rv{X}}\right)\\
@@ -293,25 +293,25 @@ through Fourier transform.
                       = \E\left(e^{t\rv{X}}\right)\E\left(e^{t\rv{Y}}\right)\\
                     & = \M.\M[\rv{Y}]
 \end{align*}
-#+END_LaTeX
+#+END_EXPORT
 *** Mgf of usual laws
 - Uniform law:
-  #+BEGIN_LaTeX
+  #+BEGIN_EXPORT latex
   $\displaystyle
   \M = \begin{cases} 
     \frac{e^{tb}-e^{ta}}{t(b-a)}
     &\text{for } t \neq 0 \\ 1 &\text{for } t = 0 
   \end{cases}$
-  #+END_LaTeX
+  #+END_EXPORT
 - Exponential law: $\displaystyle f(x;\lambda) = \begin{cases} \lambda e^{-\lambda x}
   & x \ge 0, \\ 0 & x < 0. \end{cases}$
-  #+BEGIN_LaTeX
+  #+BEGIN_EXPORT latex
   \begin{align*}
     \M & = \E\left(e^{t\rv{X}}\right) = \int_0^\infty e^{tx}\lambda e^{-\lambda x} dx 
      = \lambda \int_0^\infty e^{(t-\lambda)x} dx \\&= \lambda \left[\frac{e^{(t-\lambda)x}}{t-\lambda} \right]_0^\infty 
      = \frac{\lambda}{\lambda-t} \text{\qquad (for $t<\lambda$)}
   \end{align*}
-  #+END_LaTeX
+  #+END_EXPORT
 This allows to *easily compute moments* and *sum random variables*.
 
 The moment generating function is somehow similar to the Fourier
@@ -336,7 +336,7 @@ Let \rv{X} be a random variable with expected value $\mu = \E(\rv{X})$,
 and let $\epsilon>0$ be any positive real number. Then $\P(|\rv{X}-\mu|\geq \epsilon) \leq
 \frac{\Var(\rv{X})}{\epsilon^2}$.
 **** Proof
-#+BEGIN_LaTeX
+#+BEGIN_EXPORT latex
 \begin{align*}
   \Var(\rv{X}) = \int (x-\mu)^2f(x).dx & \geq 
                  \int_{|x-\mu|\geq\epsilon} (x-\mu)^2f(x).dx  \\
@@ -344,7 +344,7 @@ and let $\epsilon>0$ be any positive real number. Then $\P(|\rv{X}-\mu|\geq \eps
                    \epsilon^2 \underbrace{\int_{|x-\mu|\geq\epsilon} f(x).dx}_{\P(|\rv{X}-\mu|\geq \epsilon)}
 \end{align*}
 
-#+END_LaTeX
+#+END_EXPORT
 *** Law of Large Numbers
 **** Law of Large Numbers
 Let \rv{X_1}, \rv{X_2}, \dots, \rv{X_n} be a sequence of identical and
@@ -360,10 +360,10 @@ The $\rv{X_i}$ are i.i.d, hence:
 
 Using Chebyshev's inequality:
 
-#+BEGIN_LaTeX
+#+BEGIN_EXPORT latex
 $$\P(|\rv{S_n}/n-\mu|\geq \epsilon) \leq \frac{\sigma^2}{n\epsilon^2} \xrightarrow[n\to\infty]{} 0
 \text{ (for a fixed $\varepsilon$)}$$
-#+END_LaTeX
+#+END_EXPORT
 *** Illustration: convergence in probability
 #+begin_src R :results output graphics :file pdf_babel/tcl_large_numbers.pdf :exports results :width 7 :height 3 :session
 library(ggplot2)
@@ -401,23 +401,23 @@ $$\P(|\rv{S_n}/n-\mu|\geq \epsilon) \leq \frac{\sigma^2}{n\epsilon^2} = \frac{10
   random variables with expected values $\mu$ and variances $\sigma^2$)
 - We know that $\E(\rv{S_n}/n) = \mu$ and \Var(\rv{S_n}) = n\sigma^2$.
 - Let's define the *standardized mean* of these random variables as:
-  #+BEGIN_LaTeX
+  #+BEGIN_EXPORT latex
   $$\displaystyle \rv{S^*_n} = \frac{S_n-n\mu}{\sqrt{n\sigma^2}}$$
-  #+END_LaTeX
+  #+END_EXPORT
   We have $\E(\rv{S^*_n}) = 0$ and  $\Var(\rv{S^*_n}) = 1$.
 - For large $n$'s, the distribution of $\rv{S^*_n}$ is approximately
   *normal*
-  #+BEGIN_LaTeX
+  #+BEGIN_EXPORT latex
   \begin{equation*}
   \rv{S^*_n} \xrightarrow[n\to\infty]{} \N\left(0,1\right)
   \end{equation*}
-  #+END_LaTeX
+  #+END_EXPORT
   Or equivalently
-  #+BEGIN_LaTeX
+  #+BEGIN_EXPORT latex
   \begin{equation*}
   \frac{\rv{S_n}}{n} \xrightarrow[n\to\infty]{} \N\left(\mu,\frac{\sigma^2}{n}\right)
   \end{equation*}
-  #+END_LaTeX
+  #+END_EXPORT
 *** CLT Illustration: the mean smooths distributions
 #+begin_src R :results output graphics :file "pdf_babel/CLT_illustration.pdf" :exports none :width 9 :height 6 :session
 library(ggplot2)
@@ -475,7 +475,7 @@ $S_n$ for increasing values of $n$.
 #+END_CENTER
 
 *** The Normal distribution
-#+BEGIN_LaTeX
+#+BEGIN_EXPORT latex
   \begin{overlayarea}{\linewidth}{4.5cm}
     \begin{center}%
       \includegraphics<1>[height=4.5cm]{pdf_babel/normal_distribution.pdf}%
@@ -490,7 +490,7 @@ $S_n$ for increasing values of $n$.
   \uncover<1->{The smaller the variance the more ``spiky'' the
     distribution.}
   \uncover<2->{
-#+END_LaTeX
+#+END_EXPORT
 - Dark blue is less than one standard deviation from the mean\approx
   68% of the set.
 - Two standard deviations from the mean (medium and dark blue)\approx95%
@@ -531,17 +531,17 @@ normally distributed, with mean $\mu_1 + \mu_2$ and variance $\sigma_1^2 +
 
 Intuitively, if $\rv{S^*_n}$ converges to something (say $\L$), it
 "/has to/" be a normal distribution:
-#+BEGIN_LaTeX
+#+BEGIN_EXPORT latex
 $$\frac{1}{2}(\underbrace{\rv{S^*_{1\dots n}}}_{\sim\L} + 
              \underbrace{\rv{S^*_{n+1\dots2n}}}_{\sim\L}) = 
    \underbrace{\rv{S^*_{2n}}}_{\sim\L}$$
-#+END_LaTeX
+#+END_EXPORT
 
 
 *** Moment generating function of the normal distribution
 Let's assume $\rv{X}\sim\N(0,1)$.
 
-#+BEGIN_LaTeX
+#+BEGIN_EXPORT latex
 \begin{align*}
   \M & = \int e^{tx}f_\N(x).dx
        = \int e^{tx}\frac{e^{-\frac{x^2}{2}}}{\sqrt{2\pi}}dx 
@@ -553,18 +553,18 @@ Let's assume $\rv{X}\sim\N(0,1)$.
         \frac{e^{\frac{-x^2}{2}}}{\sqrt{2\pi}}dx \\
      & = e^{\frac{x^2}{2}}
 \end{align*}
-#+END_LaTeX
+#+END_EXPORT
 
 Actually, if we assume $\rv{X}\sim\N(\mu,\sigma^2)$, one can easily prove in the
 same way that:
-#+BEGIN_LaTeX
+#+BEGIN_EXPORT latex
 \begin{align*}
   \M = e^{\mu t + \frac{1}{2}\sigma^2t^2}
 \end{align*}
-#+END_LaTeX
+#+END_EXPORT
 
 *** Proof of the CLT
-#+BEGIN_LaTeX
+#+BEGIN_EXPORT latex
 $\boxed{
   \begin{array}{l}
    \M = \E(e^{t\rv{X}})\approx 1+\mu t+ \sigma^2\frac{t^2}{2}+o(t^2)\\
@@ -574,10 +574,10 @@ $\boxed{
 \hfill 
 $\boxed{\begin{cases}\rv{S_n}=\rv{X_1}+\dots+\rv{X_n}\\
         \rv{S^*_n}=\frac{\rv{S_n}-n\mu}{\sigma\sqrt{n}}\end{cases}}$
-#+END_LaTeX
+#+END_EXPORT
 
 We have:
-#+BEGIN_LaTeX
+#+BEGIN_EXPORT latex
 \begin{align*}
   \M[\rv{S^*_n}] & = \E(e^{t\rv{S^*_n}}) 
                    = \E(e^{t{\frac{\rv{S_n}-n\mu}{\sqrt{n}\sigma}}}) 
@@ -590,7 +590,7 @@ We have:
                 & = \exp\left(\frac{t^2}{2} + o(t^2/n)\right) \xrightarrow[n\to\infty]{} e^{t^2/2}
                     \text{, which is the mgf of $\N(0,1)$}\qed
 \end{align*}
-#+END_LaTeX
+#+END_EXPORT
 
 *** CLT = convergence of laws
 The law of \rv{S^*_n} converges to $\N(0,1)$. In other words, whatever
@@ -636,17 +636,17 @@ ggplot(df, aes(x = x, y = y, color = factor(valid))) + geom_point() +
 #+RESULTS:
 [[file:pdf_babel/CI_illustration.pdf]]
 
-#+BEGIN_LaTeX
+#+BEGIN_EXPORT latex
 \begin{overlayarea}{\linewidth}{4.5cm}
   \begin{center}%
     \includegraphics<1>[height=4.5cm]{images/Standard_deviation_diagram.pdf}%
     \includegraphics<2>[height=4.5cm]{pdf_babel/CI_illustration.pdf}%
   \end{center}
 \end{overlayarea}
-#+END_LaTeX
+#+END_EXPORT
 
 When $n$ is large:
-#+BEGIN_LaTeX
+#+BEGIN_EXPORT latex
 \begin{center}
   \scalebox{.9}{$\displaystyle
   \P\left(\mu\in
@@ -657,14 +657,14 @@ When $n$ is large:
 \end{center}
 \uncover<2>{There is 95\% of chance that the \alert{true mean} lies
   within 2$\frac{\sigma}{\sqrt{n}}$ of the \alert{sample mean}.}
-#+END_LaTeX
+#+END_EXPORT
 *** Without any particular hypothesis
 - Assume, you have evaluated two *alternatives* $A$ and $B$ on $n$
   different *setups*
 
 - You therefore consider the associated random variables \rv{A} and
   \rv{B} and try to *estimate* their expected values $\mu_A$ and $\mu_B$
-#+BEGIN_LaTeX
+#+BEGIN_EXPORT latex
   \begin{center}
     \begin{overlayarea}{.9\linewidth}{4.5cm}
       \begin{center}%
@@ -702,4 +702,4 @@ When $n$ is large:
         \end{flushright}
       }
     \end{overlayarea}
-#+END_LaTeX
+#+END_EXPORT

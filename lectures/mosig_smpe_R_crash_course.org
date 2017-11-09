@@ -130,12 +130,12 @@ In this tutorial, I will briefly show you *rstudio*
 #+END_CENTER
 ** Reproducible Documents: knitR
 *** Rstudio screenshot
-#+BEGIN_LaTeX
+#+BEGIN_EXPORT latex
 \vspace{-.5cm}
 \begin{center}
   \includegraphics[height=9cm]{./images/rstudio_shot.png}
 \end{center}
-#+END_LaTeX
+#+END_EXPORT
 *** Reproducible analysis in Markdown + R
 - Create a new *R Markdown* document (Rmd) in rstudio
 - R chunks are interspersed with =```{r}= and =```=

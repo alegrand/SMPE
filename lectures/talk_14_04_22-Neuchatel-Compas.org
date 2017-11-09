@@ -33,7 +33,7 @@
 
 
 
-#+BEGIN_LaTeX
+#+BEGIN_EXPORT latex
 \definecolor{keywords}{RGB}{255,0,90}
 \definecolor{comments}{RGB}{60,179,113}
 \definecolor{fore}{RGB}{249,242,215}
@@ -44,9 +44,9 @@
 %  commentstyle=\color{comments},
 %  backgroundcolor=\color{back}
 %}
-#+END_LaTeX
+#+END_EXPORT
 
-#+BEGIN_LaTeX
+#+BEGIN_EXPORT latex
 \newcommand{\restorefootline}{\setbeamertemplate{navigation symbols}{}}
 \newcommand{\setfootline}[1]{\setbeamertemplate{navigation symbols}{\textcolor{black}{\textbf{#1}}}}
 \newcommand{\includeslides}[3]{%
@@ -82,7 +82,7 @@
   }
 }
 \makeatother
-#+END_LaTeX
+#+END_EXPORT
 
 * Reproducible Research
 ** Looks familiar ?
@@ -139,7 +139,7 @@ Computer scientists tend to either:
   parameters and then try to get something of it. Most of the time,
   they (1) don’t know how to analyze the results (2) realize
   something went wrong...
-#+BEGIN_LaTeX
+#+BEGIN_EXPORT latex
 \vspace{-1em}
 \centerline{\begin{minipage}{.7\linewidth}
   \begin{block}{}Interestingly, most other scientists do \structure{the exact
@@ -147,7 +147,7 @@ Computer scientists tend to either:
   \end{block}
 \end{minipage}}
 \vspace{.5em}
-#+END_LaTeX
+#+END_EXPORT
 
 These two flaws come from poor training and from the fact that C.S.
 experiments are *almost* free and very fast to conduct.
@@ -171,7 +171,7 @@ Performance Analysis*
 # \includeslidesJF{11-14}
 # \includeslidesMG{26}
 *** Reproducibility: What Are We Talking About ?
-#+BEGIN_LaTeX
+#+BEGIN_EXPORT latex
 \vspace{-.6em}
 \begin{overlayarea}{\linewidth}{9cm}
 \hbox{\hspace{-.05\linewidth}\includegraphics[page=5,width=1.1\linewidth]{pdf_sources/sumatra_amp2011.pdf}}
@@ -181,7 +181,7 @@ Performance Analysis*
   {\scriptsize Courtesy of Andrew Davison (AMP Workshop on Reproducible research)}
 \end{flushright}
 \end{overlayarea}
-#+END_LaTeX
+#+END_EXPORT
 *** A Difficult Trade-off
 **** Automatically keeping track of everything
 - the code that was run (source code, libraries, compilation
@@ -218,7 +218,7 @@ order to enable a more transparent evaluation of research and
 Should be seen as opportunities to share experience.
 ** Many Different Alternatives
 *** Vistrails: a Workflow Engine for Provenance Tracking
-#+BEGIN_LaTeX
+#+BEGIN_EXPORT latex
 \vspace{-.6em}
 \begin{overlayarea}{\linewidth}{9cm}
 \hbox{\hspace{-.05\linewidth}%
@@ -232,9 +232,9 @@ Should be seen as opportunities to share experience.
     Reproducible research)}
 \end{flushright}
 \end{overlayarea}
-#+END_LaTeX
+#+END_EXPORT
 *** VCR: A Universal Identifier for Computational Results
-#+BEGIN_LaTeX
+#+BEGIN_EXPORT latex
 \vspace{-.6em}
 \begin{overlayarea}{\linewidth}{9cm}
 \hbox{\hspace{-.05\linewidth}%
@@ -250,9 +250,9 @@ Should be seen as opportunities to share experience.
     Reproducible research)}
 \end{flushright}
 \end{overlayarea}
-#+END_LaTeX 
+#+END_EXPORT 
 *** Sumatra: a lab notebook
-#+BEGIN_LaTeX
+#+BEGIN_EXPORT latex
 \vspace{-.6em}
 \begin{overlayarea}{\linewidth}{9cm}
 \hbox{\hspace{-.05\linewidth}%
@@ -268,9 +268,9 @@ Should be seen as opportunities to share experience.
     Reproducible research)}
 \end{flushright}
 \end{overlayarea}
-#+END_LaTeX
+#+END_EXPORT
 *** So many new tools
-#+BEGIN_LaTeX
+#+BEGIN_EXPORT latex
 \vspace{-.6em}
 \begin{overlayarea}{\linewidth}{9cm}
 \hbox{\hspace{-.05\linewidth}%
@@ -283,7 +283,7 @@ Should be seen as opportunities to share experience.
 \vspace{.8cm}
 And also: Figshare, ActivePapers, Elsevier executable paper, ...
 \end{overlayarea}
-#+END_LaTeX 
+#+END_EXPORT 
 *** Litterate programming
 \small
 *Donald Knuth*: explanation of the program logic in a *natural language*
@@ -414,12 +414,12 @@ In this tutorial, we will use *rstudio* (https://www.rstudio.com/).
 #+END_CENTER
 ** Reproducible Documents: knitR
 *** Rstudio screenshot
-#+BEGIN_LaTeX
+#+BEGIN_EXPORT latex
 \vspace{-.5cm}
 \begin{center}
   \includegraphics[height=9cm]{./images/rstudio_shot.png}
 \end{center}
-#+END_LaTeX
+#+END_EXPORT
 *** Reproducible analysis in Markdown + R
 - Create a new *R Markdown* document (Rmd) in rstudio
 - R chunks are interspersed with =```{r}= and =```=

@@ -35,12 +35,12 @@
 [[http://future.arte.tv/fr/cholesterol][Cholesterol: le grand bluff (Arte, 18/10/2016 @ 20h50)]]
 #+END_CENTER
 
-#+BEGIN_LaTeX
+#+BEGIN_EXPORT latex
 \begin{center}
   \includegraphics<1>[width=.8\linewidth]{images/arte_cholesterol_2.png}%
   \includegraphics<2>[width=.8\linewidth]{images/arte_cholesterol_1.png}
 \end{center}
-#+END_LaTeX
+#+END_EXPORT
 \pause
 #+BEGIN_CENTER
 "Careful" selection of data and influence from the industry $\frowny$
@@ -58,13 +58,13 @@ It may be the case that two random variables \rv{X} and \rv{Y} are
   \rv{DrinkingHabit} and its \rv{TestScore}
   - In general, the more a student drinks the more his test goes down $\smiley$
 The *correlation* of two variables \rv{X} and \rv{Y} is defined as:
-  #+BEGIN_LaTeX
+  #+BEGIN_EXPORT latex
   \begin{equation*}
     \text{corr}(\rv{X},\rv{Y}) =
     \frac{\text{cov}(\rv{X},\rv{Y})}{\sigma_X \sigma_Y} = 
   \frac{\E[(\rv{X}-\mu_X)(\rv{Y}-\mu_Y)]}{\sigma_X\sigma_Y} 
   \end{equation*}\vspace{-1em}
-  #+END_LaTeX
+  #+END_EXPORT
   - The correlation is symmetrical 
     ($\text{corr}(\rv{X},\rv{Y})=\text{corr}(\rv{Y},\rv{X})$)
   - The correlation is in $[-1,1]$
@@ -176,12 +176,12 @@ UC Berkeley admission figures in fall 1973.
 | E |        191 |      *28%* |        393 | 24%      |
 | F |        373 |       6% |        341 | *7%*       |
 
-#+BEGIN_LaTeX
+#+BEGIN_EXPORT latex
 \pause\vspace{-5cm}
 \begin{center}
   \includegraphics[width=.8\linewidth]{images/simpson_paradox.pdf}
 \end{center}
-#+END_LaTeX
+#+END_EXPORT
 
 *** Correlation does not imply Causation
 For any two correlated events, A and B, the following relationships

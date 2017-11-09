@@ -751,13 +751,13 @@ ggplot(data=dfx,aes(y=val, x=as.factor(label))) + theme_bw() + xlab("Method") +
 
 *** Be careful with fancy plots you do not fully understand!
 
-#+BEGIN_LaTeX
+#+BEGIN_EXPORT latex
 \begin{center}
   \includegraphics<+>[height=6cm]{pdf_babel/set1_7.pdf}
   \includegraphics<+>[height=5cm]{pdf_babel/dist_summary1.pdf}
   \includegraphics<+>[height=5cm]{pdf_babel/dist_summary2.pdf}
 \end{center}
-#+END_LaTeX
+#+END_EXPORT
 
 **** 
 #+BEGIN_QUOTE

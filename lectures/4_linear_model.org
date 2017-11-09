@@ -82,7 +82,7 @@ df_lines=data.frame(
   #+END_SRC
 
   #+RESULTS:
-  #+BEGIN_LaTeX
+  #+BEGIN_EXPORT latex
   % latex table generated in R 3.0.2 by xtable 1.7-1 package
   % Thu Oct 31 13:30:32 2013
   \begin{tabular}{rrr}
@@ -101,7 +101,7 @@ df_lines=data.frame(
     10 & 15.00 & 5.00 \\ 
      \hline
   \end{tabular}
-  #+END_LaTeX
+  #+END_EXPORT
 
 #+LaTeX: }& \hspace{1cm}\raisebox{-.5\height}{\resizebox{.5\linewidth}{!}{
 
@@ -166,20 +166,20 @@ df_lines=data.frame(
     \vspace{-1em}
 *** Least Squares Line (2): Simple Formula
     \vspace{-1em}
-    #+BEGIN_LaTeX
+    #+BEGIN_EXPORT latex
     $$F(\alpha,\beta) = \sum_{i=1}^n \left(y_i - \alpha - \beta x_i \right)^2$$
-    #+END_LaTeX
+    #+END_EXPORT
     $F$ is quadratic in \alpha and in \beta so if we simply
     differentiate $F$ by \alpha and by \beta, we can obtain a closed
     form for the minimum:
-    #+BEGIN_LaTeX
+    #+BEGIN_EXPORT latex
     \begin{align*} 
       \hat\beta & = \frac{ \sum_{i=1}^{n} (x_{i}-\bar{x})(y_{i}-\bar{y}) }{ \sum_{i=1}^{n} (x_{i}-\bar{x})^2 } 
        = \frac{ \sum_{i=1}^{n}{x_{i}y_{i}} - \frac1n \sum_{i=1}^{n}{x_{i}}\sum_{j=1}^{n}{y_{j}}}{ \sum_{i=1}^{n}({x_{i}^2}) - \frac1n (\sum_{i=1}^{n}{x_{i}})^2 } \\[6pt] 
      & = \frac{ \overline{xy} - \bar{x}\bar{y} }{ \overline{x^2} - \bar{x}^2 } = \frac{ \operatorname{Cov}[x,y] }{ \operatorname{Var}[x] } = r_{xy} \frac{s_y}{s_x} \\[6pt] 
      \hat\alpha  & = \bar{y} - \hat\beta\,\bar{x} \text{, where:}
     \end{align*}
-    #+END_LaTeX
+    #+END_EXPORT
     \vspace{-2em}
     - $\bar x$ and $\bar y$ are the sample mean of $x$ and $y$
     - $r_{xy}$ is the sample correlation coefficient between $x$ and $y$
@@ -366,10 +366,10 @@ linear unbiased estimate
     - The same results hold true when there are *several* explanatory
       variables:\smallskip
 
-      #+BEGIN_LaTeX
+      #+BEGIN_EXPORT latex
       \centerline{$\rv{Y} = a + b^{(1)}X^{(1)} + b^{(2)}X^{(2)} +
         b^{(1,2)}X^{(1)}X^{(2)} + \rv{\epsilon} $}
-      #+END_LaTeX
+      #+END_EXPORT
       \smallskip
 
       The least squares regressions are good estimators of $a$,
@@ -377,10 +377,10 @@ linear unbiased estimate
     - We can use an *arbitrary* linear combination of variables,
       hence \smallskip
 
-      #+BEGIN_LaTeX
+      #+BEGIN_EXPORT latex
       \centerline{$\rv{Y} = a + b^{(1)}X + b^{(2)}\frac{1}{X} + b^{(3)}X^3 +
       \rv{\epsilon} $}    
-      #+END_LaTeX
+      #+END_EXPORT
       \smallskip
       is also a linear model
     - Obviously the closed-form formula are much more complicated but
@@ -619,7 +619,7 @@ linear unbiased estimate
     ($\hat{Y}$ is the "true mean"; we note $\rv{\hat{Y}}=\hat{Y}(\rv{X})$).
 
     Since $\rv{\hat{Y}}$ and $\rv{\epsilon}$ are uncorrelated, we have
-    #+BEGIN_LaTeX
+    #+BEGIN_EXPORT latex
     \begin{align*}
       \Var(\rv{Y}) & = \Var(\rv{\hat{Y}}+\rv{\epsilon}) = \Var(\rv{\hat{Y}}) + \Var(\rv{\epsilon}) \\
       \frac{1}{n-1}\sum_{i=1}^n (\rv{Y_i} - \rv{\bar{Y}})^2 & =
@@ -630,7 +630,7 @@ linear unbiased estimate
       \underbrace{\sum_{i=1}^n (\rv{\hat{Y}_i} - \rv{\bar{Y}})^2}_{\text{Regression SS}} + 
       \underbrace{\sum_{i=1}^n \rv{\epsilon_i}^2}_{\text{Error SS}}
     \end{align*}
-    #+END_LaTeX
+    #+END_EXPORT
 
     - $SSR$ = Variation in $\rv{Y}$ explained by the regression line
     - $SSE$ = Variation in $\rv{Y}$ that is left unexplained
@@ -643,13 +643,13 @@ linear unbiased estimate
     The *coefficient of determination*, denoted by *$R^2$*, measures
     goodness of fit:
     #+BEGIN_CENTER
-    #+BEGIN_LaTeX
+    #+BEGIN_EXPORT latex
     $\displaystyle R^2= 1-\frac{SSE}{SST} = 
      1 - \frac{\sum_{i=1}^n (y_i - \hat{y}(x_i))^2}{\sum_{i=1}^n (y_i -
        \bar{y})^2} =
      1 - \frac{\text{\alert{the error knowing $x$}}}{\text{\alert{the error without knowing $x$}}}
      $
-    #+END_LaTeX
+    #+END_EXPORT
     #+END_CENTER
     - $0\leq R^2 \leq 1$
     - The closer $R^2$ is to $1$, the better the fit
@@ -860,12 +860,12 @@ linear unbiased estimate
 ** Confidence interval
 *** Confidence interval
     Remember that
-    #+BEGIN_LaTeX
+    #+BEGIN_EXPORT latex
     \begin{align*} 
      \hat\beta &  = \frac{ \sum_{i=1}^{n}{x_{i}y_{i}} - \frac1n \sum_{i=1}^{n}{x_{i}}\sum_{j=1}^{n}{y_{j}}}{ \sum_{i=1}^{n}({x_{i}^2}) - \frac1n (\sum_{i=1}^{n}{x_{i}})^2 } \\[6pt] 
      \hat\alpha  & = \bar{y} - \hat\beta\,\bar{x}
     \end{align*}
-    #+END_LaTeX
+    #+END_EXPORT
     \vspace{-2em} 
 
     $\hat\beta$ and $\hat\alpha$ are sums of the $\epsilon_i$'s and it

@@ -70,11 +70,11 @@
 : PDFCROP 1.38, 2012/11/02 - Copyright (c) 2002-2012 by Heiko Oberdiek.
 : ==> 1 page written on `images/naicken.pdf'.
 *** Frustration
-#+BEGIN_LaTeX
+#+BEGIN_EXPORT latex
 \vspace{-1.2cm}
 ~\hspace{.85\linewidth}\includegraphics[height=2cm]{images/fuuu_plz.png}
 \vspace{-.9cm}
-#+END_LaTeX
+#+END_EXPORT
 _*As an Author*_
   - Advisor: "Did you take care of setting this?"\quad Me: "Uh?"
   - I thought I used the same parameters but *I'm getting different
@@ -96,7 +96,7 @@ _*As a Reviewer*_ This may be an interesting contribution but:
     like
   - It this improvement *solely the result of this naive idea*?
 *** A Few Edifying Examples in my Domain
-#+BEGIN_LaTeX
+#+BEGIN_EXPORT latex
   \begin{columns}
     \begin{column}{.67\linewidth}
       \bottomcite{Naicken, Stephen \textit{et Al.}, \textit{Towards Yet
@@ -130,10 +130,10 @@ _*As a Reviewer*_ This may be an interesting contribution but:
       \end{itemize}
     \end{column}
   \end{columns}
-#+END_LaTeX
+#+END_EXPORT
 
 *** The Dog Ate my Homework !!!
-#+BEGIN_LaTeX
+#+BEGIN_EXPORT latex
   \vspace{-.4cm}
   \begin{multicols}{2}
     \begin{itemize}[<+->]
@@ -255,7 +255,7 @@ _*As a Reviewer*_ This may be an interesting contribution but:
     \end{overlayarea}
   \end{block}
   \null\vspace{-.4cm}
-#+END_LaTeX
+#+END_EXPORT
 
 * Science crisis ?
 *** Références                                                   :noexport:
@@ -271,12 +271,12 @@ http://www.irisa.fr/metiss/gribonval/Talks/2014/Reproductibilite.pdf
 [[http://future.arte.tv/fr/cholesterol][Cholesterol: le grand bluff (Arte, 18/10/2016 @ 20h50)]]
 #+END_CENTER
 
-#+BEGIN_LaTeX
+#+BEGIN_EXPORT latex
 \begin{center}
   \includegraphics<1>[width=.8\linewidth]{images/arte_cholesterol_2.png}%
   \includegraphics<2>[width=.8\linewidth]{images/arte_cholesterol_1.png}
 \end{center}
-#+END_LaTeX
+#+END_EXPORT
 \pause
 #+BEGIN_CENTER
 "Careful" selection of data and influence from the industry $\frowny$
@@ -336,22 +336,22 @@ Nutrition/, 2013.
 1. Have you ever tried to reproduce some research results ? \pause
 2. Have you ever failed ? \pause
 
-   #+BEGIN_LaTeX
+   #+BEGIN_EXPORT latex
    \begin{overlayarea}{\linewidth}{6cm}
      \includegraphics[width=.8\linewidth]{images/meinhardt_canum2016-17-pdfjam-crop.pdf}
    \end{overlayarea}
    \vspace{-1.2cm}~\begin{flushright}\scriptsize \bf Courtesy of Enric Meinhardt-Llopis, CANUM 2016\end{flushright}
    \pause
-   #+END_LaTeX
+   #+END_EXPORT
 3. 
-   #+BEGIN_LaTeX
+   #+BEGIN_EXPORT latex
    \sethlcolor{white}\SoulColor\hl{Have you ever had trouble
    reproducing the work of one of your student (or even your own work
    \winkey)?}
-   #+END_LaTeX
+   #+END_EXPORT
 #+LaTeX: \sethlcolor{lightblue}
 *** \scalebox{.95}{Reproducibility of experimental results is the hallmark of science}
-#+BEGIN_LaTeX
+#+BEGIN_EXPORT latex
 \vspace{-.4em}
 \begin{tabular}{@{\hspace{-1em}}c@{\hspace{-1em}}c@{\hspace{-.6em}}c@{}}
 \includegraphics[height=4cm]{images/Newton.jpg}&
@@ -368,7 +368,7 @@ Nutrition/, 2013.
 \end{minipage}&
 \includegraphics[height=4cm]{images/Hooke.jpg}
 \end{tabular}\hspace{-1em}%
-#+END_LaTeX
+#+END_EXPORT
 
 #+BEGIN_CENTER
 Science allows to discover truth by building on previous discoveries.
@@ -409,7 +409,7 @@ cancer]]*
   #+LaTeX: \egroup\vspace{-.2cm}
 - Major commercial labs licensed it and were about to start using it
   before two statisticians discovered and publicized its faults
-  #+BEGIN_LaTeX
+  #+BEGIN_EXPORT latex
   \begin{block}{}\scriptsize
   Dr. Baggerly and Dr. Coombes found errors almost immediately. Some seemed careless — moving a row or a column over by one in a giant spreadsheet — while others seemed inexplicable. The Duke team shrugged them off as “clerical errors.”
   \end{block}
@@ -417,7 +417,7 @@ cancer]]*
   \begin{block}{}\scriptsize
   The Duke researchers continued to publish papers on their genomic signatures in prestigious journals. Meanwhile, they started 3 trials using the work to decide which drugs to give patients.
   \end{block}
-  #+END_LaTeX
+  #+END_EXPORT
 - Retractions: January 2011. [[http://en.wikipedia.org/wiki/Anil_Potti][Ten papers that Potti coauthored in
   prestigious journals were retracted for varying reasons]]
   #+LaTeX: \hfill \scriptsize \bf Courtesy of Adam J. Richards
@@ -505,7 +505,7 @@ in people's mind if they get worthless/unreliable information?
    [[http://www.cnrs.fr/fr/pdf/cim/CIM36.pdf][/The Battle against Scientific Fraud/ in the CNRS International
    Magazine]]
 #+END_CENTER
-#+BEGIN_LaTeX
+#+BEGIN_EXPORT latex
 \vspace{-.6em}
 \begin{columns}
   \begin{column}{.4\linewidth}
@@ -517,16 +517,16 @@ in people's mind if they get worthless/unreliable information?
       \includegraphics[width=.7\linewidth]{images/CNRS_CIM_36_scientists.pdf}
     \end{center}
     \vspace{-1em}
-#+END_LaTeX
+#+END_EXPORT
 \textbf{Galileo} (data fabrication), \textbf{Ptolemy} (plagiarism),
 \textbf{Mendel} (data enhancement), [[http://lascienceenfraude.blogspot.fr/2012/05/limposture-de-pasteur.html][\bf Pasteur]] (rigorous but hided
 failures), ...
-#+BEGIN_LaTeX
+#+BEGIN_EXPORT latex
     \end{column}
   \end{columns}
-#+END_LaTeX
+#+END_EXPORT
 *** Why are scientific studies so difficult to reproduce?
-#+BEGIN_LaTeX
+#+BEGIN_EXPORT latex
 \vspace{-.7cm}
 \null\hspace{-.2cm}\hbox{
 \begin{columns}
@@ -539,7 +539,7 @@ failures), ...
     \end{overlayarea}
   \end{column}\hspace{-.2cm}%
   \begin{column}{.66\linewidth}\begin{overlayarea}{\linewidth}{8cm}\vspace{-.7em}
-#+END_LaTeX
+#+END_EXPORT
 [[http://www.nature.com/news/1-500-scientists-lift-the-lid-on-reproducibility-1.19970][1,500 scientists lift the lid on reproducibility]], Nature, May 2016
 
 \normalsize _*Social causes*_ \small
@@ -555,13 +555,13 @@ _*Methodological or technical causes*_ \small
   mistakes*, *computational errors*)
 - *Lack of information, code/raw data unavailable*  
 
-#+BEGIN_LaTeX
+#+BEGIN_EXPORT latex
     \end{overlayarea}
   \end{column}
 \end{columns}}
-#+END_LaTeX
+#+END_EXPORT
 *** What does Science look like today ?
-#+BEGIN_LaTeX
+#+BEGIN_EXPORT latex
 \vspace{-.8cm}
 \begin{tabular}{@{\hspace{-3em}}c@{\hspace{-1em}}}
 \includegraphics<+>[page=2,width=1.2\linewidth]{pdf_sources/2011-amp-reproducible-research.pdf}%
@@ -575,7 +575,7 @@ _*Methodological or technical causes*_ \small
 \hspace{-.5em}\begin{overlayarea}{8cm}{2.4cm}
 \uncover<.>{%
 \small
-#+END_LaTeX
+#+END_EXPORT
 \bgroup\bf Software is an essential component of modern scientific research
 [[http://www.nature.com/news/the-top-100-papers-1.16224][Top 100 papers]] (Nature, 2014)\egroup\vspace{-.5em}
    \begin{quote}
@@ -583,23 +583,23 @@ _*Methodological or technical causes*_ \small
      sofware that have become essential in their fields.
    \end{quote}
 \vspace{-1.8em}
-#+BEGIN_LaTeX
+#+BEGIN_EXPORT latex
 }
 \end{overlayarea}
 \begin{flushright}
   \scriptsize \bf Courtesy of Juliana
   Freire (AMP Workshop on Reproducible research, 2011)
 \end{flushright}
-#+END_LaTeX
+#+END_EXPORT
 
 # \includeslidesJF{2-7}
 * What about Computer Science ?                                    :noexport:
 #+LaTeX: \begin{frame}{Outline}\tableofcontents[current]\end{frame}
 *** Defining Computer Science (Dowek and others)                 :noexport:
-#+BEGIN_LaTeX
+#+BEGIN_EXPORT latex
 \begin{columns}[t]
   \begin{column}{.5\linewidth}
-#+END_LaTeX
+#+END_EXPORT
 _Computing_
 - A *science*: Science of artificial... but not only
 - A *technology*, an industry (Hardware, software, network,
@@ -607,10 +607,10 @@ _Computing_
 - *Applications*: increasing area
   - Scientific impact: computational science (simulation), /big data/
   - Social impact: numerical/Information society
-#+BEGIN_LaTeX
+#+BEGIN_EXPORT latex
   \end{column}\pause
   \begin{column}{.5\linewidth}
-#+END_LaTeX
+#+END_EXPORT
 _Computer Science_
 
 *Concepts* \small\vspace{-.5em}
@@ -621,10 +621,10 @@ _Computer Science_
   - \textbf{Human in the loop}
 \normalsize *Methods*: \small Back and forth between theory and experimentation.
   Automatic abstraction transform. Self-generated tools.
-#+BEGIN_LaTeX
+#+BEGIN_EXPORT latex
   \end{column}
 \end{columns}\medskip
-#+END_LaTeX
+#+END_EXPORT
 
 *** All this is about Natural Sciences. Should we care ?
 
@@ -648,7 +648,7 @@ machines after all, right?  \winkey \medskip
 beings, computer systems are *so complex* that mistakes easily slip
 in...
 *** Experimenting with computers
-#+BEGIN_LaTeX
+#+BEGIN_EXPORT latex
 \begin{tabular}{@{\hspace{-1em}}cc@{\hspace{-1em}}}
   \alert{Machines are \uline{real}!} & 
   \alert{Machines are \uline{complicated}} \vspace{.2cm}\\
@@ -659,15 +659,15 @@ in...
 \\
   \scalebox{.9}{\small \href{https://www.youtube.com/watch?v=tDacjrSCeq4}{Brendan Gregg: Shouting in the data center}}
   &\begin{minipage}{.5\linewidth}\small
-#+END_LaTeX
+#+END_EXPORT
 
   \vspace{-.7cm}Mytkowicz et al. *[[http://doi.acm.org/10.1145/1508284.1508275][Producing wrong data without doing anything
   obviously wrong]]!* ACM SIGPLAN Not. 44(3), March 2009 
 
-#+BEGIN_LaTeX
+#+BEGIN_EXPORT latex
   \end{minipage}
 \end{tabular}\medskip
-#+END_LaTeX
+#+END_EXPORT
 
 *Our reality evolves!!!* The hardware keeps evolving so most results on
 old platforms quickly become obsolete (although, we keep building on
@@ -708,7 +708,7 @@ both their running time and the quality of the solutions\pause
 *** All I care about is the algorithm output
 Did I mention we have *parallel machines* nowadays? $\winkey$
 
-#+BEGIN_LaTeX
+#+BEGIN_EXPORT latex
 \begin{overlayarea}{\linewidth}{7cm}
   \begin{center}
     \includegraphics<+>[width=.9\linewidth, page=13]{pdf_sources/langlois.pdf}%
@@ -752,12 +752,12 @@ Did I mention we have *parallel machines* nowadays? $\winkey$
   The whole chain needs to be revisited.}
 \end{overlayarea}
 \begin{flushright}\scriptsize Courtesy of P. Langlois and R. Nheili\end{flushright}
-#+END_LaTeX
+#+END_EXPORT
 * Reproducible Research/Open Science in a Nutshell
 #+LaTeX: \begin{frame}{Outline}\tableofcontents[current]\end{frame}
 ** 
 *** Reproducible Research: Trying to Bridge the Gap
-#+BEGIN_LaTeX
+#+BEGIN_EXPORT latex
   \hbox{\hspace{-.05\linewidth}%
   \includegraphics<1>[width=1.07\linewidth]{fig/author_reader_rr_1.fig}%
   \includegraphics<2>[width=1.07\linewidth]{fig/author_reader_rr_2.fig}%
@@ -768,19 +768,19 @@ Did I mention we have *parallel machines* nowadays? $\winkey$
 \begin{flushright}
 {\scriptsize {\textbf{Inspired by Roger D. Peng's lecture on reproducible research, May 2014}}}
 \end{flushright}
-#+END_LaTeX
+#+END_EXPORT
 *** Step 1: Take notes! (Mythbusters \textcolor{black}{\winkey})    :B_frame:
     :PROPERTIES:
     :BEAMER_env: frame
     :BEAMER_OPT: plain
     :END:
 
-#+BEGIN_LaTeX
+#+BEGIN_EXPORT latex
 \begin{overlayarea}{\linewidth}{0cm}
 \vspace{-4cm}
 \hbox{\hspace{-.1\linewidth}\includegraphics[width=1.2\linewidth,height=9cm]{images/remember_kids.jpg}}
 \end{overlayarea}
-#+END_LaTeX
+#+END_EXPORT
 *** Step 2: Control what's happening
 Both the *scientific process* and the *software environment* have become
 extremely complex
@@ -797,7 +797,7 @@ development of many tools:
 
 And *this landscape is rapidly evolving*
 *** \scalebox{.95}{Step 3: Reproducibility? What Are We Talking About Exactly?}
-#+BEGIN_LaTeX
+#+BEGIN_EXPORT latex
 \vspace{-.6em}
 \begin{overlayarea}{\linewidth}{9cm}
 \hbox{\hspace{-.05\linewidth}\includegraphics[page=5,width=1.1\linewidth]{pdf_sources/sumatra_amp2011.pdf}}
@@ -810,7 +810,7 @@ And *this landscape is rapidly evolving*
   {\scriptsize Courtesy of Andrew Davison (AMP Workshop on Reproducible research)}
 \end{flushright}
 \end{overlayarea}
-#+END_LaTeX
+#+END_EXPORT
 *** And in practice: remember the value of data
 #+LaTeX: \vspace{-.2em}
 [[https://www.authorea.com/users/3/articles/3410/_show_article][Ten Simple Rules for Reproducible Computational Research]], PlosOne
@@ -839,7 +839,7 @@ But *several ways to follow them*
 * Illustrating Nice Ideas Through Different Tools
 #+LaTeX: \begin{frame}{Outline}\tableofcontents[current]\end{frame}
 *** Vistrails: a Workflow Engine for Provenance Tracking
-#+BEGIN_LaTeX
+#+BEGIN_EXPORT latex
 \vspace{-2.1em}
 \begin{overlayarea}{\linewidth}{9cm}
 \hbox{\hspace{-.1\linewidth}%
@@ -853,9 +853,9 @@ But *several ways to follow them*
     Reproducible research)}
 \end{flushright}
 \end{overlayarea}
-#+END_LaTeX
+#+END_EXPORT
 *** VCR: A Universal Identifier for Computational Results
-#+BEGIN_LaTeX
+#+BEGIN_EXPORT latex
 \vspace{-.6em}
 \begin{overlayarea}{\linewidth}{9cm}
 \hbox{\hspace{-.05\linewidth}%
@@ -871,9 +871,9 @@ But *several ways to follow them*
     Reproducible research)}
 \end{flushright}
 \end{overlayarea}
-#+END_LaTeX 
+#+END_EXPORT 
 *** Sumatra: an "experiment engine" that helps taking notes
-#+BEGIN_LaTeX
+#+BEGIN_EXPORT latex
 \vspace{-.6em}
 \begin{overlayarea}{\linewidth}{9cm}
 \hbox{\hspace{-.05\linewidth}%
@@ -889,7 +889,7 @@ But *several ways to follow them*
     Reproducible research)}
 \end{flushright}
 \end{overlayarea}
-#+END_LaTeX
+#+END_EXPORT
 *** Ipython/Jupyter Notebook
 *Web app*: create and share documents that contain live code, equations,
 visualizations, and \\
@@ -905,7 +905,7 @@ Automagically pack your experiment to fight *dependency hell*
 file:images/reprozip.png
 #+END_CENTER
 *** So many new tools
-#+BEGIN_LaTeX
+#+BEGIN_EXPORT latex
 \vspace{-.6em}
 \begin{overlayarea}{\linewidth}{9cm}
 \hbox{\hspace{-.05\linewidth}%
@@ -919,7 +919,7 @@ file:images/reprozip.png
 And also: \textbf{Org-Mode \smiley}, \textbf{ActivePapers},\textbf{Figshare}, \textbf{Zenodo}, \textbf{Elsevier executable paper \frowny}, 
 \textbf{Code Ocean}, ...
 \end{overlayarea}
-#+END_LaTeX 
+#+END_EXPORT 
 
 * What can Computer Scientists do ?
 #+LaTeX: \begin{frame}{Outline}\tableofcontents[current]\end{frame}
@@ -937,10 +937,10 @@ And also: \textbf{Org-Mode \smiley}, \textbf{ActivePapers},\textbf{Figshare}, \t
 - Fighting against _software/data degradation_: *Software Heritage*,
   zenodo
   - Challenges: multiple! curation, access/privacy, exploitation, navigation, storage, \dots
-  #+BEGIN_LaTeX
+  #+BEGIN_EXPORT latex
   \hspace{-1cm}\includegraphics[height=2.7cm]{images/SH_picture1.pdf}%
   \includegraphics[height=1.6cm]{images/SH_picture2.pdf}%
-  #+END_LaTeX
+  #+END_EXPORT
 *** On the "technical" side (2/2)
 - Better _experimental practice and platforms_: *FIT IoT-lab, G5K* are
   world leading experimental infrastructures; rely on standard simulators
@@ -948,11 +948,11 @@ And also: \textbf{Org-Mode \smiley}, \textbf{ActivePapers},\textbf{Figshare}, \t
   - Maintenance cost, keeping in pace with technology, practices for
     prototype platforms, control, sharing of experimental conditions
     with others, experimental engines
-  #+BEGIN_LaTeX
+  #+BEGIN_EXPORT latex
   \hspace{-1.5cm}\includegraphics[height=4cm]{images/fit_picture.png}%
   \includegraphics[height=4cm]{images/g5k_picture.png}%
   \includegraphics[height=4cm]{images/g5k_picture2.jpg}
-  #+END_LaTeX
+  #+END_EXPORT
   - Need for convergence in term of software infrastructure and
     practice (e.g., security, account management, access, isolation,
     experiment management, etc.) ?
@@ -994,7 +994,7 @@ various communities\vspace{-.2em}
 8. Publication modes
 9. Artifact Evaluation
 #+LaTeX: \end{column}\begin{column}{.7\linewidth}
-#+BEGIN_LaTeX
+#+BEGIN_EXPORT latex
 \null{\small\vspace{-1em}
 \begin{tabular}{@{}c@{}c@{}}
   \includegraphics[height=2.3cm]{images/webinars/1_replicable_article_laboratory_notebook.png}
@@ -1009,7 +1009,7 @@ various communities\vspace{-.2em}
   \href{https://github.com/alegrand/RR_webinars/blob/master/4_logging_and_backing_up_your_work/index.org}{Logging and backing up}
 \end{tabular}
 }
-#+END_LaTeX
+#+END_EXPORT
 #+LaTeX: \end{column}\end{columns}\end{overlayarea}
 
  
@@ -1052,14 +1052,14 @@ Need more incentive ?
 #+END_CENTER
 
 *** What Next ?                                                  :noexport:
-#+BEGIN_LaTeX
+#+BEGIN_EXPORT latex
 \vspace{-.1cm}
 \begin{overlayarea}{\linewidth}{1cm}
   \begin{flushright}
     \includegraphics[width=.3\linewidth]{images/meinhardt_canum2016-17-pdfjam-crop.pdf}\hspace{-.5cm}
   \end{flushright}
 \end{overlayarea}
-#+END_LaTeX
+#+END_EXPORT
 
 
 \hspace{2cm} _It's up to us. \textbf{We} should \textbf{care} and \textbf{take the lead}_\bigskip

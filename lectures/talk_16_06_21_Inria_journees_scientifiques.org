@@ -76,20 +76,20 @@ file:images/Medical_studies-05.0.png
 *** Quick poll
 1. Have you ever tried to reproduce some research results ? \pause
 2. Have you ever failed ? \pause
-   #+BEGIN_LaTeX
+   #+BEGIN_EXPORT latex
    \begin{overlayarea}{\linewidth}{6cm}
      \includegraphics[width=.8\linewidth]{images/meinhardt_canum2016-17-pdfjam-crop.pdf}
    \end{overlayarea}
    \vspace{-1.2cm}~\begin{flushright}\scriptsize \bf Courtesy of Enric Meinhardt-Llopis, CANUM 2016\end{flushright}
    \pause
-   #+END_LaTeX
+   #+END_EXPORT
 3. \sethlcolor{white}\SoulColor\hl{Have you ever had trouble reproducing the work of one of your student?}
 #+LaTeX: \sethlcolor{lightblue}
 
 *** Why are scientific studies so difficult to reproduce?
 [[http://www.nature.com/news/1-500-scientists-lift-the-lid-on-reproducibility-1.19970][1,500 scientists lift the lid on reproducibility]], Nature, May 2016
 
-#+BEGIN_LaTeX
+#+BEGIN_EXPORT latex
 \null\hspace{-.2cm}\hbox{
 \begin{columns}
   \begin{column}{.4\linewidth}
@@ -101,7 +101,7 @@ file:images/Medical_studies-05.0.png
     \end{overlayarea}
   \end{column}\hspace{-.2cm}%
   \begin{column}{.62\linewidth}\begin{overlayarea}{\linewidth}{8cm}\vspace{-1em}
-#+END_LaTeX
+#+END_EXPORT
 *1934*: Karl Popper introduces the notion of *falsifiability* and *crucial
 experiment* and puts *reproducing the work of others* at the core of
 science
@@ -123,11 +123,11 @@ Reproducibility of experimental results is the hallmark of science
 - incentives for better practices
 #+LaTeX: }
 
-#+BEGIN_LaTeX
+#+BEGIN_EXPORT latex
     \end{overlayarea}
   \end{column}
 \end{columns}}
-#+END_LaTeX
+#+END_EXPORT
 *** All this is about Natural Sciences. Should we care ?
 #+LaTeX: \begin{overlayarea}{\linewidth}{8cm}
 \small *Yes*. \quad _Computer Science_ is young and inherits from _Mathematics_, _Engineering_,
@@ -142,11 +142,11 @@ in...
 - *Experiments*: Mytkowicz, Diwan, Hauswirth, Sweeney. [[http://doi.acm.org/10.1145/1508284.1508275][Producing wrong
   data without doing anything obviously wrong]]!. SIGPLAN Not. 44(3),
   March 2009
-  #+BEGIN_LaTeX
+  #+BEGIN_EXPORT latex
   \begin{center}
     \includegraphics<2>[width=.7\linewidth]{images/phdcomic.pdf}%
   \end{center}\pause
-  #+END_LaTeX
+  #+END_EXPORT
 - *Statistics*: [[http://www.economist.com/news/briefing/21588057-scientists-think-science-self-correcting-alarming-degree-it-not-trouble][Trouble at the lab]], The Economist 2013
   #+BEGIN_QUOTE
     According to some estimates, three-quarters of published scientific
@@ -166,7 +166,7 @@ in...
   reading *Jain's book on The Art of Computer Systems Performance
   Analysis*
 *** Reproducible Research: Trying to Bridge the Gap
-#+BEGIN_LaTeX
+#+BEGIN_EXPORT latex
 \vspace{-.3cm}
 \begin{center}
   \includegraphics<1>[width=.8\linewidth]{fig/author_reader_rr_1.fig}%
@@ -178,7 +178,7 @@ in...
 \begin{flushright}
 {\scriptsize {\textbf{Inspired by Roger D. Peng's lecture on reproducible research, May 2014}}}
 \end{flushright}
-#+END_LaTeX
+#+END_EXPORT
 *** Webinars: Learning by Doing
 # for i in `find /home/alegrand/Work/Documents/Enseignements/RR_webinars/ -name 'video_thn.png'` ; do cp $i `echo $i | sed -e 's/.*webinars\///' -e 's/\/.*/.png/'`; done
 #+BEGIN_CENTER
@@ -194,7 +194,7 @@ in...
 6. Controlling your experiments
 7. Making your data/code/article available
 #+LaTeX: \end{column}\hspace{-2em}\begin{column}{.7\linewidth}
-#+BEGIN_LaTeX
+#+BEGIN_EXPORT latex
 \null{\small\vspace{-1em}
 \begin{tabular}{cc}
   \includegraphics[height=2.8cm]{images/webinars/1_replicable_article_laboratory_notebook.png}
@@ -209,7 +209,7 @@ in...
   4. \href{https://github.com/alegrand/RR_webinars/blob/master/4_logging_and_backing_up_your_work/index.org}{Logging and backing up your work}
 \end{tabular}
 }
-#+END_LaTeX
+#+END_EXPORT
 #+LaTeX: \end{column}\end{columns}\end{overlayarea}
 *** What Next ?                                                  :noexport:
 #+BEGIN_CENTER
@@ -245,14 +245,14 @@ Need more incentive ?
 #+END_CENTER
 
 *** What Next ?
-#+BEGIN_LaTeX
+#+BEGIN_EXPORT latex
 \vspace{-.1cm}
 \begin{overlayarea}{\linewidth}{1cm}
   \begin{flushright}
     \includegraphics[width=.3\linewidth]{images/meinhardt_canum2016-17-pdfjam-crop.pdf}\hspace{-.5cm}
   \end{flushright}
 \end{overlayarea}
-#+END_LaTeX
+#+END_EXPORT
 
 
 \hspace{2cm} _It's up to us. \textbf{We} should \textbf{care} and \textbf{take the lead}_\bigskip

@@ -135,10 +135,10 @@ For non-emacs users and as a first step toward /reproducible papers/:
 - Click and play with a modern IDE (e.g., Rstudio)
 * Emacs Demo of How to Keep Things Tidy
 *** toc
-#+BEGIN_LaTeX
+#+BEGIN_EXPORT latex
     \frametitle{Outline}
     \tableofcontents[current,currentsubsection]
-#+END_LaTeX
+#+END_EXPORT
 *** Literate Programming on a Daily Basis
 **** Mastering Emacs
 - =C-g=: get me out of here!

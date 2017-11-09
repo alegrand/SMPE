@@ -195,10 +195,10 @@ ggplot(data=df[df$type=="homoscedastic",],aes(x=x,y=y)) + theme_bw() + geom_hlin
 #+LaTeX:   \end{columns}\vspace{-1em}
 
 When there are $2$ explanatory variables:\\[.2em]
-#+BEGIN_LaTeX
+#+BEGIN_EXPORT latex
 \centerline{$\rv{Y} = a + b^{(1)}X^{(1)} + b^{(2)}X^{(2)} +
   b^{(1,2)}X^{(1)}X^{(2)} + \rv{\epsilon} $}
-#+END_LaTeX
+#+END_EXPORT
 \rv{\epsilon} is generally assumed to be independent of $X^{(k)}$, hence it
 needs to be *checked* once the regression is done
 
@@ -424,7 +424,7 @@ Multiple R-squared:  0.9716,	Adjusted R-squared:  0.9527
 F-statistic:  51.3 on 6 and 9 DF,  p-value: 1.873e-06
 #+end_example
 
-#+BEGIN_LaTeX
+#+BEGIN_EXPORT latex
 \pause
 \begin{overlayarea}{.6\linewidth}{0cm}
   \vspace{-7.3cm}
@@ -444,7 +444,7 @@ F-statistic:  51.3 on 6 and 9 DF,  p-value: 1.873e-06
   \end{block}
 \end{overlayarea}
 
-#+END_LaTeX
+#+END_EXPORT
 *** Then how do I get the formula I expected? (1/2)
 \small
 #+begin_src R :results output :session :exports both
@@ -503,7 +503,7 @@ Multiple R-squared:  0.9716,	Adjusted R-squared:  0.9527
 F-statistic:  51.3 on 6 and 9 DF,  p-value: 1.873e-06
 #+end_example
 
-#+BEGIN_LaTeX
+#+BEGIN_EXPORT latex
 \pause
 \begin{overlayarea}{.6\linewidth}{0cm}
   \vspace{-8.7cm}
@@ -518,7 +518,7 @@ F-statistic:  51.3 on 6 and 9 DF,  p-value: 1.873e-06
     \end{center}
   \end{block}
 \end{overlayarea}
-#+END_LaTeX
+#+END_EXPORT
 *** The difference between ANOVA and Linear Regression (3/3)
 #+BEGIN_CENTER
 \includegraphics[width=.9\linewidth]{fig/factor_impact.fig}
@@ -585,7 +585,7 @@ plot(aov(Response ~ (A + B + C)^2, data=d1))
 #+END_CENTER
 
 *** How do you expect me to ever remember all this ?
-#+BEGIN_LaTeX
+#+BEGIN_EXPORT latex
 \begin{columns}
   \begin{column}{.55\linewidth}
     For the R commands, there is a trick: \winkey
@@ -599,7 +599,7 @@ plot(aov(Response ~ (A + B + C)^2, data=d1))
     \includegraphics[width=\linewidth]{images/rcmdr_doe.png}
   \end{column}
 \end{columns}
-#+END_LaTeX
+#+END_EXPORT
 You should only remember the principles and try to understand the
 underlying hypothesis
 - ANOVA enables to *discriminate real effects from noise* in *factorial
@@ -653,7 +653,7 @@ NOTE: columns run.no and run.no.std.rp are annotation,
       not part of the data frame
 #+end_example
 
-#+BEGIN_LaTeX
+#+BEGIN_EXPORT latex
 \begin{flushright}
   \begin{overlayarea}{.4\linewidth}{0cm}
     \vspace{-5.7cm}
@@ -664,7 +664,7 @@ NOTE: columns run.no and run.no.std.rp are annotation,
   \end{overlayarea}
 \end{flushright}
 
-#+END_LaTeX
+#+END_EXPORT
 *** Saving a lot of time/money: Plackett-Burman screening designs
 \scriptsize
 #+begin_src R :results output :session :exports both
@@ -701,21 +701,21 @@ d3 <-  pb(nruns= 20 ,n12.taguchi= FALSE ,nfactors= 20 -1, ncenter= 0 ,
 class=design, type= pb
 #+end_example
 
-#+BEGIN_LaTeX
+#+BEGIN_EXPORT latex
 \begin{flushright}
   \begin{overlayarea}{.25\linewidth}{0cm}
     \vspace{-5.7cm}
     \begin{block}{}
-#+END_LaTeX
+#+END_EXPORT
       \small
       Only allows to estimate *primary factors*, *not interations*\medskip
 
       Preliminary step for further investigation
-#+BEGIN_LaTeX
+#+BEGIN_EXPORT latex
     \end{block}
   \end{overlayarea}
 \end{flushright}
-#+END_LaTeX
+#+END_EXPORT
 ** General factorial designs
 *** What about having more than two levels?
 Before even considering the generation, how would this  analyzed?
@@ -913,12 +913,12 @@ F-statistic: 12.74 on 6 and 93 DF,  p-value: 1.909e-10
 #+end_example
 
 
-#+BEGIN_LaTeX
+#+BEGIN_EXPORT latex
 \begin{flushright}
   \begin{overlayarea}{.3\linewidth}{0cm}
     \vspace{-7.7cm}
     \begin{block}{}
-#+END_LaTeX
+#+END_EXPORT
       \small There is actually too much variability to conclude
       anything here (look at the $R^2$)\smallskip
 
@@ -927,11 +927,11 @@ F-statistic: 12.74 on 6 and 93 DF,  p-value: 1.909e-10
 
       We should add another round of 3 times more experiments to halve
       it
-#+BEGIN_LaTeX
+#+BEGIN_EXPORT latex
     \end{block}
   \end{overlayarea}
 \end{flushright}
-#+END_LaTeX
+#+END_EXPORT
 
 *** What happens if we fit a simpler model ?
 \scriptsize
@@ -962,20 +962,20 @@ Multiple R-squared:  0.3938,	Adjusted R-squared:  0.3814
 F-statistic: 31.51 on 2 and 97 DF,  p-value: 2.852e-11
 #+end_example
 
-#+BEGIN_LaTeX
+#+BEGIN_EXPORT latex
 \begin{flushright}
   \begin{overlayarea}{.3\linewidth}{0cm}
     \vspace{-5.7cm}
     \begin{block}{}
-#+END_LaTeX
+#+END_EXPORT
       \small The Std. Errors decreased but remain quite high\medskip
 
       As one could expect, the $R^2$ has decreased\dots \frowny
-#+BEGIN_LaTeX
+#+BEGIN_EXPORT latex
     \end{block}
   \end{overlayarea}
 \end{flushright}
-#+END_LaTeX
+#+END_EXPORT
 
 *** Let's cheat... \textcolor{black}{\winkey}
 \scriptsize
@@ -1019,23 +1019,23 @@ Multiple R-squared:  0.9551,	Adjusted R-squared:  0.9522
 F-statistic: 329.9 on 6 and 93 DF,  p-value: < 2.2e-16
 #+end_example
 
-#+BEGIN_LaTeX
+#+BEGIN_EXPORT latex
 \begin{flushright}
   \begin{overlayarea}{.3\linewidth}{0cm}
     \vspace{-7cm}
     \begin{block}{}
-#+END_LaTeX
+#+END_EXPORT
       \small One should actually instead fit the simple model
       suggested by the previous analysis:
       #+BEGIN_CENTER
         =y~A+B:C=      
       #+END_CENTER
       You should use *parsimony* both in experiment design and modeling
-#+BEGIN_LaTeX
+#+BEGIN_EXPORT latex
     \end{block}
   \end{overlayarea}
 \end{flushright}
-#+END_LaTeX
+#+END_EXPORT
  
 *** Parsimony (1/2)
 \scriptsize
@@ -1177,12 +1177,12 @@ F-statistic: 44.99 on 2 and 47 DF,  p-value: 1.209e-11
 #+end_example
 
 
-#+BEGIN_LaTeX
+#+BEGIN_EXPORT latex
 \begin{flushright}
   \begin{overlayarea}{.3\linewidth}{0cm}
     \vspace{-8.3cm}
     \begin{block}{}
-#+END_LaTeX
+#+END_EXPORT
 
 #+begin_src R :results output graphics :file pdf_babel/var_red_hist.pdf :exports results :width 3 :height 4 :session
 hist(x)
@@ -1192,11 +1192,11 @@ hist(x)
 #+RESULTS:
 [[file:pdf_babel/var_red_hist.pdf]]
 
-#+BEGIN_LaTeX
+#+BEGIN_EXPORT latex
     \end{block}
   \end{overlayarea}
 \end{flushright}
-#+END_LaTeX
+#+END_EXPORT
 
 *** Unfortunately, this does not really help
 #+LaTeX: \scriptsize
@@ -1355,12 +1355,12 @@ plot(d7.Dopt , select = c( "A","B","C" ), , "D-optimized design")
 #+RESULTS:
 [[file:pdf_babel/dopt_2.pdf]]
 
-#+BEGIN_LaTeX
+#+BEGIN_EXPORT latex
 \begin{center}
   \includegraphics<1>[height=5.5cm]{pdf_babel/dopt_1.pdf}
   \includegraphics<2>[height=5.5cm]{pdf_babel/dopt_2.pdf}
 \end{center}
-#+END_LaTeX
+#+END_EXPORT
 
 * Conclusion
 ** 

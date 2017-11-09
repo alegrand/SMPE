@@ -13,7 +13,7 @@
 
 * List                                                             :noexport:
 * Data Visualization
-#+BEGIN_LaTeX
+#+BEGIN_EXPORT latex
 \def\info{
       \resizebox{\linewidth}{!}{
         \begin{minipage}{1.1\linewidth}
@@ -28,7 +28,7 @@
         \end{minipage}
       }
 }
-#+END_LaTeX
+#+END_EXPORT
 
 ** Motivation
 *** Why do we need to visualize ? The Anscombe's Quartet         :noexport:
@@ -111,7 +111,7 @@ summary(a2)
 #+LaTeX: \end{column}\end{columns}
 
 *** Why do we need to visualize ? The Anscombe's Quartet
-#+BEGIN_LaTeX
+#+BEGIN_EXPORT latex
   \begin{columns}
     \begin{column}{.25\linewidth}
       $\small
@@ -242,7 +242,7 @@ summary(a2)
     }
   \end{overlayarea}
 
-#+END_LaTeX
+#+END_EXPORT
 
 *** Problem statement
 - All *analysis* we perform rely on (sometimes implicit) *assumptions*. If
@@ -286,7 +286,7 @@ summary(a2)
 *** A ``simple'' graphical check for investigating scalability
 \small
 Plotting $T_p$ versus $p$.
-#+BEGIN_LaTeX
+#+BEGIN_EXPORT latex
   \begin{center}
     \begin{overlayarea}{.6\linewidth}{4.4cm}
       \includegraphics<1-2>[width=\linewidth]{images/ipdps_plot_2.pdf}
@@ -310,7 +310,7 @@ Plotting $T_p$ versus $p$.
      Say, we want to test for Amhdal's law. Propose a better
      representation.}
   \end{overlayarea}
-#+END_LaTeX
+#+END_EXPORT
 *** Graphically checking which alternative is better ?
 \small 5 different alternatives (=FT-DWD_2=, =FT-DWD_5=, =FT-DWD_10=,
 =RT-DWD=, =RT-BWD=), each tested 10 times.
@@ -347,7 +347,7 @@ Propose a better representation
 3. Minimize Ink (avoid cluttered information\dots)
 4. Use commonly accepted practices (effect along the y-axis, scales)
 5. Avoid Ambiguity (coordinates, scales, colors, only one variable, ...)
-#+BEGIN_LaTeX
+#+BEGIN_EXPORT latex
   \begin{center}
     \includegraphics<+>[height=4cm]{images/jain/10-02.jpg}
     \includegraphics<+>[height=4cm]{images/jain/10-03.jpg}
@@ -360,7 +360,7 @@ Propose a better representation
     \includegraphics<+>[height=4cm]{images/jain/10-09.jpg}
     \includegraphics<+>[height=4cm]{images/jain/10-10.jpg}
   \end{center}
-#+END_LaTeX
+#+END_EXPORT
 *** What about these ones ?
 #+BEGIN_CENTER
 #+LaTeX: \includegraphics<+>[height=7cm]{images/jain/10-27.jpg}

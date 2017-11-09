@@ -12,8 +12,8 @@
 #+LaTeX: \input{org-babel-document-preembule.tex}
 
 
-#+BEGIN_LaTeX
-#+END_LaTeX
+#+BEGIN_EXPORT latex
+#+END_EXPORT
 * List                                                             :noexport:
 ** TODO link figures to source code
 ** TODO Ratio games
@@ -117,7 +117,7 @@ occurring
 - A random variable \rv{X} has density $f_X$, where $f_X$ is a
   non-negative and integrable function, if: \qquad\quad
   $\displaystyle \boxed{\P[a \leq \rv{X} \leq b] = \int_a^b f_X(w) \, \dif w}$
-  #+BEGIN_LaTeX
+  #+BEGIN_EXPORT latex
 %\vspace{-.5em}
 \begin{columns}
   \begin{column}{.7\linewidth}
@@ -131,7 +131,7 @@ occurring
   \end{column}
 \end{columns}
 
-  #+END_LaTeX
+  #+END_EXPORT
 #  \vspace{-.5em}
 - \textbf{Note}: people often confuse the sample space with the random
   variable. Try to make the difference when modeling your system, it
@@ -213,12 +213,12 @@ summarize it
 
   If a random variable \rv{X} has the expected value (mean) $\mu =
   \E[\rv{X}]$, then the variance of \rv{X} is given by:
-  #+BEGIN_LaTeX
+  #+BEGIN_EXPORT latex
   \begin{align*} 
       \Var(\rv{X}) &= \E\left[(\rv{X} - \mu)^2
       \right] = \int_{-\infty}^\infty  (x-\mu)^2 f_X(x)\, \dif x
   \end{align*}
-  #+END_LaTeX
+  #+END_EXPORT
 - The *standard deviation $\sigma$* is the square root of the variance. This
   normalization allows to compare it with the expected value
 * Using the model to estimate the expected value
@@ -237,20 +237,20 @@ value since \rv{X} is a random variable \dots
   $n$ (\ie a sequence of *independent* and *identically distributed*
   random variables with expected values $\mu$ and variances $\sigma^2$)
 - The *sample mean* of these random variables is:
-  #+BEGIN_LaTeX
+  #+BEGIN_EXPORT latex
   \begin{equation*}
   \rv{S_n} =  \frac{1}{n} (\rv{X_1} + \dots + \rv{X_n})
   \end{equation*}
-  #+END_LaTeX
+  #+END_EXPORT
   $\rv{S_n}$ is a random variable too!
 - It is *unbiased*, \ie $\E[\rv{S_n}]=\E[\rv{X}]$
 - For large n's, the distribution of $\rv{S_n}$ is approximately
   *normal* with *mean $\mu$* and *variance $\frac{\sigma^2}{n}$*
-  #+BEGIN_LaTeX
+  #+BEGIN_EXPORT latex
   \begin{equation*}
   \rv{S_n} \xrightarrow[n\to\infty]{} \N\left(\mu,\frac{\sigma^2}{n}\right)
   \end{equation*}
-  #+END_LaTeX
+  #+END_EXPORT
 *** CLT Illustration: the mean smooths distributions
 #+begin_src R :results output graphics :file "pdf_babel/CLT_illustration.pdf" :exports none :width 9 :height 6 :session
 library(ggplot2)
@@ -342,7 +342,7 @@ p + stat_function(fun = dnorm, arg = list(mean=dfnorm[1,]$mu, sd=sqrt(dfnorm[1,]
 #+RESULTS:
 [[file:pdf_babel/normal_distribution.pdf]]
 
-#+BEGIN_LaTeX
+#+BEGIN_EXPORT latex
   \begin{overlayarea}{\linewidth}{4.5cm}
     \begin{center}%
       \includegraphics<1>[height=4.5cm]{pdf_babel/normal_distribution.pdf}%
@@ -352,7 +352,7 @@ p + stat_function(fun = dnorm, arg = list(mean=dfnorm[1,]$mu, sd=sqrt(dfnorm[1,]
   \uncover<1->{The smaller the variance the more ``spiky'' the
     distribution.}
   \uncover<2->{
-#+END_LaTeX
+#+END_EXPORT
 - Dark blue is less than one standard deviation from the mean. For the
   normal distribution, this accounts for about 68% of the set.
 - Two standard deviations from the mean (medium and dark blue) account
@@ -393,17 +393,17 @@ ggplot(df, aes(x = x, y = y, color = factor(valid))) + geom_point() +
 #+RESULTS:
 [[file:pdf_babel/CI_illustration.pdf]]
 
-#+BEGIN_LaTeX
+#+BEGIN_EXPORT latex
 \begin{overlayarea}{\linewidth}{4.5cm}
   \begin{center}%
     \includegraphics<1>[height=4.5cm]{images/Standard_deviation_diagram.pdf}%
     \includegraphics<2>[height=4.5cm]{pdf_babel/CI_illustration.pdf}%
   \end{center}
 \end{overlayarea}
-#+END_LaTeX
+#+END_EXPORT
 
 When $n$ is large:
-#+BEGIN_LaTeX
+#+BEGIN_EXPORT latex
 \begin{center}
   \scalebox{.9}{$\displaystyle
   \P\left(\mu\in
@@ -414,14 +414,14 @@ When $n$ is large:
 \end{center}
 \uncover<2>{There is 95\% of chance that the \alert{true mean} lies
   within 2$\frac{\sigma}{\sqrt{n}}$ of the \alert{sample mean}.}
-#+END_LaTeX
+#+END_EXPORT
 *** Without any particular hypothesis
 - Assume, you have evaluated two *alternatives* $A$ and $B$ on $n$
   different *setups*
 
 - You therefore consider the associated random variables \rv{A} and
   \rv{B} and try to estimate their expected values $\mu_A$ and $\mu_B$
-#+BEGIN_LaTeX
+#+BEGIN_EXPORT latex
   \begin{center}
     \begin{overlayarea}{.9\linewidth}{4.5cm}
       \begin{center}%
@@ -459,17 +459,17 @@ When $n$ is large:
         \end{flushright}
       }
     \end{overlayarea}
-#+END_LaTeX
+#+END_EXPORT
 *** Exploiting blocks
 - C.I.s overlap because variance is large. Some *setups* may have an
   intrinsically longer duration than others, hence a large
   $\Var(\rv{A})$ and $\Var(\rv{B})$
-  #+BEGIN_LaTeX
+  #+BEGIN_EXPORT latex
   \begin{center}
     \includegraphics<1>[scale=.7,subfig=2]{fig/2sample_comp.fig}%
     \includegraphics<2->[scale=.7,subfig=4]{fig/2sample_comp.fig}%
   \end{center}
-  #+END_LaTeX
+  #+END_EXPORT
   \pause
 - The previous test estimates $\mu_A$ and $\mu_B$ *independently*.
 
@@ -598,7 +598,7 @@ ggplot(df, aes(x = n, y = sample_var)) + theme_classic() +
 
   But, the CLT says that /when $n$ goes large/, the sample mean is
   /normally distributed/. We have seen it holds true quickly\\[0pt]
-  #+BEGIN_LaTeX
+  #+BEGIN_EXPORT latex
   \begin{overlayarea}{\linewidth}{0cm}
     \vspace{-1em}
     \begin{center}
@@ -606,9 +606,9 @@ ggplot(df, aes(x = n, y = sample_var)) + theme_classic() +
     \end{center}
   \end{overlayarea}
   \vspace{-2.4em}
-  #+END_LaTeX
+  #+END_EXPORT
 - 
-  #+BEGIN_LaTeX
+  #+BEGIN_EXPORT latex
   \uncover<2->{%
     However, the CLT uses $\sigma = \sqrt{\Var(X)}$ but we only have the
     \alert{sample variance}, not the \alert{true variance}
@@ -626,11 +626,11 @@ ggplot(df, aes(x = n, y = sample_var)) + theme_classic() +
       \includegraphics<2->[width=.7\linewidth]{pdf_babel/sample_var.pdf}
     \end{center}
   \end{overlayarea}
-#+END_LaTeX
+#+END_EXPORT
 
 *** How many replicates?
 
-#+BEGIN_LaTeX
+#+BEGIN_EXPORT latex
 \small
 \begin{itemize}
 \item<+-> 
@@ -653,7 +653,7 @@ ggplot(df, aes(x = n, y = sample_var)) + theme_classic() +
     get to conclusions more quickly and hence to test other
     hypothesis.}
 \end{itemize}
-#+END_LaTeX
+#+END_EXPORT
 *** Key Hypothesis
   The hypothesis of CLT are very weak. Yet, to qualify as replicates,
   the repeated measurements:
@@ -769,7 +769,7 @@ four_plot(df1)
 [[file:pdf_babel/4plot5.pdf]]
 
 *** Simple Graphical Checks
-#+BEGIN_LaTeX
+#+BEGIN_EXPORT latex
   \vspace{-.8em}
   \begin{center}
     \includegraphics<1>[height=5cm]{pdf_babel/4plot1.pdf}%
@@ -783,7 +783,7 @@ four_plot(df1)
   %  \hspace{-.05\linewidth}
   \begin{minipage}{1\linewidth}
     \small
-#+END_LaTeX
+#+END_EXPORT
 - Fixed Location :: the run sequence plot should be _flat_ and
                     _non-drifting_\vspace{-.5em}
 - Fixed Variation ::  the vertical _spread_ in the run sequence plot
@@ -847,14 +847,14 @@ ggplot(df1,aes(x=Start,y=Value)) + geom_line() +
 - Possibly remove the trend by compensating it (multiplicative factor
   here) or removing what can be identified as a _warm-up_
 *** Confidence\dots
-#+BEGIN_LaTeX
+#+BEGIN_EXPORT latex
 \begin{center}
   \begin{tabular}{c|c}
     \includegraphics[scale=.32]{images/xkcd_significant_1.png}&
     \includegraphics[scale=.32]{images/xkcd_significant_2.png}
   \end{tabular}
 \end{center}
-#+END_LaTeX
+#+END_EXPORT
 * Design of Experiments
 ** Early Intuition and Key Concepts
 *** Comparing Two Alternatives (Blocking + Randomization)
@@ -983,13 +983,13 @@ It may be the case that two random variables \rv{X} and \rv{Y} are
   \rv{TimeSpentStudying} and its \rv{TestScore}
   - In most cases, studying more should improve your test score \smiley
 The *correlation* of two variables \rv{X} and \rv{Y} is defined as:
-  #+BEGIN_LaTeX
+  #+BEGIN_EXPORT latex
   \begin{equation*}
     \text{corr}(\rv{X},\rv{Y}) =
     \frac{\text{cov}(\rv{X},\rv{Y})}{\sigma_X \sigma_Y} = 
   \frac{\E[(\rv{X}-\mu_X)(\rv{Y}-\mu_Y)]}{\sigma_X\sigma_Y} 
   \end{equation*}\vspace{-1em}
-  #+END_LaTeX
+  #+END_EXPORT
   - The correlation is symmetrical 
     ($\text{corr}(\rv{X},\rv{Y})=\text{corr}(\rv{Y},\rv{X})$)
   - The correlation is in $[-1,1]$
@@ -1091,10 +1091,10 @@ sequence_plot(df1[df1$Value<10,])
 #+RESULTS:
 [[file:pdf_babel/cauchy_4plot3.pdf]]
 
-#+BEGIN_LaTeX
+#+BEGIN_EXPORT latex
 \begin{columns}
   \begin{column}{.5\linewidth}
-#+END_LaTeX
+#+END_EXPORT
 - *Rare events:* interpretation
 - Get rid of it using \eg *quantiles*:\\[-\baselineskip]
   - What is the good *rejection rate*? (5% ???)
@@ -1102,7 +1102,7 @@ sequence_plot(df1[df1$Value<10,])
   - what is the right *threshold*?
   - \Eg "above Q3 + 1.5 x (IQR)" (boxplot, Tukey, 1977), \ie above
     $\mu+2\sigma$ for a normal distribution?
-#+BEGIN_LaTeX
+#+BEGIN_EXPORT latex
   \end{column}
   \begin{column}{.5\linewidth}
     \includegraphics<+>[height=4cm]{pdf_babel/cauchy_4plot1.pdf}
@@ -1110,7 +1110,7 @@ sequence_plot(df1[df1$Value<10,])
     \includegraphics<+>[height=4cm]{pdf_babel/cauchy_4plot3.pdf}
   \end{column}
 \end{columns}
-#+END_LaTeX
+#+END_EXPORT
 \scriptsize
     - Reject values larger than 100 $\leadsto$ .6\% of rejection
     - Reject values larger than  50 $\leadsto$ 1\% of rejection
@@ -1159,12 +1159,12 @@ dist_summary(df,binwidth=.1,trim=T)
 [[file:pdf_babel/dist_summary2.pdf]]
 
 
-#+BEGIN_LaTeX
+#+BEGIN_EXPORT latex
 \begin{center}
   \includegraphics<+>[height=4cm]{pdf_babel/dist_summary1.pdf}
   \includegraphics<+>[height=4cm]{pdf_babel/dist_summary2.pdf}
 \end{center}
-#+END_LaTeX
+#+END_EXPORT
 
 What is the shape of the histogram:
 - Uni/multi-modal:
@@ -1183,11 +1183,11 @@ unless you know what you do...
                     to compute confidence intervals.
 - Mode :: the /naive estimate/ is unstable and depends on the
           histogram's bin width. Still ongoing research on this:\\
-  #+BEGIN_LaTeX
+  #+BEGIN_EXPORT latex
   \scalebox{.95}{\bottomcite{\Eg Bickela and Frühwirthb, \textit{On a fast, robust
       estimator of the mode: Comparisons to other robust estimators with
       applications}, Computational Statistics \& Data Analysis 2006}}
-  #+END_LaTeX
+  #+END_EXPORT
 - Median :: the /sample median/ is robust to outliers but it is quite
             sensitive to discrete distributions\dots There exists other
             more involved estimators but is median really what you

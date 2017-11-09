@@ -63,11 +63,11 @@
 : PDFCROP 1.38, 2012/11/02 - Copyright (c) 2002-2012 by Heiko Oberdiek.
 : ==> 1 page written on `images/naicken.pdf'.
 *** Frustration
-#+BEGIN_LaTeX
+#+BEGIN_EXPORT latex
 \vspace{-1.2cm}
 ~\hspace{.85\linewidth}\includegraphics[height=2cm]{images/fuuu_plz.png}
 \vspace{-.9cm}
-#+END_LaTeX
+#+END_EXPORT
 _*As an Author*_
   - Advisor: "Did you take care of setting this?"\quad Me: "Uh?"
   - I thought I used the same parameters but *I'm getting different
@@ -88,7 +88,7 @@ _*As a Reviewer*_ This may be an interesting contribution but:
     to show only a *subset of the data*. I wonder what the rest looks
     like
 *** A Few Edifying Examples
-#+BEGIN_LaTeX
+#+BEGIN_EXPORT latex
   \begin{columns}
     \begin{column}{.67\linewidth}
       \bottomcite{Naicken, Stephen \textit{et Al.}, \textit{Towards Yet
@@ -121,10 +121,10 @@ _*As a Reviewer*_ This may be an interesting contribution but:
       \end{itemize}
     \end{column}
   \end{columns}
-#+END_LaTeX
+#+END_EXPORT
 
 *** The Dog Ate my Homework !!!
-#+BEGIN_LaTeX
+#+BEGIN_EXPORT latex
   \vspace{-.4cm}
   \begin{multicols}{2}
     \begin{itemize}[<+->]
@@ -246,7 +246,7 @@ _*As a Reviewer*_ This may be an interesting contribution but:
     \end{overlayarea}
   \end{block}
   \null\vspace{-.4cm}
-#+END_LaTeX
+#+END_EXPORT
 *** My Feeling
 Computer scientists have an incredibly *poor training in
 probabilities, statistics, experiment management*, *Design of Experiments*
@@ -274,7 +274,7 @@ others
 * The Reproducible Research Movement
 ** How does it work in "real" sciences?
 *** Computationnal Sciences
-#+BEGIN_LaTeX
+#+BEGIN_EXPORT latex
 \vspace{-2em}
 \begin{overlayarea}{\linewidth}{9cm}
 \hbox{\hspace{-.1\linewidth}
@@ -291,7 +291,7 @@ others
   {\scriptsize Courtesy of Juliana Freire (AMP Workshop on Reproducible research)}
 \end{flushright}
 \end{overlayarea}
-#+END_LaTeX
+#+END_EXPORT
 
 # \includeslidesJF{2-7}
 # \includeslidesJF{11-14}
@@ -371,7 +371,7 @@ cancer]]*
   #+LaTeX: \egroup\vspace{-.2cm}
 - Major commercial labs licensed it and were about to start using it
   before two statisticians discovered and publicized its faults
-  #+BEGIN_LaTeX
+  #+BEGIN_EXPORT latex
   \begin{block}{}\scriptsize
   Dr. Baggerly and Dr. Coombes found errors almost immediately. Some seemed careless — moving a row or a column over by one in a giant spreadsheet — while others seemed inexplicable. The Duke team shrugged them off as “clerical errors.”
   \end{block}
@@ -379,7 +379,7 @@ cancer]]*
   \begin{block}{}\scriptsize
   The Duke researchers continued to publish papers on their genomic signatures in prestigious journals. Meanwhile, they started three trials using the work to decide which drugs to give patients.
   \end{block}
-  #+END_LaTeX
+  #+END_EXPORT
 - Retractions: January 2011. [[http://en.wikipedia.org/wiki/Anil_Potti][Ten papers that Potti coauthored in
   prestigious journals were retracted for varying reasons]]
 - Some people die and may be getting worthless information that is
@@ -418,7 +418,7 @@ cancer]]*
    Magazine]]
 #+END_CENTER
 *** Is Fraud a new phenomenon?
-#+BEGIN_LaTeX
+#+BEGIN_EXPORT latex
   \begin{columns}
     \begin{column}{.4\linewidth}
       \includegraphics[width=\linewidth]{images/CNRS_CIM_36_biomed_fraud.png}
@@ -429,14 +429,14 @@ cancer]]*
         \includegraphics[width=.7\linewidth]{images/CNRS_CIM_36_scientists.pdf}
       \end{center}
 
-#+END_LaTeX
+#+END_EXPORT
 
 - Galileo (data fabrication), Ptolemy (plagiarism), Mendel (data
   enhancement), [[http://lascienceenfraude.blogspot.fr/2012/05/limposture-de-pasteur.html][Pasteur]] (rigorous but hid failures), ...
-#+BEGIN_LaTeX
+#+BEGIN_EXPORT latex
     \end{column}
   \end{columns}
-#+END_LaTeX
+#+END_EXPORT
 ** Reproducible Research/Open Science
 *** Reproducible Research: the New Buzzword?
 **** H2020-EINFRA-2014-2015
@@ -471,7 +471,7 @@ Reproducibility of experimental results is the hallmark of science
 \vspace{-.3em} \flushright [[[http://www.site.uottawa.ca/ICML09WS/papers/w2.pdf][Drummond, 2009]]]
 #+END_QUOTE
 
-#+BEGIN_LaTeX
+#+BEGIN_EXPORT latex
 \begin{center}
   \dangersign[3ex] Terminology varies \dangersign[3ex]\par
 
@@ -484,10 +484,10 @@ Reproducibility of experimental results is the hallmark of science
     Reproducible research) and \href{http://mescal.imag.fr/arnaud.legrand/readings/acm_sigops_si_rsea/p3-feitelson.pdf}{[Feitelson, 2015]}}}
 \end{flushright}
 \vspace{-.6em}
-#+END_LaTeX
+#+END_EXPORT
 
 *** Reproducibility: What Are We Talking About?                    :noexport:
-#+BEGIN_LaTeX
+#+BEGIN_EXPORT latex
 \vspace{-.6em}
 \begin{overlayarea}{\linewidth}{9cm}
 \hbox{\hspace{-.05\linewidth}\includegraphics[page=5,width=1.1\linewidth]{pdf_sources/sumatra_amp2011.pdf}}
@@ -497,9 +497,9 @@ Reproducibility of experimental results is the hallmark of science
   {\scriptsize Courtesy of Andrew Davison (AMP Workshop on Reproducible research)}
 \end{flushright}
 \end{overlayarea}
-#+END_LaTeX
+#+END_EXPORT
 *** Reproducible Research: Trying to Bridge the Gap
-#+BEGIN_LaTeX
+#+BEGIN_EXPORT latex
   \hbox{\hspace{-.05\linewidth}%
   \includegraphics<1>[width=1.07\linewidth]{fig/author_reader_rr_1.fig}%
   \includegraphics<2>[width=1.07\linewidth]{fig/author_reader_rr_2.fig}%
@@ -512,19 +512,19 @@ Reproducibility of experimental results is the hallmark of science
 \end{flushright}
 
 In this series of lectures, we'll go from right to left and see how we can improve.
-#+END_LaTeX
+#+END_EXPORT
 *** Mythbusters: Science vs. Screwing Around                        :B_frame:
     :PROPERTIES:
     :BEAMER_env: frame
     :BEAMER_OPT: plain
     :END:
 
-#+BEGIN_LaTeX
+#+BEGIN_EXPORT latex
 \begin{overlayarea}{\linewidth}{0cm}
 \vspace{-4cm}
 \hbox{\hspace{-.1\linewidth}\includegraphics[width=1.2\linewidth,height=9cm]{images/remember_kids.jpg}}
 \end{overlayarea}
-#+END_LaTeX
+#+END_EXPORT
 *** A Difficult Trade-off
 #+BEGIN_CENTER
 Many different tools/approaches developed in various communities
@@ -553,7 +553,7 @@ But mainly two approaches:
 ** Interesting Approaches for [PD]C Reproducible experiments      :noexport:
 *** A few Experiment Management Tools
 - Naive way: sh + ssh + ... \medskip
-  #+BEGIN_LaTeX
+  #+BEGIN_EXPORT latex
   \item \alert<1>{Expo} (2007-, G5K)
   \item \alert<1>{XPflow} (2012-, G5K)
   \begin{overlayarea}{3cm}{0cm}
@@ -566,7 +566,7 @@ But mainly two approaches:
    \end{array}$
   \end{overlayarea}
   \item \alert<1>{Execo} (2013-, G5K) \medskip
-  #+END_LaTeX
+  #+END_EXPORT
 - Plush (2006-, PlanetLab)
 - OMF (2009-, Wireless testbeds and Planetlab)
 - Splay (2008, distributed algorithm comparison)
@@ -610,7 +610,7 @@ reserv.stop!
 - Resources, process, and activities 
 - Top-down rather than bottom-up: *business process management*
 - Cope with *failures* through *snapshots* and retry *policy*
-#+BEGIN_LaTeX
+#+BEGIN_EXPORT latex
 \vspace{-.3em}
 \begin{overlayarea}{\linewidth}{5cm}
 \begin{center}
@@ -628,7 +628,7 @@ reserv.stop!
   {\scriptsize {\textbf{Courtesy of T. Buchert\qquad\null}}}
 \end{flushright}
 \end{overlayarea}
-#+END_LaTeX 
+#+END_EXPORT 
 *** A few Environment Management Tools
 CDE automatically tracks and packages up the Code, Data, and
 Environment 
@@ -649,7 +649,7 @@ E.g., the Kameleon project
 - Automatically *checkpoints* to rebuild only what is required
 ** Many Different Alternatives for Replicable Analysis
 *** Vistrails: a Workflow Engine for Provenance Tracking
-#+BEGIN_LaTeX
+#+BEGIN_EXPORT latex
 \vspace{-.6em}
 \begin{overlayarea}{\linewidth}{9cm}
 \hbox{\hspace{-.05\linewidth}%
@@ -663,9 +663,9 @@ E.g., the Kameleon project
     Reproducible research)}
 \end{flushright}
 \end{overlayarea}
-#+END_LaTeX
+#+END_EXPORT
 *** VCR: A Universal Identifier for Computational Results
-#+BEGIN_LaTeX
+#+BEGIN_EXPORT latex
 \vspace{-.6em}
 \begin{overlayarea}{\linewidth}{9cm}
 \hbox{\hspace{-.05\linewidth}%
@@ -681,9 +681,9 @@ E.g., the Kameleon project
     Reproducible research)}
 \end{flushright}
 \end{overlayarea}
-#+END_LaTeX 
+#+END_EXPORT 
 *** Sumatra: an "experiment engine" that helps taking notes
-#+BEGIN_LaTeX
+#+BEGIN_EXPORT latex
 \vspace{-.6em}
 \begin{overlayarea}{\linewidth}{9cm}
 \hbox{\hspace{-.05\linewidth}%
@@ -699,9 +699,9 @@ E.g., the Kameleon project
     Reproducible research)}
 \end{flushright}
 \end{overlayarea}
-#+END_LaTeX
+#+END_EXPORT
 *** So many new tools
-#+BEGIN_LaTeX
+#+BEGIN_EXPORT latex
 \vspace{-.6em}
 \begin{overlayarea}{\linewidth}{9cm}
 \hbox{\hspace{-.05\linewidth}%
@@ -714,7 +714,7 @@ E.g., the Kameleon project
 \vspace{.6cm}
 And also: \textbf{Org-Mode \smiley}, \textbf{Figshare}, \textbf{Zenodo}, \textbf{ActivePapers \smiley}, \textbf{Elsevier executable paper \frowny}, ...
 \end{overlayarea}
-#+END_LaTeX 
+#+END_EXPORT 
 ** Good Practice for Setting up a Laboratory Notebook
 *** Step 0: Taking Notes
 *Document* your:

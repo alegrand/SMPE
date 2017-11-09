@@ -112,12 +112,12 @@ _3 steps of the scientific method:_
 situation) : "The best theory is the one check by the more numbers of
 facts."
 
-#+BEGIN_LaTeX
+#+BEGIN_EXPORT latex
 \begin{center}
   \includegraphics[height=5cm]{images/claude_bernard1.png}\qquad
   \includegraphics[height=5cm]{images/claude_bernard2.png}
 \end{center}
-#+END_LaTeX
+#+END_EXPORT
 *** Karl Popper (1902-1994) and Falsifiability
 - Criteria to separate science and non-science : \\
   *Is scientific a theory that could be falsifiable*, that could be
@@ -169,7 +169,7 @@ assert the nature or the scientific status of a theory ?*" \small\it
    # (I later described such a rescuing operation as a
    # ’conventionalist twist’ or a ’conventionalist stratagem’.)
 
-#+BEGIN_LaTeX
+#+BEGIN_EXPORT latex
 \begin{columns}
   \begin{column}{.5\linewidth}
     One can sum up all this by saying that the criterion of the
@@ -186,9 +186,9 @@ assert the nature or the scientific status of a theory ?*" \small\it
     \includegraphics[height=4cm]{images/karl_popper2.png}
   \end{column}
 \end{columns}
-#+END_LaTeX
+#+END_EXPORT
 *** \scalebox{.95}{Reproducibility of experimental results is the hallmark of science}
-#+BEGIN_LaTeX
+#+BEGIN_EXPORT latex
 \vspace{-.4em}
 \begin{tabular}{@{\hspace{-1em}}c@{\hspace{-1em}}c@{\hspace{-.6em}}c@{}}
 \includegraphics[height=3.5cm]{images/Newton.jpg}&
@@ -205,7 +205,7 @@ assert the nature or the scientific status of a theory ?*" \small\it
 \end{minipage}&
 \includegraphics[height=3.5cm]{images/Hooke.jpg}
 \end{tabular}\hspace{-1em}%
-#+END_LaTeX
+#+END_EXPORT
 
 #+BEGIN_CENTER
 Science allows to discover truth by building on previous discoveries.
@@ -278,15 +278,15 @@ A science may go through these cycles repeatedly, though Kuhn notes
 that it is a good thing for science that such shifts do not occur
 often or easily
 *** Thomas Kuhn
-#+BEGIN_LaTeX
+#+BEGIN_EXPORT latex
 \begin{columns}
   \begin{column}{.5\linewidth}
-#+END_LaTeX
+#+END_EXPORT
 *Pre-science*
 1. debate on the bases ;
 2. no selection of facts ;
 3. no scientific domain.
-#+BEGIN_LaTeX
+#+BEGIN_EXPORT latex
   \end{column}
   \begin{column}{.5\linewidth}
     \begin{flushright}
@@ -295,7 +295,7 @@ often or easily
     \end{flushright}
   \end{column}
 \end{columns}
-#+END_LaTeX
+#+END_EXPORT
 *Normal Science* existence of a paradigm, a matrix for the domain:
 1. common language for the "tribe"
 2. shared believes (ontologies, metaphors and analogies) ;
@@ -308,10 +308,10 @@ often or easily
   a psychological, sociological, political level.
 - Incommensurability between the old and the new paradigm.
 *** Imre Lakatos (1922-1974): Science, a social process
-#+BEGIN_LaTeX
+#+BEGIN_EXPORT latex
 \begin{columns}
   \begin{column}{.8\linewidth}
-#+END_LaTeX
+#+END_EXPORT
 - Research Program :: hard core values and fundamental beliefs,
      fundamental ontologies and methodology (ideology of the group)
      are never questioned ("negative heuristic").
@@ -320,7 +320,7 @@ often or easily
   - We falsify at the protecting belt level, never at the hard core
     level. We evaluate series of theories rather than falsifying a
     particular one (as Popper did).
-#+BEGIN_LaTeX
+#+BEGIN_EXPORT latex
   \end{column}
   \begin{column}{.2\linewidth}
     \begin{flushright}
@@ -328,7 +328,7 @@ often or easily
     \end{flushright}
   \end{column}
 \end{columns}
-#+END_LaTeX
+#+END_EXPORT
 - Main Science :: characterized by several concurrent research
      programs
 - Progressive Program :: progress at the theoretical level (increase
@@ -342,20 +342,20 @@ often or easily
 #+LaTeX: \centerline{\includegraphics[width=.85\linewidth]{images/cs_history.png}}
 #+LaTeX: \begin{flushright}\scriptsize Courtesy of S. Krakowiak 2016\end{flushright}
 *** Defining Computer Science (Dowek and others)
-#+BEGIN_LaTeX
+#+BEGIN_EXPORT latex
 \begin{columns}[t]
   \begin{column}{.5\linewidth}
-#+END_LaTeX
+#+END_EXPORT
 _Computing_
 - A science: Science of artificial... but not only
 - A technology, an industry (Hardware, software, network,
   services,...)
 - Applications: increasing area
 - Social impact: numerical/Information society
-#+BEGIN_LaTeX
+#+BEGIN_EXPORT latex
   \end{column}\pause
   \begin{column}{.5\linewidth}
-#+END_LaTeX
+#+END_EXPORT
 _Computer Science_
 
 *Concepts* \small
@@ -368,10 +368,10 @@ _Computer Science_
   Automatic abstraction transform. Self-generated tools.
 
 *Human organization* with social rules
-#+BEGIN_LaTeX
+#+BEGIN_EXPORT latex
   \end{column}
 \end{columns}
-#+END_LaTeX
+#+END_EXPORT
 * Conclusion
 **  
 *** Recap
