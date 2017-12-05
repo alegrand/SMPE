@@ -1,0 +1,400 @@
+#+AUTHOR:      Arnaud Legrand
+#+TITLE:       The $\chi^2$ test
+#+DATE:        MOSIG Lecture
+#+STARTUP: beamer overview indent
+#+TAGS: noexport(n)
+#+EXPORT_EXCLUDE_TAGS: noexport
+#+PROPERTY: header-args :eval never-export
+#+LaTeX_CLASS: beamer
+#+LaTeX_CLASS_OPTIONS: [11pt,xcolor=dvipsnames,presentation]
+#+OPTIONS:   H:3 num:t toc:nil \n:nil @:t ::t |:t ^:nil -:t f:t *:t <:t
+#+LATEX_HEADER: \input{org-babel-style-preembule.tex}
+#+LATEX_HEADER: \usepackage{commath}
+
+#+LaTeX: \input{org-babel-document-preembule.tex}
+#+LaTeX: \def\H{\ensuremath{\mathcal{H}}\xspace}
+* List                                                             :noexport:
+** Slides \chi^2
+- Loi: somme du carré de k normales centrées réduites (carré des erreurs)
+x- Forme: https://fr.wikipedia.org/wiki/Loi_du_%CF%87%C2%B2
+* The $\chi^2$ distribution
+** 
+*** Definition
+*Origin*:
+- Measurement errors are typically distributed with a normal
+  distribution.
+- The larger the error, the higher the risk. Let's consider the square
+  of errors and sum them over $k$ measurements.
+
+Let's consider $k$ independant variables
+$\rv{X_1},\ldots,\rv{X_k}\sim\N(0,1)$. Then:
+   $$\rv{Q} = \sum_{i=1}^k \rv{X_i}^2$$
+
+is distributed according to the $\chi^2$ distribution with $k$ degrees of
+freedom ($\rv{Q}\sim\chi^2_k$).\medskip
+
+The $\chi^2$ distribution has one parameter: $k\in\mathbb{N^*}$ that
+specifies the number of degrees of freedom.
+*** Sample Histograms
+\small
+#+begin_src R :results output graphics :file "pdf_babel/chi2_sample.pdf" :exports both :width 8 :height 3 :session *R* 
+N=10000;
+X0 = rnorm(N);                 X1s = rnorm(N)**2;
+X2s = X1s + rnorm(N)**2;       X3s = X2s + rnorm(N)**2;
+df=rbind(data.frame(x=X0,lab="X"),data.frame(x=X1s,lab="X^2"),
+         data.frame(x=X2s,lab="X1^2+X2^2"),
+         data.frame(x=X3s,lab="X1^2+X2^2+X3^2"))
+ggplot(data=df, aes(x=x)) + geom_histogram() + 
+    facet_wrap(~lab, nrow=1) + theme_classic()
+#+end_src
+
+#+RESULTS:
+[[file:pdf_babel/chi2_sample.pdf]]
+
+*** Probability distribution
+- Density function: $\displaystyle \frac {1}{2^{k/2}\Gamma (k/2)}\;x^{{\frac{k}{2}}-1}e^{-{\frac {x}{2}}}$
+
+#+begin_src R :results output graphics :file "pdf_babel/chi2_distribution.pdf" :exports none :width 6 :height 3 :session
+library(ggplot2)
+library(ggthemes)
+library(dplyr)
+
+n=300
+xmin=0
+xmax=10
+xval = seq(from=xmin, to=xmax, length.out = n);
+df=data.frame(k=rep(1:5, each = n))
+df$x=xval
+df$y=dchisq(df$x,df=df$k)
+
+df %>% group_by(k) %>% filter(y==max(y)) -> dfmax 
+
+p = ggplot(data=df,aes(x=x,y=y,color=factor(k))) + 
+    geom_line() + 
+    geom_point(data=dfmax) +
+    theme_classic() + scale_color_brewer(palette="Set1", guide = guide_legend(title = "k")) + 
+    theme(legend.position=c(.9,.7)) +
+    ylim(0,1) + scale_x_continuous(breaks=0:10)
+p
+#+end_src
+
+#+RESULTS:
+[[file:pdf_babel/chi2_distribution.pdf]]
+
+file:pdf_babel/chi2_distribution.pdf
+
+- As $k$ increases, the distribution gets more and more flat and moves
+  to the right.
+*** Main Characteristics
+#+LaTeX: \begin{overlayarea}{\linewidth}{0cm}\begin{flushright}
+#+LaTeX: \includegraphics[width=.6\linewidth]{pdf_babel/chi2_distribution.pdf}
+#+LaTeX: \end{flushright}\end{overlayarea}\null\hspace{3em}\null
+
+- Asymetrical
+- Mode at $k-2$ for k\ge2
+- $\E(\rv{Q}) = k$
+- $\Var(\rv{Q}) = 2k$
+- As usual, "converges" toward a normal distribution when $k$ grows large.
+* Applications to statistical hypothesis test 
+** Biased Coin
+*** A biased coin
+Let's assume we are given a series of $n$ coin toss. How could we
+check whether the coin is biased or not ? \pause
+
+The sample frequency of "Head" should be close to $p$ when $n$ is
+large.
+- $\rv{H}/n \sim \N\left(p,\sqrt{\frac{p(1-p)}{n}}\right)$ \pause
+- $\boxed{\H_0: p=1/2}$ then
+  $\P\left(\left|\frac{\rv{H}}{n}-1/2\right|\le\frac{1}{\sqrt{n}}\right)=95\%$. 
+  \newline\null\hfill$\leadsto$ \fbox{Reject if $\not\in [0.4,0.6]$}
+
+#+LaTeX: \small
+#+begin_src R :results output :session *R* :exports both
+set.seed(44); N = 100;
+X=sample(x=c(0,1), size = N, prob=c(0.45,0.55), replace=T)
+X
+sum(X==1)/N
+#+end_src
+
+#+RESULTS:
+:   [1] 0 1 1 0 1 1 1 1 1 1 1 1 0 1 1 1 1 1 1 1 0 1 1 1 1 1 1 0 1 0 0 0 0 1 1 0 0
+:  [38] 1 0 1 1 1 0 1 1 1 1 1 1 1 1 1 1 0 0 0 0 1 0 1 1 1 0 1 0 0 1 0 0 0 0 1 1 1
+:  [75] 1 1 1 1 1 0 1 0 1 1 1 1 0 1 0 0 1 1 1 0 1 1 0 0 1 1
+: [1] 0.67
+#+LaTeX: \normalsize
+
+we would then correctly reject the $\H_0$ hypothesis! $\smiley$
+*** A biased coin again
+#+LaTeX: \small
+#+begin_src R :results output :session *R* :exports both
+set.seed(41); N = 100; 
+X=sample(x=c(0,1), size = N, prob=c(0.45,0.55), replace=T)
+sum(X==1)/N
+#+end_src
+
+#+RESULTS:
+: [1] 0.51
+#+LaTeX: \normalsize
+
+If $p\approx1/2$ there is a good chance we do not detect the bias (Type II
+error). $\frowny$ \pause
+
+#+LaTeX: \small
+#+begin_src R :results output :session *R* :exports both
+set.seed(44); N = 100; 
+X=sample(x=c(0,1), size = N, prob=c(0.5,0.5), replace=T)
+sum(X==1)/N
+#+end_src
+
+#+RESULTS:
+: [1] 0.61
+#+LaTeX: \normalsize
+
+We may also incorrectly reject the $\H_0$ (Type I error). $\frowny$
+
+*** Trying to reject $\H_0$
+#+ATTR_LaTeX: :align l|c|c
+|                | $\H_0$           | $\H_0$           |
+|                | True             | False            |
+|----------------+------------------+------------------|
+| Reject         | Type I error     | Correct          |
+|                | /(False positive)/ | /(True positive)/  |
+|----------------+------------------+------------------|
+| Fail to reject | Correct          | Type II error    |
+|                | /(True negative)/  | /(False negative)/ |
+
+- We only know the rejection probability when $\H_0$ holds True. 
+- Whenever $\H_0$ is False, the distribution of $\rv{H}$ depends on
+  $p\ne 1/2$, which is unknown!
+*** How to extend the idea to a dice ? 
+\pause
+We could estimate $p_1, p_2, p_3, p_4, p_5$, and $p_6$ \pause
+- Wait! Did we estimate the frequency of tails earlier ? $p_6$ is
+  probably not needed.
+- Our estimates are all correlated with each others! How do we
+  combine these estimations into a single test ?
+** Adequation
+*** Adequation
+- Suppose we have $n$ independant random observations (\rv{X_j})
+  classified into $k$ classes with respective number of observations
+  $\rv{N_1}$, $\rv{N_2}$, \dots, $\rv{N_k}$.
+
+- Let's assume we know the theoretical probabilities and want to test
+  the corresponding hypothesis\newline
+  #+LaTeX: \centerline{$\boxed{\H_0: \forall j,\P(\rv{X_j}=1)=p_1, \dots,  \text{ and } \P(\rv{X_j}=k)=p_k}$}\pause
+
+- We have $\frac{\rv{N_i}}{n} \approx p_i$. For large $n$,
+  $\frac{\rv{N_i}}{n}-p_i$ follows a normal distribution (CLT) centered on
+  $0$ and with a variance of $p_i(1-p_i)/n$.
+
+- Let' build on this idea:
+  - $Var(\rv{N_i}-np_i)=np_i(1-p_i)$. Hence,
+  - $Var\left((\rv{N_i}-np_i)^2\right)=n^2p_i^2(1-p_i)^2$.
+  - Therefore $\frac{(\rv{N_i}-np_i)^2}{np_i} \sim \left(\N(0,(1-p_i))\right)^2$. \pause
+
+- 
+  #+LaTeX: $\displaystyle\rv{T} = \sum_{i=1}^k \frac{(\rv{N_i}-np_i)^2}{np_i} \sim \chi^2_{k\uncover<4>{-1}}$ 
+  #+LaTeX: \uncover<4>{(the last \emph{correlated} term compensates for the others)}
+
+*** The $\chi^2$ test
+- Assume we know the theoretical frequencies $p_i$
+- Count the number of occurences of each category
+- Compute $\rv{T} = \sum_{i=1}^k \frac{(\rv{N_i}-np_i)^2}{np_i}$
+- If all the $\rv{X_j}\sim p$, then $\rv{T} \sim \chi^2_k$ and
+  $\P(\rv{T}<v)=95\%$, with $v=\texttt{qchisq(p=.95,df=k)}$
+  #+begin_src R :results output :session *R* :exports both
+  qchisq(p=.95,df=1)
+  qchisq(p=.95,df=3)
+  qchisq(p=.95,df=5)
+  #+end_src
+
+  #+RESULTS:
+  : [1] 3.841459
+  : [1] 7.814728
+  : [1] 11.0705
+
+  For an unbiased dice, it is "unlikely" that $\rv{T}>11.07$. If so
+  reject the $\boxed{\H_0: \text{unbiased}}$ hypothesis.
+*** A biased dice
+#+LaTeX: \small
+#+begin_src R :results output :session *R* :exports both
+set.seed(44); N = 100; 
+X=sample(x=1:6, size = N, prob=c(.16,.16,.16,.16,.16,.2), replace=T)
+chisq.test(table(X),p=rep(1/6,times=6))
+#+end_src
+
+#+RESULTS:
+: 	Chi-squared test for given probabilities
+: 
+: data:  table(X)
+: X-squared = 10.64, df = 5, p-value = 0.059
+
+\vspace{-2em}
+#+begin_src R :results output graphics :file "pdf_babel/biased_dice1.pdf" :exports results :width 6 :height 4 :session
+plot(factor(X))
+#+end_src
+
+#+ATTR_LaTeX: :width .6\linewidth
+#+RESULTS:
+[[file:pdf_babel/biased_dice1.pdf]]
+
+\vspace{-3em} You cannot reject the hypothesis. And given the samples
+and your prior knowledge on the $\overline{\H_0}$, it's probably a good
+thing. $\smiley$
+*** A biased dice
+#+LaTeX: \small
+#+begin_src R :results output :session *R* :exports both
+set.seed(44); N = 2500; 
+X=sample(x=1:6, size = N, prob=c(.16,.16,.16,.16,.16,.2), replace=T)
+chisq.test(table(X),p=rep(1/6,times=6))
+#+end_src
+
+#+RESULTS:
+: 	Chi-squared test for given probabilities
+: 
+: data:  table(X)
+: X-squared = 26.864, df = 5, p-value = 6.063e-05
+
+\vspace{-2em}
+#+begin_src R :results output graphics :file "pdf_babel/biased_dice2.pdf" :exports results :width 6 :height 4 :session
+plot(factor(X))
+#+end_src
+
+#+ATTR_LaTeX: :width .6\linewidth
+#+RESULTS:
+[[file:pdf_babel/biased_dice2.pdf]]
+
+\vspace{-3em}
+26.8! The probability to get such a high value (or higher) is
+0.00006. I believe this dice is biased.
+*** Testing through Goodness of Fit
+Testing value \rv{T}:
+- What happens when $\H_0$ holds true?
+  $T\sim\chi^2_{k-1}$
+- What happens when $\H_0$ is false (e.g., $\pi_l\ne p_l$) ?\newline
+  #+BEGIN_EXPORT latex
+  $\E(\rv{T}) = \sum_{i=1}^k \E\left(\frac{(\rv{N_i}-np_i)^2}{np_i}\right)\ge 
+   \E\left(\frac{(\rv{N_l}-np_l)^2}{np_l}\right)$
+  #+END_EXPORT
+  - We have $\E(\rv{N_l})=n\pi_l$ and $Var(\rv{N_l})=n\pi_l(1-\pi_l)$
+  - 
+    #+BEGIN_EXPORT latex
+    $\displaystyle\E\left((\rv{N_l}-np_l)^2\right) = \Var(\rv{N_l}-np_l) +
+    \E(\rv{N_l}-np_l)^2$\\
+    $\displaystyle\phantom{\E\left((\rv{N_l}-np_l)^2\right)} = n\pi_l(1-\pi_l) + (n(\pi_l-p_l))^2$
+    
+    #+END_EXPORT
+    # #+BEGIN_EXPORT latex
+    # \begin{align*}
+    #   \E\left((\rv{N_l}-np_l)^2\right) & = \Var(\rv{N_l}-np_l) + \E(\rv{N_l}-np_l)^2 \\
+    #                                   & = n\pi_l(1-\pi_l) + (n(\pi_l-p_l))^2
+    # \end{align*}
+    # #+END_EXPORT
+  - Therefore $\boxed{\E(\rv{T}) \ge n^2\frac{(\pi_l-p_l)^2}{p_l}}$
+
+#+LaTeX: \vspace{-1.4cm}\begin{flushright}\includegraphics[width=.44\linewidth]{images/chi_2_evol.pdf}\end{flushright}
+
+
+** Independence
+*** Setup
+We measure $\rv{X_j}\in\{A,B,C,D\}$ and $\rv{Y_j}\in\{W,B,N\}$ and would like
+to know whether they are independent ($\H_0$) or not.
+
+#+ATTR_LaTeX: :align l|rrrr|r
+|              | A   |   B |   C |   D | total |
+|--------------+-----+-----+-----+-----+-------|
+| White collar | *90*  |  60 | 104 |  95 |   *349* |
+| Blue collar  | 30  |  50 |  51 |  20 |   151 |
+| No collar    | 30  |  40 |  45 |  35 |   150 |
+|--------------+-----+-----+-----+-----+-------|
+| Total        | *150* | 150 | 200 | 150 |   650 |
+
+Problem:
+- We do not know the $p$, (i.e., $\P(\rv{Y_j}=W)$, \dots)
+
+  If we assume independance, let's use the sample frequency instead.
+- Many of the cells are correlated.
+
+$\rv{N_{A,W}}=90$ but it "should have been" $E_{A,W} = 150\times\frac{349}{650}\approx80.53$.
+
+Therefore 
+#+LaTeX: \fbox{$\rv{T} =\displaystyle \sum_{c\in \{A,B,C,D\}\times\{W,B,N\}} \frac{(\rv{N_{c}}-E_{c})^2}{E_c} \sim \chi^2_6$}
+**** Table                                                      :noexport:
+#+ATTR_LaTeX: :align l|rrrr|r
+#+name:workers
+|              |   A |   B |   C |   D | total |
+|--------------+-----+-----+-----+-----+-------|
+| White collar |  90 |  60 | 104 |  95 |   349 |
+| Blue collar  |  30 |  50 |  51 |  20 |   151 |
+| No collar    |  30 |  40 |  45 |  35 |   150 |
+|--------------+-----+-----+-----+-----+-------|
+| Total        | 150 | 150 | 200 | 150 |   650 |
+
+*** $\chi^2$ Independance Test
+#+begin_src R :results output :session *R* :exports none :var workers=workers
+names(workers)=workers[1,]
+workers = workers[-1,]
+workers = workers[-length(workers[,1]),]
+workers = workers[,-length(workers[1,])]
+rownames(workers) = workers[,1]
+workers = workers[,-1]
+workers$A=as.numeric(workers$A)
+workers$B=as.numeric(workers$B)
+workers$C=as.numeric(workers$C)
+workers$D=as.numeric(workers$D)
+#+end_src
+
+#+RESULTS:
+
+#+begin_src R :results output :session *R* :exports both
+workers
+chisq.test(workers) 
+#+end_src
+
+#+RESULTS:
+:               A  B   C  D
+: White collar 90 60 104 95
+: Blue collar  30 50  51 20
+: No collar    30 40  45 35
+: 
+: 	Pearson's Chi-squared test
+: 
+: data:  workers
+: X-squared = 24.571, df = 6, p-value = 0.0004098
+
+The probability of getting such a high value (or higher) for $T$ is
+0.0004098. This is unlikely, hence I decide to reject the independance
+hypothesis.
+** [[https://fr.wikipedia.org/wiki/Test_du_%25CF%2587%25C2%25B2#Test_du_.CF.87.C2.B2_d.27ad.C3.A9quation][Homogénéité]]                                                    :noexport:
+- Limitation: et si une catégorie n'est pas observée ?
+** Limitations
+*** Limitation
+- Random samples\dots
+- Enough samples for the CLT to hold
+  - More than 50 in total and more than 5 in each category ?
+- Enough samples to discriminate from a close alternative
+- Discrete values and not too many categories (remember how $\chi^2_k$
+  flattens with $k$)
+- The probabilities ($p_i$) should be as close as possible to each
+  others (rare categories will not help discrimination)
+- Not too much samples...
+  - If $n=1,000,000$, the slightest difference will be overemphasized
+    and it is likely that your samples will never match what you
+    expected (your $\H_0$).
+* Other application of the $\chi^2$ distribution
+** Student's law
+*** Student's law
+The CLT allows to compute a confidence interval on an estimation of
+the expectation.
+- It is centered on the sample mean
+- The width is proportional to the standard deviation divided by the
+  square root of the number of samples\pause
+- _How do we know the standard deviation_ ?
+  - We can use the sample standard deviation but we have no idea of
+    its distribution
+  - Unless we assume $X$ is normal, in which case 
+
+- If $\rv{S} \sim \N$ and $\rv{Y} \sim \chi^2_n$, then 
+  $\frac{\rv{S}}{\sqrt{\rv{Y}/n}} \sim  \text{t-Student}$.
+
+This allows to account for the variance uncertainty.

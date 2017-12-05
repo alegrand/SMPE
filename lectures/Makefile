@@ -15,11 +15,10 @@ PDFLATEX=pdflatex -shell-escape
 
 include LaTeX.mk
 
-
+#                      --eval "(setq org-export-babel-evaluate nil)"
 %.tex: %.org
 	emacs -batch --eval "(setq enable-local-eval t)" \
                      --eval "(setq enable-local-variables t)" \
-                     --eval "(setq org-export-babel-evaluate nil)" \
                      --eval "(setq org-confirm-babel-evaluate nil)" \
                  $^  --funcall org-beamer-export-to-latex
 	mv $@ $@.bak
@@ -28,5 +27,6 @@ include LaTeX.mk
 	sed -e 's/\\begin{verbatim}/\\begin{pyglist}[language=r,style=tango,bgcolor=Moccasin,numbers=left,numbersep=5pt]/' -e 's/\\end{verbatim}/\\end{pyglist}/' \
 	    -e "s/^Signif. codes:.*$$/Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1/g"   $@.bak >> $@
 	rm $@.bak
+
 
 # grep includegraphics talk_17_02_08_Inria_comdir.tex | sed -e 's/.*includegraphics[^{]*{//' -e 's/}.*$//g
