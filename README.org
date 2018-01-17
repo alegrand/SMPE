@@ -14,7 +14,7 @@ evaluation avalaible that I was invited to give in various
 occasions. I have given this course with Jean-Marc Vincent several
 years (roughly from 2011 to 2015) in the second year of the [[http://mosig.imag.fr/][Master of
 Science in Informatics at Grenoble]] and more recently at [[http://www.ufrgs.br/][Federal
-University of Rio Grande do Sul]].
+University of Rio Grande do Sul]], at [[http://www.ens-lyon.fr][ENS Lyon]] and [[http://ens-rennes.fr][ENS Rennes]].
 
 * Table of Contents                                                     :TOC:
  - [[#course-objective-and-organization][Course Objective and Organization]]
@@ -57,7 +57,7 @@ I'm progressively slicing it up in smaller chunks as follows:
 3. [[file:lectures/lecture_literate_programming.pdf][Literate programming]]
 4. [[file:lectures/lecture_R_crash_course.pdf][R crash course]]
 5. [[file:lectures/lecture_descriptive_univariate.pdf][Descriptive statistics of univariate data]]
-6. [[file:lectures/lecture_data_presentation.pdf][Data presentation]]
+6. [[file:lectures/lecture_data_presentation.pdf][Data presentation]] (checklist for good graphics: [[file:lectures/Check-list-good-graphics-tableau-en.pdf][tableau]], [[file:lectures/Check-list-good-graphics-en.pdf][guidelines]])
 7. [[file:lectures/lecture_correlation_causation.pdf][Correlation and causation]]
 8. [[file:lectures/3_introduction_to_statistics.pdf][Introduction to probabilities/statistics]] ([[file:lectures/lecture_central_limit_theorem.pdf][Proof of the Central
    limit theorem]])
@@ -68,9 +68,11 @@ All the examples given in this series of lecture use the [[http://www.r-project.
 and the source is provided so that people can reuse them. The slides
 are composed with [[http://orgmode.org][org-mode]], beamer, and verbments.
 
-As an exercise, I propose the audience to fork this small [[https://github.com/alegrand/M2R-ParallelQuicksort][project]]
-which is toy experiment regarding measuring the performance of a
-simple parallel quicksort implementation:
+As an exercise, I often propose the audience to work in small groups
+and to provide me with a clean and reproducible analysis of a simple
+scientific question of their choice. Alternatively, they can fork this
+small [[https://github.com/alegrand/M2R-ParallelQuicksort][project]] which is toy experiment regarding measuring the
+performance of a simple parallel quicksort implementation:
 #+BEGIN_QUOTE
   One of your colleague just implemented a multi-threaded version of
   the quicksort algorithm for multi-core machines. He's convinced his
