@@ -60,7 +60,7 @@ I'm progressively slicing it up in smaller chunks as follows:
 6. [[file:lectures/lecture_data_presentation.pdf][Data presentation]] (checklist for good graphics: [[file:lectures/Check-list-good-graphics-tableau-en.pdf][tableau]], [[file:lectures/Check-list-good-graphics-en.pdf][guidelines]])
 7. [[file:lectures/lecture_correlation_causation.pdf][Correlation and causation]]
 8. [[file:lectures/3_introduction_to_statistics.pdf][Introduction to probabilities/statistics]] ([[file:lectures/lecture_central_limit_theorem.pdf][Proof of the Central
-   limit theorem]])
+   limit theorem]], [[file:lectures/lecture_chi_square.pdf][a few slides on the $\chi^2$ test]])
 9. [[file:lectures/4_linear_model.pdf][Linear regression]]
 10. [[file:lectures/5_design_of_experiments.pdf][Design of Experiments]]
 
