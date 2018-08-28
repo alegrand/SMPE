@@ -26,6 +26,35 @@
 #+LATEX_HEADER: \makeatother
 
 
+#+BEGIN_EXPORT latex
+\begin{frame}{Who am I?}
+  \begin{description}
+  \item[Application Domain] Large scale computing infrastructures
+    \begin{center}
+      {\includegraphics[height=1.6cm]{img/plat_grid.jpg}%
+         \includegraphics[height=1.6cm]{img/plat_seti.png}%
+         \includegraphics[height=1.6cm]{img/plat_titan2.jpg}
+         }%\pause
+     \end{center}
+     \begin{center}
+      {\includegraphics[height=1.6cm]{img/plat_wireless.jpg}%
+         \includegraphics[height=1.6cm]{img/plat_smartgrid.jpg}%
+         \includegraphics[height=1.6cm]{img/plat_bikesharing.jpg}
+         }%\pause
+    \end{center}
+  \item[Research Themes]~
+    \begin{itemize}
+    \item Optimization (scheduling, game theory)
+    \item Performance Evaluation (modeling, simulation, analysis)
+    \end{itemize}
+  \item[Proselytism in Scientific Methodology]~
+    \begin{itemize}
+    \item Reproducible Research/Open Science
+    \item Design of Experiments
+    \end{itemize}
+  \end{description}
+\end{frame}
+#+END_EXPORT
 * Science crisis ?
 #+LaTeX: \input{org-babel-document-preembule.tex}
 #+LaTeX: \begin{frame}{Outline}\tableofcontents\end{frame}
