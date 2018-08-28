@@ -3,6 +3,7 @@
 #+DATE: August 2015
 #+STARTUP: overview indent
 #+TAGS: noexport(n)
+#+PROPERTY: header-args :eval never-export
 
 # Trick: M-x org-org-export-to-org to export to org and anonymize
 
