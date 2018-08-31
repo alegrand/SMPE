@@ -6,6 +6,10 @@
 #+LaTeX_CLASS: beamer
 #+LaTeX_CLASS_OPTIONS: [11pt,xcolor=dvipsnames,presentation]
 #+OPTIONS:   H:3 num:t toc:nil \n:nil @:t ::t |:t ^:nil -:t f:t *:t <:t
+#+EXCLUDE_TAGS: noexport
+#+LATEX_HEADER: \usepackage{pgfpages}
+#+LATEX_HEADER: %\setbeameroption{show notes on second screen=right} 
+#+LATEX_HEADER: %\setbeameroption{show only notes} % goes with handout
 #+LATEX_HEADER: \input{org-babel-style-preembule.tex}
 #+LATEX_HEADER: %\let\tmptableofcontents=\tableofcontents
 #+LATEX_HEADER: %\def\tableofcontents{}
@@ -79,8 +83,8 @@ All these slides should be considered as an advertising for:\medskip
 #+BEGIN_QUOTE
   \small Take 20 eggs or more, and set them for brooding under two or more
   hens. Then on each day of incubation from the second to the last, that
-  of hatching, remove one egge and open it for examination. You will
-  find that everything aggrees with what I have said, to the extent that
+  of hatching, remove one egg and open it for examination. You will
+  find that everything agrees with what I have said, to the extent that
   nature of bird ought to be compared with that of a man.
 #+END_QUOTE
 #+LaTeX: \includegraphics[height=4.5cm]{images/harre/De_formatione_ovi_et_pulli.jpg}\qquad\pause
@@ -98,13 +102,6 @@ A natural process was isolated and *systematically observed*. Its
 # https://i.pinimg.com/originals/04/03/88/040388067a7d5d4039e12b8a395cf471.jpg
 # https://upload.wikimedia.org/wikipedia/commons/thumb/e/ed/William_Beaumont.jpg/466px-William_Beaumont.jpg
 
-# Fils de fermier Connecticut, aventureux, a quité sa maison avec un
-# cheval, un couteau, un tonnelet de cidre et 100$. Premier emploi
-# d'instituteur à Champlain, New York, apprend la médecine dans les
-# livres puis auprès d'un docteur dans le Vermont. Rejoint l'armée
-# lors de la guerre contre la grande bretaigne. À la fin, se retrouve
-# en poste à Mackinac, Michigan.
-
 #+LaTeX: \includegraphics[height=4.5cm]{images/harre/466px-William_Beaumont.jpg}\qquad\pause
 #+LaTeX: \includegraphics[height=4.5cm]{images/harre/beaumont_st_martin.jpg}
 #+LaTeX: \includegraphics[height=4.5cm]{images/harre/beaumont_1.png}
@@ -116,46 +113,45 @@ A natural process was isolated and *systematically observed*. Its
 - Digestion = cooking brought by the heat of stomach (coction),
   special vital force
 - 1662: van Helmont, acid + ferment
-*** William Beaumont: /The process of Digestion as Chemistry/
+
+**** Notes 
+:PROPERTIES:
+:BEAMER_ENV: note
+:END:
+\newline
+Son of a farmer in Connecticut. Adventurous, he left home with a
+horse, a cutter, a barrel of cider and $100. Worked as a schoolmaster
+in Champlain, New York. Learned medicine in books then apprenticed
+himself to a Dr in Vermont. J
+
+
+Joined the U.S. army during the war against Bretain. Was later posted
+in Fort Mackinac, Michigan around 1820
+
+*** WILLIAM Beaumont: /The process of Digestion as Chemistry/
 \small
 \vspace{3.2cm}
 
 *A logical and lengthy set of experiments*
 
 \vspace{-3.8cm}
-#+LaTeX: \hfill\includegraphics[height=4.5cm]{images/harre/beaumont_2.png}
+#+LaTeX: \hfill\includegraphics[height=4.3cm]{images/harre/beaumont_2.png}
 \vspace{-.7cm}
 
-- Gastric juice = solvent
-  #+BEGIN_QUOTE
+- Gastric juice = solvent\newline\bgroup\it
   capable *even out of the stomach* of effecting perfect digestion with
   the aid of due and uniform degree of heat (100°F) and gentle
   agitation. [..]
 
   I'm impelled by the weight of evidence to conclude that the change
-  affected by it on the aliments, is *purely chemical*
-  #+END_QUOTE
+  affected by it on the aliments, is *purely chemical*\egroup\vspace{-.5em}
 - *A unique walking apparatus*. /Only one stomach was ever involved/ but the
   scientific community never doubted that Beaumont's results applied
   to the stomachs of all mankind. No one questioned the principle that
   one stomach is very like another (*intensive design* vs. *extensive
   design*).
 ** Deciding between Rival Hypothesis
-# Conceptually speaking a deliberately contrived experiment can be
-# effective to evaluate a single hypothesis which entails a testable
-# prediction against a background of fixed theory.
-
-# In real sciences, hypotheses are usually tested in pairs, the one
-# conceived as a rival to the other.
-
-# Obviously, a truth of consequences does not prove the truth of the
-# hypothesis from which it follows, though the rival is eliminated as
-# false. Successful experiments still leave open the possibility for
-# further revision.
 *** \scalebox{.95}{Robert Norman: \it The discovery of Dim and the Field Concept}
-
-# Robert Norman was born in 1550. Navigator/sailor from 18-20,
-# Seville. Instrument maker.
 
 - The *dip*: an irritating anomaly
 
@@ -170,6 +166,27 @@ A natural process was isolated and *systematically observed*. Its
 - +Attraction+ : the Field and the 'wine glass' experiments with a
   needle floating in water
 Both a *refutation* and an *illustration* of the field concept.
+
+**** Notes 
+:PROPERTIES:
+:BEAMER_ENV: note
+:END:
+\newline
+Conceptually speaking a deliberately contrived experiment can be
+effective to evaluate a single hypothesis which entails a testable
+prediction against a background of fixed theory.
+
+In real sciences, hypotheses are usually tested in pairs, the one
+conceived as a rival to the other.
+
+Obviously, a truth of consequences does not prove the truth of the
+hypothesis from which it follows, though the rival is eliminated as
+false. Successful experiments still leave open the possibility for
+further revision.
+
+Robert Norman was born in 1550. Navigator/sailor from 18-20,
+Seville. Instrument maker.
+
 ** Finding the Form of a Law Inductively
 *** Galileo: /The Law of Descent/
 # http://tsgphysics.mit.edu/front/?page=demo.php&letnum=A%2018
@@ -188,7 +205,7 @@ mean velocity
 #+LaTeX: \scalebox{.9}{\begin{minipage}{5cm}\small\vspace{-1em}
 Merton's theorem \approx 14th century\medskip
 
-Galileo made a carefull distinction between *mathematical study* of
+Galileo made a careful distinction between *mathematical study* of
 motion and *empirical study* of movement\medskip
 
 A *demonstration* of the power of a theory
@@ -197,25 +214,6 @@ A *demonstration* of the power of a theory
 #+LaTeX: \rotatebox{90}{How Galileo \tiny(1564 - 1642)}\rotatebox{90}{demonstrated in 1603}~\includegraphics[height=3.5cm]{images/harre/Galileo-incline-expt.jpg}
 
 *** Robert Boyle: /The Measurement of the Spring of the Air/
-# Robert Boyle, Ireland, grew up in considerable affluence. Studies in
-# Eaton, Geneva where he decided to devote himself to science. While
-# watching a spectacular display of lightnings and wondering why he
-# was not stroke, he came to the conclusion God must have reserved him
-# for some special task. Self dedication to demonstrate God's majesty
-# by unravelling the secrets of nature.
-# Moved to Italy where he studied Galileo's work, came back to England
-# because of the civil war and was encouraged to study medicine and
-# hence got interested in chemistry while preparing drugs.
-# With Robert Hooke, they used a Torricellian tube.
-# - The greater the weight is, the more forcible is its endeavour of
-#   dilation 
-# - At this point the tube broke
-# - What would be the effect of heating or cooling the trapped air ?
-# - it sometimes seemed a little to shrink but not so manifestly tha
-#   we dare build anything upon it. However when the cautiously heated
-#   the closed end with a candle flame, the heat had a more sensible
-#   operation.
-
 
 # https://upload.wikimedia.org/wikipedia/commons/e/e7/Robert_boyle.jpg
 #+LaTeX: \includegraphics[height=4.4cm]{images/harre/Robert_boyle.jpg}
@@ -224,7 +222,7 @@ A *demonstration* of the power of a theory
 
 # \qquad 1627 - 1691
 
-*The study of gases priori to Boyle*
+*The study of gases prior to Boyle*
 - Nature and even the possibility of the \textit{vacuum}.
   # Toriccelli artificially created vacuum. Then why is it so unstable
   # and is there a tendency to fill empty spaces.
@@ -236,24 +234,35 @@ A *demonstration* of the power of a theory
   will hold universally and precisely [...] No one perhaps yet knows
   how near to an infinite compression the air may be capable of, if
   the compressing force can be competently increased.
+
+**** Notes 
+:PROPERTIES:
+:BEAMER_ENV: note
+:END:
+\newline
+\scriptsize
+Robert Boyle, Ireland, grew up in considerable affluence. Studies in
+Eaton, Geneva where he decided to devote himself to science. While
+watching a spectacular display of lightnings and wondering why he
+was not stroke, he came to the conclusion God must have reserved him
+for some special task. Self dedication to demonstrate God's majesty
+by unraveling the secrets of nature.
+
+Moved to Italy where he studied Galileo's work, came back to England
+because of the civil war and was encouraged to study medicine and
+hence got interested in chemistry while preparing drugs.
+With Robert Hooke, they used a Torricellian tube.
+- The greater the weight is, the more forcible is its endeavour of
+  dilation 
+- At this point the tube broke
+- What would be the effect of heating or cooling the trapped air ?
+- /it sometimes seemed a little to shrink but not so manifestly that we
+  dare build anything upon it./ /However when the cautiously heated the
+  closed end with a candle flame,/ /the heat had a more sensible
+  operation/.
+
 ** The use of Models to Simulate otherwise Unsearchable Processes
 *** Theodoric of Freibourg: /The causes of the Rainbow/
-# Theodoric, Germany a little before 1250. Member of the Dominican
-# Order. Religious orders were not inclined to encourage individuals
-# to pursuer privat interests. This may account for Theodoric's
-# apparent reticence for publishing his researches. He was encouraged
-# by the master of the order to make a systematic study of the
-# rainbow.  Although much of medieval science was a mere repetition of
-# material derived in a large part from the work of Aristotle, there
-# was a good deal of the highest work here and there. Theodoric's work
-# is among the most impressive. 
-# He gave up teacching in later life to devote hmself to Church ministry.
-# He used water-filled urine flasks. Drops are falling so rapidly that
-# they can be thought to be replacing each so rapidly that they are
-# equivalent to a stationnary curtain of globes.
-# Mistake in the computation of the elevation angle (22° instead of
-# 42°). Serious error in drawing the sun roughly at the same distance
-# as the observer.
 - How are colours formed and why are they always in the same order?
 - Why does it have such a unvarying geometrical form?
 
@@ -268,47 +277,34 @@ A *demonstration* of the power of a theory
 #+LaTeX:    $\leftarrow$ \textit{De Iride}, 1304-1311}
 #+LaTeX: \end{tabular}
 
-A wildly wrong theory of colors though *carefully* and honnestly *verified by experience*
+A wildly wrong theory of colors though *carefully* and honestly *verified by experience*
 
+**** Notes 
+:PROPERTIES:
+:BEAMER_ENV: note
+:END:
+\newline
+Theodoric, Germany a little before 1250. Member of the Dominican
+Order. Religious orders were not inclined to encourage individuals
+to pursue private interests. This may account for Theodoric's
+apparent reticence for publishing his researches. He was encouraged
+by the master of the order to make a systematic study of the
+rainbow.  Although much of medieval science was a mere *repetition* of
+material derived in a large part from the work of Aristotle, there
+was a good deal of the highest work here and there. Theodoric's work
+is among the most impressive. 
+
+He gave up teaching in later life to devote himself to Church ministry.
+
+He used *water-filled urine flasks*. Drops are falling so rapidly that
+they can be thought to be replacing each so rapidly that they are
+equivalent to a *stationary curtain* of globes.
+
+Mistake in the computation of the elevation angle (22° instead of
+42°): *serious error* in drawing the sun roughly at the same distance as
+the observer.
 ** Exploiting an Accident
 *** Louis Pasteur: /The preparation of Artificial Vaccines/
-# Jura in 1822. Son of a tanneur, rated as an indefferent pupil but
-# ambitious for recognition and determined to acquire it by hard
-# work. Difficulties for entering the Hautes Écoles in Paris but
-# finally entered the Ecole Normale where he was even appointed as an
-# assistant in 1847 after his aggregation and doctorate and even
-# director in 1857.
-#
-# Early work in crystallography but interested in biology, convinced
-# that asymmetry and life were connected manifestations. Came to the
-# germ theory by generalizing that a yeast was necessary to all
-# fermentation.
-#
-# Already existing vaccine for smallpox by Jenner.  Epidemics came and
-# went. Diseases were more or less severe but Paster had realized that
-# different cultures of had different virulence. 
-#
-# Studied chicken cholera for which a characteristic microbe in the
-# blood of infected chickens was already identified. Used chicken
-# broth as a medium to cultivate the microbe. After returning from
-# vacation, he resumed his experiments by injecting the old broth but
-# nothing happened.When reinfecting the same hen with a fresh culture,
-# they did not develop the disease.
-# 
-# For interval of over a month between reseeding, there is no
-# attenuation but afte that, the longer the gap the greater the
-# attenuation. Sealed some tubes with low oxygen. OK but still no real
-# explanation (no difference in the eye working through a microscope).
-#
-# The attenuated form can be obtained from the very virulent one
-# although the fundamental nature of each is the same.
-#
-# From the biology point of view of the micro-organisms, the host is
-# just another environment (no diff between the host and the
-# broth). Finding the right medium and how to let it attenuate is
-# very tricky.
-
-
 *Disease theory before Pasteur*
 - van Helmont (1626) proposed that diseases should be looked as the
   effect of an invasion of the body by an army of alien beings
@@ -325,24 +321,56 @@ A wildly wrong theory of colors though *carefully* and honnestly *verified by ex
 #+LaTeX: Define virulence and study it \alert{systematically}
 #+LaTeX: }\end{column}\end{columns}
 
+**** Notes 
+:PROPERTIES:
+:BEAMER_ENV: note
+:END:
+\newline \scriptsize
+Jura in 1822. Son of a tanner, rated as an indifferent pupil but
+ambitious for recognition and determined to acquire it by hard
+work. Difficulties for entering the Hautes Écoles in Paris but
+finally entered the École Normale where he was even appointed as an
+assistant in 1847 after his aggregation and doctorate and even
+director in 1857.
+
+Early work in *crystallography* but interested in *biology*, convinced
+that asymmetry and life were connected manifestations. Came to the
+germ theory by generalizing that a yeast was necessary to all
+fermentation.
+
+*Already existing vaccine* for smallpox by Jenner.  Epidemics came and
+went. Diseases were more or less severe but Pasteur had realized that
+*different cultures had different virulence*. 
+
+Studied chicken cholera for which a characteristic microbe in the
+blood of infected chickens was already identified. Used chicken
+broth as a medium to cultivate the microbe. After returning from
+vacation, he resumed his experiments by injecting the old broth but
+nothing happened. When reinfecting the same hen with a fresh culture,
+they did not develop the disease.
+
+For interval of over *a month* between reseeding, there is *no
+attenuation* but after that, the longer the gap the greater the
+attenuation. *Sealed some tubes with low oxygen*. OK but still no real
+explanation (*no difference in the eye* working through a microscope).
+
+The attenuated form can be obtained from the very virulent one
+although *the fundamental nature of each is the same*.
+
+From the biology point of view of the micro-organisms, the host is
+just another environment (no diff between the host and the
+broth). Finding the right medium and how to let it attenuate is
+very tricky.
 
 ** Null Results
 *** Michelson and Morlay: /The Impossibility of Detecting the Motion of the Earth/
 # https://upload.wikimedia.org/wikipedia/commons/f/f4/Michelson_morley_experiment_1887.jpg
 # https://upload.wikimedia.org/wikipedia/commons/thumb/f/fb/On_the_Relative_Motion_of_the_Earth_and_the_Luminiferous_Ether_-_Fig_4.png/483px-On_the_Relative_Motion_of_the_Earth_and_the_Luminiferous_Ether_-_Fig_4.png
 # http://www.wikiwand.com/en/Fizeau%E2%80%93Foucault_apparatus
-\small
-# astrological observation, by Olaus Raumer in 1675: the interval
-# between eclipses of the moons of Jupyter are different when the
-# Earth is approaching or receading from Jupyter. Larger distance
-# implies larger time if finite velocity.
-# 
 # https://d2vlcm61l7u1fs.cloudfront.net/media/756/7569cf70-89fa-4b9e-8b50-d5bd22fe9e1e/php3mEms6.png
-#
-# Expected to measure a spead difference for both arms. Detection
-# through interference. Fringe interference because of different wavelength.
-# Legend: (a) lightsource (b) silvered glass plate (c) unsilvered
-# glass plate (d) mirrors (e) adjustable mirror (f) telescope
+
+\small
+
 *The situation prior the Michelson-Morley experiment*\vspace{-.6em}
 - Light must have a finite velocity (thought as stream of particles,
   evidence from astrological observation, 1675)\vspace{-.8em}
@@ -365,11 +393,26 @@ A wildly wrong theory of colors though *carefully* and honnestly *verified by ex
 - Maybe the apparatus contracts itself (intra-molecular forces could
   be transmitted through the ether)\vspace{-.6em}
 - Einstein's reformulation of Physics laws
+
+**** Notes 
+:PROPERTIES:
+:BEAMER_ENV: note
+:END:
+\newline
+Previous astrological observation, by Olaus Raumer in 1675: the interval
+between eclipses of the moons of Jupyter are different when the
+Earth is approaching or receding from Jupyter. Larger distance
+implies larger time if finite velocity.
+
+Expected to measure a speed difference for both arms. Detection
+through interference. Fringe interference because of different wavelength.
+Legend: (a) light source (b) silvered glass plate (c) unsilvered
+glass plate (d) mirrors (e) adjustable mirror (f) telescope
 * Developing the Content of a Theory (*one day maybe*)
-** Finding the Hiden Mechanism of a Known Effect
+** Finding the Hidden Mechanism of a Known Effect
 ** Existence Proofs
-** The Decomposition of an Apparently Simple Phenomeno
-** The Demonstration of Unerlying Unity within Apparent Variety
+** The Decomposition of an Apparently Simple Phenomenon
+** The Demonstration of Underlying Unity within Apparent Variety
 * Technique (*one day maybe*)
 ** Accuracy and Care in Manipulation
 ** The Power and Versatility of Apparatus

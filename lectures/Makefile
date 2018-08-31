@@ -29,4 +29,6 @@ include LaTeX.mk
 	rm $@.bak
 
 
+lecture_great_scientific_experiments_notes.tex: lecture_great_scientific_experiments.tex
+	sed -e 's/,presentation/,handout/' -e 's/usepackage{pgfpages}/usepackage{pgfpages}\\setbeameroption{show only notes}/' $^ >> $@
 # grep includegraphics talk_17_02_08_Inria_comdir.tex | sed -e 's/.*includegraphics[^{]*{//' -e 's/}.*$//g
