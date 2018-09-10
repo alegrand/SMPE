@@ -25,8 +25,9 @@
 #+LaTeX: \input{org-babel-document-preembule.tex}
 #+LaTeX: %\let\tableofcontents=\tmptableofcontents
 #+LaTeX: %\tableofcontents
-* The Reproducible Research Movement
-** How does it work in other sciences?
+* Science crisis ?
+# #+LaTeX: \input{org-babel-document-preembule.tex}
+# #+LaTeX: \begin{frame}{Outline}\tableofcontents\end{frame}
 *** Inconsistencies
 #+LaTeX: \only<1>{
 [[http://ajcn.nutrition.org/content/early/2012/11/27/ajcn.112.047142.full.pdf][Is everything we eat associated with cancer? A systematic cookbook
@@ -34,41 +35,258 @@ review]], Schoenfeld and Ioannidis, /Amer. Jour. of Clinical
 Nutrition/, 2013.
 #+LaTeX:}\pause\vspace{-.3cm}%
 #+BEGIN_CENTER
-#+ATTR_LaTeX: :width .65\linewidth
+#+ATTR_LaTeX: :width .7\linewidth
 file:images/Medical_studies-05.0.png
 #+END_CENTER
 
 *** Public evidence for a Lack of Reproducibility
 \small
-#+LaTeX: \begin{overlayarea}{\linewidth}{8cm}
-#+LaTeX:   \vspace{-.6cm}
+#+LaTeX: \vspace{-.3cm}\begin{overlayarea}{\linewidth}{8cm}
 #+LaTeX:   \begin{overlayarea}{\linewidth}{0cm}
-#+LaTeX:    ~\hspace{.05\linewidth}\includegraphics[width=\linewidth]{images/reproducibility_crisis_headlines.pdf}
+#+LaTeX:    \vspace{.4cm}~\hspace{.05\linewidth}\includegraphics[width=\linewidth]{images/reproducibility_crisis_headlines.pdf}
 #+LaTeX:    \end{overlayarea}
 #+LaTeX:    \begin{overlayarea}{\linewidth}{0cm}
-#+LaTeX:    \vspace{1cm}
+#+LaTeX:    \vspace{2cm}
 #+LaTeX:    \hspace{-1cm}\only<2>{\includegraphics[height=6.2cm]{images/john_oliver_science.png}}\newline
 #+LaTeX:     \begin{overlayarea}{.7\linewidth}{0cm}
-#+LaTeX:       ~\vspace{-2cm}
+#+LaTeX:       ~\vspace{-2.5cm}
 #+LaTeX:       \only<2>{\href{https://www.youtube.com/watch?v=0Rnq1NpHdmw}{Last Week Tonight with John Oliver:}}\newline
 #+LaTeX:       \only<2>{\href{https://www.youtube.com/watch?v=0Rnq1NpHdmw}{Last Week Tonight with John Oliver:}}\newline
-#+LaTeX:       \only<2>{\href{https://www.youtube.com/watch?v=0Rnq1NpHdmw}{Scientific Studies (HBO), May 2016}}
+#+LaTeX:       \only<2>{\href{https://www.youtube.com/watch?v=0Rnq1NpHdmw}{Scientific Studies (HBO), May 2016}}\newline\newline
 #+LaTeX:     \end{overlayarea}
 #+LaTeX:    \end{overlayarea}\vspace{-.6cm}
-- J.P. Ioannidis. /[[http://www.plosmedicine.org/article/info:doi/10.1371/journal.pmed.0020124][Why Most Published Research Findings Are False]]/\newline
-  PLoS Med. 2005.
-- /[[http://mescal.imag.fr/membres/arnaud.legrand/teaching/2011/EP_lies.pdf][Lies, Damned Lies, and Medical Science]]/, The Atlantic. Nov, 2010
+- J.P. Ioannidis. /[[http://www.plosmedicine.org/article/info:doi/10.1371/journal.pmed.0020124][Why Most Published Research Findings Are False]]/
+  PLoS Med. 2005.\vspace{-.6em}
+- /[[http://mescal.imag.fr/membres/arnaud.legrand/teaching/2011/EP_lies.pdf][Lies, Damned Lies, and Medical Science]]/, The Atlantic. \newline Nov, 2010
 # - [[http://www.nature.com/news/reproducibility-a-tragedy-of-errors-1.19264][/Reproducibility: A tragedy of errors/]], \newline Nature, Feb 2016.\bigskip
 # - Steen RG, [[http://dx.doi.org/10.1136/jme.2010.040923][Retractions in the scientific]]\newline [[http://dx.doi.org/10.1136/jme.2010.040923][literature: is the
 #   incidence of research]] \newline [[http://dx.doi.org/10.1136/jme.2010.040923][fraud increasing?]]. J. Med. Ethics 37, 2011
 #+LaTeX: \end{overlayarea}
-#+LaTeX: \vspace{-1.5cm}~\begin{flushright}\scriptsize \bf Courtesy V. Stodden, SC, 2015\end{flushright}%\hspace{.05\linewidth}\null
+#+LaTeX: \vspace{-.5cm}~\begin{flushright}\scriptsize \bf Courtesy V. Stodden, SC, 2015\end{flushright}%\hspace{.05\linewidth}\null
 
-** 
+*** Austerity in Fiscal Policy
+-   2010 ::
+  #+BEGIN_QUOTE
+  \small "gross debt [..] exceeding 90 percent of the economy has a
+  significant negative effect on economic growth"
+  
+  \hfill -- [[https://en.wikipedia.org/wiki/Growth_in_a_Time_of_Debt][Reinhart et Rogoff]]: Growth in a Time of Debt
+  #+END_QUOTE
+  \medskip
+-   2013 :: 
+  #+BEGIN_QUOTE
+  \small /While using RR's working spreadsheet, we identified *coding
+  errors*, *selective exclusion* of/ /available data, and *unconventional*
+  weighting of summary *statistics*./
+
+  \hfill -- Herndon, Ash and Pollin
+  #+END_QUOTE
+  \medskip
+  #+BEGIN_QUOTE
+  \small /combining data across centuries, exchange rate regimes, public
+  and private/ /debt, and debt denominated in foreign currency as well
+  as domestic currency/ 
+
+  \hfill -- Wray
+  #+END_QUOTE
+
+For 3 years, austerity was not presented as an option but as a necessity.
+\medskip
+
+Yet, a scientific debate has at least been possible.
+*** FRMI
+#+LaTeX: \centering{\includegraphics[width=.5\linewidth]{images/FRMI.jpg}}
+
+- 2010: [[https://www.researchgate.net/publication/255651552_Neural_correlates_of_interspecies_perspective_taking_in_the_post-mortem_Atlantic_Salmon_an_argument_for_multiple_comparisons_correction][Bennett et al. and the dead salmon]] $\smiley$
+- 2016: [[http://www.pnas.org/content/113/28/7900.abstract][Eklund, Nichols, and Knutsson]]. [[http://www.sciencealert.com/a-bug-in-fmri-software-could-invalidate-decades-of-brain-research-scientists-discover][A bug in fmri software could
+  invalidate 15 years of brain research]] (/40,000 articles/, although it
+  is a bit [[https://www.cogneurosociety.org/debunking-the-myth-that-fmri-studies-are-invalid/][more subtle than this]]).
+- 2016: [[http://blogs.warwick.ac.uk/nichols/entry/bibliometrics_of_cluster/][Nichols]]. /\approx 3 600 articles may have to be revisited for
+  confirmation./
+
+These article do not necessarily invalidate everything but force the
+community to improve their practice.
+*** Geoffray Chang's incorrect protein structures
+#+BEGIN_EXPORT latex
+  \begin{columns}
+    \begin{column}{.37\linewidth}
+       \includegraphics[width=\linewidth]{images/Chang_proteins.png}
+    \end{column}\hfill
+    \begin{column}{.6\linewidth}
+#+END_EXPORT
+*Geoffrey Chang* (Scripps, UCSD) works on crystalography and studies the
+structure of cell membrane proteins. 
+
+He specialized in structures of *multidrug resistant transporter
+proteins in bacteria*: MsbA de Escheria Choli (Science, 2001), Vibrio
+cholera (Mol. Biology, 2003), Salmonella typhimurium (Science, 2005)
+\bigskip
+#+BEGIN_EXPORT latex
+    \end{column}
+  \end{columns}
+#+END_EXPORT
+
+*2006*: Inconsistencies reveal [[https://people.ligo-wa.caltech.edu/~michael.landry/calibration/S5/getsignright.pdf][a programming mistake]] \newline\vspace{-1em}
+   #+BEGIN_QUOTE
+   a homemade data-analysis program had flipped two columns of data,
+   inverting the electron-density map from which his team had derived
+   the protein structure.
+   #+END_QUOTE
+\medskip
+
+\textbf{5 retractations} that motivate improved software engineering
+practices in computational biology
+
+*** A Reproducibility Crisis? What are the Consequences ?
+# #+LaTeX: \begin{overlayarea}{\linewidth}{7.6cm}\null\vspace{-.4cm}
+*[[http://www.nytimes.com/2011/07/08/health/research/08genes.html][The Duke University scandal with scientific misconduct on lung
+cancer]]*
+
+\vspace{-.2cm}\small
+- /Nature Medicine/ - 12, 1294 - 1300 (2006) *Genomic signatures to
+  guide the use of chemotherapeutics*, by
+  #+LaTeX: \bgroup\scriptsize
+  Anil Potti and 16 other researchers from Duke University and
+  University of South Florida
+  #+LaTeX: \egroup\vspace{-.2cm}
+- Major commercial labs licensed it and were about to start using it
+  before two statisticians discovered and publicized its faults
+  #+BEGIN_EXPORT latex
+  \begin{block}{}\scriptsize
+  Dr. Baggerly and Dr. Coombes found errors almost immediately. Some seemed careless — moving a row or a column over by one in a giant spreadsheet — while others seemed inexplicable. The Duke team shrugged them off as “clerical errors.”
+  \end{block}
+
+  \begin{block}{}\scriptsize
+  The Duke researchers continued to publish papers on their genomic signatures in prestigious journals. Meanwhile, they started three trials using the work to decide which drugs to give patients.
+  \end{block}
+  #+END_EXPORT
+- Retractions: January 2011. [[http://en.wikipedia.org/wiki/Anil_Potti][Ten papers that Potti coauthored in
+  prestigious journals were retracted for varying reasons]]
+# - Some people die and may be getting worthless information that is
+#   based on *bad science*
+# #+LaTeX: \end{overlayarea} \begin{flushright}\scriptsize Courtesy of Adam J. Richards\end{flushright}
+*** Well... Stronger and Stronger Consequences
+- A recent scandal ::
+  In 2013, [[https://en.wikipedia.org/wiki/Dong-Pyou_Han][/Dong-Pyou Han/]], a former assistant professor of biomedical
+     sciences at Iowa State University was disgraced:\footnotesize
+  - Falsified blood results to make it appear as though a vaccine he was
+    working on had exhibited anti-HIV activity
+  - Han and his team received 
+    #+LaTeX: $\approx \$19$ million from NIH
+  - Retraction and resignation of university
+  \small Han was sentenced in 2015 to 57 months imprisonment for fabricating
+  and falsifying data in HIV vaccine trials. 
+  #+LaTeX: \uline{He was also fined US $\$7.2$ million!}
+- \normalsize We should avoid witch-hunt :: 
+  #+LaTeX: ~\footnotesize
+  - August 5, 2014, Yoshiki Sasai (stem cell, considered for Nobel
+    Prize) hanged in his laboratory at the RIKEN
+    (Japan). Fraud suspicion...
+  - In 1986, a young postdoctoral fellow at MIT accused her director,
+    Thereza Imanishi-Kari, of falsifying the results of a study
+    published in Cell and co-signed by the Nobel laureate David
+    Baltimore. [..] Declared guilty, Univ. presidency resignation, and
+    finally cleared. This put the careers of two outstanding
+    researchers on hold for ten years based on unfounded accusations.
+- \normalsize Scientific fraud is bad but let's be careful :: \footnotesize
+     Have a look at the wikipedia [[https://en.wikipedia.org/wiki/Category:Academic_scandals][/list of academic scandals/]].
+
+     # On a totally different aspect, do not forget to also have a look at
+     # the [[https://en.wikipedia.org/wiki/Plagiarism][/plagiarism/]] and [[https://en.wikipedia.org/wiki/Paper_generator][/paper generation/]] entries at [[https://hal.inria.fr/file/index/docid/713564/filename/TechReportV2.pdf][/having fun
+     # with h-index/]]
+*** Is Fraud a new phenomenon?
+#+BEGIN_CENTER
+   [[http://www.cnrs.fr/fr/pdf/cim/CIM36.pdf][/The Battle against Scientific Fraud/ in the CNRS International
+   Magazine]]
+#+END_CENTER
+#+BEGIN_EXPORT latex
+  \begin{columns}
+    \begin{column}{.37\linewidth}
+      \includegraphics[width=\linewidth]{images/CNRS_CIM_36_biomed_fraud.png}
+    \end{column}\hfill
+    \begin{column}{.6\linewidth}
+      \begin{center}
+        \includegraphics[width=.7\linewidth]{images/CNRS_CIM_36_scientists.pdf}
+      \end{center}\vspace{-1em}
+#+END_EXPORT
+\small Galileo (data fabrication), Ptolemy (plagiarism), Mendel (data
+enhancement), [[http://lascienceenfraude.blogspot.fr/2012/05/limposture-de-pasteur.html][Pasteur]] (rigorous but hided failures), ...
+#+BEGIN_EXPORT latex
+    \end{column}
+  \end{columns}
+#+END_EXPORT
+#+BEGIN_CENTER
+   *Is it only a matter of Fraud ?*
+#+END_CENTER
+*** Why are scientific studies so difficult to reproduce?
+#+BEGIN_EXPORT latex
+\vspace{-.7cm}
+\null\hspace{-.2cm}\hbox{
+\begin{columns}
+  \begin{column}{.4\linewidth}
+    \begin{overlayarea}{\linewidth}{8cm}
+      \includegraphics[scale=.21]{images/reproducibility-graphic-online2.jpg}\\
+      \includegraphics[scale=.21]{images/reproducibility-graphic-online3.jpg}
+      % \includegraphics<3>[scale=.25]{images/reproducibility-graphic-online4.jpg}%
+      % \includegraphics<4>[scale=.25]{images/reproducibility-graphic-online5.jpg}
+    \end{overlayarea}
+  \end{column}\hspace{-.2cm}%
+  \begin{column}{.66\linewidth}\begin{overlayarea}{\linewidth}{8cm}\vspace{-.7em}
+#+END_EXPORT
+[[http://www.nature.com/news/1-500-scientists-lift-the-lid-on-reproducibility-1.19970][1,500 scientists lift the lid on reproducibility]], Nature, May 2016
+
+\normalsize _*Social causes*_ \small
+- Fraud, conflict of interest (pharmaceutic, \dots)
+- *No incentive* to reproduce/check our own work (afap), nor the
+  work of others (big results!), nor to allow others to check
+  (competition)
+- Peer review does not scale: 1+ million articles per year!
+_*Methodological or technical causes*_ \small
+- The many biases (apophenia, confirmation, hindsight,
+  experimenter, ...): *bad designs*
+- Selective reporting, weak analysis (*statistics*, *data manipulation
+  mistakes*, *computational errors*)
+- *Lack of information, code/raw data unavailable*  
+
+#+BEGIN_EXPORT latex
+    \end{overlayarea}
+  \end{column}
+\end{columns}}
+#+END_EXPORT
+*** Wrap-up
+#+BEGIN_EXPORT latex
+\vspace{-.5cm}%
+\begin{columns}
+  \begin{column}{.6\linewidth}
+#+END_EXPORT
+- [[http://www.nature.com/nrd/journal/v10/n9/full/nrd3439-c1.html?foxtrotcallback=true][Oncology]] : "/more than half studies published in prestigious
+  journals cannot be reproduced in industrial labs/"
+- [[http://theconversation.com/we-found-only-one-third-of-published-psychology-research-is-reliable-now-what-46596][Psychology]] : "/replicating a hundred of major articles: only one
+  third of coherent results/"
+#+BEGIN_EXPORT latex
+  \end{column}
+  \begin{column}{.4\linewidth}
+  \includegraphics[width=\linewidth]{images/in_science_we_trust.jpg}
+  \end{column}  
+\end{columns}\medskip
+#+END_EXPORT
+
+#+BEGIN_CENTER
+*Whistle blowers, sick institutions, broken system, ?..*
+#+END_CENTER
+
+No. *Questionning* previous work is part of the scientific
+process\medskip
+
+Just like *honesty*, _*rigor* and *transparency*_...
+
+- Risks :: science credibility put into question. No more
+            difference with crooks!
+** Old slides                                                     :noexport:
 \includeslidesJF{2-7}
 # \includeslidesJF{11-14}
 # \includeslidesMG{26}
-*** \scalebox{.95}{Reproducibility of experimental results is the hallmark of science}
+*** \scalebox{.95}{Reproducibility of experimental results is the hallmark of science} :noexport:
 #+BEGIN_EXPORT latex
 \vspace{-.4em}
 \begin{tabular}{@{\hspace{-1em}}c@{\hspace{-1em}}c@{\hspace{-.6em}}c@{}}
@@ -154,192 +372,37 @@ Springer
     incidence of research fraud increasing?]]/ J Med Ethics 37:
     249–253.
 #+LaTeX: \end{overlayarea} \begin{flushright}\scriptsize Courtesy of Adam J. Richards\end{flushright}
-*** A Reproducibility Crisis?
-#+LaTeX: \begin{overlayarea}{\linewidth}{7.6cm}\null\vspace{-.4cm}
-*[[http://www.nytimes.com/2011/07/08/health/research/08genes.html][The Duke University scandal with scientific misconduct on lung
-cancer]]*
-
-\vspace{-.2cm}\small
-- /Nature Medicine/ - 12, 1294 - 1300 (2006) *Genomic signatures to
-  guide the use of chemotherapeutics*, by
-  #+LaTeX: \bgroup\scriptsize
-  Anil Potti and 16 other researchers from Duke University and
-  University of South Florida
-  #+LaTeX: \egroup\vspace{-.2cm}
-- Major commercial labs licensed it and were about to start using it
-  before two statisticians discovered and publicized its faults
-  #+BEGIN_EXPORT latex
-  \begin{block}{}\scriptsize
-  Dr. Baggerly and Dr. Coombes found errors almost immediately. Some seemed careless — moving a row or a column over by one in a giant spreadsheet — while others seemed inexplicable. The Duke team shrugged them off as “clerical errors.”
-  \end{block}
-
-  \begin{block}{}\scriptsize
-  The Duke researchers continued to publish papers on their genomic signatures in prestigious journals. Meanwhile, they started three trials using the work to decide which drugs to give patients.
-  \end{block}
-  #+END_EXPORT
-- Retractions: January 2011. [[http://en.wikipedia.org/wiki/Anil_Potti][Ten papers that Potti coauthored in
-  prestigious journals were retracted for varying reasons]]
-- Some people die and may be getting worthless information that is
-  based on *bad science*
-#+LaTeX: \end{overlayarea} \begin{flushright}\scriptsize Courtesy of Adam J. Richards\end{flushright}
-*** Definitely
-- A recent scandal ::
-  In 2013, [[https://en.wikipedia.org/wiki/Dong-Pyou_Han][/Dong-Pyou Han/]], a former assistant professor of biomedical
-     sciences at Iowa State University was disgraced:\footnotesize
-  - Falsified blood results to make it appear as though a vaccine he was
-    working on had exhibited anti-HIV activity
-  - Han and his team received 
-    #+LaTeX: $\approx \$19$ million from NIH
-  - Retraction and resignation of university
-  - Han was sentenced in 2015 to 57 months imprisonment for
-    fabricating and falsifying data in HIV vaccine trials. He was also
-    fined US 
-    #+LaTeX: $\$7.2$ million!
-- \normalsize We should avoid witch-hunt :: 
-  #+LaTeX: ~\footnotesize
-  - August 5, 2014, Yoshiki Sasai (stem cell, considered for Nobel
-    Prize) hanged in his laboratory at the RIKEN
-    (Japan). Fraud suspicion...
-  - In 1986, a young postdoctoral fellow at MIT accused her director,
-    Thereza Imanishi-Kari, of falsifying the results of a study
-    published in Cell and co-signed by the Nobel laureate David
-    Baltimore. [..] Declared guilty, Univ. presidency resignation, and
-    finally cleared. This put the careers of two outstanding
-    researchers on hold for ten years based on unfounded accusations.
-- \normalsize Scientific fraud is bad but let's be careful :: \footnotesize Have a look at the
-     wikipedia [[https://en.wikipedia.org/wiki/Category:Academic_scandals][/list of academic scandals/]]. On a totally different
-     aspect, do not forget to also have a look at the [[https://en.wikipedia.org/wiki/Plagiarism][/plagiarism/]] and
-     [[https://en.wikipedia.org/wiki/Paper_generator][/paper generation/]] entries at [[https://hal.inria.fr/file/index/docid/713564/filename/TechReportV2.pdf][/having fun with h-index/]]
-#+BEGIN_CENTER
-   [[http://www.cnrs.fr/fr/pdf/cim/CIM36.pdf][/The Battle against Scientific Fraud/ in the CNRS International
-   Magazine]]
-#+END_CENTER
-*** Is Fraud a new phenomenon?
+* Is Computer Science Really Concerned With This?
+#+LaTeX: \begin{frame}{Outline}\tableofcontents[current]\end{frame}
+*** Computational science!
+#+LaTeX: \includegraphics<+>[width=\linewidth]{images/iceberg_publication-1.png}%
+#+LaTeX: \includegraphics<+>[width=\linewidth]{images/iceberg_publication-2.png}%
+#+LaTeX: \includegraphics<+>[width=\linewidth]{images/iceberg_publication-3.png}%
+#+LaTeX: \includegraphics<+>[width=\linewidth]{images/iceberg_publication-4.png}%
+#+LaTeX: \includegraphics<+>[width=\linewidth]{images/iceberg_publication-5.png}%
+#+LaTeX: ~\\
+#+BEGIN_QUOTE
+Today the computer is just as important a tool for chemists as the
+test tube. Simulations are so realistic that they predict the outcome
+of traditional experiments...
 #+BEGIN_EXPORT latex
-  \begin{columns}
-    \begin{column}{.37\linewidth}
-      \includegraphics[width=\linewidth]{images/CNRS_CIM_36_biomed_fraud.png}
-    \end{column}\hfill
-    \begin{column}{.6\linewidth}
-      \begin{center}
-        \includegraphics[width=.7\linewidth]{images/CNRS_CIM_36_scientists.pdf}
-      \end{center}\vspace{-1em}
+  \begin{flushright}
+    -- Nobel Comity (Chemistry), 2013
+  \end{flushright}
 #+END_EXPORT
-- Galileo (data fabrication), Ptolemy (plagiarism), Mendel (data
-  enhancement), [[http://lascienceenfraude.blogspot.fr/2012/05/limposture-de-pasteur.html][Pasteur]] (rigorous but hided failures), ...
-#+BEGIN_EXPORT latex
-    \end{column}
-  \end{columns}
-#+END_EXPORT
-#+BEGIN_CENTER
-   *Is it only a matter of Fraud ?*
-#+END_CENTER
-*** Austerity in Fiscal Policy
-- 2010 ::
-  #+BEGIN_QUOTE
-  "gross debt [..] exceeding 90 percent of the economy has a
-  significant negative effect on economic growth"
-  
-  \hfill -- [[https://en.wikipedia.org/wiki/Growth_in_a_Time_of_Debt][Reinhart et Rogoff]]: Growth in a Time of Debt
-  #+END_QUOTE
+#+END_QUOTE
+*** Aren't Computers Good for Science ?
+[[http://theconversation.com/how-computers-broke-science-and-what-we-can-do-to-fix-it-49938][How computers broke science -- and what we can do to fix it]]. 
 
-- 2013 :: 
-  #+BEGIN_QUOTE
-  /While using RR's working spreadsheet, we identified *coding
-  errors*, *selective exclusion* of/ /available data, and *unconventional*
-  weighting of summary *statistics*./
-
-  \hfill -- Herndon, Ash and Pollin
-  #+END_QUOTE
-  #+BEGIN_QUOTE
-  /combining data across centuries, exchange rate regimes, public
-  and private/ /debt, and debt denominated in foreign currency as well
-  as domestic currency/ 
-
-  \hfill -- Wray
-  #+END_QUOTE
-
-For 3 years, austerity was not presented as an option but as a necessity.
-\medskip
-Yet, a scientific debate has at least been possible.
-*** FRMI
-#+LaTeX: \centering{\includegraphics[width=.5\linewidth]{images/FRMI.jpg}}
-
-- 2010: [[https://www.researchgate.net/publication/255651552_Neural_correlates_of_interspecies_perspective_taking_in_the_post-mortem_Atlantic_Salmon_an_argument_for_multiple_comparisons_correction][Bennett et al. and the dead salmon]] $\smiley$
-- 2016: [[http://www.pnas.org/content/113/28/7900.abstract][Eklund, Nichols, and Knutsson]]. [[http://www.sciencealert.com/a-bug-in-fmri-software-could-invalidate-decades-of-brain-research-scientists-discover][A bug in fmri software could
-  invalidate 15 years of brain research]] (/40,000 articles/, although it
-  is a bit [[https://www.cogneurosociety.org/debunking-the-myth-that-fmri-studies-are-invalid/][more subtle than this]]).
-- 2016: [[http://blogs.warwick.ac.uk/nichols/entry/bibliometrics_of_cluster/][Nichols]]. /\approx 3 600 articles may have to be revisited for
-  confirmation./
-
-These article do not necessarily invalidate everything but force the
-community to improve their practice.
-*** Geoffray Chang's incorrect protein structures
-#+BEGIN_EXPORT latex
-  \begin{columns}
-    \begin{column}{.37\linewidth}
-       \includegraphics[width=\linewidth]{images/Chang_proteins.png}
-    \end{column}\hfill
-    \begin{column}{.6\linewidth}
-#+END_EXPORT
-*Geoffrey Chang* (Scripps, UCSD) works on crystalography and studies the
-structure of cell membrane proteins. 
-
-He specialized in structures of *multidrug resistant transporter
-proteins in bacteria*: MsbA de Escheria Choli (Science, 2001), Vibrio
-cholera (Mol. Biology, 2003), Salmonella typhimurium (Science, 2005)
-\bigskip
-#+BEGIN_EXPORT latex
-    \end{column}
-  \end{columns}
-#+END_EXPORT
-
-*2006*: Inconsistencies reveal [[https://people.ligo-wa.caltech.edu/~michael.landry/calibration/S5/getsignright.pdf][a programming mistake]] \newline\vspace{-1em}
-   #+BEGIN_QUOTE
-   a homemade data-analysis program had flipped two columns of data,
-   inverting the electron-density map from which his team had derived
-   the protein structure.
-   #+END_QUOTE
-\medskip
-
-\textbf{5 retractations} that motivate improved software engineering
-practices in computational biology
-*** Why are scientific studies so difficult to reproduce?
-#+BEGIN_EXPORT latex
-\vspace{-.7cm}
-\null\hspace{-.2cm}\hbox{
-\begin{columns}
-  \begin{column}{.4\linewidth}
-    \begin{overlayarea}{\linewidth}{8cm}
-      \includegraphics[scale=.21]{images/reproducibility-graphic-online2.jpg}\\
-      \includegraphics[scale=.21]{images/reproducibility-graphic-online3.jpg}
-      % \includegraphics<3>[scale=.25]{images/reproducibility-graphic-online4.jpg}%
-      % \includegraphics<4>[scale=.25]{images/reproducibility-graphic-online5.jpg}
-    \end{overlayarea}
-  \end{column}\hspace{-.2cm}%
-  \begin{column}{.66\linewidth}\begin{overlayarea}{\linewidth}{8cm}\vspace{-.7em}
-#+END_EXPORT
-[[http://www.nature.com/news/1-500-scientists-lift-the-lid-on-reproducibility-1.19970][1,500 scientists lift the lid on reproducibility]], Nature, May 2016
-
-\normalsize _*Social causes*_ \small
-- Fraud, conflict of interest (pharmaceutic, \dots)
-- *No incentive* to reproduce/check our own work (afap), nor the
-  work of others (big results!), nor to allow others to check
-  (competition)
-- Peer review does not scale: 1+ million articles per year!
-_*Methodological or technical causes*_ \small
-- The many biases (apophenia, confirmation, hindsight,
-  experimenter, ...): *bad designs*
-- Selective reporting, weak analysis (*statistics*, *data manipulation
-  mistakes*, *computational errors*)
-- *Lack of information, code/raw data unavailable*  
-
-#+BEGIN_EXPORT latex
-    \end{overlayarea}
-  \end{column}
-\end{columns}}
-#+END_EXPORT
-** Is CS Concerned Really With This?
+- *Point and click*
+- *Spreadsheets* : [[https://qz.com/768334/years-of-genomics-research-is-riddled-with-errors-thanks-to-a-bunch-of-botched-excel-spreadsheets/][programming and data manipulation mistakes]]
+  - ~Membrane-Associated Ring Finger (C3HC4) 1, E3 Ubiquitin Protein
+    Ligase~ \to ~MARCH1~ \to 2016-03-01 \to 1456786800
+  - <!-- .element class="fragment" data-fragment-index="2" style="font-size:30px"-->
+    ~2310009E13~ \to 2.31E+19 
+- *Complex software stacks* : avoid proprietary software as much as
+  possible
+- *Bugs* : /Programming is difficult !/
 *** All this is about Natural Sciences. Should we care ?         :noexport:
 #+LaTeX: \begin{overlayarea}{\linewidth}{8cm}
 \small *Yes*. \quad _Computer Science_ is young and inherits from _Mathematics_, _Engineering_,
@@ -378,13 +441,14 @@ _Computer Science_ is young and inherits from _Mathematics_, _Engineering_,
 _Nat. Sciences_, _Linguistic_, \dots\bigskip
 
 Purely theoretical scientists whose practice is close to mathematics
-may not be concerned (can't publish a math article without
+/may/ not be concerned (can't publish a math article without
 releasing the proofs).
+- Have a look at [[http://www.math.ias.edu/vladimir/files/2014_IAS.pdf][talk by Vladimir Voevodsky in 2014 at Princeton]] \winkey\pause
 
 #+BEGIN_QUOTE
 Computer science is not more related to computers than Astronomy to
 telescopes\vspace{-.6em}
-\flushright              -- Dijkstra
+\flushright              -- Dijkstra (mis-attributed)
 #+END_QUOTE
 
 Right, why should we care about computers? They are *deterministic*
@@ -428,18 +492,7 @@ such results \winkey).
   properties (difficult to formally state but that should be exploited)
 
 Algorithms are evaluated on particular *workloads* that impact \\
-both their running time and the quality of the solutions\pause 
-
-
-*Machine Learning*:  [[http://www.economist.com/news/briefing/21588057-scientists-think-science-self-correcting-alarming-degree-it-not-trouble][Trouble at the lab]], The Economist 2013
-
-  #+BEGIN_QUOTE
-    According to some estimates, three-quarters of published scientific
-    papers in the field of machine learning are bunk because of this
-    "overfitting". \hfill -- Sandy Pentland (MIT)
-  #+END_QUOTE
-#+LaTeX: \begin{flushright}\vspace{-3.6cm}\includegraphics[width=.13\linewidth]{images/Sandy-Pentland.jpg}\end{flushright}\vspace{1cm}
-\pause 
+both their running time and the quality of the solutions\bigskip\pause 
 
 *Image Processing*: [[http://mescal.imag.fr/membres/arnaud.legrand/research/meinhardt_canum2016.pdf][True horror stories]], E. Meinhardt-Llopis, CANUM 2016
 #+LaTeX: \begin{columns}\begin{column}{.6\linewidth}
@@ -451,6 +504,32 @@ both their running time and the quality of the solutions\pause
   #+LaTeX: \includegraphics[width=\linewidth]{images/meinhardt_canum2016_workload.pdf}
 #+LaTeX: \end{column}\end{columns}
   
+*** I design Machine Learning Algorithms
+
+#+LaTeX: \begin{flushright}\vspace{-1cm}\includegraphics[width=.13\linewidth]{images/Sandy-Pentland.jpg}\end{flushright}\vspace{-1cm}
+
+*Machine Learning*:  [[http://www.economist.com/news/briefing/21588057-scientists-think-science-self-correcting-alarming-degree-it-not-trouble][Trouble at the lab]], The Economist 2013
+
+  #+BEGIN_QUOTE
+    According to some estimates, three-quarters of published scientific
+    papers in the field of machine learning are bunk because of this
+    "overfitting". \hfill -- Sandy Pentland (MIT)
+  #+END_QUOTE
+
+Every month in CACM, there is an article about the ethical
+consequences of Machine Learning on:
+- Car driving, Autonomous guns, Law enforcement (risk assessment, predictive
+  policing), ...
+  #+BEGIN_CENTER
+  [[http://dx.doi.org/10.1145/3022181][It's Not the Algorithm, It's the Data]] (CACM, Feb. 2017)
+  #+END_CENTER
+- Advertising, Loan attribution, Selection at University, Organ
+  transplant
+
+#+BEGIN_CENTER
+Increasing society concern about *fairness* and *transparency*
+#+END_CENTER
+
 *** All I care about is the algorithm output
 Did I mention we have *parallel machines* nowadays? $\winkey$
 
@@ -621,7 +700,7 @@ This may be an interesting contribution but:
   what the rest looks like
 - There is no label/legend/... What is the *meaning of this graph*?
   If only I could access the generation script
-*** A Few Edifying Examples
+*** A Few Edifying Examples                                      :noexport:
 #+BEGIN_EXPORT latex
   \begin{columns}
     \begin{column}{.67\linewidth}
@@ -637,6 +716,154 @@ This may be an interesting contribution but:
     \end{column}
   \end{columns}
 
+  \bottomcite{Collberg, Christian \textit{et Al.}, \textit{Measuring
+      Reproducibility in Computer Systems Research},
+    \url{http://reproducibility.cs.arizona.edu/}}
+
+  \begin{columns}
+    \begin{column}{.5\linewidth}
+      ~\hspace{-1.7em}\includegraphics[height=4.7cm]{images/repeatability_arizona.pdf}
+    \end{column}
+    \begin{column}{.5\linewidth}
+      \small
+      \begin{itemize}
+      \item 8 ACM conferences ({\scriptsize ASPLOS'12, CCS'12, OOPSLA'12, OSDI'12,
+        PLDI'12, SIGMOD'12, SOSP'11, VLDB'12}) and 5 journals
+      \item 
+        $\text{EM}^{\text{no}}$= \alert{the code cannot be provided}
+      \end{itemize}
+    \end{column}
+  \end{columns}
+#+END_EXPORT
+
+*** The Dog Ate my Homework !!!                                  :noexport:
+#+BEGIN_EXPORT latex
+  \vspace{-.4cm}
+  \begin{multicols}{2}
+    \begin{itemize}[<+->]
+    \item \alert<.>{Versioning Problems}
+    \item \alert<.>{Bad Backup Practices}
+    \item \alert<.>{Code Will be Available Soon}
+    \item \alert<.>{No Intention to Release}
+    \item \alert<.>{Programmer Left}
+    \item \alert<.>{Commercial Code}
+    \item \alert<.>{Proprietary Academic Code}
+    \item \alert<.>{Research vs. Sharing}
+    \item<.-> ...
+    \item<.-> ...
+    \end{itemize}
+  \end{multicols}
+%  \vspace{-.5cm}
+
+  \begin{block}{}
+  \vspace{-.4cm}
+  \begin{overlayarea}{\linewidth}{5cm}
+      \small
+      \only<1>{
+        \begin{quote}
+          Thanks for your interest in the implementation of our
+          paper. The good news is that I was able to find some code. I
+          am just \alert{hoping} that \alert{it} is a stable working
+          version of the code, and \alert{matches the implementation we
+            finally used for the paper}. Unfortunately, I have
+          \alert{lost some data} when \alert{my laptop was stolen} last
+          year. The bad news is that the code is not commented and/or
+          clean.
+        \end{quote}
+        \begin{quote}
+          Attached is the $\langle$system$\rangle$ source code of our
+          algorithm. I’m \alert{not} very \alert{sure whether it is the
+            final version of the code used in our paper}, but it should
+          be at least 99\% close. Hope it will help.
+        \end{quote}}%
+      \only<2>{
+        \begin{quote}
+          Unfortunately, the server in which my implementation was
+          stored had a \alert{disk crash in April and three disks
+            crashed simultaneously}. While the help desk made
+          significant effort to save the data, my entire implementation
+          for this paper was not found.
+        \end{quote}}
+      \only<3>{
+        \begin{quote}
+          Unfortunately the
+          current system is \alert{not mature enough at the moment}, so
+          it’s not yet publicly available. We are actively working on a
+          number of extensions and \alert{things are somewhat
+            volatile}. However, once things stabilize we plan to release
+          it to outside users. At that point, we would be happy to send
+          you a copy.
+        \end{quote}}%
+      \only<4>{
+        \begin{quote}
+          I am afraid that the source code was never released. The code
+          was \alert{never intended to be released so is not in any shape
+            for general use}.
+        \end{quote}}%
+      \only<5>{
+        \begin{quote}
+          $\langle$STUDENT$\rangle$ was a graduate student in our
+          program but \alert{he left a while back} so I am responding
+          instead. For the paper we used a prototype that included many
+          moving pieces that only $\langle$STUDENT$\rangle$ knew how to
+          operate and we did not have the time to integrate them in a
+          ready-to-share implementation before he left. Still, I hope
+          you can build on the ideas/technique of the paper. 
+        \end{quote}
+        \begin{quote}
+          Unfortunately, the author who has done most of the coding for
+          this paper has \alert{passed away} and the code is no longer
+          maintained.
+        \end{quote}
+      }%
+      \only<6>{
+        \begin{quote}
+          Since this work has been done at $\langle$COMPANY$\rangle$
+          \alert{we don't open-source code} unless there is a compelling
+          business reason to do so. So unfortunately I don’t think we’ll
+          be able to share it with you.
+        \end{quote}
+        \begin{quote}
+          The code \alert{owned by $\langle$COMPANY$\rangle$}, and AFAIK
+          the code is not open-source.  Your best bet is to reimplement
+          :( Sorry.
+        \end{quote}}%
+      \only<7>{
+        \begin{quote}
+          Unfortunately, the $\langle$SYSTEM$\rangle$
+          sources are \alert{not meant to be opensource} (the code is partially
+          \alert{property of $\langle$UNIVERSITY 1$\rangle$,
+            $\langle$UNIVERSITY 2$\rangle$ and $\langle$UNIVERSITY
+            3$\rangle$.})
+
+          If this will change I will let you know, albeit I do not
+          think there is an intention to make the
+          $\langle$SYSTEM$\rangle$ sources opensource in the near
+          future.
+        \end{quote}
+        \begin{quote}
+          If you're interested in obtaining the code, \alert{we only ask
+            for a description of the research project} that the code
+          will be used in (\alert{which may lead to some joint
+            research}), and we also have a software license agreement
+          that the University would need to sign.
+        \end{quote}}
+      \only<8>{
+        \begin{quote}
+          In the past when we attempted to share it, we found ourselves
+          spending more time getting outsiders up to speed than on our
+          own research. So \alert{I finally had to establish the policy
+            that we will not provide the source code outside the group}.
+        \end{quote}
+      }
+    \end{overlayarea}
+  \end{block}
+  \null\vspace{-.4cm}
+#+END_EXPORT
+* Reproducible Research/Open Science in a Nutshell
+#+LaTeX: \begin{frame}{Outline}\tableofcontents[current]\end{frame}
+*** Lack of reproducibility is foremost a cultural matter
+#+BEGIN_EXPORT latex
   \bottomcite{Collberg, Christian \textit{et Al.}, \textit{Measuring
       Reproducibility in Computer Systems Research},
     \url{http://reproducibility.cs.arizona.edu/}}
@@ -781,30 +1008,7 @@ This may be an interesting contribution but:
   \end{block}
   \null\vspace{-.4cm}
 #+END_EXPORT
-** Reproducible Research/Open Science
-*** Reproducible Research: the New Buzzword?                     :noexport:
-**** H2020-EINFRA-2014-2015
-#+BEGIN_QUOTE
-A key element will be capacity building to link literature and data in
-order to enable a more transparent evaluation of research and
-*reproducibility* of results.
-#+END_QUOTE
-**** More and more workshops
-#+LaTeX: \scriptsize
-- [[http://www.eecg.toronto.edu/~enright/wddd/][Workshop on Duplicating, Deconstructing and Debunking (WDDD)]] ([[http://cag.engr.uconn.edu/isca2014/workshop_tutorial.html][2014 edition]])
-- \normalsize *[[http://www.stodden.net/AMP2011/][Reproducible Research: Tools and Strategies for Scientific
-  Computing]]* \scriptsize(2011)
-- [[http://wssspe.researchcomputing.org.uk/][Working towards Sustainable Software for Science: Practice and
-  Experiences]] (2013)
-- *[[http://hunoldscience.net/conf/reppar14/pc.html][REPPAR'14: 1st International Workshop on Reproducibility in
-  Parallel Computing]]*
-- [[https://www.xsede.org/web/reproducibility][Reproducibility@XSEDE: An XSEDE14 Workshop]]
-- [[http://www.occamportal.org/reproduce][Reproduce/HPCA 2014]]
-  #+LaTeX: \item \href{http://www.ctuning.org/cm/wiki/index.php?title\%3DEvents:TRUST2014}{TRUST 2014}
-# - [[http://www.ctuning.org/cm/wiki/index.php?title%3DEvents:TRUST2014][TRUST 2014]]
-\normalsize 
-Should be seen as opportunities to share experience.
-*** Reproducibility: What Are We Talking About?
+*** Reproducibility: What Are We Talking About?                  :noexport:
 #+BEGIN_EXPORT latex
 \vspace{-.6em}
 \begin{overlayarea}{\linewidth}{9cm}
@@ -831,7 +1035,58 @@ Should be seen as opportunities to share experience.
 
 In this series of lectures, we'll go from right to left and see how we can improve.
 #+END_EXPORT
-*** Mythbusters: Science vs. Screwing Around                        :B_frame:
+*** Paradigm Shift
+\vspace{.5cm}
+1. Lack of information, data access
+   \bgroup\newline\small$\leadsto$ /The right tracking/sharing tools/ \smallskip\egroup
+2. Lack of technical and scientific rigor
+   \bgroup\newline\small$\leadsto$  /Better methodology (e.g., training
+   in stats)/ \smallskip\egroup
+3. Computation/programming mistakes
+   \bgroup\newline\small$\leadsto$  /Continuous integration, code
+   review, environment control, numerical analysis, .../ \smallskip\egroup
+4. Little incentive to care/share/...  \bgroup\newline\small$\leadsto$
+   /The contribution evaluation processs (publication, recruiting, ...)
+   needs to evolve/ \smallskip\egroup
+
+#+BEGIN_EXPORT latex
+\begin{overlayarea}{\linewidth}{0cm}\vspace{-6.7cm}
+  \begin{flushright}
+    \includegraphics[height=2cm]{images/in_science_we_trust.jpg}
+    \includegraphics[height=2cm]{images/in_code_we_trust.jpg}
+  \end{flushright}
+\end{overlayarea}\vspace{-.5cm}
+#+END_EXPORT
+
+#+BEGIN_CENTER
+*Transparency increases the chances of _finding mistakes_*
+
+*and _getting rid_ of them*
+#+END_CENTER
+*** Reproducible Research: the New Buzzword?                     :noexport:
+**** H2020-EINFRA-2014-2015
+#+BEGIN_QUOTE
+A key element will be capacity building to link literature and data in
+order to enable a more transparent evaluation of research and
+*reproducibility* of results.
+#+END_QUOTE
+**** More and more workshops
+#+LaTeX: \scriptsize
+- [[http://www.eecg.toronto.edu/~enright/wddd/][Workshop on Duplicating, Deconstructing and Debunking (WDDD)]] ([[http://cag.engr.uconn.edu/isca2014/workshop_tutorial.html][2014 edition]])
+- \normalsize *[[http://www.stodden.net/AMP2011/][Reproducible Research: Tools and Strategies for Scientific
+  Computing]]* \scriptsize(2011)
+- [[http://wssspe.researchcomputing.org.uk/][Working towards Sustainable Software for Science: Practice and
+  Experiences]] (2013)
+- *[[http://hunoldscience.net/conf/reppar14/pc.html][REPPAR'14: 1st International Workshop on Reproducibility in
+  Parallel Computing]]*
+- [[https://www.xsede.org/web/reproducibility][Reproducibility@XSEDE: An XSEDE14 Workshop]]
+- [[http://www.occamportal.org/reproduce][Reproduce/HPCA 2014]]
+  #+LaTeX: \item \href{http://www.ctuning.org/cm/wiki/index.php?title\%3DEvents:TRUST2014}{TRUST 2014}
+# - [[http://www.ctuning.org/cm/wiki/index.php?title%3DEvents:TRUST2014][TRUST 2014]]
+\normalsize 
+Should be seen as opportunities to share experience.
+
+*** Mythbusters: Science vs. Screwing Around             :noexport:B_frame:
     :PROPERTIES:
     :BEAMER_env: frame
     :BEAMER_OPT: plain
@@ -843,24 +1098,49 @@ In this series of lectures, we'll go from right to left and see how we can impro
 \hbox{\hspace{-.1\linewidth}\includegraphics[width=1.2\linewidth,height=9cm]{images/remember_kids.jpg}}
 \end{overlayarea}
 #+END_EXPORT
-** Illustrating Nice Ideas Through Different Tools
+* Illustrating Nice Ideas Through Different Tools
+#+LaTeX: \begin{frame}{Outline}\tableofcontents[current]\end{frame}
+** Taking notes and explaining
+*** Ipython/Jupyter Notebook
+*Web app*: create and share documents that contain live code, equations,
+visualizations, and \\
+explanatory text\vspace{-2.8em}
+#+LaTeX: \begin{flushright}
+#+ATTR_LaTeX: :width .93\linewidth
+file:images/jupyterpreview.png
+#+LaTeX: \end{flushright}
+*** Computational Document (Jupyter Notebook)
+#+LaTeX: \includegraphics<+>[width=\linewidth]{images/example_pi_full-1.pdf}%
+#+LaTeX: \includegraphics<+>[width=\linewidth]{images/example_pi_full-2.pdf}%
+#+LaTeX: \includegraphics<+>[width=\linewidth]{images/example_pi_full-3.pdf}%
+#+LaTeX: \includegraphics<+>[width=\linewidth]{images/example_pi_full-4.pdf}%
+#+LaTeX: \includegraphics<+>[width=\linewidth]{images/example_pi_full-5.pdf}%
+#+LaTeX: \includegraphics<+>[width=\linewidth]{images/example_pi_full-6.pdf}%
+**** Export svg pdf                                             :noexport:
+#+begin_src shell :results output :exports both
+for i in images/example_pi_*.svg ; do
+   inkscape $i --export-pdf=`dirname $i`/`basename $i .svg`.pdf;
+done
+#+end_src
+
+#+RESULTS:
 *** Vistrails: a Workflow Engine for Provenance Tracking
 #+BEGIN_EXPORT latex
-\vspace{-.6em}
+\vspace{-.8cm}
 \begin{overlayarea}{\linewidth}{9cm}
-\hbox{\hspace{-.05\linewidth}%
-\includegraphics<+>[page=14,width=1.1\linewidth]{pdf_sources/2011-amp-reproducible-research.pdf}%
-\includegraphics<+>[page=15,width=1.1\linewidth]{pdf_sources/2011-amp-reproducible-research.pdf}%
+\hbox{\hspace{-.1\linewidth}%
+%\includegraphics<+>[page=14,width=1.2\linewidth]{pdf_sources/2011-amp-reproducible-research.pdf}%
+\includegraphics<+>[page=15,width=1.2\linewidth]{pdf_sources/2011-amp-reproducible-research.pdf}%
 }
 
-\vspace{-2cm}
+\vspace{-2.5cm}
 \begin{flushright}
   {\scriptsize Courtesy of Juliana Freire (AMP Workshop on
     Reproducible research)}
 \end{flushright}
 \end{overlayarea}
 #+END_EXPORT
-*** VCR: A Universal Identifier for Computational Results
+*** VCR: A Universal Identifier for Computational Results        :noexport:
 #+BEGIN_EXPORT latex
 \vspace{-.6em}
 \begin{overlayarea}{\linewidth}{9cm}
@@ -896,21 +1176,149 @@ In this series of lectures, we'll go from right to left and see how we can impro
 \end{flushright}
 \end{overlayarea}
 #+END_EXPORT
-*** Ipython/Jupyter Notebook
-*Web app*: create and share documents that contain live code, equations,
-visualizations, and \\
-explanatory text\vspace{-2.8em}
-#+LaTeX: \begin{flushright}
-#+ATTR_LaTeX: :width .93\linewidth
-file:images/jupyterpreview.png
-#+LaTeX: \end{flushright}
+*** My daily solution: Emacs/Org-mode
+- My journal ::   a single file
+  - Chronological organization with TAGS
+  - Heterogenous information
+  - Code execution is convenient
+- My students' laboratory notebooks ::  
+  - Conventions
+  - $\approx$ Chronological organization
+  - Track info about experiments (who, what, when, how, *why*) and data
+    analysis
+- Replicable articles ::  
+  - Easily built on the previous documents
+  - Many hidden sections (data download, perl/R scripts)
+  - Sources connect figures with data and meta-data
+** Controling your environment/experiments
+*** Complex Environments
+#+begin_src python :results output :exports both
+import matplotlib
+print(matplotlib.__version__)
+#+end_src
+
+#+RESULTS:
+: 2.1.1
+
+\pause\small
+# #+begin_src shell :results output :exports output
+# apt-cache show python3-matplotlib | grep Depends | head -1
+# #+end_src
+
+#+RESULTS:
+#+BEGIN_EXAMPLE
+Version: 2.1.1-2
+Depends: python3-dateutil, python-matplotlib-data (>= 2.1.1-2),
+python3-pyparsing (>= 1.5.6), python3-six (>= 1.10), python3-tz,
+libjs-jquery, libjs-jquery-ui, python3-numpy (>= 1:1.13.1),
+python3-numpy-abi9, python3 (<< 3.7), python3 (>= 3.6~),
+python3-cycler (>= 0.10.0), python3:any (>= 3.3.2-2~), libc6 (>= 
+2.14), libfreetype6 (>= 2.2.1), libgcc1 (>= 1:3.0), libpng16-16
+(>= 1.6.2-1), libstdc++6 (>= 5.2), zlib1g (>= 1:1.1.4)
+#+END_EXAMPLE
+
+\pause\vspace{-6cm}
+
+\hspace{-0.05\linewidth}\includegraphics[width=1.06\linewidth]{images/python3-matplotlib.png}
+
+\pause\normalsize
+
+/Virtual images/ or /Docker containers/ allow to *freeze* environements \smallskip
+
+#+BEGIN_CENTER
+Two approaches: /preserve the mess/ vs. /encourage cleanliness/
+#+END_CENTER
+
+**** debtree                                                    :noexport:
+#+begin_src shell :results output raw graphics :exports output
+debtree python3-matplotlib > /tmp/python3-matplotlib.dot
+sed -i -e 's/rankdir=LR/rankdir=RL/g' \
+       -e 's/node \[shape=box\]/node [shape=box, color=black, fillcolor=gray, fontcolor=black, style=filled]/g' \
+     /tmp/python3-matplotlib.dot
+dot -Tpng /tmp/python3-matplotlib.dot > images/python3-matplotlib.png
+echo file:images/python3-matplotlib.png
+#+end_src
+
+#+RESULTS:
+file:images/python3-matplotlib.png
 *** Reprozip
 Automagically pack your experiment to fight *dependency hell*
 #+BEGIN_CENTER
-#+ATTR_LaTeX: :width .93\linewidth
+#+ATTR_LaTeX: :width .87\linewidth
 file:images/reprozip.png
 #+END_CENTER
-*** So many new tools
+\vspace{-.7cm}
+*Other options*:\newline
++CARE+, CDE, Reprozip, Pipenv\hfill | \hfill Docker, Singularity \hfill | \hfill Spack, GUIX, NIX
+*** Controlling experiments
+- Naive way: sh + ssh + ... 
+- Better way: use a *workflow management system* ([[http://www.taverna.org.uk/][taverna]], [[https://galaxyproject.org/][galaxy]],
+  [[https://kepler-project.org/][kepler]], [[http://www.vistrails.org/][vistrails]], ...)
+- Parallel/distributed experiments require specific experiment engines
+  #+BEGIN_EXPORT latex
+  \setbeamertemplate{itemize items}[triangle]
+  \vspace{-1.5em}
+  \begin{columns}[t]
+    \begin{column}{.65\linewidth}
+     \begin{itemize}
+     \item \alert<1>{\href{http://expo.gforge.inria.fr}{Expo}} (2007-,
+       G5K)
+     \item \alert<1>{\href{http://xpflow.gforge.inria.fr}{XPflow}}
+       (2012-, G5K)
+       \begin{overlayarea}{3cm}{0cm}
+         \vspace{-2.5\baselineskip} $\left\}\begin{array}{l}
+             \text{\phantom{X}}\\\text{\phantom{X}}\\\text{\phantom{X}}
+           \end{array}\right.\hspace{-.7cm}
+         \begin{array}{l}
+           \text{although nothing} \\ \text{specific to G5K}
+         \end{array}$
+       \end{overlayarea}
+     \item \alert<1>{\href{http://execo.gforge.inria.fr}{Execo}}
+       (2013-, G5K) \medskip
+     \end{itemize}
+    \end{column}\hspace{-1.3cm}
+    \begin{column}{.4\linewidth}
+      \begin{itemize}
+      \item Plush (2006-, Planetlab)
+      \item OMF (2009-, Wireless)
+      \item Splay (2008), \dots
+      \end{itemize}
+    \end{column}
+  \end{columns}
+  \setbeamertemplate{itemize items}[circle]
+  #+END_EXPORT
+  They differ in the underlying paradigms and the platforms for which
+  they have been designed
+  #+LaTeX: \begin{flushright}\small
+  [[https://hal.inria.fr/hal-01087519/document][A survey of general-purpose experiment management tools for
+  distributed systems]], T. Buchert, C. Ruiz, L. Nussbaum, O. Richard,
+  FGCS, 2014
+  #+LaTeX: \end{flushright}\medskip
+- Control your \textbf{numerical results} (random generators,
+  libraries, rounding and non-determinism, \dots)
+** Making data/code available
+*** Hosting platforms
+- Your webpage $\frowny$ \vspace{-.65cm}
+- Articles: Arxiv, HAL \hfill\includegraphics[height=1cm]{images/LogoHAL.png}
+- Code: Github or Institutional Gitlab \vspace{-.65cm}
+- Figshare, Zenodo $\smiley$ \hfill\includegraphics[height=1cm]{images/zenodo.png}
+- Companion websites ([[https://www.elsevier.com/physical-sciences/computer-science/share-a-web-portal-for-creating-and-sharing-executable-research][elsevier executable paper]] $\frowny$,
+  [[http://www.runmycode.org/][runmycode]], \newline [[http://www.execandshare.org/CompanionSite/][exec&share]], [[https://codeocean.com/][code ocean]] ...)
+
+This may seem easy but is quite tricky:
+- Arbitrary limits can make your life painful\vspace{-1.7cm}
+- Perennity ([[http://mescal.imag.fr/membres/arnaud.legrand/blog/2015/12/03/roberto_di_cosmo.pdf][Roberto Di Cosmo]]'s talks) \hfill\includegraphics[height=2cm]{images/software-heritage_vignette.jpg}
+  - CodeSpaces murdered on Amazon, Google Code termination, Gitorious
+    shutdown, ...
+  - Disruption of the web of reference: URLs decay (half-life of 4
+    years), DOIs have little guarantee, ...
+
+# Many *legal aspects* about data/code/idea sharing
+#   - I am a civil servant and I strongly believe research is a team
+#     sport
+#   - Intellectual property is an important topic we do not want to
+#     leave to bureaucrats and lawyers...
+*** So many new tools                                            :noexport:
 #+BEGIN_EXPORT latex
 \vspace{-.6em}
 \begin{overlayarea}{\linewidth}{9cm}
@@ -922,10 +1330,65 @@ file:images/reprozip.png
   {\scriptsize {\textbf{Courtesy of Victoria Stodden (UC Davis, Feb 13, 2014)}}}
 \end{flushright}
 \vspace{.6cm}
-And also: \textbf{Org-Mode \smiley}, \textbf{Figshare}, \textbf{Zenodo}, \textbf{ActivePapers \smiley}, \textbf{Elsevier executable paper \frowny}, ...
+And also: \textbf{Org-Mode \smiley}, \textbf{Figshare}, \textbf{Zenodo}, \textbf{ActivePapers \smiley}, \textbf{GUIX/Nix}, \textbf{Elsevier executable paper \frowny}, ...
 \end{overlayarea}
 #+END_EXPORT 
-** And In Practice?
+** Changing evaluation practices
+*** Publishing initiatives
+- Artifact evaluation and ACM badges :: Article appendix (SC)
+     #+BEGIN_CENTER
+     \includegraphics[height=1.5cm]{images/ae_badge1.png}
+     \includegraphics[height=1.5cm]{images/ae_badge2.png}
+     \includegraphics[height=1.5cm]{images/acm_badges.pdf}     
+     #+END_CENTER
+- Platforms :: Elsevier executable paper, ACM pushes for code ocean
+- Double blind vs. Open reviews :: plus "legal aspects"
+- RR-oriented & Open Journals ::   IPOL
+     #+BEGIN_CENTER
+     \includegraphics[height=2cm]{images/ReScience-banner.png}
+     #+END_CENTER
+
+*** Funding Agencies
+- US ::  \vspace{-.58cm}
+#+BEGIN_QUOTE
+\small NSF has released a new announcement encouraging submission of
+research projects relating to *reproducibility and replicability*.
+
+\hfill -- [[https://www.nsf.gov/pubs/2017/nsf17022/nsf17022.jsp][Jim Kurose, Oct. 2016]]
+#+END_QUOTE
+
+#+BEGIN_QUOTE
+\small The NIH is committed to promoting *rigorous and transparent research* in
+all areas of science supported by a variety of grant programs.  
+
+\hfill -- [[https://grants.nih.gov/reproducibility/index.htm][NIH: Rigor and Reproducibility guidelines]]
+#+END_QUOTE
+\vspace{-.2cm}
+- Europe ::  \vspace{-.63cm}
+#+BEGIN_QUOTE
+    \small \qquad In 2012, the European Commission encouraged all EU Member
+  States to *put public-funded research results in the public sphere* in
+  order to make science better and strengthen their knowledge-based
+  economy.
+
+\hfill -- [[http://ec.europa.eu/programmes/horizon2020/en/h2020-section/open-science-open-access][Open Science (Open Access)]]
+#+END_QUOTE
+
+#+BEGIN_QUOTE
+  \small A key element will be capacity building to link literature and data in
+order to enable a more transparent evaluation of research and
+  *reproducibility* of results.
+\hfill -- H2020-EINFRA-2014-2015
+#+END_QUOTE
+
+#+BEGIN_QUOTE
+\small *Encouraging the re-use of research data* generated by publically
+funded research projects \hfill -- [[http://ec.europa.eu/research/participants/portal/desktop/en/opportunities/h2020/topics/swafs-04-2018.html][Science with and for Society, 27
+October 2017]]
+#+END_QUOTE
+
+* And In Practice?                                                 :noexport:
+#+LaTeX: \begin{frame}{Outline}\tableofcontents[current]\end{frame}
 *** A Difficult Trade-off
 #+BEGIN_CENTER
 \vspace{-.2em}Many different tools/approaches developed in various communities\vspace{-.2em}
@@ -1056,7 +1519,7 @@ What are the options?
 - Your webpage $\frowny$
 - Figshare, Zenodo $\smiley$, ...
 - Companion websites ([[https://www.elsevier.com/physical-sciences/computer-science/share-a-web-portal-for-creating-and-sharing-executable-research][elsevier executable paper]] $\frowny$,
-  [[http://www.runmycode.org/][runmycode]], \newline [[http://www.execandshare.org/CompanionSite/][exec&share]] $\smiley$, ...)
+  [[http://www.runmycode.org/][runmycode]], \newline [[http://www.execandshare.org/CompanionSite/][exec&share]], [[https://codeocean.com/][code ocean]])
 - Github (damn, they're good! $\smiley$), ...
 
 This may seem easy but is more tricky than it looks like:
@@ -1093,7 +1556,7 @@ I'm way too =3l33t= to program this way \winkey but that's \\
 **** \small KnitR (a.k.a. Sweave)
 For R and +emacs+ users. Easy replicable articles with a modern IDE
 (e.g., [[https://www.rstudio.com/][Rstudio]])
-**** \small Ipython/Jupyter notebook
+**** \small Jupyter notebook
 Python user $\leadsto$ go for [[http://jupyter.org/][Jupyter]]. Web app, easy to
 use/setup... Writing replicable article may be tricky though
 **** \small Org-mode (my favorite! requires emacs though)
@@ -1155,7 +1618,7 @@ I have a very intense usage and so do all my master/PhD students
 - *By the end of the day*: daily (and weekly) *review!* \vspace{-.5em}
   - Update your lists, decide the next steps, summarize what you did/learnt,...
 *** Pros and Cons of these three tools
-- Ipython notebook:
+- Jupyter notebook:
   - $\smiley$ Easy to set up, user-friendly, machine readable format (JSON),
     easy sharing on the cloud
   - $\frowny$ Writing an article, JSON, not fully polyglot
@@ -1164,10 +1627,185 @@ I have a very intense usage and so do all my master/PhD students
     publishing on [[http://rpubs.com/][rpubs]]
   - $\frowny$ not fully polyglot
 - Emacs/Org-mode:
-  - $\frowny$ Emacs, steep learning curve
+  - $\frowny$ Steep learning curve, Emacs
   - $\smiley$ Powerful and versatile, yields control to power users, works
     both for writing articles and a notebook, good integration on
     github
 
 The ultimate tool would combine an engine in an editor that allows
 collaborative interactive edition
+* What can Computer Scientists do ?
+#+LaTeX: \begin{frame}{Outline}\tableofcontents[current]\end{frame}
+*** On the "technical" side (1/2)
+- Better _documenting_ what we do: *Laboratory notebooks*
+  - Literate programming is great for analysis, and reproducible
+    articles but does not go well yet with conducting experiments
+    and workflows
+  - A real adoption of such practice requires more storage and the
+    ability to navigate in such information\medskip\smallskip
+- Better _software engineering_ practice: Public releases, *devops
+  approach*, reproducible builds, numerical aspects
+  - Moving/evolving technology. Preservation ? Adoption ?
+  - Should not slow down research\medskip
+- Fighting against _software/data degradation_: *Software Heritage*,
+  zenodo\hspace{-.2cm}
+  - Challenges: multiple! curation, access/privacy, exploitation, navigation, storage, \dots
+  #+BEGIN_EXPORT latex
+  \includegraphics[height=2.7cm]{images/SH_picture1.pdf}%
+  \includegraphics[height=1.6cm]{images/SH_picture2.pdf}%
+  #+END_EXPORT
+*** On the "technical" side (2/2)
+- Better _experimental practice and platforms_: *FIT IoT-lab, G5K* are
+  world leading experimental infrastructures; rely on standard simulators
+  (*SimGrid, NS3*)
+  - Maintenance cost, keeping in pace with technology, practices for
+    prototype platforms, control, sharing of experimental conditions
+    with others, experimental engines
+  #+BEGIN_EXPORT latex
+  \hspace{-1.5cm}\includegraphics[height=4cm]{images/fit_picture.png}%
+  \includegraphics[height=4cm]{images/g5k_picture.png}%
+  \includegraphics[height=4cm]{images/g5k_picture2.jpg}
+  #+END_EXPORT
+  - Need for convergence (SILEX) in term of software infrastructure and
+    practice (e.g., security, account management, access, isolation,
+    experiment management, etc.) ?
+*** On the "social" side
+Slight *cultural changes* in our *relation to publication* and *daily
+practice*
+
+- Changing *our _social model_ to favor adoption of better practice*
+  - Artifact evaluation, open reviews, ... (e.g., IPOL, *ReScience*)
+  - Alternative evaluation models (publishing, funding, ...)
+- *Learning* is the essence of our work. $\leadsto$ _*Train*_ our
+  researchers and *students*
+  - [[https://www.fun-mooc.fr/courses/course-v1:inria+41016+session01/courseware][MOOC on Reproducible Research in Oct. 2018 on FUN]]
+  - Train in statistics, experimental practice, design of experiments
+
+\hspace{2cm} _It's up to us. \textbf{We} should \textbf{care} and \textbf{take the lead}_\medskip
+
+
+_Main benefit:_
+  - *Higher confidence* in our work $\leadsto$ definite *competitive
+    advantage* \medskip
+  - Our research becomes *sound*, *deeper*, *auditable*, *more visible*,
+    *reusable*
+*** Webinars: Learning by Doing
+# for i in `find /home/alegrand/Work/Documents/Enseignements/RR_webinars/ -name 'video_thn.png'` ; do cp $i `echo $i | sed -e 's/.*webinars\///' -e 's/\/.*/.png/'`; done
+#+BEGIN_CENTER
+\null\vspace{-1.5em}Many different tools/approaches developed in
+various communities\vspace{-.2em}
+#+END_CENTER
+
+#+LaTeX: ~\hspace{-1em}\begin{overlayarea}{\linewidth}{6.3cm}\begin{columns}\begin{column}{.3\linewidth}\footnotesize\vspace{-.5cm}
+1. Replicable article
+2. Logging your activity
+3. Logging and backing up your data
+4. Organizing your data
+5. Mastering your environment
+6. Controlling your experiments
+7. Making your data/code/article available
+8. Publication modes
+9. Artifact Evaluation
+#+LaTeX: \end{column}\begin{column}{.7\linewidth}
+#+BEGIN_EXPORT latex
+\null{\small\vspace{-1em}
+\begin{tabular}{@{}c@{}c@{}}
+  \includegraphics[height=2.3cm]{images/webinars/1_replicable_article_laboratory_notebook.png}
+  &
+  \includegraphics[height=2.3cm]{images/webinars/2_controling_your_environment.png} \\
+  \href{http://github.com/alegrand/RR_webinars/blob/master/1_replicable_article_laboratory_notebook/index.org}{Litterate programming} &
+  \href{https://github.com/alegrand/RR_webinars/blob/master/2_controling_your_environment/index.org}{Controling your environment} \medskip\\
+  \includegraphics[height=2.3cm]{images/webinars/3_numerical_reproducibility.png}
+  &
+  \includegraphics[height=2.3cm]{images/webinars/4_logging_and_backing_up_your_work.png}\\
+  \href{https://github.com/alegrand/RR_webinars/blob/master/3_numerical_reproducibility/index.org}{Numerical reproducibility} &
+  \href{https://github.com/alegrand/RR_webinars/blob/master/4_logging_and_backing_up_your_work/index.org}{Logging and backing up}
+\end{tabular}
+}
+#+END_EXPORT
+#+LaTeX: \end{column}\end{columns}\end{overlayarea}
+
+ 
+#+BEGIN_CENTER
+  #+LaTeX: \vspace{-.4em}
+  #+LaTeX: \href{https://github.com/alegrand/RR_webinars/blob/master/README.org}{https://github.com/alegrand/RR\_webinars}
+#+END_CENTER
+
+*** What Next ?                                                  :noexport:
+#+BEGIN_CENTER
+  _It's up to us. \textbf{We} should care_
+#+END_CENTER
+
+- Our research should be *auditable*
+
+- *Cultural changes* in our *relation to publication and daily practice*
+
+- *Learning* is the essence of our work $\leadsto$ *Train* our researchers
+  and *students*
+  # to use better tools, better research methodology,
+  # statistics/design of experiments, performance evaluation, ...
+
+
+\textbf{Next webinars:} in October 2016
+#+BEGIN_CENTER
+  #+LaTeX: \vspace{-.4em}
+  #+LaTeX: \href{https://github.com/alegrand/RR_webinars/blob/master/README.org}{https://github.com/alegrand/RR\_webinars}
+#+END_CENTER
+
+\pause
+
+_Testimony_: it's definitely *more efficient* and *more satisfying*
+
+Need more incentive ?
+- Changes in *funding agency* requirements
+- Changes in journal/conferences *publication requirements*
+
+#+BEGIN_CENTER
+  _\textbf{We} should take the lead on such topics_
+#+END_CENTER
+
+*** What Next ?                                                  :noexport:
+#+BEGIN_EXPORT latex
+\vspace{-.1cm}
+\begin{overlayarea}{\linewidth}{1cm}
+  \begin{flushright}
+    \includegraphics[width=.3\linewidth]{images/meinhardt_canum2016-17-pdfjam-crop.pdf}\hspace{-.5cm}
+  \end{flushright}
+\end{overlayarea}
+#+END_EXPORT
+
+
+\hspace{2cm} _It's up to us. \textbf{We} should \textbf{care} and \textbf{take the lead}_\bigskip
+
+
+
+*Learning* is the essence of our work\newline \null\hspace{2cm}
+$\leadsto$ *Train* our researchers and *students* \bigskip
+  # to use better tools, better research methodology,
+  # statistics/design of experiments, performance evaluation, ...
+
+  - Slight *cultural changes* in our *relation to publication* and *daily
+    practice*\medskip
+  - *Higher confidence* in our (students) work $\leadsto$ definite
+    *competitive advantage* \medskip
+  - Our research will become *sound*, *deeper*, *auditable*, *more visible*,
+    *reusable*, \dots \bigskip
+
+\textbf{Next webinars:} in October 2016
+#+BEGIN_CENTER
+  #+LaTeX: \vspace{-.4em}
+  #+LaTeX: \href{https://github.com/alegrand/RR_webinars/blob/master/README.org}{https://github.com/alegrand/RR\_webinars}
+#+END_CENTER
+
+* Emacs Setup 							   :noexport:
+This document has local variables in its postembule, which should
+allow Org-mode (9) to work seamlessly without any setup. If you're
+uncomfortable using such variables, you can safely ignore them at
+startup. Exporting may require that you copy them in your .emacs.
+
+# Local Variables:
+# eval:    (setq org-latex-listings 'minted)
+# eval:    (add-to-list 'org-latex-packages-alist '("" "minted"))
+# eval:    (setq org-latex-minted-options '(("bgcolor" "Moccasin") ("numbers" "left") ("numbersep" "5pt")))
+# eval:    (setq org-latex-pdf-process '("pdflatex -shell-escape -interaction nonstopmode -output-directory %o %f" "pdflatex -shell-escape -interaction nonstopmode -output-directory %o %f" "pdflatex -shell-escape -interaction nonstopmode -output-directory %o %f"))
+# End:
