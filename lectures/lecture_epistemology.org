@@ -38,7 +38,7 @@ Please, take notes, share thoughts/questions/ideas/answers in the
 _Tentative (and evolving) agenda_:
 - *Tuesday* Epistemology + Reproducible research ; R crash course ; literate programming
 - *Wednesday* Data visualization/presentation with R; Introduction to probabilities/statistics ; Linear regression
-- *Thursday* Playing with your own data; Design of Experiments 
+- *Thursday* Playing with a nice data set; Design of Experiments 
 
 _Stuff to know about this course_:
 - Way too much stuff for so little time. The slides are extremely
@@ -56,7 +56,7 @@ _Stuff to know about this course_:
 \pause\small
 
 - "Le Robert" (wikipedia) :: 
-  Ce que l’on sait pour l’avoir appris, ce que l’on tient pour vrai au
+     Ce que l’on sait pour l’avoir appris, ce que l’on tient pour vrai au
      sens large. L’ensemble de connaissances, d’études d’une valeur
      universelle, caractérisées par un objet (domaine) et une méthode
      déterminés, et fondées sur des relations objectives vérifiables
@@ -88,7 +88,7 @@ _Stuff to know about this course_:
 - *Question 2*: In less than 5 lines give the definition of a scientific fact.
   \pause
   #+BEGIN_QUOTE
-  A scientific fact is an *hypothesis* that have been confirmed by a
+  A scientific fact is an *hypothesis* that has been confirmed by a
   *specific* experience.
   #+END_QUOTE
   \pause
@@ -99,7 +99,6 @@ _Stuff to know about this course_:
      to invalidate the hypothesis.
 * Schools of Thoughts
 **   
-
 *** Claude Bernard (1813-1878) and the scientific method
 
 _3 steps of the scientific method:_
@@ -109,8 +108,8 @@ _3 steps of the scientific method:_
    the reality (which is always true).
 
 *Inductivism* (reasoning from the particular case to the general
-situation) : "The best theory is the one check by the more numbers of
-facts."
+situation) : "The best theory is the one checked by the more numbers
+of facts."
 
 #+BEGIN_EXPORT latex
 \begin{center}
@@ -123,7 +122,8 @@ facts."
   *Is scientific a theory that could be falsifiable*, that could be
   submitted by empirical falsification = refutable by facts
 
-- I Asymmetry between verification and falsification. It is an epistemology logical and normative.
+- Asymmetry between verification and falsification. It is an logical
+  and normative epistemology.
   Theories should be clearly formulated, as precisely as possible, can’t be suppressed without a
   ’good reason’ (falsification, or theory with "superior degree of falsifiability"), can’t be
   immunized.
@@ -307,6 +307,31 @@ often or easily
 - Strong anomalies : fundamental questioning of the basic paradigms at
   a psychological, sociological, political level.
 - Incommensurability between the old and the new paradigm.
+*** Merton's Norms (1940): a sociological view of Science
+/This is the behavior observed in the scientific community/:
+1. *Universalism*: Sientific validity is independent of the
+   sociopolitical status/personal attributes of its participants
+   \bgroup\scriptsize(origin, gender, sexuality, religion\dots)\egroup.
+2. *Communality* (before communism): /Nullius in Verba/ (Take no one's
+   word). Science means never having to say "trust me" 
+   - No secrecy, open communication is key
+   - All scientists should have common ownership of scientific goods
+     (intellectual property), to promote collective collaboration;
+     # secrecy is the opposite of this norm.
+   - We say “Newton's law” to remember that Newton made the original
+     discovery, but not because he has any property of this law.
+   # - [[https://www.collabra.org/articles/10.1525/collabra.74/][Quality uncertainty erodes trust in science]]
+3. *Disinterestedness*: Scientific institutions act for the benefit of a
+   common scientific enterprise (finding the truth), rather than for
+   the personal gain of individuals within them.
+4. *Organized skepticism*: Scientific claims should be exposed to
+   critical scrutiny before being accepted: both in methodology and
+   institutional codes of conduct.
+   - verify other's claims, nothing is sacred
+
+#+BEGIN_CENTER
+These are our *modern values/myths*...
+#+END_CENTER
 *** Imre Lakatos (1922-1974): Science, a social process
 #+BEGIN_EXPORT latex
 \begin{columns}
@@ -347,25 +372,26 @@ often or easily
   \begin{column}{.5\linewidth}
 #+END_EXPORT
 _Computing_
-- A science: Science of artificial... but not only
-- A technology, an industry (Hardware, software, network,
+\vspace{1.4em}
+- A *science*: Science of artificial... but not only
+- A *technology*, an industry (Hardware, software, network,
   services,...)
-- Applications: increasing area
-- Social impact: numerical/Information society
+- *Applications*: increasing area
+- *Social impact*: numerical/Information society
 #+BEGIN_EXPORT latex
   \end{column}\pause
   \begin{column}{.5\linewidth}
 #+END_EXPORT
-_Computer Science_
+_Computer Science_ Concepts \small\vspace{1em}
 
-*Concepts* \small
-  - Information: Representation, communication, compression,...
-  - Algorithm: Operative process
-  - Programming Language: link between levels of abstraction
-  - Architecture (Computing Engine): abstraction of the physical world
-  - Human in the loop 
+  - *Information*: Representation, communication, compression,...
+  - *Algorithm*: Operative process
+  - *Programming Language*: link between levels of abstraction
+  - *Architecture* (Computing Engine): abstraction of the physical world
+  - *Human in the loop* 
+
 *Methods*: Back and forth between theory and experimentation.
-  Automatic abstraction transform. Self-generated tools.
+  Automatic abstraction transform. Self-generated tools.\medskip
 
 *Human organization* with social rules
 #+BEGIN_EXPORT latex
