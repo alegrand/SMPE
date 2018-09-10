@@ -113,7 +113,7 @@ df_lines=data.frame(
   #+RESULTS:
   [[file:./pdf_babel/scatterplot.pdf]]
 
-  #+ATTR_LATEX: :width \linewidth
+  #+ATTR_LATEX: :width \linewidth :center nil
   [[file:./pdf_babel/scatterplot.pdf]]
 
 #+LaTeX: }}\end{tabular}
@@ -357,8 +357,8 @@ df_lines=data.frame(
       \ie the part of \rv{Y} not associated with $X$
     \pause
 ****** Gauss-Markov Theorem
-Under a few assumptions, the least squares regression is the best
-linear unbiased estimate
+Under a few assumptions, the least squares regression is the Best
+Linear Unbiased Estimate
 + $\E[\rv{\hat\beta}] = b$ and $\E[\rv{\hat\alpha}] = a$ 
   #+LaTeX: \hfil \usebeamertemplate{itemize item}
    $\Var(\rv{\hat\beta})$ and $\Var(\rv{\hat\alpha})$ are minimal\hfil
@@ -915,7 +915,388 @@ linear unbiased estimate
        [[file:./pdf_babel/anscombe.pdf]]
     #+END_CENTER
     \vspace{-1em}
+* Extensions Linear model
+** Discrete Variables: ANOVA
+*** Confidence
+If we had only 1 factor with 2 levels ($2^1$ design), the analysis
+would simply amount to *compute confidence intervals* or more precisely
+to *test whether $\boxed{\mu_{A=Low} = \mu_{A=High}}$ or not* (t-test)
+
+\bgroup \scriptsize (if few observations are available we would have
+to make the C.I wider and use the Student distribution) \egroup\bigskip
+
+But when having more factors and/or levels, we want to test whether
+*some of the combinations* have a significantly different expected value
+
+| Number of comparisons       |  2 |     3 |     4 |     5 |     6 |
+|-----------------------------+----+-------+-------+-------+-------|
+| Nominal Type I error        | 5% |    5% |    5% |    5% |    5% |
+| Actual overall Type I error | 5% | 12.2% | 20.3% | 28.6% | 36.6% |
+\hfill (See 16.1.5 of [[https://cran.r-project.org/doc/contrib/Faraway-PRA.pdf][/Practical Regression and Anova using R/]] by
+Julian Faraway)\medskip
+*** Quick illustration of the difficulty of multiple testing
+\small
+#+begin_src R :results output :session :exports both
+se = .1; mean = 7 ;
+N = 10000;
+df = data.frame(
+    x1=rnorm(N,mean=mean,sd=se),
+    x2=rnorm(N,mean=mean,sd=se),
+    x3=rnorm(N,mean=mean,sd=se))
+df$eq1 = abs(df$x1-mean)<2*se
+df$eq2 = abs(df$x1-df$x2)<2*se
+df$eq3 = abs(df$x1-df$x2)<2*se & 
+         abs(df$x1-df$x3)<2*se & 
+         abs(df$x2-df$x3)<2*se
+
+mean(df$eq1)
+mean(df$eq2)
+mean(df$eq3)
+#+end_src
+
+#+RESULTS:
+: [1] 0.9538
+: [1] 0.8435
+: [1] 0.6596
+
+*** Analysis of Variance (ANOVA)
+#+BEGIN_SRC dot :file fig/var_anova.pdf :results output graphics :exports none
+# From   http://www.unt.edu/rss/class/mike/5710/FactorialAnova.pdf
+digraph G {
+	node [color=black,
+	      fillcolor=white,
+	      shape=rectangle,
+	      style=filled,
+	      fontname="Helvetica"
+	      ];
+
+	      Tot_Var[label="Total Variability"];
+	      Block_Var[label="Variability between blocks"];
+	      BBlock_Var[label="Variability within blocks"];
+	      A_Var[label="Variability of Factor A"];
+	      B_Var[label="Variability of Factor B"];
+	      AB_Var[label="Variability of Interaction"];
+	      Tot_Var->Block_Var;
+	      Tot_Var->BBlock_Var;
+	      Block_Var->A_Var;
+	      Block_Var->B_Var;
+	      Block_Var->AB_Var;
+}
+#+END_SRC
+
+#+RESULTS:
+[[file:fig/var_anova.pdf]]
+
+
+ANOVA (*ANalysis Of VAriance*) enable to *discriminate real effects from
+noise* \vspace{-.4em}
+- Enables to prove that *some parameters have little influence* and can
+  be randomized over (possibly with a more elaborate model)
+- Decomposes variance:\vspace{-1em}
+  #+BEGIN_CENTER
+  #+ATTR_LATEX: :width \linewidth
+  file:fig/var_anova.pdf
+  \vspace{-2em}
+  #+END_CENTER
+  - Assumes *identical standard deviation* for the populations
+    (homoscedastic)
+  - *Multiple tests at once* (assuming *normality*):
+    $\boxed{\mu_{A=Low,*}-\mu_{A=High,*}=0}$,
+    $\boxed{\mu_{B=Low,*}-\mu_{B=High,*}=0}$, \dots
+*** ANOVA and F-statistic
+The ANOVA produces an *F-statistic*, the ratio of the *variance
+calculated among the means* to the *variance within the samples*.
+- If the group means are drawn from populations with the same mean
+  values, the *variance between the group means* should be *lower* than
+  the *variance of the samples*
+- A higher ratio therefore implies that the samples were drawn from
+  populations with different mean values
+\pause
+
+Let's work out a simple made-up example
+#+begin_src R :results output :session :exports both
+Response = 10 + 2*as.numeric(d1$A) + 
+    3*as.numeric(d1$B)*as.numeric(d1$C) + rnorm(nrow(d1))
+d1 <- add.response(d1,Response, replace=TRUE)
+#+end_src
+
+I had to use =as.numeric= to interpret the $-1$ and $1$ as numbers
+whereas they were created as *factors*
+
+*** A simple ANOVA in R
+\small
+#+begin_src R :results output :session :exports both
+d1_aov <- aov(Response ~ (A + B + C)^2, data=d1)
+summary(d1_aov) # summary will call summary.aov
+#+end_src
+
+#+RESULTS:
+#+begin_example
+            Df Sum Sq Mean Sq F value   Pr(>F)    
+A            1  22.98   22.98  38.318 0.000161 ***
+B            1  68.02   68.02 113.417 2.11e-06 ***
+C            1  77.60   77.60 129.402 1.21e-06 ***
+A:B          1   0.44    0.44   0.728 0.415721    
+A:C          1   0.93    0.93   1.555 0.243804    
+B:C          1  14.62   14.62  24.374 0.000806 ***
+Residuals    9   5.40    0.60                     
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+#+end_example
+
+\medskip\normalsize
+So, *all factors are significant* and there is *a significant
+interaction between B and C*
+*** Can't I just read my linear regression as usual?
+\scriptsize
+
+#+begin_src R :results output :session :exports both
+summary.lm(d1_aov)
+#+end_src
+
+#+RESULTS:
+#+begin_example
+
+Call:
+lm.default(formula = Response ~ (A + B + C)^2, data = d1)
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-1.01845 -0.48073 -0.01537  0.45886  0.98771 
+
+Coefficients:
+            Estimate Std. Error t value Pr(>|t|)    
+(Intercept)  19.5912     0.1936 101.194 4.56e-15 ***
+A1            1.1984     0.1936   6.190 0.000161 ***
+B1            2.0618     0.1936  10.650 2.11e-06 ***
+C1            2.2023     0.1936  11.375 1.21e-06 ***
+A1:B1         0.1652     0.1936   0.853 0.415721    
+A1:C1         0.2415     0.1936   1.247 0.243804    
+B1:C1         0.9558     0.1936   4.937 0.000806 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 0.7744 on 9 degrees of freedom
+Multiple R-squared:  0.9716,	Adjusted R-squared:  0.9527 
+F-statistic:  51.3 on 6 and 9 DF,  p-value: 1.873e-06
+#+end_example
+
+#+BEGIN_EXPORT latex
+\pause
+\begin{overlayarea}{.6\linewidth}{0cm}
+  \vspace{-7.3cm}
+  \begin{block}{}
+    \normalsize
+    \centerline{Wait, why is the formula so different?} $$10 + 2A + 3BC$$
+  \end{block}
+\end{overlayarea}
+\pause
+\begin{overlayarea}{.6\linewidth}{0cm}
+  \vspace{-2.3cm}
+  \begin{block}{}
+    \normalsize
+    \begin{center}
+       Because it treated the factors "-1" and "1" as $0$ and $1$...
+    \end{center}
+  \end{block}
+\end{overlayarea}
+
+#+END_EXPORT
+*** Then how do I get the formula I expected? (1/2)
+\small
+#+begin_src R :results output :session :exports both
+d1_lm <- lm(Response ~ (as.numeric(A) + as.numeric(B) + 
+            as.numeric(C))^2, data=d1)
+summary.aov(d1_lm)
+#+end_src
+
+#+RESULTS:
+#+begin_example
+                            Df Sum Sq Mean Sq F value   Pr(>F)    
+as.numeric(A)                1  22.98   22.98  38.318 0.000161 ***
+as.numeric(B)                1  68.02   68.02 113.417 2.11e-06 ***
+as.numeric(C)                1  77.60   77.60 129.402 1.21e-06 ***
+as.numeric(A):as.numeric(B)  1   0.44    0.44   0.728 0.415721    
+as.numeric(A):as.numeric(C)  1   0.93    0.93   1.555 0.243804    
+as.numeric(B):as.numeric(C)  1  14.62   14.62  24.374 0.000806 ***
+Residuals                    9   5.40    0.60                     
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+#+end_example
+
+\normalsize
+Sweet, it's the same as the previous ANOVA
+*** Then how do I get the formula I expected? (2/2)
+\scriptsize
+#+begin_src R :results output :session :exports both
+summary(d1_lm) # summary will call summary.lm
+#+end_src
+
+#+RESULTS:
+#+begin_example
+
+Call:
+lm.default(formula = Response ~ (as.numeric(A) + as.numeric(B) + 
+    as.numeric(C))^2, data = d1)
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-1.01845 -0.48073 -0.01537  0.45886  0.98771 
+
+Coefficients:
+                            Estimate Std. Error t value Pr(>|t|)    
+(Intercept)                  15.4654     3.1870   4.853 0.000905 ***
+as.numeric(A)                -0.0429     1.6878  -0.025 0.980277    
+as.numeric(B)                -2.6022     1.6878  -1.542 0.157516    
+as.numeric(C)                -2.7789     1.6878  -1.647 0.134064    
+as.numeric(A):as.numeric(B)   0.6606     0.7744   0.853 0.415721    
+as.numeric(A):as.numeric(C)   0.9658     0.7744   1.247 0.243804    
+as.numeric(B):as.numeric(C)   3.8232     0.7744   4.937 0.000806 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 0.7744 on 9 degrees of freedom
+Multiple R-squared:  0.9716,	Adjusted R-squared:  0.9527 
+F-statistic:  51.3 on 6 and 9 DF,  p-value: 1.873e-06
+#+end_example
+
+#+BEGIN_EXPORT latex
+\pause
+\begin{overlayarea}{.6\linewidth}{0cm}
+  \vspace{-8.7cm}
+  \begin{block}{}
+    \begin{center}
+      \normalsize Variability is too large too obtain good
+      estimates of the \alert{true coefficients}\\[-2em]
+      $$10 + 2A + 3BC$$
+
+      \alert{One should anyway use other kind of designs to
+         estimate continuous model parameters}
+    \end{center}
+  \end{block}
+\end{overlayarea}
+#+END_EXPORT
+*** The difference between ANOVA and Linear Regression (3/3)
+#+BEGIN_CENTER
+\includegraphics[width=.9\linewidth]{fig/factor_impact.fig}
+#+END_CENTER
+
+- The coding numbers are completely meaningless and influence the
+  estimates of the slope
+  - If your input parameters are numerical, go for */extreme/
+    values*, hoping the intermediate behavior is not too complicated
+    and *consider them as factors*
+- Real question: is a there *significant increase* when changing factors?
+- Remember: you should use *ANOVA* for *factorial designs*, not LM
+  - So don't use =summary.lm= in such cases; use =summary.aov=
+
+*** And graphically ?
+#+BEGIN_CENTER
+#+begin_src R :results output graphics :file pdf_babel/doe1_ME.pdf :exports both :width 6 :height 4 :session
+MEPlot(d1, abbrev=4, select=c(1,2,3), response="Response")
+#+end_src
+
+#+ATTR_LATEX: :width .8\linewidth
+#+RESULTS:
+[[file:pdf_babel/doe1_ME.pdf]]
+#+END_CENTER
+
+No CI on this one but we've seen that computing CIs is not
+straightforward $\leadsto$ rely on the =summary.aov=
+*** plotmeans                                                    :noexport:
+#+begin_src R :results output graphics :file (org-babel-temp-file "figure" ".png") :exports both :width 600 :height 400 :session
+plotmeans(data=d1, Response~A)
+#+end_src
+
+#+RESULTS:
+[[file:/tmp/babel-25532x_l/figure25532hsX.png]]
+
+*** What about interactions ?
+#+BEGIN_CENTER
+#+begin_src R :results output graphics :file pdf_babel/doe1_IA.pdf :exports both :width 6 :height 4 :session
+IAPlot(d1, abbrev=4, show.alias=FALSE, select=c(1,2,3))
+#+end_src
+
+#+ATTR_LATEX: :width .8\linewidth
+#+RESULTS:
+[[file:pdf_babel/doe1_IA.pdf]]
+
+#+END_CENTER
+
+Again, no CI $\leadsto$ rely on the =summary.aov=
+
+*** Checking hypothesis
+\small
+
+#+BEGIN_CENTER
+
+#+begin_src R :results output graphics :file pdf_babel/doe1_check.pdf :exports both :width 8 :height 6 :session
+layout(matrix(c(1,2,3,4),2,2)) # optional layout 
+plot(aov(Response ~ (A + B + C)^2, data=d1))
+#+end_src
+
+#+ATTR_LATEX: :width .8\linewidth
+#+RESULTS:
+[[file:pdf_babel/doe1_check.pdf]]
+
+#+END_CENTER
+
+*** How do you expect me to ever remember all this ?
+#+BEGIN_EXPORT latex
+\begin{columns}
+  \begin{column}{.55\linewidth}
+    For the R commands, there is a trick: \winkey
+    \begin{center}
+      \bf \alert{Use Rcmdr and RcmdrPlugin.DoE}\\
+      (by Ulrike Grömping)
+    \end{center}
+    Simply \texttt{library(RcmdrPlugin.DoE)}\dots
+  \end{column}
+  \begin{column}{.45\linewidth}
+    \includegraphics[width=\linewidth]{images/rcmdr_doe.png}
+  \end{column}
+\end{columns}
+#+END_EXPORT
+You should only remember the principles and try to understand the
+underlying hypothesis
+- ANOVA enables to *discriminate real effects from noise* in *factorial
+  experiments*. \bgroup\small /It relies on homoscedasticity and
+  normality (or requires large number of samples)/\egroup
+- *2-level factorial designs* are a simple way to go and are more
+  efficient than OFAT experiments
+- *Replicate thoroughly* and *randomize properly*: you will not go far
+  wrong
+*** Other example ?                                              :noexport:
+Good and worked out example in
+http://web.grinnell.edu/individuals/kuipers/stat2labs/Handouts/DOE%20Introductionh.pdf
+** Generalized Linear Model
+*** Linear model vs. Generalized linear Model
+- Linear model :: $\displaystyle \rv{Y} = X.b+ \rv{\epsilon}$ with
+  $\rv{\epsilon} \sim \mathcal{N}_n(0_n, \sigma^2 I)$
+
+  $$\rv{\hat\beta}=(X^T.X)^{-1}.X^T.\rv{Y}$$
+
+  The least squares regression is the Best Linear Unbiased Estimate
+  ($\E[\rv{\hat\beta}] = b$ and $\Var(\rv{\hat\beta})$ is minimal.
+
+
+  Unsuited when outcome $\rv{Y}$ is discrete or has unequal variance.\bigskip
+- Generalized linear model :: \rv{Y} is assumed to be generated from a
+     particular /distribution/ in the exponential family (\bgroup\small normal, binomial,
+     Poisson, gamma...\egroup)\vspace{-1em}
+  - $\displaystyle \E[\rv{Y}] = g^{-1}(X.b)$ ($g$ is the link
+    function)
+  - This allows variance to depend on the prediction ($\displaystyle
+    \Var(\rv{Y}) = g^{-1}(X.b)$)
+  
+    | Distribution                        | Link function $g$                                |
+    |-------------------------------------+--------------------------------------------------|
+    | Binomial $(\{0,1\})$                | $\text{logit}(\mu)=\ln\left(\frac{\mu}{1-\mu}\right)$ |
+    | Poisson $(\{0,1,2,\ldots\})$        | $\ln(\mu)$                                         |
+    | Inverse Gaussian $(\mathbb{R}^*_+)$ | $\frac{1}{\mu^2}$                                  |
+
 * Conclusion
+**  
 *** Conclusion
     1. You need a model to perform your regression
     2. You need to *check* whether the underlying *hypothesis* of this
@@ -932,5 +1313,5 @@ linear unbiased estimate
     This model will guide on how to design your experiments:
     - e.g., the linear model assumes some *uniformity* of interest
       over the parameter space range
-    - if your system is heteroscedastic, you will have to perform more
+    - if your system is heteroscedastic, you should perform more
       measurements for parameters that lead to higher variance
