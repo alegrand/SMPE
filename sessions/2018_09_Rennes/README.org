@@ -15,6 +15,7 @@ Science in September 2018.
 
 * Useful links 
 - Here is the [[https://pad.inria.fr/p/np_UjaCOYWwyhQkUUK3][Pad]] you will use to collaborate.
+- Here is the visio-conference link: https://rendez-vous.renater.fr/SMPE_Rennes_18
 # - Here is a [[https://sondages.inria.fr/index.php/646461/lang-en][poll]]. Please fill it as soon as you have a few minutes but
 #   do not waste your time doing it during the lecture.
 
