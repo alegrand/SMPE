@@ -40,11 +40,12 @@ The lecture will be based on the following set of slides, which I will
 probably adapt to the audience on the fly.
 1. [[file:../../lectures/lecture_epistemology.pdf][Epistomology]]
 2. [[file:../../lectures/lecture_reproducible_research.pdf][Reproducible research]]
-3. [[file:../../lectures/lecture_literate_programming.pdf][Literate programming]]
-4. [[file:../../lectures/lecture_R_crash_course.pdf][R crash course]]
-   - You may want to look at the [[*Learning R][Learning R]] section or (probably
-     better) follow this short series of tutorials from software
-     carpentry that are quite pedagogical:
+3. [[file:../../lectures/lecture_literate_programming.pdf][Literate programming]] (Probably not as it will be explained in the
+   "Reproducible research" slides)
+4. [[file:../../lectures/lecture_R_crash_course.pdf][R crash course]] (Probably a live demo)
+   - You may want to look at the [[*Learning R][Learning R]] section of this document
+     or (probably better) follow this short series of tutorials from
+     software carpentry which are quite pedagogical:
      - [[http://swcarpentry.github.io/r-novice-gapminder/01-rstudio-intro/][Introduction to R and Rstudio]]
      - [[http://swcarpentry.github.io/r-novice-gapminder/09-vectorization/][Vectorization]]
      - [[http://swcarpentry.github.io/r-novice-gapminder/06-data-subsetting/][Subsetting data]]
@@ -52,11 +53,15 @@ probably adapt to the audience on the fly.
        I will not go into as much detail as this tutorial in my crash
        course.
      - [[http://swcarpentry.github.io/r-novice-gapminder/08-plot-ggplot2/][Beautiful graphics with ggplot2]].
-5. [[file:../../lectures/lecture_descriptive_univariate.pdf][Descriptive statistics of univariate data]]
-6. [[file:../../lectures/lecture_data_presentation.pdf][Data presentation]]
-7. [[file:../../lectures/lecture_correlation_causation.pdf][Correlation and causation]]
-8. [[file:../../lectures/3_introduction_to_statistics.pdf][Introduction to probabilities/statistics]] ([[file:../../lectures/lecture_central_limit_theorem.pdf][Proof of the Central
-   limit theorem]])
+5. [[file:../../lectures/lecture_descriptive_univariate.pdf][Descriptive statistics of univariate data]] (Probably not as it will
+   be evoked in the "Introduction to probabilities/statistics" slides
+6. [[file:../../lectures/lecture_data_presentation.pdf][Data presentation]] (if time allows since it will be mentioned in the
+   R crash course and in the "introduction to probabilities/statistics")
+7. [[file:../../lectures/lecture_correlation_causation.pdf][Correlation and causation]] (Probably not as it will be evoked in the
+   "Introduction to probabilities/statistics" slides)
+8. [[file:../../lectures/3_introduction_to_statistics.pdf][Introduction to probabilities/statistics]] (if needed, [[file:../../lectures/lecture_central_limit_theorem.pdf][Proof of the
+   Central limit theorem]] and [[file:../../lectures/lecture_chi_square.pdf][Unveiling the mysterious chi square
+   test]]).
 9. [[file:../../lectures/4_linear_model.pdf][Linear regression]]
 10. [[file:../../lectures/5_design_of_experiments.pdf][Design of Experiments]]
 
@@ -64,6 +69,198 @@ All the examples given in this series of lecture use the [[http://www.r-project.
 and the source is provided so that people can reuse them. The slides
 are composed with [[http://orgmode.org][org-mode]], beamer, and verbments.
 
+* Hands-on
+Travaillez en binômes. Choisissez un des sujets dans la liste
+ci-dessous et préparez une analyse des données associées sous forme
+d'un document computationnel. Si le temps le permet, ce document sera
+évalué par deux autres personnes.
+
+Vous déposerez votre document omputationnel dans un dépot GitHub/GitLab/... sous forme de
+notebook Jupyter (fichier .ipynb), de fichier Rmd + PDF si vous
+utilisez RStudio, de fichier org avec les images générées pour les
+plots si vous utilisez Emacs/Org-Mode.
+
+Votre objectif principal est de convaincre les relecteurs potential de
+votre document de la qualité de votre travail. Faites attention à bien
+expliquer votre raisonnement et vos calculs !
+** (A) Concentration de CO2 dans l'atmosphère depuis 1958
+Prérequis : traitement de suites chronologiques
+
+Une des premières observations systématiques du changement climatique
+est la mesure de la concentration de CO2 dans l'atmosphère à
+l'observatoire de Mauna Loa, Hawaii, États-Unis. Elle a été initiée
+par Charles David Keeling en 1958, et continue encore à ce jour. En
+honneur à Keeling, ce jeux de données est souvent appellé "Keeling
+Curve" (voir https://en.wikipedia.org/wiki/Keeling_Curve pour
+l'histoire et l'importance de ces données).
+
+Les données sont disponibles sur le site Web de l'institut Scripps:
+http://scrippsco2.ucsd.edu/data/atmospheric_co2/primary_mlo_co2_record. Utilisez
+le fichier avec les observations hebdomadaires. Attention, ce fichier
+est mis à jour régulièrement avec de nouvelles observations. Notez
+donc bien la date du téléchargement, et gardez une copie locale de la
+version précise que vous analysez. Faites aussi attention aux données
+manquantes.
+
+Votre mission si vous l'acceptez:
+1. Réalisez un graphique qui vous montrera une oscillation périodique
+   superposée à une évolution systématique plus lente.
+2. Séparez ces deux phénomènes. Caractérisez l'oscillation
+   périodique. Fittez un modèle simple à la contribution lente et
+   tentez une extrapolation jusqu'à 2025.
+** (B) Le pouvoir d'achat des ouvriers anglais du 16ème au 19ème siècle
+Prérequis : techniques de présentation graphique
+
+[[https://fr.wikipedia.org/wiki/William_Playfair][William Playfair]] était un des pionniers de la présentation graphique
+des données. Il est notamment considéré comme l'inventeur de
+l'histogramme. Un de ses graphes célèbres, tiré de son livre "[[https://books.google.fr/books/about/A_Letter_on_Our_Agricultural_Distresses.html?id=aQZGAQAAMAAJ][A Letter
+on Our Agricultural Distresses, Their Causes and Remedies]]", montre
+[[https://fr.wikipedia.org/wiki/William_Playfair#/media/File:Chart_Showing_at_One_View_the_Price_of_the_Quarter_of_Wheat,_and_Wages_of_Labour_by_the_Week,_from_1565_to_1821.png][l'évolution du prix du blé et du salaire moyen entre 1565 et
+1821]]. Playfair n'a pas publié les données numériques brutes qu'il a
+utilisées, car à son époque la réplicabilité n'était pas encore
+considérée comme essentielle. Des [[https://vincentarelbundock.github.io/Rdatasets/doc/HistData/Wheat.html][valeurs obtenues par numérisation du
+graphe]] sont aujourd'hui téléchargeables, [[https://raw.githubusercontent.com/vincentarelbundock/Rdatasets/master/csv/HistData/Wheat.csv][la version en format CSV]]
+étant la plus pratique.
+
+Quelques remarques pour la compréhension des données:
+- Jusqu'en 1971, la livre sterling était divisée en 20 shillings, et
+  un shilling en 12 pences.
+- Le prix du blé est donné en shillings pour un quart de boisseau de
+  blé. Un quart de boisseau équivaut 15 livres britanniques ou 6,8 kg.
+- Les salaires sont donnés en shillings par semaine.
+
+Votre mission si vous l'acceptez:
+1. Votre première tâche est de reproduire le graphe de Playfair à
+   partir des données numériques. Représentez, comme Playfair, le prix
+   du blé par des barres et les salaires par une surface bleue
+   délimitée par une courbe rouge. Superposez les deux de la même
+   façon dans un seul graphique. Le style de votre graphique pourra
+   rester différent par rapport à l'original, mais l'impression
+   globale devrait être la même.
+2. Par la suite, améliorez la présentation des ces données. Pour
+   commencer, Playfair a combiné les deux quantités dans un même
+   graphique en simplifiant les unités "shillings par quart de
+   boisseau de blé" et "shillings par semaine" à un simple
+   "shillings", ce qui aujourd'hui n'est plus admissible. Utilisez
+   deux ordonnées différentes, une à gauche et une à droite, et
+   indiquez les unités correctes. À cette occasion, n'hésitez pas à
+   proposer d'autres représentations que des barres et des
+   surface/courbes pour les deux jeux de données si ceci vous paraît
+   judicieux.
+3. L'objectif de Playfair était de montrer que le pouvoir d'achat des
+   ouvriers avait augmenté au cours du temps. Essayez de mieux faire
+   ressortir cette information. Pour cela, faites une représentation
+   graphique du pouvoir d'achat au cours du temps, définie comme la
+   quantité de blé qu'un ouvrier peut acheter avec son salaire
+   hebdomadaire. Dans un autre graphique, montrez les deux quantités
+   (prix du blé, salaire) sur deux axes différents, sans l'axe du
+   temps. Trouvez une autre façon d'indiquer la progression du temps
+   dans ce graphique. Quelle représentation des données vous paraît la
+   plus claire ? N'hésitez pas à en proposer d'autres.
+** (C) L'épidémie de choléra à Londres en 1854
+Prérequis : représentation de données géographiques
+
+En 1854, le quartier de Soho à Londres a vécu [[https://fr.wikipedia.org/wiki/%25C3%2589pid%25C3%25A9mie_de_chol%25C3%25A9ra_de_Broad_Street][une des pires épidémies
+de choléra du Royaume-Uni]], avec 616 morts. Cette épidémie est devenue
+célèbre à cause de l'analyse détaillée de ses causes réalisée par le
+médecin [[http://www.johnsnowsociety.org/][John Snow]]. Ce dernier a notamment montré que le choléra est
+transmis par l'eau plutôt que par l'air, ce qui était la théorie
+dominante de l'époque.
+
+Un élément clé de cette analyse était une [[https://commons.wikimedia.org/wiki/File:Snow-cholera-map-1.jpg][carte]] sur laquelle John Snow
+avait marqué les lieux des décès et les endroits où se trouvaient les
+pompes à eau publiques. Ces données sont aujourd'hui [[http://blog.rtwilson.com/john-snows-cholera-data-in-more-formats/][disponibles sous
+forme numérique]]. Nous vous proposons de les utiliser pour recréer la
+carte de John Snow dans un document computationnel réplicable.
+
+Votre mission si vous l'acceptez :
+1. Londres a bien sûr évolué depuis 1854, mais une carte d'aujourd'hui
+   est tout à fait utilisable comme support pour ces données
+   historiques. À partir des données numériques, réalisez une carte
+   dans l'esprit de celle de John Snow. Montrez les lieux de décès
+   avec des symboles dont la taille indique le nombre de
+   décès. Indiquez sur la même carte la localisation des pompes en
+   utilisant une autre couleur et/ou un autre symbole. En R, nous vous
+   suggérons l'utilisation de la bibliothèque [[https://journal.r-project.org/archive/2013-1/kahle-wickham.pdf][ggmap]]. En Python, [[https://github.com/vgm64/gmplot][gmplot]]
+   devrait faire l'affaire.
+2. Par la suite, essayez de trouver d'autres façons pour montrer que
+   la pompe de Broad Street est au centre de l'épidémie. Vous pouvez
+   par exemple calculer la densité des décès dans le quartier et
+   l'afficher sur la carte, mais n'hésitez pas à expérimenter avec
+   d'autres approches.
+** (D) Estimation de la latence et de la capacité d’une connexion à partir de mesures asymétriques
+Prérequis : régression linéaire
+
+Un modèle simple et fréquemment utilisé pour décrire la performance
+d'une connexion de réseau consiste à supposer que le temps d'envoi /T/
+pour un message dépend principalement de sa taille /S/ (nombre d'octets)
+et de deux grandeurs propres à la connexion : la latence /L/ (en
+secondes) et la capacité /C/ (en octets/seconde). La relation entre ces
+quatre quantités est /T(S) = L + S/C/. Ce modèle néglige un grand nombre
+de détails. D'une part, /L/ et /C/ dépendent bien sûr du protocole de
+communication choisi mais aussi dans une certaine mesure de /S/. D'autre
+part, la mesure de /T(S)/ comporte en général une forte composante
+aléatoire. Nous nous intéressons ici au temps moyen qu'il faut pour
+envoyer un message d'une taille donnée.
+
+Votre tâche est d'estimer /L/ et /C/ à partir d'une série d'observations
+de /T/ pour des valeurs différentes de /S/. Préparez votre analyse sous
+forme d'un document computationnel réplicable qui commence avec la
+lectures des données brutes, disponibles pour deux connexions
+différentes, qui ont été obtenues avec l'outil =ping= :
+
+- Le premier jeu de données examine une connexion courte à l'intérieur
+  d'un campus:
+  http://mescal.imag.fr/membres/arnaud.legrand/teaching/2014/RICM4_EP_ping/liglab2.log.gz
+- Le deuxième jeu de données mesure la performance d'une connexion
+  vers un site Web éloigné assez populaire et donc chargé:
+  http://mescal.imag.fr/membres/arnaud.legrand/teaching/2014/RICM4_EP_ping/stackoverflow.log.gz
+
+Les deux fichiers contiennent la sortie brute de l'outil =ping= qui a
+été exécuté dans une boucle en variant de façon aléatoire la taille du
+message. Chaque ligne a la forme suivante:
+#+BEGIN_SRC
+[1421761682.052172] 665 bytes from lig-publig.imag.fr (129.88.11.7): icmp_seq=1 ttl=60 time=22.5 ms
+#+END_SRC
+
+Au début, entre crochet, vous trouvez la date à laquelle la mesure a
+été prise, exprimée en secondes depuis le 1er janvier 1970. La taille
+du message en octet est donnée juste après, suivie par le nom de la
+machine cible et son adresse IP, qui sont normalement identiques pour
+toutes les lignes à l'intérieur d'un jeu de données. À la fin de la
+ligne, nous trouvons le temps d'envoi (aller-retour) en
+millisecondes. Les autres indications, =icmp_seq= et =ttl=, n'ont pas
+d'importance pour notre analyse. Attention, il peut arriver qu'une
+ligne soit incomplète et il faut donc vérifier chaque ligne avant d'en
+extraire des informations !
+
+Votre mission si vous l'acceptez :
+1. Vous commencerez par travailler avec le premier jeu de données
+   (liglab2). Représentez graphiquement l'évolution du temps de
+   transmission au cours du temps (éventuellement à différents
+   instants et différentes échelles de temps) pour évaluer la
+   stabilité temporelle du phénomène. Ces variations peuvent-elles
+   être expliquées seulement par la taille des messages ?
+2. Représentez le temps de transmission en fonction de la taille des
+   messages. Vous devriez observer une "rupture", une taille à partir
+   de la quelle la nature de la variabilité change. Vous estimerez
+   (graphiquement) cette taille afin de traiter les deux classes de
+   tailles de message séparément.
+3. Effectuez une régression linéaire pour chacune des deux classes et
+   évaluez les valeurs de /L/ et de /C/ correspondantes. Vous superposerez
+   le résultat de cette régression linéaire au graphe précédent.
+4. (Optionnel) La variabilité est tellement forte et asymétrique que
+   la régression du temps moyen peut être considérée comme peu
+   pertinente. On peut vouloir s'intéresser à caractériser plutôt le
+   plus petit temps de transmission. Une approche possible consiste
+   donc à filtrer le plus petit temps de transmission pour chaque
+   taille de message et à effectuer la régression sur ce sous-ensemble
+   de données. Cela peut également être l'occasion pour ceux qui le
+   souhaitent de se familiariser avec la [[https://fr.wikipedia.org/wiki/R%25C3%25A9gression_quantile][régression de quantiles]]
+   (implémentée en R dans la bibliothèque quantreg et en Python dans
+   la bibliothèque statsmodels).
+5. Répétez les étapes précédentes avec le second jeu de données
+   (stackoverflow).
 * Requirements 
 All the examples given in this series of lecture use the [[http://www.r-project.org/][R]] language
 and the source is provided so that people can reuse them. The slides
