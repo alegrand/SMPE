@@ -436,7 +436,7 @@ When $n$ is large:
       \only<1>{The two 95\% confidence intervals do not overlap\vspace{-.8em}
         \begin{flushright}
           $\leadsto \mu_A<\mu_B$ with more than 90\% of confidence
-          \smiley
+          $\smiley$
         \end{flushright}
       }%
       \only<2>{The two 95\% confidence intervals do overlap\vspace{-.8em}
@@ -454,8 +454,8 @@ When $n$ is large:
       \only<4->{The width of the confidence interval is proportional
         to $\frac{\sigma}{\sqrt{n}}$\vspace{-.8em}
         \begin{flushright}
-          Halving C.I. requires 4 times more experiments! \frowny\\
-          Try to \alert{reduce variance} if you can...\smiley
+          Halving C.I. requires 4 times more experiments! $\frowny$\\
+          Try to \alert{reduce variance} if you can...$\smiley$
         \end{flushright}
       }
     \end{overlayarea}
@@ -533,15 +533,15 @@ ggplot(dfgg,aes(x=Alternative,y=Time)) + theme_bw() +
 #+END_CENTER
 
 \vspace{-.8em} $\mu_A$ is 0.65 seconds smaller than $\mu_B$ with more than
-99\% of confidence \smiley\medskip
+99\% of confidence $\smiley$\medskip
 
 You need to invest in a probabilistic model. Here we assumed:
 #+LaTeX: \begin{columns}\begin{column}{.3\linewidth}
 - $\rv{A_i} = \boxed{\rv{S_i}} + \rv{A'_i}$
 - $\rv{B_i} = \boxed{\rv{S_i}} + \rv{B'_i}$
 #+LaTeX: \end{column}\begin{column}{.7\linewidth}~\\[-.6em]
-So we could subtract them \smiley \\
-Dividing them would have been a very bad idea...\frowny
+So we could subtract them $\smiley$ \\
+Dividing them would have been a very bad idea...$\frowny$
 #+LaTeX: \end{column}\end{columns}
 *** How to compute and plot CI in R: code
 \small
@@ -597,7 +597,9 @@ ggplot(df, aes(x = n, y = sample_var)) + theme_classic() +
   distribution* (\eg normality) for \rv{X}
 
   But, the CLT says that /when $n$ goes large/, the sample mean is
-  /normally distributed/. We have seen it holds true quickly\\[0pt]
+  /normally distributed/. We have seen it holds true
+  quickly\vspace{-.5em}
+
   #+BEGIN_EXPORT latex
   \begin{overlayarea}{\linewidth}{0cm}
     \vspace{-1em}
@@ -605,7 +607,7 @@ ggplot(df, aes(x = n, y = sample_var)) + theme_classic() +
       \includegraphics<1>[width=.7\linewidth]{pdf_babel/CLT_illustration.pdf}
     \end{center}
   \end{overlayarea}
-  \vspace{-2.4em}
+  \vspace{-.4em}
   #+END_EXPORT
 - 
   #+BEGIN_EXPORT latex
@@ -791,7 +793,7 @@ four_plot(df1)
      axis\vspace{-.5em}
 - Independence :: the lag plot should be _structureless_\vspace{-.5em}
 - Fixed Distribution :: (, in particular if the /fixed normal
-     distribution/ assumption holds)\\[-1.7em]
+     distribution/ assumption holds)\vspace{-1.5em}
   - the histogram should be bell-shaped, and
   - the normal probability plot should be linear \vspace{-.9em}
 If you see _several modes_, there may be an _hidden parameter_ to take
@@ -930,7 +932,7 @@ philosopher *William of Occam*:
   causes a significant increase in deviance when removed from the
   current model
   #+BEGIN_QUOTE
-    A model should be as simple as possible. But no simpler.\\[-1.2em]
+    A model should be as simple as possible. But no simpler.\hspace{-.4em}
     \begin{flushright}
       -- A. Einstein
     \end{flushright}
@@ -981,7 +983,7 @@ It may be the case that two random variables \rv{X} and \rv{Y} are
 
 - \Eg Let's pick a student at random and measure its
   \rv{TimeSpentStudying} and its \rv{TestScore}
-  - In most cases, studying more should improve your test score \smiley
+  - In most cases, studying more should improve your test score $\smiley$
 The *correlation* of two variables \rv{X} and \rv{Y} is defined as:
   #+BEGIN_EXPORT latex
   \begin{equation*}
@@ -1051,17 +1053,18 @@ should try to get rid of honey bees \winkey
 
 For any two correlated events, A and B, the following relationships
 are possible:
-- A causes B (direct causation)\hfill\smiley
-- A causes B and B causes A (bidirectional or cyclic causation)\hfill\smiley
-- A causes C which causes B (indirect causation)\hfill\smiley
-- B causes A; (reverse causation)\hfill\frowny
+- A causes B (direct causation)\hfill$\smiley$
+- A causes B and B causes A (bidirectional or cyclic causation)\hfill$\smiley$
+- A causes C which causes B (indirect causation)\hfill$\smiley$
+- B causes A; (reverse causation)\hfill$\frowny$
 - A and B are consequences of a common cause, but do not cause each
-  other\hfill\frowny
-- There is no connection between A and B; it is a coincidence\hfill\frowny\\[-.8\baselineskip]
+  other\hfill$\frowny$
+- There is no connection between A and B; it is a 
+  #+LaTeX: coincidence\hfill$\frowny$\vspace{-.2em}%
   - But *designed experiments* can help you ruling this option out
 
 #+BEGIN_CENTER
-#+ATTR_LATEX: :height 3cm
+#+ATTR_LATEX: :height 3cm :center nil
 file:images/xkcd_correlation.png
 \qquad\winkey
 #+END_CENTER
@@ -1096,7 +1099,7 @@ sequence_plot(df1[df1$Value<10,])
   \begin{column}{.5\linewidth}
 #+END_EXPORT
 - *Rare events:* interpretation
-- Get rid of it using \eg *quantiles*:\\[-\baselineskip]
+- Get rid of it using \eg *quantiles*:
   - What is the good *rejection rate*? (5% ???)
 - A threshold value:
   - what is the right *threshold*?
@@ -1112,9 +1115,9 @@ sequence_plot(df1[df1$Value<10,])
 \end{columns}
 #+END_EXPORT
 \scriptsize
-    - Reject values larger than 100 $\leadsto$ .6\% of rejection
-    - Reject values larger than  50 $\leadsto$ 1\% of rejection
-    - Reject values larger than  10 $\leadsto$ 6\% of rejection
+    - Reject values larger than 100 $\leadsto$ .6% of rejection
+    - Reject values larger than  50 $\leadsto$ 1% of rejection
+    - Reject values larger than  10 $\leadsto$ 6% of rejection
 \normalsize
 #+LaTeX: \uncover<3>{%
 Actually, I generated these samples using the /Cauchy distribution/,
@@ -1192,11 +1195,12 @@ unless you know what you do...
             sensitive to discrete distributions\dots There exists other
             more involved estimators but is median really what you
             want to estimate?
-- Minimum and Maximum :: the /sample minimum/ is always too large, hence
+- Minimum and Maximum :: the /sample maximum/ is always too small, hence
      it is biased...
-- Variance :: =var= is a unbiased estimator of variance but =sd= is a
-              biased estimator of standard deviation. Unbiasing
-              depends on the distribution so just overestimate...
+- Variance :: =var= is a unbiased estimator of variance but the "natural
+              formula" for standard deviation (e.g., in ~np.std~) is a
+              biased estimator.. Unbiasing depends on the distribution
+              so just overestimate...
 ** Statistical Tests
 *** Tests
 We have seen how to build *estimators* of specific characteristics of
