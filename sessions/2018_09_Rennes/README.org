@@ -43,7 +43,7 @@ probably adapt to the audience on the fly.
 3. [[file:../../lectures/lecture_literate_programming.pdf][Literate programming]] (Probably not as it will be explained in the
    "Reproducible research" slides)
 4. [[file:../../lectures/lecture_R_crash_course.pdf][R crash course]] (Probably a live demo)
-   - You may want to look at the [[#learning][Learning R]] section of this document
+   - You may want to look at the [[#learning-r][Learning R]] section of this document
      or (probably better) follow this short series of tutorials from
      software carpentry which are quite pedagogical:
      - [[http://swcarpentry.github.io/r-novice-gapminder/01-rstudio-intro/][Introduction to R and Rstudio]]
