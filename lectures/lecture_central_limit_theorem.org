@@ -110,7 +110,7 @@ r2.value <- 0.90
 
 
 p = ggplot(data=df,aes(x=x,y=y)) + geom_point(size=0) + theme_classic() + 
-    stat_function(fun = func, colour = "darkgreen", arg = args) +
+    stat_function(fun = func, colour = "darkgreen", args = args) +
         geom_area(data=area,aes(x=x,y=y),fill="lightskyblue2") + 
             geom_text(x=.7*max(df$x),y=.7*max(df$y), label=label, parse=T) +
             ylab(expression(paste(f[X],"(",italic(w),")"))) + xlim(df$x) +
@@ -191,7 +191,7 @@ dfstat = data.frame(name = c("min", "median", "max","mode","expected value"),
 
 p = ggplot(data=dfstat,aes(x=x,y=y,color=name)) + geom_line(alpha=1) +
     xlim(xmin,xmax) + ylim(ymin,ymax) + theme_classic() + ylab("f(x)") +
-    stat_function(fun = func, colour = "black", arg = args) +
+    stat_function(fun = func, colour = "black", args = args) +
     geom_vline(aes(xintercept=x,color=name)) + guides(colour = guide_legend(""))
 
 p
