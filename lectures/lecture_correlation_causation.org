@@ -103,6 +103,10 @@ Licensed under CC BY-SA 3.0 via Wikimedia Commons
 | Divorces |  3.8 |  3.8 |  3.6 |  3.4 |  3.3 |  3.2 |  2.9 |  2.9 |    3 |  2.8 |    3 |
 
 #+begin_src R :results output graphics :file pdf_babel/spurious_divorce.pdf :exports both :width 7 :height 4 :session :var df=spurious_suicide
+library(ggplot2)
+library(dplyr)
+library(tidyr)
+library(gridExtra)
 df = df %>% gather(key,val,-V1) %>% spread(V1,val) %>% select(-key)
 cor_label = paste("Correlation: ", round(cor(df$Colonies,df$Divorces), digits=3))
 p1 = ggplot(df,aes(y=Divorces,x=Colonies)) + geom_point() + theme_classic() +
