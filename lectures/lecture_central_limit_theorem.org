@@ -395,8 +395,9 @@ the previous formula only gives us
 $\P(|\rv{S_n}/n-\mu|\geq \epsilon) \leq \frac{\sigma^2}{n\epsilon^2} = \frac{100}{n} = 0.5
 \quad\frowny$
 
-In general, we need $\epsilon=\frac{1}{\sqrt{1-\alpha}}.\frac{\sigma}{\sqrt{n}}$ for a
-$\alpha$ confidence interval.
+In general, for an $\alpha$ confidence interval (i.e., $\P(|\rv{S_n}/n-\mu|\le
+\delta)\le\alpha$), we get $\delta=\frac{1}{\sqrt{1-\alpha}}.\frac{\sigma}{\sqrt{n}}$
+
 |  $\alpha$ | Chebyshev's Range $\frowny$    | CLT range $\smiley$            |
 |------+--------------------------+--------------------------|
 |  .95 | $4.47\frac{\sigma}{\sqrt{n}}$ | $1.95\frac{\sigma}{\sqrt{n}}$ |
@@ -552,13 +553,13 @@ Let's assume $\rv{X}\sim\N(0,1)$.
 \begin{align*}
   \M & = \int e^{tx}f_\N(x).dx
        = \int e^{tx}\frac{e^{-\frac{x^2}{2}}}{\sqrt{2\pi}}dx 
-       = \int \frac{e^{\frac{1}{2}(-x^2+tx)}}{\sqrt{2\pi}}dx \\
+       = \int \frac{e^{\frac{1}{2}(-x^2+2tx)}}{\sqrt{2\pi}}dx \\
      & = \int \frac{e^{\frac{1}{2}(-(x-t)^2+t^2)}}{\sqrt{2\pi}}dx 
-       = e^{\frac{x^2}{2}} \int
+       = e^{\frac{t^2}{2}} \int
          \frac{e^{\frac{-(x-t)^2}{2}}}{\sqrt{2\pi}}dx
-       = e^{\frac{x^2}{2}} \int 
+       = e^{\frac{t^2}{2}} \int 
         \frac{e^{\frac{-x^2}{2}}}{\sqrt{2\pi}}dx \\
-     & = e^{\frac{x^2}{2}}
+     & = e^{\frac{t^2}{2}}
 \end{align*}
 #+END_EXPORT
 
@@ -587,7 +588,7 @@ We have:
 #+BEGIN_EXPORT latex
 \begin{align*}
   \M[\rv{S^*_n}] & = \E(e^{t\rv{S^*_n}}) 
-                   = \E(e^{t{\frac{\rv{S_n}-n\mu}{\sqrt{n}\sigma}}}) 
+                   = \E(e^{t{\frac{\rv{S_n}-n\mu}{\sigma\sqrt{n}}}}) 
                    = \E(e^{\frac{t}{\sigma\sqrt{n}}(\rv{S_n}-n\mu)}) 
                    = \MM[\rv{S_n-n\mu}]\left(\frac{t}{\sigma\sqrt{n}}\right)\\
                 & = \Bigg(\MM[\rv{X-\mu}]\Big(\underbrace{\frac{t}{\sigma\sqrt{n}}}_{\xrightarrow[n\to\infty]{} 0}\Big)\Bigg)^n
