@@ -675,9 +675,9 @@ When $n$ is large:
   \begin{center}
     \begin{overlayarea}{.9\linewidth}{4.5cm}
       \begin{center}%
-        \includegraphics<1>[scale=.911,subfig=1]{fig/2sample_comp.fig}%
-        \includegraphics<2>[scale=.911,subfig=2]{fig/2sample_comp.fig}%
-        \includegraphics<3->[scale=.911,subfig=3]{fig/2sample_comp.fig}%
+        \includegraphics<1>[scale=.911,subfig=1]{fig/2sample_comp_1.fig}%
+        \includegraphics<2>[scale=.911,subfig=2]{fig/2sample_comp_2.fig}%
+        \includegraphics<3->[scale=.911,subfig=3]{fig/2sample_comp_3.fig}%
       \end{center}
     \end{overlayarea}
   \end{center}
