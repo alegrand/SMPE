@@ -365,7 +365,7 @@ $$\P(|\rv{S_n}/n-\mu|\geq \epsilon) \leq \frac{\sigma^2}{n\epsilon^2} \xrightarr
 \text{ (for a fixed $\varepsilon$)}$$
 #+END_EXPORT
 *** Illustration: convergence in probability
-#+begin_src R :results output graphics :file pdf_babel/tcl_large_numbers.pdf :exports results :width 7 :height 3 :session
+#+begin_src R :results output graphics :file pdf_babel/tcl_large_numbers.pdf :exports results :width 7 :height 2 :session
 library(ggplot2)
 N=10000;
 
@@ -392,20 +392,27 @@ So we do converge to a spike, but how ?
 
 Assume $\sigma=1$ and we aim at having a precision of $\epsilon=.1$. For $n=500$,
 the previous formula only gives us
+$\P(|\rv{S_n}/n-\mu|\geq \epsilon) \leq \frac{\sigma^2}{n\epsilon^2} = \frac{100}{n} = 0.5
+\quad\frowny$
 
-$$\P(|\rv{S_n}/n-\mu|\geq \epsilon) \leq \frac{\sigma^2}{n\epsilon^2} = \frac{100}{n} = 0.5 \quad\frowny$$
+In general, we need $\epsilon=\frac{1}{\sqrt{1-\alpha}}.\frac{\sigma}{\sqrt{n}}$ for a
+$\alpha$ confidence interval.
+|  $\alpha$ | Chebyshev's Range $\frowny$    | CLT range $\smiley$            |
+|------+--------------------------+--------------------------|
+|  .95 | $4.47\frac{\sigma}{\sqrt{n}}$ | $1.95\frac{\sigma}{\sqrt{n}}$ |
+| .999 | $31.6\frac{\sigma}{\sqrt{n}}$ | $6.58\frac{\sigma}{\sqrt{n}}$ |
 ** Central Limit Theorem
 *** Central Limit Theorem [\textbf{CLT}]
 - Let $\{\rv{X_1}, \rv{X_2}, \dots, \rv{X_n}\}$ be a random sample of size
   $n$ (\ie a sequence of *independent* and *identically distributed*
   random variables with expected values $\mu$ and variances $\sigma^2$)
-- We know that $\E(\rv{S_n}/n) = \mu$ and \Var(\rv{S_n}) = n\sigma^2$.
+- We know that $\E(\rv{S_n}/n) = \mu$ and $\Var(\rv{S_n}) = n\sigma^2$.
 - Let's define the *standardized mean* of these random variables as:
   #+BEGIN_EXPORT latex
   $$\displaystyle \rv{S^*_n} = \frac{S_n-n\mu}{\sqrt{n\sigma^2}}$$
   #+END_EXPORT
   We have $\E(\rv{S^*_n}) = 0$ and  $\Var(\rv{S^*_n}) = 1$.
-- For large $n$'s, the distribution of $\rv{S^*_n}$ is approximately
+- For large $n$, the distribution of $\rv{S^*_n}$ is approximately
   *normal*
   #+BEGIN_EXPORT latex
   \begin{equation*}
