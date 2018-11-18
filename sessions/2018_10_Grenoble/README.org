@@ -71,7 +71,7 @@ are composed with [[http://orgmode.org][org-mode]], beamer, and verbments.
 * Course Tentative Schedule
   1. 04/10/2018 (AL): Epistemology
   2. 18/01/2018 (AL): Reproducible Research
-  3. 25/10/2018 (AL): Litterate Programming (MOOC xregistration)
+  3. 25/10/2018 (AL): Litterate Programming (MOOC registration)
   4. 08/11/2018 (AL): Introduction to R and the tidyverse
   5. 15/11/2018 (JM): Visualizing data with ggplot
   6. 22/11/2018 (JM): Introduction to probabilities and statistics,
