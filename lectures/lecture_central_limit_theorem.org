@@ -615,6 +615,7 @@ into the tails)
 ** Central Limit Theorem consequences
 *** Confidence interval
 #+begin_src R :results output graphics :file pdf_babel/CI_illustration.pdf :exports none :width 5 :height 3 :session
+library(ggplot2)
 mu = 500
 N = 30
 n = 40
