@@ -5,6 +5,7 @@
 #+TAGS: noexport(n)
 #+LaTeX_CLASS: beamer
 #+LaTeX_CLASS_OPTIONS: [11pt,xcolor=dvipsnames,presentation]
+#+PROPERTY: header-args :eval never-export
 #+OPTIONS:   H:3 num:t toc:nil \n:nil @:t ::t |:t ^:nil -:t f:t *:t <:t
 #+LATEX_HEADER: \input{org-babel-style-preembule.tex}
 #+LATEX_HEADER: \usepackage{commath}
@@ -425,9 +426,9 @@ When $n$ is large:
   \begin{center}
     \begin{overlayarea}{.9\linewidth}{4.5cm}
       \begin{center}%
-        \includegraphics<1>[scale=.911,subfig=1]{fig/2sample_comp.fig}%
-        \includegraphics<2>[scale=.911,subfig=2]{fig/2sample_comp.fig}%
-        \includegraphics<3->[scale=.911,subfig=3]{fig/2sample_comp.fig}%
+        \includegraphics<1>[scale=.911]{fig/2sample_comp_1.fig}% ,subfig=1
+        \includegraphics<2>[scale=.911]{fig/2sample_comp_2.fig}% ,subfig=2
+        \includegraphics<3->[scale=.911]{fig/2sample_comp_3.fig}% ,subfig=3
       \end{center}
     \end{overlayarea}
   \end{center}
@@ -463,11 +464,11 @@ When $n$ is large:
 *** Exploiting blocks
 - C.I.s overlap because variance is large. Some *setups* may have an
   intrinsically longer duration than others, hence a large
-  $\Var(\rv{A})$ and $\Var(\rv{B})$
+  $\Var(\rv{A})$ and $\Var(\rv{B})$\vspace{-1em}
   #+BEGIN_EXPORT latex
   \begin{center}
-    \includegraphics<1>[scale=.7,subfig=2]{fig/2sample_comp.fig}%
-    \includegraphics<2->[scale=.7,subfig=4]{fig/2sample_comp.fig}%
+    \includegraphics<1>[scale=.7]{fig/2sample_comp_2.fig}% ,subfig=2
+    \includegraphics<2->[scale=.7]{fig/2sample_comp_4.fig}% ,subfig=4
   \end{center}
   #+END_EXPORT
   \pause
@@ -533,7 +534,8 @@ ggplot(dfgg,aes(x=Alternative,y=Time)) + theme_bw() +
 #+END_CENTER
 
 \vspace{-.8em} $\mu_A$ is 0.65 seconds smaller than $\mu_B$ with more than
-99\% of confidence $\smiley$\medskip
+99% of confidence
+#+LaTeX:  $\smiley$\medskip
 
 You need to invest in a probabilistic model. Here we assumed:
 #+LaTeX: \begin{columns}\begin{column}{.3\linewidth}
