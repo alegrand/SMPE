@@ -290,7 +290,7 @@ Testing value \rv{T}:
     #                                   & = n\pi_l(1-\pi_l) + (n(\pi_l-p_l))^2
     # \end{align*}
     # #+END_EXPORT
-  - Therefore $\boxed{\E(\rv{T}) \ge n^2\frac{(\pi_l-p_l)^2}{p_l}}$
+  - Therefore $\boxed{\E(\rv{T}) \ge n\frac{(\pi_l-p_l)^2}{p_l}}$
 
 #+LaTeX: \vspace{-1.4cm}\begin{flushright}\includegraphics[width=.44\linewidth]{images/chi_2_evol.pdf}\end{flushright}
 
