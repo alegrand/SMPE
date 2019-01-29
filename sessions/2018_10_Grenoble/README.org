@@ -15,7 +15,7 @@ Science from October 2018 to January 2019.
 
 * Useful links 
 - Here is the [[https://tinyurl.com/MOSIG-SMPE-1819][Pad]] you will use to collaborate.
-
+- Here the [[https://edt.grenoble-inp.fr/2018-2019/exterieur/][lecture schedule on ADE]].
 Links to the slides are provided below.
 
 * Course Objective and Organization
