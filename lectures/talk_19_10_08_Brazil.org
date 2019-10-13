@@ -1,0 +1,578 @@
+# -*- coding: utf-8 -*-
+# -*- mode: org -*-
+#+Title:  Reproducible Research: a Perspective
+#+Author: Arnaud Legrand\newline Univ. Grenoble Alpes, CNRS, Inria, Grenoble INP
+#+DATE: UFRGS, October 2019\hfill \mylogo
+#+LANGUAGE: en
+#+STARTUP: beamer indent inlineimages logdrawer
+#+TAGS: noexport(n)
+
+#+PROPERTY: header-args  :session :eval never-export :exports both
+#+DRAWERS: latex_headers
+
+:latex_headers:
+#+LaTeX_CLASS: beamer
+#+LATEX_CLASS_OPTIONS: [10pt,presentation,xcolor={usenames,dvipsnames,svgnames,table}]
+#+OPTIONS:   H:2 num:t toc:nil \n:nil @:t ::t |:t ^:nil -:t f:t *:t <:t
+#+LATEX_COMPILER: lualatex
+#+LATEX_HEADER: \usedescriptionitemofwidthas{bl}
+#+LATEX_HEADER: \usepackage[T1]{fontenc}
+#+LATEX_HEADER: \usepackage[utf8]{inputenc}
+#+LATEX_HEADER: \usepackage{figlatex}
+#+LATEX_HEADER: \usepackage[french]{babel}
+#+LATEX_HEADER: %\usepackage{DejaVuSansMono}
+#+LATEX_HEADER: \usepackage{ifthen,amsmath,amstext,gensymb,amssymb}
+#+LATEX_HEADER: \usepackage{boxedminipage,xspace,multicol}
+#+LATEX_HEADER: %%%%%%%%% Begin of Beamer Layout %%%%%%%%%%%%%
+#+LATEX_HEADER: \ProcessOptionsBeamer
+#+LATEX_HEADER: \usetheme[numbering=fraction,titleformat=smallcaps,progressbar=frametitle]{metropolis}
+#+LATEX_HEADER: \usepackage{fontawesome}
+#+LATEX_HEADER: \usecolortheme[named=BrickRed]{structure}
+#+LATEX_HEADER: %%%%%%%%% End of Beamer Layout %%%%%%%%%%%%%
+#+LATEX_HEADER: \usepackage{verbments}
+#+LATEX_HEADER: \usepackage{xcolor}
+#+LATEX_HEADER: \usepackage{color}
+#+LATEX_HEADER: \usepackage{url} \urlstyle{sf}
+#+LATEX_HEADER: \let\alert=\structure % to make sure the org * * works of tools
+#+LATEX_HEADER: %\let\tmptableofcontents=\tableofcontents
+#+LATEX_HEADER: %\def\tableofcontents{}
+#+LATEX_HEADER:  \usepackage[normalem]{ulem}
+#+LATEX_HEADER:  \usepackage{color,soul}
+#+LATEX_HEADER:  \definecolor{lightorange}{rgb}{1,.9,.7}
+#+LATEX_HEADER:  \sethlcolor{lightorange}
+#+LATEX_HEADER:  \definecolor{lightgreen}{rgb}{.7,.9,.7}
+#+LATEX_HEADER:  \let\hrefold=\href
+#+LATEX_HEADER:  \renewcommand{\href}[2]{\hrefold{#1}{\SoulColor{lightorange}\hl{#2}}}
+#+LATEX_HEADER: % \renewcommand{\uline}[1]{\SoulColor{lightorange}\hl{#1}}
+#+LATEX_HEADER: \renewcommand{\emph}[1]{\SoulColor{lightorange}\hl{#1}}
+#+LATEX_HEADER: \makeatletter
+#+LATEX_HEADER: \newcommand\SoulColor[1]{%
+#+LATEX_HEADER:   \sethlcolor{#1}%
+#+LATEX_HEADER:   \let\set@color\beamerorig@set@color%
+#+LATEX_HEADER:   \let\reset@color\beamerorig@reset@color}
+#+LATEX_HEADER: \makeatother
+#+LATEX_HEADER: \let\oldtexttt=\texttt
+#+LATEX_HEADER: % \renewcommand\texttt[1]{\SoulColor{lightgreen}\hl{\tt#1}}
+#+LATEX_HEADER: % \renewcommand\alert[1]{\SoulColor{lightgreen}\hl{#1}}
+#+LATEX_HEADER: % \AtBeginSection{\begin{frame}{Outline}\tableofcontents\end{frame}}
+#+LATEX_HEADER: \graphicspath{{fig/}}
+#+LATEX_HEADER: \usepackage{tikzsymbols}
+#+LATEX_HEADER: \def\smiley{\Smiley[1][green!80!white]}
+#+LATEX_HEADER: \def\frowny{\Sadey[1][red!80!white]}
+#+LATEX_HEADER: \def\winkey{\Winkey[1][yellow]}
+#+LATEX_HEADER: \def\mylogo{\includegraphics[height=2.5cm]{./images/in_science_we_trust.jpg}}
+
+#+BEGIN_EXPORT latex
+  \newcommand{\myfbox}[2][gray!20]{\bgroup\scalebox{.7}{\colorbox{#1}{{\vphantom{pS}#2}}}\egroup} % \fbox
+  %\def\myfbox#1{#1} % \fbox
+  \def\HPC{\myfbox[gray!40]{HPC}}
+  \def\NET{\myfbox[gray!40]{Network}}
+  \def\SG{\myfbox[gray!40]{Smart Grids}}
+  \def\ECO{\myfbox[gray!40]{Economics}}
+  \def\PRIV{\myfbox[gray!40]{Privacy}}
+  \def\TRACING{\myfbox[red!20]{Tracing}}
+  \def\SIM{\myfbox[green!20]{Simulation}}
+  \def\VIZ{\myfbox[red!40]{Visualization}}
+  \def\MODELING{\myfbox[green!40]{Stochastic Models}}
+  \def\OPT{\myfbox[blue!20]{Optimization}}
+  \def\GT{\myfbox[blue!40]{Game Theory}}
+#+END_EXPORT
+
+#+BEGIN_EXPORT latex
+\def\etal{\textit{et al.}\xspace}
+\def\eg{e.g.,\xspace}
+#+END_EXPORT
+
+#+BEGIN_EXPORT latex
+\def\changefont#1{%
+  \setbeamertemplate{itemize/enumerate body begin}{#1}
+  \setbeamertemplate{itemize/enumerate subbody begin}{#1}
+  #1}
+\makeatletter
+\newcommand{\verbatimfont}[1]{\renewcommand{\verbatim@font}{\ttfamily#1}}
+\makeatother
+\verbatimfont{\scriptsize}%small
+\let\endmintedbak=\endminted
+\def\endminted{\endmintedbak\vspace{-1cm}}
+#+END_EXPORT
+
+#+BEGIN_EXPORT latex
+\newcommand{\Norm}{\ensuremath{\mathcal{N}}\xspace}
+\newcommand{\Unif}{\ensuremath{\mathcal{U}}\xspace}
+\newcommand{\Triang}{\ensuremath{\mathcal{T}}\xspace}
+\newcommand{\Exp}{\ensuremath{\mathcal{E}}\xspace}
+\newcommand{\Bernouilli}{\ensuremath{\mathcal{B}}\xspace}
+\newcommand{\Like}{\ensuremath{\mathcal{L}}\xspace}
+\newcommand{\Model}{\ensuremath{\mathcal{M}}\xspace}
+\newcommand{\E}{\ensuremath{\mathbb{E}}\xspace}
+\def\T{\ensuremath{\theta}\xspace}
+\def\Th{\ensuremath{\hat{\theta}}\xspace}
+\def\Tt{\ensuremath{\tilde{\theta}}\xspace}
+\def\Y{\ensuremath{y}\xspace}
+\def\Yh{\ensuremath{\hat{y}}\xspace}
+\def\Yt{\ensuremath{\tilde{y}}\xspace}
+\let\epsilon=\varepsilon
+\let\leq=\leqslant
+\let\geq=\geqslant
+#+END_EXPORT
+:end:
+
+** Common beliefs
+\it
+- RR mainly allows to fight scientific misconduct (e.g.,
+  fraud). That's nice but I'm honnest so just let me do my work!
+  \medskip\pause
+- RR is all about re-executing the same code, even if the code is
+  stupid and makes wrong computation. It's pointless! \medskip\pause
+- My student has done everything with org-jupyter-studio-mode.
+  Now he's gone and I can't reuse what he did. See, what's the point?
+  RR does not help! \medskip\pause
+- RR is about controling and checking everything, which slows down the
+  scientific discovery process. Changing the way we work and publish
+  may be harmful!
+* Past
+** First Appearance
+*Claerbout & Karrenbach*, 
+\scalebox{.75}{meeting of the Society of Exploration Geophysics}, 1992
+
+file:images/clearbout.pdf
+** Unfortunate mistakes
+#+BEGIN_EXPORT latex
+  \vspace{.5cm}
+  \begin{columns}
+    \begin{column}{.37\linewidth}
+       \includegraphics[width=\linewidth]{images/Chang_proteins.png}
+    \end{column}\hfill
+    \begin{column}{.6\linewidth}
+#+END_EXPORT
+*Geoffrey Chang* (Scripps, UCSD) works on crystalography and studies the
+structure of cell membrane proteins. 
+
+He specialized in structures of *multidrug resistant transporter
+proteins in bacteria*: MsbA de Escheria Choli (Science, 2001), Vibrio
+cholera (Mol. Biology, 2003), Salmonella typhimurium (Science, 2005)
+\bigskip
+#+BEGIN_EXPORT latex
+    \end{column}
+  \end{columns}
+#+END_EXPORT
+
+*2006*: Inconsistencies reveal [[https://people.ligo-wa.caltech.edu/~michael.landry/calibration/S5/getsignright.pdf][a programming mistake]] \newline\vspace{-1em}
+   #+BEGIN_QUOTE
+   a homemade data-analysis program had flipped two columns of data,
+   inverting the electron-density map from which his team had derived
+   the protein structure.
+   #+END_QUOTE
+\medskip
+
+\textbf{5 retractations} that motivate improved software engineering
+practices in computational biology
+** Whistle Blowing
+
+#+LaTeX: \begin{columns}\begin{column}[b]{.47\linewidth}
+\small "clinical trials in oncology have the highest failure rate
+[only 5% are licensed] compared with other therapeutic areas [..]
+difficulty to repeat experiments even in the laboratory of the
+original investigator"\medskip
+
+\footnotesize *Begley and Ellis*, Nature, 2012. [[https://www.nature.com/articles/483531a][\it Raise standards for
+preclinical cancer research]]
+
+#+LaTeX: \end{column}\hfill\begin{column}[b]{.47\linewidth}
+
+file:images/repeatability_arizona.pdf
+
+
+#+LaTeX: \small 8 ACM conferences and 5 journals $\text{EM}^{\text{no}}$= \alert{the code cannot be provided}\smallskip
+
+\footnotesize Collberg, Christian \etal, [[http://reproducibility.cs.arizona.edu/][\it Measuring Reproducibility in Computer
+Systems Research]], 2015
+
+#+LaTeX: \end{column}\end{columns}\bigskip
+
+The scientific process demands the highest standards of \textbf{quality},
+\textbf{ethics} and \textbf{rigor}.
+
+** Why are scientific studies so difficult to reproduce?
+#+BEGIN_EXPORT latex
+\vspace{-.6cm}
+\null\hspace{-.2cm}\hbox{
+\begin{columns}
+  \begin{column}{.38\linewidth}
+    \begin{overlayarea}{\linewidth}{8cm}
+      \includegraphics[scale=.21]{images/reproducibility-graphic-online2.jpg}\\
+      \includegraphics[scale=.21]{images/reproducibility-graphic-online3.jpg}
+      % \includegraphics<3>[scale=.25]{images/reproducibility-graphic-online4.jpg}%
+      % \includegraphics<4>[scale=.25]{images/reproducibility-graphic-online5.jpg}
+    \end{overlayarea}
+  \end{column}\hspace{-.1cm}%
+  \begin{column}{.68\linewidth}\begin{overlayarea}{\linewidth}{8cm}\vspace{-.7em}
+#+END_EXPORT
+[[http://www.nature.com/news/1-500-scientists-lift-the-lid-on-reproducibility-1.19970][1,500 scientists lift the lid on reproducibility]], Nature, May 2016
+
+\normalsize _*Social causes*_ \small
+- Fraud, conflict of interest (pharmaceutic, \dots)
+- *No incentive* to reproduce/check our own work (afap), nor the
+  work of others (big results!), nor to allow others to check
+  (competition)
+- Peer review does not scale: 1+ million articles per year!
+_*Methodological or technical causes*_ \small
+- The many biases (apophenia, confirmation, hindsight,
+  experimenter, ...): *bad designs*
+- Selective reporting, weak analysis (*statistics*, *data manipulation
+  mistakes*, *computational errors*)
+- *Lack of information, code/raw data unavailable*  
+
+#+BEGIN_EXPORT latex
+    \end{overlayarea}
+  \end{column}
+\end{columns}}
+#+END_EXPORT
+** Different concerns
+- Social Sciences, Oncology, ... :: methodology, statistics
+- Genomics :: software engineering, computational reproducibility,
+  provenance, ...
+- Computational fluid dynamics :: numerical issues\medskip
+
+#+LaTeX: \centerline{\includegraphics<+>[width=.8\linewidth]{images/iceberg_publication-5.png}}
+
+_Distinguish between:_
+#+LaTeX: \begin{columns}\begin{column}[b]{.4\linewidth}
+- experimental science
+- observational science
+#+LaTeX: \end{column}\begin{column}[b]{.6\linewidth}
+- computational science (simulation)
+- (big) data analysis
+#+LaTeX: \end{column}\end{columns}\bigskip
+
+* Present
+** Reproducible Research: Trying to Bridge the Gap
+#+BEGIN_EXPORT latex
+  \hbox{\hspace{-.05\linewidth}%
+  \includegraphics<1>[width=1.07\linewidth]{fig/author_reader_rr_1.fig}%
+  \includegraphics<2>[width=1.07\linewidth]{fig/author_reader_rr_2.fig}%
+  \includegraphics<3>[width=1.07\linewidth]{fig/author_reader_rr_3.fig}%
+  \includegraphics<4>[width=1.07\linewidth]{fig/author_reader_rr_4.fig}%
+  \hspace{-.05\linewidth}}
+\vspace{-.4cm}
+\begin{flushright}
+{\scriptsize {\textbf{Inspired by Roger D. Peng's lecture on reproducible research, May 2014}}}
+\end{flushright}
+#+END_EXPORT
+** Existing Tools, Emerging Standards
+
+#+LaTeX: \begin{columns}\begin{column}[t]{.4\linewidth}\centering
+\bf *Notebooks and workflows*
+
+file:images/jupyterpreview.png
+
+#+LaTeX: \includegraphics[height=.8cm]{images/logo/Jupyter_logo.png}
+#+LaTeX: \includegraphics[height=.8cm]{images/logo/OrgMode_logo.png}
+#+LaTeX: \includegraphics[height=.8cm]{images/logo/RStudio_logo.png}
+file:images/logo/workflows.png
+
+#+LaTeX: \end{column}\begin{column}[t]{.35\linewidth}\centering
+\bf *Software environments*
+
+file:images/python3-matplotlib.pdf 
+#+ATTR_LaTeX: :width .6\linewidth
+file:images/platform_diversity.png
+
+#+LaTeX: \includegraphics[height=1cm]{images/logo/docker_logo.png}
+#+LaTeX: \includegraphics[height=1cm]{images/logo/singularity_logo.png}
+#+LaTeX: \includegraphics[height=.8cm]{images/logo/reprozip.png}
+#+LaTeX: \includegraphics[height=1cm]{images/logo/Guix_logo.png}
+#+LaTeX: \includegraphics[height=1cm]{images/logo/nix_logo.png}
+
+#+LaTeX: \end{column}\begin{column}[t]{.35\linewidth}\centering
+\bf *Sharing platforms*\bigskip
+
+#+LaTeX: \includegraphics[height=1cm]{images/logo/git_logo.png}
+#+LaTeX: \includegraphics[height=1cm]{images/logo/github_logo.png}
+#+LaTeX: \includegraphics[height=1cm]{images/logo/gitlab_logo.png}
+#+LaTeX: \includegraphics[height=1cm]{images/logo/JupyterHub_logo.png}
+#+LaTeX: \includegraphics[height=1cm]{images/logo/ArXiv-web.png}
+#+LaTeX: \includegraphics[height=1cm]{images/logo/LogoHAL.png}
+#+LaTeX: \includegraphics[height=1cm]{images/logo/Figshare-logo.png}
+#+LaTeX: \includegraphics[height=1cm]{images/logo/Zenodo-logo.jpg}
+#+LaTeX: \includegraphics[height=1cm]{images/logo/swh-logo.png}
+
+#+LaTeX: \end{column}\end{columns}\bigskip
+
+
+
+# - Provenance, mise à disposition, software environment capture,
+#   literate programming, etc. Still no perfect solution but much better
+#   tools.
+#   - notebooks: jupyter/...
+#   - containers/... 
+#   - github/gitlab/zenodo/swh... to
+#   - execution in the cloud: continuous integration and codeocean
+
+** Tool 1: Computational Notebooks/Litterate Programming
+#+LaTeX: \includegraphics<+>[width=\linewidth]{images/example_pi_full-1.pdf}%
+#+LaTeX: \includegraphics<+>[width=\linewidth]{images/example_pi_full-2.pdf}%
+#+LaTeX: \includegraphics<+>[width=\linewidth]{images/example_pi_full-3.pdf}%
+#+LaTeX: \includegraphics<+>[width=\linewidth]{images/example_pi_full-4.pdf}%
+#+LaTeX: \includegraphics<+>[width=\linewidth]{images/example_pi_full-5.pdf}%
+#+LaTeX: \includegraphics<+>[width=\linewidth]{images/example_pi_full-6.pdf}%
+*** Export svg pdf                                               :noexport:
+#+begin_src shell :results output :exports both
+for i in images/example_pi_*.svg ; do
+   inkscape $i --export-pdf=`dirname $i`/`basename $i .svg`.pdf;
+done
+#+end_src
+
+#+RESULTS:
+** Tool 2: Fighting Software Environments Nightmare
+What is hiding behind a simple
+#+begin_src python :results output :exports both
+import matplotlib
+#+end_src
+
+#+LaTeX: \scriptsize
+#+BEGIN_EXAMPLE
+Package: python3-matplotlib
+Version: 2.1.1-2
+Depends: python3-dateutil, python-matplotlib-data (>= 2.1.1-2),
+python3-pyparsing (>= 1.5.6), python3-six (>= 1.10), python3-tz,
+libjs-jquery, libjs-jquery-ui, python3-numpy (>= 1:1.13.1),
+python3-numpy-abi9, python3 (<< 3.7), python3 (>= 3.6~),
+python3-cycler (>= 0.10.0), python3:any (>= 3.3.2-2~), libc6 (>=
+2.14), libfreetype6 (>= 2.2.1), libgcc1 (>= 1:3.0), libpng16-16 (>=
+1.6.2-1), libstdc++6 (>= 5.2), zlib1g (>= 1:1.1.4)
+#+END_EXAMPLE
+#+BEGIN_EXPORT latex
+\begin{overlayarea}{\linewidth}{5cm}
+  \pause\vspace{-3cm}\includegraphics<+>[width=\linewidth]{images/python3-matplotlib.png}%
+\end{overlayarea}
+#+END_EXPORT
+
+** Tool 2: Fighting Software Environments Nightmare
+Python and its rapidly evolving environment
+#+LaTeX: \null\vspace{-.8em}
+
+#+begin_src shell :results output :exports both
+python2 -c "print(10/3)"
+python3 -c "print(10/3)"
+#+end_src
+
+#+LaTeX: \null\vspace{-1.2em}{\scriptsize
+#+RESULTS:
+: 3
+: 3.3333333333333335
+#+LaTeX: }
+\pause
+#+LaTeX: \null\vspace{-1.5cm}
+#+ATTR_LATEX: :height 3cm :center nil
+file:images/plot_1.5.3.png
+#+ATTR_LATEX: :height 3cm :center nil
+file:images/plot_2.1.1.png
+
+\pause 
+Cortical Thickness Measurements (PLOS ONE, June 2012):
+/FreeSurfer/: /differences were found between the Mac and HP workstations
+and between Mac OSX 10.5 and OSX 10.6./ \pause
+
+#+LaTeX: \begin{center}
+#+LaTeX: \includegraphics[height=.8cm]{images/logo/reprozip.png} \qquad
+#+LaTeX: \includegraphics[height=1cm]{images/logo/docker_logo.png}\qquad
+#+LaTeX: \includegraphics[height=1cm]{images/logo/Guix_logo.png}
+#+LaTeX: \includegraphics[height=1cm]{images/logo/nix_logo.png}
+#+LaTeX: \end{center}
+
+** Tool 3: Fighting Information Loss with Archives
+\small
+D. Spinellis. [[https://www.spinellis.gr/sw/url-decay/][The Decay and Failures of URL
+References]]. CACM, 46(1), Jan 2003.\smallskip
+
+#+BEGIN_QUOTE
+  The half-life of a referenced URL is approximately 4 years from its
+  publication date.
+#+END_QUOTE
+P. Habibzadeh. [[https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3885908/][Decay of References to Web sites in Articles
+Published in General Medical Journals: Mainstream vs Small
+Journals]]". Applied Clinical Informatics. 4 (4), 2013
+#+BEGIN_QUOTE
+   half life ranged from 2.2 years in EMHJ to 5.3 years in BMJ
+#+END_QUOTE
+\normalsize\pause
+- Article archives :: 
+  #+LaTeX: \raisebox{-1.5ex}{\includegraphics[height=.8cm]{images/logo/ArXiv-web.png}}
+  #+LaTeX: \raisebox{-1.5ex}{\includegraphics[height=.8cm]{images/logo/LogoHAL.png}}
+
+- Data archives ::
+  #+LaTeX: \raisebox{-1.5ex}{\includegraphics[height=.8cm]{images/logo/Figshare-logo.png}}
+  #+LaTeX: \raisebox{-1.5ex}{\includegraphics[height=.8cm]{images/logo/Zenodo-logo.jpg}}
+
+- Software Archive ::
+  #+LaTeX: \raisebox{-2.4ex}{\includegraphics[height=1cm]{images/logo/swh-logo.png}}
+
+#+LaTeX: \raisebox{-1ex}{\includegraphics[height=.8cm]{images/logo/git_logo.png}}
+#+LaTeX: \raisebox{-.5ex}{\includegraphics[height=.8cm]{images/logo/github_logo.png}} or
+#+LaTeX: \raisebox{-1.4ex}{\includegraphics[height=.8cm]{images/logo/gitlab_logo.png}}
+$=$ awesome collaborations $\ne$ archive
+
+** Changing Practices
+*Manifesto*: "\textit{I solemnly pledge}" ([[https://hal.inria.fr/hal-01367344/document][WSSSPE]], [[http://lorenabarba.com/gallery/reproducibility-pi-manifesto/][Lorena Barba]], [[https://www.go-fair.org/fair-principles/][FAIR]])\small
+  1. I will teach my graduate students about reproducibility
+  2. All our research code (and writing) is under version control
+  3. We will always carry out verification and validation
+  4. We will share data, plotting script & figure under CC-BY
+  5. We will upload the preprint to arXiv at the time of submission of a paper
+  6. We will release code at the time of submission of a paper
+  7. We will add a "Reproducibility" declaration at the end of each paper
+  8. I will keep an up-to-date web presence
+
+#+LaTeX: \hbox{\normalsize Soft. Engineering, Statistics, and Reproducible Research in the \alert{curricula}}
+
+#+LaTeX: \begin{columns}\begin{column}{.5\linewidth}
+file:images/mooc_rr.png
+#+LaTeX: \end{column}\begin{column}{.5\linewidth}
+- [[https://rr-france.github.io/bookrr/][Webinars on RR]] 2016-2017
+- [[https://learninglab.inria.fr/en/mooc-recherche-reproductible-principes-methodologiques-pour-une-science-transparente/][\bf MOOC on RR]] (3rd edition planned for January 2020)
+- [[https://rr-france.github.io/bookrr/][Book on RR]] in June 2019\bigskip
+#+LaTeX: \end{column}\end{columns}
+
+** Publishing
+- Artifact evaluation and ACM badges ::  
+     #+BEGIN_CENTER
+     \includegraphics[height=1cm]{images/ae_badge1.png}
+     \includegraphics[height=1cm]{images/ae_badge2.png}
+     \includegraphics[height=1cm]{images/acm_badges.pdf}     
+     #+END_CENTER
+- Major conferences ::  
+  - [[https://sc19.supercomputing.org/submit/reproducibility-initiative/][Supercomputing]]: Artifact Description (AD) *mandatory*, Artifact
+    Evaluation (AE) still *optional*, *Double blind* vs. *RR*
+  - [[https://nips.cc/Conferences/2019/CallForPapers][NeurIPS]], [[https://reproducibility-challenge.github.io/iclr_2019/][ICLR]]: *open reviews*, reproducibility challenge
+
+    [[https://www.youtube.com/watch?v=Kee4ch3miVA][Joelle Pineau @ NeurIPS'18]]
+    #+LaTeX: \includegraphics[width=.4\linewidth]{images/joelle_pineau.jpg}
+  - [[http://db-reproducibility.seas.harvard.edu/papers/index.html][ACM SIGMOD 2015-2019]], ...
+
+*Mentality is evolving*: people care and make stuff available
+
+** Key Concerns for our Community (Room for Improvement)
+- $\blacktriangleright$ Awareness of Experiments and Statistics ::   [[https://research.spec.org/fileadmin/user_upload/documents/rg_cloud/endorsed_publications/SPEC_RG_2019_Methodological_Principles_for_Reproducible_Performance_Evaluation_in_Cloud_Computing.pdf][How are cloud
+     performance currently obtained and reported?]], March 2019
+    # 98 articles, 2012-2017
+    #+ATTR_LaTeX: :width \linewidth
+    file:images/SPEC_RG_2019_Fig4_2.pdf
+    # - P3 discusses the experimental setup description. Even though
+    #   more than 52% of the analyzed papers fully cover this
+    #   principle, a substantial number of papers do not or only
+    #   partially describe the experimental setup in which the
+    #   performance evaluation is conducted. This significantly
+    #   impacts the technical reproducibility of the results.
+    # - P4 partly complements P3, as it considers the accessibility
+    #   of the datasets used in the analysis and whether the authors
+    #   have released the source code. In more than 70% of the
+    #   cases, the code of the assessed technique is not released
+    #   and the datasets used for the evaluation are not publicly
+    #   available.
+    # - P6 nalyzes if a statistical evaluation has been performed,
+    #   to include some (statistical) confidence in the
+    #   results. This principle is the most disregarded by the
+    #   papers we study, with N > 90%.
+- $\blacktriangleright$ Shared testbeds and Experimental control ::
+     Grid'5000/SILECS, ...
+* Future
+** Publish or Perish (ok, this is past and present)
+- [[https://thegradient.pub/over-optimization-of-academic-publishing-metrics/][Goodhart’s Law: Are Academic Metrics Being Gamed?]], M. Fire 2019
+  - AI: over 1,000 ranked journals ($\times10$ in 15 years)
+  - Shorter papers with increasing self references
+  - More and more papers without any citation
+  - Sharp increase in the number of new authors publishing at a much
+    faster rate given their career age
+    # - Authors: We noticed a sharp increase in the number of new
+    #   authors These new authors are publishing at a much faster rate
+    #   given their career age than they have in previous
+    #   decades. Additionally, the average number of coauthors per
+    #   author considerably increased over time. Lastly, we observed
+    #   that in recent years there has been a growing trend for authors
+    #   to publish more in conferences.
+    # - Papers: We observed that over time, papers became shorter while
+    #   other features, such as titles, abstracts, and author lists,
+    #   became longer. While the number of references and the number of
+    #   self-citations considerably increased, the total number of
+    #   papers without any citations grew rapidly as well.
+    # - Traditional measures (e.g., number of papers, number of
+    #   citations, h-index, and impact factor) have become targets 
+    # - Citation number has become a target for some researchers
+    # - Exponential growth in the number of new researchers who publish
+    #   papers, likely due to career pressures
+- [[http://users.cecs.anu.edu.au/~steveb/downloads/pdf/evaluate-toplas-2016.pdf][The Truth, The Whole Truth, and Nothing But the Truth: A Pragmatic
+  Guide to Assessing Empirical Evaluations]], \textit{TOPLAS} 2016
+  #+LaTeX: \begin{flushright}
+    #+ATTR_LaTeX: :width .8\linewidth :center nil
+    file:images/evaluate-toplas-2016_fig10.pdf
+  #+LaTeX: \end{flushright}
+
+#+BEGIN_EXPORT latex
+\begin{overlayarea}{\linewidth}{0cm}
+  \vspace{-5cm}\pause
+%  \begin{flushright}
+    \includegraphics[height=2.5cm]{images/ReScience-moto-bordered.pdf}
+%  \end{flushright}
+
+\end{overlayarea}
+#+END_EXPORT
+
+
+
+** Reproducible Research = Transparency
+To err is human. 
+
+#+BEGIN_CENTER
+\bf Good research requires time and resources
+#+END_CENTER
+
+1. \textbf{Train yourself and your students on RR}, statistics, experiments
+   - Beware of checklists and norms
+   - Understand what's at stake
+2. \textbf{Make publication practices evolve} 
+3. \bgroup\bf Prepare the Future: Toward *literate experimentation*?\egroup
+   - Reuse, reuse, reuse
+   - How to share Experiments
+** Some advertising
+
+#+LaTeX: \begin{columns}\begin{column}[t]{.45\linewidth}\centering
+#+ATTR_LaTeX: :width \linewidth
+file:images/ten-years-challenge.png
+
+\footnotesize
+http://rescience.github.io/ten-years/
+#+LaTeX: \end{column}\begin{column}[t]{.54\linewidth}
+#+ATTR_LaTeX: :width \linewidth
+file:images/mooc_rr.png
+
+\small
+*3rd Edition*: \approx Feb. 2020
+
+A *new MOOC*: "Advanced RR"\footnotesize
+- Software environment control (Docker)
+- Scientific workflow (snakemake)
+- Managing data (HDF5, archiving)
+October 2020 ?
+#+LaTeX: \end{column}\end{columns}
+
+* TILECS workshop : Recherche/Expérimentation/Analyse reproductible: comment se positionner? :noexport:
+- [[http://users.cecs.anu.edu.au/~steveb/downloads/pdf/evaluate-toplas-2016.pdf][The Truth, The Whole Truth, and Nothing But the Truth: A Pragmatic
+  Guide to Assessing Empirical Evaluations]] 2016 (Vitek, Diwan, ...)
+- [[https://research.spec.org/fileadmin/user_upload/documents/rg_cloud/endorsed_publications/SPEC_RG_2019_Methodological_Principles_for_Reproducible_Performance_Evaluation_in_Cloud_Computing.pdf][Methodological Principles for Reproducible Performance Evaluation in
+  Cloud Computing]] (2019, Amaral, Iosop, ..)
+
+  http://users.cecs.anu.edu.au/~steveb/downloads/pdf/evaluate-toplas-2016.pdf
+
+* Emacs Setup                                                      :noexport:
+This document has local variables in its postembule, which should
+allow Org-mode (9) to work seamlessly without any setup. If you're
+uncomfortable using such variables, you can safely ignore them at
+startup. Exporting may require that you copy them in your .emacs.
+
+# Local Variables:
+# eval: (add-to-list 'org-latex-packages-alist '("" "minted"))
+# eval: (setq org-latex-listings 'minted)
+# eval: (setq org-latex-minted-options '(("style" "Tango") ("bgcolor" "Moccasin") ("frame" "lines") ("linenos" "true") ("fontsize" "\\small")))
+# eval: (setq org-latex-pdf-process '("lualatex -shell-escape -interaction nonstopmode -output-directory %o %f"))
+# End:
