@@ -2,7 +2,7 @@
 # -*- mode: org -*-
 #+Title:  Reproducible Research: a Perspective
 #+Author: Arnaud Legrand\newline Univ. Grenoble Alpes, CNRS, Inria, Grenoble INP
-#+DATE: UFRGS, October 2019\hfill \mylogo
+#+DATE: SBAC-PAD, October 2019\hfill \mylogo
 #+LANGUAGE: en
 #+STARTUP: beamer indent inlineimages logdrawer
 #+TAGS: noexport(n)
@@ -167,7 +167,7 @@ cholera (Mol. Biology, 2003), Salmonella typhimurium (Science, 2005)
 
 \textbf{5 retractations} that motivate improved software engineering
 practices in computational biology
-** Whistle Blowing
+** The "Reproducibility Crisis"
 
 #+LaTeX: \begin{columns}\begin{column}[b]{.47\linewidth}
 \small "clinical trials in oncology have the highest failure rate
@@ -228,25 +228,35 @@ _*Methodological or technical causes*_ \small
   \end{column}
 \end{columns}}
 #+END_EXPORT
-** Different concerns
+** Different reproducibility concerns
+# _Distinguish between:_
+# #+LaTeX: \begin{columns}\begin{column}[b]{.4\linewidth}
+# - experimental science
+# - observational science
+# #+LaTeX: \end{column}\begin{column}[b]{.6\linewidth}
+# - computational science (simulation)
+# - (big) data analysis
+# #+LaTeX: \end{column}\end{columns}%\bigskip
+
 - Social Sciences, Oncology, ... :: methodology, statistics
 - Genomics :: software engineering, computational reproducibility,
   provenance, ...
 - Computational fluid dynamics :: numerical issues\medskip
 
-#+LaTeX: \centerline{\includegraphics<+>[width=.8\linewidth]{images/iceberg_publication-5.png}}
-
-_Distinguish between:_
-#+LaTeX: \begin{columns}\begin{column}[b]{.4\linewidth}
-- experimental science
-- observational science
-#+LaTeX: \end{column}\begin{column}[b]{.6\linewidth}
-- computational science (simulation)
-- (big) data analysis
-#+LaTeX: \end{column}\end{columns}\bigskip
+#+BEGIN_EXPORT latex
+\begin{center}
+  \includegraphics<+>[width=.9\linewidth]{images/iceberg_publication-1.png}%
+  \includegraphics<+>[width=.9\linewidth]{images/iceberg_publication-2.png}%
+  \includegraphics<+>[width=.9\linewidth]{images/iceberg_publication-3.png}%
+  \includegraphics<+>[width=.9\linewidth]{images/iceberg_publication-4.png}%
+  \includegraphics<+->[width=.9\linewidth]{images/iceberg_publication-5.png}\medskip
+  
+  \uncover<+>{Reproducible Research = Bridging the Gap by working Transparently}
+\end{center}
+#+END_EXPORT
 
 * Present
-** Reproducible Research: Trying to Bridge the Gap
+** Reproducible Research: Trying to Bridge the Gap                :noexport:
 #+BEGIN_EXPORT latex
   \hbox{\hspace{-.05\linewidth}%
   \includegraphics<1>[width=1.07\linewidth]{fig/author_reader_rr_1.fig}%
@@ -260,7 +270,7 @@ _Distinguish between:_
 \end{flushright}
 #+END_EXPORT
 ** Existing Tools, Emerging Standards
-
+\vspace{1em}
 #+LaTeX: \begin{columns}\begin{column}[t]{.4\linewidth}\centering
 \bf *Notebooks and workflows*
 
@@ -315,7 +325,19 @@ file:images/platform_diversity.png
 #+LaTeX: \includegraphics<+>[width=\linewidth]{images/example_pi_full-3.pdf}%
 #+LaTeX: \includegraphics<+>[width=\linewidth]{images/example_pi_full-4.pdf}%
 #+LaTeX: \includegraphics<+>[width=\linewidth]{images/example_pi_full-5.pdf}%
-#+LaTeX: \includegraphics<+>[width=\linewidth]{images/example_pi_full-6.pdf}%
+#+LaTeX: \includegraphics<+->[width=\linewidth]{images/example_pi_full-6.pdf}%
+
+#+BEGIN_EXPORT latex
+\begin{overlayarea}{\linewidth}{0cm}
+  \vspace{-1.2cm}
+  \begin{center}
+    \includegraphics<+>[height=.8cm]{images/logo/Jupyter_logo.png}
+    \includegraphics<.>[height=.8cm]{images/logo/OrgMode_logo.png}
+    \includegraphics<.>[height=.8cm]{images/logo/RStudio_logo.png}
+  \end{center}
+\end{overlayarea}
+#+END_EXPORT
+
 *** Export svg pdf                                               :noexport:
 #+begin_src shell :results output :exports both
 for i in images/example_pi_*.svg ; do
@@ -448,9 +470,9 @@ file:images/mooc_rr.png
 
     [[https://www.youtube.com/watch?v=Kee4ch3miVA][Joelle Pineau @ NeurIPS'18]]
     #+LaTeX: \includegraphics[width=.4\linewidth]{images/joelle_pineau.jpg}
-  - [[http://db-reproducibility.seas.harvard.edu/papers/index.html][ACM SIGMOD 2015-2019]], ...
-
-*Mentality is evolving*: people care and make stuff available
+  - [[http://db-reproducibility.seas.harvard.edu/papers/index.html][ACM SIGMOD 2015-2019]], ... \medskip
+- Mentalitie are evolving :: people care, make stuff available, errors
+     are found and fixed
 
 ** Key Concerns for our Community (Room for Improvement)
 - $\blacktriangleright$ Awareness of Experiments and Statistics ::   [[https://research.spec.org/fileadmin/user_upload/documents/rg_cloud/endorsed_publications/SPEC_RG_2019_Methodological_Principles_for_Reproducible_Performance_Evaluation_in_Cloud_Computing.pdf][How are cloud
@@ -474,8 +496,6 @@ file:images/mooc_rr.png
     #   to include some (statistical) confidence in the
     #   results. This principle is the most disregarded by the
     #   papers we study, with N > 90%.
-- $\blacktriangleright$ Shared testbeds and Experimental control ::
-     Grid'5000/SILECS, ...
 * Future
 ** Publish or Perish (ok, this is past and present)
 - [[https://thegradient.pub/over-optimization-of-academic-publishing-metrics/][Goodhart’s Law: Are Academic Metrics Being Gamed?]], M. Fire 2019
@@ -518,8 +538,6 @@ file:images/mooc_rr.png
 \end{overlayarea}
 #+END_EXPORT
 
-
-
 ** Reproducible Research = Transparency
 To err is human. 
 
@@ -527,14 +545,16 @@ To err is human.
 \bf Good research requires time and resources
 #+END_CENTER
 
-1. \textbf{Train yourself and your students on RR}, statistics, experiments
+1. \textbf{Train yourself and your students}: RR, statistics, experiments
    - Beware of checklists and norms
    - Understand what's at stake
-2. \textbf{Make publication practices evolve} 
-3. \bgroup\bf Prepare the Future: Toward *literate experimentation*?\egroup
-   - Reuse, reuse, reuse
-   - How to share Experiments
-** Some advertising
+2. \textbf{Change the norm:} make publication practices evolve
+3. \textbf{Incentive}: consider RR/open science when hiring
+4. \textbf{Prepare the Future:} Toward *literate experimentation*?
+   - Reuse, reuse, reuse!
+   - Shared and controled testbeds (e.g., Grid'5000/SILECS)
+   - How to share Experiments ?
+** Some Advertising
 
 #+LaTeX: \begin{columns}\begin{column}[t]{.45\linewidth}\centering
 #+ATTR_LaTeX: :width \linewidth
@@ -547,7 +567,7 @@ http://rescience.github.io/ten-years/
 file:images/mooc_rr.png
 
 \small
-*3rd Edition*: \approx Feb. 2020
+*3rd Edition*: \approx Feb. 2020\medskip
 
 A *new MOOC*: "Advanced RR"\footnotesize
 - Software environment control (Docker)
