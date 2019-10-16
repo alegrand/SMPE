@@ -217,10 +217,9 @@ The scientific process demands the highest standards of \textbf{quality},
   (competition)
 - Peer review does not scale: 1+ million articles per year!
 _*Methodological or technical causes*_ \small
-- The many biases (apophenia, confirmation, hindsight,
-  experimenter, ...): *bad designs*
-- Selective reporting, weak analysis (*statistics*, *data manipulation
-  mistakes*, *computational errors*)
+- The many biases, (apophenia, confirmation, ...), HARKing: *bad designs*
+- Selective reporting, weak analysis (*statistics*, *data processing,
+  *computational errors*)
 - *Lack of information, code/raw data unavailable*  
 
 #+BEGIN_EXPORT latex
@@ -435,7 +434,7 @@ Journals]]". Applied Clinical Informatics. 4 (4), 2013
 #+LaTeX: \raisebox{-1.4ex}{\includegraphics[height=.8cm]{images/logo/gitlab_logo.png}}
 $=$ awesome collaborations $\ne$ archive
 
-** Changing Practices
+** Changing Research Practices
 *Manifesto*: "\textit{I solemnly pledge}" ([[https://hal.inria.fr/hal-01367344/document][WSSSPE]], [[http://lorenabarba.com/gallery/reproducibility-pi-manifesto/][Lorena Barba]], [[https://www.go-fair.org/fair-principles/][FAIR]])\small
   1. I will teach my graduate students about reproducibility
   2. All our research code (and writing) is under version control
@@ -456,7 +455,7 @@ file:images/mooc_rr.png
 - [[https://rr-france.github.io/bookrr/][Book on RR]] in June 2019\bigskip
 #+LaTeX: \end{column}\end{columns}
 
-** Publishing
+** Changinv Publishing Practices
 - Artifact evaluation and ACM badges ::  
      #+BEGIN_CENTER
      \includegraphics[height=1cm]{images/ae_badge1.png}
@@ -549,7 +548,7 @@ To err is human.
    - Beware of checklists and norms
    - Understand what's at stake
 2. \textbf{Change the norm:} make publication practices evolve
-3. \textbf{Incentive}: consider RR/open science when hiring
+3. \textbf{Incentive}: consider RR/open science when hiring/promoting
 4. \textbf{Prepare the Future:} Toward *literate experimentation*?
    - Reuse, reuse, reuse!
    - Shared and controled testbeds (e.g., Grid'5000/SILECS)
