@@ -455,7 +455,7 @@ file:images/mooc_rr.png
 - [[https://rr-france.github.io/bookrr/][Book on RR]] in June 2019\bigskip
 #+LaTeX: \end{column}\end{columns}
 
-** Changinv Publishing Practices
+** Changing Publishing Practices
 - Artifact evaluation and ACM badges ::  
      #+BEGIN_CENTER
      \includegraphics[height=1cm]{images/ae_badge1.png}
@@ -469,7 +469,7 @@ file:images/mooc_rr.png
 
     [[https://www.youtube.com/watch?v=Kee4ch3miVA][Joelle Pineau @ NeurIPS'18]]
     #+LaTeX: \includegraphics[width=.4\linewidth]{images/joelle_pineau.jpg}
-  - [[http://db-reproducibility.seas.harvard.edu/papers/index.html][ACM SIGMOD 2015-2019]], ... \medskip
+  - [[http://db-reproducibility.seas.harvard.edu/papers/index.html][ACM SIGMOD 2015-2019]], Most Reproducible Paper Award... \medskip
 - Mentalitie are evolving :: people care, make stuff available, errors
      are found and fixed
 
