@@ -76,6 +76,66 @@ probably adapt to the audience on the fly.
 All the examples given in this series of lecture use the [[http://www.r-project.org/][R]] language
 and the source is provided so that people can reuse them. The slides
 are composed with [[http://orgmode.org][org-mode]], beamer, and verbments.
+* Final Work
+
+What we expect you to do:
+
+- You should work in a public github project from the very beginning
+  and provide us with the URL of the documents you will turn us
+  in. Before starting to work, send us a short description of the
+  topic you will work on so that we can validate it.
+  - Pick a subject/a dataset you are interested in (some dataset from
+    the Internet, the data from your current work or from your last
+    article, ...)
+  - Apply any of the techniques we have seen together (data
+    visualization with ggplot, confidence interval, linear regression,
+    ...). You may also revisit some of your past experiments and
+    explain us how the Design of Experiments techniques I showed you
+    could be applied (or not) to your context.
+- The email with the topic and the github project URL should be sent
+  to to arnaud.legrand@imag.fr and schnorr@inf.ufrgs.br until Friday
+  18 October, 2019.
+- You should spend at least 5 hours on this homework but feel free to
+  spend more if you enjoy it!
+- You should produce a reproducible document (using Rmarkdown in
+  Rstudio, or Jupyter, or org-mode depending on what you are more
+  comfortable with).
+- Here are exemples of similar homework prepared by Master students
+  from Rennes last year.
+  - https://github.com/Aurele-Barriere/CO2_data_analysis/blob/master/evolutionCO2.ipynb
+  - https://github.com/F-Barto/data-visualization-playground/blob/master/john-snow-cholera/John%20Snow%20Cholera.ipynb
+  - https://github.com/JoshuaPeignier/JohnSnow/blob/master/JohnSnow.pdf
+  - https://github.com/Kui26/JeuB-METH
+  Try to ensure that your process is as documented and reproducible as possible.
+- The final document should be turned in before Monday 18
+  November 2019. Just send us an email as soon as your document is
+  ready.
+- Do not be late as we will send you on November 19 the URL of two projects that you should review. 
+  - You should evaluate before November 28 using the github issue
+    mechanism of each project:
+    - Whether the report looks sound and understandable
+    - Whether you think there is enough information to reproduce the work or not
+    - Whether you managed reproducing the work (by cloning the git repos and rerunning the code) or not. Do not spend more than 30 minutes on a project.
+  - It's OK if the answer to the previous points is negative. The main goal of this cross-reviewing is to get you to understand how difficult it may be to produce a reproducible document. Do not be agressive in your comments and only provide positive feedback.
+  - Professor Schnorr and myself will look at both the projects and
+    the comment. We may use the issue mechanism to give you some
+    feedback. We will try to provide some grades by mid December. Stay
+    tuned!
+
+As of 25/10/2019:
+
+| Nome       | GIT                                                             |
+|------------+-----------------------------------------------------------------|
+| Alessander | https://github.com/alessanderosorio/SMPE-UFRGS                  |
+| Anderson   | https://github.com/andermm/SMPE_1920.git                        |
+| Carlos     | https://github.com/carloshabekost/ForestFiresAnalysis           |
+| Diego      | https://github.com/diegotavila/SMPE-UFRGS-2019                  |
+| Gabriel    | https://github.com/gmlangeloh/smpe-dynamic-gb                   |
+| Germano    | https://github.com/gbertoncello/Brent-Oil-Prices-Analysis       |
+| Marcelo    | https://gitlab.com/mmiletto/linearmodel                         |
+| Ricardo    | https://github.com/rswesthauser/Global_Localization-Experiments |
+| Shirlei    | https://gitlab.com/ShirleiOliveira/ufrgs-smpe-1920.git          |
+| Taylor     | https://github.com/github.com/AORolyat/SMPE_vgsales             |
 
 * Hands-on
 In the 3rd module of the [[https://www.fun-mooc.fr/courses/course-v1:inria+41016+session01bis/about][MOOC on Reproducible Research]], there is a
