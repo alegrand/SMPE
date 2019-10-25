@@ -14,9 +14,8 @@ University of Grenoble to 2nd year Master students in Computer
 Science from October 2019 to January 2020.
 
 Teachers:
-- Cyril Labbé
-- Arnaud Legrand
-- Jean-Marc Vincent
+- Arnaud Legrand (scientific)
+- Lucas Mello Schnorr (administrative)
 
 * Useful links 
 - Here is the [[http://pads.univ-grenoble-alpes.fr/p/UFRGS-SMPE-1920][Pad]] you will use to collaborate.
