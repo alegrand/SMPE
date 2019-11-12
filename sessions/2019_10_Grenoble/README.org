@@ -75,7 +75,7 @@ are composed with [[http://orgmode.org][org-mode]], beamer, and verbments.
 3. 2019/10/24 @ 15:30: [AL] Introduction to R and the tidyverse 
 4. 2019/11/07 @ 15:30: [JM] Visualizing data (with ggplot)
 5. 2019/11/14 @ 15:30: [JM] Statistics: CLT + confidence interval
-6. 2019/11/21 @ 15:30: [JM] Statistics: hypothesis, decision and test,
+6. 2019/11/21 @ 15:30: [AL] Statistics: hypothesis, decision and test,
    "comparing" distribution
 7. 2019/11/28 @ 15:30: [AL] Analysis Of Variance, Causality, Linear regression
 8. 2019/12/05 @ 15:30: [AL] Linear regression (continuous)
