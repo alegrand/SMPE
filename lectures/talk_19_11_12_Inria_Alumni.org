@@ -537,7 +537,7 @@ though
     \end{overlayarea}\vspace{-\baselineskip}
     #+END_EXPORT
   - Independent experts and certification agencies
-  - Embrace uncertainty\pause
+  - In the meantime, embrace uncertainty\pause
 
 \bgroup\bf *Lack of reproducibility* is mostly linked to *statistics* and *computers*\egroup
 - Computer Science has *no well-defined empirical practices* yet
