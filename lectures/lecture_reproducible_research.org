@@ -25,7 +25,7 @@
 #+LaTeX: \input{org-babel-document-preembule.tex}
 #+LaTeX: %\let\tableofcontents=\tmptableofcontents
 #+LaTeX: %\tableofcontents
-* Science crisis ?
+* Science Crisis ?
 # #+LaTeX: \input{org-babel-document-preembule.tex}
 # #+LaTeX: \begin{frame}{Outline}\tableofcontents\end{frame}
 *** Inconsistencies
