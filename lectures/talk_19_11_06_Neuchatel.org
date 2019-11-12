@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 # -*- mode: org -*-
-#+Title:   Toward Reproducible Research in Computer Science
+#+Title:   Toward Reproducible Research in\newline Computer Science
 #+Author: Arnaud Legrand\newline Univ. Grenoble Alpes, CNRS, Inria, Grenoble INP
 #+DATE: University of Neuchâtel, November 2019\newline *Experimental reproducibility for computer scientists*\hfill \mylogo
 #+LANGUAGE: en
