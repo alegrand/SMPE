@@ -521,6 +521,7 @@ though
 
 \hfill\mylogo
 ** Perspectives and Opportunities
+# https://blog.khinsen.net/posts/2019/10/29/the-industrialization-of-scientific-research/
 #+LaTeX:   
 
 \bgroup\bf *Transparency* is not new. *Interoperability* and *Reusability* is newer\egroup
