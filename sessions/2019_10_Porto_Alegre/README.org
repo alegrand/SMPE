@@ -134,7 +134,7 @@ As of 25/10/2019:
 | Germano    | https://github.com/gbertoncello/Brent-Oil-Prices-Analysis       |
 | Marcelo    | https://gitlab.com/mmiletto/linearmodel                         |
 | Ricardo    | https://github.com/rswesthauser/Global_Localization-Experiments |
-| Shirlei    | https://gitlab.com/ShirleiOliveira/ufrgs-smpe-1920.git          |
+| Shirlei    | https://github.com/ShirleiOliveira/UFRGS-SMPE-1920              |
 | Taylor     | https://github.com/github.com/AORolyat/SMPE_vgsales             |
 
 * Hands-on
