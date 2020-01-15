@@ -93,7 +93,300 @@ everything you learnt. There are four proposed topics:
 - (C) L'épidémie de choléra à Londres en 1854
 - (D) Estimation de la latence et de la capacité d’une connexion à partir de mesures asymétriques
 
-We may propose additional topics to work on.
+You may propose additional topics to work on.
+
+* Feedback on your hand-on
+This is a subjective evaluation not a full-fledged feedback. I mostly
+took notes so that we could discuss about all this during the lecture.
+** Quentin Guilloteau: [[https://github.com/GuilloteauQ/SMPE][Carbon]] (A)
+- Overall, it is a very nice work with sound models which are
+  iteratively improved.
+- I could re-execute your code and generate the report
+- I would recommend that you conserve a copy of the data and of the
+  generated output in your git repos (especially as Rmd does not
+  include the output).
+- If there is no =NA=, why do you still remove them with a =drop_na= ?
+- Regarding =NA=, it turns out that some records are missing in this
+  data set but that they are not indicated.
+- Computing your prediction and then plotting it is very good (it
+  allows you to inspect the output of the linear regression). You may
+  have want to use =geom_smooth= though to display the uncertainty (on
+  the expectation). Surprisingly, I did not manage to get =geom_smooth=
+  to work with the sinusoidal fit (the frequency is wrong).
+    #+begin_src R :results output :session *R* :exports both
+    reg_quadsin <- lm(data = df, CO2 ~ poly(day, 2)+I(sin(day*2*pi/365.25))+I(cos(day*2*pi/365.25)))
+    summary(reg_quadsin)
+    #+end_src
+
+    #+begin_src R :results output :session *R* :exports both
+    data_prediction <- data.frame(day = seq(1, day_2025, 7))
+    data_prediction$date <- as.Date(date_first_measure + data_prediction$day)
+    data_prediction$CO2 <- predict(reg_quadsin, data_prediction)
+  
+    ggplot(data = df, aes(x = day, y = CO2)) +
+       theme_linedraw() +
+       geom_point(size = 0.1) +
+       geom_smooth(aes(x = day), method="lm", formula = y~poly(x,2)+I(sin(x*2*pi/365.25))+I(cos(x*2*pi/365.25)), color = "red", fullrange=TRUE) + 
+       geom_line(data = data_prediction, aes(x = day, y = CO2), color = "blue") + 
+       xlab("Date") + ylab("CO2 (in ppm)") +
+       ggtitle("CO2 Variations to the Present Day and its Estimation until 2025")
+    #+end_src
+- You should have looked at the global prediction, not just for a few
+  years and also beyond 2020. This would have allowed you to see the
+  impact of overfitting, even though the higher order terms appear significant...
+- You may want to have a look at
+  https://github.com/duvenaud/phd-thesis/blob/master/grammar.pdf,
+  section 1.6.1 for an other kind of regression with an other way of
+  computing uncertainty. (A+)
+** Tijana Ninkovic: [[https://github.com/t-ninkovic/SMPE][Purchasing power of English workers from the 16th to the 19th century]] (A-)
+- Nice work with explanations.
+- Did not try to rerun but all this looks OK.
+- In the second graph (with two different y-axis on the same graph),
+  none of the scale start at 0. Don't you thing this has an
+  impact. The real question, is probably "how can we compare such
+  numbers. Dividing one by the other as you propose looks sound.
+- Don't you think the y axis in the third graph should also start at 0
+  ?
+- Do you think wheat is a sufficient indicator of wealth ?
+** Mihaela-Chavdarova Popova: [[https://github.com/MCPopova/SMPE][Purchasing power of English workers from the 16th to the 19th century]] (A)
+- https://htmlpreview.github.io/?https://github.com/MCPopova/SMPE/blob/master/homework.nb.html
+- Nice work, nice critical analysis of your visualisations.
+- I also like the "time series" with the ratio better. Is it sound to
+  add the =stat_smooth= though as a readers may want to interpret the
+  gray area ?
+** Loic Balleydier: [[https://app-learninglab.inria.fr/gitlab/d8fce4f34e466f9fa6d3dd39c6666de1/mooc-rr/blob/master/module3/exo3/exercice.ipynb][L'épidémie de choléra à Londres en 1854]] (Jupyter, Python 3) (C)
+- *Adding the pip commands is good.*
+- Missing data is not solely about "isnull"
+- There is no visible map at all...
+** Yang Tao Wang: [[https://github.com/CamosiWANG/SMPE/blob/master/TP%2520YangtaoWANG.pdf][The London cholera epidemic of 1854]] (A/A-)
+- Nice work. You decided to hide the code and to leave only the data
+  but this is ok as all the code underneath is available.
+- I tried to reexecute and rerun your code but unfortunately, I got
+  "Error in loadNamespace(name) : aucun package nommé ‘rgdal’ n'est
+  trouvé".
+- I was about to write it would be nice to explain how you got the
+  data but you have put explanations in the =data/= repos
+- You write you could "prove" the pump is in the center of the
+  epidimy. I would rather use the term "show" or "illustrate". Anyway
+  is it a causal relation ? There may be a bakery right in front of
+  this pump which is at the origin of the epidemy. Even though you use
+  modern computing and statistical tools, try to step back and ask
+  yoursel what can be concluded ? Is the data reliable ? How could we
+  determine if this pump isindeed the origin of the epidemy ?
+** Juan-Fernando Vazquez Rodriguez: [[https://app-learninglab.inria.fr/gitlab/f5f24a51c38213cf87501637fb665929/mooc-rr/blob/master/module3/exo3/exercice.ipynb][Latency and capacity estimation for a network connection from asymmetric measurements]] (A/A+)
+- I did not try to rerun but everything looks sound. *It's good you
+  included the pip commands to install the packages you need.*
+- *Identifying the break at 1480 is well done and justified.*
+- Investigating the connection between the different regimes at
+  different time intervals and message size was good. Although the
+  system is not stationnary at "short" time scale, there does not seem
+  to be much pattern between the two states so at a global scale it is
+  reasonable.
+- *You checked the R^2 and and the significance of your
+  estimates. That's good.*
+- *Being different from 0 is not the only important aspect.* It appears
+  like the 99% CI for 1/C is [1.07447526e-04 5.45184375e-04], i.e. the
+  bandwidth is between 1834 and 9345 bytes per milisecond. Doesn't
+  this look like a rather poor estimate to you ?  Note that the
+  estimate with the size2 dataset is even worse since infinite
+  bandwidth would then appear as plausible. :) I know that's not what
+  you said or meant. I'm just pointing it out.
+- Comparing with the situation with the min, the 99% CI for 1/C is [
+  [2.33039633e-04 2.41130739e-04]], i.e. the bandwidth is between and
+  4147 and 4291 bytes per milisecond, which is a rather tight
+  estimate. The estimate for larger size is betwen 3773 and 4752
+  bytes/ms. The fact that the size range is smaller can explain this
+  larger uncertainty.
+- Note that you could try to do the fit on both data sets by imposing
+  the offset to depend on the small/large feature.
+- It would have be nice if you had try to explain why you seem to fail
+  to correctly model the phenomenon for the remote server.
+** Buchra Aboubakr: [[https://app-learninglab.inria.fr/gitlab/d612460c673a9c9113dd9d886f401f80/mooc-rr.git][Latency and capacity estimation for a network connection from asymmetric measurements]] (C)
+- that's a start but there is not much for the moment
+** Nicolas Amat: [[https://github.com/nicolasAmat/SMPE_Ping][Latency and capacity estimation for a network connection from asymmetric measurements]] (A/A+)
+- Good work.
+- I did not try to rerun but everything looks sound.
+- Not your fault but I had troubles displaying/reading your notebook
+  as it was too long.
+- *Cheking for data integrity is a very good thing*
+- Good handling of missing data
+- When you write "No relation between the transmission time and the
+  measurement date." This is not true. There is a relation but moving
+  from a regime to an other appears random.
+- *Outliers*: "For the first class we remove all the measurements with a
+  transmission time larger than $30$ms." Same thing for the second
+  class. Good, it is documented. Is this reasonable ? Does this have
+  an impact ?
+- Looking at the fit *without looking at the confidence interval* and
+  the variability is dangerous/not very sound. Don't you find it
+  strange that your bandwidth estimate for class 1 and 2 are so
+  different from each others. Ooh, ok, you did it earlier.
+- *Linear regression using boxplot for removing outliers*. OK, why not ?
+  This is pragmatic but what are the underlying assumptions and why is
+  it sound ?
+- In the end, *it is nice as you investigated LM, IQR+LM, min+LM, and
+  QR*. It would have been nice to summarize the CI on C for the four
+  methods.
+- "The first point on this study is that the first dataset seems to be
+  more appropriate for the study of latency." I disagree with this
+  statement. You don't get to choose the dataset. You get to choose
+  the method.
+- "We can also observe that the capacity C is much larger for the
+  second connection, and so the capacity has a weaker impact on the
+  transmission time." I also disagree with this statement. The latency
+  is so large and the phenomenon so noisy (in particular as the
+  duration is rounded to an integer number of miliseconds) that you
+  cannot reliably estimate the bandwidth with any of the method you
+  tried.
+** Guy Kanbar: [[https://github.com/guykanbar/smpe][Latency and capacity estimation for a network connection from asymmetric measurements]] (A-)
+- The *figure on page 4 is quite a good illustration of what happens*.
+- Nice report, clean, well explained but you did not look at the
+  output of the regression nor tried to provied an estimate of the
+  bandwidth. If you had tried, you would have realized your estimate
+  is not very reliable.
+** Ana Khorguani: [[https://app-learninglab.inria.fr/gitlab/65ef26c6a1fd5adbb2734089645025c4/mooc-rr/blob/master/Project/Network.ipynb][Latency and capacity estimation for a network connection from asymmetric measurements]] (A/A-)
+- Nice you used both python and R in the same notebook and it appeared to work quite well.
+- "we see that Adjusted R-squared is almost 0, that tells us that the fit is very bad." Not exactly since the graph 19 shows a line which is not that bad.
+- You did not only looked at the summary of the regression but also at the *four checking plots*, which is good. The ones for the regression of the min appear quite satisfying...
+- "Equation based on this result is T(S) = 1.034 + 0.0002368 * S. That means that, with 95% confidence, latency is equal to 1.034 and bandwidth is 4222.9 bytes/s." Erm, no, you cannot state this this way. This formula is the maximum likelihood estimate under some (obviously wrong) assumptions and both estimates are unbiased estimators of the true values for which you can derive CI. But the 1/C is actually in [2.33E-4, 4.00E-4], i.e., the bandwidth is in [2500,4291] bytes/ms.
+- *Plotting the different qr is a nice idea*. It would have been nice
+  to look (using the confidence) on how the estimation of the capacity depends on the quantile.
+** Salman Farhat: [[https://github.com/salmanfarhat1/SMPE-project][Latency and capacity estimation for a network connection from asymmetric measurements]] (A/A-)
+- Good work. Explanations are clear although there are a few mistakes.
+- Why would you supress the warning messages ? They may be important.
+- *Why would you split the data at 1500* when your clearly see that the
+  threshold is a bit smaller than this? This is likely to mess the
+  regression and actually, after reading further, it does.
+- Looking at the distribution of message size was a good idea. It indicates you that the experiment design is actually quite good...
+- Your interpretation of the regression output is a bit "naive", e.g., "using Pr value, we see that size is an excellent addition to the model" and "the very low R^2 means that another factor should be taken into consideration."
+- *Using an ANOVA to compare the two quantile regression* is a very good
+  idea. I'm not sure about the underlying hypothesis though and I
+  don't know if you know these hypothesis... Note that it is not
+  surprising that the .75 quantile is different. Smaller thresholds may be of interest though.
+- "We can see an interesting result in the Figure". What is it you
+  have in mind ?
+- There is something wrong with the regression of the minmum for class
+  1, probably because of the wrong classification (1500) and you
+  cannot see it because of your zoom with the =coord_cartesian=. The
+  problem is also "visible" in the output of your regression where
+  your R^2 is too low (.65 instead of .95).
+** Marie Badaroux: [[https://github.com/MarieBadaroux/Recherche_Reproductible][Latency and capacity estimation for a network connection from asymmetric measurements]] (A-)
+- Good work regarding RR although some statistical aspects are not well understood yet.
+- Hehe, I see you now master regular expressions. https://xkcd.com/208/ ;)
+- When you write "Do the variations of time only depend on the size of the packet? To answer, we need to continue our analysis.", you do not really answer this question. You should have looked whether message size was randomized or not e.g., by plotting them.
+- Good identification of the 1480 threshold.
+- "We can see that the capacity was divided by 10 and the latency is
+  higher for the second part of the data. So when the packets are
+  bigger, the performances decrease." No *you can't conclude this as
+  the uncertainty on the estimate is very large* as indicated by the
+  statsmodels output. This is why *sklearn is quite useless here*.
+- "$R^2$ is equal to zero for the two parts of the data, so the linear
+  regression is irrelevant." I disagree with this statement. It is
+  more subtle than this.
+- QR is "less sensitive to outliers" but it is foremost estimating a different aspect.
+- argh "y_linear_reg.append(0.0002 * x + 1.0334)". The approximation on the intercept completely messes your graph. Why didn't you use predict ?
+- If I may *python does not appear as very helpful for this work
+  compared to R* (vander, sklearn vs. statsmodels, rounding, etc.)
+** Vincent Jicquel: [[https://github.com/Jicquel/reproducible_research][Latency and capacity estimation for a network connection from asymmetric measurements]] (A+)
+https://htmlpreview.github.io/?https://github.com/Jicquel/reproducible_research/blob/master/main.nb.html
+
+- Apparently, there was missing data so something was wrong in your handling of this.
+- Damn, *plotly* does not with with htmlpreview but it is indeed
+  convenient to explore data
+- "But in this case, there is not any easily predictible pattern."
+  Indeed, this is the right formulation.
+- Looking at the *corelation* is a good idea but is far from
+  sufficient.
+- Good handling of the threshold detection.
+- Trying to *handle overplotting* with =geom_count= and transparancy is a
+  good idea.
+- Good use of the colour class/aes to have both regressions on the
+  same graph.
+- "For the second class, the linear regression is totally
+  inappropriate, the slope, the standard error and R-squared are bad."
+  I wouldn't call it inappropriate as the phenomenon is still linear.
+- It would have been nice to plot the min+Lm regression.
+- *Nice plot of the ci on rq*.
+- I'm not sure it makes much sense though to focus on tau=0.8.
+- Be careful with *your capacity estimates that do not take the CI
+  into account*.
+  - Note that if you have no good reason to assume that the latency is
+    different, you could fit with a latency term that depends on the
+    class.
+- I fully agree with your conclusion.
+** Abdelwahab Sadki: [[https://github.com/SADKIAbdel/Linear-Regression-Project][Latency and capacity estimation for a network connection from asymmetric measurements]] (A-)
+- I don't really understand what you mean when you write "NB: in the
+  markdown file, I did the linear regression it was too bad. but i
+  wanted to have something to compare the next models with maybe it
+  will give something useful for understanding the problematic
+  better"...
+- Good work although there are a few strange statements that make me
+  feel like some statistical aspects are not fully understood yet.
+- *Good, you looked at the residuals with the 4 plots*.
+  - I would not call it "uniformly distributed data though"
+  - Slope 3.243e-04 \pm 8.497e-05. Do not forget to double it for a 95%
+    CI. This is strange as you did it for the intercept...
+  - Capacity is not 1/intercept
+- Other weird statement: "we have a good probability of the intercept
+  and the slope to be absurde. also the p-value is small so we can
+  trust this values".
+- I understand you are annoyed by the minimum selection but if your
+  first argument is very sound (we discard many values), your second
+  argument is not really clear.
+- See how the *0 and 1 quantiles are "weird"*.
+- "the quantile regression can show us what's wrong with our
+  experiments and the measurements that we need to ignore". Like what
+  ? This is not clear.
+- "..., which means that there is another parameter to take in
+  consideration to build the model". Are you sure this is the where
+  problem comes from ? I don't think so.
+** Maiko Muller: [[http://htmlpreview.github.io/?https://app-learninglab.inria.fr/gitlab/c26d5172d5d24d037fe4cd5e4931b9f6/moocrr-reproducibility-study/raw/master/src/Rust/Project.html][Reproducing a paper on the Challenger Dataset with Rust]] (A+)
+- Using rust for this is crazy. :) I'm impressed you managed and
+  reporting how you did proceed is very interesting. Good work.
+- We already talked about it. You had to reimplement most of the code
+  and you managed to compute the CI of the coefficients. Computing the
+  CI for each temperature requires some (similar) extra-work but you
+  were right to stop there. You've been quite pugnacious. :) That's
+  quite impressive overall.
+** Alaa Zbair: [[https://github.com/alaazbair/SMPE][Predict portion of time that cpus run in user mode from system performance measures]] (A--)
+- A Sun Sparcstation 20/712 ?!? Wow, I feel like I jumped back in time
+  more than 20 years ago. :) Where did this come from ? A Kaggle
+  dataset ?
+- The whole report is very well written and _looks_ rigorous but there
+  are sometimes very weird statements and I had a lot of trouble
+  following your thoughts and your methodology. This seems overall
+  quite confused and I don't think I would trust your conclusions.
+- "if usr, runsqz follow a normal distribution we can conclude there
+  is a dependance relationship between the two features ?" Where
+  does this come from ?
+- When performing a *exploratory data analysis*, I would suggest using
+  the classical multi-dimensional plot of R, which is also available
+  through ggplot with ggpairs. This would have allowed you to look at
+  all distributions at once instead of looking only at usr, runsqz and
+  freeswap.
+- Although your plots are very nice and composed with a lot of care
+  (e.g. the one on page 6), I do not think they bring that much useful
+  information: you are overlaying a histogram, a histogram and a
+  boxplot but we don't know what's of interest.
+- You mention in the introduction the dataset is composed of two
+  separate occasions but do not investigate it. Why does it make sense
+  to model usr as a function of the other variables ?
+- I do not see why rescaling the data is important if you intend to
+  fit linear model.
+- Why would you print =summary(model)$coefficients= instead of
+  =summary(model)=. The latter one is visually much more readable/useful
+  in such context.
+- Note that an anova is not the same as a linear morel and the
+  interpretation of the test is different. I fear that what you write
+  is not really meaningful.
+** Henrik Helenius
+** Manal Benaissa
+** Thibault Lacharme
+** soukayna omrachi
+** Gabriel Benevides
+** Johana Marku
+** Jonathan Borne
+
 * Requirements 
 All the examples given in this series of lecture use the [[http://www.r-project.org/][R]] language
 and the source is provided so that people can reuse them. The slides
