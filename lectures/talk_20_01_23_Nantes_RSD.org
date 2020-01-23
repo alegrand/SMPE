@@ -543,10 +543,11 @@ To err is human.
 2. \textbf{Change the norm:} make publication practices evolve
    - Require data, code, environment, XP protocol, ...
 3. \textbf{Incentive}: consider RR/open science when hiring/promoting\pause
-4. \textbf{Prepare the Future:} Toward *literate experimentation*?
+4. \textbf{Prepare the Future:} _How to share Experiments?_
    - Reuse, reuse, reuse!
    - Shared and controled testbeds (e.g., Grid'5000/SILECS)
-   - _How to share Experiments?_
+   - Toward *literate experimentation*?
+
 
 \vspace{-.4cm} \hfill\mylogo
 ** Some Advertising
