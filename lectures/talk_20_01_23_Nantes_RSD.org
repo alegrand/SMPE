@@ -130,7 +130,7 @@
 - RR is about controling and checking everything, which slows down the
   scientific discovery process. Changing the way we work and publish
   may be harmful!
-* Toward Reproducible Computer Science Experiments ?
+* Towards Reproducible Computer Science Research ?
 ** Key Concerns for our Community (Room for Improvement)
 #+LaTeX: \vspace{.3cm}
 
@@ -143,23 +143,36 @@
     # 98 articles, 2012-2017
     #+ATTR_LaTeX: :width .8\linewidth
     file:images/SPEC_RG_2019_Fig4_2.pdf
+    # - P2: Workload and configuration coverage discusses whether
+    #   experiments are conducted in different (possibly randomized)
+    #   configurations of relevant parameters, especially parameters
+    #   that are not completely under control or those that may interact
+    #   with the platform in unexpected ways, e.g., the workload. P2
+    #   shows that less than 47% of the analyzed papers include a
+    #   complete performance evaluation with multiple
+    #   configurations. Varying configurations can be challenging in
+    #   some scenarios, due to timing, cost of cloud service, and other
+    #   factors. However, from a scientific perspective, different
+    #   configurations may significantly impact the overall performance
+    #   and more extensive evaluations are needed. Parameter values
+    #   should be randomized according to realistic probabilistic
+    #   distributions or using historical data. The confidence in the
+    #   final result should be quantified.
     # - P3 discusses the experimental setup description. Even though
-    #   more than 52% of the analyzed papers fully cover this
-    #   principle, a substantial number of papers do not or only
-    #   partially describe the experimental setup in which the
-    #   performance evaluation is conducted. This significantly
-    #   impacts the technical reproducibility of the results.
-    # - P4 partly complements P3, as it considers the accessibility
-    #   of the datasets used in the analysis and whether the authors
-    #   have released the source code. In more than 70% of the
-    #   cases, the code of the assessed technique is not released
-    #   and the datasets used for the evaluation are not publicly
-    #   available.
-    # - P6 nalyzes if a statistical evaluation has been performed,
-    #   to include some (statistical) confidence in the
-    #   results. This principle is the most disregarded by the
-    #   papers we study, with N > 90%.
-
+    #   more than 52% of the analyzed papers fully cover this principle,
+    #   a substantial number of papers do not or only partially describe
+    #   the experimental setup in which the performance evaluation is
+    #   conducted. This significantly impacts the technical
+    #   reproducibility of the results.
+    # - P4 partly complements P3, as it considers the accessibility of
+    #   the datasets used in the analysis and whether the authors have
+    #   released the source code. In more than 70% of the cases, the
+    #   code of the assessed technique is not released and the datasets
+    #   used for the evaluation are not publicly available.
+    # - P6 analyzes if a statistical evaluation has been performed, to
+    #   include some (statistical) confidence in the results. This
+    #   principle is the most disregarded by the papers we study, with N
+    #   > 90%.
 #+BEGIN_EXPORT latex
 \pause%
 \begin{overlayarea}{\linewidth}{0cm}
@@ -202,10 +215,10 @@ statistical tests like ANOVA.
 
 \pause\vspace{-.5em}
 _Randomization_ helps fighting bias incured by:\vspace{-.5em}
-- specific configurations 
-  #+LaTeX: \hspace{.6cm}\scalebox{.85}{$AA \dots A \,\to\, A_1 A_2 \dots A_n$ (\sout{pseudo-replication})}
-- temporary perturbations
-  #+LaTeX: \hspace{.25cm}\scalebox{.85}{$AA \dots A\,BB \dots B  \,\to\, ABBAAAB\dots$}
+1. specific configurations 
+   #+LaTeX: \hspace{.6cm}\scalebox{.85}{$AA \dots A \,\to\, A_1 A_2 \dots A_n$ (\sout{pseudo-replication})}
+2. temporary perturbations
+   #+LaTeX: \hspace{.25cm}\scalebox{.85}{$AA \dots A\,BB \dots B  \,\to\, ABBAAAB\dots$}
 * Cache effects!
 ** Impact of Working Set Size on Effective Bandwdith
 #+LaTeX: \vspace{.3cm}
@@ -261,17 +274,17 @@ MultiMAPS(size, stride, nloops) {
   \includegraphics<+>[width=.8\linewidth]{images/randomization/reppar16/RphyMem.pdf}%
   \includegraphics<+>[width=.8\linewidth]{images/randomization/reppar16/RphyMem2.pdf}
 \end{center}
-\uncover<.>{Randomize physical address start!}
+\uncover<.>{Randomize \textbf{physical address} start!}
 #+END_EXPORT
 
 #+LaTeX: \vfill\begin{flushright}\scriptsize Courtesy of L. Stanisic\end{flushright}
 ** Impact of Operating System Scheduler
-- Activating real-time kernel scheduler
+- Activating \textbf{real-time kernel scheduler}
 #+BEGIN_EXPORT latex
  \begin{center}
     \includegraphics[width=.49\linewidth]{images/randomization/reppar16/Sched1.png}
-     \hfill
-    \includegraphics[width=.49\linewidth]{images/randomization/reppar16/Sched2.png}
+    \hfill
+    \uncover<2>{\includegraphics[width=.49\linewidth]{images/randomization/reppar16/Sched2.png}}
  \end{center} 
 #+END_EXPORT
 
@@ -327,7 +340,7 @@ Randomized measurements for Taurus (OpenMPI 2.0.1, TCP, 10Gb Ethernet).
 * CPU performance
 ** Avoiding "Temporary" Perturbations \footnotesize (Randomizing a Factorial Design)
 #+BEGIN_EXPORT latex
-\alert{$\cdot$} HPL performance (70 config., 5 repetitions)\hfill
+\hspace{-.5cm}\alert{$\cdot$} HPL performance (32 nodes, 70 cfg., 5 repetitions)\hfill
 \alert{$\cdot$} Time scale = 3 days\vspace{-.4cm}
 #+END_EXPORT
 
@@ -337,13 +350,16 @@ Randomized measurements for Taurus (OpenMPI 2.0.1, TCP, 10Gb Ethernet).
   \uncover<3->{\includegraphics[width=.55\linewidth]{images/randomization/tom_hpl_random_temp3.png}}
 
   \uncover<2->{\includegraphics[width=.55\linewidth]{images/randomization/tom_hpl_random_temp1.png}}%
-  \uncover<2->{\includegraphics[width=.55\linewidth]{images/randomization/tom_hpl_random_temp2.png}}
+  \uncover<2->{%
+     \includegraphics<2>[width=.55\linewidth]{images/randomization/tom_hpl_random_temp2.png}%
+     \includegraphics<3>[width=.55\linewidth]{images/randomization/tom_hpl_random_temp2bis.png}%
+     }
 \end{minipage}
 \begin{flushright}\scriptsize Courtesy of T. Cornebize\end{flushright}
 #+END_EXPORT
 ** On the Importance of Content Initialization
 #+BEGIN_EXPORT latex
-\alert{$\cdot$} $C = A\times A$, $2048\times2048$ matrix \hfill
+\alert{$\cdot$} $C = A\times A$ ($2048\times2048$), independant \hfill
 \alert{$\cdot$} Time scale = 5 minutes\\
 \alert{$\cdot$} $A$ initialized with $\boxed{\vphantom{,}0} \quad \boxed{\vphantom{,}1} \quad \boxed{\vphantom{,}0.987} \quad \boxed{1, 2, 3, \dots} \quad \boxed{\vphantom{,}random}$?
 \pause\vspace{-.4cm}
@@ -513,7 +529,7 @@ Nancy (T. Buchert, L. Nussbaum)\hfill http://xpflow.gforge.inria.fr/
 2. *\textbf{Randomized and Designed Experiments}* allowing to both:
    - _Check_ the model and _Instanciate_ it
 3. Careful *\textbf{recording of all experimental parameters}*
-   \scriptsize (before and during XPs)
+   \bgroup\scriptsize (before and during XPs)\egroup
 ** Reproducible Research = Rigor and Transparency
 To err is human. 
 
@@ -525,13 +541,14 @@ To err is human.
    - Beware of checklists and norms
    - Understand what's at stake
 2. \textbf{Change the norm:} make publication practices evolve
+   - Require data, code, environment, XP protocol, ...
 3. \textbf{Incentive}: consider RR/open science when hiring/promoting\pause
 4. \textbf{Prepare the Future:} Toward *literate experimentation*?
    - Reuse, reuse, reuse!
    - Shared and controled testbeds (e.g., Grid'5000/SILECS)
-   - How to share Experiments ?
+   - _How to share Experiments?_
 
-\hfill\mylogo
+\vspace{-.4cm} \hfill\mylogo
 ** Some Advertising
 
 #+LaTeX: \begin{columns}\begin{column}[t]{.45\linewidth}\centering
