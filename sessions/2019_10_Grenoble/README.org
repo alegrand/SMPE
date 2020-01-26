@@ -19,6 +19,7 @@ Science from October 7th 2019 to October 11th 2020.
   method"). A table summary is [[https://edt.grenoble-inp.fr/2019-2020/exterieur/jsp/custom/modules/plannings/eventInfo.jsp?week=-1&day=-1&slot=0&eventId=35927&activityId=-1&resourceId=-1&sessionId=-1&repetition=-1&order=slot&availableZone=-1][here]].
 Links to the slides are provided below.
 
+Here is [[file:crime.pdf][the article you should read before the exam]].
 * Course Objective and Organization
 The aim of this course is to provide the fundamental basis for sound
 scientific methodology of performance evaluation of computer
@@ -73,17 +74,17 @@ are composed with [[http://orgmode.org][org-mode]], beamer, and verbments.
 1. 2019/10/03 @ 15:30: [AL] RR / Litterate Programming + MOOC à suivre
 2. 2019/10/17 @ 15:30: Canceled. Spread on November lectures
 3. 2019/10/24 @ 15:30: [AL] Introduction to R and the tidyverse 
-4. 2019/11/07 @ 15:30: [JM] Visualizing data (with ggplot)
-5. 2019/11/14 @ 15:30: [JM] Statistics: CLT + confidence interval
+4. 2019/11/07 @ 15:30: [JM] Visualizing data (with ggplot), [[file:JMV_Intro-Visu.pdf][Critical
+   thinking about visualizations]]
+5. 2019/11/14 @ 15:30: [JM] Statistics: [[file:JMV_Data-Statistics-Introduction.pdf][basics]] + CLT + confidence interval
 6. 2019/11/21 @ 15:30: [AL] Statistics: hypothesis, decision and test,
    "comparing" distribution
 7. 2019/11/28 @ 15:30: [AL] Analysis Of Variance, Causality, Linear regression
 8. 2019/12/05 @ 15:30: [AL] Linear regression (continuous)
 9. 2019/12/12 @ 15:30: [AL] Design of Experiments
-10. 2019/12/19 @ 15:30: [CL + JM] Epistemology 
-11. 2020/01/09 @ 15:30: [CL] Publishing and Ethics
-12. 2020/01/16 @ 15:30: [CL + AL + JM] Feedback on homework
-
+10. 2019/12/19 @ 15:30: [CL] Publishing and Ethics
+11. 2020/01/09 @ 15:30: [JM] Epistemology
+12. 2020/01/16 @ 15:30: [AL + JM] Feedback on homework
 * Hands-on
 In the 3rd module of the [[https://www.fun-mooc.fr/courses/course-v1:inria+41016+session01bis/about][MOOC on Reproducible Research]], there is a
 peer-reviewed homework that should allow you to practically use
