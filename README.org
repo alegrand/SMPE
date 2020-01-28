@@ -19,7 +19,7 @@ Most sessions I gave are listed [[file:sessions/][here]].
 
 This website also gathers a list of keynotes I gave on reproducible
 research. The most recent ones are:
-#+begin_src shell :results output raw :exports both
+#+begin_src shell :results output raw :exports results
 for i in `ls lectures/talk*.pdf | sort -r | head -n 9`;  do
     date=`echo $i | sed 's/.*talk_//'`;
     place=$date;
