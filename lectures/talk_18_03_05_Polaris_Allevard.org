@@ -1,0 +1,140 @@
+#+TITLE:     Reproducible Research: Pfff... Why bother?
+#+AUTHOR:    Arnaud Legrand\newline CNRS, Inria, University of Grenoble\vspace{3mm}\newline\includegraphics[height=2.5cm]{images/in_science_we_trust.jpg}
+#+DATE: March 4th, 2018 -- POLARIS days, Allevard
+#+STARTUP: beamer overview indent
+#+TAGS: noexport(n)
+#+LaTeX_CLASS: beamer
+#+LaTeX_CLASS_OPTIONS: [11pt,xcolor=dvipsnames,presentation]
+#+OPTIONS:   H:3 num:t toc:nil \n:nil @:t ::t |:t ^:nil -:t f:t *:t <:t
+#+LATEX_HEADER: \let\AtBeginDocumentSav=\AtBeginDocument
+#+LATEX_HEADER: \def\AtBeginDocument#1{}
+#+LATEX_HEADER: \input{org-babel-style-preembule.tex}
+#+LATEX_HEADER: \let\AtBeginDocument=\AtBeginDocumentSav
+#+LATEX_HEADER:  \usepackage{color,soul}
+#+LATEX_HEADER:  \definecolor{lightblue}{rgb}{1,.9,.7}
+#+LATEX_HEADER:  \sethlcolor{lightblue}
+#+LATEX_HEADER:  \let\hrefold=\href
+#+LATEX_HEADER:  \renewcommand{\href}[2]{\hrefold{#1}{\SoulColor\hl{#2}}}
+#+LATEX_HEADER: \newcommand{\muuline}[1]{\SoulColor\hl{#1}}
+#+LATEX_HEADER: \makeatletter
+#+LATEX_HEADER: \newcommand\SoulColor{%
+#+LATEX_HEADER:   \let\set@color\beamerorig@set@color
+#+LATEX_HEADER:   \let\reset@color\beamerorig@reset@color}
+#+LATEX_HEADER: \makeatother
+#+LaTeX: \input{org-babel-document-preembule.tex}
+
+* 
+*** Common beliefs
+- /RR mainly allows to fight scientific misconduct (e.g.,
+  fraud). That's nice but I'm honnest so just let me do my work!/
+  \medskip\pause
+- /RR is all about re-executing the same code, even if the code is
+  stupid and makes wrong computation. It's pointless!/ \medskip\pause
+- /My student has done everything with org-jupyter-studio-mode./
+  /Now he's gone and I can't reuse what he did. See, what's the point?
+  RR does not help!/ \medskip\pause
+- /RR is about controling and checking everything, which slows down the
+  scientific discovery process./ /Changing the way we work and publish
+  may be harmful!/
+*** Why did I get interested in this in the first place ?
+\pause
+#+BEGIN_EXPORT latex
+\vspace{-1.2cm}
+~\hspace{.85\linewidth}\includegraphics[height=2cm]{images/fuuu_plz.png}
+\vspace{-.9cm}
+#+END_EXPORT
+
+*Frustration* as an author, a reviewer, a scientist
+- The damned fourth reviewer asked for a major revision and wants me
+  to *change figure 3*. $\frowny$ *Which code* and *which data set* did I use to
+  generate this figure?
+- 6 months later: *Why* did I do that?
+- There is no label/legend/... What is the *meaning of this graph*?  If
+  only I could access the generation script and get rid of the logscale
+- This *average value* must hide something. As usual, no *confidence
+  interval*\dots I wonder whether the difference is *significant* at all
+- How does this really work ? It this improvement *solely the result of
+  this naive idea*?
+
+\vspace{.5cm}\pause
+
+/Is your Frustration really a good motivation for annoying everyone
+else?/ 
+
+\bigskip
+
+ 
+\vspace{10cm}
+*** A recent story
+\textbf{February 2018}: /could you have a look at this article for a
+review?/
+#+BEGIN_CENTER
+  *The Pitfalls of Provisioning Exascale Networks: A Trace Replay
+  Analysis for Understanding Communication Performance*
+#+END_CENTER
+UQ and HPC simulation! Exactly what I'm interested in at the
+moment!\pause\bigskip
+
+Wait, I obviously know who wrote this. \textbf{Flashback:}
+- June 2013: *Validation and Uncertainty Assessment of Extreme-Scale
+  HPC Simulation through Bayesian Inference* (EuroPar)
+- October 2016: Dagstuhl seminar on UQ and HPC. Explanations from
+  Habib Najm, a UQ expert! $\smiley$
+
+\pause\bigskip
+\textbf{Back to 2018}:
+- Same vague (but convincing!) explanations, still no code, just as
+  useless to me as 4.5 years ago
+- There is no scientific misconduct at all. Yet, it is useless.
+  - none of the other reviewer complained about this
+  - why would the authors bother? (/researchware/)
+*** (For me) RR = \textbf{sharing} research results
+
+Wait, I thought this is what conferences and articles were about! :)
+
+#+BEGIN_CENTER
+*The five R's of RR*: Re-Run, Repeat, Reproduce, Replicate, _Reuse_
+#+END_CENTER
+Many technical aspects:
+- software/environment engineering, preservation, and continuous
+  integration
+- numerical aspects
+- experimental aspect (measure, statistics)
+- provenance tracking and information/code/data sharing 
+
+In my case: allow informed inspection
+#+BEGIN_CENTER
+  The *laboratory notebook* and *a better understanding of statistics* are
+  essential
+#+END_CENTER
+*** What can I do to change all this ?
+- [[https://github.com/alegrand/SMPE][SMPE lecture]] (CS master students)
+- Keynotes (mostly toward computer scientists, PhD, postdocs, ...)
+  - even at the Inria Scientific Days in 2016
+- [[https://github.com/alegrand/RR_webinars/][Webinars]]
+- Program committees in conferences
+  - Should I sign the [[https://opennessinitiative.org/][PRO]] manifesto ? https://opennessinitiative.org/
+  - [[http://reppar.org/][RepPar]] but now many "competing" workshops
+- Inria strategical plan: 1 out of 21 is on RR
+- [[https://github.com/alegrand/RR_MOOC/][MOOC]]: in June on FUN ?
+  - a much larger target audience, hence teach the basics
+  - journaling, literate programming, simple provenance tracking/backup
+- Keynote for DGD-T Inria (SED and STIP engineers) in May 2018
+- HRS4R: 1st meeting in March 2018
+\bigskip
+
+I'm glad to do this but this is exhausting $\frowny$
+*** Does RR qualify for scientific research by the way ?
+
+Knowing about all these tools definitely allows me to improve my
+research. Is this enough ?
+- RR is mentioned in the POLARIS proposal as a transverse activity,
+  not as a research axis.
+- *Epistemic opacity*: is it a scientific question or a social problem?
+- Will it be solved all by itself ? Are *we* really doing RR ourselves ?
+  Do we care ?
+
+#+BEGIN_CENTER
+   \textbf{Any thoughts ?}
+#+END_CENTER
+
