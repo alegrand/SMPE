@@ -14,16 +14,42 @@ evaluation avalaible that I was invited to give in various
 occasions. I have given this course with Jean-Marc Vincent several
 years (roughly from 2011 to 2015) in the second year of the [[http://mosig.imag.fr/][Master of
 Science in Informatics at Grenoble]] and more recently at [[http://www.ufrgs.br/][Federal
-University of Rio Grande do Sul]], at [[http://www.ens-lyon.fr][ENS Lyon]] and [[http://ens-rennes.fr][ENS Rennes]].
+University of Rio Grande do Sul]], at [[http://www.ens-lyon.fr][ENS Lyon]] and [[http://ens-rennes.fr][ENS Rennes]]. All 
+Most sessions I gave are listed [[file:sessions/][here]].
+
+This website also gathers a list of keynotes I gave on reproducible
+research. The most recent ones are:
+#+begin_src shell :results output raw :exports both
+for i in `ls lectures/talk*.pdf | sort -r | head -n 9`;  do
+    date=`echo $i | sed 's/.*talk_//'`;
+    place=$date;
+    date=`echo $date | sed 's/_[^0-9].*//g'`;
+    date=`echo $date | sed 's|\([0-9]*\)_\([0-9]*\)_\([0-9]*\)|\3/\2/20\1|g'`;
+    place=`echo $place | sed -e s/[0-9_]*// -e 's/.pdf//'`;
+    echo - [[file:$i][$place \($date\)]];
+done
+#+end_src
+
+#+RESULTS:
+- [[file:lectures/talk_20_01_28_Grenoble_STID.pdf][Grenoble_STID (28/01/2020)]]
+- [[file:lectures/talk_20_01_23_Nantes_RSD.pdf][Nantes_RSD (23/01/2020)]]
+- [[file:lectures/talk_19_11_12_Inria_Alumni.pdf][Inria_Alumni (12/11/2019)]]
+- [[file:lectures/talk_19_11_06_Neuchatel.pdf][Neuchatel (06/11/2019)]]
+- [[file:lectures/talk_19_11_05_Formidex.pdf][Formidex (05/11/2019)]]
+- [[file:lectures/talk_19_10_08_Brazil.pdf][Brazil (08/10/2019)]]
+- [[file:lectures/talk_19_07_03_TILECS.pdf][TILECS (03/07/2019)]]
+- [[file:lectures/talk_18_05_23_DGDT_Rennes.pdf][DGDT_Rennes (23/05/2018)]]
+- [[file:lectures/talk_18_05_07_Luminy.pdf][Luminy (07/05/2018)]]
+
 
 * Table of Contents                                                     :TOC:
- - [[#course-objective-and-organization][Course Objective and Organization]]
- - [[#using-r][Using R]]
-     - [[#installing-r-and-rstudio][Installing R and Rstudio]]
-     - [[#producing-documents][Producing documents]]
-     - [[#learning-r][Learning R]]
-     - [[#learning-ggplot2-plyrdplyr-reshapetidyr][Learning ggplot2, plyr/dplyr, reshape/tidyR]]
- - [[#references][References]]
+- [[#course-objective-and-organization][Course Objective and Organization]]
+- [[#using-r][Using R]]
+  - [[#installing-r-and-rstudio][Installing R and Rstudio]]
+  - [[#producing-documents][Producing documents]]
+  - [[#learning-r][Learning R]]
+  - [[#learning-ggplot2-plyrdplyr-reshapetidyr][Learning ggplot2, plyr/dplyr, reshape/tidyR]]
+- [[#references][References]]
 
 * Course Objective and Organization
 The aim of this course is to provide the fundamental basis for sound
