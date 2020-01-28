@@ -15,6 +15,9 @@
 *.snm
 *.pyg.*
 *.bak
+*_minted*
+*.tex
+*.mp4
 
 ### Automatically generated files
 /lectures/1_reproducible_research.tex
@@ -66,5 +69,20 @@
 /lectures/talk_18_05_23_DGDT_Rennes.tex
 /lectures/talk_19_07_03_TILECS.tex
 /lectures/talk_19_10_08_Brazil.tex
-*_minted*
-*.tex
+
+
+/lectures/exam/
+/lectures/bin/
+/lectures/The Datasaurus Dozen/
+lectures/related/
+lectures/mosig_smpe_2_reproducible_research.pdf
+lectures/mosig_smpe_3_correlation_causation.pdf
+lectures/mosig_smpe_3_descriptive_univariate.pdf
+
+lectures/mosig_smpe_1_epistemology.pdf
+lectures/mosig_smpe_R_crash_course.pdf
+
+sessions/*/feedback*
+/sessions/2017_09_Rennes/results-survey646461.csv
+/sessions/2017_10_Grenoble/results-survey665963.csv
+sessions/2015_08_Porto_Alegre/data/
