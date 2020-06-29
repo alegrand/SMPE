@@ -1,0 +1,126 @@
+%%
+%% This is file `lua-ul.sty',
+%% generated with the docstrip utility.
+%%
+%% The original source files were:
+%%
+%% lua-ul.dtx  (with options: `package')
+%% 
+%% Copyright (C) 2020 by Marcel Krueger
+%%
+%% This file may be distributed and/or modified under the
+%% conditions of the LaTeX Project Public License, either
+%% version 1.3c of this license or (at your option) any later
+%% version. The latest version of this license is in:
+%%
+%% http://www.latex-project.org/lppl.txt
+%%
+%% and version 1.3 or later is part of all distributions of
+%% LaTeX version 2005/12/01 or later.
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage
+  {lua-ul}
+  [2020/03/31 v0.0.4 Underlining and related functionality for LuaTeX]
+
+\ifx\directlua\undefined
+  \PackageError{lua-ul}{LuaLaTeX required}%
+  {Lua-UL requires LuaLaTeX.
+   Maybe you forgot to switch the engine in your editor?}
+\fi
+\directlua{require'lua-ul'}
+\RequirePackage{xparse}
+\newif\ifluaul@predefined
+\newif\ifluaul@soulnames
+\luaul@predefinedtrue
+\DeclareOption{minimal}{\luaul@predefinedfalse}
+\DeclareOption{soul}{\luaul@soulnamestrue}
+\ProcessOptions\relax
+\protected\def\luaul@maybedefineuse#1#2{%
+  \unless\ifcsname#1\endcsname
+    \expandafter\xdef\csname#1\endcsname{#2}%
+  \fi
+  \csname#1\endcsname
+}
+  \newcommand\luaul@defaultcontext{%
+    \number\dimexpr1ex
+    @\unless\ifx\undefined\LuaCol@Attribute
+      \the\LuaCol@Attribute
+    \fi
+  }
+\NewDocumentCommand\newunderlinetype
+    { E{*}{{}} m O{\luaul@defaultcontext} m }{%
+  \newcommand#2{}% "Reserve" the name
+  \protected\def#2{%
+    \expandafter\luaul@maybedefineuse
+      \expanded{{\csstring#2@@#3}}%
+      {\LuaULSetUnderline
+        \LuaULNewUnderlineType#1\hbox{#4\hskip0pt}%
+  }}%
+}
+\ifluaul@predefined
+  \newcommand\luaul@highlight@color{yellow}
+  \def\luaul@@setcolor\xcolor@#1#2{}
+  \newcommand\luaul@setcolor[1]{%
+    \ifx\XC@getcolor\undefined
+      \def\luaul@highlight@currentcolor{#1}
+    \else
+      \begingroup
+        \XC@getcolor{#1}\luaul@tmpcolor
+      \expanded{\endgroup
+        \def\noexpand\luaul@highlight@currentcolor{%
+          \expandafter\luaul@@setcolor\luaul@tmpcolor}}%
+    \fi
+  }
+\NewDocumentCommand\LuaULSetHighLightColor{om}{%
+  \edef\luaul@highlight@color{\IfValueTF{#1}{[#1]{#2}}{#2}}%
+}
+  \newunderlinetype\@underLine%
+    {\leaders\vrule height -.65ex depth .75ex}
+  \newcommand\underLine[1]{{\@underLine#1}}
+  \newunderlinetype\@strikeThrough%
+    {\leaders\vrule height .55ex depth -.45ex}
+  \newcommand\strikeThrough[1]{{\@strikeThrough#1}}
+
+  \newunderlinetype\@highLight[\number\dimexpr1ex@%
+                               \luaul@highlight@currentcolor]%
+    {%
+      \ifx\XC@getcolor\undefined
+        \color{\luaul@highlight@currentcolor}%
+      \else
+        \expandafter\XC@undeclaredcolor\luaul@highlight@currentcolor
+      \fi
+      \leaders\vrule height 1.75ex depth .75ex
+    }
+  \newcommand\highLight[2][\luaul@highlight@color]{{%
+    \luaul@setcolor{#1}%
+    \@highLight#2%
+  }}
+  \ifluaul@soulnames
+    \let\textul\underLine \let\ul\textul
+    \let\textst\strikeThrough \let\st\textst
+    \let\texthl\highLight \let\hl\texthl
+  \fi
+\fi
+\ifx \reset@font \normalfont
+  \let \reset@font \relax
+  \DeclareRobustCommand \reset@font {%
+    \normalfont
+    \LuaULResetUnderline*%
+  }
+\else
+  \MakeRobust \reset@font
+  \begingroup
+    \expandafter \let
+        \expandafter \helper
+        \csname reset@font \endcsname
+  \expandafter \endgroup
+  \expandafter \gdef
+    \csname reset@font \expandafter \endcsname
+  \expandafter {%
+    \helper%
+    \LuaULResetUnderline*%
+  }
+\fi
+%% 
+%%
+%% End of file `lua-ul.sty'.

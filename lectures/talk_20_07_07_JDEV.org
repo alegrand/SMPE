@@ -1,0 +1,1170 @@
+# -*- coding: utf-8 -*-
+# -*- mode: org -*-
+#+Title:  \scalebox{.95}{Reproducibility Crisis, Open Science, and Software Factories}
+#+Author: Arnaud Legrand\medskip\newline\logoInstitutions
+#+DATE:  \vspace{1cm}\JDEVlogo July 2020\hfill \mylogo\vspace{-1.3cm}
+#+LANGUAGE: en
+#+STARTUP: beamer indent inlineimages logdrawer
+#+TAGS: noexport(n)
+
+#+PROPERTY: header-args  :session :eval never-export :exports both
+#+DRAWERS: latex_headers
+
+:latex_headers:
+#+LaTeX_CLASS: beamer
+#+LATEX_CLASS_OPTIONS: [10pt,aspectratio=169,presentation,xcolor={usenames,dvipsnames,svgnames,table}]
+#+OPTIONS:   H:1 num:t toc:nil \n:nil @:t ::t |:t ^:nil -:t f:t *:t <:t
+#+LATEX_COMPILER: lualatex -shell-escape
+#+LATEX_HEADER: \usedescriptionitemofwidthas{bl}
+#+LATEX_HEADER: \usepackage[T1]{fontenc}
+#+LATEX_HEADER: \usepackage[utf8]{inputenc}
+#+LATEX_HEADER: \usepackage{figlatex}
+#+LATEX_HEADER: \usepackage[french]{babel}
+#+LATEX_HEADER: %\usepackage{DejaVuSansMono}
+#+LATEX_HEADER: \usepackage{ifthen,amsmath,amstext,gensymb,amssymb}
+#+LATEX_HEADER: \usepackage{boxedminipage,xspace,multicol}
+#+LATEX_HEADER: %%%%%%%%% Begin of Beamer Layout %%%%%%%%%%%%%
+#+LATEX_HEADER: \ProcessOptionsBeamer
+#+LATEX_HEADER: \usetheme[numbering=fraction,titleformat=smallcaps,progressbar=frametitle]{metropolis}
+#+LATEX_HEADER: \usepackage{fontawesome}
+#+LATEX_HEADER: \usecolortheme[named=BrickRed]{structure}
+#+LATEX_HEADER: %%%%%%%%% End of Beamer Layout %%%%%%%%%%%%%
+#+LATEX_HEADER: \usepackage{verbments}
+#+LATEX_HEADER: \usepackage{xcolor}
+#+LATEX_HEADER: \usepackage{color}
+#+LATEX_HEADER: \usepackage{url} \urlstyle{sf}
+#+LATEX_HEADER: \let\alert=\structure % to make sure the org * * works of tools
+#+LATEX_HEADER: %\let\tmptableofcontents=\tableofcontents
+#+LATEX_HEADER: %\def\tableofcontents{}
+#+LATEX_HEADER: \let\hrefold=\href
+#+LATEX_HEADER: \let\oldtexttt=\texttt
+#+LATEX_HEADER: \usepackage{ifluatex}
+#+LATEX_HEADER: \ifpdftex
+#+LATEX_HEADER:   \usepackage[normalem]{ulem}\usepackage{soul}
+#+LATEX_HEADER:   % \usepackage{color}
+#+LATEX_HEADER:   \definecolor{lightorange}{rgb}{1,.9,.7}
+#+LATEX_HEADER:   \sethlcolor{lightorange}
+#+LATEX_HEADER:   \definecolor{lightgreen}{rgb}{.7,.9,.7}
+#+LATEX_HEADER:   \makeatother
+#+LATEX_HEADER:      \renewcommand{\href}[2]{\hrefold{#1}{\SoulColor{lightorange}\hl{#2}}}
+#+LATEX_HEADER:      % \renewcommand{\uline}[1]{\SoulColor{lightorange}\hl{#1}}
+#+LATEX_HEADER:      % \renewcommand{\emph}[1]{\SoulColor{lightorange}\hl{#1}}
+#+LATEX_HEADER:   \makeatletter
+#+LATEX_HEADER:   \newcommand\SoulColor[1]{%
+#+LATEX_HEADER:   \sethlcolor{#1}%
+#+LATEX_HEADER:   \let\set@color\beamerorig@set@color%
+#+LATEX_HEADER:   \let\reset@color\beamerorig@reset@color}
+#+LATEX_HEADER: \else
+#+LATEX_HEADER:    \usepackage[soul]{lua-ul}
+#+LATEX_HEADER:    \usepackage{tcolorbox}
+#+LATEX_HEADER:      \renewcommand{\href}[2]{\hrefold{#1}{\begin{tcolorbox}[colback=orange!30!white,size=minimal,hbox,on line]{#2}\end{tcolorbox}}}
+#+LATEX_HEADER: \fi
+#+LATEX_HEADER: % \renewcommand\texttt[1]{\SoulColor{lightgreen}\hl{\tt#1}}
+#+LATEX_HEADER: % \renewcommand\alert[1]{\SoulColor{lightgreen}\hl{#1}}
+#+LATEX_HEADER: % \AtBeginSection{\begin{frame}{Outline}\tableofcontents\end{frame}}
+#+LATEX_HEADER: \usepackage[export]{adjustbox}
+#+LATEX_HEADER: \graphicspath{{fig/}}
+#+LATEX_HEADER: \usepackage{tikzsymbols}
+#+LATEX_HEADER: \def\smiley{\Smiley[1][green!80!white]}
+#+LATEX_HEADER: \def\frowny{\Sadey[1][red!80!white]}
+#+LATEX_HEADER: \def\winkey{\Winkey[1][yellow]}
+#+LATEX_HEADER: \def\JDEVlogo{\includegraphics[height=1cm]{./images/jdevLogo.pdf}}
+#+LATEX_HEADER: \def\mylogo{\includegraphics[height=2.5cm]{./images/in_science_we_trust.jpg}}
+#+LATEX_HEADER: \def\logoInstitutions{\includegraphics[height=.7cm]{./images/Logo-UGA2020.pdf}\quad\includegraphics[height=.7cm]{./images/Logo-CNRS.pdf}\quad\includegraphics[height=.7cm]{./images/Logo-Inria.pdf}\includegraphics[height=.7cm]{./images/logo-lig-new-orange.jpg}\vspace{-.7cm}}
+#+LATEX_HEADER: %\usepackage{pgf}  
+#+LATEX_HEADER: %\logo{\pgfputat{\pgfxy(-2,6.5)}{\pgfbox[center,base]{\includegraphics[height=1cm]{./images/jdevLogo.pdf}}}}
+#+BEGIN_EXPORT latex
+  \newcommand{\myfbox}[2][gray!20]{\bgroup\scalebox{.7}{\colorbox{#1}{{\vphantom{pS}#2}}}\egroup} % \fbox
+  %\def\myfbox#1{#1} % \fbox
+  \def\HPC{\myfbox[gray!40]{HPC}}
+  \def\NET{\myfbox[gray!40]{Network}}
+  \def\SG{\myfbox[gray!40]{Smart Grids}}
+  \def\ECO{\myfbox[gray!40]{Economics}}
+  \def\PRIV{\myfbox[gray!40]{Privacy}}
+  \def\TRACING{\myfbox[red!20]{Tracing}}
+  \def\SIM{\myfbox[green!20]{Simulation}}
+  \def\VIZ{\myfbox[red!40]{Visualization}}
+  \def\MODELING{\myfbox[green!40]{Stochastic Models}}
+  \def\OPT{\myfbox[blue!20]{Optimization}}
+  \def\GT{\myfbox[blue!40]{Game Theory}}
+#+END_EXPORT
+
+#+BEGIN_EXPORT latex
+\def\etal{\textit{et al.}\xspace}
+\def\eg{e.g.,\xspace}
+#+END_EXPORT
+
+#+BEGIN_EXPORT latex
+\def\changefont#1{%
+  \setbeamertemplate{itemize/enumerate body begin}{#1}
+  \setbeamertemplate{itemize/enumerate subbody begin}{#1}
+  #1}
+\makeatletter
+\newcommand{\verbatimfont}[1]{\renewcommand{\verbatim@font}{\ttfamily#1}}
+\makeatother
+\verbatimfont{\scriptsize}%small
+\let\endmintedbak=\endminted
+\def\endminted{\endmintedbak\vspace{-1cm}}
+
+\def\rv#1{\ensuremath{\textcolor{blue}{#1}}\xspace} % DarkBlue
+#+END_EXPORT
+
+#+BEGIN_EXPORT latex
+\newcommand{\Norm}{\ensuremath{\mathcal{N}}\xspace}
+\newcommand{\Unif}{\ensuremath{\mathcal{U}}\xspace}
+\newcommand{\Triang}{\ensuremath{\mathcal{T}}\xspace}
+\newcommand{\Exp}{\ensuremath{\mathcal{E}}\xspace}
+\newcommand{\Bernouilli}{\ensuremath{\mathcal{B}}\xspace}
+\newcommand{\Like}{\ensuremath{\mathcal{L}}\xspace}
+\newcommand{\Model}{\ensuremath{\mathcal{M}}\xspace}
+\newcommand{\E}{\ensuremath{\mathbb{E}}\xspace}
+\def\T{\ensuremath{\theta}\xspace}
+\def\Th{\ensuremath{\hat{\theta}}\xspace}
+\def\Tt{\ensuremath{\tilde{\theta}}\xspace}
+\def\Y{\ensuremath{y}\xspace}
+\def\Yh{\ensuremath{\hat{y}}\xspace}
+\def\Yt{\ensuremath{\tilde{y}}\xspace}
+\let\epsilon=\varepsilon
+\let\leq=\leqslant
+\let\geq=\geqslant
+#+END_EXPORT
+:end:
+
+** Acknowledgments
+
+*** MOOC                                                            :BMCOL:
+:PROPERTIES:
+:BEAMER_col: .69
+:BEAMER_OPT: t
+:END:
+Konrad Hinsen, Christophe Pouzat, Alexandre Hocquet
+- \alert{MOOC} [[https://learninglab.inria.fr/en/mooc-recherche-reproductible-principes-methodologiques-pour-une-science-transparente/][Reproducible Research: Methodological principles]] [[https://learninglab.inria.fr/en/mooc-recherche-reproductible-principes-methodologiques-pour-une-science-transparente/][for a
+  transparent science]]
+- *3rd Edition*: \approx March 2020
+- *MOOC RR "Advanced"* planned for 2021
+*** MOOC pic                                                        :BMCOL:
+:PROPERTIES:
+:BEAMER_col: .35
+:BEAMER_OPT: t
+:END:
+#+LaTeX: \includegraphics[width=\linewidth,valign=t]{images/mooc_rr.png}
+*** squeeze                                               :B_ignoreheading:
+:PROPERTIES:
+:BEAMER_env: ignoreheading
+:END:
+\vspace{-.5cm}\pause
+*** Book pic                                                        :BMCOL:
+:PROPERTIES:
+:BEAMER_col: .2
+:BEAMER_OPT: t
+:END:
+#+LaTeX: \fbox{\includegraphics[width=\linewidth,valign=t]{images/book_rr.pdf}}
+*** Book                                                            :BMCOL:
+:PROPERTIES:
+:BEAMER_col: .8
+:BEAMER_OPT: t
+:END:
+  \vspace{1cm}
+
+  Sabrina Granger, Loïc Desquilbet, Sabrina Granger, Boris Hejblum,
+  Pascal Pernot, Nicolas Rougier
+  - [[https://rr-france.github.io/bookrr/][A non-technical introduction to reproducibility issues]] (in French)
+
+*** Links                                                 :B_ignoreheading:
+:PROPERTIES:
+:BEAMER_env: ignoreheading
+:END:
+\vspace{-.7cm}
+
+#+BEGIN_CENTER
+Slides (with hyperlinks) available at:
+[[https://github.com/alegrand/SMPE/raw/master/lectures/talk_20_07_07_JDEV.pdf][https://github.com/alegrand/SMPE/raw/master/lectures/talk_20_07_07_JDEV.pdf]]
+#+END_CENTER
+** Public Evidence for a Lack of Reproducibility
+\small
+#+LaTeX: \vspace{-.3cm}\begin{overlayarea}{1\linewidth}{7cm}
+#+LaTeX:   \begin{overlayarea}{\linewidth}{0cm}
+#+LaTeX:    \vspace{1.2cm}~\hspace{.15\linewidth}\includegraphics[width=.9\linewidth]{images/reproducibility_crisis_headlines.pdf}
+#+LaTeX:    \end{overlayarea}
+- J.P. Ioannidis. /[[http://www.plosmedicine.org/article/info:doi/10.1371/journal.pmed.0020124][Why Most Published Research Findings Are False]]/
+  PLoS Med. 2005.
+- /[[http://mescal.imag.fr/membres/arnaud.legrand/teaching/2011/EP_lies.pdf][Lies, Damned Lies, and Medical Science]]/, The Atlantic. Nov, 2010
+- /[[http://www.nature.com/news/reproducibility-a-tragedy-of-errors-1.19264][Reproducibility: A tragedy of errors]]/, Nature, Feb 2016.
+- Steen RG, /[[http://dx.doi.org/10.1136/jme.2010.040923][Retractions in the scientific literature: is the incidence
+  of research]] \newline [[http://dx.doi.org/10.1136/jme.2010.040923][fraud increasing?]]/, J. Med. Ethics 37, 2011
+#+LaTeX: \end{overlayarea}
+#+LaTeX: \vspace{-.5cm}~\begin{flushleft}\scriptsize \bf Courtesy V. Stodden,\newline SC, 2015\hspace{.35\linewidth}\null\end{flushleft}
+** Newsworthy Stories about Scientific Misconduct
+- [[https://en.wikipedia.org/wiki/Dong-Pyou_Han][Dong-Pyou Han]] :: Assistant professor, Biomedical
+   sciences, Iowa State University, 2013\footnotesize
+
+  /*Falsified blood results* to make it appear as though a vaccine exhibited anti-HIV activity/
+  - Han and his team received
+    #+LaTeX: $\approx \$19$ million from NIH
+  - _*1 retracted publication*_ and *resignation* of university. Sentenced
+    in 2015 to *57 months imprisonment* for fabricating and falsifying
+    data in HIV vaccine trials
+    #+LaTeX: \alert{He was also fined US $\$7.2$ million!}\pause
+  \normalsize
+- [[https://en.wikipedia.org/wiki/Diederik_Stapel][Dieterik Stapel]] :: Professor, Social Psychology, Univ. Amsterdam, 2011
+  # https://en.wikipedia.org/wiki/Diederik_Stapel#Scientific_misconduct
+  # - /Carnivores are more selfish than vegetarians/, 
+  #+BEGIN_QUOTE
+  \footnotesize
+  I failed as a scientist. I *adapted research data* and *fabricated
+  research*. Not once, but *several times*, not for a short period, but
+  *over a longer period of time*. [..] I am aware of the suffering and
+  sorrow that I caused to my colleagues... I *did not withstand the pressure
+  to score, to publish, the pressure to get better in time*. I wanted
+  too much, too fast. In a system where there are few checks and
+  balances, where people work alone, I took the wrong turn. \hfill _*58 retracted publications*_\pause
+  #+END_QUOTE
+- [[https://en.wikipedia.org/wiki/Brian_Wansink][Brian Wansink]] :: Professor, Psychological Nutrition, Cornell, 2016
+  # https://blogs.sciencemag.org/pipeline/archives/2018/02/26/gotta-be-a-conclusion-in-here-somewhere
+  # - /Mindless Eating/, /Obesity/, /Attractive names sustain increased vegetable intake in schools/
+  #+BEGIN_QUOTE
+  \footnotesize
+  When she arrived, *I gave her a data set of a self-funded, failed
+  study which had null results*. I said "This cost us a lot of time and
+  our own money to collect. *There's got to be something here we can
+  salvage because it's a cool (rich & unique) data set*." I told her
+  what the analyses should be and what the tables should look like.
+  [..] Every day she came back with puzzling new results, and *every
+  day we would scratch our heads*, ask "Why," *and come up with another
+  way to reanalyze the data* with yet another set of plausible
+  hypotheses\hfill  _*17 retracted publications*_
+  #+END_QUOTE
+** A Credibility Crisis?
+*** Fraud is not new                                             :BMCOL:
+:PROPERTIES:
+:BEAMER_col: .64
+:END:
+Scientific misconduct is obviously wrong but it's *not new*!
+- \footnotesize Every domain has its black sheep
+- \footnotesize The publish or perish pressure is a huge pain
+
+Media attention *inflates conspiracy opinions* $\frowny$
+
+\hbox{\qquad\footnotesize\em Scientific result are worthless. Stop the scientific dictatorship/lobby!}
+*** Famous scientists                                               :BMCOL:
+:PROPERTIES:
+:BEAMER_col: .38
+:END:
+
+[[http://www.cnrs.fr/fr/pdf/cim/CIM36.pdf][/The Battle against
+Scientific Fraud/]]
+CNRS International Magazine
+
+#+LaTeX:  \centerline{\includegraphics[width=.5\linewidth]{images/CNRS_CIM_36_scientists.pdf}}
+
+*** back to Normal :B_ignoreheading:
+:PROPERTIES:
+:BEAMER_env: ignoreheading
+:END:
+\pause\vspace{-.3cm}
+*** Biomedical Fraud                                                :BMCOL:
+:PROPERTIES:
+:BEAMER_col: .18
+:END:
+#+LaTeX: \includegraphics[width=1.2\linewidth]{images/CNRS_CIM_36_biomed_fraud.png}
+*** Errors?!?                                                      :BMCOL:
+:PROPERTIES:
+:BEAMER_col: .48
+:END:
+Fraud is the (*uninteresting*) visible part of the iceberg
+- \bgroup\bf *Failing to reproduce* the results of others is common\egroup
+  \newline\bgroup\footnotesize /[[http://www.nature.com/news/1-500-scientists-lift-the-lid-on-reproducibility-1.19970][1,500 scientists lift the lid on
+  reproducibility]]/, Nature, May 2016\egroup
+- How so? *Why now*? *Why is this important*? What can we do about it?
+*** Lift the lid                                                    :BMCOL:
+:PROPERTIES:
+:BEAMER_col: .2
+:END:
+#+LaTeX: \hbox{\hspace{-1cm}\includegraphics[width=1.5\linewidth]{images/reproducibility-graphic-online2.jpg}}
+
+** Reproducibility of experimental results is the /hallmark of science/ :noexport:
+#+BEGIN_EXPORT latex
+\vspace{-.4em}
+\begin{tabular}{@{\hspace{-1em}}c@{\hspace{-1em}}c@{\hspace{-.6em}}c@{}}
+\includegraphics[height=3.4cm]{images/Newton.jpg}&
+\begin{minipage}[b]{.75\linewidth}
+  \begin{quote}
+    What Descartes did was a good step. You have added much several ways [..]
+    If I have seen further it is by standing on the shoulders of Giants.
+
+    \hfill -- \textbf{Isaac Newton}, February \alert{1676}
+  \end{quote}
+  \begin{center}
+    \uncover<2->{In a letter to his rival Robert Hooke} \medskip
+
+    Science discovers truth by building on previous discoveries
+  \end{center}
+\end{minipage}&
+\includegraphics[height=3.4cm]{images/Hooke.jpg}
+\end{tabular}\hspace{-1em}%
+#+END_EXPORT
+
+\pause
+
+*1662:* \textbf{Robert Hooke}, Curator of Experiments for the Royal Society, coins
+the term */experimentum crucis/*.
+#+BEGIN_CENTER
+Only good experiments allow to build sound theories and refute bad
+ones\medskip
+#+END_CENTER
+\pause
+
+#+LaTeX: \begin{columns}
+#+LaTeX:   \begin{column}[t]{.77\linewidth}
+*1934*: \textbf{Karl Popper} puts the notions of *falsifiability* and
+*crucial experiment* as the *hallmark of science*
+#+LaTeX:   \end{column}\begin{column}[t]{.2\linewidth}
+#+begin_export latex
+\includegraphics[height=1.9cm,valign=t]{images/karl_popper1.png}%
+\includegraphics[height=1.9cm,valign=t]{images/karl_popper2.png}
+#+end_export
+#+LaTeX:   \end{column}
+#+LaTeX: \end{columns}
+
+# #+BEGIN_QUOTE
+# Reproducibility of experimental results is the hallmark of science\vspace{-.6em}
+# \flushright [[[http://www.site.uottawa.ca/ICML09WS/papers/w2.pdf][Drummond, 2009]]]
+# #+END_QUOTE
+** Reproducibility of experimental results is the /hallmark of science/ 
+:PROPERTIES:
+:BEAMER_OPT: fragile
+:END:
+*** Popper                                                          :BMCOL:
+:PROPERTIES:
+:BEAMER_col: .77
+:BEAMER_OPT: t
+:END:
+*1934*: \textbf{Karl Popper} puts the notions of *falsifiability* and
+*crucial experiment* as the *hallmark of science*
+\small
+- If no experiment can be set up to *disprove* your theory, it is not
+  science
+- Good experiments *discriminate good theories from bad ones*
+- *Non-reproducible* single occurrences are of no significance to
+  science
+  # #+BEGIN_QUOTE
+  #   If you claim to have spotted a flying saucer but nobody else can
+  #   confirm this observation, then it does not count as a scientific
+  #   evidence.
+  # #+END_QUOTE
+*** Picture                                                         :BMCOL:
+:PROPERTIES:
+:BEAMER_col: .2
+:BEAMER_OPT: t
+:END:
+#+begin_export latex
+\includegraphics[height=1.9cm,valign=t]{images/karl_popper1.png}%
+\includegraphics[height=1.9cm,valign=t]{images/karl_popper2.png}
+#+end_export
+*** An ideal rather than the norm                          :B_ignoreheading:
+:PROPERTIES:
+:BEAMER_env: ignoreheading
+:END:
+\bigskip\pause
+
+\textbf{An ideal rather than the norm}
+
+Popper's proposal works well for Physics from the 18th century but is
+not so simple for many other domains:
+
+\vspace{-5mm}
+*** Examples                                                        :BMCOL:
+:PROPERTIES:
+:BEAMER_col: .37
+:BEAMER_OPT: t
+:END:
+- Theory of evolution
+- Spotting a SuperNova
+- Particle Physics \small(a single LHC)\normalsize
+*** Examples                                                         :BMCOL:
+:PROPERTIES:
+:BEAMER_col: .63
+:BEAMER_OPT: t
+:END:
+- Biology \small(every animal does not behave in the same way)\normalsize
+- Anthropology \small(impact on people from a remote culture)\normalsize
+
+** Reproducibility: a /core value of science/
+1. _Universality_: Science aims for *objective findings*, *accessible to
+   anyone*
+   #+BEGIN_CENTER
+   *Reproducibility* acts as a *Universality control*\bigskip
+   #+END_CENTER
+2. _Incremental_: We build on each others work but everybody makes
+   mistakes
+   
+   \small Methods, biases, ... How to discriminate sound +theories+ experiments
+   from bad ones?\normalsize  $\winkey$
+   #+BEGIN_CENTER
+   *Reproducibility* acts as a *Quality control*   
+   #+END_CENTER
+\bigskip\pause
+
+*** Practices have evolved                                          :BMCOL:
+:PROPERTIES:
+:BEAMER_col: .7
+:Beamer_opt: t
+:END:
+But, *scientific practices have greatly evolved*, in particular
+since we rely on *computers*
+*** Computer pic                                                    :BMCOL:
+:PROPERTIES:
+:BEAMER_col: .3
+:Beamer_opt: t
+:END:
+#+LaTeX: \hfill\href{https://theconversation.com/how-computers-broke-science-and-what-we-can-do-to-fix-it-49938}{\includegraphics[width=\linewidth,valign=t]{images/computer_broke_science.jpg}}
+** How computers broke science -- and what we can do about it
+# https://theconversation.com/how-computers-broke-science-and-what-we-can-do-to-fix-it-49938
+#+BEGIN_EXPORT latex
+  \begin{columns}
+    \begin{column}[b]{.2\linewidth}
+       \vspace{1mm}
+       \includegraphics[width=1.25\linewidth]{images/Chang_proteins.png}
+    \end{column}\hfill
+    \begin{column}[b]{.8\linewidth}
+#+END_EXPORT
+*Geoffrey Chang* (Scripps, UCSD) works on crystalography and studies the
+structure of cell membrane proteins. \medskip
+
+\small He specialized in structures of *multidrug resistant transporter
+proteins in bacteria*: MsbA de Escheria Choli (Science, 2001), Vibrio
+cholera (Mol. Biology, 2003), Salmonella typhimurium (Science, 2005)
+\bigskip
+#+BEGIN_EXPORT latex
+    \end{column}
+  \end{columns}\vspace{-3mm}
+#+END_EXPORT
+
+*2006*: Inconsistencies reveal [[https://people.ligo-wa.caltech.edu/~michael.landry/calibration/S5/getsignright.pdf][a programming mistake]] \newline\vspace{-1em}
+   #+BEGIN_QUOTE
+   A homemade data-analysis program had flipped two columns of data,
+   inverting the electron-density map from which his team had derived
+   the protein structure.\vspace{-2mm}
+   #+END_QUOTE
+_*5 retractations*_ that motivate *improved software engineering
+practices* in comp. biology\medskip\pause
+
+\bgroup\bf There is *worse*!\egroup\vspace{-.5em}
+- The generalized and intensive use of [[https://genomebiology.biomedcentral.com/articles/10.1186/s13059-016-1044-7][*spreadsheets*]]
+- Relying on *black box* statistical methods is infinitely easier than
+  understanding them
+  - Learning and Data Analytics frameworks are nuclear weapons
+- *Numerical errors* and *software environment* unawareness
+** Modern Science
+The processing steps between raw observations and findings have gotten
+increasingly numerous and complex.
+
+#+BEGIN_EXPORT latex
+\begin{center}
+  \includegraphics<+>[width=.7\linewidth]{images/iceberg_publication-1.png}%
+  \includegraphics<+>[width=.7\linewidth]{images/iceberg_publication-2.png}%
+  \includegraphics<+>[width=.7\linewidth]{images/iceberg_publication-3.png}%
+  \includegraphics<+>[width=.7\linewidth]{images/iceberg_publication-4.png}%
+  \includegraphics<+->[width=.7\linewidth]{images/iceberg_publication-5.png}\medskip
+  
+  \uncover<+>{\bf Reproducible Research = Bridging the Gap by working Transparently}
+\end{center}
+#+END_EXPORT
+** Different (but Converging) Reproducibility Concerns
+Bad computer/statistic/publication practices and "broke science"
+$\winkey$
+- Ensure articles and data are *available*
+  - Open Access, Open Data, FAIR and DMP\pause
+- /Ensure/ the *experiment design* and *analysis* is not broken
+  - +data torture and hacking+, *pre-registration*, education, ...\pause
+- Explain *how* the computations unfold and *why*
+  - Notebooks (that can quickly get out of control)
+  - Simple computational workflows\pause
+- Allow to _*inspect*_, _*rerun*_, _*make variations*_ on computations
+  - Access to code, data, ... \pause *options/parameters*, *environment*, *resources*?\medskip
+  This requires *first class software engineering practices* instead of
+  building on prototypes
+  #+BEGIN_CENTER
+  Software factories, Archives, and Provenance Tracking tools
+  #+END_CENTER
+  
+** What's next?
+*** MOOC                                                            :BMCOL:
+:PROPERTIES:
+:BEAMER_col: .7
+:END:
+Raising *awareness on reproducibility issues*, covering the *"basics" of
+Reproducible Research*?
+- Note taking, version control, computational documents
+Covered in the [[https://learninglab.inria.fr/en/mooc-recherche-reproductible-principes-methodologiques-pour-une-science-transparente/][Reproducible Research MOOC]]
+*** MOOC pic                                                        :BMCOL:
+:PROPERTIES:
+:BEAMER_col: .28
+:END:
+#+LaTeX: \includegraphics[width=\linewidth,valign=t]{images/mooc_rr.png}
+*** Technical questions                                   :B_ignoreheading:
+:PROPERTIES:
+:BEAMER_env: ignoreheading
+:END:
+\pause\textbf{Friday at the JDEV, we'll cover technical questions}
+- Software Environment Control (Docker, *Guix* / Nix, ...)
+- *Continuous Integration* / deployment and DevOps
+- *Pipelines and Workflows*
+- Perennial software Archives and References (*Software Heritage*)
+- *Numerical Reproducibility* and *Parallel Codes*
+- Dealing with all this at once, in an *industrial* way, whereas
+  researchers are *crafts[wo]men*
+
+# - Social Sciences, Oncology, ... :: methodology, statistics,
+#      data availability, pre-registration
+# - Genomics :: software engineering, computational reproducibility,
+#   provenance, ...
+# - Computational fluid dynamics :: numerical issues\medskip
+* Correlation and Causation                                        :noexport:
+** A "vivid" debate: Cholesterol and Statins
+
+#+BEGIN_CENTER
+[[http://future.arte.tv/fr/cholesterol][Cholesterol: le grand bluff (Arte, 18/10/2016 @ 20h50)]]
+#+END_CENTER
+
+#+BEGIN_EXPORT latex
+\begin{center}
+  \includegraphics<1>[width=.8\linewidth]{images/arte_cholesterol_2.png}%
+  \includegraphics<2>[width=.8\linewidth]{images/arte_cholesterol_1.png}
+\end{center}
+#+END_EXPORT
+\pause
+#+BEGIN_CENTER
+"Careful" selection of data and influence from the industry $\frowny$
+#+END_CENTER
+
+But that's not what I want to illustrate now... Even if data hadn't
+been removed, could we really conclude something from such data?
+** Inference: Correlation and Causation
+It may be the case that two random variables \rv{X} and \rv{Y} are
+*dependent*
+
+- E.g., Let's pick a student at random and measure its
+  \rv{DrinkingHabit} and its \rv{TestScore}
+
+  \bgroup\footnotesize In general, the more a student drinks the more
+  his test goes down $\winkey$ \egroup
+The *correlation* of two variables \rv{X} and \rv{Y} is defined as:
+  #+BEGIN_EXPORT latex
+  \begin{equation*}
+    \text{corr}(\rv{X},\rv{Y}) =
+    \frac{\text{cov}(\rv{X},\rv{Y})}{\sigma_X \sigma_Y} = 
+  \frac{\E[(\rv{X}-\mu_X)(\rv{Y}-\mu_Y)]}{\sigma_X\sigma_Y} 
+  \end{equation*}\vspace{-1em}
+  #+END_EXPORT
+  - The correlation is symmetrical 
+    ($\text{corr}(\rv{X},\rv{Y})=\text{corr}(\rv{Y},\rv{X})$)
+  - The correlation is in $[-1,1]$
+  - $\text{corr}(\rv{Y},\rv{X})=1$ or $-1$ $\Rightarrow$ perfectly linear
+    relationship
+  - \rv{X} independent of \rv{Y} $\Rightarrow \text{corr}(\rv{X},\rv{Y})=0$
+  - \rv{Y} grows when \rv{X} grows $\Rightarrow \text{corr}(\rv{X},\rv{Y})>0$
+
+It is thus very tempting to use *sample correlation* as a way of knowing
+whether some variables are *dependant*
+** Scatter plot and correlation
+#+BEGIN_CENTER
+#+ATTR_LATEX: :height 5cm
+file:images/Correlation_examples2.pdf
+#+END_CENTER
+
+Non-linear relations or hidden variables are not be well trapped by
+correlation
+** The DataSaurus
+#+BEGIN_CENTER
+file:pdf_babel/datasaurus.pdf
+
+https://www.autodeskresearch.com/publications/samestats
+#+END_CENTER
+*** R code                                                       :noexport:
+#+begin_src shell :results output :exports both
+wget https://www.autodeskresearch.com/sites/default/files/The%20Datasaurus%20Dozen.zip -O datasaurus.zip
+unzip -f datasaurus.zip
+# cat The\ Datasaurus\ Dozen/DatasaurusDozen.tsv | sed 's/  */,/g' > datasaurus.csv
+#+end_src
+
+#+RESULTS:
+: Archive:  datasaurus.zip
+
+#+begin_src R :results output graphics :file pdf_babel/datasaurus.pdf :exports both :width 10 :height 7 :session *R* 
+library(ggplot2)
+library(ggpubr)
+
+df = read.table(file = 'The Datasaurus Dozen/DatasaurusDozen.tsv', sep = '\t', header = TRUE)
+ggplot(df[df$dataset != "v_lines",], aes(x=x,y=y)) + geom_point(size=.5) + 
+    stat_cor(method = "pearson", label.y = -10) + # , , label.y = 30
+    facet_wrap(~dataset) + theme_bw()
+#+end_src
+
+#+RESULTS:
+[[file:pdf_babel/datasaurus.pdf]]
+
+#+begin_src R :results output :session *R* :exports both
+library(dplyr)
+df %>% group_by(dataset) %>% summarize(correlation = cor(x, y))
+#+end_src
+
+#+RESULTS:
+#+begin_example
+# A tibble: 13 x 2
+   dataset    correlation
+   <fct>            <dbl>
+ 1 away           -0.0641
+ 2 bullseye       -0.0686
+ 3 circle         -0.0683
+ 4 dino           -0.0645
+ 5 dots           -0.0603
+ 6 h_lines        -0.0617
+ 7 high_lines     -0.0685
+ 8 slant_down     -0.0690
+ 9 slant_up       -0.0686
+10 star           -0.0630
+11 v_lines        -0.0694
+12 wide_lines     -0.0666
+13 x_shape        -0.0656
+#+end_example
+
+** Correlation does not imply Causation
+#+BEGIN_CENTER
+#+ATTR_LATEX: :height 5cm
+file:images/PiratesVsTemp.pdf
+
+\scriptsize
+Mikhail Ryazanov (talk) - PiratesVsTemp.svg. \\
+Licensed under CC BY-SA 3.0 via Wikimedia Commons
+#+END_CENTER
+- 2 variables can be strongly correlated to a third one
+  (\eg year)
+- Btw, what is wrong with this figure? \winkey
+** Spurious Suicide                                               :noexport:
+#+tblname: spurious_suicide
+| Year     | 1999 | 2000 | 2001 | 2002 | 2003 | 2004 | 2005 | 2006 | 2007 | 2008 | 2009 |
+| Colonies | 2652 | 2622 | 2550 | 2574 | 2599 | 2554 | 2409 | 2394 | 2443 | 2342 | 2498 |
+| Divorces |  3.8 |  3.8 |  3.6 |  3.4 |  3.3 |  3.2 |  2.9 |  2.9 |    3 |  2.8 |    3 |
+
+#+begin_src R :results output graphics :file pdf_babel/spurious_divorce.pdf :exports both :width 7 :height 4 :session :var df=spurious_suicide
+library(ggplot2)
+library(dplyr)
+library(tidyr)
+library(gridExtra)
+df = df %>% gather(key,val,-V1) %>% spread(V1,val) %>% select(-key)
+cor_label = paste("Correlation: ", round(cor(df$Colonies,df$Divorces), digits=3))
+p1 = ggplot(df,aes(y=Divorces,x=Colonies)) + geom_point() + theme_classic() +
+     geom_smooth(method="lm") + 
+     annotate("text",x=2440,y=3.5,label=cor_label,size=4) +
+     ylab("Divorce rate in South Carolina\nDivorces per 1000 people\n(US Census)") +
+     xlab("Honey producing bee colonies (US)\n Thousands of colonies (USDA)")
+
+df = df %>% gather(Event,Value,-Year)
+p2 = ggplot(df,aes(x=Year,y=Value,color=Event)) + geom_point() + 
+     scale_color_brewer(palette="Set1") +
+     theme_classic() + facet_wrap(~Event,scale="free_y",nrow=2) +
+     geom_line() +  theme(legend.position = "none") + ylab("")
+grid.arrange(p1,p2,nrow=1)
+#+end_src
+
+#+RESULTS:
+[[file:pdf_babel/spurious_divorce.pdf]]
+
+** Observational vs. Experimental Data Illustration
+
+#+BEGIN_CENTER
+#+ATTR_LATEX: :width .9\linewidth
+file:pdf_babel/spurious_divorce.pdf
+
+#+END_CENTER
+Source: [[http://tylervigen.com/][/Spurious correlations/]]. For the good of the US society, we
+should try to get rid of honey bees \winkey
+** The Deluge of Spurious Correlations in Big Data
+\small
+[[https://researchspace.auckland.ac.nz/handle/2292/27857][The Deluge of Spurious Correlations in Big Data]], by C. Calude and G. Longo,
+Foundations of Science, March 2016)
+
+*\bf Is Data science is the end of science?*
+
+  - Powerful algorithms can now explore huge databases and find
+    therein correlations and regularities.
+  - Properly defining "meaning" or "content" of such correlations is
+    very difficult. But do we need to?
+
+*\bf Ergodic Theory*
+
+  - Almost every trajectory (even deterministic and chaotic) will
+    eventually iterate in a similar way
+  - Regularity is expected but it does not mean that prediction can
+    be done
+*\bf Ramsey Theory*: Any sufficiently long string contains an arithmetic
+progression
+
+  - _0_, 1, 1, 0, _0_, 1, 1, 0, _0_
+  - 0, 1, _1_, 0, 0, _1_, 1, 0, _1_
+  # - Similar result for $n$ ary relations
+
+** Simpson's Paradox                                              :noexport:
+
+UC Berkeley admission figures in fall 1973.
+
+| _Men_        |          | _Women_      |          |
+| Applicants | Admitted | Applicants | Admitted |
+|------------+----------+------------+----------|
+| 8442       | *44%*      | 4321       |      35% |
+
+\pause
+
+|   |        _Men_ |          |      _Women_ |          |
+|   | Applicants | Admitted | Applicants | Admitted |
+|---+------------+----------+------------+----------|
+| A |        825 |      62% |        108 | *82%*      |
+| B |        560 |      63% |        25 | *68%*      |
+| C |        325 |      *37%* |        593 | 34%      |
+| D |        417 |      33% |        375 | *35%*      |
+| E |        191 |      *28%* |        393 | 24%      |
+| F |        373 |       6% |        341 | *7%*       |
+
+#+BEGIN_EXPORT latex
+\pause\vspace{-5cm}
+\begin{center}
+  \includegraphics[width=.8\linewidth]{images/simpson_paradox.pdf}
+\end{center}
+#+END_EXPORT
+
+** Correlation does not imply Causation
+For any two correlated events, A and B, the following relationships
+are possible:
+- A causes B (direct causation)\hfill$\smiley$
+  # - alcohol makes people stupid
+  # - the students who tend to drink tend to be poorer students
+  # - people who are hung-over from a drinking binge tend to skip class
+- A causes B and B causes A (bidirectional or cyclic
+  causation)\hfill$\smiley$
+  # - sweet, then removing alcohol should help
+- A causes C which causes B (indirect causation)\hfill$\smiley$
+- B causes A; (reverse causation)\hfill$\frowny$
+  # - students in academic trouble drink in order to drown their sorrows
+- A and B are consequences of a common cause, but do not cause each
+  other\hfill$\frowny$
+- There is no connection between A and B; it is a "coincidence"
+  #+LaTeX: \hfill$\frowny$%\\[-.8\baselineskip]
+  - But *designed experiments* can help you ruling this option out
+
+#+BEGIN_CENTER
+#+ATTR_LATEX: :height 3cm
+file:images/xkcd_correlation.png
+\qquad\winkey
+#+END_CENTER
+
+* Open Science                                                     :noexport:
+** Scientific Misconduct? What are the Consequences?
+# #+LaTeX: \begin{overlayarea}{\linewidth}{7.6cm}\null\vspace{-.4cm}
+
+\small *[[http://www.nytimes.com/2011/07/08/health/research/08genes.html][The Duke University scandal with scientific misconduct on lung
+cancer]]*
+
+\vspace{-.2cm}\small
+# 1294 - 1300
+- /Nature Medicine/ - 12,  (2006) *Genomic signatures to
+  guide the use of chemotherapeutics*, by
+  #+LaTeX: \bgroup\scriptsize
+  Anil Potti and 16 other researchers from Duke and USF
+  #+LaTeX: \egroup
+- Major commercial labs licensed it and were about to start using it
+  before two statisticians discovered and publicized its faults\vspace{-.2cm}
+  #+BEGIN_EXPORT latex
+  \begin{block}{}\scriptsize
+  Dr. Baggerly and Dr. Coombes found errors almost immediately. Some seemed careless — moving a row or a column over by one in a giant spreadsheet — while others seemed inexplicable. The Duke team shrugged them off as “clerical errors.”
+  \end{block}\vspace{-1em}
+  \begin{block}{}\scriptsize
+  The Duke researchers continued to publish papers on their genomic signatures in prestigious journals. Meanwhile, they started three trials using the work to decide which drugs to give patients.
+  \end{block}
+  #+END_EXPORT
+- Retractions: January 2011. [[http://en.wikipedia.org/wiki/Anil_Potti][Ten papers that Potti coauthored in
+  prestigious journals were retracted for varying reasons]]
+\bgroup\bf *Bad science is deleterious*\egroup
+- It is used to backup stupid politics, it affects people's life, ...
+- It blurs the frontier between scientists and crooks
+# #+LaTeX: \end{overlayarea} \begin{flushright}\scriptsize Courtesy of Adam J. Richards\end{flushright}
+** Unfortunate Mistakes
+#+BEGIN_EXPORT latex
+  \vspace{.5cm}
+  \begin{columns}
+    \begin{column}{.37\linewidth}
+       \includegraphics[width=\linewidth]{images/Chang_proteins.png}
+    \end{column}\hfill
+    \begin{column}{.6\linewidth}
+#+END_EXPORT
+*Geoffrey Chang* (Scripps, UCSD) works on crystalography and studies the
+structure of cell membrane proteins. 
+
+He specialized in structures of *multidrug resistant transporter
+proteins in bacteria*: MsbA de Escheria Choli (Science, 2001), Vibrio
+cholera (Mol. Biology, 2003), Salmonella typhimurium (Science, 2005)
+\bigskip
+#+BEGIN_EXPORT latex
+    \end{column}
+  \end{columns}
+#+END_EXPORT
+
+*2006*: Inconsistencies reveal [[https://people.ligo-wa.caltech.edu/~michael.landry/calibration/S5/getsignright.pdf][a programming mistake]] \newline\vspace{-1em}
+   #+BEGIN_QUOTE
+   a homemade data-analysis program had flipped two columns of data,
+   inverting the electron-density map from which his team had derived
+   the protein structure.
+   #+END_QUOTE
+
+\textbf{5 retractations} that motivate improved software engineering
+practices in computational biology
+** The "Reproducibility Crisis"                                   :noexport:
+
+#+LaTeX: \begin{columns}\begin{column}[b]{.47\linewidth}
+\small "clinical trials in oncology have the highest failure rate
+[only 5% are licensed] compared with other therapeutic areas [..]
+difficulty to repeat experiments even in the laboratory of the
+original investigator"\medskip
+
+\footnotesize *Begley and Ellis*, Nature, 2012. [[https://www.nature.com/articles/483531a][\it Raise standards for
+preclinical cancer research]]
+
+#+LaTeX: \end{column}\hfill\begin{column}[b]{.47\linewidth}
+
+file:images/repeatability_arizona.pdf
+
+
+#+LaTeX: \small 8 ACM conferences and 5 journals $\text{EM}^{\text{no}}$= \alert{the code cannot be provided}\smallskip
+
+\footnotesize Collberg, Christian \etal, [[http://reproducibility.cs.arizona.edu/][\it Measuring Reproducibility in Computer
+Systems Research]], 2015
+
+#+LaTeX: \end{column}\end{columns}\bigskip
+
+The scientific process demands the highest standards of \textbf{quality},
+\textbf{ethics} and \textbf{rigor}.
+
+** Why are scientific studies so difficult to reproduce?          :noexport:
+#+BEGIN_EXPORT latex
+\vspace{-.6cm}
+\null\hspace{-.2cm}\hbox{
+\begin{columns}
+  \begin{column}{.38\linewidth}
+    \begin{overlayarea}{\linewidth}{8cm}
+      \includegraphics[scale=.21]{images/reproducibility-graphic-online2.jpg}\\
+      \includegraphics[scale=.21]{images/reproducibility-graphic-online3.jpg}
+      % \includegraphics<3>[scale=.25]{images/reproducibility-graphic-online4.jpg}%
+      % \includegraphics<4>[scale=.25]{images/reproducibility-graphic-online5.jpg}
+    \end{overlayarea}
+  \end{column}\hspace{-.1cm}%
+  \begin{column}{.68\linewidth}\begin{overlayarea}{\linewidth}{8cm}\vspace{-.7em}
+#+END_EXPORT
+[[http://www.nature.com/news/1-500-scientists-lift-the-lid-on-reproducibility-1.19970][1,500 scientists lift the lid on reproducibility]], Nature, May 2016
+
+\normalsize _*Social causes*_ \small
+- Fraud, conflict of interest (pharmaceutic, \dots)
+- *No incentive* to reproduce/check our own work (afap), nor the
+  work of others (big results!), nor to allow others to check
+  (competition)
+- Peer review does not scale: 1+ million articles per year!
+_*Methodological or technical causes*_ \small
+- The many biases, (apophenia, confirmation, ...), HARKing: *bad designs*
+- Selective reporting, weak analysis (*statistics*, *data processing,
+  *computational errors*)
+- *Lack of information, code/raw data unavailable*  
+
+#+BEGIN_EXPORT latex
+    \end{overlayarea}
+  \end{column}
+\end{columns}}
+#+END_EXPORT
+** Different Reproducibility Concerns
+# _Distinguish between:_
+# #+LaTeX: \begin{columns}\begin{column}[b]{.4\linewidth}
+# - experimental science
+# - observational science
+# #+LaTeX: \end{column}\begin{column}[b]{.6\linewidth}
+# - computational science (simulation)
+# - (big) data analysis
+# #+LaTeX: \end{column}\end{columns}%\bigskip
+
+- Social Sciences, Oncology, ... :: methodology, statistics
+- Genomics :: software engineering, computational reproducibility,
+  provenance, ...
+- Computational fluid dynamics :: numerical issues\medskip
+
+#+BEGIN_EXPORT latex
+\begin{center}
+  \includegraphics<+>[width=.9\linewidth]{images/iceberg_publication-1.png}%
+  \includegraphics<+>[width=.9\linewidth]{images/iceberg_publication-2.png}%
+  \includegraphics<+>[width=.9\linewidth]{images/iceberg_publication-3.png}%
+  \includegraphics<+>[width=.9\linewidth]{images/iceberg_publication-4.png}%
+  \includegraphics<+->[width=.9\linewidth]{images/iceberg_publication-5.png}\medskip
+  
+  \uncover<+>{\bf Reproducible Research = Bridging the Gap by working Transparently}
+\end{center}
+#+END_EXPORT
+** Existing Tools, Emerging Standards
+\vspace{1em}
+#+LaTeX: \begin{columns}\begin{column}[t]{.4\linewidth}\centering
+\bf *Notebooks and workflows*
+
+file:images/jupyterpreview.png
+
+#+LaTeX: \includegraphics[height=.8cm]{images/logo/Jupyter_logo.png}
+#+LaTeX: \includegraphics[height=.8cm]{images/logo/OrgMode_logo.png}
+#+LaTeX: \includegraphics[height=.8cm]{images/logo/RStudio_logo.png}
+file:images/logo/workflows.png
+
+#+LaTeX: \end{column}\begin{column}[t]{.35\linewidth}\centering
+\bf *Software environments*
+
+file:images/python3-matplotlib.pdf 
+#+ATTR_LaTeX: :width .6\linewidth
+file:images/platform_diversity.png
+
+#+LaTeX: \includegraphics[height=1cm]{images/logo/docker_logo.png}
+#+LaTeX: \includegraphics[height=1cm]{images/logo/singularity_logo.png}
+#+LaTeX: \includegraphics[height=.8cm]{images/logo/reprozip.png}
+#+LaTeX: \includegraphics[height=1cm]{images/logo/Guix_logo.png}
+#+LaTeX: \includegraphics[height=1cm]{images/logo/nix_logo.png}
+
+#+LaTeX: \end{column}\begin{column}[t]{.35\linewidth}\centering
+\bf *Sharing platforms*\bigskip
+
+#+LaTeX: \includegraphics[height=1cm]{images/logo/git_logo.png}
+#+LaTeX: \includegraphics[height=1cm]{images/logo/github_logo.png}
+#+LaTeX: \includegraphics[height=1cm]{images/logo/gitlab_logo.png}
+#+LaTeX: \includegraphics[height=1cm]{images/logo/JupyterHub_logo.png}
+#+LaTeX: \includegraphics[height=1cm]{images/logo/ArXiv-web.png}
+#+LaTeX: \includegraphics[height=1cm]{images/logo/LogoHAL.png}
+#+LaTeX: \includegraphics[height=1cm]{images/logo/Figshare-logo.png}
+#+LaTeX: \includegraphics[height=1cm]{images/logo/Zenodo-logo.jpg}
+#+LaTeX: \includegraphics[height=1cm]{images/logo/swh-logo.png}
+
+#+LaTeX: \end{column}\end{columns}\bigskip
+
+
+
+# - Provenance, mise à disposition, software environment capture,
+#   literate programming, etc. Still no perfect solution but much better
+#   tools.
+#   - notebooks: jupyter/...
+#   - containers/... 
+#   - github/gitlab/zenodo/swh... to
+#   - execution in the cloud: continuous integration and codeocean
+
+** Tool 1: Computational Notebooks/Litterate Programming
+#+LaTeX: \includegraphics<+>[width=\linewidth]{images/example_pi_full-1.pdf}%
+#+LaTeX: \includegraphics<+>[width=\linewidth]{images/example_pi_full-2.pdf}%
+#+LaTeX: \includegraphics<+>[width=\linewidth]{images/example_pi_full-3.pdf}%
+#+LaTeX: \includegraphics<+>[width=\linewidth]{images/example_pi_full-4.pdf}%
+#+LaTeX: \includegraphics<+>[width=\linewidth]{images/example_pi_full-5.pdf}%
+#+LaTeX: \includegraphics<+->[width=\linewidth]{images/example_pi_full-6.pdf}%
+
+#+BEGIN_EXPORT latex
+\begin{overlayarea}{\linewidth}{0cm}
+  \vspace{-1.2cm}
+  \begin{center}
+    \includegraphics<+>[height=.8cm]{images/logo/Jupyter_logo.png}
+    \includegraphics<.>[height=.8cm]{images/logo/OrgMode_logo.png}
+    \includegraphics<.>[height=.8cm]{images/logo/RStudio_logo.png}
+  \end{center}
+\end{overlayarea}
+#+END_EXPORT
+
+*** Export svg pdf                                               :noexport:
+#+begin_src shell :results output :exports both
+for i in images/example_pi_*.svg ; do
+   inkscape $i --export-pdf=`dirname $i`/`basename $i .svg`.pdf;
+done
+#+end_src
+
+#+RESULTS:
+** Tool 2: Fighting Software Environments Nightmare
+What is hiding behind a simple
+#+begin_src python :results output :exports both
+import matplotlib
+#+end_src
+
+#+LaTeX: \scriptsize
+#+BEGIN_EXAMPLE
+Package: python3-matplotlib
+Version: 2.1.1-2
+Depends: python3-dateutil, python-matplotlib-data (>= 2.1.1-2),
+python3-pyparsing (>= 1.5.6), python3-six (>= 1.10), python3-tz,
+libjs-jquery, libjs-jquery-ui, python3-numpy (>= 1:1.13.1),
+python3-numpy-abi9, python3 (<< 3.7), python3 (>= 3.6~),
+python3-cycler (>= 0.10.0), python3:any (>= 3.3.2-2~), libc6 (>=
+2.14), libfreetype6 (>= 2.2.1), libgcc1 (>= 1:3.0), libpng16-16 (>=
+1.6.2-1), libstdc++6 (>= 5.2), zlib1g (>= 1:1.1.4)
+#+END_EXAMPLE
+#+BEGIN_EXPORT latex
+\begin{overlayarea}{\linewidth}{5cm}
+  \pause\vspace{-3cm}\includegraphics<+>[width=\linewidth]{images/python3-matplotlib.png}%
+\end{overlayarea}
+#+END_EXPORT
+
+** Tool 2: Fighting Software Environments Nightmare
+Python and its rapidly evolving environment
+#+LaTeX: \null\vspace{-.8em}
+
+#+begin_src shell :results output :exports both
+python2 -c "print(10/3)"
+python3 -c "print(10/3)"
+#+end_src
+
+#+LaTeX: \null\vspace{-1.2em}{\scriptsize
+#+RESULTS:
+: 3
+: 3.3333333333333335
+#+LaTeX: }
+\pause
+#+LaTeX: \null\vspace{-1.5cm}
+#+ATTR_LATEX: :height 3cm :center nil
+file:images/plot_1.5.3.png
+#+ATTR_LATEX: :height 3cm :center nil
+file:images/plot_2.1.1.png
+
+\pause 
+Cortical Thickness Measurements (PLOS ONE, June 2012):
+/FreeSurfer/: /differences were found between the Mac and HP workstations
+and between Mac OSX 10.5 and OSX 10.6./ \pause
+
+#+LaTeX: \begin{center}
+#+LaTeX: \includegraphics[height=.8cm]{images/logo/reprozip.png} \qquad
+#+LaTeX: \includegraphics[height=1cm]{images/logo/docker_logo.png}\qquad
+#+LaTeX: \includegraphics[height=1cm]{images/logo/Guix_logo.png}
+#+LaTeX: \includegraphics[height=1cm]{images/logo/nix_logo.png}
+#+LaTeX: \end{center}
+
+** Tool 3: Fighting Information Loss with Archives
+\small
+D. Spinellis. [[https://www.spinellis.gr/sw/url-decay/][The Decay and Failures of URL
+References]]. CACM, 46(1), Jan 2003.\smallskip
+
+#+BEGIN_QUOTE
+  The half-life of a referenced URL is approximately 4 years from its
+  publication date.
+#+END_QUOTE
+P. Habibzadeh. [[https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3885908/][Decay of References to Web sites in Articles
+Published in General Medical Journals: Mainstream vs Small
+Journals]]". Applied Clinical Informatics. 4 (4), 2013
+#+BEGIN_QUOTE
+   half life ranged from 2.2 years in EMHJ to 5.3 years in BMJ
+#+END_QUOTE
+\vspace{-1em}\normalsize\pause
+- Article archives :: 
+  #+LaTeX: \raisebox{-1.5ex}{\includegraphics[height=.8cm]{images/logo/ArXiv-web.png}}
+  #+LaTeX: \raisebox{-1.5ex}{\includegraphics[height=.8cm]{images/logo/LogoHAL.png}}
+
+- Data archives ::
+  #+LaTeX: \raisebox{-1.5ex}{\includegraphics[height=.8cm]{images/logo/Figshare-logo.png}}
+  #+LaTeX: \raisebox{-1.5ex}{\includegraphics[height=.8cm]{images/logo/Zenodo-logo.jpg}}
+
+- Software Archive ::
+  #+LaTeX: \raisebox{-2.4ex}{\includegraphics[height=1cm]{images/logo/swh-logo.png}}
+
+#+LaTeX: \raisebox{-1ex}{\includegraphics[height=.8cm]{images/logo/git_logo.png}}
+#+LaTeX: \raisebox{-.5ex}{\includegraphics[height=.8cm]{images/logo/github_logo.png}} or
+#+LaTeX: \raisebox{-1.4ex}{\includegraphics[height=.8cm]{images/logo/gitlab_logo.png}}
+$=$ awesome collaborations $\ne$ archive
+
+** Changing Research Practices
+#+LaTeX: \hbox{\bf\normalsize \uline{Soft. Engineering}, \uline{Statistics}, and Reproducible Research in the \alert{curricula}}
+
+#+LaTeX: \begin{columns}\begin{column}{.5\linewidth}
+file:images/mooc_rr.png
+#+LaTeX: \end{column}\hspace{-.1\linewidth}\begin{column}{.6\linewidth}\vspace{-.8em}
+# - [[https://rr-france.github.io/bookrr/][Webinars on RR]] 2016-2017
+- [[https://rr-france.github.io/bookrr/][Book on RR]]
+  \bgroup\footnotesize /Vers une recherche reproductible: Faire évoluer ses pratiques/\egroup
+- [[https://learninglab.inria.fr/en/mooc-recherche-reproductible-principes-methodologiques-pour-une-science-transparente/][\bf MOOC on RR]] \bgroup\small(3rd edition Feb. 2020)\egroup
+- A *new "Advanced RR" MOOC* \scalebox{.8}{(Oct. 2020)}\footnotesize
+  - \footnotesize Software environment control (Docker)
+  - \footnotesize Scientific workflow (snakemake)
+  - \footnotesize Managing data (HDF5, archiving)
+#+LaTeX: \end{column}\end{columns}
+*Manifesto*: "\textit{I solemnly pledge}" ([[https://hal.inria.fr/hal-01367344/document][WSSSPE]], [[http://lorenabarba.com/gallery/reproducibility-pi-manifesto/][Lorena Barba]], [[https://www.go-fair.org/fair-principles/][FAIR]])\footnotesize\vspace{-.4em}
+  1. I will teach my graduate students about _reproducibility_
+  2. All our research code (and writing) is under _version control_
+  3. We will always carry out _verification_ and _validation_
+  4. We will _share_ data, plotting script & figure _under CC-BY_
+  5. We will upload the _preprint_ to arXiv at the time of submission of a paper
+  6. We will _release code_ at the time of submission of a paper
+  7. We will add a _"Reproducibility" declaration_ at the end of each paper
+  8. I will keep an _up-to-date web presence_
+
+** Changing Publishing Practices
+- Artifact evaluation and ACM badges ::  
+     #+BEGIN_CENTER
+     \includegraphics[height=1cm]{images/ae_badge1.png}
+     \includegraphics[height=1cm]{images/ae_badge2.png}
+     \includegraphics[height=1cm]{images/acm_badges.pdf}     
+     #+END_CENTER
+- Major conferences ::  
+  - [[https://sc19.supercomputing.org/submit/reproducibility-initiative/][Supercomputing]]: Artifact Description (AD) *mandatory*, Artifact
+    Evaluation (AE) still *optional*, *Double blind* vs. *RR*
+  - [[https://nips.cc/Conferences/2019/CallForPapers][NeurIPS]], [[https://reproducibility-challenge.github.io/iclr_2019/][ICLR]]: *open reviews*, reproducibility challenge
+
+    [[https://www.youtube.com/watch?v=Kee4ch3miVA][Joelle Pineau @ NeurIPS'18]]
+    #+LaTeX: \includegraphics[width=.4\linewidth]{images/joelle_pineau.jpg}
+  - [[http://db-reproducibility.seas.harvard.edu/papers/index.html][ACM SIGMOD 2015-2019]], Most Reproducible Paper Award... \medskip
+- Mentalitie are evolving :: people care, make stuff available, errors
+     are found and fixed
+
+** Reproducible Research = Rigor and Transparency
+To err is human. 
+
+#+BEGIN_CENTER
+\bf Good research requires time and resources
+#+END_CENTER
+
+1. \textbf{Train yourself and your students}: RR, statistics, experiments
+   - Beware of checklists and norms
+   - Understand what's at stake
+2. \textbf{Change the norm:} make publication practices evolve
+3. \textbf{Incentive}: consider RR/open science when hiring/promoting
+# 4. \textbf{Prepare the Future:} Toward *literate experimentation*?
+#    - Reuse, reuse, reuse!
+#    - Shared and controled testbeds (e.g., Grid'5000/SILECS)
+#    - How to share Experiments?
+
+\hfill\mylogo
+** Some Advertising
+
+#+LaTeX: \begin{columns}\begin{column}[t]{.45\linewidth}\centering
+#+ATTR_LaTeX: :width \linewidth
+file:images/ten-years-challenge.png
+
+\footnotesize
+http://rescience.github.io/ten-years/
+#+LaTeX: \end{column}\begin{column}[t]{.54\linewidth}
+#+ATTR_LaTeX: :width \linewidth
+file:images/mooc_rr.png
+
+\small
+*3rd Edition*: \approx March 2020\medskip
+
+A *new MOOC*: "Advanced RR"\footnotesize
+- Software environment control (Docker)
+- Scientific workflow (snakemake)
+- Managing data (HDF5, archiving)
+October 2020?
+#+LaTeX: \end{column}\end{columns}
+
+* Emacs Setup                                                      :noexport:
+This document has local variables in its postembule, which should
+allow Org-mode (9) to work seamlessly without any setup. If you're
+uncomfortable using such variables, you can safely ignore them at
+startup. Exporting may require that you copy them in your .emacs.
+
+# Local Variables:
+# eval: (require 'ox-extra)
+# eval: (setq org-latex-tables-centered nil)
+# eval: (ox-extras-activate '(ignore-headlines))
+# eval: (add-to-list 'org-latex-packages-alist '("" "minted"))
+# eval: (setq org-latex-listings 'minted)
+# eval: (setq org-latex-minted-options '(("style" "Tango") ("bgcolor" "Moccasin") ("frame" "lines") ("linenos" "false") ("fontsize" "\\footnotesize")))
+# eval: (setq org-latex-pdf-process '("lualatex -shell-escape -interaction nonstopmode -output-directory %o %f"))
+# End:
