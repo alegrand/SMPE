@@ -70,7 +70,7 @@
 #+LATEX_HEADER: \def\winkey{\Winkey[1][yellow]}
 #+LATEX_HEADER: \def\JDEVlogo{\includegraphics[height=1cm]{./images/jdevLogo.pdf}}
 #+LATEX_HEADER: \def\mylogo{\includegraphics[height=2.5cm]{./images/in_science_we_trust.jpg}}
-#+LATEX_HEADER: \def\logoInstitutions{\includegraphics[height=.7cm]{./images/Logo-UGA2020.pdf}\quad\includegraphics[height=.7cm]{./images/Logo-CNRS.pdf}\quad\includegraphics[height=.7cm]{./images/Logo-Inria.pdf}\includegraphics[height=.7cm]{./images/logo-lig-new-orange.jpg}\vspace{-.7cm}}
+#+LATEX_HEADER: \def\logoInstitutions{\includegraphics[height=.7cm]{./images/Logo-UGA2020.pdf}\quad\includegraphics[height=.7cm]{./images/Logo-CNRS.pdf}\quad\includegraphics[height=.7cm]{./images/Logo-Inria.pdf}\includegraphics[height=.7cm]{./images/Logo-Lig.pdf}\vspace{-.7cm}}
 #+LATEX_HEADER: %\usepackage{pgf}  
 #+LATEX_HEADER: %\logo{\pgfputat{\pgfxy(-2,6.5)}{\pgfbox[center,base]{\includegraphics[height=1cm]{./images/jdevLogo.pdf}}}}
 #+BEGIN_EXPORT latex
@@ -130,17 +130,42 @@
 #+END_EXPORT
 :end:
 
-** Acknowledgments
+** Resources and Acknowledgments
+#+BEGIN_CENTER
+[[https://github.com/alegrand/SMPE/raw/master/lectures/talk_20_07_07_JDEV.pdf][https://github.com/alegrand/SMPE/raw/master/lectures/talk_20_07_07_JDEV.pdf]]
+#+END_CENTER
 
+*** Book pic                                                        :BMCOL:
+:PROPERTIES:
+:BEAMER_col: .17
+:BEAMER_OPT: t
+:END:
+#+LaTeX: \fbox{\includegraphics[width=\linewidth,valign=t]{images/book_rr.pdf}}
+*** Book                                                            :BMCOL:
+:PROPERTIES:
+:BEAMER_col: .83
+:BEAMER_OPT: t
+:END:
+  \vspace{1cm}
+
+  [[https://rr-france.github.io/bookrr/][A non-technical introduction to reproducibility issues]] (in French)
+  - Loïc Desquilbet, Sabrina Granger, Boris Hejblum, Pascal Pernot,
+    Nicolas Rougier
+  \vspace{1cm}
+*** squeeze                                               :B_ignoreheading:
+:PROPERTIES:
+:BEAMER_env: ignoreheading
+:END:
+\vspace{-2mm}\pause
 *** MOOC                                                            :BMCOL:
 :PROPERTIES:
 :BEAMER_col: .69
 :BEAMER_OPT: t
 :END:
-Konrad Hinsen, Christophe Pouzat, Alexandre Hocquet
-- \alert{MOOC} [[https://learninglab.inria.fr/en/mooc-recherche-reproductible-principes-methodologiques-pour-une-science-transparente/][Reproducible Research: Methodological principles]] [[https://learninglab.inria.fr/en/mooc-recherche-reproductible-principes-methodologiques-pour-une-science-transparente/][for a
-  transparent science]]
-- *3rd Edition*: \approx March 2020
+\alert{MOOC} [[https://learninglab.inria.fr/en/mooc-recherche-reproductible-principes-methodologiques-pour-une-science-transparente/][Reproducible Research: Methodological principles]] [[https://learninglab.inria.fr/en/mooc-recherche-reproductible-principes-methodologiques-pour-une-science-transparente/][for a
+transparent science]], Learning Lab Inria
+- Konrad Hinsen, Christophe Pouzat, Alexandre Hocquet
+- *3rd Edition*: March 2020 -- March 2021
 - *MOOC RR "Advanced"* planned for 2021
 *** MOOC pic                                                        :BMCOL:
 :PROPERTIES:
@@ -148,38 +173,12 @@ Konrad Hinsen, Christophe Pouzat, Alexandre Hocquet
 :BEAMER_OPT: t
 :END:
 #+LaTeX: \includegraphics[width=\linewidth,valign=t]{images/mooc_rr.png}
-*** squeeze                                               :B_ignoreheading:
-:PROPERTIES:
-:BEAMER_env: ignoreheading
-:END:
-\vspace{-.5cm}\pause
-*** Book pic                                                        :BMCOL:
-:PROPERTIES:
-:BEAMER_col: .2
-:BEAMER_OPT: t
-:END:
-#+LaTeX: \fbox{\includegraphics[width=\linewidth,valign=t]{images/book_rr.pdf}}
-*** Book                                                            :BMCOL:
-:PROPERTIES:
-:BEAMER_col: .8
-:BEAMER_OPT: t
-:END:
-  \vspace{1cm}
-
-  Sabrina Granger, Loïc Desquilbet, Sabrina Granger, Boris Hejblum,
-  Pascal Pernot, Nicolas Rougier
-  - [[https://rr-france.github.io/bookrr/][A non-technical introduction to reproducibility issues]] (in French)
 
 *** Links                                                 :B_ignoreheading:
 :PROPERTIES:
 :BEAMER_env: ignoreheading
 :END:
 \vspace{-.7cm}
-
-#+BEGIN_CENTER
-Slides (with hyperlinks) available at:
-[[https://github.com/alegrand/SMPE/raw/master/lectures/talk_20_07_07_JDEV.pdf][https://github.com/alegrand/SMPE/raw/master/lectures/talk_20_07_07_JDEV.pdf]]
-#+END_CENTER
 ** Public Evidence for a Lack of Reproducibility
 \small
 #+LaTeX: \vspace{-.3cm}\begin{overlayarea}{1\linewidth}{7cm}
@@ -393,7 +392,7 @@ not so simple for many other domains:
 1. _Universality_: Science aims for *objective findings*, *accessible to
    anyone*
    #+BEGIN_CENTER
-   *Reproducibility* acts as a *Universality control*\bigskip
+   *Reproducibility* acts as a *Universality/Robustness control*\bigskip
    #+END_CENTER
 2. _Incremental_: We build on each others work but everybody makes
    mistakes
@@ -412,13 +411,19 @@ not so simple for many other domains:
 :END:
 But, *scientific practices have greatly evolved*, in particular
 since we rely on *computers*
+
+\vspace{1cm}
+
+[[https://theconversation.com/how-computers-broke-science-and-what-we-can-do-to-fix-it-49938][How computers broke science -- and what we can do about it]] 
+
+\hfill -- Ben Marwick, The conversation, 2015
 *** Computer pic                                                    :BMCOL:
 :PROPERTIES:
 :BEAMER_col: .3
 :Beamer_opt: t
 :END:
-#+LaTeX: \hfill\href{https://theconversation.com/how-computers-broke-science-and-what-we-can-do-to-fix-it-49938}{\includegraphics[width=\linewidth,valign=t]{images/computer_broke_science.jpg}}
-** How computers broke science -- and what we can do about it
+#+LaTeX: \hfill\includegraphics[width=\linewidth,valign=t]{images/computer_broke_science.jpg}
+** How computers broke science
 # https://theconversation.com/how-computers-broke-science-and-what-we-can-do-to-fix-it-49938
 #+BEGIN_EXPORT latex
   \begin{columns}
@@ -471,15 +476,27 @@ increasingly numerous and complex.
 \end{center}
 #+END_EXPORT
 ** Different (but Converging) Reproducibility Concerns
-Bad computer/statistic/publication practices and "broke science"
+Reproducibility/robustness of the scientific fact, the statistical
+analysis, the computation, the observation, the process, \dots ?\pause
+
+Bad computer/statistic/publication practices "broke science"
 $\winkey$
+#+BEGIN_EXPORT latex
+\vspace{-3em}
+\begin{overlayarea}{\linewidth}{0cm}
+  \vspace{-3em}
+  \begin{flushright}
+    \includegraphics[height=4cm]{images/iceberg.jpg}
+  \end{flushright}
+\end{overlayarea}
+#+END_EXPORT
 - Ensure articles and data are *available*
-  - Open Access, Open Data, FAIR and DMP\pause
+  - *Open Access*, *Open Data*, FAIR and DMP\pause
 - /Ensure/ the *experiment design* and *analysis* is not broken
   - +data torture and hacking+, *pre-registration*, education, ...\pause
 - Explain *how* the computations unfold and *why*
-  - Notebooks (that can quickly get out of control)
-  - Simple computational workflows\pause
+  - *Notebooks* (that can quickly get out of control)
+  - Simple computational *workflows*\pause
 - Allow to _*inspect*_, _*rerun*_, _*make variations*_ on computations
   - Access to code, data, ... \pause *options/parameters*, *environment*, *resources*?\medskip
   This requires *first class software engineering practices* instead of
