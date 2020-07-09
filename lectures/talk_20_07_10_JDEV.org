@@ -1,0 +1,596 @@
+# -*- coding: utf-8 -*-
+# -*- mode: org -*-
+#+Title:  \scalebox{.95}{Software Factories for Reproducible Research in Big Data/DL/AI}
+#+Author: Arnaud Legrand\medskip\newline\logoInstitutions
+#+DATE:  \vspace{1cm}\JDEVlogo July 2020\hfill \mylogo\vspace{-1.3cm}
+#+LANGUAGE: en
+#+STARTUP: beamer indent inlineimages logdrawer
+#+TAGS: noexport(n)
+
+#+PROPERTY: header-args  :session :eval never-export :exports both
+#+DRAWERS: latex_headers
+
+:latex_headers:
+#+LaTeX_CLASS: beamer
+#+LATEX_CLASS_OPTIONS: [10pt,aspectratio=169,presentation,xcolor={usenames,dvipsnames,svgnames,table}]
+#+OPTIONS:   H:1 num:t toc:nil \n:nil @:t ::t |:t ^:nil -:t f:t *:t <:t
+#+LATEX_COMPILER: lualatex -shell-escape
+#+LATEX_HEADER: \usedescriptionitemofwidthas{bl}
+#+LATEX_HEADER: \usepackage[T1]{fontenc}
+#+LATEX_HEADER: \usepackage[utf8]{inputenc}
+#+LATEX_HEADER: \usepackage{figlatex}
+#+LATEX_HEADER: \usepackage[french]{babel}
+#+LATEX_HEADER: %\usepackage{DejaVuSansMono}
+#+LATEX_HEADER: \usepackage{ifthen,amsmath,amstext,gensymb,amssymb}
+#+LATEX_HEADER: \usepackage{boxedminipage,xspace,multicol}
+#+LATEX_HEADER: %%%%%%%%% Begin of Beamer Layout %%%%%%%%%%%%%
+#+LATEX_HEADER: \ProcessOptionsBeamer
+#+LATEX_HEADER: \usetheme[numbering=fraction,titleformat=smallcaps,progressbar=frametitle]{metropolis}
+#+LATEX_HEADER: \usepackage{fontawesome}
+#+LATEX_HEADER: \usecolortheme[named=BrickRed]{structure}
+#+LATEX_HEADER: %%%%%%%%% End of Beamer Layout %%%%%%%%%%%%%
+#+LATEX_HEADER: \usepackage{verbments}
+#+LATEX_HEADER: \usepackage{xcolor}
+#+LATEX_HEADER: \usepackage{color}
+#+LATEX_HEADER: \usepackage{url} \urlstyle{sf}
+#+LATEX_HEADER: \let\alert=\structure % to make sure the org * * works of tools
+#+LATEX_HEADER: %\let\tmptableofcontents=\tableofcontents
+#+LATEX_HEADER: %\def\tableofcontents{}
+#+LATEX_HEADER: \let\hrefold=\href
+#+LATEX_HEADER: \let\oldtexttt=\texttt
+#+LATEX_HEADER: \usepackage{ifluatex}
+#+LATEX_HEADER: \ifpdftex
+#+LATEX_HEADER:   \usepackage[normalem]{ulem}\usepackage{soul}
+#+LATEX_HEADER:   % \usepackage{color}
+#+LATEX_HEADER:   \definecolor{lightorange}{rgb}{1,.9,.7}
+#+LATEX_HEADER:   \sethlcolor{lightorange}
+#+LATEX_HEADER:   \definecolor{lightgreen}{rgb}{.7,.9,.7}
+#+LATEX_HEADER:   \makeatother
+#+LATEX_HEADER:      \renewcommand{\href}[2]{\hrefold{#1}{\SoulColor{lightorange}\hl{#2}}}
+#+LATEX_HEADER:      % \renewcommand{\uline}[1]{\SoulColor{lightorange}\hl{#1}}
+#+LATEX_HEADER:      % \renewcommand{\emph}[1]{\SoulColor{lightorange}\hl{#1}}
+#+LATEX_HEADER:   \makeatletter
+#+LATEX_HEADER:   \newcommand\SoulColor[1]{%
+#+LATEX_HEADER:   \sethlcolor{#1}%
+#+LATEX_HEADER:   \let\set@color\beamerorig@set@color%
+#+LATEX_HEADER:   \let\reset@color\beamerorig@reset@color}
+#+LATEX_HEADER: \else
+#+LATEX_HEADER:    \usepackage[soul]{lua-ul}
+#+LATEX_HEADER:    \usepackage{tcolorbox}
+#+LATEX_HEADER:      \renewcommand{\href}[2]{\hrefold{#1}{\begin{tcolorbox}[colback=orange!30!white,size=minimal,hbox,on line]{#2}\end{tcolorbox}}}
+#+LATEX_HEADER: \fi
+#+LATEX_HEADER: % \renewcommand\texttt[1]{\SoulColor{lightgreen}\hl{\tt#1}}
+#+LATEX_HEADER: % \renewcommand\alert[1]{\SoulColor{lightgreen}\hl{#1}}
+#+LATEX_HEADER: % \AtBeginSection{\begin{frame}{Outline}\tableofcontents\end{frame}}
+#+LATEX_HEADER: \usepackage[export]{adjustbox}
+#+LATEX_HEADER: \graphicspath{{fig/}}
+#+LATEX_HEADER: \usepackage{tikzsymbols}
+#+LATEX_HEADER: \def\smiley{\Smiley[1][green!80!white]}% \Neutrey\Sey\Loughey\Couley
+#+LATEX_HEADER: \def\frowny{\Sadey[1][red!80!white]}
+#+LATEX_HEADER: \def\winkey{\Winkey[1][yellow]}
+#+LATEX_HEADER: \def\JDEVlogo{\includegraphics[height=1cm]{./images/jdevLogo.pdf}}
+#+LATEX_HEADER: \def\mylogo{\includegraphics[height=2.5cm]{./images/in_science_we_trust.jpg}}
+#+LATEX_HEADER: \def\mylogo{\includegraphics[height=2.5cm]{./images/in_code_we_trust.jpg}}
+#+LATEX_HEADER: \def\logoInstitutions{\includegraphics[height=.7cm]{./images/Logo-UGA2020.pdf}\quad\includegraphics[height=.7cm]{./images/Logo-CNRS.pdf}\quad\includegraphics[height=.7cm]{./images/Logo-Inria.pdf}\includegraphics[height=.7cm]{./images/Logo-LIG.pdf}\vspace{-.7cm}}
+#+LATEX_HEADER: %\usepackage{pgf}  
+#+LATEX_HEADER: %\logo{\pgfputat{\pgfxy(-2,6.5)}{\pgfbox[center,base]{\includegraphics[height=1cm]{./images/jdevLogo.pdf}}}}
+#+BEGIN_EXPORT latex
+  \newcommand{\myfbox}[2][gray!20]{\bgroup\scalebox{.7}{\colorbox{#1}{{\vphantom{pS}#2}}}\egroup} % \fbox
+  %\def\myfbox#1{#1} % \fbox
+  \def\HPC{\myfbox[gray!40]{HPC}}
+  \def\NET{\myfbox[gray!40]{Network}}
+  \def\SG{\myfbox[gray!40]{Smart Grids}}
+  \def\ECO{\myfbox[gray!40]{Economics}}
+  \def\PRIV{\myfbox[gray!40]{Privacy}}
+  \def\TRACING{\myfbox[red!20]{Tracing}}
+  \def\SIM{\myfbox[green!20]{Simulation}}
+  \def\VIZ{\myfbox[red!40]{Visualization}}
+  \def\MODELING{\myfbox[green!40]{Stochastic Models}}
+  \def\OPT{\myfbox[blue!20]{Optimization}}
+  \def\GT{\myfbox[blue!40]{Game Theory}}
+#+END_EXPORT
+
+#+BEGIN_EXPORT latex
+\def\etal{\textit{et al.}\xspace}
+\def\eg{e.g.,\xspace}
+#+END_EXPORT
+
+#+BEGIN_EXPORT latex
+\def\changefont#1{%
+  \setbeamertemplate{itemize/enumerate body begin}{#1}
+  \setbeamertemplate{itemize/enumerate subbody begin}{#1}
+  #1}
+\makeatletter
+\newcommand{\verbatimfont}[1]{\renewcommand{\verbatim@font}{\ttfamily#1}}
+\makeatother
+\verbatimfont{\scriptsize}%small
+\let\endmintedbak=\endminted
+\def\endminted{\endmintedbak\vspace{-1cm}}
+
+\def\rv#1{\ensuremath{\textcolor{blue}{#1}}\xspace} % DarkBlue
+#+END_EXPORT
+
+#+BEGIN_EXPORT latex
+\newcommand{\Norm}{\ensuremath{\mathcal{N}}\xspace}
+\newcommand{\Unif}{\ensuremath{\mathcal{U}}\xspace}
+\newcommand{\Triang}{\ensuremath{\mathcal{T}}\xspace}
+\newcommand{\Exp}{\ensuremath{\mathcal{E}}\xspace}
+\newcommand{\Bernouilli}{\ensuremath{\mathcal{B}}\xspace}
+\newcommand{\Like}{\ensuremath{\mathcal{L}}\xspace}
+\newcommand{\Model}{\ensuremath{\mathcal{M}}\xspace}
+\newcommand{\E}{\ensuremath{\mathbb{E}}\xspace}
+\def\T{\ensuremath{\theta}\xspace}
+\def\Th{\ensuremath{\hat{\theta}}\xspace}
+\def\Tt{\ensuremath{\tilde{\theta}}\xspace}
+\def\Y{\ensuremath{y}\xspace}
+\def\Yh{\ensuremath{\hat{y}}\xspace}
+\def\Yt{\ensuremath{\tilde{y}}\xspace}
+\let\epsilon=\varepsilon
+\let\leq=\leqslant
+\let\geq=\geqslant
+#+END_EXPORT
+:end:
+
+** Changing Practices                                             :noexport:
+*Manifesto*: "\textit{I solemnly pledge}" ([[https://hal.inria.fr/hal-01367344/document][WSSSPE]], [[http://lorenabarba.com/gallery/reproducibility-pi-manifesto/][Lorena Barba]], [[https://www.go-fair.org/fair-principles/][FAIR]])\small
+  1. I will teach my graduate students about reproducibility
+  2. All our research code (and writing) is under version control
+  3. We will always carry out verification and validation
+  4. We will share data, plotting script & figure under CC-BY
+  5. We will upload the preprint to arXiv at the time of submission of a paper
+  6. We will release code at the time of submission of a paper
+  7. We will add a "Reproducibility" declaration at the end of each paper
+  8. I will keep an up-to-date web presence
+
+\normalsize Software Engineering and Reproducible Research in the
+*curricula*
+
+#+LaTeX: \begin{columns}\begin{column}{.5\linewidth}
+file:images/mooc_rr.png
+#+LaTeX: \end{column}\begin{column}{.5\linewidth}
+- [[https://rr-france.github.io/bookrr/][Webinars on RR]] 2016-2017
+- [[https://learninglab.inria.fr/en/mooc-recherche-reproductible-principes-methodologiques-pour-une-science-transparente/][\bf MOOC on RR]] (3rd edition planned for January 2020)
+- [[https://rr-france.github.io/bookrr/][Book on RR]] in June 2019\bigskip
+#+LaTeX: \end{column}\end{columns}
+
+** Publishing: the Reproducibility "Wave"
+*** *Artifact evaluation and ACM badges*
+     #+BEGIN_CENTER
+     \includegraphics[height=1cm]{images/ae_badge1.png}
+     \includegraphics[height=1cm]{images/ae_badge2.png}
+     \includegraphics[height=1cm]{images/acm_badges.pdf}     
+     #+END_CENTER
+\vspace{-1em}
+Emerging Interest Group on https://reproducibility.acm.org/ \pause
+*** *Major conferences* 
+**** Confs                                                         :BMCOL:
+:PROPERTIES:
+:BEAMER_col: .8
+:END:
+  - [[http://db-reproducibility.seas.harvard.edu/papers/index.html][ACM SIGMOD 2015-2019]], [[https://project.inria.fr/acmmmreproducibility/][ACM MM 2019-2020]], ...
+  - [[https://sc19.supercomputing.org/submit/reproducibility-initiative/][Supercomputing]]: Artifact Description (AD) mandatory, Artifact
+    Evaluation (AE) optional, Double blind vs. Open reviews
+  - [[https://nips.cc/Conferences/2019/CallForPapers][NeurIPS]], [[https://reproducibility-challenge.github.io/iclr_2019/][ICLR]]: open reviews, [[https://www.youtube.com/watch?v=Kee4ch3miVA][Joelle Pineau @ NeurIPS'18]]
+**** Joelle Pineau                                                 :BMCOL:
+:PROPERTIES:
+:BEAMER_col: .3
+:END:
+\null\hspace{-1cm}
+#+ATTR_LaTeX: :width \linewidth :center nil
+file:images/joelle_pineau.jpg
+*** :B_ignoreheading:
+:PROPERTIES:
+:BEAMER_env: ignoreheading
+:END:
+ 
+#+BEGIN_QUOTE
+_Mindsets and practices are evolving_: people care and make stuff available
+
+But it's hard and _tools are not mature_ yet
+#+END_QUOTE
+\vspace{-1em}
+\textbf{Why focus on AI/DL?} Not only but it is *very active*, *empirical* and *computational*
+field
+** Main Challenges
+#+begin_src shell :results output :exports both
+my_code --cfg=magical_param:0.94572 '*.dat' --output foo.csv
+#+end_src
+
+#+ATTR_BEAMER: :overlay <+->
+- Tracking code _version_ ::  
+  - <.-> =my_code= is revision =21b95ecfa0911d6ca87668482b11ab9498edd8f3=
+- Tracking software _environment_ ::  
+  #+ATTR_BEAMER: :overlay <.->
+  - =my_code= depends on a dozen of libraries, which
+    depend on dozens of libraries
+  - =my_code= was compiled with =clang= =1:9.0-49.1= and =-O3
+    -funroll-loops -fno-strict-aliasing -finline-functions ...=
+- Tracking _parameters_ and _data_  ::  
+  #+ATTR_BEAMER: :overlay <.->
+  - =*.dat=? Ooh, you ran this in ~data/2091293-AJXQ37~?
+  - Wasn't =mymap.dat= updated since then?
+  - That was for =foo.csv=. What about =bar.csv=? Is it reproducible?
+- Tracking the process :: (on short/long term)
+  - <.-> Why did I run this? What did I learn from it? I remember doing
+    this but when?
+- Handle complex sequences and _reuse_ results :: (leverage cloud/supercomputers)
+** Many Problems, many Prototype Solutions
+I can't be exhaustive here but feel free to help me getting a better
+view on all this by:
+- Adding related projects in the pad
+- Telling me about your experience on these tools if you ever tried
+  them
+
+#+LaTeX: \hbox{
+[[https://tinyurl.com/JDEVRR][https://tinyurl.com/JDEVRR]] $\to$ http://pads.univ-grenoble-alpes.fr/p/jdev_reproducible_ai
+#+LaTeX: }\bigskip
+
+Or come discuss about all this and share news on [[https://reproducible-research.inria.fr/][https://reproducible-research.inria.fr/]]
+** Existing Tools and Standards
+#+LaTeX: \begin{columns}\begin{column}[t]{.4\linewidth}\centering
+\bf *Notebooks and workflows*
+
+file:images/jupyterpreview.png
+
+#+LaTeX: \includegraphics[height=.8cm]{images/logo/Jupyter_logo.png}
+#+LaTeX: \includegraphics[height=.8cm]{images/logo/OrgMode_logo.png}
+#+LaTeX: \includegraphics[height=.8cm]{images/logo/RStudio_logo.png}
+file:images/logo/workflows.png
+
+#+LaTeX: \end{column}\begin{column}[t]{.35\linewidth}\centering
+\bf *Software environments*
+
+file:images/python3-matplotlib.pdf 
+#+ATTR_LaTeX: :width .6\linewidth
+file:images/platform_diversity.png
+
+#+LaTeX: \includegraphics[height=1cm]{images/logo/docker_logo.png}
+#+LaTeX: \includegraphics[height=1cm]{images/logo/singularity_logo.png}
+#+LaTeX: \includegraphics[height=.5cm]{images/logo/reprozip.png}
+#+LaTeX: \includegraphics[height=1cm]{images/logo/Guix_logo.png}
+#+LaTeX: \includegraphics[height=1cm]{images/logo/nix_logo.png}
+
+#+LaTeX: \end{column}\begin{column}[t]{.35\linewidth}\centering
+\bf *Sharing platforms*\bigskip
+
+#+LaTeX: \includegraphics[height=1cm]{images/logo/git_logo.png}
+#+LaTeX: \includegraphics[height=1cm]{images/logo/github_logo.png}
+#+LaTeX: \includegraphics[height=1cm]{images/logo/gitlab_logo.png}
+#+LaTeX: \includegraphics[height=1cm]{images/logo/JupyterHub_logo.png}
+#+LaTeX: \includegraphics[height=1cm]{images/logo/ArXiv-web.png}
+#+LaTeX: \includegraphics[height=1cm]{images/logo/LogoHAL.png}
+#+LaTeX: \includegraphics[height=1cm]{images/logo/Figshare-logo.png}
+#+LaTeX: \includegraphics[height=1cm]{images/logo/Zenodo-logo.jpg}
+#+LaTeX: \includegraphics[height=1cm]{images/logo/swh-logo.png}
+
+#+LaTeX: \end{column}\end{columns}\bigskip
+
+
+\vspace{-2.5cm}\hfill\large\bf The Data/Code/Execution Triptych
+# - Provenance, mise à disposition, software environment capture,
+#   literate programming, etc. Still no perfect solution but much better
+#   tools.
+#   - notebooks: jupyter/...
+#   - containers/... 
+#   - github/gitlab/zenodo/swh... to
+#   - execution in the cloud: continuous integration and codeocean
+** Tracking Code\dots and Data ?
+*** *Git* has become the de facto standard and ultimate *code tracking* tool :B_block:
+:PROPERTIES:
+:BEAMER_env: block
+:END:
+- GitHub, BitBucket, GitLab, ... make it more human-friendly
+- Note that \textbf{none} of these platforms is _perenial_ (see
+  Roberto's presentation on \alert{S}oft\alert{W}are \alert{H}eritage)
+- Git tracks a single software project: \hfill$\leadsto$ [[https://git-scm.com/book/fr/v2/Utilitaires-Git-Sous-modules][_Git submodule_]]
+  $\smiley$ or [[https://www.atlassian.com/git/tutorials/git-subtree][Git subtree]] $\Sey[1][cyan]$
+  # https://git-scm.com/book/fr/v2/Utilitaires-Git-Sous-modules
+\pause\medskip
+# It is possible to fully identify a particular code revision
+# \scalebox{.85}{(provided the git repositories are available)}
+*** Why not use *Git* for *tracking data*?                           :B_block:
+:PROPERTIES:
+:BEAMER_env: block
+:END:
+\vspace{-.5em}
+- Git was not designed to handle *large binary files* (e.g., databases,
+  HDF5, video)
+
+  \hfill$\leadsto$ [[https://www.atlassian.com/git/tutorials/git-lfs][Git LFS]] (co-developed by GitHub and Atlassian
+  around 2015) $\Sey[1][cyan]$ and [[https://git-annex.branchable.com/][_Git Annex_]] $\smiley$
+- Git was not designed with "*privacy*" or "*access control lists*" in
+  mind
+  
+  \hfill$\leadsto$ [[https://git-annex.branchable.com/encryption/][Cryptography support in Git Annex]] $\Cooley[1][yellow]$
+** Tracking Software Environment
+# #+ATTR_BEAMER: :overlay <+->
+#+LaTeX: \setbeamertemplate{enumerate items}{}
+*** *Binary based* QEMU/\alert{VirtualBox}/VMWare/...\hfill{}LXC/\alert{Docker}/Singularity/CharlieCloud/... :B_block:
+:PROPERTIES:
+:BEAMER_env: block
+:BEAMER_act: <1->
+:END:
+
+\vspace{-.3em}
+   - *Easy to use* (e.g., share through DockerHub) \scalebox{.8}{although the first installation requires a root access}
+   - Provides a common/standard software stack *for a team*
+   - No (or little) support for image *reproducibility* nor software
+     *inspection/modification*
+\vspace{-.5em}
+
+*** *Package Managers* +=pip=+, =conda=,  =dpkg=, ...                            :B_block:
+:PROPERTIES:
+:BEAMER_env: block
+:BEAMER_act: <3->
+:END:
+\vspace{-.3em}
+   - [[https://docs.conda.io/en/latest/][Anaconda]] is OS agnostic and popular for data science
+     - Reinstalling a basic environment even after a few months can
+       reveal impossible
+   - Debian *commits* to reproducibility: [[https://snapshot.debian.org/][snapshots]] (March 2005) and
+     [[https://reproducible-builds.org/projects/][reproducible builds]]
+     - You may freeze a Dockerfile by wisely freezing sources
+       \hfill\alert{\textbullet} Limited flexibility
+\vspace{-.5em}
+*** *Source based* Spack, *Guix*, Nix, ...                                                 :B_block:
+:PROPERTIES:
+:BEAMER_env: block
+:BEAMER_act: <2->
+:END:
+\vspace{-.3em}
+   - Allows to rebuild a software stack in a *controled* way\hfill (sources,
+     compiling options)
+   - Use *caches* to save compiling time
+   - [[https://guix.gnu.org/blog/2020/reproducible-computations-with-guix/][Time machine mechanism and export to docker/...]]
+\vspace{-.5em}
+
+*** \hfill A silver bullet but simplicity is generally prefered to reproducibility\hfill :noexport:B_block:
+:PROPERTIES:
+:BEAMER_env: block
+:BEAMER_act: <4->
+:END:
+** Tracking the Exploration Process with a Notebook
+[[https://twitter.com/GaelVaroquaux/status/1280850571201851392][The /REPL/ (Read–eval–print loop) vs. /Notebook/ vs /IDE/ debate]]
+
+- In the beginning was the Mathematica (1988) and the Maple (1989)
+  notebooks, which allow to tell a story (*litterate programming*)\pause
+
+- Then IJulia, IPython, and IR merged into the [[https://jupyter.org/][Jupyter]] notebook $\Cooley[1][yellow]$
+  - The coolest kid on the block without  +*IDE/Structure*+, \hfill
+    +*Interactive collaboration/Versioning*+, +*Software Environment
+    Control*+,   +*Easy setup and use of Computing resources*+ !!! $\frowny$
+    \pause
+
+[[https://pg.ucsd.edu/publications/computational-notebooks-design-space_VLHCC-2020.pdf][Now we have]]:
+#+LaTeX: \vspace{-1em}\begin{multicols}{2}
+- [[https://jupyterlab.readthedocs.io/en/stable/][JupyterLab]], [[https://jupyter.org/binder][Binder\vphantom{p}]], [[https://jupyter.org/hub][JupyterHub]]
+  - [[https://hpc.guix.info/blog/2019/10/towards-reproducible-jupyter-notebooks/][Guix-Jupyter]]
+- IDE: [[https://rstudio.com/solutions/r-and-python/][Rstudio]] (not just R),  [[https://github.com/dzop/emacs-jupyter][Emacs]], [[https://code.visualstudio.com/docs/python/jupyter-support-py][VSstudio]] (Jupyter\sim{}backend)
+- [[https://help.codeocean.com/en/articles/1458440-jupyter-notebooks-an-overview][CodeOcean]] 
+  #+LaTeX: \scalebox{.7}{\em showroom, \sout{interactive}}
+- [[https://cocalc.com/][CoCalc/SAGE notebooks]], [[https://www.kaggle.com/docs/notebooks][Kaggle]], [[https://colab.research.google.com/][Google Colab]], [[https://deepnote.com/][DeepNote]]
+  \scalebox{.7}{\em real-time, versioning, custom environment}
+- [[https://www.fast.ai/2019/12/02/nbdev/][fast.ai/nbdev]] 
+  \scalebox{.7}{\em merge conflict, module export, test}
+- [[http://beakerx.com/][Beaker]], [[https://count.co/][Count]] $\Sey[1][cyan]$ ???
+# - [[https://github.com/liquidata-inc/dolt][Dolt]] and [[https://www.dolthub.com/][DoltHub]]: 
+# https://www.dolthub.com/blog/2020-03-06-so-you-want-git-for-data/
+#+LaTeX: \end{multicols}\vspace{-.5em}
+
+Little support for computing ressources: [[https://vatlab.github.io/sos-docs/][SoS Polyglot
+Notebook/Workflow System]]
+** Running simulations with [[https://pythonhosted.org/Sumatra/][Sumatra]] (Computational NeuroScience)
+***                                                                 :BMCOL:
+:PROPERTIES:
+:BEAMER_col: .6
+:END:
+#+BEGIN_EXPORT latex
+\includegraphics<+>[page=35,width=\linewidth]{pdf_sources/sumatra_amp2011.pdf}%
+\includegraphics<+>[page=46,width=\linewidth]{pdf_sources/sumatra_amp2011.pdf}%
+#+END_EXPORT
+***                                                                 :BMCOL:
+:PROPERTIES:
+:BEAMER_col: .44
+:END:
+#+begin_src shell :results output :exports both
+smt configure --executable=python \
+   --main=main.py \
+   --datapath /path/to/data
+
+smt run new.param --label=Sgamma \
+   --reason="Test a smaller gamma"
+
+smt comment 20110713-174949 \
+   "Eureka! Nobel prize here I come"
+smt tag "Figure 6"
+
+smt repeat Sgamma
+
+smtweb
+#+end_src
+
+#+BEGIN_EXPORT latex
+\begin{flushright}
+  {\scriptsize Courtesy of Andrew Davison (AMP Workshop on RR)}
+\end{flushright}
+#+END_EXPORT
+*** :B_ignoreheading:
+:PROPERTIES:
+:BEAMER_env: ignoreheading
+:END:
+\small Store records in a DB (duration, OS, args), +environment+, +file content+,
++concurrent executions+ \vspace{-.5em}
+
+[[https://pypet.readthedocs.io/en/latest/][PyPet]] extends Sumatra with Parameter Sweep (Fork-Join, store trajectories in HDF5)
+** Tracking Data with [[https://www.datalad.org/][DataLad]] (an other NeuroScience project)
+Builds on =git annex= and =git submodule= plus small =JSON= metadata   \vspace{-1em}
+#+begin_src shell :results output :exports both
+datalad create myfirstrepo # datalad clone/update
+datalad save
+#+end_src
+  - 3rd-party integration (owncloud, S3, figshare, GitHub/Lab)   \vspace{-1em}
+    #+begin_src shell :results output :exports both
+datalad create-sibling-github
+datalad export-to-figshare
+    #+end_src
+    \vspace{1em}\pause
+  - data set combination/linkage, handles meta-data (EXIF, ID3, ...)
+    #+BEGIN_EXPORT latex
+    \begin{overlayarea}{\linewidth}{1cm}
+      \begin{flushright}
+        \vspace{-3em}
+        \includegraphics<1-2,4>[width=.5\linewidth]{images/datalad_linkage.pdf}%
+        \vspace{1cm}
+        \includegraphics<3>[width=.8\linewidth]{images/datalad_metadata.pdf}%
+      \end{flushright}
+    \end{overlayarea}
+    #+END_EXPORT
+    \vspace{-1em}\pause\pause
+     # http://handbook.datalad.org/en/latest/_images/linkage_subds.svg
+     # http://handbook.datalad.org/en/xlatest/intro/philosophy.html
+     # http://handbook.datalad.org/en/latest/intro/executive_summary.html
+  - Basic /provenance and reproducibility/ support\vspace{-.7em}
+    #+begin_src shell :results output :exports both
+datalad run -m "create a list" "bash src/list_titles.sh > data/lst.tsv"
+datalad rerun eee1356bb7e8f921174e404c6df6aadcc1f158f0
+    #+end_src
+    \vspace{1em}
+  - [[http://docs.datalad.org/projects/container/en/latest/][Extension for running in containers]]
+** Data Version Control with [[https://dvc.org/doc/start/data-access][DVC]] (Machine Learning)
+- [[https://discuss.dvc.org/t/comparison-to-datalad-and-git-annex/92][+=git annex=+]] but special =.dvc= files with information about
+  local/remote storage\vspace{-1em}
+  #+begin_src shell :results output :exports both
+dvc add data/data.xml
+git commit data/data.xml.dvc -m "Dataset updates"
+dvc push
+
+git checkout 
+dvc checkout # Get the content
+  #+end_src
+  \vspace{1em}
+- +=snakemake=+ but Data Pipelines trough a =dvc.yaml= task description\vspace{-1em}
+  #+begin_src shell :results output :exports both
+dvc run -n prepare \
+          -p prepare.seed,prepare.split \
+          -d src/prepare.py -d data/data.xml \
+          -o data/prepared \
+          python src/prepare.py data/data.xml
+dvc repro  
+  #+end_src
+  \vspace{1em}
+- A basic Workflow Management System with [[https://discuss.dvc.org/t/running-multiple-dvc-pipeline-in-parallel/267/6][little support for running
+  pipelines in parallel]]
+** Data analytics at [[https://netflixtechblog.com/scheduling-notebooks-348e6c14cfd6?gi=5767774e39cb][NetFlix]]
+#+BEGIN_QUOTE
+  At Netflix, we’ve put substantial effort into adopting notebooks as an
+  integrated development platform. 
+  - Data scientist, data/reliability engineer, machine learning
+    engineer
+#+END_QUOTE
+***                                                                 :BMCOL:
+:PROPERTIES:
+:BEAMER_col: .5
+:END:
+- Notebooks as functions with [[https://github.com/nteract/papermill][papermill]] (*Parameterized Notebooks*)
+- <2> Run in *docker environments*
+- <2> [[https://netflixtechblog.com/meson-workflow-orchestration-for-netflix-recommendations-fc932625c1d9][MESON]]: a home made workflow orchestration/scheduler (100,000+ jobs per day)
+  - Store results in S3 by default
+  - Event/Time Trigger, Wait-for
+  - Dashboard like usage to generate daily reports
+***                                                                 :BMCOL:
+:PROPERTIES:
+:BEAMER_col: .5
+:END:
+#+LaTeX: \includegraphics<1>[width=\linewidth]{images/papermill.png}
+#+LaTeX: \includegraphics<2>[width=\linewidth]{images/netflix.png}
+*** :B_ignoreheading:
+:PROPERTIES:
+:BEAMER_env: ignoreheading
+:BEAMER_act: <2->
+:END:
+#+LaTeX: \uncover<2->{
+Probably needed with so many people but I've no idea of how they
+survive such a *complexity* level
+#+LaTeX: }
+** Super Integrated Approaches: [[https://github.com/deepkit/deepkit][DeepKit]]
+***                                                                 :BMCOL:
+:PROPERTIES:
+:BEAMER_col: .6
+:END:
+#+ATTR_LaTeX: :width \linewidth
+file:images/deepkit-v2020.jpg
+
+[[https://deepkit.ai/assets/images/deepkit-v2020.mp4][https://deepkit.ai/assets/images/deepkit-v2020.mp4]]
+***                                                                 :BMCOL:
+:PROPERTIES:
+:BEAMER_col: .5
+:END:
+- Python and Neural Network centric
+- Execute, track and ML experiments
+- Layer debugger for Keras2 and Pytorch
+- Side by side file and metrics diff
+** Lord, Have mercy!
+- [[https://polyaxon.com/][PolyAxon]]:
+  - Integrates with Keras, TensorFlow, SciKitLearn, ...
+  - Tracks key model metrics, hyperparams, visualizations, artifacts
+    and resources,
+  - Version control code and data
+  - Kunbernetes
+- [[https://www.pachyderm.com/][Pachyderm]] (Version-controlled data science)
+  - Versionned data without +=git=+: [[https://docs.pachyderm.com/latest/concepts/data-concepts/repo/][a centralized location (no
+    conflict, allows removal,...)]]
+  - Pipelines and distributed computer: Kubernetes/KubeFlow
+- [[https://github.com/AITRICS/kono][Kono]]
+- ...
+** Craftwork "vs." Software Factories
+[[http://blog.khinsen.net/posts/2019/10/29/the-industrialization-of-scientific-research/][The industrialization of scientific research]] (Konrad Hinsen's Blog, 2019)
+#+BEGIN_QUOTE
+\small
+
+The underlying cause for the *reproducibility crisis* is the *ongoing
+industrialization of scientific research*.
+
+*Most software was written for in-lab use*, and not even made available
+to others. Only a small number of basic, *standardized*, and widely used
+tools, such as compilers, were already industrial products. *Most data
+were likewise not shared* outside the research group [..]
+
+*Science* is intrinsically a *bottom-up process*, whereas *management* is
+about *top-down organization*.
+#+END_QUOTE
+
+[[https://arxiv.org/abs/2006.03018][Towards Long-term and Archivable Reproducibility]] (+software collapse+)
+#+BEGIN_QUOTE
+  \small 
+
+  Reproducible workflow solutions commonly use high-level technologies
+  that were *popular when they were created*, providing an immediate
+  solution which is *unlikely to be sustainable in the long term*.
+  (Python 2 vs. Python 3)
+
+  *The cost of staying up to date within this rapidly-evolving landscape
+  is high*.
+
+  $\leadsto$ *No dependency beyond a POSIX-compatible operating system*, no
+  administrator privileges, no network connection and storage
+  primarily in plain text
+#+END_QUOTE
+  # Decades later, scientists are still held accountable for their
+  # results and therefore the evolving technology landscape creates
+  # generational gaps in the scientific community, preventing previous
+  # generations from sharing valuable experience.
+* Emacs Setup                                                      :noexport:
+This document has local variables in its postembule, which should
+allow Org-mode (9) to work seamlessly without any setup. If you're
+uncomfortable using such variables, you can safely ignore them at
+startup. Exporting may require that you copy them in your .emacs.
+
+# Local Variables:
+# eval: (require 'ox-extra)
+# eval: (setq org-latex-tables-centered nil)
+# eval: (ox-extras-activate '(ignore-headlines))
+# eval: (add-to-list 'org-latex-packages-alist '("" "minted"))
+# eval: (setq org-latex-listings 'minted)
+# eval: (setq org-latex-minted-options '(("style" "Tango") ("bgcolor" "Moccasin") ("frame" "lines") ("linenos" "false") ("fontsize" "\\footnotesize")))
+# eval: (setq org-latex-pdf-process '("lualatex -shell-escape -interaction nonstopmode -output-directory %o %f"))
+# End:
