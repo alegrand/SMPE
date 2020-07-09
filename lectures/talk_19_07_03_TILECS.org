@@ -325,23 +325,6 @@ file:images/mooc_rr.png
      \includegraphics[height=1cm]{images/acm_badges.pdf}     
      #+END_CENTER
 - Major conferences ::  
-<<<<<<< HEAD
-  - [[https://sc19.supercomputing.org/submit/reproducibility-initiative/][Supercomputing]]: Artifact Description (AD) *mandatory*, Artifact
-    Evaluation (AE) still *optional*, *Double blind* vs. *RR*
-  - [[https://nips.cc/Conferences/2019/CallForPapers][NeurIPS]], [[https://reproducibility-challenge.github.io/iclr_2019/][ICLR]]: *open reviews*, reproducibility challenge
-
-    [[https://www.youtube.com/watch?v=Kee4ch3miVA][Joelle Pineau @ NeurIPS'18]]
-    #+LaTeX: \includegraphics[width=.4\linewidth]{images/joelle_pineau.jpg}
-  - [[http://db-reproducibility.seas.harvard.edu/papers/index.html][ACM SIGMOD 2015-2019]], ...
-
-*Mentality is evolving*: people care and make stuff available
-
-** Key Concerns for our Community (Room for Improvement)
-- $\blacktriangleright$ Awareness of Experiments and Statistics ::   [[https://research.spec.org/fileadmin/user_upload/documents/rg_cloud/endorsed_publications/SPEC_RG_2019_Methodological_Principles_for_Reproducible_Performance_Evaluation_in_Cloud_Computing.pdf][How are cloud
-     performance currently obtained and reported?]], March 2019
-    # 98 articles, 2012-2017
-    #+ATTR_LaTeX: :width \linewidth
-=======
   - [[https://sc19.supercomputing.org/submit/reproducibility-initiative/][Supercomputing]]: Artifact Description (AD) mandatory, Artifact
     Evaluation (AE) still optional, Double blind vs. Open reviews
   - [[https://nips.cc/Conferences/2019/CallForPapers][NeurIPS]], [[https://reproducibility-challenge.github.io/iclr_2019/][ICLR]]: open reviews, [[https://www.youtube.com/watch?v=Kee4ch3miVA][Joelle Pineau @ NeurIPS'18]]
@@ -356,7 +339,6 @@ file:images/mooc_rr.png
      performance currently obtained and reported?]], March 2019
     # 98 articles, 2012-2017
     #+ATTR_LaTeX: :width .8\linewidth
->>>>>>> remotes/origin/master
     file:images/SPEC_RG_2019_Fig4_2.pdf
     # - P3 discusses the experimental setup description. Even though
     #   more than 52% of the analyzed papers fully cover this
