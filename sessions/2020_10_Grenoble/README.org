@@ -68,25 +68,39 @@ All the examples given in this series of lecture use the [[http://www.r-project.
 and the source is provided so that people can reuse them. The slides
 are composed with [[http://orgmode.org][org-mode]], beamer, and verbments.
 * Course Tentative Schedule
-1. 2020/10/01 @ 15:30: [AL] RR / Litterate Programming + MOOC à suivre
-2. 2020/10/15 @ 15:30: [AL] 
-3. 2020/10/22 @ 15:30: [AL] Introduction to R and the tidyverse 
-4. 2020/11/05 @ 15:30: [JM] Visualizing data (with ggplot), [[file:JMV_Intro-Visu.pdf][Critical
-   thinking about visualizations]]
-5. 2020/11/12 @ 15:30: [JM] Statistics: [[file:JMV_Data-Statistics-Introduction.pdf][basics]] + CLT + confidence interval
-6. 2020/11/19 @ 15:30: [AL] Statistics: hypothesis, decision and test,
+1. 2020/10/01 @ 15:30: [JM] [[file:~/Work/Documents/Enseignements/SMPE/lectures/3_introduction_to_statistics.pdf][Probability basics: CLT + confidence
+   interval]]
+   - TODO: [[https://learninglab.inria.fr/en/mooc-recherche-reproductible-principes-methodologiques-pour-une-science-transparente/][MOOC: RR / Litterate Programming]] (module 1 + 2, except the
+     Challenger exercise)
+2. 2020/10/15 @ 15:30: [AL] MOOC debriefing + [[file:~/Work/Documents/Enseignements/SMPE/lectures/4_linear_model.pdf][Linear regression]]
+   (continuous) 
+   - TODO: [[https://learninglab.inria.fr/en/mooc-recherche-reproductible-principes-methodologiques-pour-une-science-transparente/][MOOC: RR / Litterate Programming]] (Challenger exercise +
+     module 3 videos)
+3. 2020/10/22 @ 15:30: [JM] Statistics: data curation, hypothesis,
+   decision and test ([[file:../../lectures/lecture_chi_square.pdf][Unveiling the mysterious chi square test]]),
    "comparing" distribution
-7. 2020/11/26 @ 15:30: [AL] Analysis Of Variance, Causality, Linear regression
-8. 2020/12/03 @ 15:30: [AL] Linear regression (continuous)
-9. 2020/12/10 @ 15:30: [AL] Design of Experiments
+   - TODO: Catch up with R
+   - TODO: "Analysis" of a given dataset (first names)
+4. 2020/11/05 @ 15:30: [AL] Introduction to the tidyverse (ggplot + data
+   wrangling)
+   - TODO: criticizing/analyzing a graph
+5. 2020/11/12 @ 15:30: [JM] Visualizing data, Exploratory Data
+   Analysis, [[file:JMV_Intro-Visu.pdf][Critical thinking about visualizations]]
+   - TODO: MOOC: peer evaluated exercise
+6. 2020/11/19 @ 15:30: [AL] Analysis Of Variance, [[file:~/Work/Documents/Enseignements/SMPE/lectures/lecture_correlation_causation.pdf][Causality]], Linear
+   regression
+   - TODO: MOOC: complete peer evaluated exercise
+7. 2020/11/26 @ 15:30: [AL] [[file:~/Work/Documents/Enseignements/SMPE/lectures/5_design_of_experiments.pdf][Design of Experiments]]
+   - TODO: MOOC: evaluate peer exercise
+8. 2020/12/03 @ 15:30: [AL] Q&A
+9. 2020/12/10 @ 15:30: [AL] [[file:~/Work/Documents/Enseignements/SMPE/lectures/lecture_epistemology.pdf][Epistemology]]
 10. 2020/12/17 @ 15:30: [CL] Publishing and Ethics
-11. 2021/01/07 @ 15:30: [JM] Epistemology
-12. 2021/01/14 @ 15:30: [AL + JM] Feedback on homework
+11. 2021/01/07 @ 15:30: [JM] Q&A
+12. 2021/01/14 @ 15:30: [AL] Feedback on homework
 * Hands-on
 In the 3rd module of the [[https://www.fun-mooc.fr/courses/course-v1:inria+41016+session01bis/about][MOOC on Reproducible Research]], there is a
-peer-reviewed homework that should allow you to practically use
-everything you learnt. There are seven proposed topics but you may
-propose me additional topics to work on.
+peer-reviewed homework that will allow you to practically use
+everything you learnt. 
 * Feedback on your hand-on
 * Requirements 
 All the examples given in this series of lecture use the [[http://www.r-project.org/][R]] language
