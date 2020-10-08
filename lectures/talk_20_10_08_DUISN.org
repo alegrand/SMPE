@@ -642,7 +642,7 @@ Two options for computing reproducibly:
 * Resources and Acknowledgments
 ** Resources and Acknowledgments
 #+BEGIN_CENTER
-[[https://github.com/alegrand/SMPE/raw/master/lectures/talk_20_07_07_JDEV.pdf][https://github.com/alegrand/SMPE/raw/master/lectures/talk_20_10_08_DUISN.pdf]]
+[[https://github.com/alegrand/SMPE/raw/master/lectures/talk_20_10_08_DUISN.pdf][https://github.com/alegrand/SMPE/raw/master/lectures/talk_20_10_08_DUISN.pdf]]
 #+END_CENTER
 
 *** Book pic                                                        :BMCOL:
