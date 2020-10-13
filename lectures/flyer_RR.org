@@ -1,0 +1,201 @@
+# -*- coding: utf-8 -*-
+# -*- mode: org -*-
+#+Title:  \scalebox{.95}{Reproducibility Crisis, Open Science, and Computer Science}
+#+Author: Arnaud Legrand\medskip\newline\logoInstitutions
+#+DATE:  \vspace{1cm}\JDEVlogo October 2020\hfill \mylogo\vspace{-1.3cm}
+#+LANGUAGE: en
+#+STARTUP: beamer indent inlineimages logdrawer
+#+TAGS: noexport(n)
+
+#+PROPERTY: header-args  :session :eval never-export :exports both
+#+DRAWERS: latex_headers
+
+:latex_headers:
+#+LaTeX_CLASS: beamer
+#+LATEX_CLASS_OPTIONS: [10pt,aspectratio=169,presentation,xcolor={usenames,dvipsnames,svgnames,table}]
+#+OPTIONS:   H:1 num:t toc:nil \n:nil @:t ::t |:t ^:nil -:t f:t *:t <:t
+#+LATEX_COMPILER: lualatex -shell-escape
+#+LATEX_HEADER: \usedescriptionitemofwidthas{bl}
+#+LATEX_HEADER: \usepackage[T1]{fontenc}
+#+LATEX_HEADER: \usepackage[utf8]{inputenc}
+#+LATEX_HEADER: \usepackage{figlatex}
+#+LATEX_HEADER: \usepackage[french]{babel}
+#+LATEX_HEADER: %\usepackage{DejaVuSansMono}
+#+LATEX_HEADER: \usepackage{ifthen,amsmath,amstext,gensymb,amssymb}
+#+LATEX_HEADER: \usepackage{boxedminipage,xspace,multicol}
+#+LATEX_HEADER: %%%%%%%%% Begin of Beamer Layout %%%%%%%%%%%%%
+#+LATEX_HEADER: \ProcessOptionsBeamer
+#+LATEX_HEADER: \usetheme[titleformat=smallcaps,progressbar=frametitle]{metropolis}
+#+LATEX_HEADER: \usepackage{fontawesome}
+#+LATEX_HEADER: \usecolortheme[named=BrickRed]{structure}
+#+LATEX_HEADER: %%%%%%%%% End of Beamer Layout %%%%%%%%%%%%%
+#+LATEX_HEADER: \usepackage{verbments}
+#+LATEX_HEADER: \usepackage{xcolor}
+#+LATEX_HEADER: \usepackage{color}
+#+LATEX_HEADER: \usepackage{url} \urlstyle{sf}
+#+LATEX_HEADER: \let\alert=\structure % to make sure the org * * works of tools
+#+LATEX_HEADER: %\let\tmptableofcontents=\tableofcontents
+#+LATEX_HEADER: %\def\tableofcontents{}
+#+LATEX_HEADER: \let\hrefold=\href
+#+LATEX_HEADER: \let\oldtexttt=\texttt
+#+LATEX_HEADER: \usepackage{ifluatex}
+#+LATEX_HEADER: \ifpdftex
+#+LATEX_HEADER:   \usepackage[normalem]{ulem}\usepackage{soul}
+#+LATEX_HEADER:   % \usepackage{color}
+#+LATEX_HEADER:   \definecolor{lightorange}{rgb}{1,.9,.7}
+#+LATEX_HEADER:   \sethlcolor{lightorange}
+#+LATEX_HEADER:   \definecolor{lightgreen}{rgb}{.7,.9,.7}
+#+LATEX_HEADER:   \makeatother
+#+LATEX_HEADER:      \renewcommand{\href}[2]{\hrefold{#1}{\SoulColor{lightorange}\hl{#2}}}
+#+LATEX_HEADER:      % \renewcommand{\uline}[1]{\SoulColor{lightorange}\hl{#1}}
+#+LATEX_HEADER:      % \renewcommand{\emph}[1]{\SoulColor{lightorange}\hl{#1}}
+#+LATEX_HEADER:   \makeatletter
+#+LATEX_HEADER:   \newcommand\SoulColor[1]{%
+#+LATEX_HEADER:   \sethlcolor{#1}%
+#+LATEX_HEADER:   \let\set@color\beamerorig@set@color%
+#+LATEX_HEADER:   \let\reset@color\beamerorig@reset@color}
+#+LATEX_HEADER: \else
+#+LATEX_HEADER:    \usepackage[soul]{lua-ul}
+#+LATEX_HEADER:    \usepackage{tcolorbox}
+#+LATEX_HEADER:      \renewcommand{\href}[2]{\hrefold{#1}{\begin{tcolorbox}[colback=orange!30!white,size=minimal,hbox,on line]{#2}\end{tcolorbox}}}
+#+LATEX_HEADER: \fi
+#+LATEX_HEADER: % \renewcommand\texttt[1]{\SoulColor{lightgreen}\hl{\tt#1}}
+#+LATEX_HEADER: % \renewcommand\alert[1]{\SoulColor{lightgreen}\hl{#1}}
+#+LATEX_HEADER: % \AtBeginSection{\begin{frame}{Outline}\tableofcontents\end{frame}}
+#+LATEX_HEADER: \usepackage[export]{adjustbox}
+#+LATEX_HEADER: \graphicspath{{fig/}}
+#+LATEX_HEADER: \usepackage{tikzsymbols}
+#+LATEX_HEADER: \def\smiley{\Smiley[1][green!80!white]}
+#+LATEX_HEADER: \def\frowny{\Sadey[1][red!80!white]}
+#+LATEX_HEADER: \def\winkey{\Winkey[1][yellow]}
+#+LATEX_HEADER: \def\JDEVlogo{}%\includegraphics[height=1cm]{./images/jdevLogo.pdf}}
+#+LATEX_HEADER: \def\mylogo{\includegraphics[height=2.5cm]{./images/in_science_we_trust.jpg}}
+#+LATEX_HEADER: \def\logoInstitutions{\includegraphics[height=.7cm]{./images/Logo-UGA2020.pdf}\quad\includegraphics[height=.7cm]{./images/Logo-CNRS.pdf}\quad\includegraphics[height=.7cm]{./images/Logo-Inria.pdf}\includegraphics[height=.7cm]{./images/Logo-Lig.pdf}\vspace{-.7cm}}
+#+LATEX_HEADER: %\usepackage{pgf}  
+#+LATEX_HEADER: %\logo{\pgfputat{\pgfxy(-2,6.5)}{\pgfbox[center,base]{\includegraphics[height=1cm]{./images/jdevLogo.pdf}}}}
+#+LATEX_HEADER: \def\maketitle{}
+#+BEGIN_EXPORT latex
+  \newcommand{\myfbox}[2][gray!20]{\bgroup\scalebox{.7}{\colorbox{#1}{{\vphantom{pS}#2}}}\egroup} % \fbox
+  %\def\myfbox#1{#1} % \fbox
+  \def\HPC{\myfbox[gray!40]{HPC}}
+  \def\NET{\myfbox[gray!40]{Network}}
+  \def\SG{\myfbox[gray!40]{Smart Grids}}
+  \def\ECO{\myfbox[gray!40]{Economics}}
+  \def\PRIV{\myfbox[gray!40]{Privacy}}
+  \def\TRACING{\myfbox[red!20]{Tracing}}
+  \def\SIM{\myfbox[green!20]{Simulation}}
+  \def\VIZ{\myfbox[red!40]{Visualization}}
+  \def\MODELING{\myfbox[green!40]{Stochastic Models}}
+  \def\OPT{\myfbox[blue!20]{Optimization}}
+  \def\GT{\myfbox[blue!40]{Game Theory}}
+#+END_EXPORT
+
+#+BEGIN_EXPORT latex
+\def\etal{\textit{et al.}\xspace}
+\def\eg{e.g.,\xspace}
+#+END_EXPORT
+
+#+BEGIN_EXPORT latex
+\def\changefont#1{%
+  \setbeamertemplate{itemize/enumerate body begin}{#1}
+  \setbeamertemplate{itemize/enumerate subbody begin}{#1}
+  #1}
+\makeatletter
+\newcommand{\verbatimfont}[1]{\renewcommand{\verbatim@font}{\ttfamily#1}}
+\makeatother
+\verbatimfont{\scriptsize}%small
+\let\endmintedbak=\endminted
+\def\endminted{\endmintedbak\vspace{-1cm}}
+
+\def\rv#1{\ensuremath{\textcolor{blue}{#1}}\xspace} % DarkBlue
+#+END_EXPORT
+
+#+BEGIN_EXPORT latex
+\newcommand{\Norm}{\ensuremath{\mathcal{N}}\xspace}
+\newcommand{\Unif}{\ensuremath{\mathcal{U}}\xspace}
+\newcommand{\Triang}{\ensuremath{\mathcal{T}}\xspace}
+\newcommand{\Exp}{\ensuremath{\mathcal{E}}\xspace}
+\newcommand{\Bernouilli}{\ensuremath{\mathcal{B}}\xspace}
+\newcommand{\Like}{\ensuremath{\mathcal{L}}\xspace}
+\newcommand{\Model}{\ensuremath{\mathcal{M}}\xspace}
+\newcommand{\E}{\ensuremath{\mathbb{E}}\xspace}
+\def\T{\ensuremath{\theta}\xspace}
+\def\Th{\ensuremath{\hat{\theta}}\xspace}
+\def\Tt{\ensuremath{\tilde{\theta}}\xspace}
+\def\Y{\ensuremath{y}\xspace}
+\def\Yh{\ensuremath{\hat{y}}\xspace}
+\def\Yt{\ensuremath{\tilde{y}}\xspace}
+\let\epsilon=\varepsilon
+\let\leq=\leqslant
+\let\geq=\geqslant
+#+END_EXPORT
+:end:
+
+* Reproducible Research
+#+begin_export latex
+\begin{overlayarea}{\linewidth}{0mm}
+  \vspace{-2.0cm}
+  \hbox{\hspace{.87\linewidth}\includegraphics[height=2.5cm]{./images/in_science_we_trust.jpg}}
+\end{overlayarea}\vspace{-3mm}
+#+end_export
+** Book pic                                                          :BMCOL:
+:PROPERTIES:
+:BEAMER_col: .17
+:BEAMER_OPT: t
+:END:
+#+LaTeX: \fbox{\includegraphics[width=\linewidth,valign=t]{images/book_rr.pdf}}
+** Book                                                              :BMCOL:
+:PROPERTIES:
+:BEAMER_col: .83
+:BEAMER_OPT: t
+:END:
+  \vspace{1cm}
+
+  [[https://rr-france.github.io/bookrr/][A non-technical introduction to reproducibility issues]] (in French)
+  - \small Loïc Desquilbet, Sabrina Granger, Boris Hejblum, Arnaud Legrand, Pascal Pernot,
+    Nicolas Rougier
+  \vspace{1cm}
+** squeeze                                                 :B_ignoreheading:
+:PROPERTIES:
+:BEAMER_env: ignoreheading
+:END:
+\vspace{-2mm}
+# \pause
+** MOOC                                                              :BMCOL:
+:PROPERTIES:
+:BEAMER_col: .69
+:BEAMER_OPT: t
+:END:
+\alert{MOOC} [[https://learninglab.inria.fr/en/mooc-recherche-reproductible-principes-methodologiques-pour-une-science-transparente/][Reproducible Research: Methodological principles]] [[https://learninglab.inria.fr/en/mooc-recherche-reproductible-principes-methodologiques-pour-une-science-transparente/][for a
+transparent science]], Learning Lab Inria
+- \small Konrad Hinsen, Christophe Pouzat, Alexandre Hocquet\normalsize
+- \scalebox{.98}{Labbook/notebook, Versioning, Computational documents}
+- *3rd Edition*: March 2020 -- March 2021
+- *MOOC RR "Advanced"* planned for 2021
+** MOOC pic                                                          :BMCOL:
+:PROPERTIES:
+:BEAMER_col: .35
+:BEAMER_OPT: t
+:END:
+#+LaTeX: \includegraphics[width=\linewidth,valign=t]{images/mooc_rr.png}
+
+** Links                                                   :B_ignoreheading:
+:PROPERTIES:
+:BEAMER_env: ignoreheading
+:END:
+\vspace{-.7cm}
+* Emacs Setup                                                      :noexport:
+This document has local variables in its postembule, which should
+allow Org-mode (9) to work seamlessly without any setup. If you're
+uncomfortable using such variables, you can safely ignore them at
+startup. Exporting may require that you copy them in your .emacs.
+
+# Local Variables:
+# eval: (require 'ox-extra)
+# eval: (setq org-latex-tables-centered nil)
+# eval: (ox-extras-activate '(ignore-headlines))
+# eval: (add-to-list 'org-latex-packages-alist '("" "minted"))
+# eval: (setq org-latex-listings 'minted)
+# eval: (setq org-latex-minted-options '(("style" "Tango") ("bgcolor" "Moccasin") ("frame" "lines") ("linenos" "false") ("fontsize" "\\footnotesize")))
+# eval: (setq org-latex-pdf-process '("lualatex -shell-escape -interaction nonstopmode -output-directory %o %f"))
+# End:
