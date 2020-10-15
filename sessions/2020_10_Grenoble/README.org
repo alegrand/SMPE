@@ -17,6 +17,7 @@ Science (MOSIG) from October 2020 to January 2021.
 - Here is the [[http://pads.univ-grenoble-alpes.fr/p/MOSIG-SMPE-2021][Pad]] you will use to collaborate.
 - Here is the [[https://edt.grenoble-inp.fr/2020-2021/exterieur/][lecture schedule on ADE]] (look for "scientific
   method"). A table summary is [[https://edt.grenoble-inp.fr/2020-2021/exterieur/jsp/custom/modules/plannings/eventInfo.jsp?week=-1&day=-1&slot=0&eventId=34649&activityId=-1&resourceId=-1&sessionId=-1&repetition=-1&order=slot&availableZone=-1][here]].
+- Here is the [[https://im2ag-mattermost.univ-grenoble-alpes.fr/mosig/channels/m2dismpe][Mattermost]] we will use to exchange information.
 Links to the slides are provided below.
 * Course Objective and Organization
 The aim of this course is to provide the fundamental basis for sound
