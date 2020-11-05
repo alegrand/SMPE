@@ -81,10 +81,28 @@ are composed with [[http://orgmode.org][org-mode]], beamer, and verbments.
    decision and test ([[file:../../lectures/lecture_chi_square.pdf][Unveiling the mysterious chi square test]]),
    "comparing" distribution
    - TODO: Catch up with R
-   - TODO: "Analysis" of a given dataset (first names)
 4. 2020/11/05 @ 15:30: [AL] Introduction to the tidyverse (ggplot + data
    wrangling)
-   - TODO: criticizing/analyzing a graph
+   1. +Q&A on previous lectures (linear regression, estimation
+      vs. test)+ (there was no question...)
+   2. Explanations on the Challenger exercise from the MOOC
+      - [[https://gitlab.inria.fr/learninglab/mooc-rr/mooc-rr-ressources/-/blob/master/module2/exo5/challenger.pdf][Description of the data]]
+      - [[https://app-learninglab.inria.fr/moocrr/gitlab/moocrr-session3/moocrr-reproducibility-study/blob/master/src/Python3/challenger.ipynb][Jupyter notebook if needed]] (you may run it on
+        https://jupyterhub.u-ga.fr/)
+      - [[https://app-learninglab.inria.fr/moocrr/gitlab/moocrr-session3/moocrr-reproducibility-study/blob/master/src/R/challenger.Rmd][A nice Rmd analysis]] (you may have to fix the csv url) and the
+        corresponding [[https://app-learninglab.inria.fr/moocrr/gitlab/moocrr-session3/moocrr-reproducibility-study/blob/master/challenger.pdf][pdf]]
+   3. [[file:../../lectures/lecture_R_crash_course.pdf][R crash course]] with a live demo in Rstudio. See above for
+      references on lectures and hands-on on data manipulation and
+      graphics. Here are [[file:Rdemo.Rmd][the commands I ran]].
+   4. TODO:
+      - Make sure you understood what I explained by trying to redo
+        the figures starting from slides 38 of the [[file:../../lectures/lecture_R_crash_course.pdf][R crash
+        course]]. Note that, if needed, the solutions are in the
+        org-mode sources... ;-)
+      - Analysis of the [[file:Names-Methodo2020-exercise.Rmd][/first names/ dataset]]. You may use Rstudio,
+        Jupyter or org-mode but you will make the result available
+        publicly (e.g., through github or rpubs) and provide the link
+        to your URL on the [[http://pads.univ-grenoble-alpes.fr/p/MOSIG-SMPE-2021][Pad]].
 5. 2020/11/12 @ 15:30: [JM] Visualizing data, Exploratory Data
    Analysis, [[file:JMV_Intro-Visu.pdf][Critical thinking about visualizations]]
    - TODO: MOOC: peer evaluated exercise

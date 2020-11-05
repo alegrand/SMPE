@@ -1,0 +1,52 @@
+---
+title: "SMPE R demo"
+author: "Arnaud Legrand"
+date: "05/11/2020"
+output: html_document
+---
+
+```{r}
+plot(mtcars)
+```
+
+```{r}
+plot(cars)
+```
+
+```{r}
+mtcars[log(mtcars$mpg*2+3)>4 & mtcars$vs>0,]
+```
+
+```{r}
+mtcars[5,]
+```
+```{r}
+str(mtcars)
+mtcars$vs=as.factor(mtcars$vs)
+```
+
+## dplyr
+
+```{r}
+library(dplyr)
+```
+
+```{r}
+mean(mtcars$mpg)
+```
+
+```{r}
+mtcars %>% group_by(cyl, vs, am) %>% summarise(mpg_mean = mean(mpg), mpg_var = var(mpg), num = n()) %>%
+  filter(mpg_mean>20)
+```
+
+## ggplot2
+
+```{r}
+plot(data= mtcars, mpg ~ wt)
+```
+```{r}
+library(ggplot2)
+ggplot(mtcars, aes(x=wt, y=mpg, color=factor(cyl))) + geom_point() + theme_classic() + geom_smooth(method="lm") + facet_wrap(~cyl)
+```
+
