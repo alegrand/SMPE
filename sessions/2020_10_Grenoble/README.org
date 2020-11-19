@@ -103,15 +103,17 @@ are composed with [[http://orgmode.org][org-mode]], beamer, and verbments.
         Jupyter or org-mode but you will make the result available
         publicly (e.g., through github or rpubs) and provide the link
         to your URL on the [[http://pads.univ-grenoble-alpes.fr/p/MOSIG-SMPE-2021][Pad]].
-5. 2020/11/12 @ 15:30: [JM] Visualizing data, Exploratory Data
-   Analysis, [[file:JMV_Intro-Visu.pdf][Critical thinking about visualizations]]
+5. 2020/11/12 @ 15:30: [JM] Data Curation (data quality), Processing
+   pipeline, Exploratory Data Analysis,
    - TODO: MOOC: peer evaluated exercise
-6. 2020/11/19 @ 15:30: [AL] Analysis Of Variance, [[file:../../lectures/lecture_correlation_causation.pdf][Causality]], Linear
-   regression
+   - TODO: select a graph and criticize it
+6. 2020/11/19 @ 15:30: [AL] [[file:../2019_10_Grenoble/JMV_Intro-Visu.pdf][Critical thinking about visualizations]],
+   Checklist for good graphics.
    - TODO: MOOC: complete peer evaluated exercise
-7. 2020/11/26 @ 15:30: [AL] [[file:../../lectures/5_design_of_experiments.pdf][Design of Experiments]]
+7. 2020/11/26 @ 15:30: [AL] Analysis Of Variance, [[file:../../lectures/lecture_correlation_causation.pdf][Causality]], Linear
+   regression
    - TODO: MOOC: evaluate peer exercise
-8. 2020/12/03 @ 15:30: [AL] Q&A
+8. 2020/12/03 @ 15:30: [AL] [[file:../../lectures/5_design_of_experiments.pdf][Design of Experiments]]
 9. 2020/12/10 @ 15:30: [AL] [[file:../../lectures/lecture_epistemology.pdf][Epistemology]]
 10. 2020/12/17 @ 15:30: [CL] Publishing and Ethics
 11. 2021/01/07 @ 15:30: [JM] Q&A
