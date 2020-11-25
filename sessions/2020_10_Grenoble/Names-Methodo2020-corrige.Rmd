@@ -1,0 +1,276 @@
+---
+title: "French given names per year per department"
+author: "Lucas Mello Schnorr, Jean-Marc Vincent"
+date: "November, 2020"
+output:
+  pdf_document: default
+  html_document:
+    df_print: paged
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+# The problem context
+The aim of the activity is to develop a methodology to answer a specific question on a given dataset. 
+
+The dataset is the set of Firstname given in France on a large period of time. 
+[given names data set of INSEE](https://www.insee.fr/fr/statistiques/fichier/2540004/dpt2017_txt.zip), we choose this dataset because it is sufficiently large, you can't do the analysis by hand, the structure is simple
+
+
+You need to use the _tidyverse_ for this analysis. Unzip the file _dpt2019_txt.zip_ (to get the **dpt2019.csv**). Read in R with this code. Note that you might need to install the `readr` package with the appropriate command.
+
+## Download Raw Data from the website
+```{r}
+file = "dpt2019_txt.zip"
+if(!file.exists(file)){
+  download.file("https://www.insee.fr/fr/statistiques/fichier/2540004/dpt2019_csv.zip",
+	destfile=file)
+}
+unzip(file)
+```
+
+## Build the Dataframe from file
+
+```{r}
+library(tidyverse)
+library(ggplot2)
+FirstNames <- read_delim("dpt2019.csv",delim=";");
+```
+
+Translation in english of variables names: 
+sexe -> gender 
+preusuel (prénom usuel) -> Firstname
+annais (année de naissance) -> Birth year
+dpt (département) -> department (administrative area unit)
+nombre -> number
+
+All of these following questions may need a preliminary analysis of the data, feel free to present answers and justifications in your own order and structure your report as it should be for a scientific report.
+
+1. Choose a firstname and analyse its frequency along time. Compare several firstnames frequency
+2. Establish by gender the most given firstname by year. Analyse the evolution of the most frequent firstname.
+3. Optional : Which department has a larger variety of names along time ? Is there some sort of geographical correlation with the data?
+
+# First steps in the dataset
+## What is the data file ?
+```{r}
+head(FirstNames)
+```
+Surprise, there are names that are not firstnames, we should understand more deeply the dataset
+
+```{r}
+FirstNames %>% tail(n=20)
+```
+Looks nicer, but some _NA_ occurred go deeper in the dataset
+
+## Names of columns, types of data : 
+```{r}
+sapply(FirstNames,class)
+```
+Observe that the gender is numeric, in fact it is a qualitative variable that should be interpreted as male =1 and female =2 (on this dataset we could compute the average gender !!), annais should be numeric but we observe some NA !, dpt is a string but in the French administration departments are encoded by two digit numbers. And we observe some XX values !
+
+Special values 
+```{r}
+str(FirstNames)
+```
+Here we discover some missing values  indicated by "XXXX" for a missing year, "XX" for a missing department.
+
+In fact we should have read the metadata associated to the dataset [Insee website](https://www.insee.fr/fr/statistiques/2540004?sommaire=4767262) read the documentation part and the dictionary of variables to have a rigourous description of the dataset, of the source, the semantic of the variable and some exceptions (see 2A and 2B departments)
+
+
+## Size of the dataset :
+```{r}
+n_observations = nrow(FirstNames)
+n_observations
+```
+The dataset is LARGE, it could be difficult to clean the data by hand
+
+
+Number of samples with an unreported value
+```{r}
+n_missing = nrow(FirstNames %>%
+  filter(grepl("X",sexe)|grepl("X",preusuel)|grepl("X",annais)|grepl("X",dpt)|is.na(annais))
+)
+n_missing
+```
+Among 3% of lines in the dataset contain a problem in some variable. You'll have to choose what to do with these lines, it depends on the question !
+
+Number of births
+```{r}
+n_births = FirstNames %>%
+  summarise(Nb_births=sum(nombre))
+n_births
+```
+
+Number of _PRENOM_RARE
+```{r}
+n_rare = FirstNames %>%
+  filter(preusuel == '_PRENOMS_RARES') %>%
+  summarise(n_rare=n())
+n_rare
+```
+
+There are
+```{r}
+n_rare_births = FirstNames %>%
+  filter(preusuel == '_PRENOMS_RARES') %>%
+  summarise(Nb_rare_births=sum(nombre))
+n_rare_births
+```
+
+
+Number of births with unreported value, birth missing percentage 
+```{r}
+n_births_missing = FirstNames %>%
+  filter(is.na(annais))%>%
+  summarize(sum = sum(nombre))
+n_births_missing / n_births
+```
+The value of 10% is high, that indicates that the dataset quality is weak and avoiding the missing items is not a good solution. 
+
+
+
+# Study of a specific Firstname, 
+We choose a typical Firstname "ARNAUD" and try to vizualize the number of ARNAUD along time
+```{r}
+FirstNames %>%
+  filter(preusuel == 'ARNAUD') %>%
+# filter only missing values on the year, ignore the dpt value
+  filter(!(is.na(annais)))%>%
+  filter(!grepl("X",annais))%>% #,!grepl("X",dpt)
+  group_by(preusuel) %>%
+  group_by(annais) %>%
+  summarize(sum = sum(nombre)) %>%
+  #summarise(total=sum(sum))
+  mutate(annais=as.integer(annais))%>%
+  ggplot(aes(x=annais,y=sum)) +
+  xlab("Year of birth") +
+  ylab("Number of birth") +
+  geom_point() +
+  geom_line()
+```
+We observe a temporal evolution with a high peak in the beginning of the seventies and a decrease. What could be the reason of this increase ? Are there famous people named Arnaud borned in the 5O ?  What could be the shape of the curve ? Could this curve be modeled by a function, what are the parameters ?
+```{r}
+FirstNames %>%
+  filter(preusuel == "ARNAUD" | preusuel == "MARTIN" | preusuel == "JEAN-MARC") %>%
+ # filter only missing values on the year, ignore the dpt value
+  filter(!grepl("X",annais))%>% 
+  filter(!(is.na(annais)))%>%
+#,!grepl("X",dpt)
+  group_by(preusuel,annais) %>%
+  arrange(sexe)%>%
+  summarize(sum = sum(nombre)) %>%
+  mutate(annais=as.integer(annais))%>%
+  ggplot(aes(x=annais,y=sum,color=preusuel)) +
+  xlab("Year of birth") +
+  ylab("Number of birth") +
+  labs(color='Firstname') +
+  geom_point() +
+  geom_line()
+  #ggsave("/Users/jvincent/tmp/graphs.pdf")
+```
+# Most frequent Firstnames
+```{r}
+FirstNames %>%
+ # filter(preusuel == 'MICHAEL') %>%
+ # filter only missing values on the year, ignore the dpt value
+  filter(!grepl("X",annais))%>% 
+  filter(!(is.na(annais)))%>%
+ # !grepl("X",dpt)
+  group_by(sexe,preusuel,annais) %>% 
+  summarize(sum=sum(nombre)) %>%
+  group_by(sexe,annais) %>%
+  arrange(annais,sum,sexe)%>%
+#  arrange(sexe)%>%
+#  arrange(sum) %>%
+#  arrange(annais) %>%
+  filter(row_number()==n())
+```
+It is clear that MARIE and JOHN are the most important firstnames at the beginning of the XXth century? After it is less clear, at the end the surprise (page 24) is ... "_PRENOMS_RARES". What could be the cause ? "_PRENOMS_RARES" appears as most frequent in 1990. We have to go deeper in the understanding of the data collection process.
+
+A supposition *to be confirmed*, from this dataset we could retrieve personal information when the firstname is rare. To avoid this fact firstnames with low frequency have been anonymized.
+
+
+```{r}
+FirstNames %>%
+  # filter only missing values on the year, ignore the dpt value
+  filter(!grepl("X",annais))%>% 
+  filter(!(is.na(annais)))%>%
+  mutate(annee = as.integer(annais)) %>%
+  filter(!grepl("_PRENOMS_RARES",preusuel))%>% 
+  # !grepl("X",dpt)
+  group_by(sexe,preusuel,annee) %>% 
+  summarize(sum=sum(nombre)) %>%
+  group_by(sexe,annee) %>%
+  arrange(annee,sum,sexe) %>%
+#  arrange(sexe)%>%
+#  arrange(sum) %>%
+#  arrange(annais) %>%
+  filter(row_number()==n())
+```
+
+
+
+
+## Normalization
+The question now is to evaluate the proportion of a firstname.
+
+
+```{r}
+FirstNames %>%
+  # elimination of unreferenced years
+  # elimination of '_PRENOMS_RARES is not needed here 
+  filter(annais != 'XXXX')  %>%
+  filter(!(is.na(annais)))%>%
+  # normalisation on Males
+  filter(sexe == 1) %>%
+  mutate(annee=as.integer(annais)) %>%
+  # suppression of 'annais' column
+  select(-annais) %>%
+  # computation of the number of births by firstname and year
+  group_by(preusuel, annee) %>%
+  summarise(nombre=sum(nombre)) %>%
+  # compute ratio per year
+  group_by(annee) %>%
+  mutate(ratio=nombre/sum(nombre)) %>%
+  # calcul sur les ratios effectués
+  ungroup() %>%
+  # selection of firstnames les prénoms
+  filter(preusuel %in% c("LOUIS", "JEAN","GABRIEL")) %>%
+  ggplot() +
+    ggtitle('Temporal evolution of popularity of  Jean and Louis') +
+    aes(x=annee) +
+    xlim(c(1900,2020)) +
+    geom_vline(xintercept=1914,color='black',size=0.1) +
+    geom_vline(xintercept=1918,color='black',size=0.1) +
+    geom_text(aes(x=1916,y=0),label = "1914-1998",color = 'black') +
+    geom_vline(xintercept=1939,color='black',size=0.1) +
+    geom_vline(xintercept=1945,color='black',size=0.1) +
+    geom_text(aes(x=1942,y=0),label = "1939-1945",color = 'black') +
+    xlab('Year of birth') +
+    aes(y=ratio*100) +
+    ylim(c(0,15)) +
+    ylab('Percentage of births (%)') +
+    aes(color=preusuel) +
+    labs(color='Firstname') +
+    geom_point(size=0.2) +
+    geom_line(size=0.1) +
+    theme_bw()
+```
+In 1900, the most popular first name is Jean, more popular than Louis that is also frequent. One should consider that these values are high between 5 and 10%. 
+
+In a first period the popularity of JEAN increases rapidly to a peak near 15% which is *very* high one boy among 7 has firstname JEAN. During this period the proportion of Louis decreases regularly (could we speak of linear decrease ?) to almost 0%.
+
+At 1940 the popularity of JEAN begin its decrease down to almost 0 now. Finally, Louis becomes again popular near the most popular in 2019 GABRIEL.
+
+# Conclusion
+The dataset on firstnames concerns long time series on qualitative variables (firstname). It contains a non-negligeable rows with missing values, but is sufficiently large to study some macroscopic statistics. 
+A global analysis could be done from the dataset, in particular to observe the effects of the two World Wars on the birth rate, this could be taken into account in further analysis.
+
+For a fixed firstname we observe a typical behavior as an strong increase a peak followed by a smoother decrease. After a deacrease a firstname could be popular again. Peaks could be identified
+
+- variability along time
+- model of the curves (interpretation of parameters, peaks,...)
+
+
+
