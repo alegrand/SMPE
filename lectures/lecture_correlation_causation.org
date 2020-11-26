@@ -27,8 +27,6 @@
 #+LaTeX: %\tableofcontents
 
 * Spurious Correlations
-
-** Let's consider real data this time
 *** A vivid debate: Cholesterol and Statins
 
 #+BEGIN_CENTER
@@ -48,6 +46,8 @@
 
 But that's not what I want to illustrate now... Even if data hadn't
 been removed, could we really conclude something from such data?
+
+** Let's consider real data this time
 *** Correlation and Causation
 Let me illustrate this inference story with a few examples.
 
@@ -181,10 +181,15 @@ UC Berkeley admission figures in fall 1973.
 | F |        373 |       6% |        341 | *7%*       |
 
 #+BEGIN_EXPORT latex
-\pause\vspace{-5cm}
-\begin{center}
-  \includegraphics[width=.8\linewidth]{images/simpson_paradox.pdf}
-\end{center}
+\vspace{-5cm}
+\begin{overlayarea}{\linewidth}{6cm}
+  \begin{center}
+    \includegraphics<4>[width=.8\linewidth]{images/simpson_paradox.pdf}%
+    \includegraphics<3>[width=.8\linewidth]{images/simpson_paradox_vectors.pdf}
+
+    \only<3>{$L_1 < B_1$ and $L_2 < B_2$, yet $L_1+L_2 > B_1+B_2$}
+  \end{center}
+\end{overlayarea}
 #+END_EXPORT
 
 *** Correlation does not imply Causation
@@ -220,19 +225,17 @@ You need a good blend of *observation*, *theory* and
 - Many scientific experiments appear to be carried out with no
   hypothesis in mind at all, but simply to see what happens.
 
-- This may be OK in the early stages but drawing conclusions on such
-  observations is difficult (large number of equally plausible
-  explanations; without testable prediction no experimental ingenuity;
-  \dots).\pause
-
-
+- This may be OK in the early stages (inductive reasoning) but drawing
+  conclusions on such observations is difficult (large number of
+  equally plausible explanations; without testable prediction no
+  experimental ingenuity; \dots).\pause
 
 - Strong inference :: Essential steps:
   1. Formulate a clear hypothesis
   2. Devise an acceptable test\medskip
 - Weak inference :: It would be silly to disregard all observational
                     data that do not come from designed
-                    experiments. Often, they are the only we have
+                    experiments. Often, they are the only information we have
                     (e.g. the trace of a system).
 
                     But we need to keep the limitations of such data
@@ -283,92 +286,6 @@ In case of pseudo-replication, here is what you can do:
   statistical analysis on the means
 - carry out separate analysis for each time period
 - use proper time series analysis
-** Designed Experiments
-*** Select the problem to study
-Clearly define the kind of *system* to study, the kind of *phenomenon* to
-observe (state, evolution of state through time), the kind of *study* to
-conduct (descriptive, exploratory, prediction, hypothesis testing,
-\dots)\medskip
-
-This is quite important as the set of experiments to perform will be
-completely different when you are:
-- studying the stabilization of a peer-to-peer algorithm under a
-  high churn
-- trying to compare various scheduling algorithms or code versions
-- modeling the response time of a server under a workload close to the
-  server saturation
-- \dots
-
-#+BEGIN_CENTER
-This step will help you to determine *which kind of experiment design* you should
-use.
-#+END_CENTER
-*** Determine the set of relevant \emph{factors} and \emph{responses}
-#+LaTeX: \begin{columns}\begin{column}{.55\linewidth}
-The system under study is generally modeled though a *black-box* model:
-#+LaTeX: \\[-.6em]
-- some *output* variable/\alert{response}($y$)
-  #+LaTeX: \vspace{-.6em}
-- some inputs are fully unknown
-  #+LaTeX: \vspace{-.6em}
-- some *input variables* ($x_1$,\dots,$x_p$) are *controllable*
-  #+LaTeX: \vspace{-.6em}
-- whereas some others ($z_1$, \dots, $z_q$) are *uncontrollable*
-
-#+LaTeX: \end{column}\begin{column}{.45\linewidth}
-      \includegraphics[width=\linewidth]{fig/wp4_black_box.fig}
-#+LaTeX: \end{column}\end{columns}
-
-Typical controllable variables could be:
-#+LaTeX: \\[-.5em]\bgroup\small
-- the heuristic used (\eg FIFO, HEFT, \dots)
-  #+LaTeX: \vspace{-.6em}
-- one of their parameters (\eg replication factor, a threshold, \dots)
-  #+LaTeX: \vspace{-.6em}
-- the size of the platform
-  #+LaTeX: \vspace{-.6em}
-- the degree of heterogeneity
-  #+LaTeX: \vspace{-.6em}
-- the version of the compiler
-  #+LaTeX: \vspace{-.6em}
-\egroup
-
-Uncontrollable variables could be:
-#+LaTeX: \\[-.5em]\bgroup\small
-- temperature, humidity, moon phase, road surface conditions
-  #+LaTeX: \vspace{-.6em}
-- someone using the machine and interfering with the
-  experiment
-  #+LaTeX: \vspace{-.6em}
-
-\egroup
-You can organize them in a *dogbone diagram*
-
-You should *carefully record* all the factors you can think of
-*** Typical case studies
-The typical case studies defined in the first step could include:
-- Determining which variables are most influential on the response $y$
-  (*factorial designs*, *screening designs*, *analysis of variance*)
-  - Allows to distinguish between *primary factors* whose influence
-    on the response should be modeled and *secondary factors* whose
-    impact should be averaged
-  - Allows to determine whether some factors *interact* in the response
-- Devise an *analytical model* of the response $y$ as a function of
-  the primary factors $x$ (*regression*, *lhs designs*)
-- Fit a an *analytical model* (*regression*, *response surface methodology*,
-  *optimal designs*)
-  - Can then be used to determine where to set the primary factors $x$
-    so that response $y$ is always close to a desired value or is
-    minimized/maximized
-- Determining where to set the primary factors $x$ so that variability
-  in response $y$ is small \ie so that the effect of uncontrollable
-  variables $z_1,\dots,z_q$ is minimized (*robust designs*, *Taguchi
-  designs*)
-*** General Workflow
-#+ATTR_LATEX: :width \linewidth
-[[file:images/R_workflow.pdf]]
-
-
 * Practical Session: Critical Thinking
 ** Linux and the Penises
 *** Linux Users Got Bigger Ding Dong $\textcolor{black}\winkey$
@@ -455,3 +372,89 @@ But although there exists a Kinsey Institute, there has never been any
 such news nor data that would support such a study... \medskip
 
 - Just imagine what it is like now that we have twitter $\winkey$
+** Designed Experiments
+*** Select the problem to study
+Clearly define the kind of *system* to study, the kind of *phenomenon* to
+observe (state, evolution of state through time), the kind of *study* to
+conduct (descriptive, exploratory, prediction, hypothesis testing,
+\dots)\medskip
+
+This is quite important as the set of experiments to perform will be
+completely different when you are:
+- studying the stabilization of a peer-to-peer algorithm under a
+  high churn
+- trying to compare various scheduling algorithms or code versions
+- modeling the response time of a server under a workload close to the
+  server saturation
+- \dots
+
+#+BEGIN_CENTER
+This step will help you to determine *which kind of experiment design* you should
+use.
+#+END_CENTER
+*** Determine the set of relevant \emph{factors} and \emph{responses}
+#+LaTeX: \begin{columns}\begin{column}{.55\linewidth}
+The system under study is generally modeled though a *black-box* model:
+#+LaTeX: \\[-1.3em]
+- some *output* variable/\alert{response}($y$)
+  #+LaTeX: \vspace{-.6em}
+- some inputs are fully unknown
+  #+LaTeX: \vspace{-.6em}
+- some *input variables* ($x_1$,\dots,$x_p$) are *controllable*
+  #+LaTeX: \vspace{-.6em}
+- whereas some others ($z_1$, \dots, $z_q$) are *uncontrollable*
+
+#+LaTeX: \end{column}\begin{column}{.45\linewidth}
+      \includegraphics[width=\linewidth]{fig/wp4_black_box.fig}
+#+LaTeX: \end{column}\end{columns}
+
+Typical controllable variables could be:
+#+LaTeX: \\[-1.3em]\bgroup\small
+- the heuristic used (\eg FIFO, HEFT, \dots)
+  #+LaTeX: \vspace{-.6em}
+- one of their parameters (\eg replication factor, a threshold, \dots)
+  #+LaTeX: \vspace{-.6em}
+- the size of the platform
+  #+LaTeX: \vspace{-.6em}
+- the degree of heterogeneity
+  #+LaTeX: \vspace{-.6em}
+- the version of the compiler
+  #+LaTeX: \vspace{-.6em}
+\egroup
+
+Uncontrollable variables could be:
+#+LaTeX: \\[-1.3em]\bgroup\small
+- temperature, humidity, moon phase, road surface conditions
+  #+LaTeX: \vspace{-.6em}
+- someone using the machine and interfering with the
+  experiment
+  #+LaTeX: \vspace{-.6em}
+
+\egroup
+You can organize them in a *dogbone diagram*
+
+You should *carefully record* all the factors you can think of
+*** Typical case studies
+The typical case studies defined in the first step could include:
+- Determining which variables are most influential on the response $y$
+  (*factorial designs*, *screening designs*, *analysis of variance*)
+  - Allows to distinguish between *primary factors* whose influence
+    on the response should be modeled and *secondary factors* whose
+    impact should be averaged
+  - Allows to determine whether some factors *interact* in the response
+- Devise an *analytical model* of the response $y$ as a function of
+  the primary factors $x$ (*regression*, *lhs designs*)
+- Fit a an *analytical model* (*regression*, *response surface methodology*,
+  *optimal designs*)
+  - Can then be used to determine where to set the primary factors $x$
+    so that response $y$ is always close to a desired value or is
+    minimized/maximized
+- Determining where to set the primary factors $x$ so that variability
+  in response $y$ is small \ie so that the effect of uncontrollable
+  variables $z_1,\dots,z_q$ is minimized (*robust designs*, *Taguchi
+  designs*)
+*** General Workflow
+#+ATTR_LATEX: :width \linewidth
+[[file:images/R_workflow.pdf]]
+
+
