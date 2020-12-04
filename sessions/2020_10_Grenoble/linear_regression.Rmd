@@ -1,0 +1,81 @@
+---
+title: "Linear Regression (SMPE)"
+author: "Arnaud Legrand"
+date: "03/12/2020"
+output: html_document
+---
+
+
+```{r}
+library(ggplot2)
+```
+
+```{r}
+N = 4000
+a = 10
+b = 5
+x = runif(N, min = -20, max = 60)
+y = a*x + b + 40*rnorm(N)
+df1 = data.frame(x,y)
+plot(df1)
+reg1 = lm(data = df1, y~x)
+summary(reg1)
+plot(reg1)
+ggplot(data=df1, aes(x,y)) + geom_point() + geom_smooth(method="lm") + theme_bw()
+```
+
+```{r}
+N = 5000
+a = .5
+b = 5
+x = runif(N, min = -20, max = 60)
+y = a*x + b + .4*abs(x)*rnorm(N) + 2*rnorm(N)
+df2 = data.frame(x,y)
+plot(df2)
+reg2 = lm(data = df2, y~x)
+summary(reg2)
+plot(reg2)
+ggplot(data=df2, aes(x,y)) + geom_point() + geom_smooth(method="lm") + theme_bw()
+```
+
+```{r}
+N = 500
+b = 5
+x = runif(N, min = -20, max = 60)
+y = .005*x^2 + b + rnorm(N)
+df3 = data.frame(x,y)
+plot(df3)
+reg3 = lm(data = df3, y~x)
+summary(reg3)
+plot(reg3)
+ggplot(data=df3, aes(x,y)) + geom_point() + geom_smooth(method="lm") + theme_bw()
+```
+
+```{r}
+N = 500
+a = .5
+b = 5
+x = runif(N, min = -20, max = 20)
+z = sample(x = 0:1, size = N, replace = T)
+y = (a-6*z)*x + (b+z*10) + 10*rnorm(N)
+df4 = data.frame(x,y)
+plot(df4)
+reg4 = lm(data = df4, y~x)
+summary(reg4)
+plot(reg4)
+ggplot(data=df4, aes(x,y)) + geom_point() + geom_smooth(method="lm") + theme_bw()
+```
+
+```{r}
+library(flexmix)
+regflex = flexmix(data = df4, y ~ x, k = 2)
+summary(regflex)
+parameters(regflex)
+plot(regflex)
+foo = relabel(regflex)
+```
+
+```{r}
+foo
+```
+
