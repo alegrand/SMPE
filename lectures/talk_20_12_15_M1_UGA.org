@@ -690,9 +690,9 @@ file:images/mooc_rr.png
   \bgroup\footnotesize /Vers une recherche reproductible: Faire évoluer ses pratiques/\egroup
 - [[https://learninglab.inria.fr/en/mooc-recherche-reproductible-principes-methodologiques-pour-une-science-transparente/][\bf MOOC on RR]] \bgroup\small(3rd edition, ongoing)\egroup
 - A *new "Advanced RR" MOOC* \scalebox{.8}{(2021?)}\footnotesize
-  - \footnotesize Software environment control (Docker)
-  - \footnotesize Scientific workflow (snakemake)
-  - \footnotesize Managing data (HDF5, archiving)
+  - \footnotesize Software environment control
+  - \footnotesize Scientific workflow
+  - \footnotesize Managing data
 #+LaTeX: \end{column}\end{columns}
 *Manifesto*: "\textit{I solemnly pledge}" ([[https://hal.inria.fr/hal-01367344/document][WSSSPE]], [[http://lorenabarba.com/gallery/reproducibility-pi-manifesto/][Lorena Barba]], [[https://www.go-fair.org/fair-principles/][FAIR]])\footnotesize\vspace{-.4em}
   1. I will teach my graduate students about _reproducibility_
