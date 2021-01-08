@@ -133,6 +133,7 @@ are composed with [[http://orgmode.org][org-mode]], beamer, and verbments.
       trade-off.
     - Introduction to a similar approach in a more general context: [[
        https://hal.archives-ouvertes.fr/cel-01618068][Efficient Global Optimization through Gaussian Process Surrogates]].
+    - [[https://scalelite.univ-grenoble-alpes.fr/presentation/5547779c938b85752d344f40d03b39c5c9ed937c-1610030404416/video/webcams.webm][Video recording of the session]]
 #   [[file:../../lectures/lecture_epistemology.pdf][Epistemology]], Publishing and Ethics
 12. 2021/01/14 @ 15:30: Correlation and Causation: Randomized Control
     Trials and Counterfactual Analysis.
