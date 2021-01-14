@@ -1,0 +1,502 @@
+#+TITLE:     Causality, Dependency, Correlation,\newline and Designed Experiments
+#+AUTHOR:    Arnaud Legrand
+#+DATE: Performance Evaluation Lecture
+#+STARTUP: beamer overview indent
+#+TAGS: noexport(n)
+#+LaTeX_CLASS: beamer
+#+LaTeX_CLASS_OPTIONS: [11pt,xcolor=dvipsnames,presentation]
+#+OPTIONS:   H:3 num:t toc:nil \n:nil @:t ::t |:t ^:nil -:t f:t *:t <:t
+#+LATEX_HEADER: \input{org-babel-style-preembule.tex}
+#+LATEX_HEADER: %\let\tmptableofcontents=\tableofcontents
+#+LATEX_HEADER: %\def\tableofcontents{}
+#+LATEX_HEADER:  \usepackage{color,soul}
+#+LATEX_HEADER:  \definecolor{lightblue}{rgb}{1,.9,.7}
+#+LATEX_HEADER:  \sethlcolor{lightblue}
+#+LATEX_HEADER:  \let\hrefold=\href
+#+LATEX_HEADER:  \renewcommand{\href}[2]{\hrefold{#1}{\SoulColor\hl{#2}}}
+#+LATEX_HEADER: \newcommand{\muuline}[1]{\SoulColor\hl{#1}}
+#+LATEX_HEADER: \makeatletter
+#+LATEX_HEADER: \newcommand\SoulColor{%
+#+LATEX_HEADER:   \let\set@color\beamerorig@set@color
+#+LATEX_HEADER:   \let\reset@color\beamerorig@reset@color}
+#+LATEX_HEADER: \makeatother
+
+
+#+LaTeX: \input{org-babel-document-preembule.tex}
+#+LaTeX: %\let\tableofcontents=\tmptableofcontents
+#+LaTeX: %\tableofcontents
+
+* Causal analysis
+*** Outline
+#+LaTeX: \tableofcontents
+*** Correlation and causation
+#+BEGIN_CENTER
+#+ATTR_LATEX: :width .9\linewidth
+file:pdf_babel/spurious_divorce.pdf
+
+#+END_CENTER
+Source: [[http://tylervigen.com/][/Spurious correlations/]]. For the good of the US society, we
+should try to get rid of honey bees \winkey
+*** Typical causal questions:
+[[https://en.wikipedia.org/wiki/Causal_analysis][Causal analysis]] is the field of experimental design and statistics
+pertaining to establishing cause and effect:
+- Did the fertilizer cause the crops to grow?
+- Can a given sickness be prevented?
+- Why is my friend depressed?
+\medskip
+
+*Causality* can be construed from *counterfactual states*
+
+#+begin_center
+  What would have happened otherwise ?
+#+end_center
+*** Alternative Universes
+For example, one could run an experiment on *identical twins* who were
+known to consistently get the same grades on their tests
+- One twin is sent to study for six hours
+- The other is sent to the amusement park
+- If their test scores suddenly diverged by a large degree, this would
+  be strong evidence that studying (or going to the amusement park)
+  had a causal effect on test scores
+
+  _In this case_, *correlation* between studying and test scores *would
+  almost certainly imply causation*
+
+This is unfortunately *hard to implement*
+*** Well Designed Experiments as an Alternative
+Well-designed experimental studies replace *equality of individuals* as
+in the previous example by *equality of groups*
+
+[[https://en.wikipedia.org/wiki/Randomized_controlled_trial][Randomized controlled trial]]: Build two groups that are similar except
+for the treatment that the groups receive
+- Select subjects from a single population and randomly assigning
+  them to two or more groups
+- The likelihood of the groups behaving similarly to one another (on
+  average) rises with the number of subjects in each group.
+- If (*the groups are essentially equivalent except for the treatment
+  they receive*), and (*a difference in the outcome for the groups is
+  observed*), then this constitutes *evidence that the treatment is
+  responsible for the outcome*
+
+
+*Note*: An observed effect could also be caused "by chance", for example
+as a result of random perturbations in the population but this is what
+*statistical tests* are meant for
+
+# Summary: Ideally, Test with and without the intervention but you
+# cannot rewind time and observe both. Instead, have two (groups of)
+# individuals which are as similar as possible and compare the test with
+# the control group.
+*** Causation from Correlation
+- *Regression analysis techniques* handle such queries _when data is
+  collected using *designed experiments*_
+- Otherwise, they don't. Why ? \pause
+  - *Confounding variable*
+    - Hot Temperature \to Rate of Ice cream consumption
+    - Hot Temperature \to Number of sunburns
+    - Concluding "Rate of Ice cream consumption \to Number of sunburns"
+      would be silly
+  - *Conditioning does not work!*
+    - E[Life | Smoking] and E[Life | !Smoking] restrict to both categories
+    - E[Life | do(!Smoking)] is about the entire population 
+\pause
+- Data collected in *observational studies* require different techniques
+  for causal inference
+  - It requires to *list* possible explanations (variables and their
+    relations)
+  - This /ad hoc/ model can then be used to *decide* whether causal
+    relations can be inferred or not
+    - The more variables and the more connected the variables, the harder
+  - It can *guide* you toward which experiments to conduct
+*** Judea Pearl (2011 Turing Award)
+#+begin_center
+#+latex: \includegraphics[height=7cm]{images/judea_pearl.jpg}
+#+latex: \includegraphics[height=7cm]{images/causality.jpg}
+#+end_center
+* Machine Learning Counterfactual Explanations
+*** Outline
+#+LaTeX: \tableofcontents
+*** Ref                                                          :noexport:
+https://christophm.github.io/interpretable-ml-book/counterfactual.html
+
+Interpretable Machine Learning
+A Guide for Making Black Box Models Explainable.
+Christoph Molnar, Apr 2019
+*** A few motivating examples (1/2)
+/From [[https://christophm.github.io/interpretable-ml-book/counterfactual.html][A Guide for Making Black Box Models Explainable]]/
+\bigskip
+
+Peter applies for a loan and gets rejected by the (machine learning
+powered) banking software. He wonders why his application was rejected
+and how he might improve his chances to get a loan.
+  - The question of "why" can be formulated as a counterfactual
+    - What is the smallest change to the features (income, number of
+      credit cards, age, ...) that would change the prediction from
+      rejected to approved?
+  - One possible answer could be: If Peter would earn 10,000 Euro more
+    per year, he would get the loan.
+  - Or if Peter had fewer credit cards and had not defaulted on a loan
+    5 years ago, he would get the loan.
+*** A few motivating examples (2/2)
+Anna wants to rent out her apartment, but she is not sure how much to
+charge for it
+- So she decides to train a machine learning model to predict the
+  rent. Of course, since Anna is a data scientist, that is how she
+  solves her problems $\winkey$
+- After entering all the details about size, location, whether pets
+  are allowed and so on, the model tells her that she can charge 900
+  Euro.\pause
+- She expected 1000 Euro or more, but she trusts her model and
+  decides to play with the feature values of the apartment to see
+  how she can improve the value of the apartment.
+  - She finds out that the apartment could be rented out for over 1000
+    Euro, if it were 15 m2 larger. Interesting, but non-actionable
+    knowledge, because she cannot enlarge her apartment.
+  - Finally, by tweaking only the feature values under her control
+    (built-in kitchen yes/no, pets allowed yes/no, type of floor,
+    etc.), she finds out that if she allows pets and installs
+    windows with better insulation, she can charge 1000 Euro.
+Anna intuitively works with counterfactuals to change the outcome
+*** Counterfactual "Explanation"
+Counterfactual explanation of a prediction = the *smallest change to
+the input* values that *changes the prediction to a predefined output*
+- Counterfactuals are *human-friendly explanations*, because they are
+  *contrastive* to the current instance and because they are *selective*
+  (focus on a small number of changes) \hfill related with *Occam's razor*
+- But counterfactuals suffer from the */Rashomon/ effect*
+  - /Rashomon/ is a Japanese movie in which the murder of a Samurai is
+    told by different people. Each of the stories explains the outcome
+    equally well, but the stories contradict each other.
+  - The same can also happen with counterfactuals, since there are
+    usually multiple different counterfactual explanations.
+  - Each counterfactual tells a different "story" of how a certain
+    outcome was reached
+    - One counterfactual might say to change feature A
+    - The other counterfactual might say to leave A the same but change
+      feature B, which is a "contradiction"
+
+# This issue of multiple truths can be addressed either by reporting all
+#   counterfactual explanations or by having a criterion to evaluate
+#   counterfactuals and select the best one.
+# Wachter et al. suggest minimizing the following loss:
+#   L(x,x′,y′,λ)=λ⋅(^f(x′)−y′)2+d(x,x′)
+# Illustrate with the The German Credit Risk dataset can be found on the
+# machine learning challenges platform kaggle.com. 
+
+*** Conclusion
+- This is still open research (best/simplest model/explanation, causality)
+  - Applying Machine Learning counterfactuals to reality (like Anna)
+    only makes sense if you have a very faithful model
+
+\bigskip
+
+
+- Modeling is at the heart of the scientific methodology
+  - If you have (1) *a sound question to answer* and (2) *a model of
+    reality*, you will know how to *conduct your experiments* and do the
+    *statistical analysis*
+* References                                                       :noexport:
+# https://en.wikipedia.org/wiki/Causal_analysis
+
+** Correlation and causation
+- (Z \to X) and (Z \to Y) but \not (X \to Y)
+- How do you know that X \to Y ?
+
+- Y ~ X1 + X2 but X1 and X2 are strongly correlated with each
+  others. How to you attribute confidence ?
+
+
+** Causal Inference
+https://en.wikipedia.org/wiki/Causal_inference
+** Randomized controlled trial
+https://en.wikipedia.org/wiki/Randomized_controlled_trial
+** Exploratory causal analysis
+https://en.wikipedia.org/wiki/Exploratory_causal_analysis
+Exploratory causal analysis, also known as "data causality" or "causal
+discovery"[3] is the use of statistical algorithms to infer
+associations in observed data sets that are potentially causal under
+strict assumptions. 
+
+ECA is a type of causal inference distinct from causal modeling and
+treatment effects in randomized controlled trials.
+
+It is exploratory research usually preceding more formal causal
+research in the same way exploratory data analysis often precedes
+statistical hypothesis testing in data analysis.
+** Judea Pearl
+https://en.wikipedia.org/wiki/Judea_Pearl
+https://en.wikipedia.org/wiki/Causality_(book)
+
+** Counterfactual evaluation designs
+https://en.wikipedia.org/wiki/Impact_evaluation
+Impact evaluation
+- How would outcomes (e.g., participants'well-being) have changed if
+  the intervention had not been undertaken?
+- A comparison between what actually happened and what would have
+  happened in the absence of the intervention.
+Impact evaluation helps people answer key questions for evidence-based
+policy making: what works, what doesn't, where, why and for how much?
+
+
+Main issues:
+- Counfounding:
+* Spurious Correlations                                            :noexport:
+*** A vivid debate: Cholesterol and Statins
+
+#+BEGIN_CENTER
+[[http://future.arte.tv/fr/cholesterol][Cholesterol: le grand bluff (Arte, 18/10/2016 @ 20h50)]]
+#+END_CENTER
+
+#+BEGIN_EXPORT latex
+\begin{center}
+  \includegraphics<1>[width=.8\linewidth]{images/arte_cholesterol_2.png}%
+  \includegraphics<2>[width=.8\linewidth]{images/arte_cholesterol_1.png}
+\end{center}
+#+END_EXPORT
+\pause
+#+BEGIN_CENTER
+"Careful" selection of data and influence from the industry $\frowny$
+#+END_CENTER
+
+But that's not what I want to illustrate now... Even if data hadn't
+been removed, could we really conclude something from such data?
+
+** Let's consider real data this time
+*** Correlation and Causation
+Let me illustrate this inference story with a few examples.
+
+It may be the case that two random variables \rv{X} and \rv{Y} are
+*dependent*
+
+- \Eg Let's pick a student at random and measure its
+  \rv{DrinkingHabit} and its \rv{TestScore}
+  - In general, the more a student drinks the more his test goes down $\smiley$
+The *correlation* of two variables \rv{X} and \rv{Y} is defined as:
+  #+BEGIN_EXPORT latex
+  \begin{equation*}
+    \text{corr}(\rv{X},\rv{Y}) =
+    \frac{\text{cov}(\rv{X},\rv{Y})}{\sigma_X \sigma_Y} = 
+  \frac{\E[(\rv{X}-\mu_X)(\rv{Y}-\mu_Y)]}{\sigma_X\sigma_Y} 
+  \end{equation*}\vspace{-1em}
+  #+END_EXPORT
+  - The correlation is symmetrical 
+    ($\text{corr}(\rv{X},\rv{Y})=\text{corr}(\rv{Y},\rv{X})$)
+  - The correlation is in $[-1,1]$
+  - $\text{corr}(\rv{Y},\rv{X})=1$ or $-1$ $\Rightarrow$ perfectly linear
+    relationship
+  - \rv{X} independent of \rv{Y} $\Rightarrow \text{corr}(\rv{X},\rv{Y})=0$
+  - \rv{Y} grows when \rv{X} grows $\Rightarrow \text{corr}(\rv{X},\rv{Y})>0$
+
+It is thus very tempting to use *sample correlation* as a way of knowing
+whether some variables are *dependant*
+*** Scatter plot and correlation
+#+BEGIN_CENTER
+#+ATTR_LATEX: :height 5cm
+file:images/Correlation_examples2.pdf
+#+END_CENTER
+
+Non-linear relations or hidden variables are not be well trapped by
+correlation
+
+*** Correlation does not imply Causation
+#+BEGIN_CENTER
+#+ATTR_LATEX: :height 5cm
+file:images/PiratesVsTemp.pdf
+
+\scriptsize
+Mikhail Ryazanov (talk) - PiratesVsTemp.svg. \\
+Licensed under CC BY-SA 3.0 via Wikimedia Commons
+#+END_CENTER
+- 2 variables can be strongly correlated to a third one
+  (\eg year)
+- Btw, what is wrong with this figure? \winkey
+*** Spurious Suicide                                             :noexport:
+#+tblname: spurious_suicide
+| Year     | 1999 | 2000 | 2001 | 2002 | 2003 | 2004 | 2005 | 2006 | 2007 | 2008 | 2009 |
+| Colonies | 2652 | 2622 | 2550 | 2574 | 2599 | 2554 | 2409 | 2394 | 2443 | 2342 | 2498 |
+| Divorces |  3.8 |  3.8 |  3.6 |  3.4 |  3.3 |  3.2 |  2.9 |  2.9 |    3 |  2.8 |    3 |
+
+#+begin_src R :results output graphics :file pdf_babel/spurious_divorce.pdf :exports both :width 7 :height 4 :session :var df=spurious_suicide :evel never
+library(ggplot2)
+library(dplyr)
+library(tidyr)
+library(gridExtra)
+df = df %>% gather(key,val,-V1) %>% spread(V1,val) %>% select(-key)
+cor_label = paste("Correlation: ", round(cor(df$Colonies,df$Divorces), digits=3))
+p1 = ggplot(df,aes(y=Divorces,x=Colonies)) + geom_point() + theme_classic() +
+     geom_smooth(method="lm") + 
+     annotate("text",x=2440,y=3.5,label=cor_label,size=4) +
+     ylab("Divorce rate in South Carolina\nDivorces per 1000 people\n(US Census)") +
+     xlab("Honey producing bee colonies (US)\n Thousands of colonies (USDA)")
+
+df = df %>% gather(Event,Value,-Year)
+p2 = ggplot(df,aes(x=Year,y=Value,color=Event)) + geom_point() + 
+     scale_color_brewer(palette="Set1") +
+     theme_classic() + facet_wrap(~Event,scale="free_y",nrow=2) +
+     geom_line() +  theme(legend.position = "none") + ylab("")
+grid.arrange(p1,p2,nrow=1)
+#+end_src
+
+#+RESULTS:
+[[file:pdf_babel/spurious_divorce.pdf]]
+
+*** Observational vs. Experimental Data Illustration
+
+#+BEGIN_CENTER
+#+ATTR_LATEX: :width .9\linewidth
+file:pdf_babel/spurious_divorce.pdf
+
+#+END_CENTER
+Source: [[http://tylervigen.com/][/Spurious correlations/]]. For the good of the US society, we
+should try to get rid of honey bees \winkey
+*** The Deluge of Spurious Correlations in Big Data
+[[https://researchspace.auckland.ac.nz/handle/2292/27857][The Deluge of Spurious Correlations in Big Data]], by C. Calude and G. Longo,
+Foundations of ScienceMarch 2016)
+
+Is Data science is the end of science ?
+  - Powerful algorithms can now explore huge databases and find
+    therein correlations and regularities.
+  - Properly defining "meaning" or "content" of such correlations is
+    very difficult. But do we need to ?
+
+
+- Ergodic Theory ::
+     #+LaTeX: \quad
+  - Almost every trajectory (even deterministic and chaotic) will
+    eventually iterate in a similar way
+  - So regularity is expected but it does not mean that prediction can
+    be done.
+- Ramsey Theory :: 
+     #+LaTeX: \quad
+  - Any sufficiently long string contains an arithmetic progression
+    - _0_, 1, 1, 0, _0_, 1, 1, 0, _0_
+    - 0, 1, _1_, 0, 0, _1_, 1, 0, _1_
+  - Similar result for $n$ ary relations
+
+*** Simpson's Paradox
+
+UC Berkeley admission figures in fall 1973.
+
+| _Men_        |          | _Women_      |          |
+| Applicants | Admitted | Applicants | Admitted |
+|------------+----------+------------+----------|
+| 8442       | *44%*      | 4321       |      35% |
+
+\pause
+
+|   |        _Men_ |          |      _Women_ |          |
+|   | Applicants | Admitted | Applicants | Admitted |
+|---+------------+----------+------------+----------|
+| A |        825 |      62% |        108 | *82%*      |
+| B |        560 |      63% |        25 | *68%*      |
+| C |        325 |      *37%* |        593 | 34%      |
+| D |        417 |      33% |        375 | *35%*      |
+| E |        191 |      *28%* |        393 | 24%      |
+| F |        373 |       6% |        341 | *7%*       |
+
+#+BEGIN_EXPORT latex
+\vspace{-5cm}
+\begin{overlayarea}{\linewidth}{6cm}
+  \begin{center}
+    \includegraphics<4>[width=.8\linewidth]{images/simpson_paradox.pdf}%
+    \includegraphics<3>[width=.8\linewidth]{images/simpson_paradox_vectors.pdf}
+
+    \only<3>{$L_1 < B_1$ and $L_2 < B_2$, yet $L_1+L_2 > B_1+B_2$}
+  \end{center}
+\end{overlayarea}
+#+END_EXPORT
+
+*** Correlation does not imply Causation
+For any two correlated events, A and B, the following relationships
+are possible:
+- A causes B (direct causation)\hfill$\smiley$
+  # - alcohol makes people stupid
+  # - the students who tend to drink tend to be poorer students
+  # - people who are hung-over from a drinking binge tend to skip class
+- A causes B and B causes A (bidirectional or cyclic
+  causation)\hfill$\smiley$
+  # - sweet, then removing alcohol should help
+- A causes C which causes B (indirect causation)\hfill$\smiley$
+- B causes A; (reverse causation)\hfill$\frowny$
+  # - students in academic trouble drink in order to drown their sorrows
+- A and B are consequences of a common cause, but do not cause each
+  other\hfill$\frowny$
+- There is no connection between A and B; it is a "coincidence"
+  #+LaTeX: \hfill$\frowny$%\\[-.8\baselineskip]
+  - But *designed experiments* can help you ruling this option out
+
+#+BEGIN_CENTER
+#+ATTR_LATEX: :height 3cm
+file:images/xkcd_correlation.png
+\qquad\winkey
+#+END_CENTER
+
+** Early Intuition and Key Concepts
+*** Experimental data vs. Observational data
+You need a good blend of *observation*, *theory* and
+*experiments*\medskip
+
+- Many scientific experiments appear to be carried out with no
+  hypothesis in mind at all, but simply to see what happens.
+
+- This may be OK in the early stages (inductive reasoning) but drawing
+  conclusions on such observations is difficult (large number of
+  equally plausible explanations; without testable prediction no
+  experimental ingenuity; \dots).\pause
+
+*Strong inference* Essential steps:
+  1. Formulate a clear hypothesis
+  2. Devise an acceptable test\medskip
+*Weak inference* It would be silly to disregard all observational
+                    data that do not come from designed
+                    experiments. Often, they are the only information we have
+                    (e.g. the trace of a system).
+
+                    But we need to keep the limitations of such data
+                    in mind. It is possible to use it to *derive
+                    hypothesis* but not to *test hypothesis* (\ie *claim
+                    facts*).
+*** Experimental Design
+There are two key concepts:
+#+BEGIN_CENTER
+  *replication* and *randomization*
+#+END_CENTER
+You replicate to *increase reliability*. You randomize to *reduce bias*.
+#+BEGIN_CENTER
+  \textbf{If you replicate thoroughly and randomize properly, \\ you will not go far wrong.}
+#+END_CENTER
+\pause
+#+BEGIN_QUOTE
+  \it\small
+  It doesn't matter if you cannot do your own advanced statistical
+  analysis. If you designed your experiments properly, you may be able
+  to find somebody to help you with the statistics.\smallskip
+
+  If your experiments is not properly designed, then no matter how
+  good you are at statistics, you experimental effort will have been
+  wasted.
+#+END_QUOTE
+\vspace{-1em}
+#+BEGIN_CENTER
+  \textbf{No amount of high-powered statistical analysis can turn a bad experiment into a good one.}
+#+END_CENTER
+
+Other important concepts:
+#+LaTeX: \vspace{-.5em}\begin{columns}\begin{column}{.35\linewidth}
+# - *Parsimony*
+- *Pseudo-replication*
+#+LaTeX: \end{column}\begin{column}{.62\linewidth}
+- *Experimental* vs. *observational* data
+#+LaTeX: \end{column}\end{columns}
+*** Replication vs. Pseudo-replication
+Measuring the same configuration several times is not
+replication. It's *pseudo-replication* and is generally biased\smallskip
+
+Instead, test *other* configurations (with a good
+randomization)\medskip
+
+In case of pseudo-replication, here is what you can do:
+- average away the pseudo-replication and carry out your
+  statistical analysis on the means
+- carry out separate analysis for each time period
+- use proper time series analysis
