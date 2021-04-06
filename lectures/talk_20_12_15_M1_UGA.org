@@ -162,7 +162,7 @@
     data in HIV vaccine trials
     #+LaTeX: \alert{He was also fined US $\$7.2$ million!}\pause
   \normalsize
-- [[https://en.wikipedia.org/wiki/Diederik_Stapel][Dieterik Stapel]] :: Professor, Social Psychology, Univ. Amsterdam, 2011
+- [[https://en.wikipedia.org/wiki/Diederik_Stapel][Diederik Stapel]] :: Professor, Social Psychology, Univ. Tilburg, 2011
   # https://en.wikipedia.org/wiki/Diederik_Stapel#Scientific_misconduct
   # - /Carnivores are more selfish than vegetarians/, 
   #+BEGIN_QUOTE
