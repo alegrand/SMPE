@@ -1,0 +1,838 @@
+# -*- coding: utf-8 -*-
+# -*- mode: org -*-
+# The title page is hacked and generated below
+#+Title:  Obtaining Faithful/Reproducible Measurements on Modern CPUs
+#+Author: Arnaud Legrand, Univ. Grenoble Alpes, CNRS, Inria, Grenoble INP
+#+DATE: Journée SIF - Reproductibilité de la recherche, May 2021
+#+LANGUAGE: en
+#+STARTUP: beamer indent inlineimages logdrawer
+#+TAGS: noexport(n)
+
+#+PROPERTY: header-args  :session :eval never-export :exports both
+#+DRAWERS: latex_headers
+
+# The magic presentation command: impressive -T 100 -t Crossfade --fake-fullscreen -g 800x600 talk_21_05_10_SIF.pdf
+
+:latex_headers:
+#+LaTeX_CLASS: beamer
+#+LATEX_CLASS_OPTIONS: [10pt,presentation,xcolor={usenames,dvipsnames,svgnames,table}]
+#+OPTIONS:   H:2 num:t toc:nil \n:nil @:t ::t |:t ^:nil -:t f:t *:t <:t
+#+LATEX_COMPILER: lualatex
+#+LATEX_HEADER: \usedescriptionitemofwidthas{bl}
+#+LATEX_HEADER: \usepackage[T1]{fontenc}
+#+LATEX_HEADER: \usepackage[utf8]{inputenc}
+#+LATEX_HEADER: \usepackage{figlatex}
+#+LATEX_HEADER: \usepackage[french]{babel}
+#+LATEX_HEADER: %\usepackage{DejaVuSansMono}
+#+LATEX_HEADER: \usepackage{ifthen,amsmath,amstext,gensymb,amssymb}
+#+LATEX_HEADER: \usepackage{boxedminipage,xspace,multicol}
+#+LATEX_HEADER: %%%%%%%%% Begin of Beamer Layout %%%%%%%%%%%%%
+#+LATEX_HEADER: \ProcessOptionsBeamer
+#+LATEX_HEADER: \usetheme[numbering=fraction,titleformat=smallcaps,progressbar=frametitle]{metropolis}
+#+LATEX_HEADER: \usepackage{fontawesome}
+#+LATEX_HEADER: \usecolortheme[named=BrickRed]{structure}
+#+LATEX_HEADER: %%%%%%%%% End of Beamer Layout %%%%%%%%%%%%%
+#+LATEX_HEADER: \usepackage{verbments}
+#+LATEX_HEADER: \usepackage{xcolor}
+#+LATEX_HEADER: \usepackage{color}
+#+LATEX_HEADER: \usepackage{url} \urlstyle{sf}
+#+LATEX_HEADER: \let\alert=\structure % to make sure the org * * works of tools
+#+LATEX_HEADER: %\let\tmptableofcontents=\tableofcontents
+#+LATEX_HEADER: %\def\tableofcontents{}
+#+LATEX_HEADER:  \usepackage[normalem]{ulem}
+#+LATEX_HEADER:  \usepackage{color,soul}
+#+LATEX_HEADER:  \definecolor{lightorange}{rgb}{1,.9,.7}
+#+LATEX_HEADER:  \sethlcolor{lightorange}
+#+LATEX_HEADER:  \definecolor{lightgreen}{rgb}{.7,.9,.7}
+#+LATEX_HEADER:  \let\hrefold=\href
+#+LATEX_HEADER:  \renewcommand{\href}[2]{\hrefold{#1}{\SoulColor{lightorange}\hl{#2}}}
+#+LATEX_HEADER: % \renewcommand{\uline}[1]{\SoulColor{lightorange}\hl{#1}}
+#+LATEX_HEADER: % \renewcommand{\emph}[1]{\SoulColor{lightorange}\hl{#1}}
+#+LATEX_HEADER: \makeatletter
+#+LATEX_HEADER: \newcommand\SoulColor[1]{%
+#+LATEX_HEADER:   \sethlcolor{#1}%
+#+LATEX_HEADER:   \let\set@color\beamerorig@set@color%
+#+LATEX_HEADER:   \let\reset@color\beamerorig@reset@color}
+#+LATEX_HEADER: \makeatother
+#+LATEX_HEADER: \let\oldtexttt=\texttt
+#+LATEX_HEADER: % \renewcommand\texttt[1]{\SoulColor{lightgreen}\hl{\tt#1}}
+#+LATEX_HEADER: % \renewcommand\alert[1]{\SoulColor{lightgreen}\hl{#1}}
+#+LATEX_HEADER: % \AtBeginSection{\begin{frame}{Outline}\tableofcontents\end{frame}}
+#+LATEX_HEADER: \graphicspath{{fig/}}
+#+LATEX_HEADER: \usepackage{tikzsymbols}
+#+LATEX_HEADER: \def\smiley{\Smiley[1][green!80!white]}
+#+LATEX_HEADER: \def\frowny{\Sadey[1][red!80!white]}
+#+LATEX_HEADER: \def\winkey{\Winkey[1][yellow]}
+#+LATEX_HEADER: \def\mylogo{\includegraphics[height=2.5cm]{./images/in_science_we_trust.jpg}}
+#+LATEX_HEADER: \def\sifbanner#1{\begin{tabular}{@{}m{.25\linewidth}m{.7\linewidth}@{}} \includegraphics[height=2.5cm]{./images/sif_logo_RR.png} & #1\end{tabular}}
+#+LATEX_HEADER: \def\siflogo{\raisebox{-.5em}{\includegraphics[height=2em]{./images/sif_logo.jpg}}}
+#+LATEX_HEADER: \def\maketitle{}
+
+#+begin_export latex
+%\newcommand\sifbanner[1]{#1}%
+% \begin{tabular}{ll}
+%    \includegraphics[height=2.5cm]{./images/sif_logo_RR.png}}
+% \end{tabular}
+#+end_export
+#+BEGIN_EXPORT latex
+  \newcommand{\myfbox}[2][gray!20]{\bgroup\scalebox{.7}{\colorbox{#1}{{\vphantom{pS}#2}}}\egroup} % \fbox
+  %\def\myfbox#1{#1} % \fbox
+  \def\HPC{\myfbox[gray!40]{HPC}}
+  \def\NET{\myfbox[gray!40]{Network}}
+  \def\SG{\myfbox[gray!40]{Smart Grids}}
+  \def\ECO{\myfbox[gray!40]{Economics}}
+  \def\PRIV{\myfbox[gray!40]{Privacy}}
+  \def\TRACING{\myfbox[red!20]{Tracing}}
+  \def\SIM{\myfbox[green!20]{Simulation}}
+  \def\VIZ{\myfbox[red!40]{Visualization}}
+  \def\MODELING{\myfbox[green!40]{Stochastic Models}}
+  \def\OPT{\myfbox[blue!20]{Optimization}}
+  \def\GT{\myfbox[blue!40]{Game Theory}}
+#+END_EXPORT
+
+#+BEGIN_EXPORT latex
+\def\etal{\textit{et al.}\xspace}
+\def\eg{e.g.,\xspace}
+#+END_EXPORT
+
+#+BEGIN_EXPORT latex
+\def\changefont#1{%
+  \setbeamertemplate{itemize/enumerate body begin}{#1}
+  \setbeamertemplate{itemize/enumerate subbody begin}{#1}
+  #1}
+\makeatletter
+\newcommand{\verbatimfont}[1]{\renewcommand{\verbatim@font}{\ttfamily#1}}
+\makeatother
+\verbatimfont{\scriptsize}%small
+\let\endmintedbak=\endminted
+\def\endminted{\endmintedbak\vspace{-1cm}}
+#+END_EXPORT
+
+#+BEGIN_EXPORT latex
+\newcommand{\Norm}{\ensuremath{\mathcal{N}}\xspace}
+\newcommand{\Unif}{\ensuremath{\mathcal{U}}\xspace}
+\newcommand{\Triang}{\ensuremath{\mathcal{T}}\xspace}
+\newcommand{\Exp}{\ensuremath{\mathcal{E}}\xspace}
+\newcommand{\Bernouilli}{\ensuremath{\mathcal{B}}\xspace}
+\newcommand{\Like}{\ensuremath{\mathcal{L}}\xspace}
+\newcommand{\Model}{\ensuremath{\mathcal{M}}\xspace}
+\newcommand{\E}{\ensuremath{\mathbb{E}}\xspace}
+\def\T{\ensuremath{\theta}\xspace}
+\def\Th{\ensuremath{\hat{\theta}}\xspace}
+\def\Tt{\ensuremath{\tilde{\theta}}\xspace}
+\def\Y{\ensuremath{y}\xspace}
+\def\Yh{\ensuremath{\hat{y}}\xspace}
+\def\Yt{\ensuremath{\tilde{y}}\xspace}
+\let\epsilon=\varepsilon
+\let\leq=\leqslant
+\let\geq=\geqslant
+#+END_EXPORT
+:end:
+
+** Common beliefs                                                 :noexport:
+\it
+- RR mainly allows to fight scientific misconduct (e.g.,
+  fraud). That's nice but I'm honnest so just let me do my work!
+  \medskip\pause
+- RR is all about re-executing the same code, even if the code is
+  stupid and makes wrong computation. It's pointless! \medskip\pause
+- My student has done everything with org-jupyter-studio-mode.
+  Now he's gone and I can't reuse what he did. See, what's the point?
+  RR does not help! \medskip\pause
+- RR is about controling and checking everything, which slows down the
+  scientific discovery process. Changing the way we work and publish
+  may be harmful!
+** 
+:PROPERTIES:
+:BEAMER_OPT: noframenumbering,plain
+:END:
+
+#+latex: \sifbanner{\bf\Large Obtaining Faithful/Reproducible Measurements on Modern CPUs}
+
+#+latex: \vspace{.8cm}{\color{orange}\rule{\linewidth}{0.4pt}}\vspace{.81cm}
+\small 
+*Arnaud Legrand* and *Tom Cornebize*\newline Univ. Grenoble Alpes, CNRS,
+Inria, Grenoble INP
+
+#+latex: \vfill\begin{tabular}{@{}b{.7\linewidth}b{.25\linewidth}@{}}
+Journée \siflogo -- Reproductibilité de la recherche\newline May 2021
+#+latex: &
+\mylogo
+#+latex: \end{tabular}
+* Reproducible Research and Computer Science
+** Common Reproducibility Concerns in Modern Science
+/The processing steps between raw observations and findings have gotten
+increasingly numerous and complex/
+#+BEGIN_EXPORT latex
+\begin{center}
+  \includegraphics<+>[width=.88\linewidth]{images/iceberg_publication-1.png}%
+  \includegraphics<+>[width=.88\linewidth]{images/iceberg_publication-2.png}%
+  \includegraphics<+>[width=.88\linewidth]{images/iceberg_publication-3.png}%
+  \includegraphics<+>[width=.88\linewidth]{images/iceberg_publication-4.png}%
+  \includegraphics<+->[width=.88\linewidth]{images/iceberg_publication-5.png}\medskip
+  
+  \uncover<+>{\normalsize\bf Reproducible Research = Bridging the Gap by working Transparently}
+\end{center}
+#+END_EXPORT
+
+# _Distinguish between:_
+# #+LaTeX: \begin{columns}\begin{column}[b]{.4\linewidth}
+# - experimental science
+# - observational science
+# #+LaTeX: \end{column}\begin{column}[b]{.6\linewidth}
+# - computational science (simulation)
+# - (big) data analysis
+# #+LaTeX: \end{column}\end{columns}%\bigskip
+** "Reproducible Research": First Appearance
+*Claerbout & Karrenbach*, 
+\scalebox{.75}{meeting of the Society of Exploration Geophysics}, 1992
+
+file:images/clearbout.pdf
+** Existing Tools, Emerging Standards
+\vspace{1em}
+#+LaTeX: \begin{columns}\begin{column}[t]{.4\linewidth}\centering
+\bf *Notebooks and workflows*
+
+file:images/jupyterpreview.png
+
+#+LaTeX: \includegraphics[height=.8cm]{images/logo/Jupyter_logo.png}
+#+LaTeX: \includegraphics[height=.8cm]{images/logo/OrgMode_logo.png}
+#+LaTeX: \includegraphics[height=.8cm]{images/logo/RStudio_logo.png}
+file:images/logo/workflows.png
+
+#+LaTeX: \end{column}\begin{column}[t]{.35\linewidth}\centering
+\bf *Software environments*
+
+file:images/python3-matplotlib.pdf 
+#+ATTR_LaTeX: :width .6\linewidth
+file:images/platform_diversity.png
+
+#+LaTeX: \includegraphics[height=1cm]{images/logo/docker_logo.png}
+#+LaTeX: \includegraphics[height=1cm]{images/logo/singularity_logo.png}
+#+LaTeX: \includegraphics[height=.8cm]{images/logo/reprozip.png}
+#+LaTeX: \includegraphics[height=1cm]{images/logo/Guix_logo.png}
+#+LaTeX: \includegraphics[height=1cm]{images/logo/nix_logo.png}
+
+#+LaTeX: \end{column}\begin{column}[t]{.35\linewidth}\centering
+\bf *Sharing platforms*\bigskip
+
+#+LaTeX: \includegraphics[height=1cm]{images/logo/git_logo.png}
+#+LaTeX: \includegraphics[height=1cm]{images/logo/github_logo.png}
+#+LaTeX: \includegraphics[height=1cm]{images/logo/gitlab_logo.png}
+#+LaTeX: \includegraphics[height=1cm]{images/logo/JupyterHub_logo.png}
+#+LaTeX: \includegraphics[height=1cm]{images/logo/ArXiv-web.png}
+#+LaTeX: \includegraphics[height=1cm]{images/logo/LogoHAL.png}
+#+LaTeX: \includegraphics[height=1cm]{images/logo/Figshare-logo.png}
+#+LaTeX: \includegraphics[height=1cm]{images/logo/Zenodo-logo.jpg}
+#+LaTeX: \includegraphics[height=1cm]{images/logo/swh-logo.png}
+
+#+LaTeX: \end{column}\end{columns}\bigskip
+
+
+
+# - Provenance, mise à disposition, software environment capture,
+#   literate programming, etc. Still no perfect solution but much better
+#   tools.
+#   - notebooks: jupyter/...
+#   - containers/... 
+#   - github/gitlab/zenodo/swh... to
+#   - execution in the cloud: continuous integration and codeocean
+** Reproducibility, Computers and Computer Science
+\null
+*** Practices have evolved                                          :BMCOL:
+:PROPERTIES:
+:BEAMER_col: .7
+:Beamer_opt: b
+:END:
+*Scientific practices have greatly evolved*, in particular
+since we rely on *computers*
+
+[[https://theconversation.com/how-computers-broke-science-and-what-we-can-do-to-fix-it-49938][How computers broke science -- and what we can do about it]] 
+
+\hfill -- Ben Marwick, The conversation, 2015
+*** Computer pic                                                    :BMCOL:
+:PROPERTIES:
+:BEAMER_col: .3
+:Beamer_opt: b
+:END:
+#+LaTeX: \hfill\includegraphics[width=\linewidth]{images/computer_broke_science.jpg}
+***                                                       :B_ignoreheading:
+:PROPERTIES:
+:BEAMER_env: ignoreheading
+:END:
+
+1. _Computational science concerns:_
+   - Genomics :: software engineering, computational reproducibility,
+     provenance
+   - Computational fluid dynamics :: numerical issues
+
+2. _Statistical concerns:_
+   - Social Psychology, Medical sciences, ... :: methodology, statistics, pre-registration
+  
+#+begin_center
+\bf What about Computer Science ?
+#+end_center
+** All this is about Computational Sciences. Should we care ?
+_Computer Science_ is young and inherits from _Mathematics_, _Engineering_,
+_Linguistic_, _Nat. Sciences_, \dots\bigskip
+
+Purely theoretical scientists whose practice is close to mathematics
+/may/ not be concerned (can't publish a math article without
+releasing the proofs).
+- Have a look at [[http://www.math.ias.edu/vladimir/files/2014_IAS.pdf][talk by Vladimir Voevodsky in 2014 at Princeton]] \winkey
+
+\bigskip
+/[[https://hal.inria.fr/edutice-00676169/][Les quatre concepts de l'informatique]]/, Gilles Dowek 2011:
+- Algorithm, Machine, Language, Information
+
+** Well, I design algorithms!
+\small
+- "Real" problems are all NP-hard, Log-APX, etc.
+
+- Real workload = +NP-completeness proof widgets+, regularities and
+  properties (difficult to formally state but that should be exploited)
+
+Algorithms are evaluated on particular *workloads* that impact 
+both their running time and the quality of the solutions\bigskip\pause 
+
+*Image Processing*: [[http://mescal.imag.fr/membres/arnaud.legrand/research/meinhardt_canum2016.pdf][True horror stories]], E. Meinhardt-Llopis, CANUM 2016
+#+LaTeX: \begin{columns}\begin{column}{.6\linewidth}
+- /The proposed multigrid algorithm converges to the solution of the
+  problem in O(N)/ using biharmonic functions
+- Surprisingly, our naive multi-scale Gauss-Seidel converges much
+  faster\pause
+#+LaTeX: \end{column}\begin{column}{.4\linewidth}
+  #+LaTeX: \includegraphics[width=\linewidth]{images/meinhardt_canum2016_workload.pdf}
+
+  $\leadsto$ [[https://www.ipol.im/][IPOL]]
+#+LaTeX: \end{column}\end{columns}
+** I design Machine Learning Algorithms
+#+LaTeX: \begin{flushright}\vspace{-1cm}\includegraphics[width=.13\linewidth]{images/Sandy-Pentland.jpg}\end{flushright}\vspace{-1cm}
+*Machine Learning*:  [[http://www.economist.com/news/briefing/21588057-scientists-think-science-self-correcting-alarming-degree-it-not-trouble][Trouble at the lab]], The Economist 2013
+
+#+BEGIN_QUOTE
+   \small According to some estimates, three-quarters of published
+   scientific papers in the field of machine learning are bunk
+   because of this "overfitting". \hfill -- Sandy Pentland (MIT)
+#+END_QUOTE
+
+\bigskip
+#+latex: \begin{columns}\begin{column}{.7\linewidth}
+[[https://nips.cc/Conferences/2019/CallForPapers][NeurIPS]], [[https://reproducibility-challenge.github.io/iclr_2019/][ICLR]]: *open reviews*, reproducibility
+
+challenges
+
+\to [[https://www.youtube.com/watch?v=Kee4ch3miVA][Joelle Pineau @ NeurIPS'18]]
+#+latex: \end{column}\hspace{-1cm}\begin{column}{.3\linewidth}
+   #+LaTeX: \hfill\includegraphics[width=\linewidth]{images/joelle_pineau.jpg}
+#+latex: \end{column}\end{columns}
+
+\bigskip
+Every month in CACM, there is an article about the ethical
+consequences of Machine Learning on:
+- \small Car driving, Autonomous guns, Law enforcement (risk assessment, predictive
+  policing), ... \hfill\footnotesize 
+  [[http://dx.doi.org/10.1145/3022181][It's Not the Algorithm, It's the Data]] (CACM, Feb. 2017)
+- \small Advertising, Loan attribution, Selection at University, Organ
+  transplant
+
+#+BEGIN_CENTER
+\bf Increasing society concern about *fairness* and *transparency*
+#+END_CENTER
+** Experimenting with Computers
+#+BEGIN_QUOTE
+Computer science is not more related to computers than Astronomy to
+telescopes\vspace{-.6em}
+\flushright              -- Dijkstra (mis-attributed)
+#+END_QUOTE
+
+Right, why should we care about computers? They are *deterministic*
+machines after all, right?  \winkey \medskip\pause
+
+\textbf{Model $\neq$ Reality}. Although designed and built by human
+beings, computer systems are *so complex* that mistakes easily slip
+in...
+
+*Our reality evolves!!!* The hardware keeps evolving so most results on
+old platforms quickly become obsolete (although, we keep building on
+such results \winkey).
+
+\bf We need to regularly revisit and allow others to build on our work!
+** Experimenting with computers                                   :noexport:
+
+#+BEGIN_EXPORT latex
+\begin{tabular}{@{\hspace{-1em}}cc@{\hspace{-1em}}}
+  \alert{Machines are \uline{real}!} & 
+  \alert{Machines are \uline{complicated}} \vspace{.2cm}\\
+  {\parbox{.5\linewidth}{\includegraphics[width=\linewidth]{images/shouting_in_the_data_center.jpg}}} &
+ % \begin{overlayarea}{.5\linewidth}{1cm}
+   {\parbox{.5\linewidth}{\vspace{-1cm}\includegraphics[width=\linewidth]{images/asplos09-producing-data_fig1.pdf}}}
+ % \end{overlayarea}
+\\
+  \scalebox{.9}{\small \href{https://www.youtube.com/watch?v=tDacjrSCeq4}{Brendan Gregg: Shouting in the data center}}
+  &\begin{minipage}{.5\linewidth}\small
+#+END_EXPORT
+
+  \vspace{-.7cm}Mytkowicz et al. /[[http://doi.acm.org/10.1145/1508284.1508275][Producing wrong data without doing
+  anything obviously wrong]]!/ ACM SIGPLAN Not. 44(3), March 2009
+
+#+BEGIN_EXPORT latex
+  \end{minipage}
+\end{tabular}\medskip
+#+END_EXPORT
+
+*Our reality evolves!!!* The hardware keeps evolving so most results on
+old platforms quickly become obsolete (although, we keep building on
+such results \winkey).
+
+\bf We need to regularly revisit and allow others to build on our work!
+ 
+** Key Concerns for our Community (Room for Improvement)
+#+LaTeX: \vspace{.3cm}
+
+#+LaTeX: \hbox{\hspace{-.05\linewidth}\begin{minipage}{1.1\linewidth}
+\small
+/[[https://research.spec.org/fileadmin/user_upload/documents/rg_cloud/endorsed_publications/SPEC_RG_2019_Methodological_Principles_for_Reproducible_Performance_Evaluation_in_Cloud_Computing.pdf][How are cloud performance currently obtained and reported?]]/, 
+\bgroup\scriptsize\bf
+\textit{Methodological Principles for Reproducible Performance Evaluation in Cloud Computing}, IEEE Trans. on Soft. Eng., July 2019\egroup
+#+LaTeX: \end{minipage}}
+    # 98 articles, 2012-2017
+    #+ATTR_LaTeX: :width .8\linewidth
+    file:images/SPEC_RG_2019_Fig4_2.pdf
+    # - P2: Workload and configuration coverage discusses whether
+    #   experiments are conducted in different (possibly randomized)
+    #   configurations of relevant parameters, especially parameters
+    #   that are not completely under control or those that may interact
+    #   with the platform in unexpected ways, e.g., the workload. P2
+    #   shows that less than 47% of the analyzed papers include a
+    #   complete performance evaluation with multiple
+    #   configurations. Varying configurations can be challenging in
+    #   some scenarios, due to timing, cost of cloud service, and other
+    #   factors. However, from a scientific perspective, different
+    #   configurations may significantly impact the overall performance
+    #   and more extensive evaluations are needed. Parameter values
+    #   should be randomized according to realistic probabilistic
+    #   distributions or using historical data. The confidence in the
+    #   final result should be quantified.
+    # - P3 discusses the experimental setup description. Even though
+    #   more than 52% of the analyzed papers fully cover this principle,
+    #   a substantial number of papers do not or only partially describe
+    #   the experimental setup in which the performance evaluation is
+    #   conducted. This significantly impacts the technical
+    #   reproducibility of the results.
+    # - P4 partly complements P3, as it considers the accessibility of
+    #   the datasets used in the analysis and whether the authors have
+    #   released the source code. In more than 70% of the cases, the
+    #   code of the assessed technique is not released and the datasets
+    #   used for the evaluation are not publicly available.
+    # - P6 analyzes if a statistical evaluation has been performed, to
+    #   include some (statistical) confidence in the results. This
+    #   principle is the most disregarded by the papers we study, with N
+    #   > 90%.
+#+BEGIN_EXPORT latex
+\pause%
+\begin{overlayarea}{\linewidth}{0cm}
+  \vspace{-6cm}\hspace{2cm}%
+  \rotatebox{30}{\fboxsep=0pt
+     \fbox{\colorbox{lightgray}{\bf Bad experimental design, statistics, and reporting
+    $\frowny$ }}}
+\end{overlayarea}\vspace{-.7cm}
+#+END_EXPORT
+
+\textbf{Key DoE principles}: 
+1. _Replicate_ to *increase reliability*.
+2. _Randomize_ to *reduce bias* $\leadsto$ _Evaluate_ *statistical
+                  confidence*.
+* Cache effects!                                                   :noexport:
+** Impact of Working Set Size on Effective Bandwdith
+#+LaTeX: \vspace{.3cm}
+
+#+LaTeX: \hbox{\hspace{-.05\linewidth}\begin{minipage}{1.1\linewidth}
+- Cache hierarchy (L1, L2, L3, RAM) with different bandwidth
+- LRU, pre-fetching for linear access
+- An array fits in a cache level $\Rightarrow$ operate at the
+  corresponding bandwidth
+- Stride access decrease bandwidth
+#+LaTeX: \end{minipage}}\bigskip\pause
+
+#+BEGIN_EXPORT LaTeX
+\begin{columns}
+  \begin{column}{.5\linewidth}
+    \begin{overlayarea}{\linewidth}{4cm}
+      \only<2>{\fbox{\includegraphics[width=\linewidth,height=.625\linewidth]{images/randomization/reppar16/MultiMAPSplot5.png}}
+      
+        \mbox{\small MultiMAPS on an Opteron}\\ \bf\scriptsize
+        \textit{Genetic Algorithms Approach to Modeling the
+          Performance of Memory-bound Computations}, Tikir et. al. in
+        SC'07}%
+      \only<3-4>{
+        \includegraphics<3>[width=1.05\linewidth,height=.64\linewidth]{images/randomization/reppar16/Rugly.pdf}%
+        \includegraphics<4>[width=1.05\linewidth,height=.64\linewidth]{images/randomization/reppar16/Rugly2.pdf}\\
+        \only<3-4>{\mbox{\small Our first attempt on a Pentium 4...}}%
+      }
+    \end{overlayarea}
+  \end{column}
+  \begin{column}{.55\linewidth}\vspace{-2em}
+#+END_EXPORT
+  #+BEGIN_SRC python
+MultiMAPS(size, stride, nloops) {
+  allocate buffer[size]; 
+  timer_start();
+  for rep in (1..nloops) 
+    for i in (0..size/stride) 
+       access buffer[stride*i];
+  timer_stop();
+  bandwidth = nb_access /
+              elapsed_time;
+  deallocate buffer;
+}
+  #+END_SRC
+#+BEGIN_EXPORT latex
+  \end{column}
+\end{columns}
+#+END_EXPORT
+** Impact of Architecture @@latex:\only<3>{(the ARM associativity issue)}@@
+#+BEGIN_EXPORT latex
+\begin{center}
+  \includegraphics<+>[width=.8\linewidth]{images/randomization/reppar16/RphyMem_single.pdf}%
+  \includegraphics<+>[width=.8\linewidth]{images/randomization/reppar16/RphyMem.pdf}%
+  \includegraphics<+>[width=.8\linewidth]{images/randomization/reppar16/RphyMem2.pdf}
+\end{center}
+\uncover<.>{Randomize \textbf{physical address} start!}
+#+END_EXPORT
+
+#+LaTeX: \vfill\begin{flushright}\scriptsize Courtesy of L. Stanisic\end{flushright}
+** Impact of Operating System Scheduler
+- Activating \textbf{real-time kernel scheduler}
+#+BEGIN_EXPORT latex
+ \begin{center}
+    \includegraphics[width=.49\linewidth]{images/randomization/reppar16/Sched1.png}
+    \hfill
+    \uncover<2>{\includegraphics[width=.49\linewidth]{images/randomization/reppar16/Sched2.png}}
+ \end{center} 
+#+END_EXPORT
+
+#+LaTeX: \vspace{2.4cm}\begin{flushright}\scriptsize Courtesy of L. Stanisic\end{flushright}
+** Impact of @@latex: \only<1>{Repetitions}\only<2>{\sout{Repetitions} DVFS}@@
+- Remember =nloops= ?
+#+BEGIN_EXPORT latex
+\begin{center}
+  \includegraphics[width=.8\linewidth]{images/randomization/reppar16/Freq.png}
+\end{center}
+#+END_EXPORT
+
+#+LaTeX: \vspace{-.1cm}\begin{flushright}\scriptsize Courtesy of L. Stanisic\end{flushright}
+* MPI Performance                                                  :noexport:
+** MPI Performance Characterization: The many biases
+#+LaTeX: \null\vspace{-1.5em}\small
+- Powers of two for message sizes ? Linear ?
+- Sensitivity to temporal perturbations \bgroup\scriptsize(in order =N_rep=)\egroup
+- Breakpoint detection \bgroup\scriptsize(increasing message size, minimal range length, \dots)\egroup
+- Outlier removal \bgroup\scriptsize(assumes normality, ignores uncertainty of previous measurements)\egroup
+
+_Measurement proposal:_ \vspace{-.5em}
+- Ping-Pong =data_size=
+  #+LaTeX: $= 10^X, \text{ where } X \sim \mathrm{Unif}(\log_{10}(a), \log_{10}(b)).$
+- Record the time taken in every =MPI_Send= and =MPI_Receive= operation\vspace{-.5em}
+
+_Analysis proposal:_
+#+LaTeX: \null\vspace{-.5em}\begin{multicols}{2}
+- Manually provided breakpoints
+- Regression in R 
+#+LaTeX: \end{multicols}\null\vspace{-3.2em}
+- Inspect regression output and hypothesis (linearity, noise, "outliers")
+
+#+BEGIN_EXPORT latex
+\centerline{\includegraphics[width=.8\linewidth]{images/randomization/reppar16/taurus_send_recv.png}}
+Randomized measurements for Taurus (OpenMPI 2.0.1, TCP, 10Gb Ethernet).
+#+END_EXPORT
+** MPI Measurement: Randomization in action (Stampede@TACC)
+#+BEGIN_EXPORT latex
+\begin{overlayarea}{\linewidth}{7cm}
+  \begin{center}
+    \includegraphics<+>[height=6cm]{images/randomization/reppar16/stampede_send_recv_eth.png}
+    \includegraphics<+>[height=6cm]{images/randomization/reppar16/stampede_recv_time.png}
+    \includegraphics<+>[height=6cm]{images/randomization/reppar16/stampede_recv_time2.png}
+    \includegraphics<+->[height=6cm]{images/randomization/reppar16/stampede_send_recv_local.png}
+
+    \only<3>{c558-[203,304]} \only<+>{Even the simpler physical
+      quantities can be very tricky to measure because our models and
+      protocols are often naive}
+  \end{center}
+\end{overlayarea}
+#+END_EXPORT
+* Horror Stories when Measuring CPU Performance
+** Measuring performance is difficult
+/[[http://doi.acm.org/10.1145/1508284.1508275][Producing wrong data without doing anything obviously wrong]]!/
+ \bgroup\footnotesize\bf Mytkowicz et al. in ACM SIGPLAN Not. 44(3), March 2009\egroup
+#+LaTeX: \begin{columns}\begin{column}{.58\linewidth}
+  \small\it
+  changing the size of *environment variables* can trigger performance
+  degradation as high as *300%*; simply changing the *link order* of object
+  files can cause performance to decrease by as much as *57%*.
+#+LaTeX: \end{column}\hspace{-1cm}\begin{column}{.4\linewidth}\vspace{-.7em}
+  #+LaTeX: \includegraphics[width=\linewidth]{images/asplos09-producing-data_fig1.pdf}
+#+LaTeX: \end{column}\end{columns}\medskip\pause
+
+\bgroup\bf *Taming the Influence of Memory Layout*.\egroup 
+/[[http://www.cs.umass.edu/~emery/pubs/stabilizer-asplos13.pdf][\textsc{Stabilizer}: Statistically Sound Performance Evaluation]],/
+\bgroup\footnotesize\bf C. Curtsinger and E. Berger in ASPLOS 2013\egroup
+
+#+BEGIN_QUOTE
+\footnotesize\textsc{Stabilizer} forces executions to sample the space of memory
+configurations by *repeatedly rerandomizing* layouts of code, stack, and
+heap objects at runtime. [..] Re-randomization ensures that layout
+effects *follow a Gaussian distribution*, enabling the use of
+statistical tests like ANOVA.
+#+END_QUOTE
+
+\pause\vspace{-.5em}
+_Randomization_ helps fighting bias incured by:\vspace{-.5em}
+1. specific configurations 
+   #+LaTeX: \hspace{.6cm}\scalebox{.85}{$AA \dots A \,\to\, A_1 A_2 \dots A_n$ (\sout{pseudo-replication})}
+2. temporary perturbations
+   #+LaTeX: \hspace{.25cm}\scalebox{.85}{$AA \dots A\,BB \dots B  \,\to\, ABBAAAB\dots$}
+** On the Importance of Content Initialization
+#+BEGIN_EXPORT latex
+\alert{$\cdot$} $C = A\times A$ ($2048\times2048$), independant \hfill
+\alert{$\cdot$} Time scale = 5 minutes\\
+\alert{$\cdot$} $A$ initialized with $\boxed{\vphantom{,}0} \quad \boxed{\vphantom{,}1} \quad \boxed{\vphantom{,}0.987} \quad \boxed{1, 2, 3, \dots} \quad \boxed{\vphantom{,}random}$?
+\pause\vspace{-.4cm}
+#+END_EXPORT
+#+BEGIN_EXPORT latex
+\null\begin{overlayarea}{.95\linewidth}{6.6cm}
+\includegraphics<+>[width=\linewidth]{images/randomization/tom_dgemm_random_init1.png}%
+\includegraphics<+>[width=\linewidth]{images/randomization/tom_dgemm_random_init1.png}%
+\includegraphics<+>[width=\linewidth]{images/randomization/tom_dgemm_random_init2.png}%
+\includegraphics<+>[width=\linewidth]{images/randomization/tom_dgemm_random_init3.png}%
+\includegraphics<+>[width=\linewidth]{images/randomization/tom_dgemm_random_init4.png}%
+\includegraphics<+->[width=\linewidth]{images/randomization/tom_dgemm_random_init5.png}%
+\end{overlayarea}
+\begin{flushright}\scriptsize Courtesy of T. Cornebize, \textit{DGEMM performance is data-dependent} \href{https://hal.inria.fr/hal-02401760}{https://hal.inria.fr/hal-02401760}\end{flushright}
+\begin{overlayarea}{\linewidth}{0cm}
+  \only<3>{\vspace{-6cm}\hbox{\hspace{-.4cm}\rotatebox{10}{\fboxsep=0pt
+    \fbox{\colorbox{lightgray}{\bf Bit-flips $\Rightarrow$ NRJ Consumption $\Rightarrow$ T°$\uparrow$ + TDP $\Rightarrow$ Frequency $\Rightarrow$ Performance ?!?}}}}
+    }
+\end{overlayarea}\vspace{-.7cm}
+#+END_EXPORT
+** Avoiding "Temporary" Perturbations \footnotesize (Randomizing a Factorial Design)
+#+BEGIN_EXPORT latex
+\hspace{-.5cm}\alert{$\cdot$} HPL performance (32 nodes, 70 cfg., 5 repetitions)\hfill
+\alert{$\cdot$} Time scale = 3 days\vspace{-.4cm}
+#+END_EXPORT
+
+#+BEGIN_EXPORT latex
+\null\hspace{-.4cm}\begin{minipage}{1.0\linewidth}
+  \uncover<1->{\includegraphics[width=.55\linewidth]{images/randomization/tom_hpl_random_perf.png}}%
+  \uncover<3->{\includegraphics[width=.55\linewidth]{images/randomization/tom_hpl_random_temp3.png}}
+
+  \uncover<2->{\includegraphics[width=.55\linewidth]{images/randomization/tom_hpl_random_temp1.png}}%
+  \uncover<2->{%
+     \includegraphics<2>[width=.55\linewidth]{images/randomization/tom_hpl_random_temp2.png}%
+     \includegraphics<3>[width=.55\linewidth]{images/randomization/tom_hpl_random_temp2bis.png}%
+     }
+\end{minipage}
+\begin{flushright}\scriptsize Courtesy of T. Cornebize\end{flushright}
+#+END_EXPORT
+** Platform Evolution Over a Long Period
+#+begin_export latex
+\null\hspace{-.4cm}\begin{overlayarea}{1.0\linewidth}{7cm}
+  \begin{center}
+    \only<1>{%
+      \hbox{\includegraphics[width=\linewidth]{images/randomization/nonregression/evolution_dahu-14.pdf}%
+       \hspace{-1cm}{\raisebox{3cm}{Dahu-14}}}
+
+      \hbox{\includegraphics[width=\linewidth]{images/randomization/nonregression/evolution_dahu-26.pdf}%
+       \hspace{-1cm}{\raisebox{3cm}{Dahu-26}}}
+       }%
+    \only<2>{%
+      \hbox{\includegraphics[width=\linewidth]{images/randomization/nonregression/overview.pdf}%
+       \hspace{-1.8cm}{\raisebox{6cm}{Dahu overview}}}
+    }%
+  \end{center}
+\end{overlayarea}
+#+end_export
+
+#+latex: \begin{flushright}\scriptsize Courtesy of T. Cornebize, \href{https://cornebize.net/g5k_test/}{https://cornebize.net/g5k\_test/}\end{flushright}
+* Conclusion
+** Experimental Methodology: Noticing the Unexpected
+#+ATTR_LATEX: :width .9\linewidth
+[[file:images/R_workflow.pdf]]
+\small
+1. A *\textbf{separation of concerns}*
+   - Transparent _Measurement Procedure_ and _Analysis Procedure_
+2. *\textbf{Randomized and Designed Experiments}* allowing to both:
+   - _Check_ the model and _Instanciate_ it
+3. Careful *\textbf{recording of all experimental parameters}*
+   \bgroup\scriptsize (before and during XPs)\egroup
+** Reproducible Research = Rigor and Transparency
+To err is human. \textbf{Good research requires time and resources}
+
+1. \textbf{Train yourself and your students}: RR, statistics, experiments
+   - Beware of checklists and norms \hfill $\structure\cdot$ Understand what's at stake
+   #+LaTeX: \begin{columns}\begin{column}[b]{.35\linewidth}
+     #+ATTR_LaTeX: :width \linewidth
+     file:images/mooc_rr.png
+   #+LaTeX: \end{column}\hspace{-.7cm}\begin{column}[b]{.7\linewidth}
+   \small
+   #RRMooc *3rd Edition*: \approx Feb. 2020  \medskip
+
+   A *new MOOC*: "Advanced RR" (Oct 2021?)\vspace{-.7em}
+   - Managing data (HDF5, archiving)\vspace{-.7em}
+   - Software environment control (Docker, GUIX)\vspace{-.7em}
+   - Scientific workflow (snakemake)\vspace{.3cm}\pause
+   #+LaTeX: \end{column}\end{columns}\vspace{.3em}
+2. \textbf{Change the norm:} make publication practices evolve
+   - Require data, code, environment, XP protocol, ...
+3. \textbf{Incentive}: consider RR/open science when hiring/promoting\vspace{.3em}\pause
+4. \textbf{Prepare the Future:} _How to share Experiments?_\vspace{-.7em}
+   #+LaTeX: \begin{columns}\begin{column}[b]{.55\linewidth}
+   - Reuse, reuse, reuse!\vspace{-.7em}
+   - Shared and controled testbeds (e.g., Grid'5000/FIT-IoTLab)\vspace{-.7em}
+   - Toward *literate experimentation*?\vspace{.1cm}
+   #+LaTeX: \end{column}\hspace{-.6cm}\begin{column}[b]{.6\linewidth}\small
+   *4--8 October, 2021 @ Strasbourg*
+
+   *16th GDR RSD Fall School*: /Reproductibilité et recherche
+   expérimentale en réseaux et en systèmes/
+   [[https://rsd-ecole.cnrs.fr/][https://rsd-ecole.cnrs.fr/]]
+   #+LaTeX: \end{column}\end{columns}
+
+# \vspace{-.4cm} \hfill\mylogo
+** Some Advertising                                               :noexport:
+
+#+LaTeX: \begin{columns}\begin{column}[t]{.45\linewidth}\centering
+#+ATTR_LaTeX: :width \linewidth
+file:images/ten-years-challenge.png
+
+\footnotesize
+http://rescience.github.io/ten-years/
+#+LaTeX: \end{column}\begin{column}[t]{.54\linewidth}
+#+ATTR_LaTeX: :width \linewidth
+file:images/mooc_rr.png
+
+\small
+*3rd Edition*: \approx Feb. 2020\medskip
+
+A *new MOOC*: "Advanced RR"\footnotesize
+- Software environment control (Docker)
+- Scientific workflow (snakemake)
+- Managing data (HDF5, archiving)
+October 2020 ?
+#+LaTeX: \end{column}\end{columns}
+
+
+* Conclusion                                                       :noexport:
+** Publish or Perish (ok, this is past and present)               :noexport:
+- [[https://thegradient.pub/over-optimization-of-academic-publishing-metrics/][Goodhart’s Law: Are Academic Metrics Being Gamed?]], M. Fire 2019
+  - AI: over 1,000 ranked journals ($\times10$ in 15 years)
+  - Shorter papers with increasing self references
+  - More and more papers without any citation
+  - Sharp increase in the number of new authors publishing at a much
+    faster rate given their career age
+    # - Authors: We noticed a sharp increase in the number of new
+    #   authors These new authors are publishing at a much faster rate
+    #   given their career age than they have in previous
+    #   decades. Additionally, the average number of coauthors per
+    #   author considerably increased over time. Lastly, we observed
+    #   that in recent years there has been a growing trend for authors
+    #   to publish more in conferences.
+    # - Papers: We observed that over time, papers became shorter while
+    #   other features, such as titles, abstracts, and author lists,
+    #   became longer. While the number of references and the number of
+    #   self-citations considerably increased, the total number of
+    #   papers without any citations grew rapidly as well.
+    # - Traditional measures (e.g., number of papers, number of
+    #   citations, h-index, and impact factor) have become targets 
+    # - Citation number has become a target for some researchers
+    # - Exponential growth in the number of new researchers who publish
+    #   papers, likely due to career pressures
+- [[http://users.cecs.anu.edu.au/~steveb/downloads/pdf/evaluate-toplas-2016.pdf][The Truth, The Whole Truth, and Nothing But the Truth: A Pragmatic
+  Guide to Assessing Empirical Evaluations]], \textit{TOPLAS} 2016
+  #+LaTeX: \begin{flushright}
+    #+ATTR_LaTeX: :width .8\linewidth :center nil
+    file:images/evaluate-toplas-2016_fig10.pdf
+  #+LaTeX: \end{flushright}
+
+#+BEGIN_EXPORT latex
+\begin{overlayarea}{\linewidth}{0cm}
+  \vspace{-5cm}\pause
+%  \begin{flushright}
+    \includegraphics[height=2.5cm]{images/ReScience-moto-bordered.pdf}
+%  \end{flushright}
+
+\end{overlayarea}
+#+END_EXPORT
+
+** Experimental Methodology: Noticing the Unexpected
+#+ATTR_LATEX: :width .9\linewidth
+[[file:images/R_workflow.pdf]]
+\small
+1. A *\textbf{separation of concerns}*
+   - Transparent _Measurement Procedure_ and _Analysis Procedure_
+2. *\textbf{Randomized and Designed Experiments}* allowing to both:
+   - _Check_ the model and _Instanciate_ it
+3. Careful *\textbf{recording of all experimental parameters}*
+   \bgroup\scriptsize (before and during XPs)\egroup
+** Reproducible Research = Rigor and Transparency
+To err is human. 
+
+#+BEGIN_CENTER
+\bf Good research requires time and resources
+#+END_CENTER
+
+1. \textbf{Train yourself and your students}: RR, statistics, experiments
+   - Beware of checklists and norms
+   - Understand what's at stake
+2. \textbf{Change the norm:} make publication practices evolve
+   - Require data, code, environment, XP protocol, ...
+3. \textbf{Incentive}: consider RR/open science when hiring/promoting\pause
+4. \textbf{Prepare the Future:} _How to share Experiments?_
+   - Reuse, reuse, reuse!
+   - Shared and controled testbeds (e.g., Grid'5000/SILECS)
+   - Toward *literate experimentation*?
+
+
+\vspace{-.4cm} \hfill\mylogo
+** Some Advertising
+
+#+LaTeX: \begin{columns}\begin{column}[t]{.45\linewidth}\centering
+#+ATTR_LaTeX: :width \linewidth
+file:images/ten-years-challenge.png
+
+\footnotesize
+http://rescience.github.io/ten-years/
+#+LaTeX: \end{column}\begin{column}[t]{.54\linewidth}
+#+ATTR_LaTeX: :width \linewidth
+file:images/mooc_rr.png
+
+\small
+*3rd Edition*: \approx Feb. 2020\medskip
+
+A *new MOOC*: "Advanced RR"\footnotesize
+- Software environment control (Docker)
+- Scientific workflow (snakemake)
+- Managing data (HDF5, archiving)
+October 2020 ?
+#+LaTeX: \end{column}\end{columns}
+
+* TILECS workshop : Recherche/Expérimentation/Analyse reproductible: comment se positionner? :noexport:
+- [[http://users.cecs.anu.edu.au/~steveb/downloads/pdf/evaluate-toplas-2016.pdf][The Truth, The Whole Truth, and Nothing But the Truth: A Pragmatic
+  Guide to Assessing Empirical Evaluations]] 2016 (Vitek, Diwan, ...)
+- [[https://research.spec.org/fileadmin/user_upload/documents/rg_cloud/endorsed_publications/SPEC_RG_2019_Methodological_Principles_for_Reproducible_Performance_Evaluation_in_Cloud_Computing.pdf][Methodological Principles for Reproducible Performance Evaluation in
+  Cloud Computing]] (2019, Amaral, Iosop, ..)
+
+  http://users.cecs.anu.edu.au/~steveb/downloads/pdf/evaluate-toplas-2016.pdf
+
+* Emacs Setup                                                      :noexport:
+This document has local variables in its postembule, which should
+allow Org-mode (9) to work seamlessly without any setup. If you're
+uncomfortable using such variables, you can safely ignore them at
+startup. Exporting may require that you copy them in your .emacs.
+
+# Local Variables:
+# eval: (add-to-list 'org-latex-packages-alist '("" "minted"))
+# eval: (setq org-latex-listings 'minted)
+# eval: (setq org-latex-minted-options '(("style" "Tango") ("bgcolor" "Moccasin") ("frame" "lines") ("linenos" "false") ("fontsize" "\\footnotesize")))
+# eval: (setq org-latex-pdf-process '("lualatex -shell-escape -interaction nonstopmode -output-directory %o %f"))
+# End:
