@@ -1,0 +1,400 @@
+# -*- coding: utf-8 -*-
+# -*- mode: org -*-
+# The title page is hacked and generated below
+#+Title:  Generating a Controled Software Environment with Debian Snapshot Archive
+#+Author: Arnaud Legrand, Univ. Grenoble Alpes, CNRS, Inria, Grenoble INP
+#+DATE:  \vspace{1cm} \href{http://hpc.guix.info/events/2021/atelier-reproductibilité-environnements}{Software Environment Reproducibility}, May 2021\hfill \mylogo\vspace{-1.3cm}
+# # #+DATE: \vspace{1cm} /Reproductibilité des environnements logiciels/, May 2021\hfill \mylogo\vspace{-1.3cm}
+#+LANGUAGE: en
+#+STARTUP: beamer indent inlineimages logdrawer
+#+TAGS: noexport(n)
+
+#+PROPERTY: header-args  :session :eval never-export :exports both
+#+DRAWERS: latex_headers
+
+# The magic presentation command: impressive -T 100 -t Crossfade --fake-fullscreen -g 800x600 talk_21_05_10_SIF.pdf
+
+:latex_headers:
+#+LaTeX_CLASS: beamer
+#+LATEX_CLASS_OPTIONS: [10pt,presentation,xcolor={usenames,dvipsnames,svgnames,table}]
+#+OPTIONS:   H:2 num:t toc:nil \n:nil @:t ::t |:t ^:nil -:t f:t *:t <:t
+#+LATEX_COMPILER: lualatex
+#+LATEX_HEADER: \usedescriptionitemofwidthas{bl}
+#+LATEX_HEADER: \usepackage[T1]{fontenc}
+#+LATEX_HEADER: \usepackage[utf8]{inputenc}
+#+LATEX_HEADER: \usepackage{figlatex}
+#+LATEX_HEADER: \usepackage[french]{babel}
+#+LATEX_HEADER: %\usepackage{DejaVuSansMono}
+#+LATEX_HEADER: \usepackage{ifthen,amsmath,amstext,gensymb,amssymb}
+#+LATEX_HEADER: \usepackage{boxedminipage,xspace,multicol}
+#+LATEX_HEADER: %%%%%%%%% Begin of Beamer Layout %%%%%%%%%%%%%
+#+LATEX_HEADER: \ProcessOptionsBeamer
+#+LATEX_HEADER: \usetheme[numbering=fraction,titleformat=smallcaps,progressbar=frametitle]{metropolis}
+#+LATEX_HEADER: \usepackage{fontawesome}
+#+LATEX_HEADER: \usecolortheme[named=BrickRed]{structure}
+#+LATEX_HEADER: %%%%%%%%% End of Beamer Layout %%%%%%%%%%%%%
+#+LATEX_HEADER: \usepackage{verbments}
+#+LATEX_HEADER: \usepackage{xcolor}
+#+LATEX_HEADER: \usepackage{color}
+#+LATEX_HEADER: \usepackage{url} \urlstyle{sf}
+#+LATEX_HEADER: \let\alert=\structure % to make sure the org * * works of tools
+#+LATEX_HEADER: %\let\tmptableofcontents=\tableofcontents
+#+LATEX_HEADER: %\def\tableofcontents{}
+#+LATEX_HEADER:  \usepackage[normalem]{ulem}
+#+LATEX_HEADER:  \usepackage{color,soul}
+#+LATEX_HEADER:  \definecolor{lightorange}{rgb}{1,.9,.7}
+#+LATEX_HEADER:  \sethlcolor{lightorange}
+#+LATEX_HEADER:  \definecolor{lightgreen}{rgb}{.7,.9,.7}
+#+LATEX_HEADER:  \let\hrefold=\href
+#+LATEX_HEADER:  \renewcommand{\href}[2]{\hrefold{#1}{\SoulColor{lightorange}\hl{#2}}}
+#+LATEX_HEADER: % \renewcommand{\uline}[1]{\SoulColor{lightorange}\hl{#1}}
+#+LATEX_HEADER: % \renewcommand{\emph}[1]{\SoulColor{lightorange}\hl{#1}}
+#+LATEX_HEADER: \makeatletter
+#+LATEX_HEADER: \newcommand\SoulColor[1]{%
+#+LATEX_HEADER:   \sethlcolor{#1}%
+#+LATEX_HEADER:   \let\set@color\beamerorig@set@color%
+#+LATEX_HEADER:   \let\reset@color\beamerorig@reset@color}
+#+LATEX_HEADER: \makeatother
+#+LATEX_HEADER: \let\oldtexttt=\texttt
+#+LATEX_HEADER: % \renewcommand\texttt[1]{\SoulColor{lightgreen}\hl{\tt#1}}
+#+LATEX_HEADER: % \renewcommand\alert[1]{\SoulColor{lightgreen}\hl{#1}}
+#+LATEX_HEADER: % \AtBeginSection{\begin{frame}{Outline}\tableofcontents\end{frame}}
+#+LATEX_HEADER: \graphicspath{{fig/}}
+#+LATEX_HEADER: \usepackage{tikzsymbols}
+#+LATEX_HEADER: \def\smiley{\Smiley[1][green!80!white]}
+#+LATEX_HEADER: \def\frowny{\Sadey[1][red!80!white]}
+#+LATEX_HEADER: \def\winkey{\Winkey[1][yellow]}
+#+LATEX_HEADER: \def\scared{\NiceReapey[1][red!80!white]}
+#+LATEX_HEADER: \def\sleepy{\Sleepey[1][blue!60!white]}
+#+LATEX_HEADER: \def\mylogo{\includegraphics[height=2.5cm]{./images/in_science_we_trust.jpg}}
+#+LATEX_HEADER: \def\sifbanner#1{\begin{tabular}{@{}m{.25\linewidth}m{.7\linewidth}@{}} \includegraphics[height=2.5cm]{./images/sif_logo_RR.png} & #1\end{tabular}}
+#+LATEX_HEADER: \def\siflogo{\raisebox{-.5em}{\includegraphics[height=2em]{./images/sif_logo.jpg}}}
+
+#+begin_export latex
+%\newcommand\sifbanner[1]{#1}%
+% \begin{tabular}{ll}
+%    \includegraphics[height=2.5cm]{./images/sif_logo_RR.png}}
+% \end{tabular}
+#+end_export
+#+BEGIN_EXPORT latex
+  \newcommand{\myfbox}[2][gray!20]{\bgroup\scalebox{.7}{\colorbox{#1}{{\vphantom{pS}#2}}}\egroup} % \fbox
+  %\def\myfbox#1{#1} % \fbox
+  \def\HPC{\myfbox[gray!40]{HPC}}
+  \def\NET{\myfbox[gray!40]{Network}}
+  \def\SG{\myfbox[gray!40]{Smart Grids}}
+  \def\ECO{\myfbox[gray!40]{Economics}}
+  \def\PRIV{\myfbox[gray!40]{Privacy}}
+  \def\TRACING{\myfbox[red!20]{Tracing}}
+  \def\SIM{\myfbox[green!20]{Simulation}}
+  \def\VIZ{\myfbox[red!40]{Visualization}}
+  \def\MODELING{\myfbox[green!40]{Stochastic Models}}
+  \def\OPT{\myfbox[blue!20]{Optimization}}
+  \def\GT{\myfbox[blue!40]{Game Theory}}
+#+END_EXPORT
+
+#+BEGIN_EXPORT latex
+\def\etal{\textit{et al.}\xspace}
+\def\eg{e.g.,\xspace}
+#+END_EXPORT
+
+#+BEGIN_EXPORT latex
+\def\changefont#1{%
+  \setbeamertemplate{itemize/enumerate body begin}{#1}
+  \setbeamertemplate{itemize/enumerate subbody begin}{#1}
+  #1}
+\makeatletter
+\newcommand{\verbatimfont}[1]{\renewcommand{\verbatim@font}{\ttfamily#1}}
+\makeatother
+\verbatimfont{\scriptsize}%small
+\let\endmintedbak=\endminted
+\def\endminted{\endmintedbak\vspace{-1cm}}
+\newsavebox{\mybox}
+#+END_EXPORT
+
+#+BEGIN_EXPORT latex
+\newcommand{\Norm}{\ensuremath{\mathcal{N}}\xspace}
+\newcommand{\Unif}{\ensuremath{\mathcal{U}}\xspace}
+\newcommand{\Triang}{\ensuremath{\mathcal{T}}\xspace}
+\newcommand{\Exp}{\ensuremath{\mathcal{E}}\xspace}
+\newcommand{\Bernouilli}{\ensuremath{\mathcal{B}}\xspace}
+\newcommand{\Like}{\ensuremath{\mathcal{L}}\xspace}
+\newcommand{\Model}{\ensuremath{\mathcal{M}}\xspace}
+\newcommand{\E}{\ensuremath{\mathbb{E}}\xspace}
+\def\T{\ensuremath{\theta}\xspace}
+\def\Th{\ensuremath{\hat{\theta}}\xspace}
+\def\Tt{\ensuremath{\tilde{\theta}}\xspace}
+\def\Y{\ensuremath{y}\xspace}
+\def\Yh{\ensuremath{\hat{y}}\xspace}
+\def\Yt{\ensuremath{\tilde{y}}\xspace}
+\let\epsilon=\varepsilon
+\let\leq=\leqslant
+\let\geq=\geqslant
+#+END_EXPORT
+:end:
+
+* Context
+** Personal History
+- The early days :: (1997) tried Redhat, Slackware, Debian
+  - Regularly compiled my kernel to have the right modules \hfill$\frowny$
+  - Feared everytime I had to reconfigure X \hfill$\scared$
+  - Updates through a 56kbps modem or a Zip drive \hfill$\sleepy$
+- Happy Debian User since \approx 1998 ::  
+  - Switched to Ubuntu for a few months but I quickly got back to
+    Debian! \hfill$\smiley$
+  - Debian stable versions are often outdated. *I live on the edge* with
+    _Debian unstable_ most of the time \hfill$\winkey$
+  - I install stuff whenever I need and upgrade every 2-3 months
+** Software Management
+- Open source by default :: (except for Nvidia drivers and video codecs)
+   #+begin_quote
+    \footnotesize Source is provided to this software because we
+    believe users *have a right to know exactly what a program is going
+    to do before they run it*.
+
+    \hfill   -- Nmap Reference Guide
+    #+end_quote
+- Install everything through =apt= :: (since $\approx 1999$)
+  - Several friends were Debian developpers
+  #+begin_quote
+    \footnotesize To what extent should one trust a statement that a
+    program is free of Trojan horses? Perhaps it is more important to
+    *\textbf{trust} the people who wrote the software*.\hfill -- Ken Thompson,
+    1984
+  #+end_quote
+  - The only code I compile is mostly my own (in OCAML, C, perl)
+  - For a while, when using R, I had to install recent libraries with
+    =install.packages=
+    - Works well but this is *bad practice*
+    - I generally "hate" python and the pip ecosystem 
+- In my perspective :: software environment was *never a real problem*
+  - Just run =apt update; apt install=
+  - Enjoy all the most up-to-date software with bugfixes
+
+** 10 years reproducibility challenge
+#+begin_center
+#+ATTR_LaTeX: :width .47\linewidth
+file:images/ten-years-challenge.png
+
+\footnotesize
+http://rescience.github.io/ten-years/
+#+end_center
+
+** A 2009 Article
+\small
+"/Accuracy Study and Improvement of Network Simulation in the SimGrid
+Framework/", Velho and Legrand, SimuTools 2009
+
+
+- Simulation comparison :: coarse-grain (SimGrid) vs. fine-grain (GTNetS)
+  - Compare a fluid bandwidth sharing model (=SimGrid=) with a
+    packet-level model (=GTNetS=) of TCP
+  - Mostly simulations: 3 kind of network topologies, parameterized
+    and randomized workload
+
+- Simulation workflow ::  
+  #+ATTR_LaTeX: :width \linewidth
+  file:images/reproducibility-challenge/workflow.pdf
+- Already a reproduction effort :: "/Speed and Accuracy of Network
+  Simulation in the SimGrid Framework/", Fujiwara and Casanova,
+  ValueTools 2007
+  - We could not obtain the exact same results so we took notes and
+    tried to make stuff available
+* Getting my Hands Dirty
+** Step 1: Getting the pieces together
+- Finding out data and instructions ::  
+  - Do not trust your memory, ask the PhD student and his [[http://mescal.imag.fr/membres/pedro.velho/publications.html][webpage]]!
+  - Provides =GTNetS=, the *patches to apply* and *detailed instructions*
+    for SimGrid integration
+  - Experiments run in late 2008; previous SimGrid release $\approx$ 2007
+- Figuring out software versions ::  
+  - GTNets: discontinued development since October 2008
+  - SimGrid dates from 2000 and Martin Quinson cares a lot:
+    - Was hosted on [[https://gforge.inria.fr/projects/simgrid/][=gforge.inria.fr=]], then [[https://github.com/simgrid/simgrid/][=github.com=]] (2010) and
+      [[https://gitlab.inria.fr/simgrid/simgrid][=gitlab.inria.fr=]], and now [[https://framagit.org/simgrid/simgrid/][=framagit=]]
+    - *SimGrid v3.3?* Stable releases (=autotools=) are only on
+      =gforge.inria.fr=
+** Step 2: Building an environment and compiling code
+- Shallow (but useful) description :: (=README=)
+  #+begin_example
+Author        : Pedro Velho
+last modified : 03/11/2008
+
+1. Disclaimer [...]
+2. Short History [...]
+3. Directory Structure [...]
+4. Global System Requirements
+   - GTNets patched simgrid version, we kindly provide GTNets with
+     patches in the simgrid contrib svn repository [FIXME]
+   - SimGrid, configured and compiled with GTNets support [FIXME]
+   For plotting graphs and explore the data:
+   - R - the gnu version of S [FIXME]
+   - Gnuplot [FIXME]
+  #+end_example
+- Dependencies ::  
+  - perl, R, gnuplot: easy!! \hfill$\smiley$
+  - simgrid: easy (autotools, C, a bit of C++ for GTNets)\hfill$\smiley$
+  - gtnets: Qt3!!! \hfill$\frowny$
+
+#+begin_center
+\bf I really need a 2009 software environment!!!
+#+end_center
+** Using Docker
+Let's grab a docker image from a 10 years old distro and consider
+Pedro used Debian stable (codename *Lenny* back then)
+  #+begin_src shell :results output :exports both
+  docker search debian-lenny
+  #+end_src
+
+  #+RESULTS:
+  #+begin_example
+  NAME                       DESCRIPTION                                    
+  pblaszczyk/debian-lenny    5.0.10 amd64                                   
+  lpenz/debian-lenny-amd64   Debian 5.0.10 Released 10 March 2012 for amd…  
+  lpenz/debian-lenny-i386    Debian 5.0.10 Released 10 March 2012 for i386  
+  ...
+  #+end_example
+Then write the Dockerfile
+** Docker file (1/2)
+#+latex: \begin{lrbox}{\mybox}\begin{minipage}{1.3\linewidth}
+#+begin_src shell :results output :exports both
+FROM lpenz/debian-lenny-i386
+
+# Software dependencies
+RUN apt-get update \
+	&& apt-get install -y --force-yes gcc g++ make wget \
+		   unzip subversion patch less libqt3-mt \
+		   libqt3-headers libqt3-mt-dev qt3-dev-tools 
+
+# Downloading GTNetS
+RUN cd /root; svn checkout \
+		  svn://scm.gforge.inria.fr/svn/simgrid/contrib/trunk/GTNetS/
+# Downloading SimGrid
+RUN cd /root; wget \
+    https://gforge.inria.fr/frs/download.php/file/21430/simgrid-3.3.tar.gz
+#+end_src
+#+latex: \end{minipage}\end{lrbox}\scalebox{.8}{\usebox{\mybox}}
+** Docker file (2/2)
+#+latex: \begin{lrbox}{\mybox}\begin{minipage}{1.3\linewidth}
+#+begin_src shell :results output :exports both
+# Building GTNetS
+RUN cd /root/GTNetS/; unzip gtnets-current.zip ; tar zxvf gtnets-current-patch.tgz
+RUN cd /root/GTNetS/gtnets-current; cat ../00*.patch | patch -p1
+RUN cd /root/GTNetS/gtnets-current; ln -sf Makefile.linux Makefile && \
+    make depend && make opt
+
+# Installing GTNetS
+RUN cd /root/GTNetS/gtnets-current/ && \
+    mkdir -p /root/usr/lib/ &&         \
+    ln -sf `pwd`/libgtsim-opt.so /root/usr/lib/libgtnets.so && \
+    ln -sf `pwd`/libgtsim-opt.so /usr/lib/libgtnets.so &&      \
+    mkdir -p /root/usr/include/ &&    \
+    cp -fr SRC/*.h /root/usr/include/
+
+# Building SimGrid
+RUN cd /root/ && tar zxf simgrid-3.3.tar.gz
+RUN cd /root/simgrid-3.3/ && \
+    ./configure --with-gtnets=/root/usr/ && \
+    export LD_LIBRARY_PATH=/root/usr/lib/libgtnets.so && \
+    ldconfig && \
+    make
+
+RUN apt-get clean
+#+end_src
+#+latex: \end{minipage}\end{lrbox}\scalebox{.8}{\usebox{\mybox}}
+** Debian snapshot-archive\dots
+It all went super smooth thanks to the instructions in the README $\smiley$
+
+*\textbf{What's broken in this Dockerfile?}*
+- =gforge.inria.fr= will die in a few months
+  - Use [[https://archive.softwareheritage.org/browse/origin/directory/?origin_url=svn://scm.gforge.inria.fr/svn/simgrid/contrib/trunk/GTNetS/&path=contrib/trunk/GTNetS][Software Heritage]] instead (zip files in an svn\dots shame $\frowny$)
+  - *TODO*: Save all simgrid stable archives (zenodo ?)
+- =FROM lpenz/debian-lenny-i386=
+  - ~/etc/apt/sources.list~ indicates:
+    #+begin_example
+    deb http://archive.debian.org/debian lenny main
+    #+end_example
+    Last version (5.0.10) dates from March 2012
+  - [[https://snapshot.debian.org/][Debian Snapshot]]
+    #+begin_example
+    deb https://snapshot.debian.org/archive/debian/20091004T111800Z/
+    lenny main
+    #+end_example
+** \dots and the debuerrotype!!!
+      
+*\textbf{Discover the} [[https://github.com/debuerreotype/debuerreotype][=debuerreotype=]]*
+
+#+begin_src shell :results output :exports both
+debuerreotype-init rootfs testing 2009-05-01-T03:27:08Z
+#+end_src
+
+A few important things to know:
+- Requires =root= privileges (see [[https://github.com/debuerreotype/debuerreotype/issues/66][issue 66)]]
+- ~--keyring=/usr/share/keyrings/debian-archive-removed-keys.gpg~
+- ~vsyscall=emulate~ (see [[https://github.com/debuerreotype/debuerreotype/issues/80][issue 80]])
+
+This is the right way to proceed
+
+\footnotesize /but I was in the plane and fought against this
+~vsyscall=emulate~ thing when I tried/
+*** Testing again!                                               :noexport:
+#+begin_src shell :results output :exports both
+sudo debuerreotype-init --keyring=/usr/share/keyrings/debian-archive-removed-keys.gpg rootfs testing 2009-05-01-T03:27:08Z
+sudo debuerreotype-slimify rootfs
+sudo debuerreotype-tar rootfs - | docker import - alegrand/test_debuerrotype
+#+end_src
+
+** Step 3: run stuff
+#+ATTR_LaTeX: :width \linewidth
+file:images/reproducibility-challenge/workflow.pdf
+
+- A home-made perl script with hard-coded paths (painful but worked)
+- Obtained the *same intermediate results* \bgroup\small (thanks to the
+  ~bin/ log/ dat/~ organization)\egroup
+- Long computation $\leadsto$ stopped it before the end
+  - But I could run the analysis and *obtained similar output* (linear
+    regression, 3D plot)\bigskip
+    
+- Only ran the simulation and the analysis
+  + no workload generation (no information was given, but it would
+    have required =Java= and no information on the seed was kept)
+* Conclusion
+** Conclusion on the challenge
+I *greatly* underestimated:
+1. Link rot (simgrid, gforge closure, webpage)
+2. Lack of automation (org-mode or snakemake would have made everything much simpler)
+3. Environment reconstruction (limited information)
+   + Yet, I could easily rebuild a working environment (Debian)
+   + Was it the exact same code ?
+     + ~¯\_(°_o)_/¯~ gave the same results for the parts I ran\hfill$\winkey$
+** Conclusion on Docker
+Docker is *easy to use* _but_ *does _not_ provide with any help/warranty*!
+
+Docker can be quite helpful for the average scientist to build
+reproducible environments *provided a few precautions are taken*:
+1. *Regularly* work in a container with *minimal dependencies*
+   - Also separate the code from the data (, which can be painful)
+2. Use *high quality* and *trusted* software *packages* (Debian)
+   #+begin_quote
+    \small To what extent should one trust a statement that a program is free
+    of Trojan horses? Perhaps it is more important to *trust the people
+    who wrote the software*.\hfill  -- Ken Thompson, 1984
+   #+end_quote
+3. *Freeze* the sources (debian snapshot-archive)
+4. *Document the creation* (the DockerHub is not an archive!)\medskip
+
+What if I had to redo this today (e.g., with snakemake)
+- ship snakemake in my docker image ? Nope!
+- snakemake in docker running my code in singularity ?
+
+* Emacs Setup                                                      :noexport:
+This document has local variables in its postembule, which should
+allow Org-mode (9) to work seamlessly without any setup. If you're
+uncomfortable using such variables, you can safely ignore them at
+startup. Exporting may require that you copy them in your .emacs.
+
+# Local Variables:
+# eval: (add-to-list 'org-latex-packages-alist '("" "minted"))
+# eval: (setq org-latex-listings 'minted)
+# eval: (setq org-latex-minted-options '(("style" "Tango") ("bgcolor" "Moccasin") ("frame" "lines") ("linenos" "false") ("fontsize" "\\footnotesize")))
+# eval: (setq org-latex-pdf-process '("lualatex -shell-escape -interaction nonstopmode -output-directory %o %f"))
+# End:
