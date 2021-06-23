@@ -688,7 +688,7 @@ file:images/platform_diversity.png
     \includegraphics<.>[height=.8cm]{images/logo/OrgMode_logo.png}
     \includegraphics<.>[height=.8cm]{images/logo/RStudio_logo.png}
 
-    \only<.>{\href{https://juyterhub.u-ga.fr/}{https://juyterhub.u-ga.fr/}}
+    \only<.>{\href{https://jupyterhub.u-ga.fr/}{https://jupyterhub.u-ga.fr/}}
   \end{center}
 \end{overlayarea}
 #+END_EXPORT
