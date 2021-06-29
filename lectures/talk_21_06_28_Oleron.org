@@ -648,7 +648,7 @@ Many [[https://en.wikipedia.org/wiki/Reproducibility][definitions]] (/replicabil
 #+ATTR_LATEX: :align C{2.5cm}C{4.5cm}@{$\quad \to\quad$}c
 | *experimental* reproducibility  | similar input (data) +\newline similar experimental protocol                          | *similar results*\footnote{Up-to measurement variability and precision}                    |
 |-------------------------------+---------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------|
-| *statistical* reproducibility   | same input (data) +\newline same analysis                                             | *same conclusions*\footnote{Independently from (random) sampling variability (fight bias)} |
+| *statistical* reproducibility   | different input (data) +\newline same analysis                                    | *same conclusions*\footnote{Independently from (random) sampling variability (fight bias)} |
 |-------------------------------+---------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------|
 | *computational* reproducibility | similar input (data) +\newline same code/software +\newline same software environment | *exact same results*\footnote{Bitwise}                                                     |
 
@@ -660,9 +660,11 @@ Reproducible Research = A way of doing science so that scientific
 experiments, discoveries, results, etc. can be easily reproduced (done
 again), to be confirmed, or to be built on for the next study.
 #+end_quote
-\vspace{1cm}
 
 #+latex: \let\alert=\structure % Restore
+
+#+LaTeX: \vspace{-.5cm}~\begin{flushright}\scriptsize -- Courtesy G. Durrif, 2021\end{flushright}
+# \vspace{1cm}
 
 ** Existing Tools, Emerging Standards
 \vspace{1em}
@@ -1047,7 +1049,7 @@ loaded via a namespace (and not attached):
 - Whenever trying the code of my colleague, I had to install Foo but
   I broke everything and now neither his code nor mine works! $\frowny$
 - But hey! Here is my code, feel free to play with it! I'm doing open
-  science $\winkey$\bigskip
+  science \winkey \bigskip
 
   Are you really aware of your dependencies ?
   - No one will ever run/use your code if it isn't easy to install
