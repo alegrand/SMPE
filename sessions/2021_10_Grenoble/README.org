@@ -5,6 +5,8 @@
 
 *Teachers*: Élise Arnaud, Céline Coutrix, Arnaud Legrand, and Jean-Marc Vincent
 
+[[https://team.inria.fr/airsea/files/2015/09/elise.png][https://team.inria.fr/airsea/files/2015/09/elise.png]]
+
 #+BEGIN_QUOTE
 *Reporting errors*: Although I do my best there may definitely be typos
 and broken links. This is github so please report me everything you
