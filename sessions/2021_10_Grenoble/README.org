@@ -45,8 +45,14 @@ are composed with [[http://orgmode.org][org-mode]], beamer, and verbments.
 * Course Tentative Schedule
 ** 1. 30/09/21 [JMV, AL] Introduction to the scientific method and computer science epistemology | Presentation of the lecture
 *** Slides
-*** TODO MOOC
-- Register to the [[https://learninglab.inria.fr/en/mooc-recherche-reproductible-principes-methodologiques-pour-une-science-transparente/][MOOC on Reproducible Research]] and follow modules 1 + 2 with all exercises (except the last one of module2, on /Challenger/)
+*** TODO Homeworks for the next time
+- [ ] Register on the [[https://framateam.org/smpe-2021-2022/channels/town-square][Mattermost of this lecture]] through this [[https://framateam.org/signup_user_complete/?id=wp1a4fpd5bg7tm8fcya3reqgse][Invitation link]]. 
+- [ ] Indicate your name on [[http://pads.univ-grenoble-alpes.fr/p/MOSIG-SMPE-2022][Pad]] you will use to collaborate and fill in all the information you can.
+- [ ] Register to the [[https://learninglab.inria.fr/en/mooc-recherche-reproductible-principes-methodologiques-pour-une-science-transparente/][MOOC on Reproducible Research]]
+- [ ] Follow modules 1 + 2 of the MOOC with all exercises (except the last one of module2, on /Challenger/)
+- [ ] Set up a computational document system (e.g., [[#installing-r-and-rstudio][Rstudio]] or Jupyter on your laptop or through the [[https://jupyterhub.u-ga.fr/][UGA JupyterHub]])
+- [ ] Set up a public github or gitlab project for this lecture. You will take notes on this lecture and turn your homework and computational documents in this project.
+- [ ] Report the links of your git project on the [[http://pads.univ-grenoble-alpes.fr/p/MOSIG-SMPE-2022][Pad]] 
 ** 07/10/21: No lecture
 ** 2. 14/10/21 [JMV, EA] Visualization and Exploratory Data Analysis | Correlation/causality, spurious correlation
    # 1. Viz de type Exploratory Data Analysis, multi-varié, time series, éventuellement réalisées par des individus différents.
