@@ -16,8 +16,12 @@ evaluation avalaible that I was invited to give in various
 occasions. I have given this course with Jean-Marc Vincent several
 years (roughly from 2011 to 2015) in the second year of the [[http://mosig.imag.fr/][Master of
 Science in Informatics at Grenoble]] and more recently at [[http://www.ufrgs.br/][Federal
-University of Rio Grande do Sul]], at [[http://www.ens-lyon.fr][ENS Lyon]] and [[http://ens-rennes.fr][ENS Rennes]]. All 
-Most sessions I gave are listed [[file:sessions/][here]].
+University of Rio Grande do Sul]], at [[http://www.ens-lyon.fr][ENS Lyon]] and [[http://ens-rennes.fr][ENS Rennes]]. Most sessions I gave are listed [[file:sessions/][here]].
+
+#+begin_center
+*If you are a MOSIG student, the webpage for your session is [[file:sessions/2021_10_Grenoble/README.org][here]]*.
+#+end_center
+
 
 This website also gathers a list of keynotes I gave on reproducible
 research. The most recent ones are:
@@ -33,15 +37,15 @@ done
 #+end_src
 
 #+RESULTS:
-- [[file:lectures/talk_20_01_28_Grenoble_STID.pdf][Grenoble_STID (28/01/2020)]]
-- [[file:lectures/talk_20_01_23_Nantes_RSD.pdf][Nantes_RSD (23/01/2020)]]
-- [[file:lectures/talk_19_11_12_Inria_Alumni.pdf][Inria_Alumni (12/11/2019)]]
-- [[file:lectures/talk_19_11_06_Neuchatel.pdf][Neuchatel (06/11/2019)]]
-- [[file:lectures/talk_19_11_05_Formidex.pdf][Formidex (05/11/2019)]]
-- [[file:lectures/talk_19_10_08_Brazil.pdf][Brazil (08/10/2019)]]
-- [[file:lectures/talk_19_07_03_TILECS.pdf][TILECS (03/07/2019)]]
-- [[file:lectures/talk_18_05_23_DGDT_Rennes.pdf][DGDT_Rennes (23/05/2018)]]
-- [[file:lectures/talk_18_05_07_Luminy.pdf][Luminy (07/05/2018)]]
+- [[file:lectures/talk_21_06_28_Oleron.pdf][Oleron (28/06/2021)]]
+- [[file:lectures/talk_21_06_23_Montpellier.pdf][Montpellier (23/06/2021)]]
+- [[file:lectures/talk_21_05_18_guix_docker.pdf][guix_docker (18/05/2021)]]
+- [[file:lectures/talk_21_05_10_SIF.pdf][SIF (10/05/2021)]]
+- [[file:lectures/talk_21_04_06_Grenoble.pdf][Grenoble (06/04/2021)]]
+- [[file:lectures/talk_21_02_11_ELN_Irisa.pdf][ELN_Irisa (11/02/2021)]]
+- [[file:lectures/talk_20_12_15_M1_UGA.pdf][M1_UGA (15/12/2020)]]
+- [[file:lectures/talk_20_10_08_DUISN.pdf][DUISN (08/10/2020)]]
+- [[file:lectures/talk_20_07_10_JDEV.pdf][JDEV (10/07/2020)]]
 
 
 * Table of Contents                                                     :TOC:

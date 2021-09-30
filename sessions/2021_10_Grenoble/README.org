@@ -3,6 +3,8 @@
 #+DATE: October 2021
 #+STARTUP: overview indent
 
+*Teachers*: Élise Arnaud, Céline Coutrix, Arnaud Legrand, and Jean-Marc Vincent
+
 #+BEGIN_QUOTE
 *Reporting errors*: Although I do my best there may definitely be typos
 and broken links. This is github so please report me everything you
