@@ -7,6 +7,10 @@
 
 [[https://team.inria.fr/airsea/files/2015/09/elise.png][https://team.inria.fr/airsea/files/2015/09/elise.png]]
 
+
+
+   <img src="https://team.inria.fr/airsea/files/2015/09/elise.png" alt="Élise Arnaud" width="300">
+
 #+BEGIN_QUOTE
 *Reporting errors*: Although I do my best there may definitely be typos
 and broken links. This is github so please report me everything you
