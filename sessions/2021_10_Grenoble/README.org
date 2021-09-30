@@ -45,7 +45,7 @@ are composed with [[http://orgmode.org][org-mode]], beamer, and verbments.
 * Course Tentative Schedule
 ** 1. 30/09/21 [JMV, AL] Introduction to the scientific method and computer science epistemology | Presentation of the lecture
 *** Slides
-*** TODO Homeworks for the next time
+*** Homeworks (1)
 - [ ] Register on the [[https://framateam.org/smpe-2021-2022/channels/town-square][Mattermost of this lecture]] through this [[https://framateam.org/signup_user_complete/?id=wp1a4fpd5bg7tm8fcya3reqgse][Invitation link]]. 
 - [ ] Indicate your name on [[http://pads.univ-grenoble-alpes.fr/p/MOSIG-SMPE-2022][Pad]] you will use to collaborate and fill in all the information you can.
 - [ ] Register to the [[https://learninglab.inria.fr/en/mooc-recherche-reproductible-principes-methodologiques-pour-une-science-transparente/][MOOC on Reproducible Research]]
