@@ -1,0 +1,289 @@
+#+TITLE:     Scientific Methodology and (emPirical|exPerimental) Evaluation
+#+AUTHOR:    Élise Arnaud, Céline Coutrix, Arnaud Legrand, and Jean-Marc Vincent
+#+DATE: October 2021
+#+STARTUP: overview indent
+
+#+BEGIN_QUOTE
+*Reporting errors*: Although I do my best there may definitely be typos
+and broken links. This is github so please report me everything you
+find so that I can improve for others. :)
+#+END_QUOTE
+
+This webpage gathers information about the lectures given at the
+University of Grenoble to the Master students in Computer
+Science (MOSIG) from October 2021 to January 2022.
+
+* Useful links 
+- Here is the [[http://pads.univ-grenoble-alpes.fr/p/MOSIG-SMPE-2022][Pad]] you will use to collaborate.
+- Here is the [[https://edt.grenoble-inp.fr/2021-2022/][lecture schedule on ADE]] (look for mosig2). A table summary is [[https://edt.grenoble-inp.fr/2021-2022/enseignant/*/jsp/custom/modules/plannings/eventInfo.jsp?week=-1&day=-1&slot=0&eventId=35775&activityId=-1&resourceId=-1&sessionId=-1&repetition=-1&order=slot&availableZone=-1][here]] (this is the teachers link, I'm not sure how to have the public link :( )
+- Here is the [[https://framateam.org/signup_user_complete/?id=wp1a4fpd5bg7tm8fcya3reqgse][Invitation link]] for the [[https://framateam.org/smpe-2021-2022/channels/town-square][Mattermost]] we will use to exchange information. 
+  # https://edt.grenoble-inp.fr/2021-2022/exterieur/
+  # https://edt.grenoble-inp.fr/2021-2022/exterieur/jsp/custom/modules/plannings/eventInfo.jsp?week=-1&day=-1&slot=0&eventId=35775&activityId=-1&resourceId=-1&sessionId=-1&repetition=-1&order=slot&availableZone=-1
+# - Here is the [[https://im2ag-mattermost.univ-grenoble-alpes.fr/mosig/channels/m2dismpe][Mattermost]] we will use to exchange information.
+Links to the slides are provided below.
+* Course Objective and Organization
+The aim of this course is to provide the fundamental basis for sound
+scientific methodology of empirical evaluation of computer
+systems. This lecture emphasize on methodological aspects of
+measurement and on the statistics needed to analyze computer systems,  human-computer interaction systems, and machine learning systems.
+We first sensibilize the audience to the experiment and analysis
+reproducibility issue in particular in computer science. Then we
+present tools that help answering the analysis problem and may also
+reveal useful for managing the experimental process through
+notebooks. The audience is given the basis of probabilities and
+statistics required to develop sound experiment designs. The content of the lecture is therefore both theoretical and practical, illustrated by a lot of case studies and practical sessions. The goal is not to provide analysis recipes that people
+can readily apply but to make students really understand some simple
+(and possibly not-so-simple) tools so that they can then dig deeper later on.
+
+You may want to look at the [[file:../2020_10_Grenoble/README.org][previous edition]] to see the kind of material we use but we will adapt to the audience on the fly anyway.
+
+All the examples given in this series of lecture use the [[http://www.r-project.org/][R]] language
+and the source is provided so that people can reuse them. The slides
+are composed with [[http://orgmode.org][org-mode]], beamer, and verbments.
+* Course Tentative Schedule
+** 1. 30/09/21 [JMV, AL] Introduction to the scientific method and computer science epistemology | Presentation of the lecture
+*** Slides
+*** TODO MOOC
+- Register to the [[https://learninglab.inria.fr/en/mooc-recherche-reproductible-principes-methodologiques-pour-une-science-transparente/][MOOC on Reproducible Research]] and follow modules 1 + 2 with all exercises (except the last one of module2, on /Challenger/)
+** 07/10/21: No lecture
+** 2. 14/10/21 [JMV, EA] Visualization and Exploratory Data Analysis | Correlation/causality, spurious correlation
+   # 1. Viz de type Exploratory Data Analysis, multi-varié, time series, éventuellement réalisées par des individus différents.
+   # - Séance pratique: observational data (exo avec besoin de data curation, utilisation de jupyter via le MOOC ou via le jupyterhub de gricad ou Rstudio)
+   # 2. correlation, causality
+   # - Ccl:
+   #   - Big fat warning avec cette démarche
+   #   - EDA = créér des hypothèses:
+   #     - Biais lié à notre contexte personnel (on ne va pas tous générer les mêmes hypothèses). Confirmation bias.
+   #     - Apophenia
+   #     - Données mal collectées (avec un biais très important)
+   #     - ~~Données crades, sans sémantique, mal encodées?~~
+   # - [TODO] MOOC: exo5 de module 2, module 3 et 4 (pas les exos) ; 
+** 3. 21/10/21 [JMV, AL] Data curation with the tidyverse | Data management 1
+   # 0. Correction exo5 du module2 (challenger)
+   # 1. dplyr (exo avec documentation de l'ensemble)
+   # 2. (file organization, file formats, gestion de version, git annex/datalad)
+   # - [TODO] Remettre analyse prénom au propre avec curation et document computationnel propre
+   # - [TODO] MOOC: Commencer évaluation par les pairs du MOOC, deadline de rendu dans 2 ou 3 semaines.
+** 4. 28/10/21 [JMV, CC] Beautiful Viz with ggplot | Data management 2
+# 1. ggplot (amélioration de ce qui a été fait précédement) 
+# 2. (science ouverte, archivage, **plan de gestion de données**, anonymisation/cryptage, consent form)
+#    - [X] Demander à Cécile Arenes (elle va m'envoyer ses slides)
+#        - Autre ref sur l'évaporation des données (pas juste des URLs): https://twitter.com/flodebarre/status/1436384555389358082?s=09
+#        - https://doranum.fr/plan-gestion-donnees-dmp/fiche-synthetique/ pour l'intro et des liens vers des ressources
+#        - https://dmp.opidor.fr/ pour l'aide à la rédaction et des exemples
+#        - Très léger, l'objectif est de faire changer les mentalités et les pratiques mais rien de coercitif ni de vérifié pour l'instant.
+#        - Publication « Guide de bonnes pratiques sur la gestion des données de la Recherche https://mi-gt-donnees.pages.math.unistra.fr/guide (relayé par Violaine Louvet)
+#        - Anonymisation, embargo, ... : https://about.zenodo.org/terms/ and https://help.zenodo.org/#policies. Attention à la licence. Éventuellement CC-By pas adaptées si consent form.
+#            - https://authorservices.taylorandfrancis.com/editorial-policies/research-ethics-and-consent/
+#            - https://publishingsupport.iopscience.iop.org/is-permission-required-faqs-using-open-access-content/
+#       - Références de Cécile:
+#         - Université Paris Lumières. 2019. « Fiches pratiques sur le Règlement Général pour la Protection des Données ». 
+# https://www.u-plum.fr/wp-content/uploads/2019/09/Guide-RGPD-2019-web.pdf 
+#         - InSHS. 2021. Les Sciences Humaines et Sociales et La Protection Des Données à Caractère Personnel Dans Le Contexte de La Science Ouverte : Guide Pour La Recherche - V2. https://inshs.cnrs.fr/sites/institut_inshs/files/pdf/guide-rgpd.pdf.
+#             Ce second guide est plutôt orienté SHS, mais les questions traitées peuvent s'appliquer à d'autres disciplines. Il y a notamment un rappel des piliers du RGPD, notamment ceux utilisables dans le cadre de la recherche, ainsi que des modèles de fiches d'information et de formulaires de consentement pour les enquêtes.
+#         - MSH Lorraine. 2021. Ouvrir ses données. https://msh-lorraine.fr/wp-content/uploads/2021/08/Ouvrir-ses-donnees.pdf
+# Je n'ai pas encore lu ce guide paru avant l'été, mais Lionel Maurel, juriste que vous suivez peut-être sur twitter, le recommande
+#    - [TODO] Remettre au propre analyse prénom avec provenance/"archivage" des données et explicitation des dépendances logicielles.
+#    - [TODO] Continuer évaluation par les pairs
+** Fall Vacations
+** Armistice
+** 5. 18/11/21 [AL|JM + CC] Mesures et instrumentation, prise de conscience de la variabilité, des problèmes de non stationarité et des problèmes de contrôle (est-ce que ma mesure est en train de dériver et sort du cadre qui m'intéresse, la notion de condition "normale" d'utilisation), de reproductibilité expérimentale. **à discuter avec Céline**
+   # - Travail en binôme, début de réalisation en séance (exo: notebook avec expérimentation, notebook avec analyse)
+   #      - Quicksort parallèle (sequentiel vs. parallèle et taille du tableau)
+   #      - Mesure en "IHM" réalisable sur un temps court ?
+** 6. 25/11/21 [AL|JM + CC] Prise de conscience des nombreux paramètres non identifiés (fishbone), de la variabilité, et pour les plus pointus du fait que la mesure est pourrie, et du manque d'arsenal mathématique pour répondre aux question les plus simples (code sans intérêt)
+   # - analyse/visu des données expérimentales récupérées à la séance d'avant (avec paramètres continus discrets)
+   # - [TODO] exo: prise de conscience de la variabilité "inter-labo" en répliquant l'expérience d'un autre
+   # - [TODO] On donne l'app shiny qui simule des mesures expérimentales et ils peuvent commencer à jouer avec. 
+   #     - Plusieurs "modèles" possibles
+   #     - en binôme, vont jouer à expérimenter/analyser/interpréter sur les 5 prochaines semaines et faire un rendu montrant comment ils réinvestissent ce qu'on a vu
+
+   # Probas, CLT et test via un IC.
+   # - anecdote rigolote à utiliser ? https://twitter.com/nholzschuch/status/1436739620620935175?s=09
+** 7. 2/12/21 [EA | AL ?] The linear model
+    # - [TODO] Prévoir un rendu pour les forcer à manipuler et à apprendre à lire ce genre de sorties. Pour ça, s'appuyer sur l'app shiny
+    # - Insister sur https://twitter.com/arnaudlegrand17/status/1432981192983433217 qui permet de rappeler le risque dans des études observationnelles.
+** 8. 9/12/21 [EA] Multiple testing and ANOVA (p-hacking) | Seqential DoE (screening, D-opt, LHS)
+    # - [TODO] App shiny
+** 9. 16/12/21 [EA] A Bayesian perspective
+# (https://gitlab.inria.fr/alegrand/slides_bayesian_sampling/-/blob/master/bayesian_statistics_introduction.pdf), "Équivalence" entre la régression linéaire en fréquentiste et en MLE sous hypothèse Gaussienne, Ridge/LASSO comme régression linéaire bayesienne, sélection de modèles (AIC, BIC), Extension du modèle linéaire (régression logistique) ?
+#     - [TODO] App shiny
+** Winter vacations
+** 10. 06/01/22 Incremental DoE, Surrogates, and Reinforcement Learning (Bandit, GP)
+    # - [TODO] App shiny
+** 11. 13/01/22 Scientific integrity (HARKING, p-hacking, data falsification, plagiarism, collusion)
+    # - https://twitter.com/MicrobiomDigest/status/1416838153583927304?s=09 https://twitter.com/MicrobiomDigest/status/1425477195141636105?s=09
+    # - https://twitter.com/vardi/status/1410948462150139906 https://twitter.com/AndreasZeller/status/1420787486629015554?s=09
+    # - https://twitter.com/ouvrirlascience/status/1411254714235228162 https://science-octopus.org/ f1000research
+    # - https://twitter.com/NousCamille/status/1413103024097140739
+    # - https://cacm.acm.org/magazines/2021/6/252840-collusion-rings-threaten-the-integrity-of-computer-science-research/fulltext
+    # - https://twitter.com/AndreasZeller/status/1420787486629015554?s=09
+** 12. 20/01/22 Ethics (AI and humain, climate change, societal challenges)
+* Hands-on
+In the 3rd module of the [[https://www.fun-mooc.fr/courses/course-v1:inria+41016+session01bis/about][MOOC on Reproducible Research]], there is a
+peer-reviewed homework that will allow you to practically use
+everything you learnt. 
+* Requirements 
+All the examples given in this series of lecture use the [[http://www.r-project.org/][R]] language
+and the source is provided so that people can reuse them. The slides
+are composed with [[http://orgmode.org][org-mode]], beamer, and verbments.
+
+It is not expected that students already knows the R language as I
+will briefly present it. However, they should have already installed
+Rstudio and R (check the next section if you need information) on
+their laptop so as to try out the examples I provide for themselves. 
+
+Alternatively, you may use Jupyter with python or R, either on your
+machine or through the MOOC or the [[https://jupyterhub.u-ga.fr/][UGA JupyterHub]]. Most R verbs have
+now their python counterpart (e.g., =numpy= and =pandas= for vectors and
+dataframes, =plotnine= for =ggplot2=, =statsmodels= for linear regressions,
+...).
+* Using R
+** Installing R and Rstudio
+Here is how to proceed on debian-based distributions:
+#+BEGIN_SRC sh
+sudo apt install r-base r-cran-ggplot2 r-cran-dplyr r-cran-tidyr r-cran-knitr r-cran-magrittr 
+#+END_SRC
+Make sure you have a recent (>= 3.2.0) version or R. For example, here
+is what I have on my machine:
+#+begin_src sh :results output :exports both
+R --version
+#+end_src
+
+#+RESULTS:
+#+begin_example
+R version 4.1.1 (2021-08-10) -- "Kick Things"
+Copyright (C) 2021 The R Foundation for Statistical Computing
+Platform: x86_64-pc-linux-gnu (64-bit)
+
+R is free software and comes with ABSOLUTELY NO WARRANTY.
+You are welcome to redistribute it under the terms of the
+GNU General Public License versions 2 or 3.
+For more information about these matters see
+https://www.gnu.org/licenses/.
+
+#+end_example
+
+Rstudio and knitr are unfortunately not packaged within debian so the
+easiest is to download the corresponding debian package on the [[http://www.rstudio.com/ide/download/desktop][Rstudio
+webpage]] and then to install it manually (depending on when you do this
+and on the version of your OS, *you should obviously change the version
+number*).
+
+#+BEGIN_SRC sh
+wget https://download1.rstudio.org/desktop/bionic/amd64/rstudio-2021.09.0%2B351-amd64.deb
+sudo dpkg -i rstudio-2021.09.0+351-amd64.deb
+sudo apt -f install # to fix possibly missing dependencies
+#+END_SRC
+# You will also need to install knitr. To this end, you should simply
+# run R (or Rstudio) and use the following command.
+# #+BEGIN_SRC R
+# install.packages("knitr")
+# #+END_SRC
+If some packages like =r-cran-ggplot2= or =r-cran-reshape= could not be installed for some
+reason, you can also install it through R by doing:
+#+BEGIN_SRC R
+install.packages("ggplot2")
+#+END_SRC
+** Producing documents
+The easiest way to go is probably to [[http://www.rstudio.com/ide/docs/authoring/using_markdown][use R+Markdown (Rmd files) in
+Rstudio]] and to export them via [[http://www.rpubs.com/][Rpubs]] to make available [[http://www.rpubs.com/tucano/zombies][whatever you
+want]].
+
+We can roughly distinguish between three kinds of documents:
+1. Lab notebook (with everything you try and that is meant mainly
+   for yourself)
+2. Experimental report (selected results and explanations with
+   enough details to discuss with your advisor)
+3. Result description (rather short with only the main point and,
+   which could be embedded in an article)
+We expect you to provide us the last two ones and to make them
+publicly available so as to allow others to [[http://rpubs.com/RobinLovelace/ratmog11][comment]] on them.
+** Learning R
+For a quick start, you may want to look at [[http://cran.r-project.org/doc/contrib/Paradis-rdebuts_en.pdf][R for Beginners]]. A probably
+more entertaining way to go is to follow a good online lecture
+providing an introduction to R and to data analysis such as this one:
+https://www.coursera.org/course/compdata. 
+
+A quite effective way (if you have time) is to use [[http://swirlstats.com/students.html][SWIRL]], an
+interactive learning environment that will guide through self-paced
+lesson.
+#+begin_src R :results output :session :exports both
+install.packages("swirl")
+library(swirl)
+install_from_swirl("R Programming")
+swirl()
+#+end_src
+I suggest in particular to follow the following lessons from R
+programming (max 10 minutes each):
+#+BEGIN_EXAMPLE
+ 1: Basic Building Blocks      2: Workspace and Files     
+ 3: Sequences of Numbers       4: Vectors                 
+ 5: Missing Values             6: Subsetting Vectors      
+ 7: Matrices and Data Frames   8: Logic                   
+ 9: Functions                 12: Looking at Data         
+#+END_EXAMPLE
+
+Finally, you may want to read this [[http://ww2.coastal.edu/kingw/statistics/R-tutorials/dataframes.html][excellent tutorial on data frames]]
+(=attach=, =with=, =rownames=, =dimnames=, notions of scope...).
+** Learning the tidyverse (ggplot2, dplyr, tidyR)
+All these packages have been developed by hadley wickam and are gathered [[https://www.tidyverse.org/][here]]. There are amazing cheatsheets you may want to refer to.
+# https://seananderson.ca/ggplot2-fish554/
+* References
++ R. Jain, [[http://www.cs.wustl.edu/~jain/books/perfbook.htm][The Art of Computer Systems Performance Analysis:
+  Techniques for Experimental Design, Measurement, Simulation, and
+  Modeling]], Wiley-Interscience, New York, NY, April 1991.
+  [[http://www.amazon.com/Art-Computer-Systems-Performance-Analysis/dp/1118858425/ref%3Dsr_1_2?s%3Dbooks&ie%3DUTF8&qid%3D1435137636&sr%3D1-2&keywords%3Dperformance%2Bmeasurement%2Bcomputer][A new edition will be available in September 2015]].
+  #+BEGIN_QUOTE
+  This is an easy-to-read self-content book for practical performance
+  evaluation. The numerous checklists make it a great book for
+  engineers and every CS experimental scientist should have read it.
+  #+END_QUOTE
++ David J. Lilja, Measuring Computer Performance: A Practitioner’s
+  Guide, Cambridge University Press 2005
+  #+BEGIN_QUOTE
+  A short book suited for brief presentations. I follow a similar
+  organization but I really don't like the content of this book. I
+  feel it provides very little insight on why the theory applies or
+  not. I also think it is too general and lacks practical examples. It
+  may be interesting for those willing a quick and broad presentation
+  of the main concepts and "recipes" to apply.
+  #+END_QUOTE
++ Jean-Yves Le Boudec. [[http://www.cl.cam.ac.uk/~dq209/others/perf.pdf][Methods, practice and theory for the
+  performance evaluation of computer and communication
+  systems, 2006. EPFL electronic book]].
+  #+BEGIN_QUOTE
+  A very good book, with a much more theoretical treatment than the
+  Jain. It goes way farther on many aspects and I can only recommand
+  it.
+  #+END_QUOTE
++ Douglas C. Montgomery, [[http://www.wiley.com/WileyCDA/WileyTitle/productCd-EHEP002024.html][Design and Analysis of Experiments]], 8th
+  Edition. Wiley 2013.
+  #+BEGIN_QUOTE
+  This is a good and thorough textbook on design of experiments. It's
+  so unfortunate it relies on "exotic" softwares like JMP and minitab
+  instead of R...
+  #+END_QUOTE
++ Julian J. Faraway, [[https://cran.r-project.org/doc/contrib/Faraway-PRA.pdf][Practical Regression and Anova using R]],
+  University of Bath, 2002.
+  #+BEGIN_QUOTE
+  This book is derived from material that Pr. Faraway used in a Master
+  level class on Statistics at the University of Michigan. It is
+  mathematically involved but presents in details how linear
+  regression, ANOVA work and can be done with R. It works out many
+  examples in details and is very pleasant to read. A must-read if you
+  want to understand this topic more thoroughly.
+  #+END_QUOTE
++ Peter Kosso, [[http://www.amazon.fr/Summary-Scientific-Method-Peter-Kosso-ebook/dp/B008D5IYU2][A Summary of Scientific Method]], Springer, 2011.
+  #+BEGIN_QUOTE
+  A short nice book summarizing the main steps of the scientific
+  method and why having a clear definition is not that simple. It
+  illustrates these points with several nice historical examples that
+  allow the reader to take some perspective on this epistemological
+  question.
+  #+END_QUOTE
++ R. Nelson, Probability stochastic processes and queuing theory: the
+  mathematics of computer performance modeling. Springer Verlag 1995.
+  #+BEGIN_QUOTE
+  For those willing to know more about queuing theory.
+  #+END_QUOTE
