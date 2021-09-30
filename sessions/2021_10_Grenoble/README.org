@@ -5,7 +5,8 @@
 
 *Teachers*: Élise Arnaud, Céline Coutrix, Arnaud Legrand, and Jean-Marc Vincent
 
-[[file:elise.png][file:elise.png]]
+[[file:elise.png][file:elise.png]][[file:celine.png][file:celine.png]][[file:arnaud.png]][[file:jean-marc.png][file:jean-marc.png]]
+
 
 #+BEGIN_QUOTE
 *Reporting errors*: Although I do my best there may definitely be typos
