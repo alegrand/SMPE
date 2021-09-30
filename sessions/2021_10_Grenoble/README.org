@@ -5,11 +5,7 @@
 
 *Teachers*: Élise Arnaud, Céline Coutrix, Arnaud Legrand, and Jean-Marc Vincent
 
-[[https://team.inria.fr/airsea/files/2015/09/elise.png][https://team.inria.fr/airsea/files/2015/09/elise.png]]
-
-
-
-   <img src="https://team.inria.fr/airsea/files/2015/09/elise.png" alt="Élise Arnaud" width="300">
+[[file:elise.png][file:elise.png]]
 
 #+BEGIN_QUOTE
 *Reporting errors*: Although I do my best there may definitely be typos
