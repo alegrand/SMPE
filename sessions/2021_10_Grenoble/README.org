@@ -18,10 +18,11 @@ Science (MOSIG) from October 2021 to January 2022.
 * Useful links 
 - Here is the [[http://pads.univ-grenoble-alpes.fr/p/MOSIG-SMPE-2022][Pad]] you will use to collaborate.
 - Here is the [[https://edt.grenoble-inp.fr/2021-2022/][lecture schedule on ADE]] (look for mosig2). A table summary is [[https://edt.grenoble-inp.fr/2021-2022/enseignant/*/jsp/custom/modules/plannings/eventInfo.jsp?week=-1&day=-1&slot=0&eventId=35775&activityId=-1&resourceId=-1&sessionId=-1&repetition=-1&order=slot&availableZone=-1][here]] (this is the teachers link, I'm not sure how to have the public link :( )
-- Here is the [[https://framateam.org/signup_user_complete/?id=wp1a4fpd5bg7tm8fcya3reqgse][Invitation link]] for the [[https://framateam.org/smpe-2021-2022/channels/town-square][Mattermost]] we will use to exchange information. 
-  # https://edt.grenoble-inp.fr/2021-2022/exterieur/
-  # https://edt.grenoble-inp.fr/2021-2022/exterieur/jsp/custom/modules/plannings/eventInfo.jsp?week=-1&day=-1&slot=0&eventId=35775&activityId=-1&resourceId=-1&sessionId=-1&repetition=-1&order=slot&availableZone=-1
-# - Here is the [[https://im2ag-mattermost.univ-grenoble-alpes.fr/mosig/channels/m2dismpe][Mattermost]] we will use to exchange information.
+- Here is the [[https://framateam.org/signup_user_complete/?id=wp1a4fpd5bg7tm8fcya3reqgse][Invitation link]] for the [[https://framateam.org/smpe-2021-2022/channels/town-square][Mattermost]] we will use to exchange information.
+  - The [[https://www.fun-mooc.fr/fr/cours/recherche-reproductible-principes-methodologiques-pour-une-science-transparente/][MOOC on Reproducible Research]]
+    # https://edt.grenoble-inp.fr/2021-2022/exterieur/
+    # https://edt.grenoble-inp.fr/2021-2022/exterieur/jsp/custom/modules/plannings/eventInfo.jsp?week=-1&day=-1&slot=0&eventId=35775&activityId=-1&resourceId=-1&sessionId=-1&repetition=-1&order=slot&availableZone=-1
+  # - Here is the [[https://im2ag-mattermost.univ-grenoble-alpes.fr/mosig/channels/m2dismpe][Mattermost]] we will use to exchange information.
 Links to the slides are provided below.
 * Course Objective and Organization
 The aim of this course is to provide the fundamental basis for sound
@@ -42,13 +43,18 @@ You may want to look at the [[file:../2020_10_Grenoble/README.org][previous edit
 All the examples given in this series of lecture use the [[http://www.r-project.org/][R]] language
 and the source is provided so that people can reuse them. The slides
 are composed with [[http://orgmode.org][org-mode]], beamer, and verbments.
+
+Evaluation process:
+  - Final exam (3 hours): 1/2
+  - Continuous assessment: 1/2
+
 * Course Tentative Schedule
 ** 1. 30/09/21 [JMV, AL] Introduction to the scientific method and computer science epistemology | Presentation of the lecture
 *** Slides
 *** Homeworks (1)
 - [ ] Register on the [[https://framateam.org/smpe-2021-2022/channels/town-square][Mattermost of this lecture]] through this [[https://framateam.org/signup_user_complete/?id=wp1a4fpd5bg7tm8fcya3reqgse][Invitation link]]. 
 - [ ] Indicate your name on [[http://pads.univ-grenoble-alpes.fr/p/MOSIG-SMPE-2022][Pad]] you will use to collaborate and fill in all the information you can.
-- [ ] Register to the [[https://learninglab.inria.fr/en/mooc-recherche-reproductible-principes-methodologiques-pour-une-science-transparente/][MOOC on Reproducible Research]]
+- [ ] Register to the [[https://www.fun-mooc.fr/fr/cours/recherche-reproductible-principes-methodologiques-pour-une-science-transparente/][MOOC on Reproducible Research]]
 - [ ] Follow modules 1 + 2 of the MOOC with all exercises (except the last one of module2, on /Challenger/)
 - [ ] Set up a computational document system (e.g., [[#rstudio][Rstudio]] or [[#jupyter][Jupyter]] on your laptop or through the [[https://jupyterhub.u-ga.fr/][UGA JupyterHub]])
 - [ ] Set up a public github or gitlab project for this lecture. You will take notes on this lecture and turn your homework and computational documents in this project.
@@ -128,7 +134,7 @@ are composed with [[http://orgmode.org][org-mode]], beamer, and verbments.
     # - https://twitter.com/AndreasZeller/status/1420787486629015554?s=09
 ** 12. 20/01/22 Ethics (AI and humain, climate change, societal challenges)
 * Hands-on
-In the 3rd module of the [[https://www.fun-mooc.fr/courses/course-v1:inria+41016+session01bis/about][MOOC on Reproducible Research]], there is a
+In the 3rd module of the [[https://www.fun-mooc.fr/fr/cours/recherche-reproductible-principes-methodologiques-pour-une-science-transparente/][MOOC on Reproducible Research]], there is a
 peer-reviewed homework that will allow you to practically use
 everything you learnt. 
 * Requirements 
