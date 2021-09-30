@@ -147,7 +147,8 @@ now their python counterpart (e.g., =numpy= and =pandas= for vectors and
 dataframes, =plotnine= for =ggplot2=, =statsmodels= for linear regressions,
 ...).
 * Using R
-** Installing R and Rstudio
+** Installing R, Rstudio, or Jupyter
+*** R
 Here is how to proceed on debian-based distributions:
 #+BEGIN_SRC sh
 sudo apt install r-base r-cran-ggplot2 r-cran-dplyr r-cran-tidyr r-cran-knitr r-cran-magrittr 
@@ -171,7 +172,7 @@ For more information about these matters see
 https://www.gnu.org/licenses/.
 
 #+end_example
-
+*** Rstudio
 Rstudio and knitr are unfortunately not packaged within debian so the
 easiest is to download the corresponding debian package on the [[http://www.rstudio.com/ide/download/desktop][Rstudio
 webpage]] and then to install it manually (depending on when you do this
@@ -193,6 +194,24 @@ reason, you can also install it through R by doing:
 #+BEGIN_SRC R
 install.packages("ggplot2")
 #+END_SRC
+*** Jupyter
+Now regarding jupyter, here is how to proceed on a debian-based distribution:
+#+begin_src sh
+sudo apt install jupyter r-cran-irkernel r-cran-irdisplay
+#+end_src
+Then you can simply run:
+#+begin_src sh
+jupyter notebook
+#+end_src
+
+If you want a cooler Jupyter environment, [[https://jupyterlab.readthedocs.io/en/stable/getting_started/installation.html][install JupyterLab]], for example as follows:
+#+begin_src sh
+pip3 install jupyterlab
+export PATH=$HOME/.local/bin:$HOME
+jupyter lab
+#+end_src
+
+** Installing
 ** Producing documents
 The easiest way to go is probably to [[http://www.rstudio.com/ide/docs/authoring/using_markdown][use R+Markdown (Rmd files) in
 Rstudio]] and to export them via [[http://www.rpubs.com/][Rpubs]] to make available [[http://www.rpubs.com/tucano/zombies][whatever you
