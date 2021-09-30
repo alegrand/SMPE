@@ -50,7 +50,7 @@ are composed with [[http://orgmode.org][org-mode]], beamer, and verbments.
 - [ ] Indicate your name on [[http://pads.univ-grenoble-alpes.fr/p/MOSIG-SMPE-2022][Pad]] you will use to collaborate and fill in all the information you can.
 - [ ] Register to the [[https://learninglab.inria.fr/en/mooc-recherche-reproductible-principes-methodologiques-pour-une-science-transparente/][MOOC on Reproducible Research]]
 - [ ] Follow modules 1 + 2 of the MOOC with all exercises (except the last one of module2, on /Challenger/)
-- [ ] Set up a computational document system (e.g., [[#installing-r-and-rstudio][Rstudio]] or Jupyter on your laptop or through the [[https://jupyterhub.u-ga.fr/][UGA JupyterHub]])
+- [ ] Set up a computational document system (e.g., [[#rstudio][Rstudio]] or [[#jupyter][Jupyter]] on your laptop or through the [[https://jupyterhub.u-ga.fr/][UGA JupyterHub]])
 - [ ] Set up a public github or gitlab project for this lecture. You will take notes on this lecture and turn your homework and computational documents in this project.
 - [ ] Report the links of your git project on the [[http://pads.univ-grenoble-alpes.fr/p/MOSIG-SMPE-2022][Pad]] 
 ** 07/10/21: No lecture
@@ -211,7 +211,6 @@ export PATH=$HOME/.local/bin:$HOME
 jupyter lab
 #+end_src
 
-** Installing
 ** Producing documents
 The easiest way to go is probably to [[http://www.rstudio.com/ide/docs/authoring/using_markdown][use R+Markdown (Rmd files) in
 Rstudio]] and to export them via [[http://www.rpubs.com/][Rpubs]] to make available [[http://www.rpubs.com/tucano/zombies][whatever you
