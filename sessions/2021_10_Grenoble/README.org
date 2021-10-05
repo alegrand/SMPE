@@ -54,6 +54,7 @@ Evaluation process:
 * Course Tentative Schedule
 ** 1. 30/09/21 [JMV, AL] Introduction to the scientific method and computer science epistemology | Presentation of the lecture
 *** Slides
+- [[file:01_epistemology.pdf][slides]]. Notes are in the [[http://pads.univ-grenoble-alpes.fr/p/MOSIG-SMPE-2022][Pad]].
 *** Homeworks (1)
 - [ ] Indicate your name on [[http://pads.univ-grenoble-alpes.fr/p/MOSIG-SMPE-2022][Pad]] you will use to collaborate and fill in all the information you can.
 - [ ] Register on the [[https://framateam.org/smpe-2021-2022/channels/town-square][Mattermost of this lecture]] through this [[https://framateam.org/signup_user_complete/?id=wp1a4fpd5bg7tm8fcya3reqgse][Invitation link]]. 
