@@ -77,13 +77,16 @@ Evaluation process:
    #     - Apophenia
    #     - Données mal collectées (avec un biais très important)
    #     - ~~Données crades, sans sémantique, mal encodées?~~
-   # - [TODO] MOOC: exo5 de module 2, module 3 et 4 (pas les exos) ; 
+*** Homeworks (2)
+ - [ ] MOOC: exercise 5 of module 2
+ - [ ] MOOC: Follow modules 3 et 4 (do not necessarily do the exercises) 
 ** 3. 21/10/21 [JMV, AL] Data curation with the tidyverse | Data management 1
    # 0. Correction exo5 du module2 (challenger)
    # 1. dplyr (exo avec documentation de l'ensemble)
    # 2. (file organization, file formats, gestion de version, git annex/datalad)
-   # - [TODO] Remettre analyse prénom au propre avec curation et document computationnel propre
-   # - [TODO] MOOC: Commencer évaluation par les pairs du MOOC, deadline de rendu dans 2 ou 3 semaines.
+*** Homeworks (3)
+   - [ ] Clean up the first name/last name analysis in a computational document.
+   - [ ] MOOC: Start the peer evaluated exercise. Submission deadline: in two weeks. Indicate the link to your repos in the pad.
 ** 4. 28/10/21 [JMV, CC] Beautiful Viz with ggplot | Data management 2
 # 1. ggplot (amélioration de ce qui a été fait précédement) 
 # 2. (science ouverte, archivage, **plan de gestion de données**, anonymisation/cryptage, consent form)
