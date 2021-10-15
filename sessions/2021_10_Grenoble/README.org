@@ -124,17 +124,18 @@ Evaluation process:
 #    - [TODO] Continuer évaluation par les pairs
 ** Fall Vacations
 ** Armistice
-** 5. 18/11/21 [AL|JM + CC] Mesures et instrumentation, prise de conscience de la variabilité, des problèmes de non stationarité et des problèmes de contrôle (est-ce que ma mesure est en train de dériver et sort du cadre qui m'intéresse, la notion de condition "normale" d'utilisation), de reproductibilité expérimentale. **à discuter avec Céline**
+** 5. 18/11/21 [AL|JM + CC] Measurement and tracing
+  # Mesures et instrumentation, prise de conscience de la variabilité, des problèmes de non stationarité et des problèmes de contrôle (est-ce que ma mesure est en train de dériver et sort du cadre qui m'intéresse, la notion de condition "normale" d'utilisation), de reproductibilité expérimentale. **à discuter avec Céline**
    # - Travail en binôme, début de réalisation en séance (exo: notebook avec expérimentation, notebook avec analyse)
    #      - Quicksort parallèle (sequentiel vs. parallèle et taille du tableau)
    #      - Mesure en "IHM" réalisable sur un temps court ?
-** 6. 25/11/21 [AL|JM + CC] Prise de conscience des nombreux paramètres non identifiés (fishbone), de la variabilité, et pour les plus pointus du fait que la mesure est pourrie, et du manque d'arsenal mathématique pour répondre aux question les plus simples (code sans intérêt)
+** 6. 25/11/21 [AL|JM + CC] Clearly defining the experiment
+# Prise de conscience des nombreux paramètres non identifiés (fishbone), de la variabilité, et pour les plus pointus du fait que la mesure est pourrie, et du manque d'arsenal mathématique pour répondre aux question les plus simples (code sans intérêt)
    # - analyse/visu des données expérimentales récupérées à la séance d'avant (avec paramètres continus discrets)
    # - [TODO] exo: prise de conscience de la variabilité "inter-labo" en répliquant l'expérience d'un autre
    # - [TODO] On donne l'app shiny qui simule des mesures expérimentales et ils peuvent commencer à jouer avec. 
    #     - Plusieurs "modèles" possibles
    #     - en binôme, vont jouer à expérimenter/analyser/interpréter sur les 5 prochaines semaines et faire un rendu montrant comment ils réinvestissent ce qu'on a vu
-
    # Probas, CLT et test via un IC.
    # - anecdote rigolote à utiliser ? https://twitter.com/nholzschuch/status/1436739620620935175?s=09
 ** 7. 2/12/21 [EA | AL ?] The linear model
