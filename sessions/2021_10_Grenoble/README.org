@@ -78,7 +78,8 @@ Evaluation process:
    #     - Données mal collectées (avec un biais très important)
    #     - ~~Données crades, sans sémantique, mal encodées?~~
 *** Homeworks (2)
- - [ ] MOOC: exercise 5 of module 2
+ - [ ] Finish the data visualization exercise in a notebook and upload in your github/gitlab space. Make sure we can easily find it when landing on your page. :)
+ - [ ] MOOC: Complete exercise 5 of module 2. Write a short text explaining what is good and wrong about this document (you may want to provide an updated version of the notebook) and upload on your github/gitlab space.  
  - [ ] MOOC: Follow modules 3 et 4 (do not necessarily do the exercises) 
 ** 3. 21/10/21 [JMV, AL] Data curation with the tidyverse | Data management 1
    # 0. Correction exo5 du module2 (challenger)
