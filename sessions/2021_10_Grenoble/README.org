@@ -77,8 +77,21 @@ Evaluation process:
    #     - Apophenia
    #     - Données mal collectées (avec un biais très important)
    #     - ~~Données crades, sans sémantique, mal encodées?~~
+*** Slides and Resources
+- [[file:02_whyvisu.pdf][Slides: Why do we need to visualize data: The Anscombe's Quartet]] and as a
+  bonus: [[https://www.autodesk.com/research/publications/same-stats-different-graphs][The Datasaurus]]. :)
+- [[file:02_Intro-Visu.pdf][Slides: What a nice picture ! Data Visualization, an introduction]]
+  - [[file:02_Check-list-good-graphics-tableau-en.pdf][Checklist for good graphics]] and [[file:02_Check-list-good-graphics-en.pdf][Hints for good graphics (a similar
+    checklist can be found in
+    [[http://www.cs.wustl.edu/~jain/books/perfbook.htm][The Art of
+    Computer Systems Performance Analysis: Techniques for Experimental
+    Design, Measurement, Simulation, and Modeling]])
+- [[file:02_Stat-desc1-en.pdf][Slides: How to get information from a data set ?]]
+  - [[file:02_activite-histo-en.pdf][Activity: Getting the (wrong) picture from the data [kindergarten data]​]]
+  - [[file:02_activite-correl-causal-en.pdf][Activity: Getting the (wrong) picture from the data [foot length
+    and spelling/grammatical errors]​]]
 *** Homeworks (2)
- - [ ] Finish the data visualization exercise in a notebook and upload in your github/gitlab space. Make sure we can easily find it when landing on your page. :)
+ - [ ] Finish the data visualization exercise in a notebook and upload in your github/gitlab space. Make sure we can easily find it when landing on your page. :)
  - [ ] MOOC: Complete exercise 5 of module 2. Write a short text explaining what is good and wrong about this document (you may want to provide an updated version of the notebook) and upload on your github/gitlab space.  
  - [ ] MOOC: Follow modules 3 et 4 (do not necessarily do the exercises) 
 ** 3. 21/10/21 [JMV, AL] Data curation with the tidyverse | Data management 1
