@@ -95,11 +95,27 @@ Evaluation process:
  - [ ] MOOC: Complete exercise 5 of module 2. Write a short text explaining what is good and wrong about this document (you may want to provide an updated version of the notebook) and upload on your github/gitlab space.  
  - [ ] MOOC: Follow modules 3 et 4 (do not necessarily do the exercises) 
 ** 3. 21/10/21 [JMV, AL] Data curation with the tidyverse | Data management 1
-   # 0. Correction exo5 du module2 (challenger)
-   # 1. dplyr (exo avec documentation de l'ensemble)
-   # 2. (file organization, file formats, gestion de version, git annex/datalad)
+   1. Feedback (AL)
+      - +Correction exo5 du module2 (challenger)+
+      - foot length/spelling data feedback; demo
+      - kindergarten data representations
+      Making data (and code) available is essential! https://github.com/cboettig/noise-phenomena
+   2. dplyr demo (AL)
+      - [[file:03_Tidy-data.pdf][Tidy data]]
+      - [[file:03_Manipulation.pdf][Manipulation with the tidyverse]]
+   3. [[file:03_Data-Statistics-Introduction.pdf][Data quality slides]] (JMV)
+   4. Managing data: 
+      - General principles: [[file:../../lectures/talk_21_06_28_Oleron.pdf][Slides 24-26]]
+      - Pitfalls, Version Management and Archiving: [[https://github.com/alegrand/RR_webinars/blob/master/5_archiving_software_and_data/2016-11-09-grenoble-rdicosmo-reproductibility-preserving-software.pdf][SWH slides 14-31]]
+        [[https://rsdschool21.gitlabpages.inria.fr/website/_static/slides/swh_mgruenpeter.pdf][SWH slides 23-40,47-56]], https://zenodo.org/
+      - File organization:
+        - https://the-turing-way.netlify.app/project-design/project-repo.html
+        - https://the-turing-way.netlify.app/project-design/project-repo/project-repo-advanced.html
+      - File formats: [[https://github.com/alegrand/RR_webinars/blob/master/5_archiving_software_and_data/2016-11-09-grenoble-rdicosmo-reproductibility-preserving-software.pdf][SWH slides 17]], CSV, JSON 
+      - +[[https://angryfrenchman.org/github-s-large-file-storage-is-no-panacea-for-open-source-quite-the-opposite-12c0e16a9a91][Git LFS]]+, [[https://git-annex.branchable.com/special_remotes/][Git annex]], [[http://handbook.datalad.org/en/latest/][datalad]]
 *** Homeworks (3)
-   - [ ] Clean up the first name/last name analysis in a computational document.
+   - [ ] [[file:03_Names-Methodo2022-exercise.Rmd][First name/last name analysis in a computational document]].
+   - [ ] MOOC: complete the challenger exercise
    - [ ] MOOC: Start the peer evaluated exercise. Submission deadline: in two weeks. Indicate the link to your repos in the pad.
 ** 4. 28/10/21 [JMV, CC] Beautiful Viz with ggplot | Data management 2
 # 1. ggplot (amélioration de ce qui a été fait précédement) 
