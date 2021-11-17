@@ -162,13 +162,25 @@ Evaluation process:
        follow the performance evaluation lecture and he would like your
        help to promote his code.
      #+END_QUOTE
-     Try to re-run this code, compare the results, improve the experimental design.
-   - Empirical evaluation of [[https://en.wikipedia.org/wiki/Fitts%27s_law][Fitts's law]]. Details to be announced.
+     Try to re-run this code, compare the results, improve the experimental design if needed..
+   - Empirical evaluation of [[https://en.wikipedia.org/wiki/Fitts%27s_law][Fitts's law]]
+     #+BEGIN_QUOTE
+     Fitts described 1954 the relationship between the distance to a target, its width, and the time needed to acquire it [Fitts, 1954]. To aquire a target, e.g., to move the mouse cursor and click on a file to select it, Fitts' law describes how the distance between the start point and the target (A: amplitude of the movement), and the size of the target (W: width of the target) impacts the index of difficulty of the task (ID) [MacKenzie and Buxton, 1992]:
+
+        ID = log2(A/W + 1)
+
+     The time (MT: movement time) needed for a user to acquire a target is linearly correlated to ID:
+
+         MT = a + b × ID
+
+     A large part of Human-Computer Interaction research since then builds on top of Fitts' law. This project aims at finding the values of the a and b parameters.
+     #+END_QUOTE
+     Try to re-run this analysis, then re-obtain some data and compare the results, improve the experimental design if needed..
 3. If time allows, short general lecture on measurement or (if needed) on ggplot.
-# Mesures et instrumentation, prise de conscience de la variabilité, des problèmes de non stationarité et des problèmes de contrôle (est-ce que ma mesure est en train de dériver et sort du cadre qui m'intéresse, la notion de condition "normale" d'utilisation), de reproductibilité expérimentale. **à discuter avec Céline**
-# - Travail en binôme, début de réalisation en séance (exo: notebook avec expérimentation, notebook avec analyse)
-#     - Quicksort parallèle (sequentiel vs. parallèle et taille du tableau)
-#     - Mesure en "IHM" réalisable sur un temps court ?
+  # Mesures et instrumentation, prise de conscience de la variabilité, des problèmes de non stationarité et des problèmes de contrôle (est-ce que ma mesure est en train de dériver et sort du cadre qui m'intéresse, la notion de condition "normale" d'utilisation), de reproductibilité expérimentale. **à discuter avec Céline**
+  # - Travail en binôme, début de réalisation en séance (exo: notebook avec expérimentation, notebook avec analyse)
+  #     - Quicksort parallèle (sequentiel vs. parallèle et taille du tableau)
+  #     - Mesure en "IHM" réalisable sur un temps court ?
 *** Homeworks (5)
 - [ ] MOOC: Peer evaluated exercise. Deadline is in two weeks.
 - [ ] Keep working on, experimenting, and improving what we have done today.
