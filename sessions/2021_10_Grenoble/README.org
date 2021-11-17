@@ -153,6 +153,10 @@ Evaluation process:
 ** Armistice
 ** 5. 18/11/21 [AL + CC] Measurement and tracing
 1. MOOC status report. Feedback on the Challenger exercise.
+  - [[https://gitlab.inria.fr/learninglab/mooc-rr/mooc-rr-ressources/-/blob/master/module2/exo5/challenger.pdf][Context description]]
+  - [[https://gitlab.inria.fr/learninglab/mooc-rr/mooc-rr-modele/-/blob/master/module2/exo5/exo5_en.ipynb][Jupyter Python Notebook]]
+  - [[https://gitlab.inria.fr/learninglab/mooc-rr/mooc-rr-modele/-/blob/master/module2/exo5/exo5_R_en.ipynb][Jupyter R Notebook]]
+  - [[https://gitlab.inria.fr/learninglab/mooc-rr/moocrr-reproducibility-study/-/blob/master/src/R/challenger.Rmd][A more "elaborate" version with confidence intervals in R]].
 2. Hands on in group on one of the following example:
    - Parallel Quicksort: Fork this small [[https://github.com/alegrand/M2R-ParallelQuicksort][project]] which is toy experiment regarding measuring the performance of a simple parallel quicksort implementation:
      #+BEGIN_QUOTE
