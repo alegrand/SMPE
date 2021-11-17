@@ -122,6 +122,13 @@ Evaluation process:
      - [ ] MOOC: complete the challenger exercise
 #   - [ ] MOOC: Start the peer evaluated exercise. Submission deadline: in two weeks. Indicate the link to your repos in the pad.
 ** 4. 28/10/21 [JMV, CC] Beautiful Viz with ggplot | Data management 2
+1. Feedback on First names analysis (JMV)
+2. [[http://iihm.imag.fr/coutrix/ens/M2-MoSIG-SMEE/DMP.pdf][Data management plan]] (CC). Brainstorming session on what's important
+3. End of the presentation on [[file:03_Data-Statistics-Introduction.pdf][Data quality]] (JMV)
+4. Quick introduction to GGplot with the [[https://evamaerey.github.io/ggplot_flipbook/ggplot_flipbook_xaringan.html][the ggplot flipbook by Gina
+   Reynolds]] (JMV)
+*** Homeworks (4)
+- [ ] MOOC: Start the peer evaluated exercise.
 # 1. ggplot (amélioration de ce qui a été fait précédement) 
 # 2. (science ouverte, archivage, **plan de gestion de données**, anonymisation/cryptage, consent form)
 #    - [X] Demander à Cécile Arenes (elle va m'envoyer ses slides)
@@ -144,12 +151,28 @@ Evaluation process:
 #    - [TODO] Continuer évaluation par les pairs
 ** Fall Vacations
 ** Armistice
-** 5. 18/11/21 [AL|JM + CC] Measurement and tracing
-  # Mesures et instrumentation, prise de conscience de la variabilité, des problèmes de non stationarité et des problèmes de contrôle (est-ce que ma mesure est en train de dériver et sort du cadre qui m'intéresse, la notion de condition "normale" d'utilisation), de reproductibilité expérimentale. **à discuter avec Céline**
-   # - Travail en binôme, début de réalisation en séance (exo: notebook avec expérimentation, notebook avec analyse)
-   #      - Quicksort parallèle (sequentiel vs. parallèle et taille du tableau)
-   #      - Mesure en "IHM" réalisable sur un temps court ?
-** 6. 25/11/21 [AL|JM + CC] Clearly defining the experiment
+** 5. 18/11/21 [AL + CC] Measurement and tracing
+1. MOOC status report. Feedback on the Challenger exercise.
+2. Hands on in group on one of the following example:
+   - Parallel Quicksort: Fork this small [[https://github.com/alegrand/M2R-ParallelQuicksort][project]] which is toy experiment regarding measuring the performance of a simple parallel quicksort implementation:
+     #+BEGIN_QUOTE
+       One of your colleague just implemented a multi-threaded version of
+       the quicksort algorithm for multi-core machines. He's convinced his
+       code can save significant time saving but unfortunately, he did not
+       follow the performance evaluation lecture and he would like your
+       help to promote his code.
+     #+END_QUOTE
+     Try to re-run this code, compare the results, improve the experimental design.
+   - Empirical evaluation of [[https://en.wikipedia.org/wiki/Fitts%27s_law][Fitts's law]]. Details to be announced.
+3. If time allows, short general lecture on measurement or (if needed) on ggplot.
+# Mesures et instrumentation, prise de conscience de la variabilité, des problèmes de non stationarité et des problèmes de contrôle (est-ce que ma mesure est en train de dériver et sort du cadre qui m'intéresse, la notion de condition "normale" d'utilisation), de reproductibilité expérimentale. **à discuter avec Céline**
+# - Travail en binôme, début de réalisation en séance (exo: notebook avec expérimentation, notebook avec analyse)
+#     - Quicksort parallèle (sequentiel vs. parallèle et taille du tableau)
+#     - Mesure en "IHM" réalisable sur un temps court ?
+*** Homeworks (5)
+- [ ] MOOC: Peer evaluated exercise. Deadline is in two weeks.
+- [ ] Keep working on, experimenting, and improving what we have done today.
+** 6. 25/11/21 [AL + CC] Clearly defining the experiment
 # Prise de conscience des nombreux paramètres non identifiés (fishbone), de la variabilité, et pour les plus pointus du fait que la mesure est pourrie, et du manque d'arsenal mathématique pour répondre aux question les plus simples (code sans intérêt)
    # - analyse/visu des données expérimentales récupérées à la séance d'avant (avec paramètres continus discrets)
    # - [TODO] exo: prise de conscience de la variabilité "inter-labo" en répliquant l'expérience d'un autre
