@@ -186,8 +186,14 @@ Evaluation process:
   #     - Quicksort parallèle (sequentiel vs. parallèle et taille du tableau)
   #     - Mesure en "IHM" réalisable sur un temps court ?
 *** Homeworks (5)
-- [ ] MOOC: Peer evaluated exercise. Deadline is in two weeks.
-- [ ] Keep working on, experimenting, and improving what we have done today.
+- [ ] +MOOC: Peer evaluated exercise. Deadline is in two weeks.+ (no
+  deadline for the moment)
+- [ ] Keep working on, experimenting, and improving what we have done today. In particular:
+  - Identify as many parameters as possible and organize them in a fishbone diagram. Find a way to track these information and make them available in your logging files.
+  - Improve the experimental design.
+  - Improve the visualization and the analysis
+- [ ] Review the ggplot resources and prepare questions if needed.
+- [ ] Read the slides on measurement. Prepare a short summary with comments on what's clear and what's unclear so that we can discuss about it.
 ** 6. 25/11/21 [AL + CC] Clearly defining the experiment
 # Prise de conscience des nombreux paramètres non identifiés (fishbone), de la variabilité, et pour les plus pointus du fait que la mesure est pourrie, et du manque d'arsenal mathématique pour répondre aux question les plus simples (code sans intérêt)
    # - analyse/visu des données expérimentales récupérées à la séance d'avant (avec paramètres continus discrets)
