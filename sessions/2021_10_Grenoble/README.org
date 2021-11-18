@@ -153,10 +153,10 @@ Evaluation process:
 ** Armistice
 ** 5. 18/11/21 [AL + CC] Measurement and tracing
 1. MOOC status report. Feedback on the Challenger exercise.
-  - [[https://gitlab.inria.fr/learninglab/mooc-rr/mooc-rr-ressources/-/blob/master/module2/exo5/challenger.pdf][Context description]]
-  - [[https://gitlab.inria.fr/learninglab/mooc-rr/mooc-rr-modele/-/blob/master/module2/exo5/exo5_en.ipynb][Jupyter Python Notebook]]
-  - [[https://gitlab.inria.fr/learninglab/mooc-rr/mooc-rr-modele/-/blob/master/module2/exo5/exo5_R_en.ipynb][Jupyter R Notebook]]
-  - [[https://gitlab.inria.fr/learninglab/mooc-rr/moocrr-reproducibility-study/-/blob/master/src/R/challenger.Rmd][A more "elaborate" version with confidence intervals in R]].
+   - [[https://gitlab.inria.fr/learninglab/mooc-rr/mooc-rr-ressources/-/blob/master/module2/exo5/challenger.pdf][Context description]]. See also [[http://www.math.nagoya-u.ac.jp/~richard/teaching/s2019/Challenger.pdf][the original article by Sidartha et al.]]
+   - [[https://gitlab.inria.fr/learninglab/mooc-rr/mooc-rr-modele/-/blob/master/module2/exo5/exo5_en.ipynb][Jupyter Python Notebook]] and [[https://gitlab.inria.fr/learninglab/mooc-rr/mooc-rr-modele/-/blob/master/module2/exo5/exo5_R_en.ipynb][Jupyter R Notebook]]
+   - [[https://gitlab.inria.fr/learninglab/mooc-rr/moocrr-reproducibility-study/-/blob/master/challenger.pdf][A version with correct confidence intervals in R]] ([[https://gitlab.inria.fr/learninglab/mooc-rr/moocrr-reproducibility-study/-/blob/master/src/R/challenger.Rmd][Rmd source]])
+   - Pages 36-53 of [[file:~/Work/Documents/Enseignements/RR_MOOC/github/resources/module2/Tufte_Visual_Explanations.pdf]["Visual Explanations: Images and Quantities, Evidences and Narratives" by Edward Tufte]]  
 2. Hands on in group on one of the following example:
    - Parallel Quicksort: Fork this small [[https://github.com/alegrand/M2R-ParallelQuicksort][project]] which is toy experiment regarding measuring the performance of a simple parallel quicksort implementation:
      #+BEGIN_QUOTE
@@ -180,7 +180,7 @@ Evaluation process:
      A large part of Human-Computer Interaction research since then builds on top of Fitts' law. This project aims at finding the values of the a and b parameters.
      #+END_QUOTE
      Try to re-run this analysis, then re-obtain some data and compare the results, improve the experimental design if needed..
-3. If time allows, short general lecture on measurement or (if needed) on ggplot.
+3. If time allows, [[http://polaris.imag.fr/arnaud.legrand/teaching/2011/EP_02_Measurements.pdf][short general lecture on measurement]] or (if needed) on ggplot.
   # Mesures et instrumentation, prise de conscience de la variabilité, des problèmes de non stationarité et des problèmes de contrôle (est-ce que ma mesure est en train de dériver et sort du cadre qui m'intéresse, la notion de condition "normale" d'utilisation), de reproductibilité expérimentale. **à discuter avec Céline**
   # - Travail en binôme, début de réalisation en séance (exo: notebook avec expérimentation, notebook avec analyse)
   #     - Quicksort parallèle (sequentiel vs. parallèle et taille du tableau)
