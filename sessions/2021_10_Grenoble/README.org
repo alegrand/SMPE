@@ -167,7 +167,7 @@ Evaluation process:
        help to promote his code.
      #+END_QUOTE
      Try to re-run this code, compare the results, improve the experimental design if needed..
-   - Empirical evaluation of [[https://en.wikipedia.org/wiki/Fitts%27s_law][Fitts's law]]
+   - Empirical evaluation of [[https://en.wikipedia.org/wiki/Fitts%27s_law][Fitts's law]]: Fork this small [[https://gricad-gitlab.univ-grenoble-alpes.fr/coutrixc/m2r_pointingxp][project]]
      #+BEGIN_QUOTE
      Fitts described 1954 the relationship between the distance to a target, its width, and the time needed to acquire it [Fitts, 1954]. To aquire a target, e.g., to move the mouse cursor and click on a file to select it, Fitts' law describes how the distance between the start point and the target (A: amplitude of the movement), and the size of the target (W: width of the target) impacts the index of difficulty of the task (ID) [MacKenzie and Buxton, 1992]:
 
