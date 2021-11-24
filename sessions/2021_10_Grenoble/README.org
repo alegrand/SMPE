@@ -195,6 +195,15 @@ Evaluation process:
 - [ ] Review the ggplot resources and prepare questions if needed.
 - [ ] Read the slides on measurement. Prepare a short summary with comments on what's clear and what's unclear so that we can discuss about it.
 ** 6. 25/11/21 [AL + CC] Clearly defining the experiment
+1. Feedback on the quicksort and Fitt's law experiments
+   - Parameters Fishbone
+   - Inter-run vs. inter-group variability
+   - Confidence in your conclusion ? How many experiments ? Which parameters to vary ? What's the question by the way ?
+   - Tracing and more in-depth analysis
+     - Quicksort: [[https://www.thegeekstuff.com/2012/08/gprof-tutorial/][gprof]], [[https://kcachegrind.github.io/html/Home.html][callgrind and kcachegrind]], [[https://www.brendangregg.com/FlameGraphs/cpuflamegraphs.html][perf]]
+     - Fitt's law: https://www.yorku.ca/mack/FittsLawSoftware/
+2. Lecture on estimation, the central limit theorem and confidence intervals
+
 # Prise de conscience des nombreux paramètres non identifiés (fishbone), de la variabilité, et pour les plus pointus du fait que la mesure est pourrie, et du manque d'arsenal mathématique pour répondre aux question les plus simples (code sans intérêt)
    # - analyse/visu des données expérimentales récupérées à la séance d'avant (avec paramètres continus discrets)
    # - [TODO] exo: prise de conscience de la variabilité "inter-labo" en répliquant l'expérience d'un autre
