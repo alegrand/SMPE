@@ -195,6 +195,11 @@ Evaluation process:
 - [ ] Review the ggplot resources and prepare questions if needed.
 - [ ] Read the slides on measurement. Prepare a short summary with comments on what's clear and what's unclear so that we can discuss about it.
 ** 6. 25/11/21 [AL + CC] Clearly defining the experiment
+Before we start.
+- Questions on what we've seen ?
+- Ggplot/dplyr questions ? 
+
+Let's start
 1. Feedback on the quicksort and Fitt's law experiments
    - Parameters Fishbone
    - Inter-run vs. inter-group variability
