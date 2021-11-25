@@ -212,8 +212,11 @@ Let's start:
    - [[file:../../lectures/3_introduction_to_statistics.pdf][Introduction to probabilities/statistics]] (slides 1-30 and 36-43)
    - For those who would like to read the [[file:../../lectures/lecture_central_limit_theorem.pdf][Proof of the  Central limit theorem]]
    - [[file:../../lectures/lecture_chi_square.pdf][Unveiling the mysterious chi square distribution and how to use it to compute a confidence interval when you have few samples (Students's law and t-test)]]
-
-
+*** Homeworks (6)
+- [ ] Compute confidence intervals everywhere you can in the analysis of your measurements.
+- [ ] Improve the meta-data (parameters that may explain performance) collection for each measurement. The collection must be automatic and go in your log file.
+- [ ] Trace more information for each measurement, store it in your git, and systematically derive a metric that may explain your primary metric and on which you'll compute some statistics. All this
+- [ ] MOOC: Work on the peer-evaluated exercise. Indicate where I can find it on the pad (even if it is not terminated) and whether you have completed it or not (to know whether I should read it in details and give you some feedback or not) 
 # Prise de conscience des nombreux paramètres non identifiés (fishbone), de la variabilité, et pour les plus pointus du fait que la mesure est pourrie, et du manque d'arsenal mathématique pour répondre aux question les plus simples (code sans intérêt)
    # - analyse/visu des données expérimentales récupérées à la séance d'avant (avec paramètres continus discrets)
    # - [TODO] exo: prise de conscience de la variabilité "inter-labo" en répliquant l'expérience d'un autre
