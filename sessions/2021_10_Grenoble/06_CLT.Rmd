@@ -1,0 +1,46 @@
+---
+title: "Central Limit Theorem"
+author: "Arnaud Legrand"
+date: "11/25/2021"
+output: html_document
+---
+
+
+```{r}
+library(dplyr)
+library(ggplot2)
+```
+
+```{r}
+N = 10
+mean(runif(n = N, min = 0, max = 2))
+```
+
+
+```{r}
+N = 10
+P = 50
+X = runif(n = N*P, min = 0, max = 2)
+df = data.frame(val = X, group = 1:P)
+df %>% group_by(group) %>% summarize(val_mean = mean(val), val_sd = sd(val)) -> df_agg
+df_agg$val_mean
+```
+
+```{r}
+N = 10
+P = 50000
+X = runif(n = N*P, min = 0, max = 2)
+df = data.frame(val = X, group = 1:P)
+df %>% group_by(group) %>% summarize(val_mean = mean(val), val_sd = sd(val)) -> df_agg
+df_agg %>%  ggplot() + geom_histogram(aes(x = val_mean), binwidth = 0.01) + theme_bw() + xlim(0,2)
+```
+
+```{r}
+N = 1000
+P = 5000
+X = runif(n = N*P, min = 0, max = 2)
+df = data.frame(val = X, group = 1:P)
+df %>% group_by(group) %>% summarize(val_mean = mean(val), val_sd = sd(val), 
+                                     val_se = val_sd/sqrt(n()), ok = 1<val_mean+2*val_se & 1>val_mean-2*val_se) -> df_agg
+mean(df_agg$ok)
+```
