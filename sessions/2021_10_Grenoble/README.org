@@ -208,7 +208,7 @@ Let's start:
      - Quicksort: [[https://www.thegeekstuff.com/2012/08/gprof-tutorial/][gprof]], [[https://kcachegrind.github.io/html/Home.html][callgrind and kcachegrind]], [[https://www.brendangregg.com/FlameGraphs/cpuflamegraphs.html][perf]]
      - Fitt's law: https://www.yorku.ca/mack/FittsLawSoftware/
 2. Lecture on estimation, the central limit theorem and confidence intervals
-   - 
+   - [[file:06_CLT.Rmd][Some R code to develop intuitions behind the Central Limit Theorem]]
    - [[file:../../lectures/3_introduction_to_statistics.pdf][Introduction to probabilities/statistics]] (slides 1-30 and 36-43)
    - For those who would like to read the [[file:../../lectures/lecture_central_limit_theorem.pdf][Proof of the  Central limit theorem]]
    - [[file:../../lectures/lecture_chi_square.pdf][Unveiling the mysterious chi square distribution and how to use it to compute a confidence interval when you have few samples (Students's law and t-test)]]
