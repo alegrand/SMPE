@@ -194,7 +194,7 @@ Evaluation process:
   - Improve the visualization and the analysis
 - [ ] Review the ggplot resources and prepare questions if needed.
 - [ ] Read the slides on measurement. Prepare a short summary with comments on what's clear and what's unclear so that we can discuss about it.
-** 6. 25/11/21 [AL + CC] Clearly defining the experiment and having the right tools to analyze it
+** 6. 25/11/21 [AL] Clearly defining the experiment and having the right tools to analyze it
 Before we start.
 - Questions on what we've seen ?
 - Ggplot/dplyr questions ? 
@@ -225,7 +225,11 @@ Let's start:
    #     - en binôme, vont jouer à expérimenter/analyser/interpréter sur les 5 prochaines semaines et faire un rendu montrant comment ils réinvestissent ce qu'on a vu
    # Probas, CLT et test via un IC.
    # - anecdote rigolote à utiliser ? https://twitter.com/nholzschuch/status/1436739620620935175?s=09
-** 7. 2/12/21 [EA | AL ?] The linear model
+** 7. 2/12/21 [EA] The linear model
+- [[file:07_linear_regression.pdf][Slides]]
+- [[file:07_linear_regression/tp-arbre.pdf][Simple linear regression hands-on]] ([[file:07_linear_regression/arbres-tot.csv][data]])
+- [[file:07_linear_regression/tp-reglineaire.pdf][Multiple linear regression hands-on]] ([[file:07_linear_regression/bats.csv][data]] and [[file:07_linear_regression/HutcEA02.pdf][original article]])
+
     # - [TODO] Prévoir un rendu pour les forcer à manipuler et à apprendre à lire ce genre de sorties. Pour ça, s'appuyer sur l'app shiny
     # - Insister sur https://twitter.com/arnaudlegrand17/status/1432981192983433217 qui permet de rappeler le risque dans des études observationnelles.
 ** 8. 9/12/21 [EA] Multiple testing and ANOVA (p-hacking) | Seqential DoE (screening, D-opt, LHS)
