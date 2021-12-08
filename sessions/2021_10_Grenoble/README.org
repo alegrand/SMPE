@@ -228,17 +228,21 @@ Let's start:
 ** 7. 2/12/21 [EA] The linear model
 - [[file:07_linear_regression.pdf][Slides]]
 - [[file:07_linear_regression/tp-arbre.pdf][Simple linear regression hands-on]] ([[file:07_linear_regression/arbres-tot.csv][data]])
-- [[file:07_linear_regression/tp-reglineaire.pdf][Multiple linear regression hands-on]] ([[file:07_linear_regression/bats.csv][data]] and [[file:07_linear_regression/HutcEA02.pdf][original article]])
 
     # - [TODO] Prévoir un rendu pour les forcer à manipuler et à apprendre à lire ce genre de sorties. Pour ça, s'appuyer sur l'app shiny
     # - Insister sur https://twitter.com/arnaudlegrand17/status/1432981192983433217 qui permet de rappeler le risque dans des études observationnelles.
-** 8. 9/12/21 [EA] Multiple testing and ANOVA (p-hacking) | Seqential DoE (screening, D-opt, LHS)
-    # - [TODO] App shiny
-** 9. 16/12/21 [EA] A Bayesian perspective
+** 8. 9/12/21 [EA + AL] Multiple testing and ANOVA (p-hacking) | Seqential DoE (screening, D-opt, LHS)
+- [[file:08_anova.pdf][Slides]]
+- [[file:07_linear_regression/tp-ble.pdf][ANOVA on wheat]] ([[file:07_linear_regression/ble.txt][data]])
+- [[file:07_linear_regression/tp-batman.pdf][Multiple linear regression hands-on]] ([[file:07_linear_regression/bats.csv][data]] and [[file:07_linear_regression/HutcEA02.pdf][original article]])
+- Correlation and Causation
+  - [[file:../../lectures/lecture_correlation_causation.pdf][Spurious correlations (slides 4-12)]]
+  - [[file:../../lectures/lecture_counterfactual.pdf][Causal inference]]
+** 9. 16/12/21 [EA] Incremental DoE
 # (https://gitlab.inria.fr/alegrand/slides_bayesian_sampling/-/blob/master/bayesian_statistics_introduction.pdf), "Équivalence" entre la régression linéaire en fréquentiste et en MLE sous hypothèse Gaussienne, Ridge/LASSO comme régression linéaire bayesienne, sélection de modèles (AIC, BIC), Extension du modèle linéaire (régression logistique) ?
 #     - [TODO] App shiny
 ** Winter vacations
-** 10. 06/01/22 Incremental DoE, Surrogates, and Reinforcement Learning (Bandit, GP)
+** 10. 06/01/22 A Bayesian perspective, Reinforcement Learning and Surrogates (Bandit, GP)
     # - [TODO] App shiny
 ** 11. 13/01/22 Scientific integrity (HARKING, p-hacking, data falsification, plagiarism, collusion)
     # - https://twitter.com/MicrobiomDigest/status/1416838153583927304?s=09 https://twitter.com/MicrobiomDigest/status/1425477195141636105?s=09
