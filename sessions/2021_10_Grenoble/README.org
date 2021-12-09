@@ -231,27 +231,42 @@ Let's start:
 
     # - [TODO] Prévoir un rendu pour les forcer à manipuler et à apprendre à lire ce genre de sorties. Pour ça, s'appuyer sur l'app shiny
     # - Insister sur https://twitter.com/arnaudlegrand17/status/1432981192983433217 qui permet de rappeler le risque dans des études observationnelles.
-** 8. 9/12/21 [EA + AL] Multiple testing and ANOVA (p-hacking) | Seqential DoE (screening, D-opt, LHS)
+** 8. 9/12/21 [EA + AL] Multiple testing and ANOVA (p-hacking) 
 - [[file:08_anova.pdf][Slides]]
 - [[file:07_linear_regression/tp-ble.pdf][ANOVA on wheat]] ([[file:07_linear_regression/ble.txt][data]])
 - [[file:07_linear_regression/tp-batman.pdf][Multiple linear regression hands-on]] ([[file:07_linear_regression/bats.csv][data]] and [[file:07_linear_regression/HutcEA02.pdf][original article]])
 - Correlation and Causation
+  - Common pitfalls/problems:
+    - Unbalanced designs
+    - Colinear factors (see "Known regressors" in this see [[file:08_correlation.Rmd][Rmarkdown document]])
+    - Missing combinations (interactions)
+    - "Biased" data (uniform interest ? over-representation)
+  - Commonly wrong hypothesis
+    - Linearity
+    - Normal residuals for an ANOVA
+    - Noisy factors (see "Error in variables" in this [[file:08_correlation.Rmd][Rmarkdown document]])
+    - Building the model and adding variables at will
   - [[file:../../lectures/lecture_correlation_causation.pdf][Spurious correlations (slides 4-12)]]
+    - Building spurious correlations (see "Spurious Correlations" in this [[file:08_correlation.Rmd][Rmarkdown document]])
   - [[file:../../lectures/lecture_counterfactual.pdf][Causal inference]]
-** 9. 16/12/21 [EA] Incremental DoE
-# (https://gitlab.inria.fr/alegrand/slides_bayesian_sampling/-/blob/master/bayesian_statistics_introduction.pdf), "Équivalence" entre la régression linéaire en fréquentiste et en MLE sous hypothèse Gaussienne, Ridge/LASSO comme régression linéaire bayesienne, sélection de modèles (AIC, BIC), Extension du modèle linéaire (régression logistique) ?
+  - Motivation for DoE: 
+    - Avoid Bias
+    - Balanced design
+    - Orthogonal combinations
+** 9. 16/12/21 [AL] Seqential DoE (screening, D-opt, LHS)
 #     - [TODO] App shiny
 ** Winter vacations
-** 10. 06/01/22 A Bayesian perspective, Reinforcement Learning and Surrogates (Bandit, GP)
+** 10. 06/01/22 [AL] Incremental DoE: A Bayesian perspective, Reinforcement Learning and Surrogates (Bandit, GP)
+    # (https://gitlab.inria.fr/alegrand/slides_bayesian_sampling/-/blob/master/bayesian_statistics_introduction.pdf), "Équivalence" entre la régression linéaire en fréquentiste et en MLE sous hypothèse Gaussienne, Ridge/LASSO comme régression linéaire bayesienne, sélection de modèles (AIC, BIC), Extension du modèle linéaire (régression logistique) ?
     # - [TODO] App shiny
-** 11. 13/01/22 Scientific integrity (HARKING, p-hacking, data falsification, plagiarism, collusion)
+** 11. 13/01/22 [AL] Scientific integrity (HARKING, p-hacking, data falsification, plagiarism, collusion)
     # - https://twitter.com/MicrobiomDigest/status/1416838153583927304?s=09 https://twitter.com/MicrobiomDigest/status/1425477195141636105?s=09
     # - https://twitter.com/vardi/status/1410948462150139906 https://twitter.com/AndreasZeller/status/1420787486629015554?s=09
     # - https://twitter.com/ouvrirlascience/status/1411254714235228162 https://science-octopus.org/ f1000research
     # - https://twitter.com/NousCamille/status/1413103024097140739
     # - https://cacm.acm.org/magazines/2021/6/252840-collusion-rings-threaten-the-integrity-of-computer-science-research/fulltext
     # - https://twitter.com/AndreasZeller/status/1420787486629015554?s=09
-** 12. 20/01/22 Ethics (AI and humain, climate change, societal challenges)
+** 12. 20/01/22 [CC + JMV] Ethics (AI and humain, climate change, societal challenges)
 * Hands-on
 In the 3rd module of the [[https://www.fun-mooc.fr/fr/cours/recherche-reproductible-principes-methodologiques-pour-une-science-transparente/][MOOC on Reproducible Research]], there is a
 peer-reviewed homework that will allow you to practically use

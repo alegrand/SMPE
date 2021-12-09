@@ -1,0 +1,134 @@
+---
+title: "Spurious correlations"
+author: "Arnaud Legrand"
+date: "12/8/2021"
+output: html_document
+---
+
+# Known regressors
+
+From https://statisticsbyjim.com/regression/multicollinearity-in-regression-analysis/
+- Structural multicollinearity: This type occurs when we create a model term using other terms. In other words, it’s a byproduct of the model that we specify rather than being present in the data itself. For example, if you square term X to model curvature, clearly there is a correlation between X and X2.
+- Data multicollinearity: This type of multicollinearity is present in the data itself rather than being an artifact of our model. Observational experiments are more likely to exhibit this kind of multicollinearity.
+
+Here is an illustration.
+```{r}
+    library(tidyverse)    
+    
+    sim <- function(rho){
+      #Number of samples to draw
+      N = 50
+    
+      #Make a covariance matrix
+      covar = matrix(c(1,rho, rho, 1), byrow = T, nrow = 2)
+
+      # Append a column of 1s to N draws from a 2-dimensional  
+      # Gaussian 
+      # With covariance matrix covar
+      X = cbind(rep(1,N),MASS::mvrnorm(N, mu = c(0,0), 
+                  Sigma = covar))
+
+      # True betas for our regression
+      betas = c(1,2,4)
+
+      # Make the outcome
+      y = X%*%betas + rnorm(N,0,1)
+
+      # Fit a linear model
+      model = lm(y ~ X[,2] + X[,3])
+      
+      # Return a dataframe of the coefficients
+      return(tibble(a1 = coef(model)[2], a2 = coef(model)[3]))     
+    }
+    
+    #Run the function 1000 times and stack the results
+    zero_covar = rerun(1000, sim(0)) %>% 
+                 bind_rows
+    
+    #Same as above, but the covariance in covar matrix 
+    #is now non-zero
+    high_covar = rerun(1000, sim(0.95)) %>% bind_rows
+    
+    #plot
+    zero_covar %>% 
+      ggplot(aes(a1,a2)) +
+      geom_point(data = high_covar, color = 'red') +
+      geom_point()
+
+```
+
+# Error in variables
+## One variable
+```{r}
+a = 5
+b = 2
+N = 1000
+X = runif(n = N, min = -2, max = 2)
+Xa = X + rnorm(n = N, sd=.2)
+Y = a*X + b + rnorm(n = N)
+df = data.frame(Y=Y, X=X, Xa=Xa)
+
+summary(lm(data=df, Y~X))
+summary(lm(data=df, Y~Xa))
+```
+
+## Two variables
+From "Inflation of Type I error in multiple regression when independent variables are measured with error"
+http://www.utstat.toronto.edu/~brunner/MeasurementError/MeasurementError7b.pdf 
+This article quantifies this kind of effect:
+https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0152719
+
+Imagine that you try to explain the number of daily swimming pool deaths (Y) from the number of ice cream cones sold per days (X1). Obviously, temperature plays a role so you may be tempted to add the subjective heat (X2) in the picture to check whether ice cones have a real effect or not. Unfortunately, both are observations, i.e., what you care about is the number of ice cream cones consumed before going to the pool per day (Xi1) and the real temperature (Xi2), and Xi1 and Xi2 are obviously correlated variables.
+
+```{r}
+library(MASS)
+library(dplyr)
+b0 = 2
+b1 = 3
+b2 = 0
+N = 500
+
+mu = c(3,10)
+Sigma = matrix(data=c(1,0.8,0.8,2), nrow = 2)
+Xi = mvrnorm(n = N, mu, Sigma)
+
+nu = c(0,0)
+Theta = matrix(data=c(.3,-0.1,-0.1,.3), nrow = 2)
+X = Xi + mvrnorm(n = N, nu, Theta)
+
+df = as.data.frame(cbind(Xi,X))
+names(df)=c("Xi1","Xi2","X1","X2")
+plot(df)
+
+df %>% mutate(Y = b0 + b1*Xi1 + b2*Xi2 + rnorm(n=n())) -> df
+
+plot(df[c("Y","Xi1","Xi2")])
+plot(df[c("Y","X1","X2")])
+
+summary(lm(data=df, Y~Xi1+Xi2))
+# summary(lm(data=df, Y~X1+X2))
+```
+
+# Spurious correlation
+```{r}
+library(ggplot2)
+spurious_correlation = function(N = 10) {
+  trial = 1
+  while(TRUE) {
+      X = runif(n = N, min = 5, max = 6)
+      Y = runif(n = N, min = 20, max = 70)
+      if(abs(cor(x = X, y = Y))>.95) {
+          print(trial)
+          return(data.frame(x = X, y = Y))
+      }
+      trial = trial + 1
+  }
+}
+d = spurious_correlation();
+d
+summary(d)
+cor(d)
+ggplot(data = d, aes(x=x,y=y)) + geom_point() + geom_smooth(method="lm")
+
+```
+
