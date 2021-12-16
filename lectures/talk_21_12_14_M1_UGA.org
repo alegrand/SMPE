@@ -146,7 +146,7 @@
 #+END_EXPORT
 :end:
 
-** Democracy and Freedom of Speech vs. Scientific Consensus
+** Scientific Consensus vs. Democracy and Freedom of Speech
 #+latex: \includegraphics[width=\linewidth]{images/false_balance_med.jpg}%
 ** Public Evidence for a Lack of Reproducibility
 \small
