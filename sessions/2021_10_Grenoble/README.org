@@ -264,15 +264,31 @@ Let's start:
   - Bayesian linear regression and Regularization (Ridge, LASSO)
   - Model selection (AIC, BIC)
   - Connection with causal inference
-- Lecture on [[file:../../lectures/5_design_of_experiments.pdf][Design of Experiments]]
+- Lecture on [[file:../../lectures/5_design_of_experiments.pdf][Design of Experiments]] (up to space-filling designs)
 *** Homework(9)
 - Finish the previous homeworks (MOOC peer evaluation, Bats)
 - You may start playing with this DoE Shiny Application:
   https://adaphetnodes.shinyapps.io/design_of_experiments/?abc1111
   where you should replace abc1111 by your own id.
-- Delect a topic for the lecture on Ethics
+- Pick a topic for the lecture on Ethics
 ** Winter vacations
 ** 10. 06/01/22 [AL] Incremental DoE: A Bayesian perspective, Reinforcement Learning and Surrogates (Bandit, GP)
+- End of the lecture on [[file:../../lectures/5_design_of_experiments.pdf][Design of Experiments]] (D-optimal designs)
+- Introduction to [[file:../2020_10_Grenoble/bandits.pdf][online optimization and bandits problems]] (from
+  [[https://gitlab.inria.fr/gast/polaris_days_2019_slides][Nicolas Gast]]), in particular the exploration/exploitation
+  trade-off with UCB and Thompson sampling.
+- Introduction to more flexible models (Gaussian Process) and to a
+  similar approach (GP-UCB) in this context: [[https://hal.archives-ouvertes.fr/cel-01618068][Efficient Global Optimization through Gaussian Process Surrogates]].
+*** Homework(10)
+- Keep playing with the DoE Shiny Application
+  (https://adaphetnodes.shinyapps.io/design_of_experiments/?abc1111
+  but with your own id) to experiment with screening and LHS
+  designs or with Gaussian-Process based exporation.
+- Prepare a short (1-page) summary Delect a topic for the lecture on
+  Ethics. prepare a short 1 page resume with the context (addressed
+  problem and solution 50%) and your opinion about the pros and cons
+  of the proposed technology (50%). Prepare also 2 slides to possibly present
+  the problem to the class. 
     # (https://gitlab.inria.fr/alegrand/slides_bayesian_sampling/-/blob/master/bayesian_statistics_introduction.pdf), "Équivalence" entre la régression linéaire en fréquentiste et en MLE sous hypothèse Gaussienne, Ridge/LASSO comme régression linéaire bayesienne, sélection de modèles (AIC, BIC), Extension du modèle linéaire (régression logistique) ?
     # - [TODO] App shiny
 ** 11. 13/01/22 [AL] Scientific integrity (HARKING, p-hacking, data falsification, plagiarism, collusion)
