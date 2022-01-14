@@ -1,0 +1,761 @@
+# -*- coding: utf-8 -*-
+# -*- mode: org -*-
+#+Title:  Ethics, Scientific Integrity, and Deontology
+#+Author: Arnaud Legrand\medskip\newline\logoInstitutions
+#+DATE:  \vspace{3cm}\JDEVlogo Master 2 MOSIG\newline January 2022\newline\begin{overlayarea}{1.05\linewidth}{0cm}\vspace{-3.2cm}\hfill{\mylogo}\end{overlayarea}\vspace{-1.0cm}
+#+LANGUAGE: en
+#+STARTUP: beamer indent inlineimages logdrawer
+#+TAGS: noexport(n)
+
+#+PROPERTY: header-args  :session :eval never-export :exports both
+#+DRAWERS: latex_headers
+
+:latex_headers:
+#+LaTeX_CLASS: beamer
+#+LATEX_CLASS_OPTIONS: [10pt,presentation,xcolor={usenames,dvipsnames,svgnames,table}]
+# # aspectratio=169
+#+OPTIONS:   H:2 num:t toc:nil \n:nil @:t ::t |:t ^:nil -:t f:t *:t <:t
+#+LATEX_COMPILER: lualatex -shell-escape
+#+LATEX_HEADER: \usedescriptionitemofwidthas{bl}
+#+LATEX_HEADER: \usepackage[T1]{fontenc}
+#+LATEX_HEADER: \usepackage[utf8]{inputenc}
+#+LATEX_HEADER: \usepackage{figlatex}
+#+LATEX_HEADER: \usepackage[french]{babel}
+#+LATEX_HEADER: %\usepackage{DejaVuSansMono}
+#+LATEX_HEADER: \usepackage{ifthen,amsmath,amstext,gensymb,amssymb}
+#+LATEX_HEADER: \usepackage{relsize}
+#+LATEX_HEADER: \usepackage{boxedminipage,xspace,multicol}
+#+LATEX_HEADER: %%%%%%%%% Begin of Beamer Layout %%%%%%%%%%%%%
+#+LATEX_HEADER: \ProcessOptionsBeamer
+#+LATEX_HEADER: \usetheme[numbering=fraction,titleformat=smallcaps,progressbar=frametitle]{metropolis}
+#+LATEX_HEADER: \usepackage{fontawesome}
+#+LATEX_HEADER: \usecolortheme[named=BrickRed]{structure}
+#+LATEX_HEADER: %%%%%%%%% End of Beamer Layout %%%%%%%%%%%%%
+#+LATEX_HEADER: \usepackage{array}
+#+LATEX_HEADER: \newcolumntype{L}[1]{>{\raggedright\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+#+LATEX_HEADER: \newcolumntype{C}[1]{>{\centering\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+#+LATEX_HEADER: \newcolumntype{R}[1]{>{\raggedleft\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+
+#+LATEX_HEADER: \usepackage{verbments}
+#+LATEX_HEADER: \usepackage{xcolor}
+#+LATEX_HEADER: \usepackage{color}
+#+LATEX_HEADER: \usepackage{url} \urlstyle{sf}
+#+LATEX_HEADER: \let\alert=\structure % to make sure the org * * works of tools
+#+LATEX_HEADER: %\let\tmptableofcontents=\tableofcontents
+#+LATEX_HEADER: %\def\tableofcontents{}
+#+LATEX_HEADER: \let\hrefold=\href
+#+LATEX_HEADER: \usepackage{ifluatex}
+#+LATEX_HEADER: \ifpdftex
+#+LATEX_HEADER:   \usepackage[normalem]{ulem}\usepackage{soul}
+#+LATEX_HEADER:   % \usepackage{color}
+#+LATEX_HEADER:   \definecolor{lightorange}{rgb}{1,.9,.7}
+#+LATEX_HEADER:   \sethlcolor{lightorange}
+#+LATEX_HEADER:   \definecolor{lightgreen}{rgb}{.7,.9,.7}
+#+LATEX_HEADER:   \makeatother
+#+LATEX_HEADER:      \renewcommand{\href}[2]{\hrefold{#1}{\SoulColor{lightorange}\hl{#2}}}
+#+LATEX_HEADER:      % \renewcommand{\uline}[1]{\SoulColor{lightorange}\hl{#1}}
+#+LATEX_HEADER:      % \renewcommand{\emph}[1]{\SoulColor{lightorange}\hl{#1}}
+#+LATEX_HEADER:   \makeatletter
+#+LATEX_HEADER:   \newcommand\SoulColor[1]{%
+#+LATEX_HEADER:   \sethlcolor{#1}%
+#+LATEX_HEADER:   \let\set@color\beamerorig@set@color%
+#+LATEX_HEADER:   \let\reset@color\beamerorig@reset@color}
+#+LATEX_HEADER: \else
+#+LATEX_HEADER:    \usepackage[soul]{lua-ul}
+#+LATEX_HEADER:    \usepackage{tcolorbox}
+#+LATEX_HEADER:      \renewcommand{\href}[2]{\hrefold{#1}{\begin{tcolorbox}[colback=orange!30!white,size=minimal,hbox,on line]{#2}\end{tcolorbox}}}
+#+LATEX_HEADER:      \let\textttold=\texttt
+#+LATEX_HEADER:      \renewcommand\texttt[1]{\begin{tcolorbox}[colback=green!30!white,size=minimal,hbox,on line]{\smaller\textttold{#1}}\end{tcolorbox}}
+#+LATEX_HEADER: \fi
+#+LATEX_HEADER: % 
+#+LATEX_HEADER: % \renewcommand\alert[1]{\SoulColor{lightgreen}\hl{#1}}
+#+LATEX_HEADER: % \AtBeginSection{\begin{frame}{Outline}\tableofcontents\end{frame}}
+#+LATEX_HEADER: \usepackage[export]{adjustbox}
+#+LATEX_HEADER: \graphicspath{{fig/}}
+#+LATEX_HEADER: \usepackage{tikzsymbols}
+#+LATEX_HEADER: \def\smiley{\Smiley[1][green!80!white]}
+#+LATEX_HEADER: \def\frowny{\Sadey[1][red!80!white]}
+#+LATEX_HEADER: \def\winkey{\Winkey[1][yellow]}
+#+LATEX_HEADER: \def\JDEVlogo{}%\includegraphics[height=1cm]{./images/jdevLogo.pdf}}
+#+LATEX_HEADER: \def\mylogo{\includegraphics[height=2.5cm]{./images/in_science_we_trust.jpg}}
+#+LATEX_HEADER: \def\logoInstitutions{\includegraphics[height=.7cm]{./images/Logo-UGA2020.pdf}\quad\includegraphics[height=.7cm]{./images/Logo-CNRS.pdf}\quad\includegraphics[height=.7cm]{./images/Logo-Inria.pdf}\includegraphics[height=.7cm]{./images/Logo-Lig.pdf}\vspace{-.7cm}}
+#+LATEX_HEADER: %\usepackage{pgf}  
+#+LATEX_HEADER: %\logo{\pgfputat{\pgfxy(-2,6.5)}{\pgfbox[center,base]{\includegraphics[height=1cm]{./images/jdevLogo.pdf}}}}
+
+#+LaTeX: \newsavebox{\temp}
+
+#+BEGIN_EXPORT latex
+  \newcommand{\myfbox}[2][gray!20]{\bgroup\scalebox{.7}{\colorbox{#1}{{\vphantom{pS}#2}}}\egroup} % \fbox
+  %\def\myfbox#1{#1} % \fbox
+  \def\HPC{\myfbox[gray!40]{HPC}}
+  \def\NET{\myfbox[gray!40]{Network}}
+  \def\SG{\myfbox[gray!40]{Smart Grids}}
+  \def\ECO{\myfbox[gray!40]{Economics}}
+  \def\PRIV{\myfbox[gray!40]{Privacy}}
+  \def\TRACING{\myfbox[red!20]{Tracing}}
+  \def\SIM{\myfbox[green!20]{Simulation}}
+  \def\VIZ{\myfbox[red!40]{Visualization}}
+  \def\MODELING{\myfbox[green!40]{Stochastic Models}}
+  \def\OPT{\myfbox[blue!20]{Optimization}}
+  \def\GT{\myfbox[blue!40]{Game Theory}}
+#+END_EXPORT
+
+#+BEGIN_EXPORT latex
+\def\etal{\textit{et al.}\xspace}
+\def\eg{e.g.,\xspace}
+#+END_EXPORT
+
+#+BEGIN_EXPORT latex
+\def\changefont#1{%
+  \setbeamertemplate{itemize/enumerate body begin}{#1}
+  \setbeamertemplate{itemize/enumerate subbody begin}{#1}
+  #1}
+\makeatletter
+\newcommand{\verbatimfont}[1]{\renewcommand{\verbatim@font}{\ttfamily#1}}
+\makeatother
+\verbatimfont{\scriptsize}%small
+\let\endmintedbak=\endminted
+\def\endminted{\endmintedbak\vspace{-1cm}}
+
+\def\rv#1{\ensuremath{\textcolor{blue}{#1}}\xspace} % DarkBlue
+#+END_EXPORT
+
+#+BEGIN_EXPORT latex
+\newcommand{\Norm}{\ensuremath{\mathcal{N}}\xspace}
+\newcommand{\Unif}{\ensuremath{\mathcal{U}}\xspace}
+\newcommand{\Triang}{\ensuremath{\mathcal{T}}\xspace}
+\newcommand{\Exp}{\ensuremath{\mathcal{E}}\xspace}
+\newcommand{\Bernouilli}{\ensuremath{\mathcal{B}}\xspace}
+\newcommand{\Like}{\ensuremath{\mathcal{L}}\xspace}
+\newcommand{\Model}{\ensuremath{\mathcal{M}}\xspace}
+\newcommand{\E}{\ensuremath{\mathbb{E}}\xspace}
+\def\T{\ensuremath{\theta}\xspace}
+\def\Th{\ensuremath{\hat{\theta}}\xspace}
+\def\Tt{\ensuremath{\tilde{\theta}}\xspace}
+\def\Y{\ensuremath{y}\xspace}
+\def\Yh{\ensuremath{\hat{y}}\xspace}
+\def\Yt{\ensuremath{\tilde{y}}\xspace}
+\let\epsilon=\varepsilon
+\let\leq=\leqslant
+\let\geq=\geqslant
+
+\def\Scalebox#1{\scalebox{.9}{#1}}
+\def\ScaleboxI#1{\Scalebox{\textit{#1}}}
+
+\def\pillar#1#2{~\hbox{\hspace{-1em}\rlap{#1}\hspace{4cm}\includegraphics[height=1cm]{#2}}}
+#+END_EXPORT
+:end:
+
+* Image sources                                                    :noexport:
+- https://upload.wikimedia.org/wikipedia/commons/1/11/Tuskegee-syphilis-experiment-test-subjects.gif
+- https://media.npr.org/assets/img/2021/02/11/item470-full23_custom-6a71024ec8a78668e7c9579d545ee83ee5639407-s1100-c50.jpg
+- https://media.nouvelobs.com/referentiel/633x306/16566012.jpg seralini.jpg
+- https://www.ihes.fr/wp-content/uploads/2021/07/Picture_a_Scientist_patchwork_web_credits.jpg picture_a_scientist.jpg
+#+begin_src shell :results output :exports both
+curl 'https://pbs.twimg.com/media/E6mewvaWEAEKBfL?format=jpg&name=medium' -o images/bik/data_fab1_1.jpg
+curl 'https://pbs.twimg.com/media/E6mg5GqWUAI6tCc?format=jpg&name=medium' -o images/bik/data_fab1_2.jpg
+curl 'https://pbs.twimg.com/media/E8hP8l3XMAAxT-Z?format=jpg&name=medium' -o images/bik/data_fab2_1.jpg
+curl 'https://pbs.twimg.com/media/E8hZU7WWEAM330t?format=jpg&name=medium' -o images/bik/data_fab2_2.jpg
+curl 'https://pbs.twimg.com/media/FHzlp0YVgAEsIs1?format=jpg&name=medium' -o images/bik/image_fab1_2.jpg
+curl 'https://pbs.twimg.com/media/FHwhereUYAAJKYM?format=jpg&name=medium' -o images/bik/image_fab2_1.jpg
+curl 'https://pbs.twimg.com/media/FHwmbiVUcAUjDRk?format=jpg&name=medium' -o images/bik/image_fab2_2.jpg
+curl 'https://pbs.twimg.com/media/FHtyNjgVUAADqvI?format=jpg&name=medium' -o images/bik/image_fab3_1.jpg
+curl 'https://pbs.twimg.com/media/FHtzRIgVEAAMmK6?format=jpg&name=medium' -o images/bik/image_fab3_2.jpg
+curl 'https://pbs.twimg.com/media/FHqPOf4VQAIb0ck?format=jpg&name=medium' -o images/bik/image_fab4_1.jpg
+curl 'https://pbs.twimg.com/media/FIxcx3pUYAIaPaR?format=jpg&name=medium' -o images/bik/image_fab5_1.jpg
+curl 'https://pbs.twimg.com/media/FIxdpb7VgAoAeZX?format=jpg&name=medium' -o images/bik/image_fab5_2.jpg
+#+end_src
+
+#+RESULTS:
+
+* Toward a Responsible Science
+** Three pillars
+# https://drive.google.com/file/d/15zfLUiWTgk390lyU6DGciNnwnVG-4Fr8/view
+# https://www.cnrs.fr/fr/ethique-deontologie-integrite-scientifique-et-lancement-dalerte
+[[https://www.hceres.fr/fr/office-francais-de-lintegrite-scientifique-ofis][HCERES OFIS]], [[https://comite-ethique.cnrs.fr/][CNRS COMETS]], [[https://www.inria.fr/fr/comite-operationnel-devaluation-des-risques-legaux-et-ethiques][Inria COERLE]], [[http://cerna-ethics-allistene.org/][CERNA]]
+
+1. \textbf{Ethics}
+   - Deep questions raised by science progress on *society*; *Moral values* motivating our acts and their consequences.
+   - Regular discussions, connection with society. [COMETS/COERLE/...]
+   - *Retrospective* [law, approval] vs *prospective* view
+2. \textbf{Scientific Integrity}
+   - Rules governing *research practices*. *Code of conduct* for *trustable*
+     research. Domain dependant.
+   - Universal, */soft law/ professional code*. [Scientific integrity/whistleblowers referent]
+3. \textbf{Deontology}
+   - *Le Pors 1983 rév. 2016*: "/Le fonctionnaire exerce ses fonctions avec dignité, impartialité, intégrité et probité/"
+     - Independence, equity, private activities, ... of *civil servants*
+     - Conflicts of interest, connection w. industry, harassment, intellectual property, ...
+   - Law, deontology referent
+** Law evolution (in France)
+- \textbf{2015}: EU puts forward as a priorities the opening of science, of
+  innovation and openness to the world. *Societal science*
+- \textbf{2016}: Doctoral training on ethics and scientific integrity is 
+  [[https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000032587086/][mandatory]] (doctoral schools)
+  - Related to the [[https://cache.media.enseignementsup-recherche.gouv.fr/file/Actus/84/2/Rapport_Corvol_29-06-2016_601842.pdf][Corvol report]] (*Bilan et propositions de mise en œuvre de la charte nationale d'intégrité scientifique*)
+- \textbf{2018}: National Plan for Open science 
+  - open access (HAL)
+  - open data (FAIR)
+  - sustainable and international movement)
+- \textbf{2021}: 2nd National Plan for Open science 
+  - 100% open access data by 2030, open data
+  - open source
+  - open science = new norm
+** Content
+\tableofcontents
+* Deontology
+** Deontology  ([[https://www.cnrs.fr/sites/default/files/pdf/Charte%20de%20d%C3%A9ontologie.pdf][charte de déontologie du CNRS]])
+# L’intégrité, la probité, la neutralité, la laïcité, le secret professionnel, l’indépendance de chercheurs, l’obéissance
+# hiérarchique, le cumul des fonctions ou encore le conflit d’intérêt.
+
+
+- Obligation de dignité :: +violent behavior+, +offensive and inappropriate comments, insults+; +hostile/degrading/humiliating environment,+...
+- Obligation de probité et d'intégrité :: +using your position to obtain personal benefit+, +using public resources or funds for your
+  own+, +favoring relatives+, +getting someone else's credit+ (honest and disinterested engagement)
+- Obligation d'impartialité :: treat anyone in a fair and objective way (+bias+, +partisan considerations+, ...)
+- Obligation de neutralité :: behavior and engagement should not depend on political/philosophical/religious opinions.
+  - \small No conflict with freedom of speech and critical thoughts
+  - \small No discrimination based on origin, sex, identity, age, family situation, physical appearance, religion, ...
+- Obligation de secret/discretion professionnel :: confidential data, economic and industrial espionage
+- Obligation d'exécution des fonctions et d'obéissance hiérarchique :: 
+
+** Conflict of Interest
+# https://quoidansmonassiette.fr/conflits-dinterets-comment-les-financements-dune-etude-scientifique-pourraient-influencer-les-resultats/
+- Industry lobby :: (tobacco, sugar, oil, chemistry) may fund your research so that you give the conclusions they like \dots \\ or study alternative explanations, etc.
+  - [[https://journals.plos.org/plosmedicine/article?id=10.1371/journal.pmed.0040005][Relationship between Funding Source and Conclusion among]] [[https://journals.plos.org/plosmedicine/article?id=10.1371/journal.pmed.0040005][Nutrition-Related Scientific Articles]]
+  - Known as the [[https://en.wikipedia.org/wiki/Funding_bias][Funding bias]]  \pause\vspace{-.5cm}
+- Greenpeace, anti-GMO, anti-4|5G lobby :: \hfill\includegraphics[height=2cm]{images/seralini.jpg}
+  - [[https://criigen.org/bilan-a-deux-ans-etude-de-toxicite-chronique-de-seralini-al-une-decouverte-scientifique-aux-impacts-reglementaires-et-politiques-sans-precedent/][Long-term toxicity of Roundup-tolerant GMO on rats]] by [[https://fr.wikipedia.org/wiki/Gilles-%C3%89ric_S%C3%A9ralini][Séralini et al.]]
+
+#+begin_center
+*Super hard and sensitive topics. I wouldn't take position.*\pause
+#+end_center
+
+An other completely different example:
+
+[[https://cacm.acm.org/magazines/2021/6/252840-collusion-rings-threaten-the-integrity-of-computer-science-research/fulltext][Collusion Rings Threaten the Integrity of Computer Science Research]]
+** Bullying and Sexual Harassment 
+Surprisingly present despite a high level of education $\frowny$
+
+- 2016 ::  Jane Willenbring filed a Title IX complaint of sexual harassment against her adviser. Released the day after the New York Times story of Harvey Weinstein's alleged sexual assault and harassment. *#MeToo*
+
+#+begin_center
+\includegraphics[height=3cm]{images/picture_a_scientist.jpg}
+[[https://en.wikipedia.org/wiki/Picture_a_Scientist][https://en.wikipedia.org/wiki/Picture_a_Scientist]]
+#+end_center
+
+** Recent public harassment example: D. Raoult vs. E. Bik
+# https://www.quebecscience.qc.ca/edito/protection-fraude-scientifique/
+# - https://www.lemonde.fr/politique/article/2021/09/03/macron-raoult-un-an-et-demi-de-compagnonnage_6093277_823448.html
+# https://www.lemonde.fr/blog/huet/2021/09/24/le-comite-dethique-du-cnrs-accuse-didier-raoult/
+
+Bik pointed many flaws on *PubPeer* in Raoult's articles
+
+Raoult and his supporters answer with *intimidation and threats* on social media, *lawsuits*\medskip
+
+#+begin_quote
+    She is a fake expert, a charlatan, and she is paid off. A bunch of
+    nonsense, tantamount to murder. Now she is trying to stop Parkinson's,
+    What a disgusting person
+#+end_quote
+
+Raoult accuses the PubPeer admin, Boris Barbour, of complicity
+
+COMETS finally takes [[https://comite-ethique.cnrs.fr/wp-content/uploads/2021/09/AVIS-2021-42.pdf][position]] \medskip
+#+begin_quote
+  Ces procédés relèvent de stratégies d’intimidation inadmissibles. Le COMETS tient à faire part de son inquiétude face à de telles pratiques qu’il convient de condamner fermement. Au-delà, le COMETS déplore la judiciarisation progressive des questions d’intégrité dans la recherche qui relèvent avant tout d’une expertise et d’une autorité scientifiques.
+#+end_quote
+* Ethic Regulation
+** Credits & Acknowledgments
+This whole part is stolen from *Carole Peyrin*'s presentation:
+- https://pod.univ-lille.fr/video/16631-s12-histoire-de-lethique-de-la-recherche/
+- https://pod.univ-lille.fr/video/16633-s14-les-fondamentaux-de-lethique-de-la-recherchemp4/
+** Tuskegee Syphilis study
+- 1932 -- 1972 :: US Public Health Service (PHS) and the Centers for Disease Control and Prevention (CDC) conduct a study on a group of nearly 400 African Americans with syphilis.
+  #+begin_center
+  /Observe the effects of the disease when untreated/  \medskip
+  #+end_center
+
+#+latex: \centerline{\includegraphics[width=.8\linewidth]{images/carole_peyrin/Tuskegee-syphilis-experiment-test-subjects.png}}
+** Tuskegee Syphilis study
+#+begin_export latex
+\begin{overlayarea}{\linewidth}{0mm}
+  \vspace{-2cm}
+  \hbox{\hspace{.8\linewidth}\includegraphics[width=.3\linewidth]{images/carole_peyrin/tuskegee.jpg}}
+\end{overlayarea}\vspace{.5cm}
+#+end_export
+- 1932 :: enroll 600 impoverished African-American sharecroppers
+  - 399 with latent syphilis, 201 uninfected for the control group
+  - promised medical care
+  - never informed of their disease, placebo disguised as bad blood treatment
+- 1943-1947 :: penicilin has become the standard treatment for syphilis 
+  - free physical examinations at Tuskegee University,
+  - free rides to and from the clinic, hot meals on examination days
+  - autopsy agreements in return for funeral benefits
+- 1972 :: leat to the press
+  - 28 died directly from syphilis, 100 from complications, 40 wives infected, 19 children born with congenital syphilis
+- 1997 :: Public apology from President Clinton
+** Unethical clinical studies
+- No *free and informed consent*
+  - Concealment: hide information on disease and risks
+  - Deception: fraudulent medical care
+  - Influence: money incitation, friendly nurse, military exemption
+  - Concealment: hide the cure\bigskip
+
+- \textbf{1966} : [[https://en.wikipedia.org/wiki/Henry_K._Beecher][Henri Beacher]], /Ethics and Clinical Research/, New England Journal of Medicine. 
+  - 22 examples of unethical clinical research that risked patients' lives
+** Ethical regulation
+- 1946-1947 :: Nazi doctor's trial and Nuremberg Code on Human Research
+  - free and informed consent should be the norm
+  # legal document, not a code of conduct
+- 1964 :: Helsinki declaration (code of conduct)
+  - Need for free and informed consent
+- 1975 :: Helsinki II
+  - Mandatory free and informed consent
+  - Ethical board pre-approval
+  - Should the research be unethical, no publication
+** Social sciences: gay anonymous relations
+***                                                                 :BMCOL:
+:PROPERTIES:
+:BEAMER_col: .7
+:END:
+- Laud Humphreys, sociology, wants to study/explain such motivation
+  - /Tearoom Trade: Impersonal Sex in Public Places/ (1970)
+  - Huge risk for such persons (fee, reputation, etc.)
+- Masquerades as a voyeur, Topological/temporal study
+  - Detailed diagrams and maps of tearoom \bigskip
+
+- No consent, tracked down names and addresses through license plate numbers
+- Interviewed later the men in their homes in disguise and under false pretenses
+***                                                                 :BMCOL:
+:PROPERTIES:
+:BEAMER_col: .3
+:END:
+#+latex: \includegraphics[width=\linewidth]{images/carole_peyrin/tearoom.jpg}
+
+** Ethical regulation 2
+- 1946-1947 :: Nuremberg Code
+- 1964 :: Helsinki declaration
+- 1975 :: Helsinki II declaration
+- 1981 :: US [[https://en.wikipedia.org/wiki/Common_Rule][Common rule]] (biomedical and behavioral research involving human subjects)
+- 1988 :: Loi Huriet in France (medical research)
+  - Ethical board pre-approval required for any biomedical research
+  - SHS and ICST ?
+- 2009-2012 :: Loi Jardé /recherches impliquant la personne humaine/
+- 2016-2018 :: Revision of the Common rule
+  - [[https://cacm.acm.org/magazines/2016/7/204018-big-data-analytics-and-revision-of-the-common-rule/fulltext][Big Data Analytics and revision of the commun rule]]
+* Scientific Integrity (Data)
+** Scientific Misconduct
+From [[https://en.wikipedia.org/wiki/Scientific_misconduct][https://en.wikipedia.org/wiki/Scientific_misconduct]]
+- Danish definition :: /Intention/ or /gross negligence/ leading to
+  *fabrication* of the scientific message or a *false credit* or emphasis
+  given to a scientist
+- Swedish definition :: /Intentional/ distortion of the research
+  process by *fabrication* of data, text, hypothesis, or methods *from
+  another researcher*'s manuscript form or publication; or *distortion*
+  of the research process in other ways
+- US NSF definition :: Scientific misconduct revolves around the three following issues:
+  1. *fabrication* (completely made up results).
+  2. *falsification* (you obtain result and change them)
+  3. *plagiarism* (stealing someone else's sentence or idea without giving credit)
+** Data fabrication Examples
+#+LaTeX: \hbox{\hspace{-.08\linewidth}\begin{overlayarea}{1.15\linewidth}{8cm}\vspace{-.3cm}\small
+
+- [[https://en.wikipedia.org/wiki/Dong-Pyou_Han][Dong-Pyou Han]] :: Assistant professor, Biomedical
+   sciences, Iowa State University, 2013\footnotesize
+
+  /*Falsified blood results* to make it appear as though a vaccine exhibited anti-HIV activity/
+  - Han and his team received
+    #+LaTeX: $\approx \$19$ million from NIH
+  - _*1 retracted publication*_ and *resignation* of university. Sentenced
+    in 2015 to *57 months imprisonment* for fabricating and falsifying
+    data in HIV vaccine trials.
+    #+LaTeX: \alert{$\$7.2$ million!}\pause
+  \normalsize
+- [[https://en.wikipedia.org/wiki/Diederik_Stapel][Diederik Stapel]] :: Professor, Social Psychology, Univ. Tilburg, 2011
+  # https://en.wikipedia.org/wiki/Diederik_Stapel#Scientific_misconduct
+  # - /Carnivores are more selfish than vegetarians/, 
+  #+BEGIN_QUOTE
+  \footnotesize
+  I failed as a scientist. I *adapted research data* and *fabricated
+  research*. Not once, but *several times*, not for a short period, but
+  *over a longer period of time*. [..] I am aware of the suffering and
+  sorrow that I caused to my colleagues... I *did not withstand the pressure
+  to score, to publish, the pressure to get better in time*. I wanted
+  too much, too fast. In a system where there are few checks and
+  balances, where people work alone, I took the wrong turn. \hfill _*58 retracted publications*_\pause
+  #+END_QUOTE
+- [[https://en.wikipedia.org/wiki/Brian_Wansink][Brian Wansink]] :: Professor, Psychological Nutrition, Cornell, 2016
+  # https://blogs.sciencemag.org/pipeline/archives/2018/02/26/gotta-be-a-conclusion-in-here-somewhere
+  # - /Mindless Eating/, /Obesity/, /Attractive names sustain increased vegetable intake in schools/
+  #+BEGIN_QUOTE
+  \footnotesize 
+  *I gave her a data set of a self-funded, failed study
+  which had null results*. I said "This cost us a lot of time and our
+  own money to collect. *There's got to be something here we can
+  salvage because it's a cool (rich & unique) data set*." I told her
+  what the analyses should be.
+  [..] Every day she came back with puzzling new results, and *every
+  day we would scratch our heads*, ask "Why," *and come up with another
+  way to reanalyze the data* with yet another set of plausible
+  hypotheses\hfill _*17 retracted publications*_
+  #+END_QUOTE
+#+LaTeX: \end{overlayarea}}
+
+** Data falsification
+#+begin_export latex
+\centering
+
+
+\includegraphics<1>[height=8cm]{images/bik/data_fab1_1.jpg}%
+\includegraphics<2>[height=8cm]{images/bik/data_fab1_2.jpg}%
+\includegraphics<3>[height=8cm]{images/bik/data_fab2_1.jpg}%
+\includegraphics<4>[height=8cm]{images/bik/data_fab2_2.jpg}%
+
+\vspace{-.3cm}\scriptsize
+\only<1-2>{\url{https://twitter.com/MicrobiomDigest/status/1416838153583927304}}%
+\only<3-4>{\url{https://twitter.com/MicrobiomDigest/status/1425477195141636105}}%
+
+#+end_export
+** Photo Manipulation
+#+begin_export latex
+\centering
+
+
+\includegraphics<1>[height=8cm]{images/bik/image_fab1_2.jpg}%
+\includegraphics<2>[height=8cm]{images/bik/image_fab2_1.jpg}%
+\includegraphics<3>[height=8cm]{images/bik/image_fab2_2.jpg}%
+\includegraphics<4>[height=8cm]{images/bik/image_fab3_1.jpg}%
+\includegraphics<5>[height=8cm]{images/bik/image_fab3_2.jpg}%
+\includegraphics<6>[height=8cm]{images/bik/image_fab4_1.jpg}%
+\includegraphics<7>[height=8cm]{images/bik/image_fab5_1.jpg}%
+\includegraphics<8>[height=8cm]{images/bik/image_fab5_2.jpg}%
+
+\vspace{-.3cm}\scriptsize
+\only<1>{\url{https://twitter.com/MicrobiomDigest/status/1476307790494781441}}%
+\only<2-3>{\url{https://twitter.com/MicrobiomDigest/status/1476091603563417603}}%
+\only<4-5>{\url{https://twitter.com/MicrobiomDigest/status/1475898917250207746}}%
+\only<6>{\url{https://twitter.com/MicrobiomDigest/status/1475649414190362625}}%
+\only<7-8>{\url{https://twitter.com/MicrobiomDigest/status/1480660402874638337}}%
+\only<9>{Photoshoping used to be a common/requested practice}%
+
+#+end_export
+
+** Going further
+- HARKING :: Hypothesizing After the Results are Known ([[https://en.wikipedia.org/wiki/HARKing][Kerr, 98]]) 
+  #+begin_quote
+    presenting a post hoc hypothesis in the introduction of a research report as if it were an a priori hypothesis
+  #+end_quote
+- P-hacking :: [[https://www.nature.com/articles/s41562-016-0021][A manifesto for reproducible science]]
+  - spurious correlations/multiple comparisons
+  - systematic bias toward shiny results
+    - *overhacking* (hack data until $<0.05$
+    - *selection bias* (only report the smallest one)
+    - *selective debugging* (change test, look for bugs until $<0.05$)
+    - *publication bias* 
+    - (Bonferroni or other) corrections is super hard to apply
+- Cherry picking and not reporting failed attempts ::  
+
+- Possible Answers ::  
+  - $p<0.0001$ ? No more $p$ values ? [[https://freakonometrics.hypotheses.org/tag/p-value][Freakonometrics]]
+  - Academic journals increasingly shift to *pre-registration* mechanism on platforms like [[https://osf.io/][OSF.io]]
+  - *Meta-analysis* may help reaching a consensus ?
+** Any estimate of the damage ?  
+[[https://soundcloud.com/user-982894834/why-do-researchers-sometimes-cheat-and-what-to-do-about-it][E. Bik]]: Hard to tell but some papers have made a lot of damage.
+
+*Measles Mumps Rubella vaccine causes autism in young children*
+- Wakeﬁeld et al. /Ileal-lymphoid-nodular hyperplasia, nonspeciﬁc colitis, and pervasive developmental disorder in children/. Lancet. 1998. [RETRACTED]
+- "/Despite the small sample size (n=12), the uncontrolled design, and the speculative nature of the conclusions, the paper received wide publicity, and MMR vaccination rates began to drop because parents were concerned about the risk of autism after vaccination./" [[https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3136032/][The MMR vaccine and autism: Sensation]] [[https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3136032/][refutation, retraction, and fraud]] (2011)
+- 12 years of investigation: *Falsified data*
+
+People don't believe in vaccine and Wakefield contributed to that.
+- *HCQ paper* from Didier Raoult has done a lots of damage as well. *Still not retracted*.
+** Collective Response
+[[https://soundcloud.com/user-982894834/why-do-researchers-sometimes-cheat-and-what-to-do-about-it][E. Bik]]: Often many fraudulent papers from the same person. Sad because often little action/response from the journals.
+
+- PubPeer ::  post-publication peer review and whistleblowing platform
+  - Brandon Stell and Boris Barbour (CNRS) in 2012
+  - Allows *anonymous* post-publication; *moderated*
+  - [[https://fr.wikipedia.org/wiki/PubPeer][Position of the CNRS CEO, Antoine Petit]]:
+#+begin_quote
+\small Utiliser un site anonyme pour faire part de ses doutes est une démarche dont j’ai du mal à comprendre le sens scientifique. Chacune et chacun est libre de consulter de tels sites, ou même d’y contribuer. Cela relève de la vie privée. Mais à ce titre, cela ne peut se faire sur le temps de travail ou en mobilisant des moyens appartenant au CNRS. Et une telle démarche ne sera évidemment jamais cautionnée par le CNRS\vspace{-1em}
+#+end_quote
+- Retractration watch :: reports on retractions of scientific papers
+  - As of January 2020, 21 792 items
+  - Separate list of retracted articles that add to misinformation about the pandemic
+* Scientific Integrity (Plagiarism)
+** Editors requirements
+Last time I submitted an article to ACM TOMACS, I had to testify my paper to:
+- be the *authors' own _original_* work, which has *not* been *previously published elsewhere*
+- not be submitted to more than one journal for consideration (ensuring it is not under *redundant simultaneous* peer
+ review)
+- properly *credit* the meaningful *contributions of co-authors* and *co-researchers*,
+  - be appropriately *placed in the context of prior* and *existing* *research*,
+  - reflect the authors' own research and analysis and do so in a
+    *truthful* and *complete* manner.
+** Is this really plagiarism ?
+The new means of communications have broken down the barriers
+between people and knowledge.
+
+We can access a quasi unlimited amount of information. An utter most
+important skill is the ability to *filter* and *aggregate* information.\pause
+
+- /I've read wikipedia and the description of ... is so good that
+  there is no way I can write anything better/ \\
+  Why not use it ? After all, wikipedia is public domain...
+- /I've read an internal report of a PhD student of the team and his
+  introduction is just what I need/
+- /The figure of this other report is just great so I've used it/
+- /Deadlines came around more quickly than expected, I had to produce
+  something/
+
+People often use terms like "*copying*" and "*borrowing*", which disguises
+the seriousness of the offense.
+** What is plagiarism?
+According to the Merriam-Webster Online Dictionary, to "plagiarize" means:
+- to steal and pass off (the ideas or words of another) as one's own
+- to use (another's production) without crediting the source
+- to commit literary theft
+- to present as new and original an idea or product derived from
+  an existing source.
+\pause
+
+In other words, plagiarism is an act of *fraud*. It involves both
+*stealing* someone else's work and *lying* about it afterward.
+** But can words and ideas really be stolen?
+According to many governmental laws, the answer is yes. All of
+the following are considered plagiarism:
+- \small turning in someone else's work as your own
+- copying words or ideas from someone else without giving credit
+- failing to put a quotation in quotation marks
+- giving incorrect information about the source of a quotation
+- changing words but copying the sentence structure of a source without giving credit
+- copying so many words or ideas from a source that it makes up the majority of your work, whether you give credit or not
+  \normalsize
+  \pause
+
+The fraud is generally more about *lying* about the content of your work than about *dispossessing* someone from something.
+** How to avoid plagiarism?
+Most cases of plagiarism can be avoided, however, by *citing sources*.\medskip
+
+Simply *acknowledging* that certain material has been borrowed, and
+providing your audience with the information necessary to find that
+source, is usually enough to prevent plagiarism.\medskip\pause
+
+That is why I need to confess now that most of previous slides are plain copies from [[http://www.plagiarism.org/][http://www.plagiarism.org/]], just like the
+next slides. :)
+** Citations
+A "citation" is the way you tell your readers that certain material in
+your work came from another source.
+
+It also gives your readers the information necessary to find that source again, including:
+- information about the author
+- the title of the work
+- the name and location of the company that published your copy of the source
+- the date your copy was published
+- the page numbers of the material you are borrowing
+** Why should I cite sources?
+Giving credit to the original author by citing sources is the only way
+to use other people's work without plagiarizing. But there are a
+number of other reasons to cite sources:
+- Citations are extremely helpful to anyone who wants to find
+  out more about your ideas and where they came from
+- Not all sources are good or right -- your own ideas may often be
+  more accurate or interesting than those of your sources. Proper
+  citation will keep you from taking the rap for someone else's bad
+  ideas
+- Citing sources shows the amount of research you've done
+- Citing sources *strengthens your work* by lending outside *support* to
+  your ideas
+
+** Doesn't citing sources make my work seem less original?
+Not at all. On the contrary, citing sources actually helps your reader
+*distinguish* your ideas from those of your sources. This will actually
+*emphasize the originality of your own work*.\bigskip
+
+But do not cite too much things. Only cite the work you have actually
+read!
+** Plagiarism variants
+- Self-plagiarism ::  
+  - Duplicate publication
+  - Text recycling and Copyright infringement \medskip
+  - *Salami-slicing* publication ("least publishable units")
+- Citation plagiarism  :: /willful or negligent failure to appropriately credit other or prior discoverers, so as to give an improper impression of priority/ aka *citation amnesia*, *disregard syndrome*, and *bibliographic negligence*
+
+  \hfill -- From [[https://en.wikipedia.org/wiki/Scientific_misconduct][https://en.wikipedia.org/wiki/Scientific_misconduct]]
+** Authorship, guest authorship, and ghostwriting
+[[https://en.wikipedia.org/wiki/Scientific_misconduct#Authorship_responsibility][Authorship responsibility]] 
+#+begin_quote
+All authors of a scientific publication are expected to have made reasonable attempts to check findings submitted to academic journals for publication. 
+#+end_quote
+- Guest/gift authorship :: to increase publication list
+  - You may actually buy authorship for \approx 10K€
+- Ghostwriting :: e.g., to hide a conflict of interest
+  - Invisibilization and Silencing (engineers/technicians, young
+    researchers, ...). What is a *substential contribution* ?
+  - Quite important for carreer\bigskip
+
+- Possible answer ::  [[https://casrai.org/credit/][CRediT – Contributor Roles Taxonomy]]
+* Discussion on Research Organization
+** Is this new ?
+How so? *Why now*? *Why is this important*? What can we do about it?
+\vspace{-1.7em}
+#+BEGIN_CENTER
+   [[http://www.cnrs.fr/fr/pdf/cim/CIM36.pdf][/The Battle against Scientific Fraud/ in the CNRS International
+   Magazine]]
+#+END_CENTER
+#+BEGIN_EXPORT latex
+\vspace{-.2em}
+\begin{columns}
+  \begin{column}{.4\linewidth}
+    \includegraphics[width=.9\linewidth]{images/CNRS_CIM_36_biomed_fraud.png}
+  \end{column}
+  \begin{column}{.6\linewidth}
+    
+    \begin{center}
+      \includegraphics[width=.6\linewidth]{images/CNRS_CIM_36_scientists.pdf}
+    \end{center}
+    \vspace{-1em}
+#+END_EXPORT
+\small \textbf{Galileo} (data fabrication), \textbf{Ptolemy} (plagiarism),
+\textbf{Mendel} (data enhancement), [[http://lascienceenfraude.blogspot.fr/2012/05/limposture-de-pasteur.html][\bf Pasteur]] (rigorous but hid
+failures), ...
+#+BEGIN_EXPORT latex
+    \end{column}
+  \end{columns}
+#+END_EXPORT
+Scientific misconduct is obviously wrong but it's *not new*!
+- \footnotesize Every domain has its black sheep \hfill
+  \alert{\textbullet} The publish or perish pressure is a pain
+** Motivation for cheating
+- Career pressure :: Funding depends on good reputation, which depends on the publication of high-profile scientific papers $\leadsto$ *Publish or perish* 
+- Ease of fabrication :: Results are often difficult to reproduce accurately, being obscured by noise,
+  artifacts, ... *Checking* is hard
+  - \footnotesize  *No incentive* to reproduce/check our own work (afap), nor the work of others (big results!), nor to allow others to check (competition)
+- Monetary Gain :: The most lucrative options for professionals are often selling opinions
+  - \footnotesize Academics are badly paid so a small infringement to the deontology code could help...
+- Power structure :: /solve this or I'll find another postdoc to do the
+  job/
+  - \footnotesize High pressure to deliver and incentive to cheat
+  - \footnotesize Experiments do not always work, cells do not always grow, sometimes it works, sometimes it does not, sometimes it does not work as expected
+
+Quantity matters more than quality, especially when you have to write papers to get a position. 
+
+\centering
+*People are pushed to deliver the impossible*
+** Bibliometry
+Science builds on the ability to *measure*, right ?
+- \small If we could measure the quality of science (scientist, group, lab, universities), we
+  would have a *rational* way of managing budget\normalsize
+
+
+- h-index :: captures both *productivity* and *impact* ([[https://scholar.google.com/citations?hl=fr&user=Ityu1_0AAAAJ][Google Scholar]])
+  - Do you know, [[https://hal.archives-ouvertes.fr/hal-00713564/][Ike Antkare one of the great stars in the]]  [[https://hal.archives-ouvertes.fr/hal-00713564/][scientific firmament]] ?
+  - Game the system: encourages *self-citation*, *reviewer-coerced citation*, which impoverishes scientific communities
+- Conference/journal ranking :: [[http://www.conferenceranks.com/][http://www.conferenceranks.com/]] (CORE, ERA, QUALIS)
+- Shanghai Ranking :: [[https://en.wikipedia.org/wiki/Academic_Ranking_of_World_Universities][Academic Ranking of World Universities]]
+
+
+This is *prescriptive* measurement: e.g., "/one B2/A2 paper every year or a A2 paper every
+two year at least for an academic/"
+
+Hiring committees and research institutes have finally signed the  [[https://en.wikipedia.org/wiki/San_Francisco_Declaration_on_Research_Assessment][San Francisco Declaration on Research Assessment (DORA)]]
+** How far can this go ?
+- Article generation :: [[https://pdos.csail.mit.edu/archive/scigen/][SCIgen]]
+  - [[https://hal.archives-ouvertes.fr/hal-03242216][Prevalence of nonsensical algorithmically generated papers in]]  [[https://hal.archives-ouvertes.fr/hal-03242216][the scientific literature]]
+    - /We estimate the prevalence of SCIgen-papers to be 75 per million papers in Information and Computing Sciences/
+    - /Only 19% of the 243 problematic papers were dealt with: formal retraction (12) or silent removal (34)/
+- Detecting ::  
+  - Errors \bgroup\footnotesize([[https://hal.archives-ouvertes.fr/hal-02057036][semi-automated fact-checking of nucleotide sequence reagents]])\egroup
+  - Fraud \bgroup\footnotesize([[https://hal.archives-ouvertes.fr/hal-02057728][the possibility of systematic research fraud targeting under-studied human genes]])\egroup
+- Papermills :: [[https://forbetterscience.com/2020/01/24/the-full-service-paper-mill-and-its-chinese-customers/][The full-service paper mill and its Chinese customers]]
+- "/Predatory/" journals :: [[https://www.nature.com/articles/d41586-019-03759-y][Predatory journals: no definition, no defence]]
+** Too much noise
+#+begin_center
+  /Release early, release often/
+#+end_center
+
+- [[https://thegradient.pub/over-optimization-of-academic-publishing-metrics/][Goodhart’s Law: Are Academic Metrics Being Gamed?]] (Fire 2019)
+  - \scriptsize AI: over 1,000 ranked journals ($\times10$ in 15 years)
+  - Shorter papers with increasing self references
+  - More and more papers without any citation\vspace{-.8em}
+  - Sharp increase of the number of new young authors publishing at a much
+    faster rate\normalsize
+    # - Authors: We noticed a sharp increase in the number of new
+    #   authors These new authors are publishing at a much faster rate
+    #   given their career age than they have in previous
+    #   decades. Additionally, the average number of coauthors per
+    #   author considerably increased over time. Lastly, we observed
+    #   that in recent years there has been a growing trend for authors
+    #   to publish more in conferences.
+    # - Papers: We observed that over time, papers became shorter while
+    #   other features, such as titles, abstracts, and author lists,
+    #   became longer. While the number of references and the number of
+    #   self-citations considerably increased, the total number of
+    #   papers without any citations grew rapidly as well.
+    # - Traditional measures (e.g., number of papers, number of
+    #   citations, h-index, and impact factor) have become targets 
+    # - Citation number has become a target for some researchers
+    # - Exponential growth in the number of new researchers who publish
+    #   papers, likely due to career pressures
+- [[https://www.pnas.org/content/118/41/e2021636118][Slowed canonical progress in large fields of science]] 
+  #+begin_quote
+  \scriptsize When the number of papers published per year in a scientific field grows large, *citations flow disproportionately to already well-cited papers*; the list of *most-cited papers ossifies*; *new papers are unlikely to ever become highly cited*, and when they do, it is not through a gradual, cumulative process of attention gathering; and newly published papers become *unlikely to disrupt existing work*
+  #+end_quote
+- Moshe Vardi [[https://twitter.com/vardi/status/1410948462150139906][recently recalled Shannon's 1956 one-page article]] trying to curb the *information theory* hype 
+  #+begin_quote
+  \scriptsize Authors should submit only their best efforts, and these only after careful criticism by themselves and their colleagues. *A few first rate research papers are preferable to a large number that are poorly conceived or half-finished*. The latter are no credit to their writers and a waste of time to their readers.
+  #+end_quote
+
+How serious is reviewing taken [[https://andreas-zeller.info/2021/07/27/Reviewing-across-fields-ICSE-PLDI-CCS.html][really depends on the community]]
+# https://twitter.com/AndreasZeller/status/1420787486629015554?s=09 ?
+** New publication/reviewing modes ?
+[[http://users.cecs.anu.edu.au/~steveb/downloads/pdf/evaluate-toplas-2016.pdf][The Truth, The Whole Truth, and Nothing But the Truth: A Pragmatic]] [[http://users.cecs.anu.edu.au/~steveb/downloads/pdf/evaluate-toplas-2016.pdf][Guide to Assessing Empirical Evaluations]], \textit{TOPLAS} 2016
+  #+LaTeX: \begin{flushright}
+    #+ATTR_LaTeX: :width .6\linewidth :center nil
+    file:images/evaluate-toplas-2016_fig10.pdf
+  #+LaTeX: \end{flushright}
+
+#+BEGIN_EXPORT latex
+\begin{overlayarea}{\linewidth}{0cm}
+  \vspace{-4cm}\pause
+%  \begin{flushright}
+    \includegraphics[height=2.5cm]{images/ReScience-moto-bordered.pdf}
+%  \end{flushright}
+
+\end{overlayarea}\vspace{-1cm}
+#+END_EXPORT
+
+- Open science :: data papers, negative results, small pieces with  https://science-octopus.org/, reproductions, open reviews with
+  [[https://f1000research.com][f1000research]]
+
+New sharing modes but beware of [[https://www.nature.com/articles/d41586-021-01824-z][performative reproducibility]]
+  - \small No one has the time or patience to read a 100-page pre-analysis plan and compare it with the later publication
+  - Need for *robust, sustainable change in underlying cultural values* (reward, hiring process, etc.)
+** Deleterious impact of liberal management of research
+In the past: steering of research done by Research institutes
+- 2003 :: ANR (call for proposal, less recurrent budget for labs and institutes)
+- 2007 :: ERC grants (peer-reviewed excellence)
+- 2013 :: HCERES (evaluation of "academics", teams, labs, institutes in France)
+- 2021 :: LPR, +CNU+
+- 2022 :: PEPR (massive funding on strategic topics)
+
+*Short-sighted madness* that does not leave time to the academia
+
+[[https://bmjopen.bmj.com/content/3/5/e002800][On the time spent preparing grant proposals: an observational study]] [[https://bmjopen.bmj.com/content/3/5/e002800][of Australian researchers]]
+
+* Emacs Setup                                                      :noexport:
+This document has local variables in its postembule, which should
+allow Org-mode (9) to work seamlessly without any setup. If you're
+uncomfortable using such variables, you can safely ignore them at
+startup. Exporting may require that you copy them in your .emacs.
+
+# Local Variables:
+# eval: (require 'ox-extra)
+# eval: (setq org-latex-tables-centered nil)
+# eval: (ox-extras-activate '(ignore-headlines))
+# eval: (add-to-list 'org-latex-packages-alist '("" "minted"))
+# eval: (setq org-latex-listings 'minted)
+# eval: (setq org-latex-minted-options '(("style" "Tango") ("bgcolor" "Moccasin") ("frame" "lines") ("linenos" "false") ("fontsize" "\\footnotesize")))
+# eval: (setq org-latex-pdf-process '("lualatex -shell-escape -interaction nonstopmode -output-directory %o %f"))
+# End:
