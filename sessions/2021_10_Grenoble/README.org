@@ -291,13 +291,8 @@ Let's start:
   the problem to the class. 
     # (https://gitlab.inria.fr/alegrand/slides_bayesian_sampling/-/blob/master/bayesian_statistics_introduction.pdf), "Équivalence" entre la régression linéaire en fréquentiste et en MLE sous hypothèse Gaussienne, Ridge/LASSO comme régression linéaire bayesienne, sélection de modèles (AIC, BIC), Extension du modèle linéaire (régression logistique) ?
     # - [TODO] App shiny
-** 11. 13/01/22 [AL] Scientific integrity (HARKING, p-hacking, data falsification, plagiarism, collusion)
-    # - https://twitter.com/MicrobiomDigest/status/1416838153583927304?s=09 https://twitter.com/MicrobiomDigest/status/1425477195141636105?s=09
-    # - https://twitter.com/vardi/status/1410948462150139906 https://twitter.com/AndreasZeller/status/1420787486629015554?s=09
-    # - https://twitter.com/ouvrirlascience/status/1411254714235228162 https://science-octopus.org/ f1000research
-    # - https://twitter.com/NousCamille/status/1413103024097140739
-    # - https://cacm.acm.org/magazines/2021/6/252840-collusion-rings-threaten-the-integrity-of-computer-science-research/fulltext
-    # - https://twitter.com/AndreasZeller/status/1420787486629015554?s=09
+** 11. 13/01/22 [AL] Scientific integrity
+- Lecture on [[file:../../lectures/lecture_scientific_integrity.pdf][Ethics, Deontology and Scientific Integrity]]
 ** 12. 20/01/22 [CC + JMV] Ethics (AI and humain, climate change, societal challenges)
 * Hands-on
 In the 3rd module of the [[https://www.fun-mooc.fr/fr/cours/recherche-reproductible-principes-methodologiques-pour-une-science-transparente/][MOOC on Reproducible Research]], there is a
