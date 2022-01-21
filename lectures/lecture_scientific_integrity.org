@@ -437,7 +437,7 @@ From [[https://en.wikipedia.org/wiki/Scientific_misconduct][https://en.wikipedia
 \only<4-5>{\url{https://twitter.com/MicrobiomDigest/status/1475898917250207746}}%
 \only<6>{\url{https://twitter.com/MicrobiomDigest/status/1475649414190362625}}%
 \only<7-8>{\url{https://twitter.com/MicrobiomDigest/status/1480660402874638337}}%
-\only<9>{Photoshoping used to be a common/requested practice}%
+\only<9>{\normalsize Photoshoping used to be a common/requested practice}%
 
 #+end_export
 
@@ -588,14 +588,24 @@ read!
 #+begin_quote
 All authors of a scientific publication are expected to have made reasonable attempts to check findings submitted to academic journals for publication. 
 #+end_quote
-- Guest/gift authorship :: to increase publication list
-  - You may actually buy authorship for \approx 10K€
 - Ghostwriting :: e.g., to hide a conflict of interest
   - Invisibilization and Silencing (engineers/technicians, young
-    researchers, ...). What is a *substential contribution* ?
-  - Quite important for carreer\bigskip
+    researchers, ...). Yet, quite important for carreer.
+  - What is a *substential contribution* ? 
+- Guest/gift authorship :: to increase publication list
+  - You may actually buy authorship for \approx 10K€\bigskip
 
 - Possible answer ::  [[https://casrai.org/credit/][CRediT – Contributor Roles Taxonomy]]
+** How far can this go ?
+- Article generation :: [[https://pdos.csail.mit.edu/archive/scigen/][SCIgen]]
+  - [[https://hal.archives-ouvertes.fr/hal-03242216][Prevalence of nonsensical algorithmically generated papers]]  [[https://hal.archives-ouvertes.fr/hal-03242216][in the scientific literature]]
+    - /We estimate the prevalence of SCIgen-papers to be 75 per million papers in Information and Computing Sciences/
+    - /Only 19% of the 243 problematic papers were dealt with: formal retraction (12) or silent removal (34)/
+- Detecting ::  
+  - Errors \bgroup\footnotesize([[https://hal.archives-ouvertes.fr/hal-02057036][semi-automated fact-checking of nucleotide sequence reagents]])\egroup
+  - Fraud \bgroup\footnotesize([[https://hal.archives-ouvertes.fr/hal-02057728][the possibility of systematic research fraud targeting under-studied human genes]])\egroup
+- Papermills :: [[https://forbetterscience.com/2020/01/24/the-full-service-paper-mill-and-its-chinese-customers/][The full-service paper mill and its Chinese customers]]
+- "/Predatory/" journals :: [[https://www.nature.com/articles/d41586-019-03759-y][Predatory journals: no definition, no defense]]
 * Discussion on Research Organization
 ** Is this new ?
 How so? *Why now*? *Why is this important*? What can we do about it?
@@ -656,21 +666,11 @@ Science builds on the ability to *measure*, right ?
 - Shanghai Ranking :: [[https://en.wikipedia.org/wiki/Academic_Ranking_of_World_Universities][Academic Ranking of World Universities]]
 
 
-This is *prescriptive* measurement: e.g., "/one B2/A2 paper every year or a A2 paper every
+This is *prescriptive* measurement: e.g., "/one B2/A2 paper every year or a A1 paper every
 two year at least for an academic/"
 
 Hiring committees and research institutes have finally signed the  [[https://en.wikipedia.org/wiki/San_Francisco_Declaration_on_Research_Assessment][San Francisco Declaration on Research Assessment (DORA)]]
-** How far can this go ?
-- Article generation :: [[https://pdos.csail.mit.edu/archive/scigen/][SCIgen]]
-  - [[https://hal.archives-ouvertes.fr/hal-03242216][Prevalence of nonsensical algorithmically generated papers in]]  [[https://hal.archives-ouvertes.fr/hal-03242216][the scientific literature]]
-    - /We estimate the prevalence of SCIgen-papers to be 75 per million papers in Information and Computing Sciences/
-    - /Only 19% of the 243 problematic papers were dealt with: formal retraction (12) or silent removal (34)/
-- Detecting ::  
-  - Errors \bgroup\footnotesize([[https://hal.archives-ouvertes.fr/hal-02057036][semi-automated fact-checking of nucleotide sequence reagents]])\egroup
-  - Fraud \bgroup\footnotesize([[https://hal.archives-ouvertes.fr/hal-02057728][the possibility of systematic research fraud targeting under-studied human genes]])\egroup
-- Papermills :: [[https://forbetterscience.com/2020/01/24/the-full-service-paper-mill-and-its-chinese-customers/][The full-service paper mill and its Chinese customers]]
-- "/Predatory/" journals :: [[https://www.nature.com/articles/d41586-019-03759-y][Predatory journals: no definition, no defence]]
-** Too much noise
+** Too much noise is also deleterious
 #+begin_center
   /Release early, release often/
 #+end_center
@@ -727,7 +727,7 @@ How serious is reviewing taken [[https://andreas-zeller.info/2021/07/27/Reviewin
 #+END_EXPORT
 
 - Open science :: data papers, negative results, small pieces with  https://science-octopus.org/, reproductions, open reviews with
-  [[https://f1000research.com][f1000research]]
+  [[https://f1000research.com][f1000research]], ...
 
 New sharing modes but beware of [[https://www.nature.com/articles/d41586-021-01824-z][performative reproducibility]]
   - \small No one has the time or patience to read a 100-page pre-analysis plan and compare it with the later publication
