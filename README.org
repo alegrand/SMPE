@@ -19,7 +19,7 @@ Science in Informatics at Grenoble]] and more recently at [[http://www.ufrgs.br/
 University of Rio Grande do Sul]], at [[http://www.ens-lyon.fr][ENS Lyon]] and [[http://ens-rennes.fr][ENS Rennes]]. Most sessions I gave are listed [[file:sessions/][here]].
 
 #+begin_center
-*If you are a MOSIG student, the webpage for your session is [[file:sessions/2021_10_Grenoble/README.org][here]]*.
+*If you are a MOSIG student, the webpage for your session is [[file:sessions/2022_10_Grenoble/README.org][here]]*.
 #+end_center
 
 
@@ -37,6 +37,7 @@ done
 #+end_src
 
 #+RESULTS:
+- [[file:lectures/talk_22_05_24_UIAD.pdf][UIAD (24/05/2022)]]
 - [[file:lectures/talk_21_12_14_M1_UGA.pdf][M1_UGA (14/12/2021)]]
 - [[file:lectures/talk_21_10_13_Grenoble.pdf][Grenoble (13/10/2021)]]
 - [[file:lectures/talk_21_10_04_Strasbourg.pdf][Strasbourg (04/10/2021)]]
@@ -45,7 +46,6 @@ done
 - [[file:lectures/talk_21_05_18_guix_docker.pdf][guix_docker (18/05/2021)]]
 - [[file:lectures/talk_21_05_10_SIF.pdf][SIF (10/05/2021)]]
 - [[file:lectures/talk_21_04_06_Grenoble.pdf][Grenoble (06/04/2021)]]
-- [[file:lectures/talk_21_02_11_ELN_Irisa.pdf][ELN_Irisa (11/02/2021)]]
 
 
 * Table of Contents                                                     :TOC:
