@@ -20,7 +20,7 @@ Science (MOSIG) from October 2022 to January 2023.
 
 * Useful links 
 - Here is the [[http://pads.univ-grenoble-alpes.fr/p/MOSIG-SMPE-2022-2023][Pad]] you will use to collaborate.
-- Here is the [[https://edt.grenoble-inp.fr/2022-2023/][lecture schedule on ADE]] (look for mosig2). A table summary is [[https://edt.grenoble-inp.fr/2022-2023/enseignant/*/jsp/custom/modules/plannings/eventInfo.jsp?week=-1&day=-1&slot=0&eventId=35775&activityId=-1&resourceId=-1&sessionId=-1&repetition=-1&order=slot&availableZone=-1][here]] (this is the teachers link, I'm not sure how to have the public link :( )
+- Here is the [[https://edt.grenoble-inp.fr/2022-2023/exterieur/jsp/custom/modules/plannings/direct_planning.jsp][lecture schedule on ADE]] (look for mosig2). A table summary is [[https://edt.grenoble-inp.fr/2022-2023/exterieur/jsp/custom/modules/plannings/eventInfo.jsp?week=-1&day=-1&slot=0&eventId=40403&activityId=-1&resourceId=-1&sessionId=-1&repetition=-1&order=slot&availableZone=-1][here]].
 - Here is the [[https://framateam.org/signup_user_complete/?id=edfia7kwaibwik73riqgmmsddy][Invitation link]] for the [[https://framateam.org/smpe-2022-2023/channels/town-square][Mattermost]] we will use to exchange information.
   - The [[https://www.fun-mooc.fr/fr/cours/recherche-reproductible-principes-methodologiques-pour-une-science-transparente/][MOOC on Reproducible Research]]
 Links to the slides are provided below.
@@ -50,20 +50,33 @@ Evaluation process:
 
 * Course Tentative Schedule
 ** 1. 29/09/21 [JMV, AL] Introduction to the scientific method and computer science epistemology | Presentation of the lecture
+*** Slides
+- [[file:../2021_10_Grenoble/01_epistemology.pdf][What is science?]].
+- [file:../../lectures/lecture_SMPE_overview.pdf][Overview of the lecture]].
+*** Homeworks (1)
+- [ ] Indicate your name on the  [[http://pads.univ-grenoble-alpes.fr/p/MOSIG-SMPE-2022-2023][Pad]]. You will use to collaborate and fill in all the information you can.
+- [ ] Register on the [[https://framateam.org/smpe-2022-2023/channels/town-square][Mattermost]] through this [[https://framateam.org/signup_user_complete/?id=edfia7kwaibwik73riqgmmsddy][invitation link]]. This is the preferred communication mode.
+- [ ] Set up a *public* github or gitlab project for this lecture. You will take notes on this lecture and turn your homework and computational documents in this project.
+- [ ] Register to the [[https://www.fun-mooc.fr/fr/cours/recherche-reproductible-principes-methodologiques-pour-une-science-transparente/][MOOC on Reproducible Research]]
+- [ ] Follow modules 1 + 2 of the MOOC with as much exercises as possible (except the last one of module2, on /Challenger/; watching interviews is optional)
+- [ ] Set up a computational document system (e.g., [[#rstudio][Rstudio]] or [[#jupyter][Jupyter]] on your laptop or through the [[https://jupyterhub.u-ga.fr/][UGA JupyterHub]]).
+- [ ] Report the URL of your git project, your mattermost ID on the [[http://pads.univ-grenoble-alpes.fr/p/MOSIG-SMPE-2022][Pad]].
 ** 2. 06/10/21 [AL, EA] Visualization and Exploratory Data Analysis | Correlation/causality, spurious correlation 
 ** 13/10/21: No lecture
-** 3. 20/10/21 [JMV, AL] Data curation with the tidyverse | Data management 1
-** 4. 27/10/21 [JMV, CC] Beautiful Viz with ggplot | Data management 2
+** 3. 20/10/21 [JMV, CC] Data curation with the tidyverse | Data management 1
+** 4. 27/10/21 [JMV, AL] Beautiful Viz with ggplot | Data management 2
 ** Fall Vacations
 ** 5. 10/11/21 [AL + CC] Measurement and tracing
 ** 6. 17/11/21 [AL] Clearly defining the experiment and having the right tools to analyze it
 ** 7. 24/11/21 [EA] The linear model
 ** 8. 01/12/21 [EA + AL] Multiple testing and ANOVA (p-hacking) 
-** 9. 08/12/21 [AL] A Bayesian perspective on regularization and model selection + Sequential DoE (screening, LHS, D-opt, ...)
-** 10. 15/01/22 [AL] Incremental DoE: A Bayesian perspective, Reinforcement Learning and Surrogates (Bandit, GP)
+** 9. 08/12/21 [AL] Scientific integrity
+** 10. 15/01/22 [AL] A Bayesian perspective on regularization and model selection + Sequential DoE (screening, LHS, D-opt, ...)
 ** Winter vacations
-** 11. 05/01/22 [AL] Scientific integrity
-** 12. 12/01/22 [AL + JMV] Ethics (AI and humain, climate change, societal challenges)
+** 11. 05/01/22 [AL + JMV] Ethics (AI and humain, climate change, societal challenges)
+# - https://www.nature.com/articles/s41591-022-01961-6
+#  https://www.wired.com/story/machine-learning-reproducibility-crisis/
+** 12. 12/01/22 [AL] Incremental DoE: A Bayesian perspective, Reinforcement Learning and Surrogates (Bandit, GP)
 * Hands-on
 In the 3rd module of the [[https://www.fun-mooc.fr/fr/cours/recherche-reproductible-principes-methodologiques-pour-une-science-transparente/][MOOC on Reproducible Research]], there is a
 peer-reviewed homework that will allow you to practically use
