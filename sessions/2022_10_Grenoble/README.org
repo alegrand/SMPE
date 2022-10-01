@@ -60,7 +60,7 @@ Evaluation process:
 - [ ] Register to the [[https://www.fun-mooc.fr/fr/cours/recherche-reproductible-principes-methodologiques-pour-une-science-transparente/][MOOC on Reproducible Research]]
 - [ ] Follow modules 1 + 2 of the MOOC with as much exercises as possible (except the last one of module2, on /Challenger/; watching interviews is optional)
 - [ ] Set up a computational document system (e.g., [[#rstudio][Rstudio]] or [[#jupyter][Jupyter]] on your laptop or through the [[https://jupyterhub.u-ga.fr/][UGA JupyterHub]]).
-- [ ] Report the URL of your git project, your mattermost ID on the [[http://pads.univ-grenoble-alpes.fr/p/MOSIG-SMPE-2022][Pad]].
+- [ ] Report the URL of your git project, your mattermost ID on the [[http://pads.univ-grenoble-alpes.fr/p/MOSIG-SMPE-2022-2023][Pad]].
 ** 2. 06/10/21 [AL, EA] Visualization and Exploratory Data Analysis | Correlation/causality, spurious correlation 
 ** 13/10/21: No lecture
 ** 3. 20/10/21 [JMV, CC] Data curation with the tidyverse | Data management 1
