@@ -54,6 +54,7 @@ Evaluation process:
 - [[file:../2021_10_Grenoble/01_epistemology.pdf][What is science?]]
 - [[file:../../lectures/lecture_SMPE_overview.pdf][Overview of the lecture]]
 *** Homeworks (1)
+- [ ] Read Popper's text
 - [ ] Indicate your name on the  [[http://pads.univ-grenoble-alpes.fr/p/MOSIG-SMPE-2022-2023][Pad]]. You will use to collaborate and fill in all the information you can.
 - [ ] Register on the [[https://framateam.org/smpe-2022-2023/channels/town-square][Mattermost]] through this [[https://framateam.org/signup_user_complete/?id=edfia7kwaibwik73riqgmmsddy][invitation link]]. This is the preferred communication mode.
 - [ ] Set up a *public* github or gitlab project for this lecture. You will take notes on this lecture and turn your homework and computational documents in this project.

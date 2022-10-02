@@ -78,7 +78,7 @@
 #+LATEX_HEADER: \def\winkey{\Winkey[1][yellow]}
 #+LATEX_HEADER: \def\JDEVlogo{}%\includegraphics[height=1cm]{./images/jdevLogo.pdf}}
 #+LATEX_HEADER: \def\mylogo{\includegraphics[height=2.5cm]{./images/in_science_we_trust.jpg}}
-#+LATEX_HEADER: \def\logoInstitutions{\includegraphics[height=.7cm]{./images/Logo-UGA2020.pdf}\quad\includegraphics[height=.7cm]{./images/Logo-CNRS.pdf}\quad\includegraphics[height=.7cm]{./images/Logo-Inria.pdf}\includegraphics[height=.7cm]{./images/Logo-Lig.pdf}\vspace{-.7cm}}
+#+LATEX_HEADER: \def\logoInstitutions{\includegraphics[height=.7cm]{./images/Logo-UGA2020.pdf}\quad\includegraphics[height=.7cm]{./images/Logo-CNRS.pdf}\quad\includegraphics[height=.7cm]{./images/Logo-Inria.pdf}\includegraphics[height=.7cm]{./images/logo-lig-new.png}\vspace{-.7cm}}
 #+LATEX_HEADER: %\usepackage{pgf}  
 #+LATEX_HEADER: %\logo{\pgfputat{\pgfxy(-2,6.5)}{\pgfbox[center,base]{\includegraphics[height=1cm]{./images/jdevLogo.pdf}}}}
 
@@ -508,6 +508,7 @@ Stay tuned for the *MOOC "Advanced RR"* planned for +2021+ +2022+ 2023
 \vspace{-.7cm}
 
 ** Homeworks 
+- [ ] Read Popper's text
 - [ ] Indicate your name on the Pad.
 - [ ] Register on the Mattermost.
 - [ ] Set up a *public* github or gitlab project for this lecture.
