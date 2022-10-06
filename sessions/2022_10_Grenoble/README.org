@@ -72,7 +72,7 @@ Evaluation process:
   - [[file:../2021_10_Grenoble/02_activite-histo-en.pdf][Activity: Getting the (wrong) picture from the data]] (Kindergarten data)
   - [[file:../2021_10_Grenoble/02_activite-correl-causal-en.pdf][Activity: Getting the (wrong) picture from the data]] (foot length and spelling/grammatical errors)
 *** Homeworks (2)
- - [ ] Start learning R by reading this [[file:R_intro.Rmd][crash course for computer scientists]] ([[file:../../lectures/lecture_R_crash_course.pdf][slides]] 14-20)
+ - [ ] Start learning R by reading this [[file:R_crash_course.html][R crash course for computer scientists]] ([[file:R_crash_course.Rmd][Rmd sources]]) ([[file:../../lectures/lecture_R_crash_course.pdf][slides]] 14-20)
  - [ ] Complete the two data analysis/visualization in a clean R notebook and upload in your github/gitlab space. Make sure we can easily find it when landing on your page. :)
  - [ ] MOOC: Complete exercise 5 of module 2 (/Challenger/). Write a short text explaining what is good and wrong about this document (you may want to provide an updated version of the notebook) and upload on your github/gitlab space.
 ** 13/10/22: No lecture

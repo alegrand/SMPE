@@ -1,0 +1,162 @@
+---
+title: "R crash course for Computer Scientists"
+author: "Arnaud Legrand"
+date: '2022-10-06'
+output: 
+  html_document:
+    toc: true
+    toc_depth: 4
+    toc_float: true
+    theme: united
+    highlight: tango
+---
+
+## R is a high level functional and object oriented language
+
+Keep in mind you should not consider R as a classical generic programming language. It is particularly well suited to data analysis involving statistics and probabilities. 
+
+### Object orientation
+R provides a few built-in constants, variables, and functions to play with.
+
+```{r}
+pi
+letters
+iris
+mean
+```
+
+Every variable is actually object so you can get information through `str` (structure) and `typeof`. 
+```{r}
+str(pi); typeof(pi)
+str(letters); typeof(letters)
+str(mtcars); typeof(mtcars)
+str(mean); typeof(mean)
+```
+You can access the documentation with `?`
+```{r}
+?mean
+```
+
+### High level data structures
+Basic types are `num`, `int`, `char`, and factors (e.g., Male or Female, like an `enum` in C) but R also provides several built-in higher-level datatypes:
+- Arrays or vectors with all elements being of the same type
+- Lists: collections of named objects, some kind of hash table
+- Matrices: 2D arrays
+- Data frames: 
+
+The types I use the more are vectors and data frames.
+
+Let's build a few ones.
+```{r}
+V = c(1,5,12) # c : Combine Values into a Vector or List
+V
+str(V)
+V[1]  # Index starts at 1!
+V[4] = 15 ; V
+length(V)
+V[0]  # Uh ?
+V[-1] # Oh... ok, this removes the first element
+V[5]  # NA means "Not Available"
+V = c(V,-5,1:4, seq.int(from=2, to = 10, by = 3), rep_len(NA,4), V);V
+```
+So you'd better be careful with indices. Array are dynamically resized but it comes with a cost so if you know the size in advance, you'd better initialize them.
+
+Data frames are very handy and can be seen as a list of vectors which have all the same size.
+```{r}
+str(iris)
+dim(iris)
+iris[3,1]
+iris[3,"Sepal.Length"]
+iris$Sepal.Length
+iris$Sepal.Length[3] # much more convenient
+df = data.frame(Col1 = V, Col2 = "Hello", Col3 = 1:2, Col4 = as.factor(c("A", "B", "C","D")))
+str(df)
+df
+```
+You can also combine data frames together with `rbind` and `cbind`:
+```{r}
+nrow(df)
+df = rbind(df,df)
+nrow(df)
+```
+But in practice, you often read dataframes from existing databases or datafiles, e.g., with `read.csv`.
+```{r}
+df = read.csv("https://static.data.gouv.fr/resources/donnees-hospitalieres-relatives-a-lepidemie-de-covid-19/20221005-190201/covid-hosp-txad-fra-2022-10-05-19h02.csv", header = T, sep=";")
+str(df)
+head(df)
+```
+
+
+### Vectorization
+Obviously, R provides classical imperative control structures like branching, `for` and `while` loops but there is generally a better style.
+So avoid them as much as possible.
+
+```{r}
+for(i in 1:length(V)) {
+  print(paste0("V[",i,"]^2 = ",V[i]^2))
+}
+```
+Note that you may wonder yourself how tests react to `NA` ?...
+
+Anyway, R is a high level language which provides *vectorization*, i.e. most built-in operators and functions handle seamlessly vectors.
+```{r}
+V = 1:5
+V+12
+V = log(V^3) + 3*sin(V); V
+V <= 3
+```
+Even subsetting is vectorized
+```{r}
+V[c(5,1:2)]
+V[V <= 2]
+```
+This is particularly convenient with dataframes as you can easily extract information "à la SQL".
+```{r}
+d = iris[iris$Sepal.Length <=mean(iris$Sepal.Length) & 
+         iris$Petal.Length <=mean(iris$Petal.Length) ,]
+d
+d$Weird = log(d$Sepal.Length)*sin(d$Sepal.Width) 
+summary(d)
+```
+So R being a functional language, it provides many simple functions, which, once well combined are very powerful. Check for example `sum`, `cumsum`, `ifthen`, ...
+
+### Random number generation
+
+R embeds every random generator you can dream of. The naming convention is as follows for a law `law`:
+- `rlaw`: random number generator for `law`
+- `dlaw`: density function ($\mathbb{R}\to\mathbb{R}^+$)
+- `plaw`: cumulative density function ($\mathbb{R}\to[0,1]$)
+- `qlaw`: reciprocal of the cdf, i.e., quantile ($[0,1]\to\mathbb{R}$)
+Classical laws are `unif`, `norm`, `exp`, `cauchy`, `beta`, ...
+```{r}
+rnorm(n = 10, mean = 2, sd = 1)
+```
+For custom discrete distributions, you may want to use the `sample` function.
+
+### Statistics and plots
+Obviously, you have access to `mean`, `min`, `max`, `median`, `var`, `sd`, `summary` (which properly handle `NA`s) but also tests `chisq.test`, `wilcox.test`, etc. The default choices are generally good choices from a statistician point of view and formulas are correct (e.g., unbiased estimators).
+
+Default plots are not very nice but quite effective.
+```{r}
+plot(rnorm(1000), rnorm(1000))
+hist(rnorm(1000))
+plot.ts(runif(100))
+x = rexp(100)
+qqnorm(x)
+plot(iris)
+```
+
+
+
+### Function
+As explained earlier, there are many built-in functions but you may want to write your own. In R, functions have named arguments with possible default value (so it acts as optional arguments).
+
+```{r}
+mynorm2 = function(n = 10, Mean = 2, SD = 1.2, power = 2) { # Uggly variable names. Do not do this!
+  return(rnorm(n = n, mean = Mean, sd = SD)^power)
+}
+mynorm2() # What does this do ? 
+mynorm2(5,-1,1.1,10) # Err ?
+mynorm2(Mean = 2 , power = 1.4, SD = 1.4) # Better
+```
+
