@@ -65,7 +65,7 @@ Evaluation process:
 ** 2. 06/10/22 [JMV, EA] Visualization and Exploratory Data Analysis | Descriptive statistics; Correlation, causality, and spurious correlation 
 *** Slides and Resources
 - [[file:../2021_10_Grenoble/02_whyvisu.pdf][Slides: Why do we need to visualize data: The Anscombe's Quartet]] and as a bonus: [[https://www.autodesk.com/research/publications/same-stats-different-graphs][The Datasaurus]]. :)
-- [[file:../2021_10_Grenoble/02_Intro-Visu.pdf][Slides: What a nice picture ! Data Visualization, an introduction]]
+- [[file:02_Intro-Visu.pdf][Slides: What a nice picture ! Data Visualization, an introduction]]
   - [[file:../2021_10_Grenoble/02_Check-list-good-graphics-tableau-en.pdf][Checklist for good graphics]] and [[file:02_Check-list-good-graphics-en.pdf][Hints for good graphics]] (a similar checklist can be found in
     [[http://www.cs.wustl.edu/~jain/books/perfbook.htm][The Art of Computer Systems Performance Analysis: Techniques for Experimental Design, Measurement, Simulation, and Modeling]])
 - [[file:../2021_10_Grenoble/02_Stat-desc1-en.pdf][Slides: How to get information from a data set ?]]
