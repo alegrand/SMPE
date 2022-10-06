@@ -19,7 +19,7 @@ University of Grenoble to the Master students in Computer
 Science (MOSIG) from October 2021 to January 2022.
 
 * Useful links 
-- Here is the [[http://pads.univ-grenoble-alpes.fr/p/MOSIG-SMPE-2022][Pad]] you will use to collaborate.
+- Here is the [[https://codimd.math.cnrs.fr/ukBaKcsHRyKrCFWW2wOK5w#][Pad]] you will use to collaborate.
 - Here is the [[https://edt.grenoble-inp.fr/2021-2022/][lecture schedule on ADE]] (look for mosig2). A table summary is [[https://edt.grenoble-inp.fr/2021-2022/enseignant/*/jsp/custom/modules/plannings/eventInfo.jsp?week=-1&day=-1&slot=0&eventId=35775&activityId=-1&resourceId=-1&sessionId=-1&repetition=-1&order=slot&availableZone=-1][here]] (this is the teachers link, I'm not sure how to have the public link :( )
 - Here is the [[https://framateam.org/signup_user_complete/?id=wp1a4fpd5bg7tm8fcya3reqgse][Invitation link]] for the [[https://framateam.org/smpe-2021-2022/channels/town-square][Mattermost]] we will use to exchange information.
   - The [[https://www.fun-mooc.fr/fr/cours/recherche-reproductible-principes-methodologiques-pour-une-science-transparente/][MOOC on Reproducible Research]]
@@ -54,9 +54,9 @@ Evaluation process:
 * Course Tentative Schedule
 ** 1. 30/09/21 [JMV, AL] Introduction to the scientific method and computer science epistemology | Presentation of the lecture
 *** Slides
-- [[file:01_epistemology.pdf][slides]]. Notes are in the [[http://pads.univ-grenoble-alpes.fr/p/MOSIG-SMPE-2022][Pad]].
+- [[file:01_epistemology.pdf][slides]]. Notes are in the [[https://codimd.math.cnrs.fr/ukBaKcsHRyKrCFWW2wOK5w#][Pad]].
 *** Homeworks (1)
-- [ ] Indicate your name on [[http://pads.univ-grenoble-alpes.fr/p/MOSIG-SMPE-2022][Pad]] you will use to collaborate and fill in all the information you can.
+- [ ] Indicate your name on [[https://codimd.math.cnrs.fr/ukBaKcsHRyKrCFWW2wOK5w#][Pad]] you will use to collaborate and fill in all the information you can.
 - [ ] Register on the [[https://framateam.org/smpe-2021-2022/channels/town-square][Mattermost of this lecture]] through this [[https://framateam.org/signup_user_complete/?id=wp1a4fpd5bg7tm8fcya3reqgse][Invitation link]]. 
 - [ ] Set up a *public* github or gitlab project for this lecture. You
   will take notes on this lecture and turn your homework and
@@ -64,7 +64,7 @@ Evaluation process:
 - [ ] Register to the [[https://www.fun-mooc.fr/fr/cours/recherche-reproductible-principes-methodologiques-pour-une-science-transparente/][MOOC on Reproducible Research]]
 - [ ] Follow modules 1 + 2 of the MOOC with all exercises (except the last one of module2, on /Challenger/)
 - [ ] Set up a computational document system (e.g., [[#rstudio][Rstudio]] or [[#jupyter][Jupyter]] on your laptop or through the [[https://jupyterhub.u-ga.fr/][UGA JupyterHub]])
-- [ ] Report the URL of your git project, your mattermost ID on the [[http://pads.univ-grenoble-alpes.fr/p/MOSIG-SMPE-2022][Pad]] 
+- [ ] Report the URL of your git project, your mattermost ID on the [[https://codimd.math.cnrs.fr/ukBaKcsHRyKrCFWW2wOK5w#][Pad]] 
 ** 07/10/21: No lecture
 ** 2. 14/10/21 [JMV, EA] Visualization and Exploratory Data Analysis | Correlation/causality, spurious correlation
    # 1. Viz de type Exploratory Data Analysis, multi-varié, time series, éventuellement réalisées par des individus différents.
