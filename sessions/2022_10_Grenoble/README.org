@@ -53,7 +53,7 @@ Evaluation process:
 *** Slides
 - [[file:../2021_10_Grenoble/01_epistemology.pdf][What is science?]]
 - [[file:../../lectures/lecture_SMPE_overview.pdf][Overview of the lecture]]
-*** Homeworks (1)
+*** Homeworks
 - [ ] Read Popper's text
 - [ ] Indicate your name on the  [[https://codimd.math.cnrs.fr/ukBaKcsHRyKrCFWW2wOK5w#][Pad]]. You will use to collaborate and fill in all the information you can.
 - [ ] Register on the [[https://framateam.org/smpe-2022-2023/channels/town-square][Mattermost]] through this [[https://framateam.org/signup_user_complete/?id=edfia7kwaibwik73riqgmmsddy][invitation link]]. This is the preferred communication mode.
@@ -71,12 +71,18 @@ Evaluation process:
 - [[file:../2021_10_Grenoble/02_Stat-desc1-en.pdf][Slides: How to get information from a data set ?]]
   - [[file:../2021_10_Grenoble/02_activite-histo-en.pdf][Activity: Getting the (wrong) picture from the data]] (Kindergarten data)
   - [[file:../2021_10_Grenoble/02_activite-correl-causal-en.pdf][Activity: Getting the (wrong) picture from the data]] (foot length and spelling/grammatical errors)
-*** Homeworks (2)
+*** Homeworks
  - [ ] Start learning R by reading this [[https://htmlpreview.github.io/?https://github.com/alegrand/SMPE/blob/master/sessions/2022_10_Grenoble/R_crash_course.html][R crash course for computer scientists]] ([[file:R_crash_course.Rmd][Rmd sources]]) ([[file:../../lectures/lecture_R_crash_course.pdf][slides]] 14-20)
  - [ ] Complete the two data analysis/visualization in a clean R notebook and upload in your github/gitlab space. Make sure we can easily find it when landing on your page. :)
  - [ ] MOOC: Complete exercise 5 of module 2 (/Challenger/). Write a short text explaining what is good and wrong about this document (you may want to provide an updated version of the notebook) and upload on your github/gitlab space.
 ** 13/10/22: No lecture
 ** 3. 20/10/22 [JMV, CC] Data curation with the tidyverse | Data management 1 (Data Management Plans)
+*** Slides
+1. [[http://iihm.imag.fr/coutrix/ens/M2-MoSIG-SMEE/DMP.pdf][Data management plan]] (CC). Brainstorming session on what's important
+2. [[file:../2021_10_Grenoble/03_Data-Statistics-Introduction.pdf][Data quality]] (JMV)
+*** Homeworks
+ - [ ] See previous homeworks and provide links in the [[https://codimd.math.cnrs.fr/ukBaKcsHRyKrCFWW2wOK5w#][Pad]]!
+ - [ ] [[file:03_Names-Methodo2022-exercise.Rmd][First name/last name analysis in a computational document]].
 ** 4. 27/10/22 [JMV, AL] Beautiful Viz with ggplot | Data management 2 (Tools)
 ** Fall Vacations
 ** 5. 10/11/22 [AL + CC] Measurement and tracing

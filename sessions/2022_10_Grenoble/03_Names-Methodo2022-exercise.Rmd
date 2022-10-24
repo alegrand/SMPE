@@ -1,0 +1,51 @@
+---
+title: "French given names per year per department"
+author: "Lucas Mello Schnorr, Jean-Marc Vincent"
+date: "October, 2022"
+output:
+  pdf_document: default
+  html_document:
+    df_print: paged
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+# The problem context
+The aim of the activity is to develop a methodology to answer a specific question on a given dataset. 
+
+The dataset is the set of Firstname given in France on a large period of time. 
+[https://www.insee.fr/fr/statistiques/2540004](https://www.insee.fr/fr/statistiques/fichier/2540004/dpt2021_csv.zip), we choose this dataset because it is sufficiently large, you can't do the analysis by hand, the structure is simple
+
+
+You need to use the _tidyverse_ for this analysis. Unzip the file _dpt2020_txt.zip_ (to get the **dpt2020.csv**). Read in R with this code. Note that you might need to install the `readr` package with the appropriate command.
+
+## Download Raw Data from the website
+```{r}
+file = "dpt2021_csv.zip"
+if(!file.exists(file)){
+  download.file("https://www.insee.fr/fr/statistiques/fichier/2540004/dpt2021_csv.zip",
+	destfile=file)
+}
+unzip(file)
+```
+Check if your file is the same as in the first analysis (reproducibility)
+```{bash}
+md5 dpt2021.csv
+```
+expected :
+MD5 (dpt2021.csv) = f18a7d627883a0b248a0d59374f3bab7
+
+## Build the Dataframe from file
+
+```{r}
+library(tidyverse)
+
+FirstNames <- read_delim("dpt2021.csv",delim=";")
+```
+
+All of these following questions may need a preliminary analysis of the data, feel free to present answers and justifications in your own order and structure your report as it should be for a scientific report.
+
+1. Choose a firstname and analyse its frequency along time. Compare several firstnames frequency
+2. Establish by gender the most given firstname by year. Analyse the evolution of the most frequent firstname.
+3. Optional : Which department has a larger variety of names along time ? Is there some sort of geographical correlation with the data?
