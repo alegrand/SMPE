@@ -11,6 +11,7 @@ output:
     highlight: tango
 ---
 
+
 ## R is a high level functional and object oriented language
 
 Keep in mind you should not consider R as a classical generic programming language. It is particularly well suited to data analysis involving statistics and probabilities. 
@@ -81,7 +82,7 @@ nrow(df)
 ```
 But in practice, you often read dataframes from existing databases or datafiles, e.g., with `read.csv`.
 ```{r}
-df = read.csv("https://static.data.gouv.fr/resources/donnees-hospitalieres-relatives-a-lepidemie-de-covid-19/20221005-190201/covid-hosp-txad-fra-2022-10-05-19h02.csv", header = T, sep=";")
+df = read.csv("https://www.stats.govt.nz/assets/Uploads/Consumers-price-index/Consumers-price-index-September-2022-quarter/Download-data/consumers-price-index-september-2022-quarter-seasonally-adjusted.csv", header = T, sep=",")
 str(df)
 head(df)
 ```
@@ -158,5 +159,72 @@ mynorm2 = function(n = 10, Mean = 2, SD = 1.2, power = 2) { # Uggly variable nam
 mynorm2() # What does this do ? 
 mynorm2(5,-1,1.1,10) # Err ?
 mynorm2(Mean = 2 , power = 1.4, SD = 1.4) # Better
+```
+
+### R can be quite surprising
+Lexical scoping. There are several assignment operators. AFAIK `=` and `<-` (or `->`) are equivalent but `<<-` could be what you're looking for if you need side effects in recursive functions... :)
+```{r}
+x <- 1
+f = function() {
+  x <- 5 # or 5 -> x
+  print(x)
+}
+f()
+print(x)
+g = function() {
+  x <<- 5
+  print(x)
+}
+g()
+print(x)
+```
+Here is an other interesting feature from a semantic aspect. How the hell does R know the (outer) variable names inside the function ? :)
+```{r}
+plot(mtcars$mpg,mtcars$qsec)
+```
+
+## The tidyverse
+
+### Dplyr
+The R function names and API is not very consistent nor convenient when working with data frames. This is quite error prone.
+```{r}
+mtcars[mtcars$cyl==6 & mtcars$hp >120,]
+```
+
+```{r}
+library(dplyr)
+```
+
+
+```{r}
+mtcars %>% filter(cyl==6 & hp >120)
+```
+```{r}
+mtcars %>% filter(cyl==6 & hp >120) %>% select(mpg, cyl, hp, qsec)
+```
+```{r}
+mtcars %>% group_by(cyl,vs) %>% summarise(qsec_mean=mean(qsec),
+                                       qsec_sd=sd(qsec),
+                                       num = n()) -> df
+```
+Efficient, expressive, avoids side effects. Can be used to create splitted models. See R4DS for more.
+
+### Ggplot
+
+R plots can be surprising, uggly, and have funky documentations with obscure arguments.
+```{r}
+plot(mtcars)
+```
+
+```{r}
+plot(mtcars$qsec,mtcars$disp)
+```
+
+But ggplot2 empowers you with lego blocks and a high level grammar of graphics
+```{r}
+library(ggplot2)
+ggplot(mtcars, aes(x = mpg, y = drat )) + geom_point() + 
+  geom_point(data = cars, aes(x = speed, y=dist), color = "red") + 
+  theme_bw() + geom_smooth(method = "lm")
 ```
 
