@@ -76,14 +76,27 @@ Evaluation process:
  - [ ] Complete the two data analysis/visualization in a clean R notebook and upload in your github/gitlab space. Make sure we can easily find it when landing on your page. :)
  - [ ] MOOC: Complete exercise 5 of module 2 (/Challenger/). Write a short text explaining what is good and wrong about this document (you may want to provide an updated version of the notebook) and upload on your github/gitlab space.
 ** 13/10/22: No lecture
-** 3. 20/10/22 [JMV, CC] Data curation with the tidyverse | Data management 1 (Data Management Plans)
+** 3. 20/10/22 [JMV, CC] Data curation  | Data management 1 (Data Management Plans)
 *** Slides
 1. [[http://iihm.imag.fr/coutrix/ens/M2-MoSIG-SMEE/DMP.pdf][Data management plan]] (CC). Brainstorming session on what's important
 2. [[file:../2021_10_Grenoble/03_Data-Statistics-Introduction.pdf][Data quality]] (JMV)
 *** Homeworks
  - [ ] See previous homeworks and provide links in the [[https://codimd.math.cnrs.fr/ukBaKcsHRyKrCFWW2wOK5w#][Pad]]!
  - [ ] [[file:03_Names-Methodo2022-exercise.Rmd][First name/last name analysis in a computational document]].
-** 4. 27/10/22 [JMV, AL] Beautiful Viz with ggplot | Data management 2 (Tools)
+** 4. 27/10/22 [JMV, AL] Processing data with the Tidyverse, beautiful viz with ggplot, Tools and tips for data management (Tools)
+*** Slides and Resources
+- Demo of =dplyr= and =ggplot= (update of the  [[https://htmlpreview.github.io/?https://github.com/alegrand/SMPE/blob/master/sessions/2022_10_Grenoble/R_crash_course.html][R crash course for computer
+  scientists]]). You may want to look at these [[file:../../lectures/lecture_R_crash_course.pdf][slides]].
+- See
+  https://evamaerey.github.io/ggplot_flipbook/ggplot_flipbook_xaringan.html
+  for =ggplot=
+- See https://evamaerey.github.io/data_manipulation/about for =dplyr=.
+- [[file:../../lectures/lecture_data_management.pdf][Slides on file organization and git-annex]]
+*** Homeworks
+- [ ] Use good naming and organization conventions in your repos.
+- [ ] See previous homeworks: use dplyr and ggplot for the first/last name analysis! Complete challenger if you haven't done so.
+- [ ] If you have time, git a try to git-annex but no worry if you can't. What's important is that you know it exists, what it allows to do, and that it is not so difficult to use.
+- [ ] Engage in module 3 of the MOOC and chood a topic for the peer evaluation (final task of module 3).
 ** Fall Vacations
 ** 5. 10/11/22 [AL + CC] Measurement and tracing
 ** 6. 17/11/22 [AL] Clearly defining the experiment and having the right tools to analyze it
