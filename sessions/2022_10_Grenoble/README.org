@@ -99,6 +99,7 @@ Evaluation process:
 - [ ] Engage in module 3 of the MOOC and chood a topic for the peer evaluation (final task of module 3).
 ** Fall Vacations
 ** 5. 10/11/22 [AL + CC] Measurement and tracing
+*** Slides and Resources
 1. MOOC status report and feedback on exercises.
 2. 2. Hands on in group on one of the following example:
    - Parallel Quicksort: Fork this small [[https://github.com/alegrand/M2R-ParallelQuicksort][project]] which is toy experiment regarding measuring the performance of a simple parallel quicksort implementation:
@@ -126,8 +127,24 @@ Evaluation process:
 3. If time allows, [[http://polaris.imag.fr/arnaud.legrand/teaching/2011/EP_02_Measurements.pdf][short general lecture on measurement]] or
    explanations on the good way to structure experiments (beginning of
    the [[file:../../lectures/5_design_of_experiments.pdf][Design of Experiments]] lecture)
-
+*** Homeworks
 ** 6. 17/11/22 [AL] Clearly defining the experiment and having the right tools to analyze it
+*** Slides and Resources
+1. Feedback on the reproduction of que quicksort project. [[file:../../lectures/talk_20_01_23_Nantes_RSD.pdf][Illustration of measurement issues and motivation for randomization and proper statistical reporting]].
+2. [[https://htmlpreview.github.io/?https://github.com/alegrand/SMPE/blob/master/sessions/2022_10_Grenoble/R_central_limit.html][Getting intuitions on the Central Limit Theorem with R]] ([[file:R_central_limit.Rmd][Rmd sources]])
+3. [[file:../../lectures/3_introduction_to_statistics.pdf][Using the central limit theorem to build Confidence Intervals and understanding shortcomings]] (+ [[file:~/Work/Documents/Enseignements/SMPE/lectures/3bis_central_limit_theorem.pdf][proof intuition if of any help]])
+*** Homeworks
+- [ ] Write an in-depth report using a computational document with a decent data management/statistical treatment (i.e., with confidence intervals or regions!). You have two options:
+  - Use the quicksort or the Fitt's law hands on. 
+    - Formally state the question, identify parameters, propose an evaluation protocol with at least two configurations, perform a proper statistical analysis, provide interpretations and conclude if it is possible. It you cannot conclude, explain why. In any case discuss possible further investigations.
+  - Pick one of the seven subjects proposed in the peer evaluation of the MOOC. Subject 2 is too easy and is not an option.
+    - Subject 1: CO2 concentration in the atmosphere since 1958
+    - +Subject 2: purchasing power of English workers from the 16th to the 19th century+
+    - Subject 3: the London cholera epidemic of 1854
+    - Subject 4: latency and capacity estimation for a network connection from asymmetric measurements
+    - Subject 5: Dialogue analysis in L'Avare of Molière
+    - Subject 6: Around Simpson's Paradox
+    - Subject 7: The SARS-CoV-2 (Covid-19) epidemic
 ** 7. 24/11/22 [EA] The linear model
 ** 8. 01/12/22 [EA + AL] Multiple testing and ANOVA (p-hacking) 
 ** 9. 08/12/22 [AL] Scientific integrity

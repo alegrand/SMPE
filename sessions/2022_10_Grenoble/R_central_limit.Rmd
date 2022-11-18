@@ -1,0 +1,36 @@
+---
+title: "Getting intuition on the central limit theorem"
+author: "Arnaud Legrand"
+date: '2022-11-17'
+output: html_document
+---
+
+```{r}
+hist(runif(10000, min = 0 , max = 1))
+```
+
+```{r}
+hist(rexp(10000, rate = 1))
+```
+
+```{r}
+N = 100000
+mean(runif(N, min = 0 , max = 2))
+mean(rexp(N, rate = 1))
+```
+
+```{r}
+library(dplyr)
+library(ggplot2)
+rep = 1000
+N = 30
+df = data.frame(obs = rexp(N*rep, rate = 1), id = 1:rep)
+head(df)
+tail(df)
+```
+
+```{r}
+df %>% group_by(id) %>% summarise(obs= mean(obs)) %>%
+   ggplot(aes(x=obs)) + geom_histogram() + xlim(0,2)
+```
+
