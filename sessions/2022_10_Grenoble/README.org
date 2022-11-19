@@ -128,6 +128,7 @@ Evaluation process:
    explanations on the good way to structure experiments (beginning of
    the [[file:../../lectures/5_design_of_experiments.pdf][Design of Experiments]] lecture)
 *** Homeworks
+- [ ] Continue the hands-on, improve the experiment design and the analysis
 ** 6. 17/11/22 [AL] Clearly defining the experiment and having the right tools to analyze it
 *** Slides and Resources
 1. Feedback on the reproduction of que quicksort project. [[file:../../lectures/talk_20_01_23_Nantes_RSD.pdf][Illustration of measurement issues and motivation for randomization and proper statistical reporting]].
