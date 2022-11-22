@@ -63,7 +63,7 @@ Evaluation process:
 - [ ] Set up a computational document system (e.g., [[#rstudio][Rstudio]] or [[#jupyter][Jupyter]] on your laptop or through the [[https://jupyterhub.u-ga.fr/][UGA JupyterHub]]).
 - [ ] Report the URL of your git project, your mattermost ID on the [[https://codimd.math.cnrs.fr/ukBaKcsHRyKrCFWW2wOK5w#][Pad]].
 ** 2. 06/10/22 [JMV, EA] Visualization and Exploratory Data Analysis | Descriptive statistics; Correlation, causality, and spurious correlation 
-*** Slides and Resources
+*** Slides and resources
 - [[file:../2021_10_Grenoble/02_whyvisu.pdf][Slides: Why do we need to visualize data: The Anscombe's Quartet]] and as a bonus: [[https://www.autodesk.com/research/publications/same-stats-different-graphs][The Datasaurus]]. :)
 - [[file:02_Intro-Visu.pdf][Slides: What a nice picture ! Data Visualization, an introduction]]
   - [[file:../2021_10_Grenoble/02_Check-list-good-graphics-tableau-en.pdf][Checklist for good graphics]] and [[file:02_Check-list-good-graphics-en.pdf][Hints for good graphics]] (a similar checklist can be found in
@@ -84,7 +84,7 @@ Evaluation process:
  - [ ] See previous homeworks and provide links in the [[https://codimd.math.cnrs.fr/ukBaKcsHRyKrCFWW2wOK5w#][Pad]]!
  - [ ] [[file:03_Names-Methodo2022-exercise.Rmd][First name/last name analysis in a computational document]].
 ** 4. 27/10/22 [JMV, AL] Processing data with the Tidyverse, beautiful viz with ggplot, Tools and tips for data management (Tools)
-*** Slides and Resources
+*** Slides and resources
 - Demo of =dplyr= and =ggplot= (update of the  [[https://htmlpreview.github.io/?https://github.com/alegrand/SMPE/blob/master/sessions/2022_10_Grenoble/R_crash_course.html][R crash course for computer
   scientists]]). You may want to look at these [[file:../../lectures/lecture_R_crash_course.pdf][slides]].
 - See
@@ -99,7 +99,7 @@ Evaluation process:
 - [ ] Engage in module 3 of the MOOC and chood a topic for the peer evaluation (final task of module 3).
 ** Fall Vacations
 ** 5. 10/11/22 [AL + CC] Measurement and tracing
-*** Slides and Resources
+*** Slides and resources
 1. MOOC status report and feedback on exercises.
 2. 2. Hands on in group on one of the following example:
    - Parallel Quicksort: Fork this small [[https://github.com/alegrand/M2R-ParallelQuicksort][project]] which is toy experiment regarding measuring the performance of a simple parallel quicksort implementation:
@@ -130,7 +130,7 @@ Evaluation process:
 *** Homeworks
 - [ ] Continue the hands-on, improve the experiment design and the analysis
 ** 6. 17/11/22 [AL] Clearly defining the experiment and having the right tools to analyze it
-*** Slides and Resources
+*** Slides and resources
 1. Feedback on the reproduction of que quicksort project. [[file:../../lectures/talk_20_01_23_Nantes_RSD.pdf][Illustration of measurement issues and motivation for randomization and proper statistical reporting]].
 2. [[https://htmlpreview.github.io/?https://github.com/alegrand/SMPE/blob/master/sessions/2022_10_Grenoble/R_central_limit.html][Getting intuitions on the Central Limit Theorem with R]] ([[file:R_central_limit.Rmd][Rmd sources]])
 3. [[file:../../lectures/3_introduction_to_statistics.pdf][Using the central limit theorem to build Confidence Intervals and understanding shortcomings]] (+ [[file:~/Work/Documents/Enseignements/SMPE/lectures/3bis_central_limit_theorem.pdf][proof intuition if of any help]])
