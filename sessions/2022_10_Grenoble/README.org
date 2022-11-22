@@ -147,6 +147,11 @@ Evaluation process:
     - Subject 6: Around Simpson's Paradox
     - Subject 7: The SARS-CoV-2 (Covid-19) epidemic
 ** 7. 24/11/22 [EA] The linear model
+*** Slides and resources
+- [[file:07_linear_regression.pdf][Slides]]
+- [[file:07_linear_regression/tp-arbre.pdf][Simple linear regression hands-on]] ([[file:07_linear_regression/arbres-tot.csv][data]])
+
+
 ** 8. 01/12/22 [EA + AL] Multiple testing and ANOVA (p-hacking) 
 ** 9. 08/12/22 [AL] Scientific integrity
 ** 10. 15/01/24 [AL] A Bayesian perspective on regularization and model selection + Sequential DoE (screening, LHS, D-opt, ...)
