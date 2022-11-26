@@ -160,6 +160,7 @@ Evaluation process:
 # - https://www.nature.com/articles/s41591-022-01961-6
 #  https://www.wired.com/story/machine-learning-reproducibility-crisis/
 ** 12. 12/01/24 [AL] Incremental DoE: A Bayesian perspective, Reinforcement Learning and Surrogates (Bandit, GP)
+** 02/02/24 Exam:
 * Hands-on
 In the 3rd module of the [[https://www.fun-mooc.fr/fr/cours/recherche-reproductible-principes-methodologiques-pour-une-science-transparente/][MOOC on Reproducible Research]], there is a
 peer-reviewed homework that will allow you to practically use
