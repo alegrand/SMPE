@@ -151,6 +151,8 @@ Evaluation process:
 - [[file:07_linear_regression.pdf][Slides]]
 - [[file:07_linear_regression/tp-arbre.pdf][Simple linear regression hands-on]] ([[file:07_linear_regression/arbres-tot.csv][data]])
 ** 8. 01/12/22 [EA] Multiple testing and ANOVA (p-hacking) 
+*** Slides and resources
+- [[file:08_anova.pdf][Slides]]
 - [[file:07_linear_regression/tp-ble.pdf][ANOVA on wheat]] ([[file:../2021_10_Grenoble/07_linear_regression/ble.txt][data]])
 - [[file:07_linear_regression/tp-batman.pdf][Multiple linear regression hands-on]] ([[file:../2021_10_Grenoble/07_linear_regression/bats.csv][data]] and [[file:../2021_10_Grenoble/07_linear_regression/HutcEA02.pdf][original article]])
 
