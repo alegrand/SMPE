@@ -194,13 +194,18 @@ curl 'https://pbs.twimg.com/media/FIxdpb7VgAoAeZX?format=jpg&name=medium' -o ima
   [[https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000032587086/][mandatory]] (doctoral schools)
   - Related to the [[https://cache.media.enseignementsup-recherche.gouv.fr/file/Actus/84/2/Rapport_Corvol_29-06-2016_601842.pdf][Corvol report]] (*Bilan et propositions de mise en œuvre de la charte nationale d'intégrité scientifique*)
 - \textbf{2018}: National Plan for Open science 
-  - open access (HAL)
-  - open data (FAIR)
-  - sustainable and international movement)
+  - open access (HAL) and  open data (FAIR)
+  - sustainable and international movement
 - \textbf{2021}: 2nd National Plan for Open science 
-  - 100% open access data by 2030, open data
-  - open source
-  - open science = new norm
+  - 100% open access data by 2030
+  - open source, open science = new norm
+- \textbf{2022}: [[https://www.hceres.fr/fr/actualites/lofis-decrypte-le-nouveau-serment-doctoral-dintegrite-scientifique-dans-une-fiche][the +Hippocratic+ PhD Oath]]
+
+#+begin_quote
+\scriptsize In the presence of my peers. Having completed my doctorate in [discipline], and having thus practiced, in my quest for knowledge, the exercise of a demanding scientific research, cultivating intellectual rigor, ethical reflexivity and respect for the principles of scientific integrity, I commit myself, for what will depend on me, in the continuation of my professional career, whatever the sector or the field of activity, to maintain an honest conduct in my relationship to knowledge, my methods and my results. 
+#+end_quote
+
+
 ** Content
 \tableofcontents
 * Deontology
@@ -221,7 +226,9 @@ curl 'https://pbs.twimg.com/media/FIxdpb7VgAoAeZX?format=jpg&name=medium' -o ima
 
 ** Conflict of Interest
 # https://quoidansmonassiette.fr/conflits-dinterets-comment-les-financements-dune-etude-scientifique-pourraient-influencer-les-resultats/
-- Industry lobby :: (tobacco, sugar, oil, chemistry) may fund your research so that you give the conclusions they like \dots \\ or study alternative explanations, etc.
+- Industry lobby :: (tobacco, sugar, oil, chemistry) may fund your
+  research so that you give the conclusions they like \dots \newline
+  or study alternative explanations, etc.
   - [[https://journals.plos.org/plosmedicine/article?id=10.1371/journal.pmed.0040005][Relationship between Funding Source and Conclusion among]] [[https://journals.plos.org/plosmedicine/article?id=10.1371/journal.pmed.0040005][Nutrition-Related Scientific Articles]]
   - Known as the [[https://en.wikipedia.org/wiki/Funding_bias][Funding bias]]  \pause\vspace{-.5cm}
 - Greenpeace, anti-GMO, anti-4|5G lobby :: \hfill\includegraphics[height=2cm]{images/seralini.jpg}
@@ -292,7 +299,7 @@ This whole part is stolen from *Carole Peyrin*'s presentation:
   - free physical examinations at Tuskegee University,
   - free rides to and from the clinic, hot meals on examination days
   - autopsy agreements in return for funeral benefits
-- 1972 :: leat to the press
+- 1972 :: leak to the press
   - 28 died directly from syphilis, 100 from complications, 40 wives infected, 19 children born with congenital syphilis
 - 1997 :: Public apology from President Clinton
 ** Unethical clinical studies
@@ -337,13 +344,31 @@ This whole part is stolen from *Carole Peyrin*'s presentation:
 - 1946-1947 :: Nuremberg Code
 - 1964 :: Helsinki declaration
 - 1975 :: Helsinki II declaration
-- 1981 :: US [[https://en.wikipedia.org/wiki/Common_Rule][Common rule]] (biomedical and behavioral research involving human subjects)
+- 1981 :: US [[https://en.wikipedia.org/wiki/Common_Rule][Common rule]] (biomedical and behavioral research involving
+  human subjects), for federally funded research 
 - 1988 :: Loi Huriet in France (medical research)
   - Ethical board pre-approval required for any biomedical research
-  - SHS and ICST ?
+  - What about SHS and ICST ?
 - 2009-2012 :: Loi Jardé /recherches impliquant la personne humaine/
 - 2016-2018 :: Revision of the Common rule
   - [[https://cacm.acm.org/magazines/2016/7/204018-big-data-analytics-and-revision-of-the-common-rule/fulltext][Big Data Analytics and revision of the commun rule]]
+
+All this is mostly related the risk for *human subjects*
+** What about /consequences/ of Science on Society ?
+Is this research/technology worth developing ? 
+- Nuclear power, GMOs, spaceships, ...
+
+In computer science:
+- Social Networks and recommendation systems
+- Facial/voice recognition
+- 5G/6G, autonomous cars, ...
+- Recent AI developments
+  - DALL-E (OpenAI), StableDiffusion, [[https://the-decoder.com/ai-artwork-wins-art-competition-and-artists-are-upset/][MidJourney]] (08/22)
+  - 11/22 [[https://ai.facebook.com/blog/cicero-ai-negotiates-persuades-and-cooperates-with-people/][Cicero]] (Meta)
+  - 11/22: ChatGPT 
+
+This is cool and exciting, but can /scientific curiosity/ justify any
+research?
 * Scientific Integrity (Data)
 ** Scientific Misconduct
 From [[https://en.wikipedia.org/wiki/Scientific_misconduct][https://en.wikipedia.org/wiki/Scientific_misconduct]]
@@ -449,7 +474,7 @@ From [[https://en.wikipedia.org/wiki/Scientific_misconduct][https://en.wikipedia
 - P-hacking :: [[https://www.nature.com/articles/s41562-016-0021][A manifesto for reproducible science]]
   - spurious correlations/multiple comparisons
   - systematic bias toward shiny results
-    - *overhacking* (hack data until $<0.05$
+    - *overhacking* (hack data until $<0.05$)
     - *selection bias* (only report the smallest one)
     - *selective debugging* (change test, look for bugs until $<0.05$)
     - *publication bias* 
@@ -508,7 +533,7 @@ important skill is the ability to *filter* and *aggregate* information.\pause
 - /The figure of this other report is just great so I've used it/
 - /Deadlines came around more quickly than expected, I had to produce
   something/
-
+- /I used *ChatGPT* for my introduction so it's an original work/
 People often use terms like "*copying*" and "*borrowing*", which disguises
 the seriousness of the offense.
 ** What is plagiarism?
@@ -543,19 +568,21 @@ providing your audience with the information necessary to find that
 source, is usually enough to prevent plagiarism.\medskip\pause
 
 That is why I need to confess now that most of previous slides are plain copies from [[http://www.plagiarism.org/][http://www.plagiarism.org/]], just like the
-next slides. :)
+next slides. $\winkey$
 ** Citations
 A "citation" is the way you tell your readers that certain material in
 your work came from another source.
 
-It also gives your readers the information necessary to find that source again, including:
+It also gives your readers *the information necessary to find that source* again, including:
 - information about the author
 - the title of the work
 - the name and location of the company that published your copy of the source
 - the date your copy was published
 - the page numbers of the material you are borrowing
+
+URLs are convenient but not perenial
 ** Why should I cite sources?
-Giving credit to the original author by citing sources is the only way
+*Giving credit to the original author* by citing sources is the only way
 to use other people's work without plagiarizing. But there are a
 number of other reasons to cite sources:
 - Citations are extremely helpful to anyone who wants to find
@@ -606,6 +633,7 @@ All authors of a scientific publication are expected to have made reasonable att
   - Fraud \bgroup\footnotesize([[https://hal.archives-ouvertes.fr/hal-02057728][the possibility of systematic research fraud targeting under-studied human genes]])\egroup
 - Papermills :: [[https://forbetterscience.com/2020/01/24/the-full-service-paper-mill-and-its-chinese-customers/][The full-service paper mill and its Chinese customers]]
 - "/Predatory/" journals :: [[https://www.nature.com/articles/d41586-019-03759-y][Predatory journals: no definition, no defense]]
+  - Just pay for fake reviews and editorial work
 * Discussion on Research Organization
 ** Is this new ?
 How so? *Why now*? *Why is this important*? What can we do about it?
@@ -669,7 +697,8 @@ Science builds on the ability to *measure*, right ?
 This is *prescriptive* measurement: e.g., "/one B2/A2 paper every year or a A1 paper every
 two year at least for an academic/"
 
-Hiring committees and research institutes have finally signed the  [[https://en.wikipedia.org/wiki/San_Francisco_Declaration_on_Research_Assessment][San Francisco Declaration on Research Assessment (DORA)]]
+Hiring committees and research institutes massively sign the  [[https://en.wikipedia.org/wiki/San_Francisco_Declaration_on_Research_Assessment][San
+Francisco Declaration on Research Assessment (DORA, 2012)]]
 ** Too much noise is also deleterious
 #+begin_center
   /Release early, release often/
@@ -727,12 +756,13 @@ How serious is reviewing taken [[https://andreas-zeller.info/2021/07/27/Reviewin
 #+END_EXPORT
 
 - Open science :: data papers, negative results, small pieces with  https://science-octopus.org/, reproductions, open reviews with
-  [[https://f1000research.com][f1000research]], ...
+  [[https://f1000research.com][f1000research]], software papers with JOSS, ...
 
-New sharing modes but beware of [[https://www.nature.com/articles/d41586-021-01824-z][performative reproducibility]]
+New sharing modes but beware of [[https://www.nature.com/articles/d41586-021-01824-z][performative reproducibility]] \vspace{-.7em}
   - \small No one has the time or patience to read a 100-page pre-analysis plan and compare it with the later publication
-  - Need for *robust, sustainable change in underlying cultural values* (reward, hiring process, etc.)
-** Deleterious impact of liberal management of research
+  - Need for *robust, sustainable change in underlying cultural values*
+    (knowledge reliability, reward, hiring process, etc.)
+** Deleterious impact of liberal and bureaucratic research management
 In the past: steering of research done by Research institutes
 - 2003 :: ANR (call for proposal, less recurrent budget for labs and institutes)
 - 2007 :: ERC grants (peer-reviewed excellence)
@@ -743,7 +773,6 @@ In the past: steering of research done by Research institutes
 *Short-sighted madness* that does not leave time to the academia
 
 [[https://bmjopen.bmj.com/content/3/5/e002800][On the time spent preparing grant proposals: an observational study]] [[https://bmjopen.bmj.com/content/3/5/e002800][of Australian researchers]]
-
 * Emacs Setup                                                      :noexport:
 This document has local variables in its postembule, which should
 allow Org-mode (9) to work seamlessly without any setup. If you're
