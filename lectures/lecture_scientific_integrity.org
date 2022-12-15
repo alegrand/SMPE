@@ -766,7 +766,7 @@ New sharing modes but beware of [[https://www.nature.com/articles/d41586-021-018
 In the past: steering of research done by Research institutes
 - 2003 :: ANR (call for proposal, less recurrent budget for labs and institutes)
 - 2007 :: ERC grants (peer-reviewed excellence)
-- 2013 :: HCERES (evaluation of "academics", teams, labs, institutes in France)
+- 2013 :: HCERES (evaluation of +"academics"+, teams, labs, institutes in France)
 - 2021 :: LPR, +CNU+
 - 2022 :: PEPR (massive funding on strategic topics)
 
