@@ -356,7 +356,7 @@ This whole part is stolen from *Carole Peyrin*'s presentation:
 All this is mostly related the risk for *human subjects*
 ** What about /consequences/ of Science on Society ?
 Is this research/technology worth developing ? 
-- Nuclear power, GMOs, spaceships, ...
+- Nuclear power, genetic engineering and GMOs, animal testing, spaceships, ...
 
 In computer science:
 - Social Networks and recommendation systems
