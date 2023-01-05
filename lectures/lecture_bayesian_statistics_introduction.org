@@ -1,0 +1,1442 @@
+# -*- coding: utf-8 -*-
+# -*- mode: org -*-
+#+Title:  Introduction to Bayesian Statistics
+#+Author: Arnaud Legrand\medskip\newline\logoInstitutions
+#+DATE:  \vspace{3cm}\JDEVlogo SMPE lecture\newline January 2023\newline\begin{overlayarea}{1.05\linewidth}{0cm}\vspace{-3.2cm}\hfill{\mylogo}\end{overlayarea}\vspace{-1.0cm}
+#+LANGUAGE: en
+#+STARTUP: beamer indent inlineimages logdrawer
+#+TAGS: noexport(n)
+
+#+PROPERTY: header-args  :session :eval never-export :exports both
+#+DRAWERS: latex_headers
+
+:latex_headers:
+#+LaTeX_CLASS: beamer
+#+LATEX_CLASS_OPTIONS: [10pt,presentation,xcolor={usenames,dvipsnames,svgnames,table}]
+# # aspectratio=169
+#+OPTIONS:   H:2 num:t toc:nil \n:nil @:t ::t |:t ^:nil -:t f:t *:t <:t
+#+LATEX_COMPILER: lualatex -shell-escape
+#+LATEX_HEADER: \usedescriptionitemofwidthas{bl}
+#+LATEX_HEADER: \usepackage[T1]{fontenc}
+#+LATEX_HEADER: \usepackage[utf8]{inputenc}
+#+LATEX_HEADER: \usepackage{figlatex}
+#+LATEX_HEADER: \usepackage[french]{babel}
+#+LATEX_HEADER: %\usepackage{DejaVuSansMono}
+#+LATEX_HEADER: \usepackage{ifthen,amsmath,amstext,gensymb,amssymb}
+#+LATEX_HEADER: \usepackage{relsize}
+#+LATEX_HEADER: \usepackage{boxedminipage,xspace,multicol}
+#+LATEX_HEADER: %%%%%%%%% Begin of Beamer Layout %%%%%%%%%%%%%
+#+LATEX_HEADER: \ProcessOptionsBeamer
+#+LATEX_HEADER: \usetheme[numbering=fraction,titleformat=smallcaps,progressbar=frametitle]{metropolis}
+#+LATEX_HEADER: \usepackage{fontawesome}
+#+LATEX_HEADER: \usecolortheme[named=BrickRed]{structure}
+#+LATEX_HEADER: %%%%%%%%% End of Beamer Layout %%%%%%%%%%%%%
+#+LATEX_HEADER: \usepackage{array}
+#+LATEX_HEADER: \newcolumntype{L}[1]{>{\raggedright\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+#+LATEX_HEADER: \newcolumntype{C}[1]{>{\centering\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+#+LATEX_HEADER: \newcolumntype{R}[1]{>{\raggedleft\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+
+#+LATEX_HEADER: \usepackage{verbments}
+#+LATEX_HEADER: \usepackage{xcolor}
+#+LATEX_HEADER: \usepackage{color}
+#+LATEX_HEADER: \usepackage{url} \urlstyle{sf}
+#+LATEX_HEADER: \let\alert=\structure % to make sure the org * * works of tools
+#+LATEX_HEADER: %\let\tmptableofcontents=\tableofcontents
+#+LATEX_HEADER: %\def\tableofcontents{}
+#+LATEX_HEADER: \let\hrefold=\href
+#+LATEX_HEADER: \usepackage{ifluatex}
+#+LATEX_HEADER: \ifpdftex
+#+LATEX_HEADER:   \usepackage[normalem]{ulem}\usepackage{soul}
+#+LATEX_HEADER:   % \usepackage{color}
+#+LATEX_HEADER:   \definecolor{lightorange}{rgb}{1,.9,.7}
+#+LATEX_HEADER:   \sethlcolor{lightorange}
+#+LATEX_HEADER:   \definecolor{lightgreen}{rgb}{.7,.9,.7}
+#+LATEX_HEADER:   \makeatother
+#+LATEX_HEADER:      \renewcommand{\href}[2]{\hrefold{#1}{\SoulColor{lightorange}\hl{#2}}}
+#+LATEX_HEADER:      % \renewcommand{\uline}[1]{\SoulColor{lightorange}\hl{#1}}
+#+LATEX_HEADER:      % \renewcommand{\emph}[1]{\SoulColor{lightorange}\hl{#1}}
+#+LATEX_HEADER:   \makeatletter
+#+LATEX_HEADER:   \newcommand\SoulColor[1]{%
+#+LATEX_HEADER:   \sethlcolor{#1}%
+#+LATEX_HEADER:   \let\set@color\beamerorig@set@color%
+#+LATEX_HEADER:   \let\reset@color\beamerorig@reset@color}
+#+LATEX_HEADER: \else
+#+LATEX_HEADER:    \usepackage[soul]{lua-ul}
+#+LATEX_HEADER:    \usepackage{tcolorbox}
+#+LATEX_HEADER:      \renewcommand{\href}[2]{\hrefold{#1}{\begin{tcolorbox}[colback=orange!30!white,size=minimal,hbox,on line]{#2}\end{tcolorbox}}}
+#+LATEX_HEADER:      \let\textttold=\texttt
+#+LATEX_HEADER:      \renewcommand\texttt[1]{\begin{tcolorbox}[colback=green!30!white,size=minimal,hbox,on line]{\smaller\textttold{#1}}\end{tcolorbox}}
+#+LATEX_HEADER: \fi
+#+LATEX_HEADER: % 
+#+LATEX_HEADER: % \renewcommand\alert[1]{\SoulColor{lightgreen}\hl{#1}}
+#+LATEX_HEADER: % \AtBeginSection{\begin{frame}{Outline}\tableofcontents\end{frame}}
+#+LATEX_HEADER: \usepackage[export]{adjustbox}
+#+LATEX_HEADER: \graphicspath{{fig/}}
+#+LATEX_HEADER: \usepackage{tikzsymbols}
+#+LATEX_HEADER: \def\smiley{\Smiley[1][green!80!white]}
+#+LATEX_HEADER: \def\frowny{\Sadey[1][red!80!white]}
+#+LATEX_HEADER: \def\winkey{\Winkey[1][yellow]}
+#+LATEX_HEADER: \def\JDEVlogo{}%\includegraphics[height=1cm]{./images/jdevLogo.pdf}}
+#+LATEX_HEADER: \def\mylogo{\includegraphics[height=2.5cm]{./images/in_science_we_trust.jpg}}
+#+LATEX_HEADER: \def\logoInstitutions{\includegraphics[height=.7cm]{./images/Logo-UGA2020.pdf}\quad\includegraphics[height=.7cm]{./images/Logo-CNRS.pdf}\quad\includegraphics[height=.7cm]{./images/Logo-Inria.pdf}\includegraphics[height=.7cm]{./images/Logo-Lig2.pdf}\vspace{-.7cm}}
+#+LATEX_HEADER: %\usepackage{pgf}  
+#+LATEX_HEADER: %\logo{\pgfputat{\pgfxy(-2,6.5)}{\pgfbox[center,base]{\includegraphics[height=1cm]{./images/jdevLogo.pdf}}}}
+
+#+LaTeX: \newsavebox{\temp}
+#+LaTeX: \newsavebox{\tempcoderefinery}
+#+LaTeX: \newsavebox{\temprrtools}
+#+LaTeX: \newsavebox{\tempsnakemake}
+#+LaTeX: \newsavebox{\tempturing}
+#+LaTeX: \def\boxtimes{\ensuremath{\text{\rlap{$\checkmark$}}\square}}
+
+#+BEGIN_EXPORT latex
+  \newcommand{\myfbox}[2][gray!20]{\bgroup\scalebox{.7}{\colorbox{#1}{{\vphantom{pS}#2}}}\egroup} % \fbox
+  %\def\myfbox#1{#1} % \fbox
+  \def\HPC{\myfbox[gray!40]{HPC}}
+  \def\NET{\myfbox[gray!40]{Network}}
+  \def\SG{\myfbox[gray!40]{Smart Grids}}
+  \def\ECO{\myfbox[gray!40]{Economics}}
+  \def\PRIV{\myfbox[gray!40]{Privacy}}
+  \def\TRACING{\myfbox[red!20]{Tracing}}
+  \def\SIM{\myfbox[green!20]{Simulation}}
+  \def\VIZ{\myfbox[red!40]{Visualization}}
+  \def\MODELING{\myfbox[green!40]{Stochastic Models}}
+  \def\OPT{\myfbox[blue!20]{Optimization}}
+  \def\GT{\myfbox[blue!40]{Game Theory}}
+#+END_EXPORT
+
+#+BEGIN_EXPORT latex
+\def\etal{\textit{et al.}\xspace}
+\def\eg{e.g.,\xspace}
+#+END_EXPORT
+
+#+BEGIN_EXPORT latex
+\def\changefont#1{%
+  \setbeamertemplate{itemize/enumerate body begin}{#1}
+  \setbeamertemplate{itemize/enumerate subbody begin}{#1}
+  #1}
+\makeatletter
+\newcommand{\verbatimfont}[1]{\renewcommand{\verbatim@font}{\ttfamily#1}}
+\makeatother
+\verbatimfont{\scriptsize}%small
+\let\endmintedbak=\endminted
+\def\endminted{\endmintedbak\vspace{-1cm}}
+
+\def\rv#1{\ensuremath{\textcolor{blue}{#1}}\xspace} % DarkBlue
+#+END_EXPORT
+
+#+BEGIN_EXPORT latex
+\newcommand{\Norm}{\ensuremath{\mathcal{N}}\xspace}
+\newcommand{\Unif}{\ensuremath{\mathcal{U}}\xspace}
+\newcommand{\Triang}{\ensuremath{\mathcal{T}}\xspace}
+\newcommand{\Exp}{\ensuremath{\mathcal{E}}\xspace}
+\newcommand{\Bernouilli}{\ensuremath{\mathcal{B}}\xspace}
+\newcommand{\Like}{\ensuremath{\mathcal{L}}\xspace}
+\newcommand{\Model}{\ensuremath{\mathcal{M}}\xspace}
+\newcommand{\E}{\ensuremath{\mathbb{E}}\xspace}
+\def\T{\ensuremath{\theta}\xspace}
+\def\Th{\ensuremath{\hat{\theta}}\xspace}
+\def\Tt{\ensuremath{\tilde{\theta}}\xspace}
+\def\Y{\ensuremath{y}\xspace}
+\def\Yh{\ensuremath{\hat{y}}\xspace}
+\def\Yt{\ensuremath{\tilde{y}}\xspace}
+\let\epsilon=\varepsilon
+\let\leq=\leqslant
+\let\geq=\geqslant
+
+\def\Scalebox#1{\scalebox{.9}{#1}}
+\def\ScaleboxI#1{\Scalebox{\textit{#1}}}
+
+\def\pillar#1#2{~\hbox{\hspace{-1em}\rlap{#1}\hspace{4cm}\includegraphics[height=1cm]{#2}}}
+#+END_EXPORT
+:end:
+
+# https://cran.r-project.org/web/packages/plot3D/vignettes/plot3D.pdf
+# http://htmlpreview.github.io/?https://github.com/AckerDWM/gg3D/blob/master/gg3D-vignette.html
+
+# http://bechtel.colorado.edu/~bracken/tutorials/stan/stan-tutorial.pdf
+# http://jakewestfall.org/misc/SorensenEtAl.pdf
+# https://github.com/AllenDowney/BayesMadeSimple
+
+# https://github.com/bob-carpenter/prob-stats
+
+#+BEGIN_EXPORT latex
+#+END_EXPORT
+
+** Goal
+- How to leverage your knowledge about the system?
+- How to check whether it is reasonable or not?
+- Given a some observations, how to generate "similar" values? +GANs ? No, not today+
+
+*** This talk:
+1. Brief introduction to Bayesian statistics. 
+   # Bien comprendre le statut des variables que l'on manipule
+   # (paramètres, observations, prédicteurs)
+2. Brief introduction to Bayesian sampling with a brief presentation of STAN
+3. A brief discussion on model selection
+
+* Random Thoughts                                                  :noexport:
+** Progression
+- Bayes Theorem provides a way to get from P(A|B) to P(B|A)
+- Illustration Cookies (fully discrete)
+- Bayesian coin (discrete / continuous),
+  - allows to easily show how unimportant the prior is.
+- Linear regression (continuous / continuous) mais avec dependance
+  entre les estimateurs
+  - allows to easily inject constraints on estimates through the prior
+    (e.g., positive coefficient)
+  - max sans grande importance, distribution bien plus utile
+** Sampling
+- Prior utile
+- Complex models, hierarchical
+- How to sample
+
+* Bayesian Statistics
+** Useful R plotting functions                                    :noexport:
+
+#+begin_src R :results output :session *R* :exports none
+plot_histogram <- function (data, xmin=NA, xmax=NA, ymax=NA, ypos=.1, binwidth=1) {
+    require(ggplot2)
+    set.seed(42);
+    dataY=data.frame(Y=data)
+    p = ggplot(dataY, aes(x=Y)) + 
+        geom_histogram(aes(y=..density..), binwidth=binwidth, boundary=0, 
+                       color="black", fill="gray") + 
+        geom_jitter(aes(y=ypos),height=ypos/2) +
+        ylim(0,ymax) +
+        theme_bw(); # bins=10
+    if(!is.na(xmin) | !is.na(xmax)) { 
+        p = p + coord_cartesian(xlim=c(xmin,xmax),ylim=c(0,ymax)) 
+    } else { p = p + coord_cartesian(ylim=c(0,ymax)) }
+    return(p);
+}
+
+likelihood_norm <- function (mu, sigma, X=data) {
+    return(prod(dnorm(X,mean=mu,sd=sigma)*(1:length(X))))
+}
+## likelihood_norm <- function (mu, sigma, X=data) {
+##     d = 1;
+##     for(x in X) {
+##         d = d*1/(sigma*sqrt(2*pi))*exp(-1/2*((x-mu)/sigma)**2);
+##     }
+##     return(d);
+## }
+
+likelihood_3d <- function(data, xmin=0, xmax=20, ymin=0, ymax=5, length=50,
+                               likelihood_function = likelihood_norm ) {
+    x <- seq(xmin, xmax, length=length)
+    y <- seq(ymin, ymax, length=length)
+    xy <- expand.grid(x,y)
+    names(xy)=c("x","y");
+    xy$z=0;
+    for(i in 1:nrow(xy)) {
+        xy[i,]$z=likelihood_norm(xy[i,]$x,xy[i,]$y,data)
+    }
+    if(prod(is.na(xy$z))) {  xy[is.na(xy$z),]$z <- 0 }
+    return(xy);
+}
+
+plot_likelihood_3d <- function(l3d,xlab="$\\mu$",ylab="$\\sigma$") {
+    require(lattice)
+    require(latex2exp)
+    ## l3d = likelihood_3d(data, xmin=xmin, xmax=xmax, ymin=ymin, ymax=ymax, length=length,
+    ##                     likelihood_function=likelihood_function);
+    ##    print(l3d);
+    theseCol=colorRampPalette(c("yellow", "red"))(150)
+    wireframe(z~x*y, data = l3d,
+              xlab=TeX(xlab), ylab=TeX(ylab), zlab = "", 
+              colorkey=F,col.regions=theseCol,drape=T,
+              scales = list( arrows=FALSE, z = list(tick.number=0)),
+              screen = list(z=40,x=-50,y=0),
+              par.settings = list(axis.line = list(col = "transparent"))
+              )
+    # xlab=expression(mu), ylab=expression(sigma)
+}
+
+plot_likelihood_2d <- function(l3d,labels=data.frame(),
+                               background=T,xlab="$\\mu$",ylab="$\\sigma$") {
+    require(ggplot2);
+    require(latex2exp)
+    require(ggrepel);
+    set.seed(42);
+
+    dx = unique(df$x);
+    dx = mean(dx[-1]-dx[-length(dx)])
+    dy = unique(df$y);
+    dy = mean(dy[-1]-dy[-length(dy)])
+
+    p = ggplot(l3d,aes(x=x,y=y,fill=z)) + 
+        theme_bw() + xlab(TeX(xlab)) + ylab(TeX(ylab)) + 
+        theme(legend.position="none") + 
+        xlim(min(l3d$x),max(l3d$x)) + 
+        ylim(min(l3d$y),max(l3d$y)) +
+        scale_fill_gradient(low="yellow", high="red");
+    
+    if(background) {
+        p = p + geom_tile(width=dx,height=dy) ;
+    }
+    if(nrow(labels)>0) {
+        p = p + geom_point(data=labels) + 
+            geom_label_repel(data=labels,aes(label=round(z,2)),fill="white",
+                             box.padding=T,size=4,
+                             force = 10);
+    }
+    return(p);
+}
+#+end_src
+
+#+RESULTS:
+
+** A first example
+#+latex: \definecolor{fair}{rgb}{1,.91,.64}
+#+latex: \definecolor{twoheaded}{rgb}{.926,.586,.617}
+#+latex: \setlength{\fboxsep}{1pt}
+#+latex: Consider a \colorbox{fair}{fair} coin and \colorbox{twoheaded}{two-headed} one and pick one at random
+#+latex: \centerline{\includegraphics[width=.8\linewidth]{images/bayesian/bayesian_coin.pdf}}
+The coin is tossed 8 times. The outcome is a _head 8 times in a row_.
+- What is the probability that the coin is the two-headed one ?\pause
+  $$p[Two-Headed] = \frac{256}{256+1} \approx 0.996$$
+** A first example (continued)
+Now let's put the two-headed one in a jar with *999* fair coins...
+#+latex: \centerline{\includegraphics[width=.8\linewidth]{images/bayesian/bayesian_coin.pdf}}
+The coin is tossed 8 times. The outcome is a _head 8 times in a row_.
+- What is the probability that the coin is the two-headed one ?\pause
+  $$p[Two-Headed] = \frac{256\times.001}{256\times0.001 + 1\times0.999} \approx 0.204$$
+** Bayes Rule
+- Notation ::  
+  - $p(A)$ = probability that \fbox{$A$} occurs
+  - $p(A,B)$ = probability that \fbox{$A$ and $B$} occurs
+  - $p(A|B)$ = probability that \fbox{$A$} occurs, given that \fbox{$B$} occurs \pause
+- Conjunction rule ::  
+  - $p(A,B) = p(A|B)p(B)$ 
+  - $p(B,A) = p(B|A)p(A)$ \pause
+- Bayes rule :: Equate and divide by $p(B)$
+  $$\boxed{p(A|B) = \frac{p(B|A)p(A)}{p(B)}}$$
+** Background on Bayesian Statistics
+- Model :: we assume $y \sim \Model(\theta,x)$
+  - *$\theta$*: Model *parameters*
+  - *$y$*: Dependent *data* (response)
+  - *$x$*: Independent data (covariates/\alert{predictors}/constants)
+
+- Examples ::  
+  - $y \sim \Norm(\mu,\sigma)$
+  - $y \sim x^2 + \Unif(\alpha,\beta)$
+  - $y \sim \Norm(\alpha x + \beta, \sigma)$
+  - $y \sim \Norm(\alpha \log(x) + \beta, \alpha' x + \beta')$
+
+_Everyone_: Model data as random
+** Background on Bayesian Statistics
+
+_Bayesians_: Data is fixed (observed), model parameters as random\vspace{-2em}
+
+#+BEGIN_EXPORT latex
+\begin{align*}
+  p(\theta,y,x) & = p(y,\theta,x)\\
+  p(\theta|y,x)p(y,x) & = p(y|\theta,x)p(\theta,x)
+\end{align*}
+\begin{align*}
+  \text{Hence } \alert{p(\theta|y,x)} & = \frac{p(y|\theta,x)p(\theta,x)}{p(y,x)} = \frac{p(y|\theta,x)p(\theta)p(x)}{p(y,x)}\\
+                & \alert{\propto p(y|\theta,x)p(\theta)} \text{~~ ($y$, and $x$ are fixed for a given data set)}
+\end{align*}
+#+END_EXPORT
+\pause\vspace{-1em}
+
+- Bayes rule ::
+  $\boxed{\underbrace{p(\theta|y,x)}_{\text{\alert{Posterior}}} \propto \underbrace{p(y|\theta,x)}_{\text{\alert{Likelihood}}}\underbrace{p(\theta,x)}_{\text{\alert{Prior}}}}$
+  assuming $y \sim \Model(\theta,x)$
+
+  - *Posterior*: The answer, probability distributions of parameters
+  - *Likelihood*: 
+    #+LaTeX: \hbox{A (model specific) computable function of the parameters\hspace{-1cm}}
+  - *Prior*: "Initial guess", existing knowledge of the system
+
+The key to building Bayesian models is specifying the likelihood
+function, same as frequentist.
+** R code                                                         :noexport:
+  #+begin_src R :results output :session *R* :exports none
+  set.seed(42);
+  gen_binom_fixed = function(n1,n2) {
+      set.seed(42);
+      return(sample(c(rep(0,n1),rep(1,n2)),n1+n2))
+  }
+  Comb = function(n,k) {
+      if(n==0 || k==0) { return(1);}
+      return(prod(((n-k+1):n)/(1:k)))
+  }
+  bernouilli_likelihood = function(pi,n1,n2,triangular_prior=F) {
+      prior = 1
+      if(triangular_prior) {
+          prior = (2-4*abs(pi-1/2));
+          prior = prior*((1+n2)/(n1+n2+1)); #Hack the normalisation for triangular prior
+      }
+      return(prior*pi^n2*(1-pi)^n1*Comb(n1+n2,n1)*(n1+n2+1))
+     #*factorial(n1+n2)/factorial(n1)/factorial(n2)
+  }
+  ## bernouilli_likelihood(.4,140,110)
+  ## bernouilli_likelihood(.44,140,110)
+  ## bernouilli_likelihood(.5,140,110)
+  ## bernouilli_likelihood(.56,140,110)
+  ## bernouilli_likelihood(.44,140,110)/
+  ## bernouilli_likelihood(.44,140,110,triangular_prior=T)
+  ## print("")
+  ## bernouilli_likelihood(.4,0,0)
+  #+end_src
+
+  #+RESULTS:
+
+  #+begin_src R :results output graphics :file images/bayesian/babel_images/density_coin_0_0.pdf :exports results :width 6 :height 2.5 :session *R* 
+  library(ggplot2)
+  require(gridExtra)
+
+  plot_coin = function(n1,n2, prior=T, likelihood = T, triangular_prior=F) {
+#      if(n1==0 && n2==0) {n1=1; n2=1;}
+      dataY=data.frame(Y=gen_binom_fixed(n1,n2));
+      dataY$ypos=(.25+.5*runif(nrow(dataY)))*nrow(dataY)/2;
+      dataY$xpos=(.9*dataY$Y+.1*runif(nrow(dataY)));
+      p1 = ggplot(dataY, aes(x=Y)) + 
+        geom_histogram(binwidth=.1, boundary=0, color="black", fill="gray") + 
+        geom_point(aes(y=ypos,x=xpos),alpha=.4) +
+        theme_bw() + xlim(0,1)# + ylim(0,5)
+#      plot_histogram(gen_binom_fixed(n1,n2),xmin=0,xmax=1,ymax=5, ypos=.3, binwidth=.1)
+      p2 = ggplot(data=data.frame()) + ylim(0,15) + theme_bw() + xlim(0,1) + xlab(expression(pi)) + ylab("density");
+      if(prior) {
+          p2 = p2 + geom_area(data=data.frame(Y=c(0,1)), stat = "function", 
+                            fun = bernouilli_likelihood, fill="blue", alpha=.2, 
+                            args=list(n1=0,n2=0,triangular_prior=triangular_prior));
+      } 
+      if(likelihood) {
+          p2 = p2 + geom_area(data=data.frame(Y=c(0,1)), stat = "function", 
+                            fun = bernouilli_likelihood, fill="red", alpha=.4, 
+                            args=list(n1=n1,n2=n2,triangular_prior=triangular_prior));
+      } 
+      return(grid.arrange(p1, p2, ncol=2));
+  }
+#  plot_coin(0,0, prior=T, likelihood=F)
+  plot_coin(0,0,likelihood=F)
+  #+end_src
+
+  #+RESULTS:
+  [[file:images/bayesian/babel_images/density_coin_0_0.pdf]]
+
+  #+name: coin_values
+  |  n1 |  n2 |
+  |-----+-----|
+  |   0 |   1 |
+  |   1 |   1 |
+  |   1 |   2 |
+  |   1 |   3 |
+  |   2 |   3 |
+  |   2 |   4 |
+  |   3 |   4 |
+  |  10 |  13 |
+  |  30 |  35 |
+  | 110 | 140 |
+
+  #+begin_src R :results output :session *R* :exports both :var coin_values=coin_values
+  for(i in 1:nrow(coin_values)) {
+      n1 = coin_values[i,]$n1;
+      n2 = coin_values[i,]$n2;
+      pdf(file=paste0("images/bayesian/babel_images/density_coin_",n1,"_",n2,".pdf"),width=6,height=2.5);
+      plot(plot_coin(n1,n2));
+      dev.off();
+  }
+  pdf(file=paste0("images/bayesian/babel_images/density_tcoin_0_0.pdf"),width=6,height=2.5);
+  plot(plot_coin(0,0,triangular_prior=T,likelihood=F));
+  dev.off();
+  for(i in 1:nrow(coin_values)) {
+      n1 = coin_values[i,]$n1;
+      n2 = coin_values[i,]$n2;
+      pdf(file=paste0("images/bayesian/babel_images/density_tcoin_",n1,"_",n2,".pdf"),width=6,height=2.5);
+      plot(plot_coin(n1,n2,triangular_prior=T));
+      dev.off();
+  }
+  #+end_src
+
+  #+RESULTS:
+  : png 
+  :   2
+
+#+begin_src R :results output :session *R* :exports both
+Comb(250,110)/2**250
+#+end_src
+
+#+RESULTS:
+: [1] 0.008357182
+
+#+begin_src R :results output :session *R* :exports none
+s=0
+for(k in 1:110) {
+    s = s+ Comb(250,k)/2**250
+}
+s
+#+end_src
+
+#+RESULTS:
+: [1] 0.03321058
+
+** Head and Tail
+#+BEGIN_QUOTE
+When spun on edge 250 times, a Belgian 1€ coin came up heads 140
+times and tails 110. It looks very suspicious to me. If the coin were
+unbiased, the chance of getting a result as extreme as that would be
+less than 7%.
+
+\flushright\scriptsize -- From "The Gardian" quoted by MacKay @@beamer:\\@@
+in *Information Theory, Inference and Learning Algorithms*
+#+END_QUOTE
+
+#+LaTeX: \begin{columns}\begin{column}{.39\linewidth}
+  # #+ATTR_BEAMER: :overlay <+->
+  - Model: $Y \sim \Bernouilli(\pi)$
+  - 
+    #+LaTeX: Data:~\rlap{\hbox{\scalebox{.75}{$y=1,0,1,1,0,0,1,1,1,\dots$}}}
+  - 
+    #+LaTeX: \only<1>{$p(y|\pi=1/2)$\\ \hbox{\hspace{1cm}$=\frac{(140+110)!}{110!140!}.(\frac{1}{2})^{110}.(\frac{1}{2})^{140}$} \hbox{\hspace{1cm}$\approx 0.00835$}}%
+    #+LaTeX: \only<2>{$p(|y|\le110|\pi=1/2)$\\ \hbox{\hspace{1cm}$=\sum_{k\le110}\frac{250!}{k!(250-k)!}.\frac{1}{2^{250}}$} \hbox{\hspace{1cm}$\approx 0.033$}}%
+    #+LaTeX: \only<3->{Prior: $\pi \sim \only<3-14>{\Unif(0,1)}\only<15->{\Triang(0,1)}$\\~\\}
+#+LaTeX: \end{column}\begin{column}{.65\linewidth}
+  #+BEGIN_EXPORT latex
+    \phantom{\includegraphics<+>[width=\linewidth]{images/bayesian/babel_images/density_coin_0_0.pdf}}%
+    \phantom{\includegraphics<+>[width=\linewidth]{images/bayesian/babel_images/density_coin_0_0.pdf}}%
+    \includegraphics<+>[width=\linewidth]{images/bayesian/babel_images/density_coin_0_0.pdf}%
+    \includegraphics<+>[width=\linewidth]{images/bayesian/babel_images/density_coin_0_1.pdf}%
+    \includegraphics<+>[width=\linewidth]{images/bayesian/babel_images/density_coin_1_1.pdf}%
+    \includegraphics<+>[width=\linewidth]{images/bayesian/babel_images/density_coin_1_2.pdf}%
+    \includegraphics<+>[width=\linewidth]{images/bayesian/babel_images/density_coin_1_3.pdf}%
+    \includegraphics<+>[width=\linewidth]{images/bayesian/babel_images/density_coin_2_3.pdf}%
+    \includegraphics<+>[width=\linewidth]{images/bayesian/babel_images/density_coin_2_4.pdf}%
+    \includegraphics<+>[width=\linewidth]{images/bayesian/babel_images/density_coin_3_4.pdf}%
+    \includegraphics<+>[width=\linewidth]{images/bayesian/babel_images/density_coin_10_13.pdf}%
+    \includegraphics<+>[width=\linewidth]{images/bayesian/babel_images/density_coin_30_35.pdf}%
+    \includegraphics<+>[width=\linewidth]{images/bayesian/babel_images/density_coin_110_140.pdf}%
+    \includegraphics<+>[width=\linewidth]{images/bayesian/babel_images/density_coin_0_0.pdf}%
+    \includegraphics<+>[width=\linewidth]{images/bayesian/babel_images/density_tcoin_0_0.pdf}%
+    \includegraphics<+>[width=\linewidth]{images/bayesian/babel_images/density_tcoin_0_1.pdf}%
+%    \includegraphics<+>[width=\linewidth]{images/bayesian/babel_images/density_tcoin_1_1.pdf}%
+    \includegraphics<+>[width=\linewidth]{images/bayesian/babel_images/density_tcoin_1_2.pdf}%
+    \includegraphics<+>[width=\linewidth]{images/bayesian/babel_images/density_tcoin_1_3.pdf}%
+    \includegraphics<+>[width=\linewidth]{images/bayesian/babel_images/density_tcoin_2_3.pdf}%
+    \includegraphics<+>[width=\linewidth]{images/bayesian/babel_images/density_tcoin_2_4.pdf}%
+    \includegraphics<+>[width=\linewidth]{images/bayesian/babel_images/density_tcoin_3_4.pdf}%
+    \includegraphics<+>[width=\linewidth]{images/bayesian/babel_images/density_tcoin_10_13.pdf}%
+    \includegraphics<+>[width=\linewidth]{images/bayesian/babel_images/density_tcoin_30_35.pdf}%
+    \includegraphics<+>[width=\linewidth]{images/bayesian/babel_images/density_tcoin_110_140.pdf}%
+    \includegraphics<+>[width=\linewidth]{images/bayesian/babel_images/density_coin_110_140.pdf}%
+  #+END_EXPORT
+#+LaTeX: \end{column}\end{columns}
+  #+BEGIN_EXPORT latex
+  \begin{equation*}
+      \uncover<3->{p(\pi|y) = \frac{p(y|\pi)\cdot p(\pi)}{p(y)}= \frac{(1-\pi)^{n_0}\pi^{n_1} \cdot \only<3-14>{1}\only<15->{(2-4|\pi-0.5|)}}{\only<3-14>{n_0!n_1!/(n_0+n_1+1)!}\only<15->{\text{some normalization}}}}
+  \end{equation*}
+  #+END_EXPORT
+Check https://twitter.com/i/status/1447831352217415680
+* A Simple Gaussian Model
+** Initial Belief and First Observations
+#+LaTeX: \begin{columns}\begin{column}{.6\linewidth}
+  # #+ATTR_BEAMER: :overlay <+->
+  - Model: $Y \sim \Norm(\mu,\sigma)$
+  - Prior: $\mu \sim \Unif(0,20)$ and $\sigma \sim \Unif(0,5)$
+#+LaTeX: \end{column}\begin{column}{.4\linewidth}
+  #+ATTR_LATEX: :width \linewidth :center nil
+  [[file:images/bayesian/babel_images/density_mu_sigma1_prior.pdf]]
+#+LaTeX: \end{column}\end{columns}\pause
+
+#+begin_src R :results output :session *R* :exports both
+set.seed(162);
+n=20; mu=12.5; sigma=1.6;
+Y=rnorm(n, mean=mu, sd=sigma);
+Y
+#+end_src
+
+#+RESULTS:
+:  [1] 13.899247 12.951346 12.164091 10.869858 13.075777 12.552552 15.446823
+:  [8] 11.920264 12.849875  9.367122 12.083848 13.852930 12.740590  9.674321
+: [15] 11.489182 12.195024 13.946985  9.220992 11.821921  9.347013
+***  Graphs                                                      :noexport:
+#+begin_src R :results output graphics :file images/bayesian/babel_images/density_mu_sigma1_prior.pdf :exports both :width 7 :height 7 :session *R*
+l3d = likelihood_3d(c(-120,-120));
+xrange = max(l3d$x) - min(l3d$x);
+yrange = max(l3d$y) - min(l3d$y);
+## l3d$z = l3d$z + 1/(xrange*yrange)
+plot_likelihood_3d(l3d)
+#+end_src
+
+#+RESULTS:
+[[file:images/bayesian/babel_images/density_mu_sigma1_prior.pdf]]
+
+** Likelihood for This Model
+Model: $Y \sim \Norm(\mu,\sigma)$, hence $p(y|\mu,\sigma) =
+  \frac{1}{\sigma\sqrt{2\pi}}\exp\left(-\frac{1}{2}\left(\frac{y-\mu}{2}\right)^2\right)$
+
+Therefore $\displaystyle p(\mu,\sigma|y) \propto
+  \prod_{i=1}^n
+  \frac{1}{\sigma\sqrt{2\pi}}\exp\left(-\frac{1}{2}\left(\frac{y_i-\mu}{2}\right)^2\right)\textcolor{gray}{.\frac{1}{100}}$
+** Exploiting information (Normal model)
+#+begin_src R :results output :session *R* :exports results
+print(paste("Mean:", mean(Y)))
+print(paste("Standard Deviation:", sd(Y)))
+#+end_src
+
+#+RESULTS:
+: [1] "Mean: 12.07348806679"
+: [1] "Standard Deviation: 1.70127707382769"
+
+\medskip
+
+#+LaTeX: \begin{columns}\begin{column}[t]{.5\linewidth}\centering
+  Distribution of observations $Y$
+#+Beamer: \only<1>{%
+  #+ATTR_LATEX: :width \linewidth :center nil
+  [[file:images/bayesian/babel_images/hist1.pdf]]
+#+Beamer: }\only<2>{%
+  #+ATTR_LATEX: :width \linewidth :center nil
+  [[file:images/bayesian/babel_images/hist1_1.pdf]]
+#+Beamer: }\only<3>{%
+  #+ATTR_LATEX: :width \linewidth :center nil
+  [[file:images/bayesian/babel_images/hist1_2.pdf]]
+#+Beamer: }\only<4>{%
+  #+ATTR_LATEX: :width \linewidth :center nil
+  [[file:images/bayesian/babel_images/hist1_3.pdf]]
+#+Beamer: }\only<5>{%
+  #+ATTR_LATEX: :width \linewidth :center nil
+  [[file:images/bayesian/babel_images/hist1_4.pdf]]
+#+Beamer: }\only<6->{%
+  #+ATTR_LATEX: :width \linewidth :center nil
+  [[file:images/bayesian/babel_images/hist1.pdf]]
+#+Beamer: }
+
+#+LaTeX: \end{column}\begin{column}[t]{.5\linewidth}\centering
+  Posterior distribution
+  #+LaTeX: \uncover<8>{(Zoom)}
+  #+Beamer: \only<2>{%
+    #+ATTR_LATEX: :width \linewidth :center nil
+    [[file:images/bayesian/babel_images/density_mu_sigma_2d_1.pdf]]
+  #+Beamer: }\only<3>{%
+    #+ATTR_LATEX: :width \linewidth :center nil
+    [[file:images/bayesian/babel_images/density_mu_sigma_2d_2.pdf]]
+  #+Beamer: }\only<4>{%
+    #+ATTR_LATEX: :width \linewidth :center nil
+    [[file:images/bayesian/babel_images/density_mu_sigma_2d_3.pdf]]
+  #+Beamer: }\only<5>{%
+    #+ATTR_LATEX: :width \linewidth :center nil
+    [[file:images/bayesian/babel_images/density_mu_sigma_2d_4.pdf]]
+  #+Beamer: }\only<6>{%
+    #+ATTR_LATEX: :width \linewidth :center nil
+    [[file:images/bayesian/babel_images/density_mu_sigma_2d.pdf]]
+  #+Beamer: }\only<7>{%
+    #+ATTR_LATEX: :width \linewidth :center nil
+    [[file:images/bayesian/babel_images/density_mu_sigma1.pdf]]
+  #+Beamer: }\only<8>{%
+    #+ATTR_LATEX: :width \linewidth :center nil
+    [[file:images/bayesian/babel_images/density_mu_sigma1_zoom.pdf]]
+  #+Beamer: }
+#+LaTeX: \end{column}\end{columns}\pause
+
+*** Graphs                                                       :noexport:
+#+begin_src R :results output graphics :file images/bayesian/babel_images/hist1.pdf :exports results :width 4 :height 4 :session *R* 
+p = plot_histogram(Y,xmin=0,xmax=20,ymax=.5);
+p
+#+end_src
+
+#+RESULTS:
+[[file:images/bayesian/babel_images/hist1.pdf]]
+
+#+begin_src R :results output :session *R* :exports both
+l3d = likelihood_3d(data, xmin=0, xmax=20, ymin=0, ymax=5, length=51);
+l3d_examples = with(l3d, l3d[(x==5.2 & y==4),]);
+l3d_examples = rbind(l3d_examples, with(l3d, l3d[(x==16 & y==.5),]));
+l3d_examples = rbind(l3d_examples, with(l3d, l3d[(x==12 & y==.8),]));
+l3d_examples = rbind(l3d_examples, with(l3d, l3d[(x==12 & y==2),]));
+for(i in 1:nrow(l3d_examples)) {
+    pdf(file=paste0("images/bayesian/babel_images/density_mu_sigma_2d_",i,".pdf"),width=4,height=4);
+    plot(plot_likelihood_2d(l3d,l3d_examples[1:i,],background=F));
+    dev.off();
+    pdf(file=paste0("images/bayesian/babel_images/hist1_",i,".pdf"),width=4,height=4);
+    p = plot_histogram(Y,xmin=0,xmax=20,ymax=.8);
+    p = p + geom_area(data=data.frame(Y=c(0,20)), stat = "function", 
+                      fun = dnorm, fill="red", alpha=.4, 
+                      args=list(mean=l3d_examples[i,]$x, sd=l3d_examples[i,]$y));
+    plot(p);
+    dev.off();
+}
+#+end_src
+
+#+RESULTS:
+
+#+begin_src R :results output graphics :file images/bayesian/babel_images/density_mu_sigma_2d.pdf :exports both :width 4 :height 4 :session *R* 
+plot_likelihood_2d(l3d,l3d_examples);
+#+end_src
+
+#+RESULTS:
+[[file:images/bayesian/babel_images/density_mu_sigma_2d.pdf]]
+
+#+begin_src R :results output graphics :file images/bayesian/babel_images/density_mu_sigma1.pdf :exports both :width 7 :height 7 :session *R* 
+plot_likelihood_3d(likelihood_3d(Y))
+#+end_src
+
+#+RESULTS:
+[[file:images/bayesian/babel_images/density_mu_sigma1.pdf]]
+
+#+begin_src R :results output graphics :file images/bayesian/babel_images/density_mu_sigma1_zoom.pdf :exports both :width 7 :height 7 :session *R* 
+plot_likelihood_3d(likelihood_3d(data, xmin=10, xmax=14, ymin=0, ymax=4, length=50))
+#+end_src
+
+#+RESULTS:
+[[file:images/bayesian/babel_images/density_mu_sigma1_zoom.pdf]]
+
+#+begin_src shell :results output :exports both
+for i in images/bayesian/babel_images/density_mu_sigma*.pdf ; do
+    pdfcrop $i $i ;
+done
+#+end_src
+
+#+RESULTS:
+#+begin_example
+PDFCROP 1.38, 2012/11/02 - Copyright (c) 2002-2012 by Heiko Oberdiek.
+==> 1 page written on `images/bayesian/babel_images/density_mu_sigma1.pdf'.
+PDFCROP 1.38, 2012/11/02 - Copyright (c) 2002-2012 by Heiko Oberdiek.
+==> 1 page written on `images/bayesian/babel_images/density_mu_sigma1_prior.pdf'.
+PDFCROP 1.38, 2012/11/02 - Copyright (c) 2002-2012 by Heiko Oberdiek.
+==> 1 page written on `images/bayesian/babel_images/density_mu_sigma1_zoom.pdf'.
+PDFCROP 1.38, 2012/11/02 - Copyright (c) 2002-2012 by Heiko Oberdiek.
+==> 1 page written on `images/bayesian/babel_images/density_mu_sigma_2d.pdf'.
+PDFCROP 1.38, 2012/11/02 - Copyright (c) 2002-2012 by Heiko Oberdiek.
+==> 1 page written on `images/bayesian/babel_images/density_mu_sigma_2d_1.pdf'.
+PDFCROP 1.38, 2012/11/02 - Copyright (c) 2002-2012 by Heiko Oberdiek.
+==> 1 page written on `images/bayesian/babel_images/density_mu_sigma_2d_2.pdf'.
+PDFCROP 1.38, 2012/11/02 - Copyright (c) 2002-2012 by Heiko Oberdiek.
+==> 1 page written on `images/bayesian/babel_images/density_mu_sigma_2d_3.pdf'.
+PDFCROP 1.38, 2012/11/02 - Copyright (c) 2002-2012 by Heiko Oberdiek.
+==> 1 page written on `images/bayesian/babel_images/density_mu_sigma_2d_4.pdf'.
+#+end_example
+** Single point estimate (Normal model)
+#+begin_src R :results output :session *R* :exports results
+print(paste("Mean:", mean(Y)))
+print(paste("Standard Deviation:", sd(Y)))
+#+end_src
+
+#+RESULTS:
+: [1] "Mean: 12.07348806679"
+: [1] "Standard Deviation: 1.70127707382769"
+
+ $$p(\mu,\sigma|y) \propto  \prod_{i=1}^n
+  \frac{1}{\sigma\sqrt{2\pi}}\exp\left(-\frac{1}{2}\left(\frac{y_i-\mu}{2}\right)^2\right)\textcolor{gray}{.\frac{1}{100}}$$
+
+- /Machine Learning/: Maximum Likelihood $|y$
+  - $\mu_{MLE} = \frac{1}{n} \sum_{i=1}^n y_i$
+  - $\sigma_{MLE} = \sqrt{\frac{1}{n} \sum_{i=1}^n (y_i-\mu_{MLE})^2}$
+- /Frequentist/: ensure $\E[\mu_{F}] = \mu$ and $\E[\sigma_{F}^2] = \sigma^2$ 
+  - $\mu_{F} = \frac{1}{n} \sum_{i=1}^n y_i$
+  - $\sigma_{F} = \sqrt{\frac{1}{n-1} \sum_{i=1}^n (y_i-\mu_{F})^2}$
+- /Bayesian/: sample the posterior
+\vspace{4cm}
+** TODO Generating new data
+#+begin_src R :results output :session *R* :exports none
+set.seed(57)
+n = length(Y)
+mu_f = mean(Y)
+sigma_f = sd(Y)
+Y_new=rnorm(10000, mean=mu, sd=sigma); # True distribution
+Y_new_f=rnorm(10000, mean=mu_f, sd=sigma_f);  # Distribution using a fixed estimation
+## Inspire from chap. 14, p.357 of BDA3 by Gelman et al. for this
+tdf = n-1
+Y_new_b=mu_f + rt(10000, df = tdf)*(tdf-2)/tdf*sqrt(sigma_f^2*(1+1)); # Bayesian posterior
+## Y_new_b=rnorm(10000, mean=Y_new_b, sd=sqrt(31/20*sigma_f));
+Y_df = data.frame(new=Y_new, new_f=Y_new_f, new_b=Y_new_b);
+summary(Y_df)
+sd(Y_df$new)
+sd(Y_df$new_f)
+sd(Y_df$new_b)
+#+end_src
+
+#+RESULTS:
+#+begin_example
+      new            new_f            new_b       
+ Min.   : 6.65   Min.   : 6.119   Min.   : 2.348  
+ 1st Qu.:11.40   1st Qu.:10.930   1st Qu.:10.600  
+ Median :12.49   Median :12.058   Median :12.071  
+ Mean   :12.50   Mean   :12.071   Mean   :12.069  
+ 3rd Qu.:13.63   3rd Qu.:13.202   3rd Qu.:13.513  
+ Max.   :18.17   Max.   :17.950   Max.   :21.581
+[1] 1.609831
+[1] 1.698424
+[1] 2.263807
+#+end_example
+
+- \T: unknown parameter ($\mu=$ src_R[:exports results]{mu}
+  {{{results(=12.5=)}}}, $\sigma=$ src_R[:exports results]{sigma} {{{results(=1.6=)}}})
+- \Y: observation 
+- \Th: single point estimate of \T ($\mu\approx$ src_R[:exports results]{round(mu_f,2)}
+  {{{results(=12.07=)}}}, $\sigma\approx$ src_R[:exports results]{round(sigma_f,2)} {{{results(=1.7=)}}})
+- \Yt: future observations\bigskip
+
+#+RESULTS:
+
+#+LaTeX: \begin{columns}\begin{column}[t]{.5\linewidth}\centering
+Generating \Yt from \Th
+#+begin_src R :results output graphics :file images/bayesian/babel_images/coin_new_frequentist.pdf :exports results :width 6 :height 4 :session *R* 
+library(ggplot2)
+ggplot(data=Y_df) + theme_bw() + 
+    geom_histogram(aes(x=new), binwidth=.5, boundary=0, color="black", fill="gray") +
+    geom_histogram(aes(x=new_f), binwidth=.5, boundary=0, color="black", fill="red", alpha=.4)
+#+end_src
+
+#+RESULTS:
+[[file:images/bayesian/babel_images/coin_new_frequentist.pdf]]
+
+(does not account for the uncertainty on \Th)
+#+LaTeX: \end{column}\begin{column}[t]{.5\linewidth}\centering\pause
+Generating \Yt from many $\Tt|y$
+#+begin_src R :results output graphics :file images/bayesian/babel_images/coin_new_bayesian.pdf :exports results :width 6 :height 4 :session *R* 
+ggplot(data=Y_df) + theme_bw() + 
+    geom_histogram(aes(x=new), binwidth=.5, boundary=0, color="black", fill="gray") +
+    geom_histogram(aes(x=new_b), binwidth=.5, boundary=0, color="black", fill="blue", alpha=.4)
+#+end_src
+
+#+RESULTS:
+[[file:images/bayesian/babel_images/coin_new_bayesian.pdf]]
+
+Noise on $y$ + uncertainty on $\theta$
+#+LaTeX: \end{column}\end{columns}
+** What about a different Prior?                             :noexport:
+#+LaTeX: \begin{columns}\begin{column}[t]{.5\linewidth}\centering
+  \only<1>{Uniform Prior}\only<2>{Non-niform Prior}
+#+Beamer: \only<1>{%
+  #+ATTR_LATEX: :width \linewidth :center nil
+  [[file:images/bayesian/babel_images/density_mu_sigma1_prior.pdf]]
+#+Beamer: }\only<2>{%
+  #+ATTR_LATEX: :width \linewidth :center nil
+  [[file:images/bayesian/babel_images/density_mu_sigma1_prior.pdf]]
+#+Beamer: }
+
+#+LaTeX: \end{column}\begin{column}[t]{.5\linewidth}\centering
+  Posterior
+  #+Beamer: \only<1>{%
+    #+ATTR_LATEX: :width \linewidth :center nil
+    [[file:images/bayesian/babel_images/density_mu_sigma1.pdf]]
+  #+Beamer: }\only<2>{%
+    #+ATTR_LATEX: :width \linewidth :center nil
+    [[file:images/bayesian/babel_images/density_mu_sigma1_zoom.pdf]]
+  #+Beamer: }
+#+LaTeX: \end{column}\end{columns}\pause
+
+*** Graphs                                                       :noexport:
+#+begin_src R :results output graphics :file images/bayesian/babel_images/density_mu_sigma1.pdf :exports both :width 7 :height 7 :session *R* 
+plot_likelihood_3d(likelihood_3d(Y))
+#+end_src
+
+#+RESULTS:
+[[file:images/bayesian/babel_images/density_mu_sigma1.pdf]]
+
+** Influence of the prior
+Take away messages:
+1. With enough data, reasonable people *converge*.
+2. If any $p(\theta) =0$, no data will change that
+   - Sometimes imposing $p(\theta)=0$ is nice (e.g., $\theta>0$)
+3. An uninformative prior is better than a wrong highly (supposedly)
+   informative prior.
+4. With *conjugate* priors, calculus of the likelihood is
+   possible
+
+   Otherwise, the normalization is a *huge pain*
+
+Computing confidence intervals, high density regions, expectation of
+complex functions... *Samples* are easier to use than distributions.
+#+BEGIN_CENTER
+  *BUGS*: Bayesian inference Using Gibbs Sampling  
+#+END_CENTER
+
+   #+BEGIN_CENTER
+    $\boxed{\underbrace{p(\theta|y,x)}_{\text{\alert{Posterior}}} \propto
+    \underbrace{p(y|\theta,x)}_{\text{\alert{Likelihood}}}\underbrace{p(\theta,x)}_{\text{\alert{Prior}}}}$  \medskip
+   #+END_CENTER
+
+
+** COMMENT Possible use for Bayesian Sampling
+- Testing: warn on significant difference
+- Characterize variability of existing systems
+- Multi-armed bandit: Thompson sampling
+* COMMENT A Uniform model
+** Posterior for a Uniform Model
+#+begin_src R :results output :session *R* :exports results
+summary(data)
+#+end_src
+
+#+RESULTS:
+:    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+:   9.221  11.334  12.180  12.073  12.982  15.447
+
+#+ATTR_LATEX: :width 5cm :center nil
+[[file:images/bayesian/babel_images/hist1.pdf]]
+#+ATTR_LATEX: :width 5cm :center nil
+# [[file:images/bayesian/babel_images/density_alpha_beta1.pdf]]
+
+*** Graphs                                                       :noexport:
+** Single point estimate
+- Maximum likelihood
+- Expectation
+* Bayesian Sampling
+#+LaTeX: \def\includepic#1{\hfill$\begin{array}{l}\boxed{\includegraphics[width=1.4cm]{images/bayesian/babel_images/#1}}\end{array}$}%
+
+** R code                                                         :noexport:
+
+** Generating random number: direct method
+#+begin_src R :results output graphics :file images/bayesian/babel_images/direct_gen_runif.pdf :exports none :width 6 :height 4 :session *R* 
+hist(runif(1000))
+#+end_src
+
+#+RESULTS:
+[[file:images/bayesian/babel_images/direct_gen_runif.pdf]]
+
+#+begin_src R :results output graphics :file images/bayesian/babel_images/direct_gen_density.pdf :exports none :width 6 :height 4 :session *R* 
+plot(dnorm,xlim=c(-5,5))
+#+end_src
+
+#+RESULTS:
+[[file:images/bayesian/babel_images/direct_gen_density.pdf]]
+
+#+begin_src R :results output graphics :file images/bayesian/babel_images/direct_gen_pdf.pdf :exports none :width 6 :height 4 :session *R* 
+plot(pnorm,xlim=c(-5,5))
+#+end_src
+
+#+RESULTS:
+[[file:images/bayesian/babel_images/direct_gen_pdf.pdf]]
+
+#+begin_src R :results output graphics :file images/bayesian/babel_images/direct_gen_qf.pdf :exports none :width 6 :height 4 :session *R* 
+plot(qnorm,xlim=c(0,1))
+#+end_src
+
+#+RESULTS:
+[[file:images/bayesian/babel_images/direct_gen_qf.pdf]]
+
+#+begin_src R :results output graphics :file images/bayesian/babel_images/direct_gen_rnorm.pdf :exports none :width 6 :height 4 :session *R* 
+hist(rnorm(1000))
+#+end_src
+
+#+RESULTS:
+[[file:images/bayesian/babel_images/direct_gen_rnorm.pdf]]
+
+#+begin_src shell :results output :exports none
+for i in images/bayesian/babel_images/direct_gen_*.pdf ; do
+    pdfcrop $i $i ;
+done
+#+end_src
+
+#+RESULTS:
+#+begin_example
+PDFCROP 1.38, 2012/11/02 - Copyright (c) 2002-2012 by Heiko Oberdiek.
+==> 1 page written on `images/bayesian/babel_images/direct_gen_density.pdf'.
+PDFCROP 1.38, 2012/11/02 - Copyright (c) 2002-2012 by Heiko Oberdiek.
+==> 1 page written on `images/bayesian/babel_images/direct_gen_pdf.pdf'.
+PDFCROP 1.38, 2012/11/02 - Copyright (c) 2002-2012 by Heiko Oberdiek.
+==> 1 page written on `images/bayesian/babel_images/direct_gen_qf.pdf'.
+PDFCROP 1.38, 2012/11/02 - Copyright (c) 2002-2012 by Heiko Oberdiek.
+==> 1 page written on `images/bayesian/babel_images/direct_gen_rnorm.pdf'.
+PDFCROP 1.38, 2012/11/02 - Copyright (c) 2002-2012 by Heiko Oberdiek.
+==> 1 page written on `images/bayesian/babel_images/direct_gen_runif.pdf'.
+#+end_example
+
+# Wait, how does this work btw ?
+
+- Input:\vspace{-1em}
+  - $\Unif(0,1)$ \includepic{direct_gen_runif.pdf}
+  - A target density $f_Y$  \includepic{direct_gen_density.pdf}
+- 3 \textit{Easy} steps:
+  1. Compute $F_Y(t) = \int_{-\infty}^t f_Y(y).dy$ \includepic{direct_gen_pdf.pdf}
+  2. Compute the inverse $F_Y^{-1}$ \includepic{direct_gen_qf.pdf}
+  3. Apply $F_Y^{-1}$ to your uniform numbers \includepic{direct_gen_rnorm.pdf}
+Step 1 is generally quite complicated. The /prior/ makes it /even worse/.
+
+Multi-dimensional densities: just as complicated unless the
+law has a very particular structure
+** Rejection method
+#+ATTR_LATEX: :width 5cm
+file:images/bayesian/gelman_264.pdf
+
+Assume we have $M$ and $g$, s.t. $p(\theta|y)\le Mg(\theta)$
+
+- Draw $\theta \sim g$ and accept with probability $\displaystyle \frac{p(\theta|y)}{Mg(\theta)}$
+
+Works well if $Mg$ is a good approximation of $p(.|y)$
+*** Issues:
+- $p$ is multiplied by the prior. Where is the max? Which $g$, which
+  $M$?
+- Is the landscape flat, hilly, spiky?
+- Rejection can be quite inefficient ($\leadsto$ Importance sampling)
+** Monte Carlo Markov Chain simulation
+Dimension by dimension (*Gibbs sampler*): $\theta_j^t \sim p(.|\theta^{t-1}_{-j},y)$
+#+ATTR_LATEX: :width 7cm
+file:images/bayesian/gelman_277.pdf
+
+\pause\vspace{-1em}
+*Metropolis-Hasting*: Jumping distribution $J$
+  - 
+    #+BEGIN_EXPORT latex
+    $\theta^* \sim J(\theta^{t-1})$\hfill
+    $\displaystyle r=\frac{p(\theta^*|y)}{p(\theta^{t-1}|y)}$\hfill 
+    $\theta^t = \begin{cases} 
+      \theta^*& \text{with proba. $\min(r,1)$}\\
+      \theta^{t-1} & \text{otherwise}
+    \end{cases}$
+    #+END_EXPORT
+Look for *high density areas*
+  - \small Highly skewed (short/long-tail) or multi-modal are problematic
+  - Transformation, reparameterization, auxiliary variables, simulated
+    tempering, ...
+  - *Trans-dimensional Markov chains*: the dimension of the parameter
+    space can change from one iteration to the next
+** Hamiltonian Monte-Carlo
+Try to *eliminate the random walk inefficiency*
+  - Add a momentum variable $\phi_j$ for each component $\theta_j$ and move to
+    the right direction
+
+*Hamiltonian Monte-Carlo* combines MCMC with deterministic optimization
+methods
+- *Leapfrog*: $L$ steps of $\epsilon/2$ ($L\epsilon\approx 1$)
+- No U-turn Sampler (*NUTS*): adapt step sizes locally, the trajectory
+  continues until it turns around
+** What is Stan?
+\vspace{1em}
+#+LaTeX: \begin{columns}
+#+LaTeX:   \begin{column}{.3\linewidth}
+   \includegraphics[width=1.1\linewidth]{images/bayesian/stanislaw_ulam.png}
+#+LaTeX:   \end{column}
+#+LaTeX:   \begin{column}{.73\linewidth}\it
+   A probabilistic programming language implementing full *Bayesian
+   statistical inference with MCMC sampling* (NUTS, HMC) and penalized
+   maximum likelihood estimation with optimization (L-BFGS)\medskip
+
+   \small
+   *Stanislaw Ulam*, namesake of Stan and co-inventor of Monte Carlo
+   methods shown here holding the Fermiac, Enrico Fermi’s physical
+   Monte Carlo simulator for neutron diffusion
+#+LaTeX:   \end{column}
+#+LaTeX: \end{columns}\bigskip
+
+#+LaTeX: \begin{columns}
+#+LaTeX:   \begin{column}{.35\linewidth}\centering
+   \includegraphics[height=2.7cm]{images/bayesian/bayes_gelman.jpg}
+
+   \small *Bayesian Data Analysis*, \newline
+   Gelman et al., 2013
+#+LaTeX:   \end{column}
+#+LaTeX:   \begin{column}{.6\linewidth}\centering
+   \includegraphics[height=2.7cm]{images/bayesian/bayes_mcelreath.jpg}
+
+   \small *Bayesian Course with examples in R and Stan,* \newline
+   Richard McElreath, 2015
+#+LaTeX:   \end{column}
+#+LaTeX: \end{columns}
+** A simple example
+
+#+begin_src R :results output :session *R* :exports none
+generate_dataset=function(intercept, coefficient, N, min_x=0, max_x=100, sigma=1){
+    x = sample(min_x:max_x,N,replace=T) 
+    y = coefficient * x + intercept + rnorm(N,sd=sigma)
+    df = data.frame(x=x,y=y)
+    return(df)
+}
+df=generate_dataset(50, -2, 500, sigma=15)
+head(df)
+#+end_src
+
+#+RESULTS:
+:    x           y
+: 1 75 -108.999735
+: 2 38  -48.453814
+: 3  3   29.142740
+: 4 52  -54.413985
+: 5 27   -1.098467
+: 6 90 -127.396345
+
+#+begin_src R :results output graphics :file  images/bayesian/babel_images/stan_data.pdf :exports both :width 6 :height 4 :session *R* 
+ggplot(df, aes(x, y))+geom_point(alpha=0.3) + theme_bw()
+#+end_src
+
+#+RESULTS:
+[[file:images/bayesian/babel_images/stan_data.pdf]]
+** A natural model
+- Model :: $y \sim \Norm(\alpha x + \beta, \sigma^2)$
+- Prior ::  
+  - $\alpha \sim \Norm(0,10)$
+  - $\beta \sim \Norm(0,10)$
+  - $\sigma \sim \Norm(0,10)^+$
+** A STAN model
+#+begin_example
+library(rstan)
+
+modelString = "data { // the observations
+    int<lower=1> N; // number of points
+    vector[N] x;
+    vector[N] y;
+}
+parameters { // what we want to find
+    real intercept;
+    real coefficient;
+    real<lower=0> sigma; // indication: sigma cannot be negative
+} 
+model {
+    // We define our priors
+    intercept   ~ normal(0, 10); // We know that all the parameters follow a normal distribution
+    coefficient ~ normal(0, 10);
+    sigma       ~ normal(0, 10);
+
+    // Then, our likelihood function
+    y ~ normal(coefficient*x + intercept, sigma);
+}
+"
+sm = stan_model(model_code = modelString)
+
+#+end_example
+*** True R code                                                  :noexport:
+#+begin_src R :results output :session *R* :exports code
+library(rstan)
+
+modelString = "data { // the observations
+    int<lower=1> N; // number of points
+    vector[N] x;
+    vector[N] y;
+}
+parameters { // what we want to find
+    real intercept;
+    real coefficient;
+    real<lower=0> sigma; // indication: sigma cannot be negative
+} 
+model {
+    // We define our priors
+    intercept   ~ normal(0, 10); // We know that all the parameters follow a normal distribution
+    coefficient ~ normal(0, 10);
+    sigma       ~ normal(0, 10);
+
+    // Then, our likelihood function
+    y ~ normal(coefficient*x + intercept, sigma);
+}
+"
+sm = stan_model(model_code = modelString)
+#+end_src
+** Running STAN
+#+begin_src R :results output :session *R* :exports both
+data = list(N=nrow(df),x=df$x,y=df$y)
+fit = sampling(sm,data=data, iter=500, chains=8)
+#+end_src
+
+#+RESULTS:
+#+begin_example
+SAMPLING FOR MODEL 'ea4b5a288cf5f1d87215860103a9026e' NOW (CHAIN 1).
+Chain 1: Gradient evaluation took 7.6e-05 seconds
+Chain 1: 1000 transitions using 10 leapfrog steps per transition would take 0.76 seconds.
+Chain 1: Iteration:   1 / 500 [  0%]  (Warmup)
+Chain 1: Iteration:  50 / 500 [ 10%]  (Warmup)
+Chain 1: Iteration: 100 / 500 [ 20%]  (Warmup)
+Chain 1: Iteration: 150 / 500 [ 30%]  (Warmup)
+Chain 1: Iteration: 200 / 500 [ 40%]  (Warmup)
+Chain 1: Iteration: 250 / 500 [ 50%]  (Warmup)
+Chain 1: Iteration: 251 / 500 [ 50%]  (Sampling)
+Chain 1: Iteration: 300 / 500 [ 60%]  (Sampling)
+Chain 1: Iteration: 350 / 500 [ 70%]  (Sampling)
+Chain 1: Iteration: 400 / 500 [ 80%]  (Sampling)
+Chain 1: Iteration: 450 / 500 [ 90%]  (Sampling)
+Chain 1: Iteration: 500 / 500 [100%]  (Sampling)
+Chain 1:  Elapsed Time: 0.101632 seconds (Warm-up)
+Chain 1:                0.044023 seconds (Sampling)
+Chain 1:                0.145655 seconds (Total)
+
+SAMPLING FOR MODEL 'ea4b5a288cf5f1d87215860103a9026e' NOW (CHAIN 2).
+Chain 2: Gradient evaluation took 2e-05 seconds
+Chain 2: 1000 transitions using 10 leapfrog steps per transition would take 0.2 seconds.
+Chain 2: Iteration:   1 / 500 [  0%]  (Warmup)
+Chain 2: Iteration:  50 / 500 [ 10%]  (Warmup)
+Chain 2: Iteration: 100 / 500 [ 20%]  (Warmup)
+Chain 2: Iteration: 150 / 500 [ 30%]  (Warmup)
+Chain 2: Iteration: 200 / 500 [ 40%]  (Warmup)
+Chain 2: Iteration: 250 / 500 [ 50%]  (Warmup)
+Chain 2: Iteration: 251 / 500 [ 50%]  (Sampling)
+Chain 2: Iteration: 300 / 500 [ 60%]  (Sampling)
+Chain 2: Iteration: 350 / 500 [ 70%]  (Sampling)
+Chain 2: Iteration: 400 / 500 [ 80%]  (Sampling)
+Chain 2: Iteration: 450 / 500 [ 90%]  (Sampling)
+Chain 2: Iteration: 500 / 500 [100%]  (Sampling)
+Chain 2:  Elapsed Time: 0.094653 seconds (Warm-up)
+Chain 2:                0.046095 seconds (Sampling)
+Chain 2:                0.140748 seconds (Total)
+
+SAMPLING FOR MODEL 'ea4b5a288cf5f1d87215860103a9026e' NOW (CHAIN 3).
+Chain 3: Gradient evaluation took 1.9e-05 seconds
+Chain 3: 1000 transitions using 10 leapfrog steps per transition would take 0.19 seconds.
+Chain 3: Iteration:   1 / 500 [  0%]  (Warmup)
+Chain 3: Iteration:  50 / 500 [ 10%]  (Warmup)
+Chain 3: Iteration: 100 / 500 [ 20%]  (Warmup)
+Chain 3: Iteration: 150 / 500 [ 30%]  (Warmup)
+Chain 3: Iteration: 200 / 500 [ 40%]  (Warmup)
+Chain 3: Iteration: 250 / 500 [ 50%]  (Warmup)
+Chain 3: Iteration: 251 / 500 [ 50%]  (Sampling)
+Chain 3: Iteration: 300 / 500 [ 60%]  (Sampling)
+Chain 3: Iteration: 350 / 500 [ 70%]  (Sampling)
+Chain 3: Iteration: 400 / 500 [ 80%]  (Sampling)
+Chain 3: Iteration: 450 / 500 [ 90%]  (Sampling)
+Chain 3: Iteration: 500 / 500 [100%]  (Sampling)
+Chain 3:  Elapsed Time: 0.057807 seconds (Warm-up)
+Chain 3:                0.052244 seconds (Sampling)
+Chain 3:                0.110051 seconds (Total)
+
+SAMPLING FOR MODEL 'ea4b5a288cf5f1d87215860103a9026e' NOW (CHAIN 4).
+Chain 4: Gradient evaluation took 1.9e-05 seconds
+Chain 4: 1000 transitions using 10 leapfrog steps per transition would take 0.19 seconds.
+Chain 4: Iteration:   1 / 500 [  0%]  (Warmup)
+Chain 4: Iteration:  50 / 500 [ 10%]  (Warmup)
+Chain 4: Iteration: 100 / 500 [ 20%]  (Warmup)
+Chain 4: Iteration: 150 / 500 [ 30%]  (Warmup)
+Chain 4: Iteration: 200 / 500 [ 40%]  (Warmup)
+Chain 4: Iteration: 250 / 500 [ 50%]  (Warmup)
+Chain 4: Iteration: 251 / 500 [ 50%]  (Sampling)
+Chain 4: Iteration: 300 / 500 [ 60%]  (Sampling)
+Chain 4: Iteration: 350 / 500 [ 70%]  (Sampling)
+Chain 4: Iteration: 400 / 500 [ 80%]  (Sampling)
+Chain 4: Iteration: 450 / 500 [ 90%]  (Sampling)
+Chain 4: Iteration: 500 / 500 [100%]  (Sampling)
+Chain 4:  Elapsed Time: 0.06965 seconds (Warm-up)
+Chain 4:                0.056319 seconds (Sampling)
+Chain 4:                0.125969 seconds (Total)
+
+SAMPLING FOR MODEL 'ea4b5a288cf5f1d87215860103a9026e' NOW (CHAIN 5).
+Chain 5: Gradient evaluation took 2e-05 seconds
+Chain 5: 1000 transitions using 10 leapfrog steps per transition would take 0.2 seconds.
+Chain 5: Iteration:   1 / 500 [  0%]  (Warmup)
+Chain 5: Iteration:  50 / 500 [ 10%]  (Warmup)
+Chain 5: Iteration: 100 / 500 [ 20%]  (Warmup)
+Chain 5: Iteration: 150 / 500 [ 30%]  (Warmup)
+Chain 5: Iteration: 200 / 500 [ 40%]  (Warmup)
+Chain 5: Iteration: 250 / 500 [ 50%]  (Warmup)
+Chain 5: Iteration: 251 / 500 [ 50%]  (Sampling)
+Chain 5: Iteration: 300 / 500 [ 60%]  (Sampling)
+Chain 5: Iteration: 350 / 500 [ 70%]  (Sampling)
+Chain 5: Iteration: 400 / 500 [ 80%]  (Sampling)
+Chain 5: Iteration: 450 / 500 [ 90%]  (Sampling)
+Chain 5: Iteration: 500 / 500 [100%]  (Sampling)
+Chain 5:  Elapsed Time: 0.107826 seconds (Warm-up)
+Chain 5:                0.043495 seconds (Sampling)
+Chain 5:                0.151321 seconds (Total)
+
+SAMPLING FOR MODEL 'ea4b5a288cf5f1d87215860103a9026e' NOW (CHAIN 6).
+Chain 6: Gradient evaluation took 4.7e-05 seconds
+Chain 6: 1000 transitions using 10 leapfrog steps per transition would take 0.47 seconds.
+Chain 6: Iteration:   1 / 500 [  0%]  (Warmup)
+Chain 6: Iteration:  50 / 500 [ 10%]  (Warmup)
+Chain 6: Iteration: 100 / 500 [ 20%]  (Warmup)
+Chain 6: Iteration: 150 / 500 [ 30%]  (Warmup)
+Chain 6: Iteration: 200 / 500 [ 40%]  (Warmup)
+Chain 6: Iteration: 250 / 500 [ 50%]  (Warmup)
+Chain 6: Iteration: 251 / 500 [ 50%]  (Sampling)
+Chain 6: Iteration: 300 / 500 [ 60%]  (Sampling)
+Chain 6: Iteration: 350 / 500 [ 70%]  (Sampling)
+Chain 6: Iteration: 400 / 500 [ 80%]  (Sampling)
+Chain 6: Iteration: 450 / 500 [ 90%]  (Sampling)
+Chain 6: Iteration: 500 / 500 [100%]  (Sampling)
+Chain 6:  Elapsed Time: 0.06351 seconds (Warm-up)
+Chain 6:                0.053801 seconds (Sampling)
+Chain 6:                0.117311 seconds (Total)
+
+SAMPLING FOR MODEL 'ea4b5a288cf5f1d87215860103a9026e' NOW (CHAIN 7).
+Chain 7: Gradient evaluation took 1.8e-05 seconds
+Chain 7: 1000 transitions using 10 leapfrog steps per transition would take 0.18 seconds.
+Chain 7: Iteration:   1 / 500 [  0%]  (Warmup)
+Chain 7: Iteration:  50 / 500 [ 10%]  (Warmup)
+Chain 7: Iteration: 100 / 500 [ 20%]  (Warmup)
+Chain 7: Iteration: 150 / 500 [ 30%]  (Warmup)
+Chain 7: Iteration: 200 / 500 [ 40%]  (Warmup)
+Chain 7: Iteration: 250 / 500 [ 50%]  (Warmup)
+Chain 7: Iteration: 251 / 500 [ 50%]  (Sampling)
+Chain 7: Iteration: 300 / 500 [ 60%]  (Sampling)
+Chain 7: Iteration: 350 / 500 [ 70%]  (Sampling)
+Chain 7: Iteration: 400 / 500 [ 80%]  (Sampling)
+Chain 7: Iteration: 450 / 500 [ 90%]  (Sampling)
+Chain 7: Iteration: 500 / 500 [100%]  (Sampling)
+Chain 7:  Elapsed Time: 0.066062 seconds (Warm-up)
+Chain 7:                0.045438 seconds (Sampling)
+Chain 7:                0.1115 seconds (Total)
+
+SAMPLING FOR MODEL 'ea4b5a288cf5f1d87215860103a9026e' NOW (CHAIN 8).
+Chain 8: Gradient evaluation took 1.9e-05 seconds
+Chain 8: 1000 transitions using 10 leapfrog steps per transition would take 0.19 seconds.
+Chain 8: Iteration:   1 / 500 [  0%]  (Warmup)
+Chain 8: Iteration:  50 / 500 [ 10%]  (Warmup)
+Chain 8: Iteration: 100 / 500 [ 20%]  (Warmup)
+Chain 8: Iteration: 150 / 500 [ 30%]  (Warmup)
+Chain 8: Iteration: 200 / 500 [ 40%]  (Warmup)
+Chain 8: Iteration: 250 / 500 [ 50%]  (Warmup)
+Chain 8: Iteration: 251 / 500 [ 50%]  (Sampling)
+Chain 8: Iteration: 300 / 500 [ 60%]  (Sampling)
+Chain 8: Iteration: 350 / 500 [ 70%]  (Sampling)
+Chain 8: Iteration: 400 / 500 [ 80%]  (Sampling)
+Chain 8: Iteration: 450 / 500 [ 90%]  (Sampling)
+Chain 8: Iteration: 500 / 500 [100%]  (Sampling)
+Chain 8:  Elapsed Time: 0.090898 seconds (Warm-up)
+Chain 8:                0.048248 seconds (Sampling)
+Chain 8:                0.139146 seconds (Total)
+Inference for Stan model: ea4b5a288cf5f1d87215860103a9026e.
+8 chains, each with iter=500; warmup=250; thin=1; 
+post-warmup draws per chain=250, total post-warmup draws=2000.
+
+                mean se_mean   sd     2.5%      25%      50%      75%    97.5%
+intercept      49.12    0.04 1.31    46.53    48.24    49.13    50.00    51.68
+coefficient    -1.96    0.00 0.02    -2.01    -1.98    -1.96    -1.95    -1.92
+sigma          15.48    0.01 0.48    14.56    15.15    15.47    15.79    16.44
+lp__        -1630.71    0.04 1.14 -1633.61 -1631.32 -1630.42 -1629.85 -1629.36
+            n_eff Rhat
+intercept     997 1.00
+coefficient   979 1.00
+sigma        1057 1.00
+lp__          840 1.01
+
+Samples were drawn using NUTS(diag_e) at Wed May 22 22:30:52 2019.
+For each parameter, n_eff is a crude measure of effective sample size,
+and Rhat is the potential scale reduction factor on split chains (at 
+convergence, Rhat=1).
+#+end_example
+** Inspecting results
+#+begin_src R :results output :session *R* :exports both
+print(fit)
+#+end_src
+
+#+RESULTS:
+#+begin_example
+                mean se_mean   sd     2.5%      25%      50%      75%    97.5%
+intercept      49.12    0.04 1.31    46.53    48.24    49.13    50.00    51.68
+coefficient    -1.96    0.00 0.02    -2.01    -1.98    -1.96    -1.95    -1.92
+sigma          15.48    0.01 0.48    14.56    15.15    15.47    15.79    16.44
+lp__        -1630.71    0.04 1.14 -1633.61 -1631.32 -1630.42 -1629.85 -1629.36
+            n_eff Rhat
+intercept     997 1.00
+coefficient   979 1.00
+sigma        1057 1.00
+lp__          840 1.01
+
+Samples were drawn using NUTS(diag_e) at Wed May 22 22:30:52 2019.
+For each parameter, n_eff is a crude measure of effective sample size,
+and Rhat is the potential scale reduction factor on split chains (at 
+convergence, Rhat=1).
+#+end_example
+** Checking Convergence
+#+begin_src R :results output graphics :file images/bayesian/babel_images/stan_convergence.pdf :exports both :width 8 :height 4 :session *R* 
+stan_trace(fit)
+#+end_src
+
+#+RESULTS:
+[[file:images/bayesian/babel_images/stan_convergence.pdf]]
+** Looking at samples
+
+#+LaTeX: \begin{columns}
+#+LaTeX:   \begin{column}[t]{.45\linewidth}\centering
+  #+begin_src R :results output graphics :file images/bayesian/babel_images/stan_hist.pdf :exports both :width 3.5 :height 3.5 :session *R* 
+  stan_hist(fit)
+  #+end_src
+
+  #+RESULTS:
+  [[file:images/bayesian/babel_images/stan_hist.pdf]]
+#+LaTeX:   \end{column}
+#+LaTeX:   \begin{column}[t]{.45\linewidth}\centering
+  #+begin_src R :results output graphics :file images/bayesian/babel_images/stan_samples.pdf :exports both :width 4 :height 4 :session *R* 
+  ggplot(as.data.frame(rstan::extract(fit))) + theme_bw() + 
+      geom_point(aes(x=intercept, y=coefficient, color=sigma))
+  #+end_src
+
+  #+RESULTS:
+  [[file:images/bayesian/babel_images/stan_samples.pdf]]
+#+LaTeX:   \end{column}
+#+LaTeX: \end{columns}
+
+This allows to define *credibility* regions (or intervals).
+* A catch on model selection
+** Remember overfitting ?
+What's a good model ? A model with a small prediction error\dots
+- Adding parameters in a linear regression always improve the Residual
+  Standard Error, hence the $R^2$.
+- Yet we would like to have few parameters (parsimony, Occam's razor)
+
+How do we distinguish "true" parameters from "false" ones ?
+
+Intuitively:
+- Non-significant $\beta$ should go to 0
+- The RSE should be penalized by the number of parameters
+** Option 1: @@latex:\uncover<2>{Prior on the Models}@@
+Let's consider several alternative models $M_1, M_2, \dots$
+- $\text{BIC}$ :: $\!(M)= k\ln(n)-2\ln({\widehat {L(M)}})$, where
+  - $\hat L$ is the maximized value of the likelihood function
+  - $n$ is the number of observations
+  - $k$ is the number of parameters\pause
+  Bayesian argument: 
+  - *Uniform prior* over alternative models
+  - When $n$ is large the BIC is proportional to $-\log(p(M_i|Y))$
+    - Choose the model with the smaller BIC!!
+  #+latex: \begin{overlayarea}{\linewidth}{0cm}\vspace{-1.2cm}\hbox{\hspace{8cm}\includegraphics[height=2cm]{images/bayesian/bic_minimization.png}}\end{overlayarea}\pause
+- $\text{AIC}$ :: $\!(M)= 2k-2\ln({\hat {L}})$
+  - Based on information theory and KL divergence
+  - Asymptotic too
+
+** Option 2: @@latex:\uncover<3>{Prior on the parameters}@@
+Wait! If I have $X_1, ..., X_k$ parameters, there are $2^k$ models.
+- Heuristic 1: add parameters one after the other
+- Heuristic 2: peel the model
+
+\pause
+When we just don't know which parameters should be kept, an other
+option would be to *penalize large coefficients*
+#+latex: \begin{multicols}{2}
+   - Lasso :: 
+     #+latex: \scalebox{.9}{Min. $\sum_i (\beta.x_i-y_i)^2 + \lambda \sum_k |\beta_k|$\hspace{-1cm}} \newline
+     #+latex: \uncover<3>{\small Exponential prior with parameter $\lambda$ for $\beta$}
+   - Ridge :: 
+     #+latex: \scalebox{.9}{Min. $\sum_i (\beta.x_i-y_i)^2 + \lambda \sum_k \beta_k^2$} \newline
+     #+latex: \uncover<3>{\small Gaussian prior with variance $1/\lambda$ for $\beta$}
+#+latex: \end{multicols}\vspace{-.2cm}
+ #+latex: \centerline{\includegraphics[height=3cm]{images/bayesian/lasso_ridge.png}}
+#+latex: \vspace{-.5cm}\uncover<3>{\small Standard linear regression can be seen as a uniform (improper) prior}
+
+* Wrap-up
+** Truth vs. Myths
+*** Where Bayesian sampling fails:
+- +Cover the space+ (e.g., high dimensions)
+- +Uninformed far away density spikes+ (mixtures requires informative
+  models and priors)
+- +High quantiles/rare events+
+
+Informative priors and starting points are difficult to come up
+with. 
+- Much more *expensive* than "simple" Likelihood optimization, which is
+  also why *machine learning* techniques are so popular
+*** Where it helps:
+- Captures "correlations"
+- Robust expectation estimation (1 simulation = very biased)
+- Exploit all your knowledge about the system
+- Uncertainty quantification with Monte Carlo
+** How we would like to use it                                    :noexport:
+
+#+BEGIN_CENTER
+Disclaimer: I may be *naive*
+#+END_CENTER
+
+- Digital twins :: (haha!) of platforms in *SimGrid*
+  - As realistic as possible from observations
+  - Variations (what if?)\medskip
+
+- Trace analysis: :: expressive models of internal structure
+  - better information compression/summary
+  - state what is expected and detect when the system departs from
+    it\medskip
+
+- Anomaly detection: :: performance non-regression testing (CI)
+  - Model the whole system ($y$ in "high" dimension)
+  - Detect novelty and continuously enrich the model and data
+
+* Emacs Setup                                                      :noexport:
+This document has local variables in its postembule, which should
+allow Org-mode (9) to work seamlessly without any setup. If you're
+uncomfortable using such variables, you can safely ignore them at
+startup. Exporting may require that you copy them in your .emacs.
+
+# Local Variables:
+# eval: (add-to-list 'org-latex-packages-alist '("" "minted"))
+# eval: (setq org-latex-listings 'minted)
+# eval: (setq org-latex-minted-options '(("style" "Tango") ("bgcolor" "Moccasin") ("frame" "lines") ("linenos" "true") ("fontsize" "\\small")))
+# eval: (setq org-latex-pdf-process '("lualatex -shell-escape -interaction nonstopmode -output-directory %o %f"))
+# End:
