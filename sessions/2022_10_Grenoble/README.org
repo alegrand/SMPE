@@ -160,12 +160,22 @@ Evaluation process:
 ** 9. 15/12/22 [AL] Scientific integrity
 - Quick refresher/overview on linear regression
 - [[file:~/Work/Documents/Enseignements/SMPE/lectures/lecture_scientific_integrity.pdf][Introduction to scientific integrity, deontology and ethics]]
-** 10. 15/01/24 [AL] A Bayesian perspective on regularization and model selection + Sequential DoE (screening, LHS, D-opt, ...)
 ** Winter vacations
-** 11. 05/01/23 [AL + JMV] Ethics (AI and humain, climate change, societal challenges)
+** 10. 05/01/23 [AL] A Bayesian perspective on regularization and model selection + Sequential DoE (screening, LHS, D-opt, ...)
+- [[file:../../lectures/lecture_bayesian_statistics_introduction.pdf][Lecture on Bayesian Statistics]]
+   - A Bayesian coin with discrete alternatives
+   - MLE and credibility region, bias
+   - Importance of the Prior
+   - Extension to more complex models
+   - (Link with the logistic regression)
+   - Model selection (AIC, BIC)
+   - Bayesian linear regression and Regularization (Ridge, LASSO)
+#  - Connection with causal inference
+- Lecture on [[file:../../lectures/5_design_of_experiments.pdf][Design of Experiments]] (up to space-filling designs)
+** 12. 12/01/23 [AL] Incremental DoE: A Bayesian perspective, Reinforcement Learning and Surrogates (Bandit, GP)
+** 11. 19/01/23 [AL + JMV] Ethics (AI and humain, climate change, societal challenges)
 # - https://www.nature.com/articles/s41591-022-01961-6
 #  https://www.wired.com/story/machine-learning-reproducibility-crisis/
-** 12. 12/01/24 [AL] Incremental DoE: A Bayesian perspective, Reinforcement Learning and Surrogates (Bandit, GP)
 ** 02/02/24 Exam:
 * Hands-on
 In the 3rd module of the [[https://www.fun-mooc.fr/fr/cours/recherche-reproductible-principes-methodologiques-pour-une-science-transparente/][MOOC on Reproducible Research]], there is a
