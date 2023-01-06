@@ -162,6 +162,7 @@ Evaluation process:
 - [[file:~/Work/Documents/Enseignements/SMPE/lectures/lecture_scientific_integrity.pdf][Introduction to scientific integrity, deontology and ethics]]
 ** Winter vacations
 ** 10. 05/01/23 [AL] A Bayesian perspective on regularization and model selection + Sequential DoE (screening, LHS, D-opt, ...)
+*** Slides and resources
 - [[file:../../lectures/lecture_bayesian_statistics_introduction.pdf][Lecture on Bayesian Statistics]]
    - A Bayesian coin with discrete alternatives
    - MLE and credibility region, bias
@@ -172,6 +173,12 @@ Evaluation process:
    - Bayesian linear regression and Regularization (Ridge, LASSO)
 #  - Connection with causal inference
 - Lecture on [[file:../../lectures/5_design_of_experiments.pdf][Design of Experiments]] (up to space-filling designs)
+*** Homeworks
+- [ ] Start playing with this DoE Shiny Application:
+  https://adaphetnodes.shinyapps.io/design_of_experiments/?abc1111
+  where you should replace abc1111 by your own id (pick one on the pad
+  by writing your name in front of it).
+# https://gitlab.inria.fr/lleandro/gamification-of-doe/
 ** 12. 12/01/23 [AL] Incremental DoE: A Bayesian perspective, Reinforcement Learning and Surrogates (Bandit, GP)
 ** 11. 19/01/23 [AL + JMV] Ethics (AI and humain, climate change, societal challenges)
 # - https://www.nature.com/articles/s41591-022-01961-6
