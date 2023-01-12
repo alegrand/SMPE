@@ -180,6 +180,24 @@ Evaluation process:
   by writing your name in front of it).
 # https://gitlab.inria.fr/lleandro/gamification-of-doe/
 ** 12. 12/01/23 [AL] Incremental DoE: A Bayesian perspective, Reinforcement Learning and Surrogates (Bandit, GP)
+- Introduction to [[file:../2020_10_Grenoble/bandits.pdf][online optimization and bandits problems]] (from
+  [[https://gitlab.inria.fr/gast/polaris_days_2019_slides][Nicolas Gast]]), in particular the exploration/exploitation
+  trade-off with UCB and Thompson sampling.
+- Introduction to more flexible models (Gaussian Process) and to a
+  similar approach (GP-UCB) in this context: [[https://hal.archives-ouvertes.fr/cel-01618068][Efficient Global Optimization through Gaussian Process Surrogates]].
+- Illustration with a recent practical application: https://hal.inria.fr/hal-03608579
+*** Homework(10)
+- Keep playing with the DoE Shiny Application
+  (https://adaphetnodes.shinyapps.io/design_of_experiments/?abc1111
+  but with your own id) to experiment with screening and LHS
+  designs or with Gaussian-Process based exporation.
+- Choose a topic for the lecture on Ethics. Prepare a short (1-page)
+  summary with the context (addressed problem and solution 50%) and
+  your opinion about the pros and cons of the proposed technology
+  (50%). Prepare also 2 slides to possibly present the problem to the
+  class.
+    # (https://gitlab.inria.fr/alegrand/slides_bayesian_sampling/-/blob/master/bayesian_statistics_introduction.pdf), "Équivalence" entre la régression linéaire en fréquentiste et en MLE sous hypothèse Gaussienne, Ridge/LASSO comme régression linéaire bayesienne, sélection de modèles (AIC, BIC), Extension du modèle linéaire (régression logistique) ?
+    # - [TODO] App shiny
 ** 11. 19/01/23 [AL + JMV] Ethics (AI and humain, climate change, societal challenges)
 # - https://www.nature.com/articles/s41591-022-01961-6
 #  https://www.wired.com/story/machine-learning-reproducibility-crisis/
