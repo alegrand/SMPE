@@ -159,7 +159,7 @@ Evaluation process:
 
 ** 9. 15/12/22 [AL] Scientific integrity
 - Quick refresher/overview on linear regression
-- [[file:~/Work/Documents/Enseignements/SMPE/lectures/lecture_scientific_integrity.pdf][Introduction to scientific integrity, deontology and ethics]]
+- [[file:../../lectures/lecture_scientific_integrity.pdf][Introduction to scientific integrity, deontology and ethics]]
 ** Winter vacations
 ** 10. 05/01/23 [AL] A Bayesian perspective on regularization and model selection + Sequential DoE (screening, LHS, D-opt, ...)
 *** Slides and resources
