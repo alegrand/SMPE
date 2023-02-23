@@ -20,7 +20,11 @@ PDFLATEX=pdflatex -shell-escape
 
 include LaTeX.mk
 
-#                      --eval "(setq org-export-babel-evaluate nil)"
+talk_23_02_23_LISTIC.tex: talk_23_02_23_LISTIC.org
+	emacs -q -batch --eval="(setq enable-local-eval t)" --eval="(setq enable-local-variables t)" $< --funcall org-beamer-export-to-latex
+	sed -i -e 's/begin{verbatim}/begin{Verbatim}[fontsize=\\scriptsize,commandchars=\\\\\\{\\}]/' -e 's/end{verbatim}/end{Verbatim}/' $@
+
+
 %.tex: %.org
 	emacs -batch --eval "(setq enable-local-eval t)" \
                      --eval "(setq enable-local-variables t)" \
