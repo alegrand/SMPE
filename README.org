@@ -7,7 +7,7 @@
 
 #+BEGIN_QUOTE
 *Reporting errors*: Although I do my best there may definitely be typos
-and broken links. This is github so please report me everything you
+and broken links. This is github so please report me anything you
 find so that I can improve for others. :)
 #+END_QUOTE
 
