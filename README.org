@@ -37,15 +37,15 @@ done
 #+end_src
 
 #+RESULTS:
+- [[file:lectures/talk_23_02_23_LISTIC.pdf][LISTIC (23/02/2023)]]
+- [[file:lectures/talk_22_12_15_M1_UGA.pdf][M1_UGA (15/12/2022)]]
+- [[file:lectures/talk_22_10_26_ENS_Lyon.pdf][ENS_Lyon (26/10/2022)]]
+- [[file:lectures/talk_22_10_11_Grenoble.pdf][Grenoble (11/10/2022)]]
 - [[file:lectures/talk_22_05_24_UIAD.pdf][UIAD (24/05/2022)]]
 - [[file:lectures/talk_21_12_14_M1_UGA.pdf][M1_UGA (14/12/2021)]]
 - [[file:lectures/talk_21_10_13_Grenoble.pdf][Grenoble (13/10/2021)]]
 - [[file:lectures/talk_21_10_04_Strasbourg.pdf][Strasbourg (04/10/2021)]]
 - [[file:lectures/talk_21_06_28_Oleron.pdf][Oleron (28/06/2021)]]
-- [[file:lectures/talk_21_06_23_Montpellier.pdf][Montpellier (23/06/2021)]]
-- [[file:lectures/talk_21_05_18_guix_docker.pdf][guix_docker (18/05/2021)]]
-- [[file:lectures/talk_21_05_10_SIF.pdf][SIF (10/05/2021)]]
-- [[file:lectures/talk_21_04_06_Grenoble.pdf][Grenoble (06/04/2021)]]
 
 
 * Table of Contents                                                     :TOC:
