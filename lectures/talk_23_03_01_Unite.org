@@ -1,0 +1,272 @@
+# -*- coding: utf-8 -*-
+#+TITLE:       CNRS Open Science policy
+#+AUTHOR:      Arnaud Legrand\medskip\newline\logoInstitutions
+#+DATE:        \vspace{3cm}\JDEVlogo Unite! Dialogue\newline March 2023\newline\begin{overlayarea}{1.05\linewidth}{0cm}\vspace{-3.2cm}\hfill{\mylogo}\end{overlayarea}\vspace{-1.0cm}
+#+LANGUAGE: en
+#+STARTUP: beamer indent inlineimages logdrawer
+#+TAGS: noexport(n)
+
+#+PROPERTY: header-args  :session :eval never-export :exports both
+#+DRAWERS: latex_headers
+
+:latex_headers:
+#+LaTeX_CLASS: beamer
+#+LATEX_CLASS_OPTIONS: [aspectratio=169,10pt,presentation,xcolor={usenames,dvipsnames,svgnames,table}]
+#+OPTIONS:   H:2 num:t toc:nil \n:nil @:t ::t |:t ^:nil -:t f:t *:t <:t
+#+LATEX_COMPILER: lualatex -shell-escape
+#+LATEX_HEADER: \usedescriptionitemofwidthas{bl}
+#+LATEX_HEADER: \usepackage[T1]{fontenc}
+#+LATEX_HEADER: \usepackage[utf8]{inputenc}
+#+LATEX_HEADER: \usepackage{figlatex}
+#+LATEX_HEADER: \usepackage[french]{babel}
+#+LATEX_HEADER: %\usepackage{DejaVuSansMono}
+#+LATEX_HEADER: \usepackage{ifthen,amsmath,amstext,gensymb,amssymb}
+#+LATEX_HEADER: \usepackage{relsize}
+#+LATEX_HEADER: \usepackage{boxedminipage,xspace,multicol}
+#+LATEX_HEADER: %%%%%%%%% Begin of Beamer Layout %%%%%%%%%%%%%
+#+LATEX_HEADER: \ProcessOptionsBeamer
+#+LATEX_HEADER: \usetheme[numbering=fraction,titleformat=smallcaps,progressbar=frametitle]{metropolis}
+#+LATEX_HEADER: \usepackage{fontawesome}
+#+LATEX_HEADER: \usecolortheme[named=BrickRed]{structure}
+#+LATEX_HEADER: %%%%%%%%% End of Beamer Layout %%%%%%%%%%%%%
+#+LATEX_HEADER: \usepackage{array}
+#+LATEX_HEADER: \newcolumntype{L}[1]{>{\raggedright\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+#+LATEX_HEADER: \newcolumntype{C}[1]{>{\centering\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+#+LATEX_HEADER: \newcolumntype{R}[1]{>{\raggedleft\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+
+#+LATEX_HEADER: %%%%%%%%% Begin of Minted Configuration %%%%%%%%%%%%%
+#+LATEX_HEADER: \usepackage{minted}
+#+LATEX_HEADER: \makeatletter\newcommand{\verbatimfont}[1]{\renewcommand{\verbatim@font}{\ttfamily#1}}\makeatother
+#+LATEX_HEADER: \usepackage{fancyvrb}
+#+LATEX_HEADER: \verbatimfont{\scriptsize}%
+#+LATEX_HEADER: \let\oldendminted=\endminted
+#+LATEX_HEADER: \def\endminted{\oldendminted\vspace{-2em}}
+#+LATEX_HEADER: \definecolor{minted-background}{rgb}{.94,.94,.94}
+#+LATEX_HEADER: \setminted{style=default}
+#+LATEX_HEADER: \setminted{bgcolor=minted-background}
+#+LATEX_HEADER: \setminted{frame=lines}
+#+LATEX_HEADER: \setminted{linenos=true}
+#+LATEX_HEADER: \renewcommand{\theFancyVerbLine}{\sffamily{\tiny\arabic{FancyVerbLine}}}
+
+#+LATEX_HEADER: \setminted{fontsize=\scriptsize}
+#+LATEX_HEADER: \usepackage{iftex}
+#+LATEX_HEADER: \ifpdftex\usepackage{pmboxdraw}\else\usepackage{fontspec}\setmonofont{DejaVu Sans Mono}\fi % to enable characters like ├ and ─ 
+
+#+LATEX_HEADER: %%%%%%%%% End of Minted Configuration %%%%%%%%%%%%%
+#+LATEX_HEADER: \usepackage{xcolor}
+#+LATEX_HEADER: \usepackage{color}
+#+LATEX_HEADER: \usepackage{url} \urlstyle{sf}
+#+LATEX_HEADER: \let\alert=\structure % to make sure the org * * works of tools
+#+LATEX_HEADER: %\let\tmptableofcontents=\tableofcontents
+#+LATEX_HEADER: %\def\tableofcontents{}
+#+LATEX_HEADER: \let\hrefold=\href
+#+LATEX_HEADER: \usepackage{ifluatex}
+#+LATEX_HEADER: \ifpdftex
+#+LATEX_HEADER:   \usepackage[normalem]{ulem}\usepackage{soul}
+#+LATEX_HEADER:   % \usepackage{color}
+#+LATEX_HEADER:   \definecolor{lightorange}{rgb}{1,.9,.7}
+#+LATEX_HEADER:   \sethlcolor{lightorange}
+#+LATEX_HEADER:   \definecolor{lightgreen}{rgb}{.7,.9,.7}
+#+LATEX_HEADER:   \makeatother
+#+LATEX_HEADER:      \renewcommand{\href}[2]{\hrefold{#1}{\SoulColor{lightorange}\hl{#2}}}
+#+LATEX_HEADER:      % \renewcommand{\uline}[1]{\SoulColor{lightorange}\hl{#1}}
+#+LATEX_HEADER:      % \renewcommand{\emph}[1]{\SoulColor{lightorange}\hl{#1}}
+#+LATEX_HEADER:   \makeatletter
+#+LATEX_HEADER:   \newcommand\SoulColor[1]{%
+#+LATEX_HEADER:   \sethlcolor{#1}%
+#+LATEX_HEADER:   \let\set@color\beamerorig@set@color%
+#+LATEX_HEADER:   \let\reset@color\beamerorig@reset@color}
+#+LATEX_HEADER: \else
+#+LATEX_HEADER:    \usepackage[soul]{lua-ul}
+#+LATEX_HEADER:    \usepackage{tcolorbox}
+#+LATEX_HEADER:      \renewcommand{\href}[2]{\hrefold{#1}{\begin{tcolorbox}[colback=orange!30!white,size=minimal,hbox,on line]{#2}\end{tcolorbox}}}
+#+LATEX_HEADER:      \let\textttold=\texttt
+#+LATEX_HEADER:      \renewcommand\texttt[1]{\begin{tcolorbox}[colback=green!30!white,size=minimal,hbox,on line]{\smaller\textttold{#1}}\end{tcolorbox}}
+#+LATEX_HEADER: \fi
+#+LATEX_HEADER: % 
+#+LATEX_HEADER: % \renewcommand\alert[1]{\SoulColor{lightgreen}\hl{#1}}
+#+LATEX_HEADER: % \AtBeginSection{\begin{frame}{Outline}\tableofcontents\end{frame}}
+#+LATEX_HEADER: \usepackage[export]{adjustbox}
+#+LATEX_HEADER: \graphicspath{{fig/}}
+#+LATEX_HEADER: \usepackage{tikzsymbols}
+#+LATEX_HEADER: \def\smiley{\Smiley[1][green!80!white]}
+#+LATEX_HEADER: \def\frowny{\Sadey[1][red!80!white]}
+#+LATEX_HEADER: \def\winkey{\Winkey[1][yellow]}
+#+LATEX_HEADER: \def\JDEVlogo{}%\includegraphics[height=1cm]{./images/jdevLogo.pdf}}
+#+LATEX_HEADER: \def\mylogo{\includegraphics[height=2.5cm]{./images/in_science_we_trust.jpg}}
+#+LATEX_HEADER: \def\logoInstitutions{\includegraphics[height=.7cm]{./images/Logo-UGA2020.pdf}\quad\includegraphics[height=.7cm]{./images/Logo-CNRS.pdf}\quad\includegraphics[height=.7cm]{./images/Logo-Inria.pdf}\includegraphics[height=.7cm]{./images/Logo-Lig2.pdf}\vspace{-.7cm}}
+#+LATEX_HEADER: %\usepackage{pgf}  
+#+LATEX_HEADER: %\logo{\pgfputat{\pgfxy(-2,6.5)}{\pgfbox[center,base]{\includegraphics[height=1cm]{./images/jdevLogo.pdf}}}}
+
+#+LaTeX: \newsavebox{\temp}
+
+#+BEGIN_EXPORT latex
+  \newcommand{\myfbox}[2][gray!20]{\bgroup\scalebox{.7}{\colorbox{#1}{{\vphantom{pS}#2}}}\egroup} % \fbox
+  %\def\myfbox#1{#1} % \fbox
+  \def\HPC{\myfbox[gray!40]{HPC}}
+  \def\NET{\myfbox[gray!40]{Network}}
+  \def\SG{\myfbox[gray!40]{Smart Grids}}
+  \def\ECO{\myfbox[gray!40]{Economics}}
+  \def\PRIV{\myfbox[gray!40]{Privacy}}
+  \def\TRACING{\myfbox[red!20]{Tracing}}
+  \def\SIM{\myfbox[green!20]{Simulation}}
+  \def\VIZ{\myfbox[red!40]{Visualization}}
+  \def\MODELING{\myfbox[green!40]{Stochastic Models}}
+  \def\OPT{\myfbox[blue!20]{Optimization}}
+  \def\GT{\myfbox[blue!40]{Game Theory}}
+#+END_EXPORT
+
+#+BEGIN_EXPORT latex
+\def\etal{\textit{et al.}\xspace}
+\def\eg{e.g.,\xspace}
+#+END_EXPORT
+
+#+BEGIN_EXPORT latex
+\def\changefont#1{%
+  \setbeamertemplate{itemize/enumerate body begin}{#1}
+  \setbeamertemplate{itemize/enumerate subbody begin}{#1}
+  #1}
+\makeatletter
+
+\def\rv#1{\ensuremath{\textcolor{blue}{#1}}\xspace} % DarkBlue
+#+END_EXPORT
+
+#+BEGIN_EXPORT latex
+\newcommand{\Norm}{\ensuremath{\mathcal{N}}\xspace}
+\newcommand{\Unif}{\ensuremath{\mathcal{U}}\xspace}
+\newcommand{\Triang}{\ensuremath{\mathcal{T}}\xspace}
+\newcommand{\Exp}{\ensuremath{\mathcal{E}}\xspace}
+\newcommand{\Bernouilli}{\ensuremath{\mathcal{B}}\xspace}
+\newcommand{\Like}{\ensuremath{\mathcal{L}}\xspace}
+\newcommand{\Model}{\ensuremath{\mathcal{M}}\xspace}
+\newcommand{\E}{\ensuremath{\mathbb{E}}\xspace}
+\def\T{\ensuremath{\theta}\xspace}
+\def\Th{\ensuremath{\hat{\theta}}\xspace}
+\def\Tt{\ensuremath{\tilde{\theta}}\xspace}
+\def\Y{\ensuremath{y}\xspace}
+\def\Yh{\ensuremath{\hat{y}}\xspace}
+\def\Yt{\ensuremath{\tilde{y}}\xspace}
+\let\epsilon=\varepsilon
+\let\leq=\leqslant
+\let\geq=\geqslant
+
+\def\Scalebox#1{\scalebox{.9}{#1}}
+\def\ScaleboxI#1{\Scalebox{\textit{#1}}}
+
+\def\pillar#1#2{~\hbox{\hspace{-1em}\rlap{#1}\hspace{4cm}\includegraphics[height=1cm]{#2}}}
+\verbatimfont{\scriptsize}
+\let\oldalert=\alert
+#+END_EXPORT
+:end:
+
+** Administrative layers
+- Government/Ministry, *ANR* (project funding), *HCERES* (evaluation)
+- Research *institutes*\quad |\quad *Universities*
+- Research labs
+- Research groups/teams
+
+Transversal animation structures related to open science: 
+- *COSO* (/comité pour la science ouverte/, formerly /Bibliothèque Scientifique Numérique/)
+- No +*French Reproducibility Network*+ yet
+** What's the CNRS?
+#+latex: \includegraphics[height=2cm]{./images/Logo-CNRS.pdf}
+
+/Centre national de la recherche scientifique/
+
+- Funded in 1939
+- National institute, multi-disciplinary, 
+  over the whole country.
+- CNRS researchers are full-time researchers
+- Most of them are hosted in Universities
+** Several aspects of Open Science
+- Open Access
+- Open Data/Source/Labs/Education/...
+- Research(er) evaluation
+  - The *CoNRS* takes both into account 
+    _research communities_ and _institute policies_
+* Childhood
+** Early steps: building open access
+- 2001 :: creation of the *HAL open archive* in 2001
+  - misused afterward by managers for bibliometry at the
+    lab/university level
+- 2003 :: Signing the Berlin Declaration *Open Access to 
+  Knowledge in the Sciences and Humanities*
+  - Over 300 stakeholders including the CERN, 
+    Max Planck Society, Harvard University, ...
+* Adolescence
+** 2010-2018: Fighting bibliometry (1/2)
+- 2012 ::  
+  - *Jussieu Call* (1/3 of the authors were from the CNRS)
+  - *San Francisco* Declaration on Research Assessment (*DORA*)
+    drafted by a group of journal editors and publishers 
+    and *signed* by many organisations and individuals.
+** 2010-2018: Fighting bibliometry (2/2)
+- 2018 ::  
+  - The CNRS commits to *avoid use of bibliometrics* for *research
+    evaluation* and to opting instead for more *qualitative evaluation*
+    combined with *taking the full variety of types of research output
+    into account*.
+  - The CNRS becomes the operator of the *National Fund for Open
+    Science*.
+    - This was set up and financed in particular thanks to savings
+      made during negotiations with publishers.
+    - The fund’s prime objectives are to *promote bibliodiversity* and
+      *support open publishing platforms* through a call for projects.
+* Adulthood
+** 2019-...: Acceleration (1/3)
+- Nov. 2019 :: [[https://www.science-ouverte.cnrs.fr/wp-content/uploads/2019/11/CNRS_Roadmap_Open_Science_18nov2019.pdf][CNRS Roadmap for Open Science]]
+  - Accelerate the movement towards O.S. among scientific communities
+  - Research(er) evaluation should be *qualitative*:
+    1. Research results should be evaluated in themselves. Evaluation
+       should not be based on the prestige of publishing media
+       # rather than
+       #       evaluating researchers on whether their results have been
+       #       published in a prestigious journal or other reputed media.
+       # + Members of the CoNRS take responsibility for their own judgements rather than relying on algorithms or anonymous assessments by publishers. This needs to be reflected in researcher evaluation reports.
+    2. Researchers should give details on the scope and impact of all
+       the productions cited in their evaluation files and explain
+       their own personal contributions (+exhaustive list of productions+).
+    3. It should be possible to cite all types of research productions
+       as elements for evaluation of a researcher’s work (data,
+       preprints, ...).
+       # + In particular, in all cases where this makes sense, the data
+       #   underpinning a publication and the source required to produce
+       #   the results should be made available. Preprints and other
+       #   working papers including data papers are acceptable
+       #   productions for evaluation.
+    4. All productions cited in evaluation files should be accessible
+       in HAL or possibly another open archive (+reference+ full text).
+       # + This should be the full texts and not their references. It is
+       #   not normally necessary to provide these in the evaluation
+       #   file as an active link to the archive should suffice.
+- Nov. 2020 :: [[https://www.science-ouverte.cnrs.fr/wp-content/uploads/2021/04/Cnrs_Research-Data-Plan_mars21.pdf][CNRS Research Data Plan]]
+  - Boost and disseminate the FAIR data culture, promote
+    existing/support the creation of new practices, services and tools
+
+** 2019-...: Acceleration (2/3)
+- 2021 :: The CRAC (annual activity report) campaign requires the deposit
+  of manuscripts in archives (HAL, arXiv, BioRxiv) and take preprints into account. 
+- Dec. 2022 ::  [[https://www.cnrs.fr/en/cnrsinfo/there-no-reason-scientists-make-exclusive-free-copyright-transfer-their-work-publishers][There is no reason for scientists to make an exclusive
+  free copyright transfer]] [[https://www.cnrs.fr/en/cnrsinfo/there-no-reason-scientists-make-exclusive-free-copyright-transfer-their-work-publishers][of their work to publishers]].
+  - The CNRS encourages its researchers to apply the rights retention
+    strategy when submitting a manuscript to publishers, i.e. *authors
+    should add the 'CC-BY 4.0' reference to their manuscripts* along
+    with the URL link describing the CC-BY license they select.
+  # - By putting a CC-BY license on all their manuscripts up to the AAM
+  #   from the word go, authors can prevent their publication from being
+  #   completely taken over by a publisher.
+** 2019-...: Acceleration (3/3)
+- March 2022 :: the ANR, Science Europe, the OPERAS research
+  infrastructure and the "cOAlition S " published the *"diamond" open
+  access action plan* which was announced during the European Open
+  Science Days (OSEC).
+- Apr. 2022 :: [[https://www.cnrs.fr/en/cnrsinfo/cnrs-encourages-its-scientists-stop-paying-be-published#:~:text=The%20CNRS%20encourages%20its%20scientists%20to%20stop%20paying%20to%20be%20published,-April%2007%2C%202022&text=In%20line%20with%20the%20CNRS's,for%20both%20authors%20and%20readers.][The CNRS encourages its scientists to stop paying to be published]]
+  - Stop paying Article Processing Charges
+  - Support the "diamond" model
+  # - The CNRS asks those who publish in a subscription based journal to
+  #   post the accepted author manuscript (AAM) in the HAL open
+  #   repository as soon as it is published, which many journals
+  #   accept.
+  # - Recommendation: post manuscripts in an open archive (HAL, Arxiv,
+  #   bio-arxiv, ...). It is therefore possible to publish in open
+  #   access for free in hybrid journals.
