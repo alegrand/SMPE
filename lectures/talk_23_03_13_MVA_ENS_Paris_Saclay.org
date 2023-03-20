@@ -2,7 +2,7 @@
 # -*- mode: org -*-
 #+Title:  Reproducibility Crisis, Open Science,\dots \newline and Computer Science
 #+Author: Arnaud Legrand\medskip\newline\logoInstitutions
-#+DATE:  \vspace{3cm}\JDEVlogo LISTIC, Annecy\newline February 2023\newline\begin{overlayarea}{1.05\linewidth}{0cm}\vspace{-3.2cm}\hfill{\mylogo}\end{overlayarea}\vspace{-1.0cm}
+#+DATE:  \vspace{3cm}\JDEVlogo MVA, ENS Paris-Saclay\newline March 2023\newline\begin{overlayarea}{1.05\linewidth}{0cm}\vspace{-3.2cm}\hfill{\mylogo}\end{overlayarea}\vspace{-1.0cm}
 #+LANGUAGE: en
 #+STARTUP: beamer indent inlineimages logdrawer
 #+TAGS: noexport(n)
