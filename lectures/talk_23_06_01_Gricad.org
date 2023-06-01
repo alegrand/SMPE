@@ -171,6 +171,8 @@
 * Test                                                             :noexport:
 * 
 #+latex: \let\section=\oldsection
+** Scientific Consensus
+#+latex: \hbox{\hspace{-.1\linewidth}\includegraphics[width=1.2\linewidth]{images/logo/open-review.png}\hspace{-.1\linewidth}}
 ** Reproducibility "Crisis": Socio-technical Challenges
 #+BEGIN_EXPORT latex
 \vspace{-.3cm}
@@ -212,8 +214,6 @@
   \end{column}
 \end{columns}}
 #+END_EXPORT
-** Scientific Consensus
-#+latex: \hbox{\hspace{-.1\linewidth}\includegraphics[width=1.2\linewidth]{images/logo/open-review.png}\hspace{-.1\linewidth}}
 ** Different Reproducibility Concerns in Modern Science
 # _Distinguish between:_
 # #+LaTeX: \begin{columns}\begin{column}[b]{.4\linewidth}
@@ -247,6 +247,7 @@ increasingly numerous and complex/
 \end{center}
 #+END_EXPORT
 
+* Notes and Documenting @@latex:\newline\includegraphics[width=\linewidth]{images/phd010708.png}@@
 ** Reproducibility Issues Related to the use of Computers
 \vspace{1em}
 #+LaTeX: \begin{columns}\begin{column}[t]{.4\linewidth}\centering
@@ -296,7 +297,6 @@ file:images/platform_diversity.png
 #   - containers/... 
 #   - github/gitlab/zenodo/swh... to
 #   - execution in the cloud: continuous integration and codeocean
-* Good Practice #1\newline Taking Notes and Documenting @@latex:\newline\includegraphics[width=\linewidth]{images/phd010708.png}@@
 ** Frustration as an Author/Reviewer
 :PROPERTIES:
 :BEAMER_OPT: fragile
