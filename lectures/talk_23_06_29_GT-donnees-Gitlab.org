@@ -1,0 +1,1246 @@
+# -*- coding: utf-8 -*-
+# -*- mode: org -*-
+#+Title:   Scientific Data Management with \newline Git and Git-Annex
+#+Author: Arnaud Legrand\medskip\newline\logoInstitutions
+#+DATE:  \vspace{3cm}Journée GitLab, GT "Données" de la MITI du CNRS\newline June 2023\newline\begin{overlayarea}{1.05\linewidth}{0cm}\vspace{-3.2cm}\hfill{\mylogo}\end{overlayarea}\vspace{-1.0cm}
+#+LANGUAGE: en
+#+STARTUP: beamer indent inlineimages logdrawer
+#+TAGS: noexport(n)
+
+#+PROPERTY: header-args  :session :eval never-export :exports both
+#+DRAWERS: latex_headers
+
+:latex_headers:
+#+LaTeX_CLASS: beamer
+#+LATEX_CLASS_OPTIONS: [10pt,presentation,xcolor={usenames,dvipsnames,svgnames,table}]
+# # aspectratio=169
+#+OPTIONS:   H:2 num:t toc:nil \n:nil @:t ::t |:t ^:nil -:t f:t *:t <:t
+#+LATEX_COMPILER: lualatex -shell-escape
+#+LATEX_HEADER: \usedescriptionitemofwidthas{bl}
+#+LATEX_HEADER: \usepackage[T1]{fontenc}
+#+LATEX_HEADER: \usepackage[utf8]{inputenc}
+#+LATEX_HEADER: \usepackage{figlatex}
+#+LATEX_HEADER: \usepackage[french]{babel}
+#+LATEX_HEADER: \usepackage[normalem]{ulem}
+#+LATEX_HEADER: %\usepackage{DejaVuSansMono}
+#+LATEX_HEADER: \usepackage{ifthen,amsmath,amstext,gensymb,amssymb}
+#+LATEX_HEADER: \usepackage{relsize}
+#+LATEX_HEADER: \usepackage{boxedminipage,xspace,multicol}
+#+LATEX_HEADER: %%%%%%%%% Begin of Beamer Layout %%%%%%%%%%%%%
+#+LATEX_HEADER: \ProcessOptionsBeamer
+#+LATEX_HEADER: \usetheme[numbering=fraction,titleformat=smallcaps,progressbar=frametitle]{metropolis}
+#+LATEX_HEADER: \usepackage{fontawesome}
+#+LATEX_HEADER: \usecolortheme[named=BrickRed]{structure}
+#+LATEX_HEADER: %%%%%%%%% End of Beamer Layout %%%%%%%%%%%%%
+#+LATEX_HEADER: \usepackage{array}
+#+LATEX_HEADER: \newcolumntype{L}[1]{>{\raggedright\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+#+LATEX_HEADER: \newcolumntype{C}[1]{>{\centering\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+#+LATEX_HEADER: \newcolumntype{R}[1]{>{\raggedleft\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+
+#+LATEX_HEADER: %%%%%%%%% Begin of Minted Configuration %%%%%%%%%%%%%
+#+LATEX_HEADER: \usepackage{minted}
+#+LATEX_HEADER: \makeatletter\newcommand{\verbatimfont}[1]{\renewcommand{\verbatim@font}{\ttfamily#1}}\makeatother
+#+LATEX_HEADER: \usepackage{fancyvrb}
+#+LATEX_HEADER: \verbatimfont{\scriptsize}%
+#+LATEX_HEADER: \let\oldendminted=\endminted
+#+LATEX_HEADER: \def\endminted{\oldendminted\vspace{-2em}}
+#+LATEX_HEADER: \definecolor{minted-background}{rgb}{.94,.94,.94}
+#+LATEX_HEADER: \setminted{style=default}
+#+LATEX_HEADER: \setminted{bgcolor=minted-background}
+#+LATEX_HEADER: \setminted{frame=lines}
+#+LATEX_HEADER: \setminted{linenos=true}
+#+LATEX_HEADER: \renewcommand{\theFancyVerbLine}{\sffamily{\tiny\arabic{FancyVerbLine}}}
+
+#+LATEX_HEADER: \setminted{fontsize=\scriptsize}
+#+LATEX_HEADER: \usepackage{iftex}
+#+LATEX_HEADER: \ifpdftex\usepackage{pmboxdraw}\else\usepackage{fontspec}\setmonofont{DejaVu Sans Mono}\fi % to enable characters like ├ and ─ 
+
+#+LATEX_HEADER: %%%%%%%%% End of Minted Configuration %%%%%%%%%%%%%
+#+LATEX_HEADER: \usepackage{xcolor}
+#+LATEX_HEADER: \usepackage{color}
+#+LATEX_HEADER: \usepackage{url} \urlstyle{sf}
+#+LATEX_HEADER: \let\alert=\structure % to make sure the org * * works of tools
+#+LATEX_HEADER: %\let\tmptableofcontents=\tableofcontents
+#+LATEX_HEADER: %\def\tableofcontents{}
+#+LATEX_HEADER: \let\hrefold=\href
+#+LATEX_HEADER: %\usepackage{soulpos}
+#+LATEX_HEADER: \usepackage{ifluatex}
+#+LATEX_HEADER: \ifpdftex
+#+LATEX_HEADER:   \usepackage[normalem]{ulem}\usepackage{soul}
+#+LATEX_HEADER:   % \usepackage{color}
+#+LATEX_HEADER:   \definecolor{lightorange}{rgb}{1,.9,.7}
+#+LATEX_HEADER:   \sethlcolor{lightorange}
+#+LATEX_HEADER:   \definecolor{lightgreen}{rgb}{.7,.9,.7}
+#+LATEX_HEADER:   \makeatother
+#+LATEX_HEADER:      \renewcommand{\href}[2]{\hrefold{#1}{\SoulColor{lightorange}\hl{#2}}}
+#+LATEX_HEADER:      % \renewcommand{\uline}[1]{\SoulColor{lightorange}\hl{#1}}
+#+LATEX_HEADER:      % \renewcommand{\emph}[1]{\SoulColor{lightorange}\hl{#1}}
+#+LATEX_HEADER:   \makeatletter
+#+LATEX_HEADER:   \newcommand\SoulColor[1]{%
+#+LATEX_HEADER:   \sethlcolor{#1}%
+#+LATEX_HEADER:   \let\set@color\beamerorig@set@color%
+#+LATEX_HEADER:   \let\reset@color\beamerorig@reset@color}
+#+LATEX_HEADER: \else
+#+LATEX_HEADER:    \usepackage[soul]{lua-ul}
+#+LATEX_HEADER:    \usepackage{tcolorbox}
+#+LATEX_HEADER:      \renewcommand{\href}[2]{\hrefold{#1}{\begin{tcolorbox}[colback=orange!30!white,size=minimal,hbox,on line]{#2}\end{tcolorbox}}}
+#+LATEX_HEADER:      \let\textttold=\texttt
+#+LATEX_HEADER:      \renewcommand\texttt[1]{\begin{tcolorbox}[colback=green!30!white,size=minimal,hbox,on line]{\smaller\textttold{#1}}\end{tcolorbox}}
+#+LATEX_HEADER: \fi
+#+LATEX_HEADER: % 
+#+LATEX_HEADER: % \renewcommand\alert[1]{\SoulColor{lightgreen}\hl{#1}}
+#+LATEX_HEADER: % \AtBeginSection{\begin{frame}{Outline}\tableofcontents\end{frame}}
+#+LATEX_HEADER: \usepackage[export]{adjustbox}
+#+LATEX_HEADER: \graphicspath{{fig/}}
+#+LATEX_HEADER: \usepackage{tikzsymbols}
+#+LATEX_HEADER: \def\smiley{\Smiley[1][green!80!white]}
+#+LATEX_HEADER: \def\frowny{\Sadey[1][red!80!white]}
+#+LATEX_HEADER: \def\winkey{\Winkey[1][yellow]}
+#+LATEX_HEADER: \def\scared{\Sey[1][blue!20!white]}
+#+LATEX_HEADER: \def\cooley{\Cooley[1][yellow]}
+#+LATEX_HEADER: \def\sey{\Sey[1][blue!30!white]}
+#+LATEX_HEADER: \def\neutrey{\Neutrey[1][orange!80!white]}
+#+LATEX_HEADER: \def\JDEVlogo{\raisebox{-1.3em}{\includegraphics[height=1cm]{./images/Logo_Grid5000.png}}}
+#+LATEX_HEADER: \def\mylogo{\includegraphics[height=2.5cm]{./images/in_science_we_trust.jpg}}
+#+LATEX_HEADER: \def\logoInstitutions{\includegraphics[height=.7cm]{./images/Logo-UGA2020.pdf}\quad\includegraphics[height=.7cm]{./images/Logo-CNRS.pdf}\quad\includegraphics[height=.7cm]{./images/Logo-Inria.pdf}\includegraphics[height=.7cm]{./images/Logo-LIG2.pdf}\vspace{-.7cm}}
+#+LATEX_HEADER: %\usepackage{pgf}  
+#+LATEX_HEADER: %\logo{\pgfputat{\pgfxy(-2,6.5)}{\pgfbox[center,base]{\includegraphics[height=1cm]{./images/jdevLogo.pdf}}}}
+
+#+LaTeX: \newsavebox{\temp}
+
+#+BEGIN_EXPORT latex
+  \newcommand{\myfbox}[2][gray!20]{\bgroup\scalebox{.7}{\colorbox{#1}{{\vphantom{pS}#2}}}\egroup} % \fbox
+  %\def\myfbox#1{#1} % \fbox
+  \def\HPC{\myfbox[gray!40]{HPC}}
+  \def\NET{\myfbox[gray!40]{Network}}
+  \def\SG{\myfbox[gray!40]{Smart Grids}}
+  \def\ECO{\myfbox[gray!40]{Economics}}
+  \def\PRIV{\myfbox[gray!40]{Privacy}}
+  \def\TRACING{\myfbox[red!20]{Tracing}}
+  \def\SIM{\myfbox[green!20]{Simulation}}
+  \def\VIZ{\myfbox[red!40]{Visualization}}
+  \def\MODELING{\myfbox[green!40]{Stochastic Models}}
+  \def\OPT{\myfbox[blue!20]{Optimization}}
+  \def\GT{\myfbox[blue!40]{Game Theory}}
+#+END_EXPORT
+
+#+BEGIN_EXPORT latex
+\def\etal{\textit{et al.}\xspace}
+\def\eg{e.g.,\xspace}
+#+END_EXPORT
+
+#+BEGIN_EXPORT latex
+\def\changefont#1{%
+  \setbeamertemplate{itemize/enumerate body begin}{#1}
+  \setbeamertemplate{itemize/enumerate subbody begin}{#1}
+  #1}
+\makeatletter
+
+\def\rv#1{\ensuremath{\textcolor{blue}{#1}}\xspace} % DarkBlue
+#+END_EXPORT
+
+#+BEGIN_EXPORT latex
+\newcommand{\Norm}{\ensuremath{\mathcal{N}}\xspace}
+\newcommand{\Unif}{\ensuremath{\mathcal{U}}\xspace}
+\newcommand{\Triang}{\ensuremath{\mathcal{T}}\xspace}
+\newcommand{\Exp}{\ensuremath{\mathcal{E}}\xspace}
+\newcommand{\Bernouilli}{\ensuremath{\mathcal{B}}\xspace}
+\newcommand{\Like}{\ensuremath{\mathcal{L}}\xspace}
+\newcommand{\Model}{\ensuremath{\mathcal{M}}\xspace}
+\newcommand{\E}{\ensuremath{\mathbb{E}}\xspace}
+\def\T{\ensuremath{\theta}\xspace}
+\def\Th{\ensuremath{\hat{\theta}}\xspace}
+\def\Tt{\ensuremath{\tilde{\theta}}\xspace}
+\def\Y{\ensuremath{y}\xspace}
+\def\Yh{\ensuremath{\hat{y}}\xspace}
+\def\Yt{\ensuremath{\tilde{y}}\xspace}
+\let\epsilon=\varepsilon
+\let\leq=\leqslant
+\let\geq=\geqslant
+
+\def\Scalebox#1{\scalebox{.9}{#1}}
+\def\ScaleboxI#1{\Scalebox{\textit{#1}}}
+
+\def\pillar#1#2{~\hbox{\hspace{-1em}\rlap{#1}\hspace{4cm}\includegraphics[height=1cm]{#2}}}
+\verbatimfont{\scriptsize}
+\let\oldalert=\alert
+#+END_EXPORT
+:end:
+
+:gitannex_headers:
+#+LaTeX: \newsavebox{\tempInit}
+#+LaTeX: \newsavebox{\tempAdd}
+#+LaTeX: \newsavebox{\tempEmpty}
+#+LaTeX: \newsavebox{\tempClone}
+#+LaTeX: \newsavebox{\tempGet}
+#+LaTeX: \newsavebox{\tempDrop}
+
+#+LATEX_HEADER: \usepackage{tikz}
+#+LATEX_HEADER: \usetikzlibrary{babel}
+#+LATEX_HEADER: \usetikzlibrary{positioning}
+#+LATEX_HEADER: \usetikzlibrary{fit}
+#+LATEX_HEADER: \usepackage{gitdags}
+
+#+begin_export latex
+\tikzset{
+  gitannexs node/.style={
+    draw,
+    node distance = 1.4em,
+    drop shadow   = {opacity=0.15},
+    font          = \fontfamily{lmtt}\selectfont\small,
+  },
+  ANNEXedge/.style={
+    semithick,
+    draw = white,
+  },
+  ANNEXrefedge/.style={
+    ANNEXedge,
+    thick,
+    densely dotted,
+  },
+  ANNEXcommit/.style={
+    gitannexs node,
+    shape                        = rectangle,
+    minimum height               = 1.6em,
+    minimum width                = 2em,
+    draw                         = solarized-base01,
+    fill                         = solarized-green!20,
+    very thick,
+  },
+  graphs/ANNEX/.style={
+    nodes          = ANNEXcommit,
+    edges          = ANNEXedge,
+    branch down    = 3em,
+    grow left sep = 1.5em,
+  },
+  gitareas/.style={
+    gitannexs node,
+    shape           = rectangle,
+    minimum width   = 7em,
+    minimum height  = 3em,
+    text opacity    = 0.75,
+    semithick,
+  },
+  gitSA/.style={
+    gitareas,
+    anchor = north west,
+    xshift = 1em,
+    yshift = -1em,
+    draw   = solarized-orange,
+    fill   = solarized-orange!5,
+    text   = solarized-orange,
+  },
+  gitWT/.style={
+    gitareas,
+    node distance = .6em,
+    draw          = solarized-violet,
+    fill          = solarized-violet!5,
+    text          = solarized-violet,
+  },
+  resetarrows/.style={
+    -Stealth,
+    dashed,
+    thick,
+    draw         = solarized-base02,
+    draw opacity = .75,
+  },
+  highlighted commit/.style={
+    ANNEXcommit,
+    reset preaction,
+    fill opacity = 0,
+    draw         = solarized-base02,
+  },
+  missing commits/.style={
+    reset preaction,
+    draw opacity = 0.2,
+    fill opacity = 0.2,
+  },
+  placeholder commits/.style={
+    reset preaction,
+    draw opacity = 0,
+    fill opacity = 0,
+  },
+  graphs/missing/.style={
+    missing commits,
+    target edge style = placeholder commits,
+  },
+  graphs/placeholder/.style={
+    placeholder commits,
+    target edge style = placeholder commits,
+  },
+  blob/.style={
+    shape          = dogeared,
+    minimum width  = 2em,
+    minimum height = 2.82em,
+    node distance  = .75em,
+    line join      = bevel,
+    draw           = black,
+    fill           = white,
+    align          = left,
+    font           = \ttfamily\tiny,
+  },
+}
+#+end_export
+:end:
+
+#+latex: \let\oldsection=\section
+#+latex: \def\nosection#1{}
+#+latex: \let\section=\nosection
+
+* Test                                                             :noexport:
+* 
+#+latex: \let\section=\oldsection
+** Scientific Consensus
+#+latex: \hbox{\hspace{-.1\linewidth}\includegraphics[width=1.2\linewidth]{images/logo/open-review.png}\hspace{-.1\linewidth}}
+** Reproducible Research = Rigor and Transparency
+#+latex: \centerline{\includegraphics[height=2cm]{images/logo/FAIR_data_principles.jpg}}\pause\vspace{-.2cm}
+#+latex: \centerline{\bf Good research requires time and resources}
+
+\textbf{Train yourself and your students}: RR, statistics, experiments\medskip
+
+#+latex: \begin{columns}\begin{column}[t]{.76\linewidth}\small
+      \alert{MOOC} [[https://learninglab.inria.fr/en/mooc-recherche-reproductible-principes-methodologiques-pour-une-science-transparente/][Reproducible Research: Methodological]] [[https://learninglab.inria.fr/en/mooc-recherche-reproductible-principes-methodologiques-pour-une-science-transparente/][principles for a transparent science]], Inria Learning Lab \vspace{-.3em}
+     - Konrad Hinsen, Christophe Pouzat \vspace{-.5em}
+     - =Markdown=, =CSV=,
+       #+latex:  \uline{\texttt{\alert{GitLab}}} \vspace{-.5em}
+     - Notbooks: =Jupyter= / =Rstudio= / =Org-Mode= \vspace{-.5em}
+     - *3rd Edition*: March 2020 -- _December 2023_ (15,000+)
+#+latex: \end{column}\hspace{-.7cm}\begin{column}[t]{.3\linewidth}
+    #+LaTeX: \includegraphics[width=\linewidth,valign=t]{images/mooc_rr.png}
+#+latex: \end{column}\end{columns}\medskip\pause
+
+\small\hspace{-.4cm} *MOOC "Advanced RR"* planned for Nov. 2023
+- Managing data (=FITS/HDF5=, =Zenodo=,
+  #+latex:  \uline{\texttt{\alert{SWH}}}
+  #+latex:  \uline{\texttt{\alert{git annex}}})\vspace{-.2em}
+- Software environment control (=docker=, =singularity=, =guix=)\vspace{-.2em}
+- Scientific workflow (=make=, =snakemake=)
+** Reproducibility "Crisis": Socio-technical Challenges           :noexport:
+#+BEGIN_EXPORT latex
+\vspace{-.3cm}
+\null\hspace{-.2cm}\hbox{
+\begin{columns}
+  \begin{column}{.4\linewidth}
+    \begin{overlayarea}{\linewidth}{8cm}
+      \includegraphics[scale=.2]{images/reproducibility-graphic-online2.jpg}\\
+      \includegraphics[scale=.2]{images/reproducibility-graphic-online3.jpg}
+      % \includegraphics<3>[scale=.25]{images/reproducibility-graphic-online4.jpg}%
+      % \includegraphics<4>[scale=.25]{images/reproducibility-graphic-online5.jpg}
+    \end{overlayarea}
+  \end{column}\hspace{-.2cm}%
+  \begin{column}{.66\linewidth}\begin{overlayarea}{\linewidth}{8cm}\vspace{-.7em}
+#+END_EXPORT
+\small
+[[http://www.nature.com/news/1-500-scientists-lift-the-lid-on-reproducibility-1.19970][1,500 scientists lift the lid on reproducibility]], Nature, May 2016
+
+\normalsize *\bf Social causes* \small
+- \footnotesize Fraud, conflict of interest (pharmaceutic, \dots)
+- \footnotesize  *No incentive* to reproduce/check our own work (afap), nor the
+  work of others (big results!), nor to allow others to check
+  (competition)
+- \footnotesize  Peer review *does not scale*: 1M+ articles per year!
+
+- _*Emerging practices*_: DORA/Plan S/COARA, DMP and FAIR data, artefact
+  evaluation, reproducibility badges, reproducibility challenges, open
+  reviews, \dots
+
+\normalsize *\bf Methodological/technical causes*
+- \footnotesize The many biases (apophenia, confirmation, hindsight,
+  experimenter, ...): *bad designs*
+- \footnotesize Selective reporting, weak analysis (*statistics*, *data manipulation
+  mistakes*, *computational errors*)
+- \footnotesize  \bf _*Lack of information, code/raw data unavailable*_
+
+#+BEGIN_EXPORT latex
+    \end{overlayarea}
+  \end{column}
+\end{columns}}
+#+END_EXPORT
+** Different Reproducibility Concerns in Modern Science           :noexport:
+# _Distinguish between:_
+# #+LaTeX: \begin{columns}\begin{column}[b]{.4\linewidth}
+# - experimental science
+# - observational science
+# #+LaTeX: \end{column}\begin{column}[b]{.6\linewidth}
+# - computational science (simulation)
+# - (big) data analysis
+# #+LaTeX: \end{column}\end{columns}%\bigskip
+\small
+- Biology, Oncology :: sample provenance, clinical trials 
+  #+latex: \hbox{\hfill$\leadsto$ standardized protocols\hspace{-1cm}}
+- Psychology, Nutrition :: HARKING, p-hacking \hfill$\leadsto$ pre-registration\pause
+- Genomics :: software engineering, computational reproducibility,
+  provenance
+- Computational fluid dynamics :: numerical chaos, parallel architectures\pause
+- /Artificial Intelligence/ :: most of the above $\winkey$ \medskip
+
+\vspace{-1em}
+/The processing steps between raw observations and findings have gotten
+increasingly numerous and complex/
+#+BEGIN_EXPORT latex
+\vspace{-.5em}\begin{center}
+%  \includegraphics<-+>[width=.75\linewidth]{images/iceberg_publication-1.png}%
+%  \includegraphics<+>[width=.75\linewidth]{images/iceberg_publication-2.png}%
+  \includegraphics<-+>[width=.75\linewidth]{images/iceberg_publication-3.png}%
+%  \includegraphics<+>[width=.75\linewidth]{images/iceberg_publication-4.png}%
+  \includegraphics<+->[width=.75\linewidth]{images/iceberg_publication-5.png}\smallskip
+  
+  \uncover<.>{\normalsize\bf Reproducible Research = Bridging the Gap by working Transparently}
+\end{center}
+#+END_EXPORT
+
+* Version Control and Large Files
+** Git
+***                                                                 :BMCOL:
+:PROPERTIES:
+:BEAMER_col: .8
+:END:
+- Allows to track versions (i.e., to manage a history) in a
+  *distributed* way
+
+  (MOOC RR1: Introduction to Git without the command line [[https://www.youtube.com/watch?v=iub0_uVWGmg][(1/3)]],
+  [[https://www.youtube.com/watch?v=4xsd8jHyVpk][(2/3)]], [[https://www.youtube.com/watch?v=5EFyKBF1wWw][(3/3)]])
+
+- Designed by Linus Torvald in 2005 (BitKeeper licensing issues)
+
+- Although many common git workflows are centralized (e.g., through
+  GitHub and GitLab), git is *distributed*
+***                                                                 :BMCOL:
+:PROPERTIES:
+:BEAMER_col: .2
+:END:
+#+latex: \hbox{\hspace{.7cm}\rlap{\includegraphics[width=\linewidth]{./images/linus2.jpg}}}\vspace{2.2cm}
+***                                                                 :BMCOL:
+:PROPERTIES:
+:BEAMER_col: .2
+:END:
+***                                                       :B_ignoreheading:
+:PROPERTIES:
+:BEAMER_env: ignoreheading
+:END:
+\bigskip
+*Main drawback*: git has been designed and optimized for 
+source code, not for *large binary files*
+** Possible strategies
+- Option 1 :: Let's commit large files anyway
+  - Files are stored in the "block chain" of git and cannot be removed
+  - The directory =.git= becomes large (+ duplication) $\leadsto$ =git=
+    becomes slow for you (=checkout=, =diff=, =push=, ...) and others
+    (=clone=, =pull=) \hfill $\frowny$ \pause
+- Option 2 :: Let's _not_ commit large binary files and put them in a
+  *shared directory* instead
+  - When and who did what, and why? 
+    - Indicate /when/ (and /who/) in _external_ metadata
+  - Backup? How to make sure files are not altered?
+    - Store a checksum (MD5, SHA1, SHA256, ...) of your files!
+    - Files are lost or corrupted? Recompute and check the signature\pause
+- Option 3 :: Use a =git= /on steroids/ \hfill $\cooley$
+** Christmas list for data management
+1. A lightweight =git clone= 
+   - Do not download all large files
+   - More than git tricks (=git clone --depth=, =git subtree/submodule=)\pause
+2. Get large files on demand\pause
+3. Garbage collection
+   - Allow to delete large files (even in =.git/=)\dots
+   - \dots without messing up the history\pause
+4. Manage different (possibly unreliable) storage media
+   - While ensuring data integrity
+** Git extensions for large files
+Proposed extensions for handling large files:
+- Git LFS ::  
+  - Centralized, supported by GitHub, GitLab, BitBucket
+  - Easy to use (=git lfs track "*.hdf5"=) \textbf{but} \pause
+    #  fails *most* requirements
+    - Get large files on demand: set ~lfs.fetchexclude~ to ~*~ \newline\quad
+       ~git lfs pull --exclude= --include "filename"~
+       # https://github.com/git-lfs/git-lfs/issues/2717
+    - Double disk space (~./~ and ~.git/lfs/objects/~)
+      #+latex: \hfill$\large\frowny$\pause
+    - No file removal without rewriting the whole history \hfill$\large\scared$
+    - Data is locked up in an opaque storage
+      #+latex: \hfill$\large\frowny$\medskip\pause
+    
+- *Git Annex* :: by Joey Hess (Debian, Haskell)
+  - Steeper learning curve but \newline incredibly powerful
+  - +Supported by GitLab (2015-2017)+
+  - Not specifically designed for scientific\newline data management
+    but works well
+#+latex: \vspace{-2.9cm}\null\hfill{\includegraphics[width=.29\linewidth]{./images/joey.jpg}\hspace{-.3cm}}
+* Introduction to Git-Annex
+** Git Annex principles (1/2)
+*** Preparing verbatims                                   :B_ignoreheading:
+:PROPERTIES:
+:BEAMER_env: ignoreheading
+:END:
+  #+latex: \begin{lrbox}{\tempInit}\begin{minipage}{1.3\linewidth} 
+  #+begin_src shell :results output :exports both
+  tree
+  #+end_src
+
+  #+begin_example
+├── data.csv
+└── big_file.pdf
+  #+end_example
+  #+latex: \end{minipage}\end{lrbox}
+
+  #+latex: \begin{lrbox}{\tempAdd}\begin{minipage}{1.3\linewidth} 
+  #+begin_src shell :results output :exports both
+  git add data.csv ;    git annex add big_file.pdf
+  #+end_src
+
+  #+begin_example
+├── data.csv
+└── big_file.pdf -> .git/annex/objects/KJ/QF/SHA256E-s776715--4b2aef98a8a706be4eedbf390ba724a64d75bdf295d603951773230a378fdd6c.pdf/
+              SHA256E-s776715--4b2aef98a8a706be4eedbf390ba724a64d75bdf295d603951773230a378fdd6c.pdf
+  #+end_example
+  #+latex: \end{minipage}\end{lrbox}
+
+  #+latex: \begin{lrbox}{\tempEmpty}\begin{minipage}{1.3\linewidth} 
+  #+begin_src shell :results output :exports both
+  tree
+  #+end_src
+
+  #+begin_example
+.
+  #+end_example
+  #+latex: \end{minipage}\end{lrbox}
+
+  #+latex: \begin{lrbox}{\tempClone}\begin{minipage}{1.3\linewidth} 
+  #+begin_src shell :results output :exports both
+  git clone https://gitlab.com/alegrand/myrepos.git
+  #+end_src
+
+  #+begin_example
+├── data.csv
+└── big_file.pdf -> \sout{.git/annex/objects/KJ/QF/SHA256E-s776715--4b2aef98a8a706be4eedbf390ba724a64d75bdf295d603951773230a378fdd6c.pdf/}
+              \sout{SHA256E-s776715--4b2aef98a8a706be4eedbf390ba724a64d75bdf295d603951773230a378fdd6c.pdf}
+  #+end_example
+  #+latex: \end{minipage}\end{lrbox}
+
+  #+latex: \begin{lrbox}{\tempGet}\begin{minipage}{1.3\linewidth} 
+  #+begin_src shell :results output :exports both
+  git annex get big_file.pdf
+  #+end_src
+
+  #+begin_example
+├── data.csv
+└── big_file.pdf -> .git/annex/objects/KJ/QF/SHA256E-s776715--4b2aef98a8a706be4eedbf390ba724a64d75bdf295d603951773230a378fdd6c.pdf/
+              SHA256E-s776715--4b2aef98a8a706be4eedbf390ba724a64d75bdf295d603951773230a378fdd6c.pdf
+  #+end_example
+  #+latex: \end{minipage}\end{lrbox}
+
+  #+latex: \begin{lrbox}{\tempDrop}\begin{minipage}{1.3\linewidth} 
+  #+begin_src shell :results output :exports both
+  git annex drop big_file.pdf
+  #+end_src
+
+  #+begin_example
+├── data.csv
+└── big_file.pdf -> .git/annex/objects/KJ/QF/SHA256E-s776715--4b2aef98a8a706be4eedbf390ba724a64d75bdf295d603951773230a378fdd6c.pdf/
+              \sout{SHA256E-s776715--4b2aef98a8a706be4eedbf390ba724a64d75bdf295d603951773230a378fdd6c.pdf}
+  #+end_example
+  #+latex: \end{minipage}\end{lrbox}
+
+*** Inserting verbatims                                   :B_ignoreheading:
+:PROPERTIES:
+:BEAMER_env: ignoreheading
+:END:
+#+latex: \begin{overlayarea}{\linewidth}{3cm}
+#+latex: \only<1>{\scalebox{.9}{\usebox{\tempInit}}}%
+#+latex: \only<2>{\scalebox{.9}{\usebox{\tempAdd}}}%
+#+latex: \only<3>{\scalebox{.9}{\usebox{\tempEmpty}}}%
+#+latex: \only<4>{\scalebox{.9}{\usebox{\tempClone}}}%
+#+latex: \only<5>{\scalebox{.9}{\usebox{\tempGet}}}%
+#+latex: \only<6>{\scalebox{.9}{\usebox{\tempDrop}}}%
+#+latex: \end{overlayarea}
+
+*** Explanations                                          :B_ignoreheading:
+:PROPERTIES:
+:BEAMER_env: ignoreheading
+:END:
+#+begin_export latex
+\begin{overlayarea}{\linewidth}{4cm}
+  \begin{itemize}
+  \item<2-> The project is populated with \textbf{symbolic links} to the
+    large files which end up in \texttt{.git/annex/objects} \hfill
+    (\texttt{git annex add})\\[0pt]
+    \uncover<2->{%
+      \begin{itemize}
+      \item $\leadsto$ No wasted space with file duplication
+      \item Large files are identified by their content (SHA256 by default)
+      \end{itemize}%
+    }
+  \item<4-> \texttt{git clone} will retrieve only symbolic links for annexed files\\[0pt]
+    \uncover<5->{%
+      \begin{itemize}
+      \item $\leadsto$ Get (and check) content with \texttt{git annex get}
+      \end{itemize}
+    }
+  \item<6> Files may be \texttt{git annex drop}ed (from the annex)
+  \end{itemize}
+\end{overlayarea}
+#+end_export
+** Git Annex principles (2/2)
+- *_Special_ remotes* are ways to access files
+  - A USB key, a server through SSH or webdav, a web server, Amazon
+    S3, etc.
+  - They have their own structure and do _not_ comprise the git history
+  - Files may be migrated/duplicated between 
+    #+latex: \rlap{(special) remotes}
+  - Information on the remotes is stored in a special =git-annex= *branch*
+    which will be synchronized between git repositories\medskip
+
+#+begin_center
+Illustration? Wait for it!
+#+end_center
+**  
+:PROPERTIES:
+:BEAMER_OPT: fragile
+:END:
+*** Uggly annex tree                                      :B_ignoreheading:
+:PROPERTIES:
+:BEAMER_env: ignoreheading
+:END:
+
+#+latex: \begin{lrbox}{\tempAdd}\begin{minipage}{1.6\linewidth} 
+#+begin_example
+.git/annex/objects/
+├── 05
+│   └── wJ
+│       └── SHA256E-s742--a7f60ced39a5c83adc3152707b6f53b42cec1319223e66869faa761ece3a8b9a.json
+│           └── SHA256E-s742--a7f60ced39a5c83adc3152707b6f53b42cec1319223e66869faa761ece3a8b9a.json
+├── 1W
+│   └── Qq
+│       └── SHA256E-s8392320--1c31b7165f51ffb529ce1e068f532bddb2a0188b5576e0c3bc66605de6a17d2b.FTS
+│           └── SHA256E-s8392320--1c31b7165f51ffb529ce1e068f532bddb2a0188b5576e0c3bc66605de6a17d2b.FTS
+├── 3f
+│   └── 2j
+│       └── SHA256E-s8392320--666c6a82e73992427d1fcb251c9c854a941cffb435626b899ad4e1e2b155fef3.FTS
+│           └── SHA256E-s8392320--666c6a82e73992427d1fcb251c9c854a941cffb435626b899ad4e1e2b155fef3.FTS
+├── 4X
+│   ├── GJ
+│   │   └── SHA256E-s605--b053f4378ec9145613d198c81820edeef7eb0987108b42fe57bdfe461bc46e4f.json
+│   │       └── SHA256E-s605--b053f4378ec9145613d198c81820edeef7eb0987108b42fe57bdfe461bc46e4f.json
+│   └── mx
+│       └── SHA256E-s2102400--297630a3e5fa3030dbdd6e4e14efd87678c778210fdad6fb3ff7030f4f60c0fc.FTS
+│           └── SHA256E-s2102400--297630a3e5fa3030dbdd6e4e14efd87678c778210fdad6fb3ff7030f4f60c0fc.FTS
+├── 55
+│   ├── f7
+│   │   └── SHA256E-s2102400--49b875863775ad54d7a5ca0ce678a1f5edf0398875214ffa9083535d8956d7b3.FTS
+│   │       └── SHA256E-s2102400--49b875863775ad54d7a5ca0ce678a1f5edf0398875214ffa9083535d8956d7b3.FTS
+│   └── QZ
+│       └── SHA256E-s3424--dec8ab57c92c3eb4fdbaee905644250b9c138a25ffc44c9676bed9e5a57c1c53.json
+│           └── SHA256E-s3424--dec8ab57c92c3eb4fdbaee905644250b9c138a25ffc44c9676bed9e5a57c1c53.json
+├── 5J
+│   ├── 3g
+│   │   └── SHA256E-s1653--b804f9d6c5711d09caace4cfad13fdf96605e8c12bef3feca97821c5d34f442c.json
+│   │       └── SHA256E-s1653--b804f9d6c5711d09caace4cfad13fdf96605e8c12bef3feca97821c5d34f442c.json
+│   └── JG
+│       └── SHA256E-s1010--886ac5b33c937bd763e34829c18c420c3f5f8aef09e9a2fc315407ecba64d838.json
+│           └── SHA256E-s1010--886ac5b33c937bd763e34829c18c420c3f5f8aef09e9a2fc315407ecba64d838.json
+├── 5p
+#+end_example
+#+latex: \end{minipage}\end{lrbox}
+*** Project tree                                          :B_ignoreheading:
+:PROPERTIES:
+:BEAMER_env: ignoreheading
+:END:
+#+latex: \begin{lrbox}{\tempClone}\begin{minipage}{1.1\linewidth} 
+#+begin_example
+project_name/
+├── README.md             # overview of the project
+├── data/                 # data files used in the project
+│   ├── README.md         # describes where data came from
+│   └── \textcolor{structure}{big_file.hdf5 -> .git/annex/objects/KJ/QF/SHA256E-s776715--....hdf5}
+│   └── subfolder/        # may contain subdirectories
+├── processed_data/       # intermediate files from the analysis
+├── manuscript/           # manuscript describing the results
+├── results/              # results of the analysis (data, tables, figures)
+├── src/                  # contains all code in the project
+│   ├── LICENSE           # license for your code
+│   ├── requirements.txt  # software requirements and dependencies
+│   └── ...
+└── doc/                  # documentation for your project
+    ├── index.rst
+    └── ...
+#+end_example
+#+latex: \end{minipage}\end{lrbox}
+
+*** Header                                                         :ignore:
+#+BEGIN_EXPORT latex
+\null\vspace{-8mm}
+\scalebox{.6}{
+    \begin{tikzpicture}[remember picture]
+      \tikzset{DAGcommit/.append style={minimum height = 1em, minimum width=1em},
+          DAGedge/.append style={thin},
+          DAGrefedge/.append style={thin},
+          special commit/.style={DAGcommit,fill= solarized-red!20}}
+#+END_EXPORT
+
+*** Chloé                                                          :ignore:
+#+BEGIN_EXPORT latex
+% Chloé
+\node (historique de Chloe) at (2,0) [anchor=south] {\tikz[remember picture]{
+        % Commit DAG
+        \onslide<1-3>{
+            \gitDAG[grow up=0.75, branch left=0.75]{
+                A -- B -- C;
+            };
+        }
+        \onslide<4-7>{
+            \gitDAG[grow up=0.75, branch left=0.75]{
+                A -- B -- C;
+            };
+            \gitDAG[grow up=0.75, branch right=0]{
+                a1[right= 0.2cm of A];
+                a2[right= 0.2cm of C];
+                a1 -- a2;
+            };
+            \gitbranch{git-annex}{right=of a2}{a2}
+        }
+        \onslide<8>{
+            \gitDAG[grow up=0.75, branch left=0.75]{
+                A -- B -- C -- D[placeholder] -- E[placeholder];
+            };
+            \gitDAG[grow up=0.75, branch right=0]{
+                a1[right= 0.2cm of A];
+                a2[right= 0.2cm of C];
+                a3[right= 0.2cm of D];
+                a1 -- a2 -- a3;
+            };
+            \gitbranch{git-annex}{right=of a3}{a3}
+        }
+        \onslide<9->{
+            \gitDAG[grow up=0.75, branch left=0.75]{
+                A -- B -- C -- D[placeholder] -- E[placeholder];
+            };
+            \gitDAG[grow up=0.75, branch right=0]{
+                a1[right= 0.2cm of A];
+                a2[right= 0.2cm of C];
+                a3[right= 0.2cm of D];
+                a4[right= 0.2cm of E];
+                a1 -- a2 -- a3 -- a4;
+            };
+            \gitbranch{git-annex}{right=of a4}{a4}
+        }
+        \onslide<1->{\gitbranch{master}{left=of C}{C}}
+        \node (alice) [DAGref,fill = white, below= of A] {\includegraphics[height=10mm]{images/alice.jpg}};
+    }
+};
+% Annex
+\node (Annexe de Chloe) [below=0.35 of historique de Chloe.south] {\tikz[remember picture]{
+   \onslide<4-8>{\graph[ANNEX, grow down=0.75]{file1 --    file2    };}
+   \onslide<9->{\graph[ANNEX, grow down=0.75]{file1[missing] --    file2    [missing]};}
+}};
+\only<13>{\node (wtree) [right= -2.2cm of historique de Chloe] {\begin{overlayarea}{0mm}{0mm}\vspace{-1cm}\scalebox{.7}{\colorbox{minted-background}{\usebox{\tempClone}}}\end{overlayarea}};}%
+#+END_EXPORT
+*** Server                                                :B_ignoreheading:
+:PROPERTIES:
+:BEAMER_env: ignoreheading
+:END:
+#+BEGIN_EXPORT latex
+% USB
+\node (Serveur commun) at (8,0) [anchor=north east] {\tikz[remember picture]{
+   \uncover<7-8>{\graph[ANNEX, grow down=0.75]{  X [placeholder] };}
+   \onslide<9->{\graph[ANNEX, grow down=0.75]{  X [placeholder] -- file1 --    file2    };}
+   \uncover<7->{\node (server) [DAGref,fill = white, above= -.5cm of  X ] {\includegraphics[height=20mm]{images/server.png}};}
+}};
+\node (historique serveur) [above= 0cm of Serveur commun] {\tikz[scale = .5, every node/.style={transform shape}, remember picture]{
+        \onslide<15->{
+            \gitDAG[grow up=0.75, branch left=0.75]{
+                A -- B -- C -- D[placeholder] -- E[placeholder] -- F[placeholder];
+            };
+            \gitDAG[grow up=0.75, branch right=0]{
+                a1[right= 0.2cm of A];
+                a2[right= 0.2cm of C];
+                a3[right= 0.2cm of D];
+                a4[right= 0.2cm of E];
+                a5[right= 0.2cm of F];
+                a1 -- a2 -- a3 -- a4 -- a5;
+            };
+            \gitbranch{git-annex}{right=of a5}{a5}
+        }
+}};
+#+END_EXPORT
+*** Benoit                                                         :ignore:
+#+BEGIN_EXPORT latex
+% Chloé
+\node (historique de Benoit) at (11,0) [anchor=south] {\tikz[remember picture]{
+        % Commit DAG
+        \onslide<1-2>{
+            \gitDAG[grow up=0.75, branch left=0.75]{
+                A[placeholder]
+            };
+        }
+        \onslide<3-5>{
+            \gitDAG[grow up=0.75, branch left=0.75]{
+                A -- B -- C;
+            };
+        }
+        \onslide<6-10>{
+            \gitDAG[grow up=0.75, branch left=0.75]{
+                A -- B -- C;
+            };
+            \gitDAG[grow up=0.75, branch right=0]{
+                a1[right= 0.2cm of A];
+                a2[right= 0.2cm of C];
+                a1 -- a2;
+            };
+            \gitbranch{git-annex}{right=of a2}{a2}
+        }
+        \onslide<11>{
+            \gitDAG[grow up=0.75, branch left=0.75]{
+                A -- B -- C -- D[placeholder] -- E[placeholder];
+            };
+            \gitDAG[grow up=0.75, branch right=0]{
+                a1[right= 0.2cm of A];
+                a2[right= 0.2cm of C];
+                a3[right= 0.2cm of D];
+                a4[right= 0.2cm of E];
+                a1 -- a2 -- a3 -- a4;
+            };
+            \gitbranch{git-annex}{right=of a4}{a4}
+        }
+        \onslide<12->{
+            \gitDAG[grow up=0.75, branch left=0.75]{
+                A -- B -- C -- D[placeholder] -- E[placeholder] -- F[placeholder];
+            };
+            \gitDAG[grow up=0.75, branch right=0]{
+                a1[right= 0.2cm of A];
+                a2[right= 0.2cm of C];
+                a3[right= 0.2cm of D];
+                a4[right= 0.2cm of E];
+                a5[right= 0.2cm of F];
+                a1 -- a2 -- a3 -- a4 -- a5;
+            };
+            \gitbranch{git-annex}{right=of a5}{a5}
+        }
+        % Branch
+        \onslide<3->{\gitbranch{master}{left=of C}{C}}
+        \node (bob) [DAGref,fill = white, below= of A] {\includegraphics[height=10mm]{images/bob.jpg}};
+    }
+};
+% Annex
+\node (Annexe de Benoit) [below=0.35 of historique de Benoit.south] {\tikz[remember picture]{
+   \onslide<4-11>{\graph[ANNEX, grow down=0.75]{file1[missing] --    file2    [missing]};}
+   \onslide<12->{\graph[ANNEX, grow down=0.75]{file1 --    file2    };}
+}};
+#+END_EXPORT
+*** Gitlab                                                         :ignore:
+#+BEGIN_EXPORT latex
+% Dépôt origin
+\node at (7,7) [font=\fontfamily{lmtt}\selectfont\small] (origin) {\tikz[scale = .5, every node/.style={transform shape}, remember picture]{
+   % Commit DAG
+        \onslide<1>{
+            \gitDAG[grow up=0.75, branch left=0.75]{
+                A[placeholder]
+            };
+        }
+        \onslide<2-5>{
+            \gitDAG[grow up=0.75, branch left=0.75]{
+                A -- B -- C
+            };
+            % Branch
+            \gitbranch{master}{left=of C}{C}
+        }
+        \onslide<5-9>{
+            \gitDAG[grow up=0.75, branch left=0.75]{
+                A -- B -- C;
+            };
+            \gitDAG[grow up=0.75, branch right=0]{
+                a1[right= 0.2cm of A];
+                a2[right= 0.2cm of C];
+                a1 -- a2;
+            };
+            \gitbranch{git-annex}{right=of a2}{a2}
+        }
+        \onslide<10->{
+            \gitDAG[grow up=0.75, branch left=0.75]{
+                A -- B -- C -- D[placeholder] -- E[placeholder];
+            };
+            \gitDAG[grow up=0.75, branch right=0]{
+                a1[right= 0.2cm of A];
+                a2[right= 0.2cm of C];
+                a3[right= 0.2cm of D];
+                a4[right= 0.2cm of E];
+                a1 -- a2 -- a3 -- a4;
+            };
+            \gitbranch{git-annex}{right=of a4}{a4}
+        }
+        \node[DAGref,fill = white, below= of A] {\includegraphics[height=2cm]{images/Logo_GitLab.png}};
+    }
+};
+#+END_EXPORT
+*** Actions                                               :noexport:ignore:
+#+BEGIN_EXPORT latex
+      \onslide<1-2>{
+          % Remote branch
+          \gitremotebranch
+          [origmaster]
+          {master}
+          {right=of C}
+          {C}
+      }
+      % Actions
+      % Push de Benoît
+      \draw<3>[->,-Latex] (historique de Benoit) to[out=90,in=0] node[midway,font=\scriptsize,above right]{\texttt{git push}} (origin);
+      \onslide<3-5>{
+          % Remote branch
+          \gitremotebranch
+          [origmaster]
+          {master}
+          {right=of E}
+          {E}
+      }
+
+      % Pull de Chloé
+      \draw<4>[->,-Latex] (origin) to[out=180,in=90] node[midway,font=\scriptsize,above left]{\texttt{git pull}} (historique de Chloe);
+
+      % Push de Chloé
+      \draw<6>[->,-Latex] (historique de Chloe) to[out=90,in=180] node[midway,font=\scriptsize,above left]{\texttt{git push}} (origin);
+
+      % Push raté de Benoît
+      \draw<7>[->,-Latex] (historique de Benoit) to[out=90,in=0] node[midway,font=\scriptsize,above right, strike out, draw=red, line width=2pt]{\texttt{git push}} (origin);
+      \onslide<6-8>{
+          % Remote branch
+          \gitremotebranch
+          [origmaster]
+          {master}
+          {right=of F}
+          {F}
+      }
+
+      % Pull de Benoît
+      \draw<8>[->,-Latex] (origin) to[out=0,in=90] node[midway,font=\scriptsize,above right]{\texttt{git pull}\quad \normalsize \fbox{Conflict?}} (historique de Benoit);
+
+      % Push de Benoît
+      \draw<9>[->,-Latex] (historique de Benoit) to[out=90,in=0] node[midway,font=\scriptsize,above right]{\texttt{git push}} (origin);
+      \onslide<9-10>{
+          % Remote branch
+          \gitremotebranch
+          [origmaster]
+          {master}
+          {right=of H}
+          {H}
+      }
+
+      % Pull de Chloé
+      \draw<10>[->,-Latex] (origin) to[out=180,in=90]
+      node[midway,font=\scriptsize,above left]{\texttt{git pull}}
+      (historique de Chloe);
+#+END_EXPORT
+*** Actions                                        :B_ignoreheading:ignore:
+:PROPERTIES:
+:BEAMER_env: ignoreheading
+:END:
+#+BEGIN_EXPORT latex
+      % Push de Chloé
+      \draw<2>[->,-Latex] (historique de Chloe) to[out=90,in=180] node[midway,font=\normalsize,above left]{\texttt{git push}} (origin);
+
+      % Pull de Benoit
+      \draw<3>[->,-Latex] (origin) to[out=0,in=90] node[midway,font=\normalsize,above left]{\texttt{git pull}} (historique de Benoit);
+
+      % Push annex de Chloé
+      \draw<5>[->,-Latex] (historique de Chloe) to[out=90,in=180] node[midway,font=\normalsize,above left]{\texttt{git annex sync}} (origin);
+
+      % Pull annex de Benoit
+      \draw<6>[->,-Latex] (origin) to[out=0,in=90] node[midway,font=\normalsize,above right]{\texttt{git annex sync}} (historique de Benoit);
+
+      % Git annex copy d'Alice
+      \draw<8>[->,-Latex] (Annexe de Chloe) to[out=270,in=0] node[midway,font=\normalsize,above right]{\texttt{git annex copy -{}-to USB}} (store USB de Chloe);
+
+      % Git annex copy d'Alice
+      \draw<9>[->,-Latex] (Annexe de Chloe) to[out=270,in=180] node[midway,font=\normalsize,above= .5cm]{\texttt{git annex move -{}-to server}} (Serveur commun);
+
+      % Push annex de Chloé
+      \draw<10>[->,-Latex] (historique de Chloe) to[out=90,in=180] node[midway,font=\normalsize,above left]{\texttt{git annex sync}} (origin);
+
+      % Pull annex de Benoit
+      \draw<11>[->,-Latex] (origin) to[out=0,in=90] node[midway,font=\normalsize,above right]{\texttt{git annex sync}} (historique de Benoit);
+
+      % Git annex copy d'Alice
+      \draw<12>[->,-Latex] (Serveur commun) to[out=0,in=270] node[midway,font=\normalsize,below right]{\texttt{git annex copy -{}-from server}} (Annexe de Benoit);
+
+#+END_EXPORT
+*** USB key                                               :B_ignoreheading:
+:PROPERTIES:
+:BEAMER_env: ignoreheading
+:END:
+#+BEGIN_EXPORT latex
+% USB
+\node (store USB de Chloe) at (0,0) [anchor=north east] {\tikz[remember picture]{
+   \onslide<7>{\graph[ANNEX, grow down=0.75]{  very big file [placeholder] };}
+   \onslide<8->{\graph[ANNEX, grow down=0.75]{  very big file [placeholder] --    file2    };}
+   \onslide<7->{\node (usb) [DAGref,fill = white, above= -.5cm of  very big file ] {\includegraphics[height=10mm]{images/usb-key.png}};}
+   \only<14>{\node (tree) [right= .3cm of usb] {\begin{overlayarea}{0mm}{0mm}\vspace{-1cm}\scalebox{.7}{\colorbox{minted-background}{\usebox{\tempAdd}}}\end{overlayarea}};}%
+}};
+\node (git USB) [above=0.35 of store USB de Chloe] {\tikz[scale = .5, every node/.style={transform shape}, remember picture]{
+        \onslide<15>{
+            \gitDAG[grow up=0.75, branch left=0.75]{
+                A -- B -- C -- D[placeholder] -- E[placeholder];
+            };
+            \gitDAG[grow up=0.75, branch right=0]{
+                a1[right= 0.2cm of A];
+                a2[right= 0.2cm of C];
+                a3[right= 0.2cm of D];
+                a4[right= 0.2cm of E];
+                a1 -- a2 -- a3 -- a4;
+            };
+            \gitbranch{git-annex}{right=of a4}{a4}
+        }
+}};
+
+#+END_EXPORT
+*** Footer                                                         :ignore:
+#+BEGIN_EXPORT latex
+    \end{tikzpicture}}
+#+END_EXPORT
+** Data integrity
+- Hash (SHA1, SHA256, SHA512, ...) for integrity
+- Robust internal naming convention compatible with every file-system
+- Minimal number of copies per suffix, directory, ...
+- All remotes and special remotes can be verified
+  - =git fsck= and =git annex fsck=
+  - standard remotes: local verification, transmit the result
+  - special remotes: may require to transfer all data to verify
+
+* Scientific Data Management With Git-Annex
+** Git Annex for data integrity (1/3)
+*** Situation #1: External data
+Data are produced and made available read-only\newline\null\hfill(directory, web server, hard
+drive)\medskip\newline
+What could possibly go wrong?
+#+latex: \newline\uncover<2->{{\em\footnotesize Let's assume data had been imported in \em\texttt{git annex}}}
+1. New data
+   #+latex: \newline\uncover<2->{{\em\footnotesize Just reimport, duplicates will stored only once!}}
+2. Data is moved around
+   #+latex: \newline\uncover<3->{{\em\footnotesize So what?}}
+3. Data behind a filename is altered
+   #+latex: \newline\uncover<3->{{\footnotesize \texttt{git annex} \em will warn you right away.}}
+4. Data silently disappears
+   #+latex: \newline\uncover<4->{{\em\footnotesize Is there a copy in another remote? Otherwise, if you ever get this file back, your old symlink will work.}}
+** Importing data: example
+=git-annex= can pull files down from the web and bittorrent. 
+
+#+latex: \begin{minipage}{1.08\linewidth}
+#+begin_src shell :session *shell* :results output :exports both
+cd data/
+git annex addurl --preserve-filename --pathdepth=2 \ 
+    https://www.sidc.be/DATA/uset/Wlight/2014/06/UPH20140601105039.FTS 
+#+end_src
+
+#+RESULTS:
+: addurl https://www.sidc.be/DATA/uset/Wlight/2014/06/UPH20140601105039.FTS
+: (to uset/Wlight/2014/06/UPH20140601105039.FTS) ok
+: (recording state in git...)
+
+#+latex: \end{minipage}\medskip
+
+This is a /(special) url remote/ from which data can only be pulled
+- only ~git annex get~ (no ~git annex copy~ nor ~git annex move~)
+** Git Annex for data integrity (2/3)
+*** Situation #2: Collaborative data production/analysis
+- Members of a team are both data /producers/ and /consumers/
+- Read-Write permissions on a server to share data
+
+What will ultimately happen?
+1. No more space on your laptop
+   #+latex: \newline\uncover<2->{{\footnotesize \emph{Just} \texttt{git annex drop} \emph{or} \texttt{git annex move -{}-to=my-usb-drive}}}
+2. No more space on the server
+   #+latex: \newline\uncover<3->{{\footnotesize \texttt{git annex drop -{}-from=server} \em checks how many copies are available\hspace{-1cm}}}
+   #+latex: \newline\uncover<3->{{\em\footnotesize No miracle, if the only copy was on your colleague's stolen laptop...}}
+3. You inadvertently change the content of a file
+   #+latex: \newline\uncover<4->{{\footnotesize \texttt{Permission denied}. \emph{You should} \texttt{git annex unlock} \emph{it first}}}
+4. Is this data reproducible?
+   #+latex: \newline\uncover<5->{{\footnotesize \emph{Just} \texttt{rm}, \emph{rerun}, \texttt{git annex add}, \emph{and} \texttt{git status}}}
+** Setting up a shared data store
+=git-annex= can store files in Amazon S3, Glacier, WebDAV, or on a rsync
+server through ssh:\vspace{-.5em}
+
+#+begin_src shell :session *shell* :results output :exports both
+git annex initremote g5k-rsync type=rsync \
+    rsyncurl=grenoble.g5k:/home/alegrand/git-annex-rsync/ 
+git annex describe g5k-rsync "Rsync server on Grid5000"
+#+end_src
+\vspace{.5em}\pause
+
+This is a /special remote/, i.e., :
+- the file hierarchy is not on the server
+  - files are stored with the annex structure (SHA256 names)
+- the git history is not on the server
+  - only the annexed files
+
+\pause
+Information on this remote (in the ~git-annex~ branch) will need to be
+regularly synchronized betwen team members
+- ~git annex sync --only-annex~ to GitLab or GitHub
+
+*Bonus*: Files stored on special remotes can easily be *encrypted*!
+** Git Annex for data integrity (3/3)
+*** Situation #3: Publication to the community
+- You want to publish part of your data for a publication
+- Others should not have to know nor to use `git-annex`
+
+*Many* possible options
+1. Make your git repository and your data server public
+
+   # \bgroup\em\footnotesize Why not? Yet, everyone can see everything you did...\egroup 
+
+   \bgroup\em\footnotesize Wait, making the data server public? How?
+   \egroup\pause
+
+2. Clean up in a specific branch and publish its head
+
+   \bgroup\footnotesize /Just/ =git rm= /before/ ~git annex export~ 
+   \hspace{-.4em}ing
+
+   Large. History remains hidden\egroup
+3. Same as above but publish the content of a few files
+
+   \bgroup\footnotesize ~git annex unannex file; git add file~ 
+
+   /then/ ~clone~ /with a/ ~--single-branch --depth=1~
+
+   History is hidden. SHA256 are visible, anyone can check!\egroup \hfill\cooley\pause
+
+_Make it easy for others to import your work_
+** Preparing the archiving
+
+There is even a prototype to use Zenodo as a special remote
+- Smooth storing and archiving of file \cooley
+- Files are identified by their SHA256
+- Archiving then amounts to push a ~tar.gz~ of the content of
+  your git repository (which points to the SHA256 files)
+- Sensitive files could be stored on an encrypted remote and be made
+  available to only a few persons
+* Conclusion
+#+latex: \let\section=\nosection
+** Attention points
+Clearly define:
+- Data stores: servers, USB drives, ...
+  - USB drives used to share data or only to extend your laptop?\pause
+- Access rights (read/write, privacy/encryption) of both:
+  - Git repositories (normal remotes)
+  - Data stores (special remotes)\pause
+- Backup policy
+  - Who is allowed to drop files on the server?
+  - How much can you trust remotes?
+  - Minimal number of copies?
+  - Favorite remotes (for bandwidth)
+** What makes git-annex relevant in our context?
+# https://writequit.org/articles/getting-started-with-git-annex.html
+- Protection: corrupted data will be detected\pause
+- Made to last: \bgroup\small [[https://git-annex.branchable.com/future_proofing/][https://git-annex.branchable.com/future_proofing/]] \egroup\pause
+- Backup and storage extendability: your data is not locked in an
+  opaque cloud\pause
+- Location tracking: ~git-annex whereis~, ~git-annex list~, and ~git-annex enableremote~\bigskip
+
+#+begin_center
+*Let's be honest, the learning curve is a bit steep,*
+
+*but it's worth it!*
+#+end_center
+
+#+latex: \centerline{\includegraphics[width=.6\linewidth]{images/logo/open-review.png}}
+*  
+** The Elephant in the Room                                       :noexport:
+#+latex: \hbox{\hspace{-1cm}\includegraphics[height=2.55cm]{images/climate/science_is_clear.png}%
+#+latex: \includegraphics[height=2.55cm]{images/climate/climate_nasa_gov_effects.png}}
+
+[[https://www.ipcc.ch/report/ar6/syr/][IPCC]], [[https://zenodo.org/record/3553579][IPBES]], [[https://climate.nasa.gov/][https://climate.nasa.gov/]]
+
+1. Global climate change is \textbf{not} a future problem
+2. It is \textbf{entirely} due to human activity \pause
+3. /9 out of 10 IPCC scientists/ \newline
+   /believe overshoot is likely/ \newline [[https://www.nature.com/articles/d41586-021-02990-w][Nature survey, Nov. 2021]]
+
+   #+latex: \vspace{-1.8cm}\hbox{\hspace{6.1cm}\includegraphics[width=.55\linewidth]{images/climate/ipcc_nature_survey.png}}
+
+   #+latex: \vspace{-.8cm}
+
+*\bf +Several+ scenarios on the table*
+  - What will research look like/be used for in such a world?
+  - Energy optimization/saving \ne sobriety and frugality
+** The Elephant in the Room: Climate Change \hfill1/2
+#+latex: \hbox{\hspace{-1cm}\includegraphics[height=2.55cm]{images/climate/science_is_clear.png}%
+#+latex: \includegraphics[height=2.55cm]{images/climate/climate_nasa_gov_effects.png}}
+\small\vspace{-1em}
+[[https://www.ipcc.ch/report/ar6/syr/][IPCC]], [[https://zenodo.org/record/3553579][IPBES]], [[https://climate.nasa.gov/][https://climate.nasa.gov/]] \vspace{-1em}
+
+#+ATTR_BEAMER: :overlay <+->
+1. Global climate change is \textbf{not} a future problem\vspace{-.5em}
+2. It is \textbf{entirely} due to human activity\vspace{-.5em}
+3. /9 out of 10 IPCC scientists believe overshoot is likely/ 
+   #+latex: \rlap{\footnotesize
+   #+latex: }
+
+#+BEGIN_EXPORT latex
+\vspace{-2em}
+\null\hspace{-.2cm}\hbox{
+    \begin{overlayarea}{\linewidth}{5cm}
+      \begin{center}
+        \only<1>{\vspace{-2em}}%
+        \includegraphics<1>[height=4cm]{images/climate/global_average_temperature_evolution.png}%
+        \includegraphics<1>[height=4cm]{images/climate/alberta.png}%
+        \hbox{\hspace{-1cm}\includegraphics<2>[width=.6\linewidth]{images/climate/GIEC-graphique_result.png}%
+        \includegraphics<2>[width=.6\linewidth]{images/climate/GIEC-graphique-2_result.png}}%
+        \includegraphics<3>[height=3.5cm]{images/climate/ipcc_nature_survey.png}
+      \end{center}\vspace{-1.5em}
+      \begin{flushright}
+        \only<1>{\scriptsize \href{https://en.wikipedia.org/wiki/Global_temperature_record}{https://en.wikipedia.org/wiki/Global\_temperature\_record}\hfill}%
+        \only<1>{\scriptsize \href{https://en.wikipedia.org/wiki/2023_Alberta_wildfires}{2023 Alberta wildfires} 
+                             \href{https://lethbridgenewsnow.com/2023/05/23/alberta-forest-land-scorched-by-2023-wildfires-surpasses-one-million-hectares-mark/}{($>1$ Mha)}}
+        \only<2>{\vspace{-2em}\scriptsize \href{https://en.wikipedia.org/wiki/Paris_Agreement}{Paris Agreement'15} $\sim$ Net Zero by 2050  \hfill \href{https://report.ipcc.ch/ar6syr/pdf/IPCC_AR6_SYR_SPM.pdf}{Latest IPCC report}}
+        \only<3>{\vspace{-1.5em}\scriptsize \href{https://www.nature.com/articles/d41586-021-02990-w}{Nature survey, Nov. 2021}}
+      \end{flushright}
+    \end{overlayarea}
+}
+#+END_EXPORT
+
+   #+latex: \vspace{-.8cm}
+** The Elephant in the Room: Climate Change \hfill2/2
+\vspace{-.5em}
+\small 
+- Put aside  biodiversity loss, pollution, freshwater, land system change\dots ::
+#+BEGIN_EXPORT latex
+\vspace{-1em}
+\null\hbox{\hspace{-.5cm}%
+\includegraphics[height=3.8cm]{images/climate/carbon_footprint_france.png}%
+\includegraphics[height=3.8cm]{images/climate/carbon_footprint_france_split.png}%
+}
+\vspace{-1cm}
+\begin{flushright}
+  \scriptsize \href{https://www.nosviesbascarbone.org/}{https://www.nosviesbascarbone.org/}%
+\end{flushright}
+\vspace{-.3cm}
+#+END_EXPORT
+\pause
+  #+LaTeX: \null\hbox{\hspace{-.5cm}\begin{columns}\begin{column}[b]{.4\linewidth}\centering
+  #+LaTeX:     \includegraphics[height=2.18cm]{images/climate/ecolos-pont-de-sully-extinction-rebellion.jpg}%
+  #+LaTeX: \end{column}\hspace{-.5cm}\begin{column}[b]{.9\linewidth}
+  #   - Éco-terroristes, islamo-gauchistes, décivilisation, ...
+  *\bf\small\quad French government response* \scriptsize
+  - /Verdissement de l'industrie: « pause » sur les normes environnementales/
+  - /Loi de programmation militaire (+41%)/
+  - [[https://www.ecologie.gouv.fr/trajectoire-rechauffement-reference-ouverture-consultation-publique][/Nous devons préparer la France à une élévation de la température de 4 °C/]]
+  - Academia ? PEPR 5G, Cloud, NUMPEX, Quantique, IA, Agroécologie et numérique
+  #+LaTeX: \end{column}\end{columns}}\pause
+- +Several+ scenarios on the table ::  
+  - What will research/CS look like/be used for in such a world?
+  - Energy optimization/saving \ne sobriety and frugality
+
+* Emacs Setup                                                      :noexport:
+This document has local variables in its postembule, which should
+allow Org-mode (9) to work seamlessly without any setup. If you're
+uncomfortable using such variables, you can safely ignore them at
+startup. Exporting may require that you copy them in your .emacs.
+
+# ###############################
+# Local Variables:
+# eval: (setq my-utils-file "ox-extra.el")
+# eval: (load-file (expand-file-name my-utils-file (file-name-directory (buffer-file-name))))
+# eval: (ox-extras-activate '(ignore-headlines))
+# eval: (setq org-latex-listings 'minted)
+# eval: (setq org-latex-tables-centered nil)
+# eval: (setq org-latex-pdf-process '("lualatex -shell-escape -interaction nonstopmode -output-directory %o %f"))
+# End:

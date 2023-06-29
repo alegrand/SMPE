@@ -24,6 +24,9 @@ talk_23_02_23_LISTIC.tex: talk_23_02_23_LISTIC.org
 	emacs -q -batch --eval="(setq enable-local-eval t)" --eval="(setq enable-local-variables t)" $< --funcall org-beamer-export-to-latex
 	sed -i -e 's/begin{verbatim}/begin{Verbatim}[fontsize=\\scriptsize,commandchars=\\\\\\{\\}]/' -e 's/end{verbatim}/end{Verbatim}/' $@
 
+talk_23_06_29_GT-donnees-Gitlab.tex: talk_23_06_29_GT-donnees-Gitlab.org
+	emacs -q -batch --eval="(setq enable-local-eval t)" --eval="(setq enable-local-variables t)" $< --funcall org-beamer-export-to-latex
+	sed -i -e 's/begin{verbatim}/begin{Verbatim}[fontsize=\\scriptsize,commandchars=\\\\\\{\\}]/' -e 's/end{verbatim}/end{Verbatim}\n/' $@
 
 %.tex: %.org
 	emacs -batch --eval "(setq enable-local-eval t)" \
