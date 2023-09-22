@@ -69,11 +69,11 @@ Evaluation process:
 ** Fall Vacations
 ** 5. 9/11/23 +JMV+ [AL + CC] Measurement and tracing
 ** 6. 16/11/23  +JMV+  +AL+  [AL] Clearly defining the experiment and having the right tools to analyze it
-** 7. 23/11/23  +JMV bof+ [EA] The linear model
+** 7. 23/11/23  +JMV :(+ [EA] The linear model
 ** 8. 30/11/23 [EA] Multiple testing and ANOVA (p-hacking)
-** 9. 07/12/23 +JMV bof+ [AL] Scientific integrity
+** 9. 07/12/23 +JMV :(+ [AL] Scientific integrity
 ** 10. 14/12/23 [AL] A Bayesian perspective on regularization and model selection + Sequential DoE (screening, LHS, D-opt, ...)
-** 11. 21/12/23 +JMV bof+[ AL] Incremental DoE: A Bayesian perspective, Reinforcement Learning and Surrogates (Bandit, GP)
+** 11. 21/12/23 +JMV :(+ [ AL] Incremental DoE: A Bayesian perspective, Reinforcement Learning and Surrogates (Bandit, GP)
 ** Winter vacations
 ** 12. 11/01/24 [AL + JMV] Ethics (AI and humain, climate change, societal challenges)
 ** 25/01/24 Exam
