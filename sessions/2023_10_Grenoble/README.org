@@ -1,0 +1,269 @@
+#+TITLE:     Scientific Methodology and (emPirical|exPerimental) Evaluation
+#+AUTHOR:    Céline Coutrix, Arnaud Legrand, and Jean-Marc Vincent
+#+DATE: October 2023
+#+STARTUP: overview indent
+
+*Teachers*: Céline Coutrix, Arnaud Legrand, and Jean-Marc Vincent
+
+[[file:../2021_10_Grenoble/celine.png][file:../2021_10_Grenoble/celine.png]][[file:../2021_10_Grenoble/arnaud.png]][[file:../2021_10_Grenoble/jean-marc.png][file:../2021_10_Grenoble/jean-marc.png]]
+
+
+#+BEGIN_QUOTE
+*Reporting errors*: Although I do my best there may definitely be typos
+and broken links. This is github so please report me everything you
+find so that I can improve for others. :)
+#+END_QUOTE
+
+This webpage gathers information about the lectures given at the
+University of Grenoble to the Master students in Computer
+Science (MOSIG) from October 2023 to January 2024.
+
+* Useful links 
+- Here is the [[https://codimd.math.cnrs.fr/Dai2ZzqzTwezOMZVIyMN-g#][Pad]] you will use to collaborate.
+- Here is the [[https://edt.grenoble-inp.fr/2023-2024/exterieur][lecture schedule on ADE]] (look for =mosig2=). A table summary is [[https://edt.grenoble-inp.fr/2023-2024/exterieur/jsp/custom/modules/plannings/eventInfo.jsp?week=-1&day=-1&slot=0&eventId=37851&activityId=-1&resourceId=-1&sessionId=-1&repetition=-1&order=slot&availableZone=-1][here]].
+- Here is the [[https://framateam.org/signup_user_complete/?id=edfia7kwaibwik73riqgmmsddy][Invitation link]] for the [[https://framateam.org/smpe-2022-2023/channels/town-square][Mattermost]] we will use to exchange information.
+  - The [[https://www.fun-mooc.fr/fr/cours/recherche-reproductible-principes-methodologiques-pour-une-science-transparente/][MOOC on Reproducible Research]]
+Links to the slides are provided below.
+* Course Objective and Organization
+The aim of this course is to provide the fundamental basis for sound
+scientific methodology of empirical evaluation of computer
+systems. This lecture emphasize on methodological aspects of
+measurement and on the statistics needed to analyze computer systems,  human-computer interaction systems, and machine learning systems.
+We first sensibilize the audience to the experiment and analysis
+reproducibility issue in particular in computer science. Then we
+present tools that help answering the analysis problem and may also
+reveal useful for managing the experimental process through
+notebooks. The audience is given the basis of probabilities and
+statistics required to develop sound experiment designs. The content of the lecture is therefore both theoretical and practical, illustrated by a lot of case studies and practical sessions. The goal is not to provide analysis recipes that people
+can readily apply but to make students really understand some simple
+(and possibly not-so-simple) tools so that they can then dig deeper later on.
+
+You may want to look at the [[file:../2021_10_Grenoble/README.org][previous edition]] to see the kind of material we use but we will adapt to the audience on the fly anyway.
+
+All the examples given in this series of lecture use the [[http://www.r-project.org/][R]] language
+and the source is provided so that people can reuse them. The slides
+are composed with [[http://orgmode.org][org-mode]], beamer, and verbments.
+
+Evaluation process:
+  - Final exam (3 hours): 1/2
+  - Continuous assessment: 1/2
+
+* Course Tentative Schedule
+** 1. 28/09/22 [JMV, AL] Introduction to the scientific method and computer science epistemology | Presentation of the lecture
+*** Slides
+- [[file:../2021_10_Grenoble/01_epistemology.pdf][What is science?]]
+- [[file:../../lectures/lecture_SMPE_overview.pdf][Overview of the lecture]]
+*** Homeworks
+- [ ] Read Popper's text
+- [ ] Indicate your name on the [[https://codimd.math.cnrs.fr/Dai2ZzqzTwezOMZVIyMN-g#][Pad]]. You will use to collaborate and fill in all the information you can.
+- [ ] Register on the [[https://framateam.org/smpe-2023-2024/channels/town-square][Mattermost]] through this [[https://framateam.org/signup_user_complete/?id=yxk5rpuqdpds5b785t6ka94o4e&md=link&sbr=su][invitation link]]. This is the preferred communication mode.
+- [ ] Set up a *public* github or gitlab project for this lecture. You will take notes on this lecture and turn your homework and computational documents in this project.
+- [ ] Register to the [[https://www.fun-mooc.fr/fr/cours/recherche-reproductible-principes-methodologiques-pour-une-science-transparente/][MOOC on Reproducible Research]]
+- [ ] Follow modules 1 + 2 of the MOOC with as much exercises as possible (except the last one of module2, on /Challenger/; watching interviews is optional)
+- [ ] Set up a computational document system (e.g., [[#rstudio][Rstudio]] or [[#jupyter][Jupyter]] on your laptop or through the [[https://jupyterhub.u-ga.fr/][UGA JupyterHub]]).
+- [ ] Report the URL of your git project, your mattermost ID on the [[https://codimd.math.cnrs.fr/Dai2ZzqzTwezOMZVIyMN-g#][Pad]].
+** 2. 05/10/23 [JMV, EA] Visualization and Exploratory Data Analysis | Descriptive statistics; Correlation, causality, and spurious correlation 
+** 12/10/23: No lecture
+** 3. 19/10/23 [JMV, CC] Data curation  | Data management 1 (Data Management Plans)
+** 4. 26/10/23 [JMV, AL] Processing data with the Tidyverse, beautiful viz with ggplot, Tools and tips for data management (Tools)
+** Fall Vacations
+** 5. 9/11/23 [AL + CC] Measurement and tracing
+** 6. 16/11/23 [AL] Clearly defining the experiment and having the right tools to analyze it
+** 7. 23/11/23 [EA] The linear model
+** 8. 30/11/23 [EA] Multiple testing and ANOVA (p-hacking)
+*** Slides and resources
+- [[file:08_anova.pdf][Slides]]
+- [[file:07_linear_regression/tp-ble.pdf][ANOVA on wheat]] ([[file:../2021_10_Grenoble/07_linear_regression/ble.txt][data]])
+- [[file:07_linear_regression/tp-batman.pdf][Multiple linear regression hands-on]] ([[file:../2021_10_Grenoble/07_linear_regression/bats.csv][data]] and [[file:../2021_10_Grenoble/07_linear_regression/HutcEA02.pdf][original article]])
+
+** 9. 07/12/23 [AL] Scientific integrity
+** 10. 14/12/23 [AL] A Bayesian perspective on regularization and model selection + Sequential DoE (screening, LHS, D-opt, ...)
+** 11. 21/12/23 [AL] Incremental DoE: A Bayesian perspective, Reinforcement Learning and Surrogates (Bandit, GP)
+** Winter vacations
+** 12. 11/01/24 [AL + JMV] Ethics (AI and humain, climate change, societal challenges)
+** 25/01/24 Exam
+* Hands-on
+In the 3rd module of the [[https://www.fun-mooc.fr/fr/cours/recherche-reproductible-principes-methodologiques-pour-une-science-transparente/][MOOC on Reproducible Research]], there is a
+peer-reviewed homework that will allow you to practically use
+everything you learnt. 
+* Requirements 
+All the examples given in this series of lecture use the [[http://www.r-project.org/][R]] language
+and the source is provided so that people can reuse them. The slides
+are composed with [[http://orgmode.org][org-mode]], beamer, and verbments.
+
+It is not expected that students already knows the R language as I
+will briefly present it. However, they should have already installed
+Rstudio and R (check the next section if you need information) on
+their laptop so as to try out the examples I provide for themselves. 
+
+Alternatively, you may use Jupyter with python or R, either on your
+machine or through the MOOC or the [[https://jupyterhub.u-ga.fr/][UGA JupyterHub]]. Most R verbs have
+now their python counterpart (e.g., =numpy= and =pandas= for vectors and
+dataframes, =plotnine= for =ggplot2=, =statsmodels= for linear regressions,
+...).
+* Using R
+** Installing R, Rstudio, or Jupyter
+*** R
+Here is how to proceed on debian-based distributions:
+#+BEGIN_SRC sh
+sudo apt install r-base r-cran-ggplot2 r-cran-dplyr r-cran-tidyr r-cran-knitr r-cran-magrittr 
+#+END_SRC
+Make sure you have a recent (>= 3.2.0) version or R. For example, here
+is what I have on my machine:
+#+begin_src sh :results output :exports both
+R --version
+#+end_src
+
+#+RESULTS:
+#+begin_example
+R version 4.1.1 (2021-08-10) -- "Kick Things"
+Copyright (C) 2021 The R Foundation for Statistical Computing
+Platform: x86_64-pc-linux-gnu (64-bit)
+
+R is free software and comes with ABSOLUTELY NO WARRANTY.
+You are welcome to redistribute it under the terms of the
+GNU General Public License versions 2 or 3.
+For more information about these matters see
+https://www.gnu.org/licenses/.
+
+#+end_example
+*** Rstudio
+Rstudio and knitr are unfortunately not packaged within debian so the
+easiest is to download the corresponding debian package on the [[http://www.rstudio.com/ide/download/desktop][Rstudio
+webpage]] and then to install it manually (depending on when you do this
+and on the version of your OS, *you should obviously change the version
+number*).
+
+#+BEGIN_SRC sh
+wget https://download1.rstudio.org/desktop/bionic/amd64/rstudio-2021.09.0%2B351-amd64.deb
+sudo dpkg -i rstudio-2021.09.0+351-amd64.deb
+sudo apt -f install # to fix possibly missing dependencies
+#+END_SRC
+# You will also need to install knitr. To this end, you should simply
+# run R (or Rstudio) and use the following command.
+# #+BEGIN_SRC R
+# install.packages("knitr")
+# #+END_SRC
+If some packages like =r-cran-ggplot2= or =r-cran-reshape= could not be installed for some
+reason, you can also install it through R by doing:
+#+BEGIN_SRC R
+install.packages("ggplot2")
+#+END_SRC
+*** Jupyter
+Now regarding jupyter, here is how to proceed on a debian-based distribution:
+#+begin_src sh
+sudo apt install jupyter r-cran-irkernel r-cran-irdisplay
+#+end_src
+Then you can simply run:
+#+begin_src sh
+jupyter notebook
+#+end_src
+
+If you want a cooler Jupyter environment, [[https://jupyterlab.readthedocs.io/en/stable/getting_started/installation.html][install JupyterLab]], for example as follows:
+#+begin_src sh
+pip3 install jupyterlab
+export PATH=$HOME/.local/bin:$HOME
+jupyter lab
+#+end_src
+
+** Producing documents
+The easiest way to go is probably to [[http://www.rstudio.com/ide/docs/authoring/using_markdown][use R+Markdown (Rmd files) in
+Rstudio]] and to export them via [[http://www.rpubs.com/][Rpubs]] to make available [[http://www.rpubs.com/tucano/zombies][whatever you
+want]].
+
+We can roughly distinguish between three kinds of documents:
+1. Lab notebook (with everything you try and that is meant mainly
+   for yourself)
+2. Experimental report (selected results and explanations with
+   enough details to discuss with your advisor)
+3. Result description (rather short with only the main point and,
+   which could be embedded in an article)
+We expect you to provide us the last two ones and to make them
+publicly available so as to allow others to [[http://rpubs.com/RobinLovelace/ratmog11][comment]] on them.
+** Learning R
+For a quick start, you may want to look at [[http://cran.r-project.org/doc/contrib/Paradis-rdebuts_en.pdf][R for Beginners]]. A probably
+more entertaining way to go is to follow a good online lecture
+providing an introduction to R and to data analysis such as this one:
+https://www.coursera.org/course/compdata. 
+
+A quite effective way (if you have time) is to use [[http://swirlstats.com/students.html][SWIRL]], an
+interactive learning environment that will guide through self-paced
+lesson.
+#+begin_src R :results output :session :exports both
+install.packages("swirl")
+library(swirl)
+install_from_swirl("R Programming")
+swirl()
+#+end_src
+I suggest in particular to follow the following lessons from R
+programming (max 10 minutes each):
+#+BEGIN_EXAMPLE
+ 1: Basic Building Blocks      2: Workspace and Files     
+ 3: Sequences of Numbers       4: Vectors                 
+ 5: Missing Values             6: Subsetting Vectors      
+ 7: Matrices and Data Frames   8: Logic                   
+ 9: Functions                 12: Looking at Data         
+#+END_EXAMPLE
+
+Finally, you may want to read this [[http://ww2.coastal.edu/kingw/statistics/R-tutorials/dataframes.html][excellent tutorial on data frames]]
+(=attach=, =with=, =rownames=, =dimnames=, notions of scope...).
+** Learning the tidyverse (ggplot2, dplyr, tidyR)
+All these packages have been developed by hadley wickam and are gathered [[https://www.tidyverse.org/][here]]. There are [[https://rstudio.github.io/cheatsheets/][amazing cheatsheets]] you may want to refer to, as well as nice [[https://seananderson.ca/ggplot2-fish554/][introductions to ggplot2]].
+* References
++ R. Jain, [[http://www.cs.wustl.edu/~jain/books/perfbook.htm][The Art of Computer Systems Performance Analysis:
+  Techniques for Experimental Design, Measurement, Simulation, and
+  Modeling]], Wiley-Interscience, New York, NY, April 1991.
+  [[http://www.amazon.com/Art-Computer-Systems-Performance-Analysis/dp/1118858425/ref%3Dsr_1_2?s%3Dbooks&ie%3DUTF8&qid%3D1435137636&sr%3D1-2&keywords%3Dperformance%2Bmeasurement%2Bcomputer][A new edition will be available in September 2015]].
+  #+BEGIN_QUOTE
+  This is an easy-to-read self-content book for practical performance
+  evaluation. The numerous checklists make it a great book for
+  engineers and every CS experimental scientist should have read it.
+  #+END_QUOTE
++ David J. Lilja, Measuring Computer Performance: A Practitioner’s
+  Guide, Cambridge University Press 2005
+  #+BEGIN_QUOTE
+  A short book suited for brief presentations. I follow a similar
+  organization but I really don't like the content of this book. I
+  feel it provides very little insight on why the theory applies or
+  not. I also think it is too general and lacks practical examples. It
+  may be interesting for those willing a quick and broad presentation
+  of the main concepts and "recipes" to apply.
+  #+END_QUOTE
++ Jean-Yves Le Boudec. [[http://www.cl.cam.ac.uk/~dq209/others/perf.pdf][Methods, practice and theory for the
+  performance evaluation of computer and communication
+  systems, 2006. EPFL electronic book]].
+  #+BEGIN_QUOTE
+  A very good book, with a much more theoretical treatment than the
+  Jain. It goes way farther on many aspects and I can only recommand
+  it.
+  #+END_QUOTE
++ Douglas C. Montgomery, [[http://www.wiley.com/WileyCDA/WileyTitle/productCd-EHEP002024.html][Design and Analysis of Experiments]], 8th
+  Edition. Wiley 2013.
+  #+BEGIN_QUOTE
+  This is a good and thorough textbook on design of experiments. It's
+  so unfortunate it relies on "exotic" softwares like JMP and minitab
+  instead of R...
+  #+END_QUOTE
++ Julian J. Faraway, [[https://cran.r-project.org/doc/contrib/Faraway-PRA.pdf][Practical Regression and Anova using R]],
+  University of Bath, 2002.
+  #+BEGIN_QUOTE
+  This book is derived from material that Pr. Faraway used in a Master
+  level class on Statistics at the University of Michigan. It is
+  mathematically involved but presents in details how linear
+  regression, ANOVA work and can be done with R. It works out many
+  examples in details and is very pleasant to read. A must-read if you
+  want to understand this topic more thoroughly.
+  #+END_QUOTE
++ Peter Kosso, [[http://www.amazon.fr/Summary-Scientific-Method-Peter-Kosso-ebook/dp/B008D5IYU2][A Summary of Scientific Method]], Springer, 2011.
+  #+BEGIN_QUOTE
+  A short nice book summarizing the main steps of the scientific
+  method and why having a clear definition is not that simple. It
+  illustrates these points with several nice historical examples that
+  allow the reader to take some perspective on this epistemological
+  question.
+  #+END_QUOTE
++ R. Nelson, Probability stochastic processes and queuing theory: the
+  mathematics of computer performance modeling. Springer Verlag 1995.
+  #+BEGIN_QUOTE
+  For those willing to know more about queuing theory.
+  #+END_QUOTE
