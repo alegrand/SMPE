@@ -2,7 +2,7 @@
 # -*- mode: org -*-
 #+Title:  Scientific Methodology and \newline (Empirical|Experimental) Evaluation
 #+Author: Arnaud Legrand\medskip\newline\logoInstitutions
-#+DATE:  \vspace{3cm}\JDEVlogo Master 2 MOSIG\newline January 2022\newline\begin{overlayarea}{1.05\linewidth}{0cm}\vspace{-3.2cm}\hfill{\mylogo}\end{overlayarea}\vspace{-1.0cm}
+#+DATE:  \vspace{3cm}\JDEVlogo Master 2 MOSIG\newline 2023-2024 \newline\begin{overlayarea}{1.05\linewidth}{0cm}\vspace{-3.2cm}\hfill{\mylogo}\end{overlayarea}\vspace{-1.0cm}
 #+LANGUAGE: en
 #+STARTUP: beamer indent inlineimages logdrawer
 #+TAGS: noexport(n)
@@ -148,8 +148,9 @@
 * Overview
 ** Teachers and contact
 
+# #+latex: \includegraphics[height=3cm]{../sessions/2021_10_Grenoble/elise.png}
+
 #+begin_center
-#+latex: \includegraphics[height=3cm]{../sessions/2021_10_Grenoble/elise.png}
 #+latex: \includegraphics[height=3cm]{../sessions/2021_10_Grenoble/celine.png}
 #+latex: \includegraphics[height=3cm]{../sessions/2021_10_Grenoble/arnaud.png}
 #+latex: \includegraphics[height=3cm]{../sessions/2021_10_Grenoble/jean-marc.png}
@@ -179,8 +180,8 @@
 1. \fbox{Epistemology: scientific method and computer science} \hfill \fbox{Presentation of the lecture}
 2. \fbox{Visualization and Exploratory Data Analysis} \hfill \fbox{Correlation/causality, spurious correlation}\smallskip
    - \scriptsize \textbf{No lecture}\smallskip
-3. \fbox{Data curation with the tidyverse} \hfill \fbox{Data management: theory}
-4. \fbox{Beautiful Viz with ggplot} \hfill \fbox{Data management: tools}\smallskip
+3. \fbox{Data curation with the tidyverse} \hfill \fbox{Beautiful Viz with ggplot} 
+4. \fbox{Data management: theory} \hfill \fbox{Data management: tools}\smallskip
    - \scriptsize \textbf{Fall Vacations}\smallskip
 5. \fbox{Measurement and tracing}
 6. \fbox{Clearly defining the experiment} \hfill \fbox{Having the right tools to analyze (e.g., C.I)}
@@ -188,8 +189,8 @@
 8. \fbox{Multiple testing, ANOVA, and p-hacking}
 9. \fbox{Scientific integrity}
 10. \fbox{A Bayesian perspective on model selection} \hfill \fbox{Sequential DoE (screening, LHS, D-opt, ...)}\smallskip
-    - \scriptsize \textbf{Winter vacations}\smallskip
 11. \fbox{Ethics (AI and humain, climate change, societal challenges)}
+    - \scriptsize \textbf{Winter vacations}\smallskip
 12. \fbox{Incremental DoE: Bayesian perspective, Reinforcement Learning, Surrogates (Bandit, GP)}\smallskip
     - \scriptsize \textbf{Exam}
 
