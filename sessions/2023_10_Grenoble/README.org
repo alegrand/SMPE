@@ -52,7 +52,7 @@ Evaluation process:
 ** 1. 28/09/22  [ JMV, AL     ] Introduction to the scientific method and computer science epistemology | Presentation of the lecture
 *** Slides
 - [[file:../../lectures/lecture_SMPE_overview.pdf][Overview of the lecture]]
-- [[file:../2021_10_Grenoble/01_epistemology.pdf][What is science?]]
+- [[file:01_epistemology.pdf][What is science?]]
 *** Homeworks
 - [ ] Read Popper's text
 - [ ] Indicate your name on the [[https://codimd.math.cnrs.fr/Dai2ZzqzTwezOMZVIyMN-g#][Pad]]. You will use to collaborate and fill in all the information you can.
