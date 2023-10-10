@@ -62,7 +62,7 @@ Evaluation process:
 - [ ] Follow modules 1 + 2 of the MOOC with as much exercises as possible (except the last one of module2, on /Challenger/; watching interviews is optional)
 - [ ] Set up a computational document system (e.g., [[#rstudio][Rstudio]] or [[#jupyter][Jupyter]] on your laptop or through the [[https://jupyterhub.u-ga.fr/][UGA JupyterHub]]).
 - [ ] Report the URL of your git project, your mattermost ID on the [[https://codimd.math.cnrs.fr/ukBaKcsHRyKrCFWW2wOK5w#][Pad]].
-** 2. 06/10/22 [JMV, EA] Visualization and Exploratory Data Analysis | Descriptive statistics; Correlation, causality, and spurious correlation 
+** 2. 06/10/22 [JMV, EA] Visualization and Exploratory Data Analysis | Descriptive statistics
 *** Slides and resources
 - [[file:../2021_10_Grenoble/02_whyvisu.pdf][Slides: Why do we need to visualize data: The Anscombe's Quartet]] and as a bonus: [[https://www.autodesk.com/research/publications/same-stats-different-graphs][The Datasaurus]]. :)
 - [[file:02_Intro-Visu.pdf][Slides: What a nice picture ! Data Visualization, an introduction]]
