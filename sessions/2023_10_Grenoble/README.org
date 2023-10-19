@@ -77,8 +77,24 @@ Evaluation process:
  - [ ] Report this work for at least 3 figures on you github/gitlab project.
  - [ ] MOOC: Complete exercise 5 of module 2 (/Challenger/). Write a short text explaining what is good and wrong about this document (you may want to provide an updated version of the notebook) and upload on your github/gitlab space.
 ** 12/10/23: No lecture
-** 3. 19/10/23  [ JMV         ] Processing data with the Tidyverse, Data curation, beautiful viz with ggplot
-** 4. 26/10/23  [      AL     ]  Data management (Data Tools and tips for Data Management Plans), Measurement and tracing.
+** 3. 19/10/23  [      AL     ] Processing data with the Tidyverse, Data curation, beautiful viz with ggplot
+*** Feedback
+- graphics
+- challenger
+- R ?
+*** Slides and resources
+- Demo of =dplyr= and =ggplot= (update of the  [[https://htmlpreview.github.io/?https://github.com/alegrand/SMPE/blob/master/sessions/2022_10_Grenoble/R_crash_course.html][R crash course for computer scientists]]). You may want to look at these [[file:../../lectures/lecture_R_crash_course.pdf][slides]].
+- See  https://evamaerey.github.io/ggplot_flipbook/ggplot_flipbook_xaringan.html
+  for =ggplot=
+- See https://evamaerey.github.io/data_manipulation/about for =dplyr=.
+- [[file:../../lectures/lecture_data_management.pdf][Slides on file organization]] (beginning of the slide deck)
+- Slides on Git-Annex: [[https://learninglab.gitlabpages.inria.fr/mooc-rr/mooc-rr2-ressources/module1/seq4-git_annex/unit1-lecture/slides_1.pdf][(1)]]  [[https://learninglab.gitlabpages.inria.fr/mooc-rr/mooc-rr2-ressources/module1/seq4-git_annex/unit1-lecture/slides_2.pdf][(2)]]  [[https://learninglab.gitlabpages.inria.fr/mooc-rr/mooc-rr2-ressources/module1/seq4-git_annex/unit1-lecture/slides_3.pdf][(3)]]  [[https://learninglab.gitlabpages.inria.fr/mooc-rr/mooc-rr2-ressources/module1/seq4-git_annex/unit1-lecture/slides_4.pdf][(4)]]
+*** Homeworks
+- [ ] Use good naming and organization conventions in your repos.
+- [ ] Use dplyr and ggplot for the first/last name analysis! Complete challenger if you haven't done so.
+- [ ] If you have time, git a try to git-annex but no worry if you can't. What's important is that you know it exists, what it allows to do, and that it is not so difficult to use.
+- [ ] Engage in module 3 of the MOOC and choose a topic for the peer evaluation (final task of module 3).
+** 4. 26/10/23  [      AL     ] Data management (Data Tools and tips for Data Management Plans), Measurement and tracing.
 ** Fall Vacations
 ** 5. 9/11/23   [      AL     ] Proba, CI
 ** 6. 16/11/23  [        CC   ] Clearly defining the experiment and having the right tools to analyze it
