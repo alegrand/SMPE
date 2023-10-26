@@ -90,8 +90,15 @@ Evaluation process:
 - [ ] Complete the Challenger exercise if you haven't done so.
 - [ ] Engage in module 3 of the MOOC and choose a topic for the peer evaluation (final task of module 3).
 - [ ] Here is an opportunity to practice your data curation/analysisskills by producing the [[file:../2022_10_Grenoble/03_Names-Methodo2022-exercise.Rmd][First name/last name analysis in a computational document]]. I encourage you to use =dplyr= and =ggplot= for this analysis.
-** 4. 26/10/23  [      AL     ] Data management (Data Tools and tips for Data Management Plans), Measurement and tracing.
+** 4. 26/10/23  [      AL     ] Data management tips (Data Tools) and introduction to confidence interval.
+*** Feedback
+- File organization: how do you feel ? :)
+- Challenger.
+- Remind with the [[file:../../lectures/lecture_correlation_causation.pdf][Cholesterol case]] that removing and selecting data can be quite harmful and should always be carefully described and justified.
+- Check a subject for module 3 has been chosen.
+*** Slides and resources
 - Slides on Git-Annex: [[https://learninglab.gitlabpages.inria.fr/mooc-rr/mooc-rr2-ressources/module1/seq4-git_annex/unit1-lecture/slides_1.pdf][(1)]]  [[https://learninglab.gitlabpages.inria.fr/mooc-rr/mooc-rr2-ressources/module1/seq4-git_annex/unit1-lecture/slides_2.pdf][(2)]]  [[https://learninglab.gitlabpages.inria.fr/mooc-rr/mooc-rr2-ressources/module1/seq4-git_annex/unit1-lecture/slides_3.pdf][(3)]]  [[https://learninglab.gitlabpages.inria.fr/mooc-rr/mooc-rr2-ressources/module1/seq4-git_annex/unit1-lecture/slides_4.pdf][(4)]]
+- From descriptive statistics to [[file:../../lectures/3_introduction_to_statistics.pdf][estimation]]
 ** Fall Vacations
 ** 5. 9/11/23   [      AL     ] Proba, CI
 ** 6. 16/11/23  [        CC   ] Clearly defining the experiment and having the right tools to analyze it
