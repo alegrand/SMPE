@@ -100,7 +100,15 @@ Evaluation process:
 - Slides on Git-Annex: [[https://learninglab.gitlabpages.inria.fr/mooc-rr/mooc-rr2-ressources/module1/seq4-git_annex/unit1-lecture/slides_1.pdf][(1)]]  [[https://learninglab.gitlabpages.inria.fr/mooc-rr/mooc-rr2-ressources/module1/seq4-git_annex/unit1-lecture/slides_2.pdf][(2)]]  [[https://learninglab.gitlabpages.inria.fr/mooc-rr/mooc-rr2-ressources/module1/seq4-git_annex/unit1-lecture/slides_3.pdf][(3)]]  [[https://learninglab.gitlabpages.inria.fr/mooc-rr/mooc-rr2-ressources/module1/seq4-git_annex/unit1-lecture/slides_4.pdf][(4)]]
 - From descriptive statistics to [[file:../../lectures/3_introduction_to_statistics.pdf][estimation]]
 ** Fall Vacations
-** 5. 9/11/23   [      AL     ] Proba, CI
+** 5. 9/11/23   [      AL     ] Proba, CI, The linear model
+*** Feedback
+- First name exercise ?
+- Check that a subject for module 3 has been chosen.
+*** Slides and resources
+- From descriptive statistics to [[file:../../lectures/3_introduction_to_statistics.pdf][estimation]] (end)
+  - Compute confidence intervals for the data in https://github.com/alegrand/M2R-ParallelQuicksort
+- Going beyond independant evaluations with the [[file:../../lectures/4_linear_model.pdf][linear model]]
+  - Fit a linear model for the data in https://github.com/alegrand/M2R-ParallelQuicksort
 ** 6. 16/11/23  [        CC   ] Clearly defining the experiment and having the right tools to analyze it
 ** 7. 23/11/23  [ +JMV+, AL, CC ] The linear model
 ** 8. 30/11/23  [ JMV, AL, CC ] Multiple testing and ANOVA (p-hacking)
