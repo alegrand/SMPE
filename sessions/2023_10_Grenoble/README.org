@@ -102,13 +102,16 @@ Evaluation process:
 ** Fall Vacations
 ** 5. 9/11/23   [      AL     ] Proba, CI, The linear model
 *** Feedback
-- First name exercise ?
 - Check that a subject for module 3 has been chosen.
+- First name exercise ?
 *** Slides and resources
 - From descriptive statistics to [[file:../../lectures/3_introduction_to_statistics.pdf][estimation]] (end)
   - Compute confidence intervals for the data in https://github.com/alegrand/M2R-ParallelQuicksort
+- Randomization is key: illustration with experience from the field
+  - Slide 33 (Experimenting with computers) from [[file:../../lectures/talk_22_12_15_M1_UGA.pdf][Reproducibility Crisis, Open Science,… and Computer Science]]
+  - Slide 3-5 from [[file:../../lectures/talk_20_01_23_Nantes_RSD.pdf][Obtaining Faithful/Reproducible Measurements on Modern CPUs]]
 - Going beyond independant evaluations with the [[file:../../lectures/4_linear_model.pdf][linear model]]
-  - Fit a linear model for the data in https://github.com/alegrand/M2R-ParallelQuicksort
+#  - Fit a linear model for the data in https://github.com/alegrand/M2R-ParallelQuicksort
 ** 6. 16/11/23  [        CC   ] Clearly defining the experiment and having the right tools to analyze it
 ** 7. 23/11/23  [ +JMV+, AL, CC ] The linear model
 ** 8. 30/11/23  [ JMV, AL, CC ] Multiple testing and ANOVA (p-hacking)
