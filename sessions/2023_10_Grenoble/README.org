@@ -113,6 +113,35 @@ Evaluation process:
 - Going beyond independant evaluations with the [[file:../../lectures/4_linear_model.pdf][linear model]]
 #  - Fit a linear model for the data in https://github.com/alegrand/M2R-ParallelQuicksort
 ** 6. 16/11/23  [        CC   ] Clearly defining the experiment and having the right tools to analyze it
+*** Slides and resources
+1. MOOC status report and feedback on exercises.
+2. 2. Hands on in group on one of the following example:
+   - Parallel Quicksort: Fork this small [[https://github.com/alegrand/M2R-ParallelQuicksort][project]] which is toy experiment regarding measuring the performance of a simple parallel quicksort implementation:
+     #+BEGIN_QUOTE
+       One of your colleague just implemented a multi-threaded version of
+       the quicksort algorithm for multi-core machines. He's convinced his
+       code can save significant time saving but unfortunately, he did not
+       follow the performance evaluation lecture and he would like your
+       help to promote his code.
+     #+END_QUOTE
+     Try to re-run this code, compare the results, and improve the experimental design if needed..
+   - Empirical evaluation of [[https://en.wikipedia.org/wiki/Fitts%27s_law][Fitts's law]]: Fork this small [[https://gricad-gitlab.univ-grenoble-alpes.fr/coutrixc/m2r_pointingxp][project]]
+     #+BEGIN_QUOTE
+     Fitts described 1954 the relationship between the distance to a target, its width, and the time needed to acquire it [Fitts, 1954]. To aquire a target, e.g., to move the mouse cursor and click on a file to select it, Fitts' law describes how the distance between the start point and the target (A: amplitude of the movement), and the size of the target (W: width of the target) impacts the index of difficulty of the task (ID) [MacKenzie and Buxton, 1992]:
+
+        ID = log2(A/W + 1)
+
+     The time (MT: movement time) needed for a user to acquire a target is linearly correlated to ID:
+
+         MT = a + b × ID
+
+     A large part of Human-Computer Interaction research since then builds on top of Fitts' law. This project aims at finding the values of the a and b parameters.
+     #+END_QUOTE
+     Try to re-run this analysis, then re-obtain some data and compare the results, improve the experimental design if needed.
+3. If time allows, [[http://polaris.imag.fr/arnaud.legrand/teaching/2011/EP_02_Measurements.pdf][short general lecture on measurement]] or explanations on the good way to structure experiments (beginning of
+   the [[file:../../lectures/5_design_of_experiments.pdf][Design of Experiments]] lecture)
+*** Homeworks
+- [ ] Continue the hands-on, improve the experiment design and the analysis
 ** 7. 23/11/23  [ +JMV+, AL, CC ] The linear model
 ** 8. 30/11/23  [ JMV, AL, CC ] Multiple testing and ANOVA (p-hacking)
 ** 9. 07/12/23  [ +JMV+, AL, CC ] Scientific integrity
