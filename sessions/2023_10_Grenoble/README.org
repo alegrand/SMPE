@@ -111,7 +111,6 @@ Evaluation process:
   - Slide 33 (Experimenting with computers) from [[file:../../lectures/talk_22_12_15_M1_UGA.pdf][Reproducibility Crisis, Open Science,… and Computer Science]]
   - Slide 3-5 from [[file:../../lectures/talk_20_01_23_Nantes_RSD.pdf][Obtaining Faithful/Reproducible Measurements on Modern CPUs]]
 - Going beyond independant evaluations with the [[file:../../lectures/4_linear_model.pdf][linear model]]
-#  - Fit a linear model for the data in https://github.com/alegrand/M2R-ParallelQuicksort
 ** 6. 16/11/23  [        CC   ] Clearly defining the experiment and having the right tools to analyze it
 *** Slides and resources
 1. MOOC status report and feedback on exercises.
@@ -142,7 +141,9 @@ Evaluation process:
    the [[file:../../lectures/5_design_of_experiments.pdf][Design of Experiments]] lecture)
 *** Homeworks
 - [ ] Continue the hands-on, improve the experiment design and the analysis
-** 7. 23/11/23  [ +JMV+, AL, CC ] The linear model
+** 7. 23/11/23  [     AL      ] The linear model
+- Going beyond independant evaluations with the [[file:../../lectures/4_linear_model.pdf][linear model]]
+  - Fit a linear model for the data in https://github.com/alegrand/M2R-ParallelQuicksort
 ** 8. 30/11/23  [ JMV, AL, CC ] Multiple testing and ANOVA (p-hacking)
 ** 9. 07/12/23  [ +JMV+, AL, CC ] Scientific integrity
 ** 10. 14/12/23 [ JMV, AL, /CC/ ] A Bayesian perspective on regularization and model selection + Sequential DoE (screening, LHS, D-opt, ...)
