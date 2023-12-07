@@ -142,12 +142,54 @@ Evaluation process:
 *** Homeworks
 - [ ] Continue the hands-on, improve the experiment design and the analysis
 ** 7. 23/11/23  [     AL      ] The linear model
+*** Slides and resources
+- Computing independant CIs for the data in https://github.com/alegrand/M2R-ParallelQuicksort
 - Going beyond independant evaluations with the [[file:../../lectures/4_linear_model.pdf][linear model]]
+*** Homeworks
   - Fit a linear model for the data in https://github.com/alegrand/M2R-ParallelQuicksort
-** 8. 30/11/23  [ JMV, AL, CC ] Multiple testing and ANOVA (p-hacking)
-** 9. 07/12/23  [ +JMV+, AL, CC ] Scientific integrity
-** 10. 14/12/23 [ JMV, AL, /CC/ ] A Bayesian perspective on regularization and model selection + Sequential DoE (screening, LHS, D-opt, ...)
+** 8. 30/11/23  [     AL      ] Multiple testing and ANOVA (p-hacking)
+*** Slides and resources
+- Going beyond independant evaluations with the [[file:../../lectures/4_linear_model.pdf][linear model]], ANOVA for discrete variables and avoid multiple testing.
+- A few words on [[file:../../lectures/lecture_correlation_causation.pdf][correlation and causality]].
+*** Homeworks
+- Keep building intuition on linear model
+- Try to complete the peer-evaluation of the MOOC
+** 9. 07/12/23  [ JMV, AL     ] A Bayesian perspective on regularization and model selection + Sequential DoE (screening, LHS, D-opt, ...)
+*** Slides and resources
+- [[file:../../lectures/lecture_bayesian_statistics_introduction.pdf][Lecture on Bayesian Statistics]]
+   - A Bayesian coin with discrete alternatives
+   - MLE and credibility region, bias
+   - Importance of the Prior
+   - Extension to more complex models
+   - (Link with the logistic regression)
+   - Model selection (AIC, BIC)
+   - Bayesian linear regression and Regularization (Ridge, LASSO)
+#  - Connection with causal inference
+- Lecture on [[file:../../lectures/5_design_of_experiments.pdf][Design of Experiments]] (up to space-filling designs)
+*** Homeworks
+Two views on Open Science:
+- https://digitalscience.figshare.com/articles/report/The_State_of_Open_Data_2023/24428194
+- https://www.ouvrirlascience.fr/passport-for-open-science-a-practical-guide-for-phd-students/
+
+Read both documents for next week. Write down what you learnt (what
+appears useful, what is surprising, ...) and your opinion on potential
+biases in both documents.
+** 10. 14/12/23 [ JMV, AL, /CC/ ] Scientific integrity
+*** Slides and resources
+- [[file:../../lectures/lecture_scientific_integrity.pdf][Introduction to scientific integrity, deontology and ethics]]
+*** Homeworks
+- Play with the DoE Shiny Application (https://adaphetnodes.shinyapps.io/design_of_experiments/?abc1111)
 ** 11. 21/12/23 [ +JMV+, AL     ] Incremental DoE: A Bayesian perspective, Reinforcement Learning and Surrogates (Bandit, GP)
+*** Slides and resources
+- Introduction to [[file:../2020_10_Grenoble/bandits.pdf][online optimization and bandits problems]] (from
+  [[https://gitlab.inria.fr/gast/polaris_days_2019_slides][Nicolas Gast]]), in particular the exploration/exploitation
+  trade-off with UCB and Thompson sampling.
+- Introduction to more flexible models (Gaussian Process) and to a
+  similar approach (GP-UCB) in this context: [[https://hal.archives-ouvertes.fr/cel-01618068][Efficient Global Optimization through Gaussian Process Surrogates]].
+- Illustration with a recent practical application: https://hal.inria.fr/hal-03608579
+*** Homeworks
+- Play with the DoE Shiny Application (https://adaphetnodes.shinyapps.io/design_of_experiments/?abc1111)
+- Pick a topic and prepare a short presentation
 ** Winter vacations
 ** 12. 11/01/24 [ JMV, AL     ] Ethics (AI and humain, climate change, societal challenges)
 ** 25/01/24 Exam
