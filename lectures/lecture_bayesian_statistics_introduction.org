@@ -295,13 +295,13 @@ plot_likelihood_2d <- function(l3d,labels=data.frame(),
 #+latex: \centerline{\includegraphics[width=.8\linewidth]{images/bayesian/bayesian_coin.pdf}}
 The coin is tossed 8 times. The outcome is a _head 8 times in a row_.
 - What is the probability that the coin is the two-headed one ?\pause
-  $$p[Two-Headed] = \frac{256}{256+1} \approx 0.996$$
+  $$p[Two-Headed] = \frac{256}{1+256} \approx 0.996$$
 ** A first example (continued)
 Now let's put the two-headed one in a jar with *999* fair coins...
 #+latex: \centerline{\includegraphics[width=.8\linewidth]{images/bayesian/bayesian_coin.pdf}}
 The coin is tossed 8 times. The outcome is a _head 8 times in a row_.
 - What is the probability that the coin is the two-headed one ?\pause
-  $$p[Two-Headed] = \frac{256\times.001}{256\times0.001 + 1\times0.999} \approx 0.204$$
+  $$p[Two-Headed] = \frac{.001\times1}{\frac{1}{256}\times0.999 + 1\times.001} \approx 0.204$$
 ** Bayes Rule
 - Notation ::  
   - $p(A)$ = probability that \fbox{$A$} occurs
