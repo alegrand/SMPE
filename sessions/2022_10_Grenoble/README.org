@@ -190,7 +190,7 @@ Evaluation process:
 - Keep playing with the DoE Shiny Application
   (https://adaphetnodes.shinyapps.io/design_of_experiments/?abc1111
   but with your own id) to experiment with screening and LHS
-  designs or with Gaussian-Process based exporation.
+  designs or with Gaussian-Process based exploration.
 - Choose a topic for the lecture on Ethics. Prepare a short (1-page)
   summary with the context (addressed problem and solution 50%) and
   your opinion about the pros and cons of the proposed technology

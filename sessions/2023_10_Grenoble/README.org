@@ -178,8 +178,10 @@ biases in both documents.
 *** Slides and resources
 - [[file:../../lectures/lecture_scientific_integrity.pdf][Introduction to scientific integrity, deontology and ethics]]
 *** Homeworks
-- Play with the DoE Shiny Application (https://adaphetnodes.shinyapps.io/design_of_experiments/?abc1111)
-** 11. 21/12/23 [ +JMV+, AL     ] Incremental DoE: A Bayesian perspective, Reinforcement Learning and Surrogates (Bandit, GP)
+- Play with the DoE Shiny Application (https://arnaud-legrand.shinyapps.io/design_of_experiments/?user_a7710).
+  - All eleven variables are in [0,1]. The goal is to find the combination of variables where the output is the higher. This may require to identify which variables are significant, guessing a model for the system, etc.
+  - The website will record the combinations you try and you should write a small report on how you proceed. You'll find your login in front of your name in the [[https://codimd.math.cnrs.fr/Dai2ZzqzTwezOMZVIyMN-g?view#Registered-Students][pad]] and you should replace =user_a7710= by this login.
+** 11. 21/12/23 [ JMV, AL     ] Incremental DoE: A Bayesian perspective, Reinforcement Learning and Surrogates (Bandit, GP)
 *** Slides and resources
 - Introduction to [[file:../2020_10_Grenoble/bandits.pdf][online optimization and bandits problems]] (from
   [[https://gitlab.inria.fr/gast/polaris_days_2019_slides][Nicolas Gast]]), in particular the exploration/exploitation
@@ -188,7 +190,7 @@ biases in both documents.
   similar approach (GP-UCB) in this context: [[https://hal.archives-ouvertes.fr/cel-01618068][Efficient Global Optimization through Gaussian Process Surrogates]].
 - Illustration with a recent practical application: https://hal.inria.fr/hal-03608579
 *** Homeworks
-- Play with the DoE Shiny Application (https://adaphetnodes.shinyapps.io/design_of_experiments/?abc1111)
+- Keep playing with the DoE Shiny Application (https://arnaud-legrand.shinyapps.io/design_of_experiments/?user_a7710).
 - Pick a topic and prepare a short presentation
 ** Winter vacations
 ** 12. 11/01/24 [ JMV, AL     ] Ethics (AI and humain, climate change, societal challenges)
