@@ -185,6 +185,7 @@ biases in both documents.
 ** Winter vacations
 ** 11. 11/01/24 [ JMV, AL     ] Incremental DoE: A Bayesian perspective, Reinforcement Learning and Surrogates (Bandit, GP)
 *** Slides and resources
+- [[file:model_and_doe_overview.jpg][Overview of the modeling and DoE techniques we have seen]].
 - Introduction to [[file:../2020_10_Grenoble/bandits.pdf][online optimization and bandits problems]] (from
   [[https://gitlab.inria.fr/gast/polaris_days_2019_slides][Nicolas Gast]]), in particular the exploration/exploitation
   trade-off with UCB and Thompson sampling.
