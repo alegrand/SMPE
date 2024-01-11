@@ -18,7 +18,7 @@ N = 100000
 mean(runif(N, min = 0 , max = 2))
 mean(rexp(N, rate = 1))
 ```
-
+What if everyone of us makes 30 measurements and estimates the expectation through the sample mean?
 ```{r}
 library(dplyr)
 library(ggplot2)
