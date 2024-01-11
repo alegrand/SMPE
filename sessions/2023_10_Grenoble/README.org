@@ -196,7 +196,7 @@ biases in both documents.
 - Keep playing with the DoE Shiny Application (https://arnaud-legrand.shinyapps.io/design_of_experiments/?user_a7710).
 - Pick a topic and prepare a short presentation.
 ** 12. 18/01/24 [ JMV, AL     ] Ethics (AI and humain, climate change, societal challenges)
-** 25/01/24 Exam
+** 01/02/24 Exam
 * Hands-on
 In the 3rd module of the [[https://www.fun-mooc.fr/fr/cours/recherche-reproductible-principes-methodologiques-pour-une-science-transparente/][MOOC on Reproducible Research]], there is a
 peer-reviewed homework that will allow you to practically use
