@@ -207,6 +207,8 @@ Many different *terms* and *issues* depending on the *domain* \vspace{-1em}
 \end{center}
 #+END_EXPORT
 
+** Scientific Consensus
+#+latex: \hbox{\hspace{-.1\linewidth}\includegraphics[width=1.2\linewidth]{images/logo/open-review.png}\hspace{-.1\linewidth}}
 ** Global Reproducibility Networks
 #+begin_center
 \bf https://www.ukrn.org/global-networks/
