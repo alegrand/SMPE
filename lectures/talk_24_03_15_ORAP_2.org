@@ -207,7 +207,7 @@ my_code --cfg=magical_param:0.94572 '*.dat' --output foo.csv
   # \hfill /Bug fix? Reimplementing FFT and BLAS?/\hspace{1cm}
 - Impact of the compiler
   - \scriptsize Not even mentioning the lack of determinism\newline
-    stemming from MPI collective communication optimization \newline and
+    stemming from threads, MPI collective communication, \newline and
     non-commutative operations
 \vspace{-1.5cm}      
 ****                                                     :B_ignoreheading:
@@ -343,7 +343,7 @@ The slightest difference \textbf{may} have significant consequences\vspace{-2mm}
                &
      \hfill\vbox{\includegraphics[width=.75\linewidth]{images/rescueHPC_gal1.png}}\hfill\vspace{-2mm}\\\vspace{-4mm}\pause
     \small \centering Software environment problem\newline
-    \emph{(versions differ + permeability)}\newline
+    \emph{(permeability + versions differ)}\newline
   & \null\vspace{-2mm}\pause \small \emph{Numerical chaos} problem\newline
      Compiler optimization influence
   \end{tabular}
@@ -352,7 +352,7 @@ The slightest difference \textbf{may} have significant consequences\vspace{-2mm}
 
 \pause
 1. Controling your *environment* (isolation with containers)
-2. Controling your *dependencies* (reproducible recipe)
+2. Controling your *dependencies* (versions, reproducible recipe)
 
 It is not a good sign if your code is sensitive. You'll need:\vspace{-1mm}
 1. Perfect control\hspace{3em}      (debug)
@@ -464,6 +464,7 @@ It is not a good sign if your code is sensitive. You'll need:\vspace{-1mm}
   - *Double-blind* is a huge pain (data, code, machine access)
   - Evaluators may rely on ChameleonCloud
   - Reproduction = announced factor 10? similar ranking of algorithms?
+    - Some results require M CPU.hours and TB of data 
     - Verification = *can the code be rerun*, not obtain the same result
   - *40% of applying articles got the badges!*
   - Crazy evaluation workload!
@@ -476,19 +477,19 @@ It is not a good sign if your code is sensitive. You'll need:\vspace{-1mm}
   - *Non-anonymous reproducibility report* explaining what has \rlap{been achieved}
   - *Publication of (positive) reproducibility reports* as an appendix to the original article
   - *Work budget:* no more than 8 hours!
-    - double the committee, at least 2 evaluators par article and about 2 articles per evaluators
+    - \times2 more evaluators, >2 evaluators/article, \approx \rlap{2 articles/evaluator}
   #+latex: }\pause
 - Conclusion ::  
-  - /Reproduced result/ much harder to get
-  - More information available and evaluator recognition
-  - Still on voluntary basis
+  - /Reproduced result/ *much harder to get*
+  - More *information available* and *evaluator recognition*
+  - Still on *voluntary* basis
 \vspace{8cm}
 ** Thanks!
 
 Thanks a lot to:
 - Grigori Fursin
 - Michael A. Heroux
-- Guillaume Aupy
+- Guillaume Pallez
 ** References                                                     :noexport:
 https://collegeville.github.io/sc-reproducibility/
 https://www.osti.gov/servlets/purl/1525948
