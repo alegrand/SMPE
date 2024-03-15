@@ -489,7 +489,11 @@ Thanks a lot to:
 - Grigori Fursin
 - Michael A. Heroux
 - Guillaume Aupy
-
+** References                                                     :noexport:
+https://collegeville.github.io/sc-reproducibility/
+https://www.osti.gov/servlets/purl/1525948
+https://reproducibility.acm.org/
+https://github.com/alegrand/RR_webinars/blob/master/8_artifact_evaluation/presentation.pdf
 * RR network                                                       :noexport:
 ** Reproducibility Crisis
 #+latex: \begin{overlayarea}{\linewidth}{10cm}
