@@ -174,6 +174,15 @@
 
 * 
 #+latex: \let\section=\oldsection
+** Participants
+
+- Alexis Arnaud :: (UGA/GRICAD) coordinateur de la Cellule Data de
+  l’UGA, confidentialité des données
+- Ninon Burgos :: (CNRS/Institut du Cerveau/ARAMIS) IA pour aide à la décision médicale
+- Ambre Davat :: (GRESEC/ chaire éthique et IA)
+- Jean-Luc Parouty :: (CNRS/SIMaP) coordinateur de la formation FIDLE
+- Didier Schwab :: (UGA/LIG, GETALP) traitement automatisé des langues et de la parole
+
 ** Different Reproducibility Concerns in Modern Science
 # _Distinguish between:_
 # #+LaTeX: \begin{columns}\begin{column}[b]{.4\linewidth}
@@ -243,7 +252,7 @@ Many different *terms* and *issues* depending on the *domain*
   AI is now driving science $\frowny$ (e.g., astrophysics)
     # Not GPU-ready $\leadsto$ no more HPC $\leadsto$ revisit numerical methods\medskip
   \smallskip
-- Scientific Integrity :: ChatGPT's disruption
+- Scientific Integrity :: ChatGPT/LLM/ML4everything disruption
   - Scientific integrity, Bias, Opacity, \dots $\leadsto$ lost of trust
 
 * Emacs Setup                                                      :noexport:
