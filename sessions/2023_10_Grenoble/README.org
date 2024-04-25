@@ -174,14 +174,14 @@ Two views on Open Science:
 Read both documents for next week. Write down what you learnt (what
 appears useful, what is surprising, ...) and your opinion on potential
 biases in both documents.
-** 10. 14/12/23 [ JMV, AL, /CC/ ] Scientific integrity
+** 10. 14/12/23 [ JMV, AL     ] Scientific integrity
 *** Slides and resources
 - [[file:../../lectures/lecture_scientific_integrity.pdf][Introduction to scientific integrity, deontology and ethics]]
 *** Homeworks
 - Play with the DoE Shiny Application (https://arnaud-legrand.shinyapps.io/design_of_experiments/?user_a7710).
   - All eleven variables are in [0,1]. The goal is to find the combination of variables where the output is the higher. This may require to identify which variables are significant, guessing a model for the system, etc.
   - The website will record the combinations you try and you should write a small report on how you proceed. You'll find your login in front of your name in the [[https://codimd.math.cnrs.fr/Dai2ZzqzTwezOMZVIyMN-g?view#Registered-Students][pad]] and you should replace =user_a7710= by this login.
-** COVID....
+** +11.+ 21/12/23: COVID
 ** Winter vacations
 ** 11. 11/01/24 [ JMV, AL     ] Incremental DoE: A Bayesian perspective, Reinforcement Learning and Surrogates (Bandit, GP)
 *** Slides and resources
