@@ -19,9 +19,8 @@ Science in Informatics at Grenoble]] and more recently at [[http://www.ufrgs.br/
 University of Rio Grande do Sul]], at [[http://www.ens-lyon.fr][ENS Lyon]] and [[http://ens-rennes.fr][ENS Rennes]]. Most sessions I gave are listed [[file:sessions/][here]].
 
 #+begin_center
-*If you are a MOSIG student, the webpage for your session is [[file:sessions/2023_10_Grenoble/README.org][here]]*.
+*If you are a MOSIG student, the webpage for your session is [[file:sessions/2024_10_Grenoble/README.org][here]]*.
 #+end_center
-
 
 This website also gathers a list of keynotes I gave on reproducible
 research. The most recent ones are:
@@ -37,6 +36,7 @@ done
 #+end_src
 
 #+RESULTS:
+- [[file:lectures/talk_24_03_27_Journees_reseau_recherche_reproductible_table_ronde_IA.pdf][Journees_reseau_recherche_reproductible_table_ronde_IA (27/03/2024)]]
 - [[file:lectures/talk_24_03_15_ORAP_2.pdf][ORAP_2 (15/03/2024)]]
 - [[file:lectures/talk_24_03_15_ORAP_1.pdf][ORAP_1 (15/03/2024)]]
 - [[file:lectures/talk_24_02_07_RSD_School_Pleynet.pdf][RSD_School_Pleynet (07/02/2024)]]
@@ -45,7 +45,6 @@ done
 - [[file:lectures/talk_23_10_18_Bordeaux_Neurocampus.pdf][Bordeaux_Neurocampus (18/10/2023)]]
 - [[file:lectures/talk_23_10_10_Grenoble.pdf][Grenoble (10/10/2023)]]
 - [[file:lectures/talk_23_10_03_Inria_foresigth_optimization_learning_statistics.pdf][Inria_foresigth_optimization_learning_statistics (03/10/2023)]]
-- [[file:lectures/talk_23_09_08_MITI.pdf][MITI (08/09/2023)]]
 
 
 * Table of Contents                                                     :TOC:
