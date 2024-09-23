@@ -3,7 +3,7 @@
 #+DATE: October 2024
 #+STARTUP: overview indent
 
-*Teachers*: Céline Coutrix, Arnaud Legrand, and Jean-Marc Vincent
+*Teachers*: Céline Coutrix, Cyril Labbé, Arnaud Legrand, and Jean-Marc Vincent
 
 [[file:../2021_10_Grenoble/celine.png][file:../2021_10_Grenoble/celine.png]][[file:cyril.jpg][file:cyril.jpg]][[file:../2021_10_Grenoble/arnaud.png][file:../2021_10_Grenoble/arnaud.png]][[file:../2021_10_Grenoble/jean-marc.png][file:../2021_10_Grenoble/jean-marc.png]]
 
