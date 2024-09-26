@@ -2,7 +2,7 @@
 # -*- mode: org -*-
 #+Title:  Scientific Methodology and \newline (Empirical|Experimental) Evaluation
 #+Author: Arnaud Legrand\medskip\newline\logoInstitutions
-#+DATE:  \vspace{3cm}\JDEVlogo Master 2 MOSIG\newline 2023-2024 \newline\begin{overlayarea}{1.05\linewidth}{0cm}\vspace{-3.2cm}\hfill{\mylogo}\end{overlayarea}\vspace{-1.0cm}
+#+DATE:  \vspace{3cm}\JDEVlogo Master 2 MOSIG\newline 2024-2025 \newline\begin{overlayarea}{1.05\linewidth}{0cm}\vspace{-3.2cm}\hfill{\mylogo}\end{overlayarea}\vspace{-1.0cm}
 #+LANGUAGE: en
 #+STARTUP: beamer indent inlineimages logdrawer
 #+TAGS: noexport(n)
@@ -28,7 +28,7 @@
 #+LATEX_HEADER: %%%%%%%%% Begin of Beamer Layout %%%%%%%%%%%%%
 #+LATEX_HEADER: \ProcessOptionsBeamer
 #+LATEX_HEADER: \usetheme[numbering=fraction,titleformat=smallcaps,progressbar=frametitle]{metropolis}
-#+LATEX_HEADER: \usepackage{fontawesome}
+#+LATEX_HEADER: \usepackage{fontawesome5}
 #+LATEX_HEADER: \usecolortheme[named=BrickRed]{structure}
 #+LATEX_HEADER: %%%%%%%%% End of Beamer Layout %%%%%%%%%%%%%
 #+LATEX_HEADER: \usepackage{array}
@@ -152,6 +152,7 @@
 
 #+begin_center
 #+latex: \includegraphics[height=3cm]{../sessions/2021_10_Grenoble/celine.png}
+#+latex: \includegraphics[height=3cm]{../sessions/2024_10_Grenoble/cyril.jpg}
 #+latex: \includegraphics[height=3cm]{../sessions/2021_10_Grenoble/arnaud.png}
 #+latex: \includegraphics[height=3cm]{../sessions/2021_10_Grenoble/jean-marc.png}
 #+end_center
@@ -166,6 +167,7 @@
 - R
 - Notebooks (Rstudio, Jupyter, Org-Mode)
 - Git
+- Zenodo, Software Heritage
 - Docker
 - Confidence Interval
 - P-value, P-hacking
@@ -502,14 +504,13 @@ transparent science]], Learning Lab
 :PROPERTIES:
 :BEAMER_env: ignoreheading
 :END:
-Stay tuned for the *MOOC "Advanced RR"* planned for +2021+ +2022+ 2023
+The 2nd *MOOC "Advanced RR"* has been released in +2021+ 2024
   - \footnotesize Managing data
   - \footnotesize Software environment control
   - \footnotesize Scientific workflow
 \vspace{-.7cm}
 
 ** Homeworks 
-- [ ] Read Popper's text
 - [ ] Indicate your name on the Pad.
 - [ ] Register on the Mattermost.
 - [ ] Set up a *public* github or gitlab project for this lecture.
@@ -517,7 +518,7 @@ Stay tuned for the *MOOC "Advanced RR"* planned for +2021+ +2022+ 2023
 - [ ] Follow modules 1 + 2 of the MOOC with as much exercises as possible
 - [ ] Set up a computational document system (e.g., Rstudio or Jupyter)
 - [ ] Report the URL of your git project, your mattermost ID on the Pad.
-
+- [ ] Start learning R by reading my short /R crash course for computer scientists/
 
 * Emacs Setup                                                      :noexport:
 This document has local variables in its postembule, which should
