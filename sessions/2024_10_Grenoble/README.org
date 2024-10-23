@@ -130,6 +130,7 @@ Evaluation process:
 *** Slides and resources
 - Slides on [[file:../../lectures/lecture_data_management.pdf][Data management Tools]]
 - Slides on [[file:../2021_10_Grenoble/04_DMP.pdf][Data management Plans]]
+- [[https://miro.com/welcomeonboard/M3BNV2FMdmJQUDk3TER4OXFUS2FRQU9GbDlyZ0ZLVDVKUEIyNFVDMTd1b0xxbjlpVEp3Q0VhUTJnWBlVnJJSHwzMDc0NDU3MzQ5NzY1NjUzNzM0fDI=?share_link_id=772175753235][Miro board]] ([[https://click.account.miro.com/?qs=36f78e992de2d85c14074d38694873daaf1d05b813971097e412a420076558228e223533a69e956b78e51eba275f7bebe8fb0e5b65a13e948ff4d7ab1ab9320b][account-less]])
 - Slides on Git-Annex: [[https://learninglab.gitlabpages.inria.fr/mooc-rr/mooc-rr2-ressources/module1/seq4-git_annex/unit1-lecture/slides_1.pdf][(1)]]  [[https://learninglab.gitlabpages.inria.fr/mooc-rr/mooc-rr2-ressources/module1/seq4-git_annex/unit1-lecture/slides_2.pdf][(2)]]  [[https://learninglab.gitlabpages.inria.fr/mooc-rr/mooc-rr2-ressources/module1/seq4-git_annex/unit1-lecture/slides_3.pdf][(3)]]  [[https://learninglab.gitlabpages.inria.fr/mooc-rr/mooc-rr2-ressources/module1/seq4-git_annex/unit1-lecture/slides_4.pdf][(4)]]
 ** Fall Vacations
 ** 5. 7/11/23   [ JMV  (AL)        ] Probabilities, CI | Correlation, Causality
