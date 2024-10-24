@@ -128,9 +128,9 @@ Evaluation process:
 - Remind with the [[file:../../lectures/lecture_correlation_causation.pdf][Cholesterol case]] that removing and selecting data can be quite harmful and should always be carefully described and justified.
 - Check a subject for module 3 has been chosen.
 *** Slides and resources
-- Slides on [[file:../../lectures/lecture_data_management.pdf][Data management Tools]]
 - Slides on [[file:../2024_10_Grenoble/04_DMP.pdf][Data management Plans]]
 - [[https://miro.com/welcomeonboard/M3BNV2FMdmJQUDk3TER4OXFUS2FRQU9GbDlyZ0ZLVDVKUEIyNFVDMTd1b0xxbjlpVEp3Q0VhUTJnWnBlVnJJSHwzNDU4NzY0NjA0MzIzODczNjEyfDI=?share_link_id=315517523028][Miro board]]
+- Slides on [[file:../../lectures/lecture_data_management.pdf][Data management Tools]] (and [[https://github.com/cboettig/noise-phenomena][Carl Boettiger's awesome compendium]])
 *** Homeworks
 - [ ] Complete previous homeworks (Popper, Challenger, Checklist for Good Graphics)
 - [ ] Continue the hands-on by improving the experiment design and the analysis. Share your findings on the [[https://codimd.math.cnrs.fr/KuxyhmiYSbq3EewdRL993g#][Pad]] and/or on your public fork
