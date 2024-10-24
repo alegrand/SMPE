@@ -131,12 +131,12 @@ Evaluation process:
 - Slides on [[file:../../lectures/lecture_data_management.pdf][Data management Tools]]
 - Slides on [[file:../2024_10_Grenoble/04_DMP.pdf][Data management Plans]]
 - [[https://miro.com/welcomeonboard/M3BNV2FMdmJQUDk3TER4OXFUS2FRQU9GbDlyZ0ZLVDVKUEIyNFVDMTd1b0xxbjlpVEp3Q0VhUTJnWnBlVnJJSHwzNDU4NzY0NjA0MzIzODczNjEyfDI=?share_link_id=315517523028][Miro board]]
-*** *** Homeworks
+*** Homeworks
 - [ ] Complete previous homeworks (Popper, Challenger, Checklist for Good Graphics)
 - [ ] Continue the hands-on by improving the experiment design and the analysis. Share your findings on the [[https://codimd.math.cnrs.fr/KuxyhmiYSbq3EewdRL993g#][Pad]] and/or on your public fork
   of the project.
   - Eventually use what we have seen in today's lecture to improve the structure of you repos and of the quicksort/pointing repos
-I'm not adding more work (like doing the peer evaluation of module 3, or writing a DMP for the quicksort/pointing project) but please complete the previous homeworks.
+I'm not adding more work (like doing the peer evaluation of module 3, or writing a DMP for the quicksort/pointing project) but please complete the previous homeworks. 
 ** Fall Vacations
 ** 5. 7/11/23   [ JMV  (AL)        ] Probabilities, CI | Correlation, Causality
 *** Slides and resources
