@@ -58,7 +58,7 @@ Evaluation process:
   - Continuous assessment: 1/2
 
 * Course Tentative Schedule
-** 1. 26/09/22  [   AL       ] Presentation of the lecture | Processing data with the Tidyverse, beautiful viz with ggplot
+** 1. 26/09/24  [   AL       ] Presentation of the lecture | Processing data with the Tidyverse, beautiful viz with ggplot
 *** Slides
 - [[file:../../lectures/lecture_SMPE_overview.pdf][Overview of the lecture]]
 - Demo of =dplyr= and =ggplot= (update of the  [[https://htmlpreview.github.io/?https://github.com/alegrand/SMPE/blob/master/sessions/2022_10_Grenoble/R_crash_course.html][R crash course for computer scientists]]). You may want to look at these [[file:../../lectures/lecture_R_crash_course.pdf][slides]].
@@ -73,7 +73,7 @@ Evaluation process:
 - [ ] Set up a computational document system (e.g., [[#rstudio][Rstudio]] or [[#jupyter][Jupyter]] on your laptop or through the [[https://jupyterhub.u-ga.fr/][UGA JupyterHub]]).
 - [ ] Report the URL of your git project, your mattermost ID on the [[https://codimd.math.cnrs.fr/KuxyhmiYSbq3EewdRL993g#][Pad]].
 - [ ] Start learning R by reading this [[https://htmlpreview.github.io/?https://github.com/alegrand/SMPE/blob/master/sessions/2022_10_Grenoble/R_crash_course.html][R crash course for computer scientists]] ([[file:../2022_10_Grenoble/R_crash_course.Rmd][Rmd sources]]).
-** 2. 03/10/23  [  JMV       ] Introduction to the scientific method and computer science epistemology | Publications | Visualization and Exploratory Data Analysis
+** 2. 03/10/24  [  JMV       ] Introduction to the scientific method and computer science epistemology | Publications | Visualization and Exploratory Data Analysis
 *** Slides and resources
 - [[file:02_lecture_JMV_what-is-science.pdf][Lecture: What is Science?]]
   - [[https://undsci.berkeley.edu/understanding-science-101/][Understanding Science (101 at Berkeley)]]
@@ -91,7 +91,7 @@ Evaluation process:
  - [ ] Report this work for at least 3 figures on you github/gitlab project.
  - [ ] MOOC: Complete exercise 5 of module 2 (/Challenger/). Write a short text explaining what is good and wrong about this document (you may want to provide an updated version of the notebook) and upload on your github/gitlab space.
 ** 10/10/23: No lecture
-** 3. 17/10/23  [ AL  CC    ] Clearly defining the experiment and having the right tools to analyze it
+** 3. 17/10/24  [ AL  CC    ] Clearly defining the experiment and having the right tools to analyze it
 *** Slides and resources
 1. MOOC status report and feedback on exercises.
 2. 2. Hands on in group on one of the following example:
@@ -121,7 +121,7 @@ Evaluation process:
 *** Homeworks
 - [ ] Complete previous homeworks (Popper, Challenger, Checklist for Good Graphics)
 - [ ] Continue the hands-on by improving the experiment design and the analysis. Share your findings on the [[https://codimd.math.cnrs.fr/KuxyhmiYSbq3EewdRL993g#][Pad]] and/or on your public fork of the project.
-** 4. 24/10/23  [ AL  CC    ] Follow-up experiments | Data management tips (Data Tools)
+** 4. 24/10/24  [ AL  CC    ] Follow-up experiments | Data management tips (Data Tools)
 *** Feedback
 - Challenger.
 - File organization: how do you feel ? :)
@@ -138,7 +138,7 @@ Evaluation process:
   - Eventually use what we have seen in today's lecture to improve the structure of you repos and of the quicksort/pointing repos
 I'm not adding more work (like doing the peer evaluation of module 3, or writing a DMP for the quicksort/pointing project) but please complete the previous homeworks. 
 ** Fall Vacations
-** 5. 7/11/23   [ JMV  (AL)        ] Probabilities, CI | Correlation, Causality
+** 5. 7/11/24   [ JMV  (AL)        ] Probabilities, CI | Correlation, Causality
 *** Slides and resources
 - A few words on [[file:../../lectures/lecture_correlation_causation.pdf][correlation and causality]].
 - [[file:../2021_10_Grenoble/02_whyvisu.pdf][Slides: Why do we need to visualize data: The Anscombe's Quartet]] and as a bonus: [[https://www.autodesk.com/research/publications/same-stats-different-graphs][The Datasaurus]]. :)
@@ -146,7 +146,7 @@ I'm not adding more work (like doing the peer evaluation of module 3, or writing
 - Slides: From descriptive statistics to [[file:../../lectures/3_introduction_to_statistics.pdf][estimation]]
 *** Homeworks
   - Compute confidence intervals for the data in https://github.com/alegrand/M2R-ParallelQuicksort
-** 6. 14/11/23  [ JMV, AL,    CL   ] The linear model | Scientific Integrity 1
+** 6. 14/11/24  [ JMV, AL,    CL   ] The linear model | Scientific Integrity 1
 *** Slides and resources
 - Computing independant CIs for the data in https://github.com/alegrand/M2R-ParallelQuicksort
 - Going beyond independant evaluations with the [[file:../../lectures/4_linear_model.pdf][linear model]]
@@ -156,19 +156,19 @@ I'm not adding more work (like doing the peer evaluation of module 3, or writing
   # - Lecture de papier pour trouver des trucs bizarres, rétractation, duplication de données, trafication de données pour pouvoir publier ou même avoir un visa. Réaction à avoir.
 *** Homeworks
 - Fit a linear model for the data in https://github.com/alegrand/M2R-ParallelQuicksort
-** 7. 21/11/23  [ (JMV) AL (CC)    ] The linear model
+** 7. 21/11/24  [ (JMV) AL (CC)    ] The linear model
 *** Slides and resources
 - Fitting a linear model for the data in https://github.com/alegrand/M2R-ParallelQuicksort
 - Going beyond independant evaluations with the [[file:../../lectures/4_linear_model.pdf][linear model]]
 *** Homeworks
 - Keep building intuition on linear model
 - Try to complete the peer-evaluation of the MOOC
-** 8. 28/11/23  [ JMV, AL  (CC) CL ] Multiple testing and ANOVA (p-hacking) | Scientific Integrity 2
+** 8. 28/11/24  [ JMV, AL  (CC) CL ] Multiple testing and ANOVA (p-hacking) | Scientific Integrity 2
 *** Slides and resources
 - Going beyond independant evaluations with the [[file:../../lectures/4_linear_model.pdf][linear model]]
 - [[file:../../lectures/lecture_scientific_integrity.pdf][Introduction to scientific integrity, deontology and ethics]]
 *** Homeworks
-** 9. 05/12/23  [ (JMV) AL         ] A Bayesian perspective on regularization and model selection + Sequential DoE (screening, LHS, D-opt, ...)
+** 9. 05/12/24  [ (JMV) AL         ] A Bayesian perspective on regularization and model selection + Sequential DoE (screening, LHS, D-opt, ...)
 *** Slides and resources
 - [[file:../../lectures/lecture_bayesian_statistics_introduction.pdf][Lecture on Bayesian Statistics]]
    - A Bayesian coin with discrete alternatives
@@ -182,7 +182,7 @@ I'm not adding more work (like doing the peer evaluation of module 3, or writing
 - Lecture on [[file:../../lectures/5_design_of_experiments.pdf][Design of Experiments]] (up to space-filling designs)
 *** Homeworks
 
-** 10. 12/12/23 [ (JMV) AL   CL    ] Sequential DoE | Scientific integrity 3
+** 10. 12/12/24 [ (JMV) AL   CL    ] Sequential DoE | Scientific integrity 3
 *** Slides and resources
 - Lecture on [[file:../../lectures/5_design_of_experiments.pdf][Design of Experiments]] (up to space-filling designs)
 - [[file:../../lectures/lecture_scientific_integrity.pdf][Introduction to scientific integrity, deontology and ethics]]
@@ -190,7 +190,7 @@ I'm not adding more work (like doing the peer evaluation of module 3, or writing
 - Play with the DoE Shiny Application (https://arnaud-legrand.shinyapps.io/design_of_experiments/?user_a7710).
   - All eleven variables are in [0,1]. The goal is to find the combination of variables where the output is the higher. This may require to identify which variables are significant, guessing a model for the system, etc.
   - The website will record the combinations you try and you should write a small report on how you proceed. You'll find your login in front of your name in the [[https://codimd.math.cnrs.fr/KuxyhmiYSbq3EewdRL993g##Registered-Students][pad]] and you should replace =user_a7710= by this login.
-** 11. 19/12/23: [ JMV        (CL) ] Ethics 101 | Incremental DoE: A Bayesian perspective, Reinforcement Learning and Surrogates (Bandit, GP)
+** 11. 19/12/24: [ JMV        (CL) ] Ethics 101 | Incremental DoE: A Bayesian perspective, Reinforcement Learning and Surrogates (Bandit, GP)
 *** Slides and resources
 - [[file:../../lectures/lecture_scientific_integrity.pdf][Introduction to scientific integrity, deontology and ethics]]
 - [[file:model_and_doe_overview.jpg][Overview of the modeling and DoE techniques we have seen]].
@@ -201,8 +201,8 @@ I'm not adding more work (like doing the peer evaluation of module 3, or writing
   similar approach (GP-UCB) in this context: [[https://hal.archives-ouvertes.fr/cel-01618068][Efficient Global Optimization through Gaussian Process Surrogates]].
 *** Homeworks
 ** Winter vacations
-** 12. 09/01/24 [ JMV, AL, CC?, CL ] Ethics (AI and humain, climate change, societal challenges)
-** 01/02/24 Exam ??
+** 12. 09/01/25 [ JMV, AL, CC?, CL ] Ethics (AI and humain, climate change, societal challenges)
+** 01/02/25 Exam ??
 
 * Hands-on
 In the 3rd module of the [[https://www.fun-mooc.fr/fr/cours/recherche-reproductible-principes-methodologiques-pour-une-science-transparente/][MOOC on Reproducible Research]], there is a
