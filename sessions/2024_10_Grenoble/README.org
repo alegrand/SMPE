@@ -150,12 +150,16 @@ I'm not adding more work (like doing the peer evaluation of module 3, or writing
 *** Slides and resources
 - Computing independant CIs for the data in https://github.com/alegrand/M2R-ParallelQuicksort
 - Going beyond independant evaluations with the [[file:../../lectures/4_linear_model.pdf][linear model]]
-- [[file:../../lectures/lecture_scientific_integrity.pdf][Introduction to scientific integrity, deontology and ethics]]
+- [[file:06_Scientific_Publications.pdf][Introduction to the publication system]]
+  # [[file:../../lectures/lecture_scientific_integrity.pdf][Introduction to scientific integrity, deontology and ethics]]
   # - Fonctions/structures/rôles de la Publication, Citation \to bibliométrie
   # - Où trouver l'info, Archives ouvertes, open access
   # - Lecture de papier pour trouver des trucs bizarres, rétractation, duplication de données, trafication de données pour pouvoir publier ou même avoir un visa. Réaction à avoir.
 *** Homeworks
 - Fit a linear model for the data in https://github.com/alegrand/M2R-ParallelQuicksort
+- (For the 28th of November) Read the articles provided [[https://cloud.univ-grenoble-alpes.fr/s/3Ro6LpMbP6fckFH][here]] (about 5
+  min for each paper) and (1) explain how and why citations are used
+  and (2) qualify the journal in a few words.
 ** 7. 21/11/24  [ (JMV) AL (CC)    ] The linear model
 *** Slides and resources
 - Fitting a linear model for the data in https://github.com/alegrand/M2R-ParallelQuicksort
