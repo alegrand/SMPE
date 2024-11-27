@@ -138,7 +138,7 @@ Evaluation process:
   - Eventually use what we have seen in today's lecture to improve the structure of you repos and of the quicksort/pointing repos
 I'm not adding more work (like doing the peer evaluation of module 3, or writing a DMP for the quicksort/pointing project) but please complete the previous homeworks. 
 ** Fall Vacations
-** 5. 7/11/24   [ JMV  (AL)        ] Probabilities, CI | Correlation, Causality
+** 5. 7/11/24   [ AL        ] Probabilities, CI | Correlation, Causality
 *** Slides and resources
 - A few words on [[file:../../lectures/lecture_correlation_causation.pdf][correlation and causality]].
 - [[file:../2021_10_Grenoble/02_whyvisu.pdf][Slides: Why do we need to visualize data: The Anscombe's Quartet]] and as a bonus: [[https://www.autodesk.com/research/publications/same-stats-different-graphs][The Datasaurus]]. :)
@@ -146,7 +146,7 @@ I'm not adding more work (like doing the peer evaluation of module 3, or writing
 - Slides: From descriptive statistics to [[file:../../lectures/3_introduction_to_statistics.pdf][estimation]]
 *** Homeworks
   - Compute confidence intervals for the data in https://github.com/alegrand/M2R-ParallelQuicksort
-** 6. 14/11/24  [ JMV, AL,    CL   ] The linear model | Scientific Integrity 1
+** 6. 14/11/24  [ JMV, CL   ] The linear model | Scientific Integrity 1
 *** Slides and resources
 - Computing independant CIs for the data in https://github.com/alegrand/M2R-ParallelQuicksort
 - Going beyond independant evaluations with the [[file:../../lectures/4_linear_model.pdf][linear model]]
@@ -160,10 +160,12 @@ I'm not adding more work (like doing the peer evaluation of module 3, or writing
 - (For the 28th of November) Read the articles provided [[https://cloud.univ-grenoble-alpes.fr/s/3Ro6LpMbP6fckFH][here]] (about 5
   min for each paper) and (1) explain how and why citations are used
   and (2) qualify the journal in a few words.
-** 7. 21/11/24  [ (JMV) AL (CC)    ] The linear model
+** 7. 21/11/24  [ AL        ] The linear model
 *** Slides and resources
 - Fitting a linear model for the data in https://github.com/alegrand/M2R-ParallelQuicksort
 - Going beyond independant evaluations with the [[file:../../lectures/4_linear_model.pdf][linear model]]
+- Feedback on the Challenger case study
+- Beginning of the lecture on [[file:../../lectures/5_design_of_experiments.pdf][Design of Experiments]]
 *** Homeworks
 - Keep building intuition on linear model
 - Try to complete the peer-evaluation of the MOOC
@@ -171,6 +173,7 @@ I'm not adding more work (like doing the peer evaluation of module 3, or writing
 *** Slides and resources
 - Going beyond independant evaluations with the [[file:../../lectures/4_linear_model.pdf][linear model]]
 - [[file:../../lectures/lecture_scientific_integrity.pdf][Introduction to scientific integrity, deontology and ethics]]
+  
 *** Homeworks
 ** 9. 05/12/24  [ (JMV) AL         ] A Bayesian perspective on regularization and model selection + Sequential DoE (screening, LHS, D-opt, ...)
 *** Slides and resources
