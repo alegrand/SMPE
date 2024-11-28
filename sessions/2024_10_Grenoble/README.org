@@ -169,7 +169,7 @@ I'm not adding more work (like doing the peer evaluation of module 3, or writing
 *** Homeworks
 - Keep building intuition on linear model
 - Try to complete the peer-evaluation of the MOOC
-** 8. 28/11/24  [ JMV, AL  (CC) CL ] Multiple testing and ANOVA (p-hacking) | Scientific Integrity 2
+** 8. 28/11/24  [ AL,  CL   ] Multiple testing and ANOVA (p-hacking) | Scientific Integrity 2
 *** Slides and resources
 - Continuing the lecture on [[file:../../lectures/5_design_of_experiments.pdf][Design of Experiments]] (factorial, screening, space-filling)
 - [[file:../../lectures/lecture_scientific_integrity.pdf][Introduction to scientific integrity, deontology and ethics]]
