@@ -160,7 +160,7 @@ I'm not adding more work (like doing the peer evaluation of module 3, or writing
 - (For the 28th of November) Read the articles provided [[https://cloud.univ-grenoble-alpes.fr/s/3Ro6LpMbP6fckFH][here]] (about 5
   min for each paper) and (1) explain how and why citations are used
   and (2) qualify the journal in a few words.
-** 7. 21/11/24  [ AL        ] The linear model
+** 7. 21/11/24  [ AL        ] The linear model, Multiple testing and ANOVA (p-hacking), and a bit of DoE
 *** Slides and resources
 - Fitting a linear model for the data in https://github.com/alegrand/M2R-ParallelQuicksort
 - Going beyond independant evaluations with the [[file:../../lectures/4_linear_model.pdf][linear model]]
@@ -169,11 +169,14 @@ I'm not adding more work (like doing the peer evaluation of module 3, or writing
 *** Homeworks
 - Keep building intuition on linear model
 - Try to complete the peer-evaluation of the MOOC
-** 8. 28/11/24  [ AL,  CL   ] Multiple testing and ANOVA (p-hacking) | Scientific Integrity 2
+** 8. 28/11/24  [ AL,  CL   ] DoE | Scientific Integrity 2
 *** Slides and resources
 - Continuing the lecture on [[file:../../lectures/5_design_of_experiments.pdf][Design of Experiments]] (factorial, screening, space-filling)
-- [[file:../../lectures/lecture_scientific_integrity.pdf][Introduction to scientific integrity, deontology and ethics]]
+- [[file:06_Scientific_Publications.pdf][Introduction to the publication system]]
 *** Homeworks
+- Keep building intuition on linear model
+- Mature the DoE techniques we have seen
+- Try to complete the peer-evaluation of the MOOC
 ** 9. 05/12/24  [ (JMV) AL         ] A Bayesian perspective on regularization and model selection + Sequential DoE (space-filling, D-opt, ...)
 *** Slides and resources
 - [[file:../../lectures/lecture_bayesian_statistics_introduction.pdf][Lecture on Bayesian Statistics]]
