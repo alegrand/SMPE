@@ -177,18 +177,18 @@ I'm not adding more work (like doing the peer evaluation of module 3, or writing
 - Keep building intuition on linear model
 - Mature the DoE techniques we have seen
 - Try to complete the peer-evaluation of the MOOC
-** 9. 05/12/24  [ (JMV) AL         ] A Bayesian perspective on regularization and model selection + Sequential DoE (space-filling, D-opt, ...)
+** 9. 05/12/24  [ AL         ] A Bayesian perspective on regularization and model selection + Sequential DoE (space-filling, D-opt, ...)
 *** Slides and resources
+- Lecture on [[file:../../lectures/5_design_of_experiments.pdf][Design of Experiments]]
 - [[file:../../lectures/lecture_bayesian_statistics_introduction.pdf][Lecture on Bayesian Statistics]]
-   - A Bayesian coin with discrete alternatives
-   - MLE and credibility region, bias
-   - Importance of the Prior
-   - Extension to more complex models
-   - (Link with the logistic regression)
-   - Model selection (AIC, BIC)
-   - Bayesian linear regression and Regularization (Ridge, LASSO)
+  - A Bayesian coin with discrete alternatives
+  - MLE and credibility region, bias
+  - Importance of the Prior
+  - Extension to more complex models
+  - (Link with the logistic regression)
+  - Model selection (AIC, BIC)
+  - Bayesian linear regression and Regularization (Ridge, LASSO)
   #  - Connection with causal inference
-- Lecture on [[file:../../lectures/5_design_of_experiments.pdf][Design of Experiments]] (up to space-filling designs)
 *** Homeworks
 
 ** 10. 12/12/24 [ (JMV) AL   CL    ] Sequential DoE | Scientific integrity 3
@@ -211,7 +211,7 @@ I'm not adding more work (like doing the peer evaluation of module 3, or writing
 *** Homeworks
 ** Winter vacations
 ** 12. 09/01/25 [ JMV, AL, CC?, CL ] Ethics (AI and humain, climate change, societal challenges)
-** 01/02/25 Exam ??
+** 27/01/25: Exam
 
 * Hands-on
 In the 3rd module of the [[https://www.fun-mooc.fr/fr/cours/recherche-reproductible-principes-methodologiques-pour-une-science-transparente/][MOOC on Reproducible Research]], there is a
