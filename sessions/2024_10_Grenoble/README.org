@@ -179,35 +179,36 @@ I'm not adding more work (like doing the peer evaluation of module 3, or writing
 - Try to complete the peer-evaluation of the MOOC
 ** 9. 05/12/24  [ AL         ] A Bayesian perspective on regularization and model selection + Sequential DoE (space-filling, D-opt, ...)
 *** Slides and resources
-- Lecture on [[file:../../lectures/5_design_of_experiments.pdf][Design of Experiments]]
-- [[file:../../lectures/lecture_bayesian_statistics_introduction.pdf][Lecture on Bayesian Statistics]]
+- End of the lecture on [[file:../../lectures/5_design_of_experiments.pdf][Design of Experiments]]
+- Most part of the [[file:../../lectures/lecture_bayesian_statistics_introduction.pdf][Lecture on Bayesian Statistics]]
   - A Bayesian coin with discrete alternatives
   - MLE and credibility region, bias
   - Importance of the Prior
   - Extension to more complex models
   - (Link with the logistic regression)
-  - Model selection (AIC, BIC)
-  - Bayesian linear regression and Regularization (Ridge, LASSO)
+  - +Model selection (AIC, BIC)+
+  - +Bayesian linear regression and Regularization (Ridge, LASSO)+
   #  - Connection with causal inference
 *** Homeworks
-
-** 10. 12/12/24 [ (JMV) AL   CL    ] Sequential DoE | Scientific integrity 3
+- Read all we've seen, try to get some perspective, make sure to make
+  all the connexions and ask me questions.
+- Move on with the Peer Evaluated exercise of the MOOC
+** 10. 12/12/24 [ (JMV) AL   CL    ] Incremental DoE | Scientific integrity 3
 *** Slides and resources
-- Lecture on [[file:../../lectures/5_design_of_experiments.pdf][Design of Experiments]] (up to space-filling designs)
-- [[file:../../lectures/lecture_scientific_integrity.pdf][Introduction to scientific integrity, deontology and ethics]]
-*** Homeworks
-- Play with the DoE Shiny Application (https://arnaud-legrand.shinyapps.io/design_of_experiments/?user_a7710).
-  - All eleven variables are in [0,1]. The goal is to find the combination of variables where the output is the higher. This may require to identify which variables are significant, guessing a model for the system, etc.
-  - The website will record the combinations you try and you should write a small report on how you proceed. You'll find your login in front of your name in the [[https://codimd.math.cnrs.fr/KuxyhmiYSbq3EewdRL993g##Registered-Students][pad]] and you should replace =user_a7710= by this login.
-** 11. 19/12/24: [ JMV        (CL) ] Ethics 101 | Incremental DoE: A Bayesian perspective, Reinforcement Learning and Surrogates (Bandit, GP)
-*** Slides and resources
-- [[file:../../lectures/lecture_scientific_integrity.pdf][Introduction to scientific integrity, deontology and ethics]]
-- [[file:model_and_doe_overview.jpg][Overview of the modeling and DoE techniques we have seen]].
+- End of the [[file:../../lectures/lecture_bayesian_statistics_introduction.pdf][Lecture on Bayesian Statistics]]
+  - Model selection (AIC, BIC)
+  - Bayesian linear regression and Regularization (Ridge, LASSO)
 - Introduction to [[file:../2020_10_Grenoble/bandits.pdf][online optimization and bandits problems]] (from
   [[https://gitlab.inria.fr/gast/polaris_days_2019_slides][Nicolas Gast]]), in particular the exploration/exploitation
   trade-off with UCB and Thompson sampling.
-- Introduction to more flexible models (Gaussian Process) and to a
-  similar approach (GP-UCB) in this context: [[https://hal.archives-ouvertes.fr/cel-01618068][Efficient Global Optimization through Gaussian Process Surrogates]].
+- If time allows but that's unlikely, introduction to more flexible
+  models (Gaussian Process) and to a similar approach (GP-UCB) in this
+  context: [[https://hal.archives-ouvertes.fr/cel-01618068][Efficient Global Optimization through Gaussian Process
+  Surrogates]].
+*** Homeworks
+
+** 11. 19/12/24: [ JMV        (CL) ] Ethics 101 
+*** Slides and resources
 *** Homeworks
 ** Winter vacations
 ** 12. 09/01/25 [ JMV, AL, CC?, CL ] Ethics (AI and humain, climate change, societal challenges)
