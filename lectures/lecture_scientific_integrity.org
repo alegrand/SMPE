@@ -2,7 +2,7 @@
 # -*- mode: org -*-
 #+Title:  Ethics, Scientific Integrity, and Deontology
 #+Author: Arnaud Legrand\medskip\newline\logoInstitutions
-#+DATE:  \vspace{3cm}\JDEVlogo Master 2 MOSIG\newline January 2022\newline\begin{overlayarea}{1.05\linewidth}{0cm}\vspace{-3.2cm}\hfill{\mylogo}\end{overlayarea}\vspace{-1.0cm}
+#+DATE:  \vspace{3cm}\JDEVlogo Master 2 MOSIG\newline December 2024\newline\begin{overlayarea}{1.05\linewidth}{0cm}\vspace{-3.2cm}\hfill{\mylogo}\end{overlayarea}\vspace{-1.0cm}
 #+LANGUAGE: en
 #+STARTUP: beamer indent inlineimages logdrawer
 #+TAGS: noexport(n)
@@ -354,21 +354,67 @@ This whole part is stolen from *Carole Peyrin*'s presentation:
   - [[https://cacm.acm.org/magazines/2016/7/204018-big-data-analytics-and-revision-of-the-common-rule/fulltext][Big Data Analytics and revision of the commun rule]]
 
 All this is mostly related the risk for *human subjects*
+** Do Artifacts have Politics (Langon Winer)
+\small\vspace{.3em}
+***                                                                 :BMCOL:
+:PROPERTIES:
+:BEAMER_col: .7
+:END:
+\small *UC Davis, 1945*: Plant breeder Jack Hanna and engineer Coby Lorenzen,
+team up to invent a machine that could mechanically harvest tomatoes,
+no one thought they could do it.
+
+- When they started, it was cheap and efficient to pay (Mexican) farm
+  laborers
+- Huge 50,000$ machines but reduction by 5-7$ per ton compared to
+  hand-harvesting
+***                                                                 :BMCOL:
+:PROPERTIES:
+:BEAMER_col: .3
+:END:
+\small
+#+latex: \includegraphics[width=\linewidth]{images/tomato-harvester.jpg}
+[[https://www.youtube.com/watch?v=l4Dc6QNWiIs][https://www.youtube.com/watch?v=l4Dc6QNWiIs]]
+
+***                                                       :B_ignoreheading:
+:PROPERTIES:
+:BEAMER_env: ignoreheading
+:END:
+\vspace{-.3em}
+
+*Consequences*: substential increase in tons of tomatoes but\vspace{-1em}
+- Required "hard" tomatoes (de-stemmed tomato hybrid "vf-145")
+- Lead to economic concentration (no more small farms, from 4,000
+  growers in 1960 to 600 in 1973)
+- Supression of 2/3 of the jobs in the tomato industry over \rlap{30 years}
+
+*1979-1989*: Law suits against UC Davis arguing that tax money is spent
+on projects favoring a handful of private interests to the detriment
+of small farmers, consumers, etc. University denied arguing
+/it would require elimination of all research with any potential practical 
+application./
 ** What about /consequences/ of Science on Society ?
-Is this research/technology worth developing ? 
+\small
+Technologies have political consequences that transcend the simple
+categories of "intended" and "unintended".
+
+Is this research/technology worth developing ? \vspace{-.4em}
 - Nuclear power, genetic engineering and GMOs, animal testing, spaceships, ...
 
-In computer science:
+In computer science:\vspace{-.4em}
 - Social Networks and recommendation systems
 - Facial/voice recognition
 - 5G/6G, autonomous cars, ...
 - Recent AI developments
   - DALL-E (OpenAI), StableDiffusion, [[https://the-decoder.com/ai-artwork-wins-art-competition-and-artists-are-upset/][MidJourney]] (08/22)
-  - 11/22 [[https://ai.facebook.com/blog/cicero-ai-negotiates-persuades-and-cooperates-with-people/][Cicero]] (Meta)
-  - 11/22: ChatGPT 
+  - 11/22 [[https://ai.facebook.com/blog/cicero-ai-negotiates-persuades-and-cooperates-with-people/][Cicero]] (Meta) and ChatGPT 
 
-This is cool and exciting, but can /scientific curiosity/ justify any
+This is cool and exciting, but can *scientific curiosity* justify any
 research?
+
+Let's keep in mind that it is common that a technological deck has
+been stacked long in advance to favor certain social interests, and
+that some people were bound to receive a better hand than others.
 * Scientific Integrity (Data)
 ** Scientific Misconduct
 From [[https://en.wikipedia.org/wiki/Scientific_misconduct][https://en.wikipedia.org/wiki/Scientific_misconduct]]
