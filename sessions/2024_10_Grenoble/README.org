@@ -198,18 +198,28 @@ I'm not adding more work (like doing the peer evaluation of module 3, or writing
 - End of the [[file:../../lectures/lecture_bayesian_statistics_introduction.pdf][Lecture on Bayesian Statistics]]
   - Model selection (AIC, BIC)
   - Bayesian linear regression and Regularization (Ridge, LASSO)
-- Introduction to [[file:../2020_10_Grenoble/bandits.pdf][online optimization and bandits problems]] (from
-  [[https://gitlab.inria.fr/gast/polaris_days_2019_slides][Nicolas Gast]]), in particular the exploration/exploitation
-  trade-off with UCB and Thompson sampling.
-- If time allows but that's unlikely, introduction to more flexible
-  models (Gaussian Process) and to a similar approach (GP-UCB) in this
-  context: [[https://hal.archives-ouvertes.fr/cel-01618068][Efficient Global Optimization through Gaussian Process
-  Surrogates]].
+- Started discussing the context of [[file:../2020_10_Grenoble/bandits.pdf][online optimization and bandits problems]] (from
+  [[https://gitlab.inria.fr/gast/polaris_days_2019_slides][Nicolas Gast]]).
 *** Homeworks
-
+- MOOC Peer evaluated exercise.
+- Think about a possible strategy for the bandit problem
 ** 11. 19/12/24: [ JMV        (CL) ] Ethics 101 
 *** Slides and resources
+- [[file:11_chatbot.pdf][Slides on Lovots and chatbots]]
+- [[file:../../lectures/lecture_scientific_integrity.pdf][Introduction to scientific integrity, deontology and ethics]]
 *** Homeworks
+You'll find is a random student/topic assignment on the bottom of the
+[[https://codimd.math.cnrs.fr/KuxyhmiYSbq3EewdRL993g#][Pad]] (you may trade a topic with someone else if you’re really
+uncomfortable with the one you’ve been assigned; you may even pick an
+other topic if you can’t trade yours but I’d like everyone to work on
+different topics as much as posible). I have only quickly read through
+most of these these documents so do not expect extraordinay
+content. Prepare a short presentation with the pros and cons of each
+technology. You will present (1) the problems it tries to address, (2)
+to what extent it does, (3) whether it unlocked other
+usages/problems. (4) Indicate in which of the 4th scenarios of the
+ADEME (https://transitions2050.ademe.fr/en) this technology is rooted.
+
 ** Winter vacations
 ** 12. 09/01/25 [ JMV, AL, CC?, CL ] Ethics (AI and humain, climate change, societal challenges)
 ** 27/01/25: Exam
