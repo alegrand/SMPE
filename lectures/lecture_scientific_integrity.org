@@ -354,39 +354,43 @@ This whole part is stolen from *Carole Peyrin*'s presentation:
   - [[https://cacm.acm.org/magazines/2016/7/204018-big-data-analytics-and-revision-of-the-common-rule/fulltext][Big Data Analytics and revision of the commun rule]]
 
 All this is mostly related the risk for *human subjects*
-** Do Artifacts have Politics (Langon Winer)
+** Do Artifacts have Politics? (Langon Winer)
 \small\vspace{.3em}
 ***                                                                 :BMCOL:
 :PROPERTIES:
 :BEAMER_col: .7
 :END:
-\small *UC Davis, 1945*: Plant breeder Jack Hanna and engineer Coby Lorenzen,
+\small
+#+latex: \href{https://www.plantsciences.ucdavis.edu/news/how-mechanical-tomato-harvester-prompted-food-movement}{\alert{UC Davis, 1945}}:
+Plant breeder Jack Hanna and engineer Coby Lorenzen,
 team up to invent a machine that could mechanically harvest tomatoes,
-no one thought they could do it.
+no one thought they could do it.\vspace{-.5em}
 
 - When they started, it was cheap and efficient to pay (Mexican) farm
-  laborers
+  laborers\vspace{-.5em}
 - Huge 50,000$ machines but reduction by 5-7$ per ton compared to
   hand-harvesting
+  
+*Consequences*: increase in tons of \rlap{tomatoes but}\vspace{-.5em}
+- Required "hard" tomatoes \rlap{(de-stemmed hybrid vf-145)}\vspace{-.5em}
+- Lead to economic concentration (no more small farms, from 4,000
+  growers in 1960 to 600 in 1973)\vspace{-.5em}
+- Supression of 2/3 of the jobs in the tomato industry over \rlap{30 years}
+
 ***                                                                 :BMCOL:
 :PROPERTIES:
 :BEAMER_col: .3
 :END:
 \small
-#+latex: \includegraphics[width=\linewidth]{images/tomato-harvester.jpg}
-[[https://www.youtube.com/watch?v=l4Dc6QNWiIs][https://www.youtube.com/watch?v=l4Dc6QNWiIs]]
+#+latex: \includegraphics[width=\linewidth]{images/Harvest-by-hand-prior-to-automation-Tomato.jpg}
+#+latex: \includegraphics[width=\linewidth]{images/Hanna-Lorenzen-Prototype-Tomato.jpg}
+#+latex: \href{https://www.youtube.com/watch?v=l4Dc6QNWiIs}{\includegraphics[width=\linewidth]{images/tomato-harvester.jpg}}
 
 ***                                                       :B_ignoreheading:
 :PROPERTIES:
 :BEAMER_env: ignoreheading
 :END:
 \vspace{-.3em}
-
-*Consequences*: substential increase in tons of tomatoes but\vspace{-1em}
-- Required "hard" tomatoes (de-stemmed tomato hybrid "vf-145")
-- Lead to economic concentration (no more small farms, from 4,000
-  growers in 1960 to 600 in 1973)
-- Supression of 2/3 of the jobs in the tomato industry over \rlap{30 years}
 
 *1979-1989*: Law suits against UC Davis arguing that tax money is spent
 on projects favoring a handful of private interests to the detriment
@@ -398,10 +402,9 @@ application./
 Technologies have political consequences that transcend the simple
 categories of "intended" and "unintended".
 
-Is this research/technology worth developing ? \vspace{-.4em}
-- Nuclear power, genetic engineering and GMOs, animal testing, spaceships, ...
-
-In computer science:\vspace{-.4em}
+*Is this research/technology worth developing?* \vspace{-.4em}
+- Nuclear power, genetic engineering and GMOs, animal testing, spaceships, ...\vspace{-0.5em}
+In *computer science*:\vspace{-.4em}
 - Social Networks and recommendation systems
 - Facial/voice recognition
 - 5G/6G, autonomous cars, ...
@@ -410,7 +413,7 @@ In computer science:\vspace{-.4em}
   - 11/22 [[https://ai.facebook.com/blog/cicero-ai-negotiates-persuades-and-cooperates-with-people/][Cicero]] (Meta) and ChatGPT 
 
 This is cool and exciting, but can *scientific curiosity* justify any
-research?
+research?\vspace{-0.5em}
 
 Let's keep in mind that it is common that a technological deck has
 been stacked long in advance to favor certain social interests, and
