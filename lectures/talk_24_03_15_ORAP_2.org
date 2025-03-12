@@ -459,7 +459,7 @@ It is not a good sign if your code is sensitive. You'll need:\vspace{-1mm}
   #+latex: }\pause
 - 2019 :: AD becomes mandatory\pause
 - 2021 :: Chairs recommend providing containers/spack/...\pause
-- 2022 :: 3 kind of *badges* (artifact available/compilable, reproducible result) are delivered
+- 2021 :: 3 kind of *badges* (artifact available/compilable, reproducible result) are delivered
   #+latex: \only<6>{\small
   - *Double-blind* is a huge pain (data, code, machine access)
   - Evaluators may rely on ChameleonCloud
