@@ -4,6 +4,7 @@
 #+STARTUP: overview indent
 
 *Teachers*: Cyril Labbé, Arnaud Legrand, and Jean-Marc Vincent
+
 [[file:../2024_10_Grenoble/cyril.jpg][file:../2024_10_Grenoble/cyril.jpg]][[file:../2021_10_Grenoble/arnaud.png][file:../2021_10_Grenoble/arnaud.png]][[file:../2021_10_Grenoble/jean-marc.png][file:../2021_10_Grenoble/jean-marc.png]]
 
 
