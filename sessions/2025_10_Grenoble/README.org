@@ -74,7 +74,7 @@ Evaluation process:
 - Working in a fully transparent (journal, version tracking, archiving, …), rigorous, and controlled (experiment design, software environment) way
 - Fluency with modern data analysis frameworks such as the Tidyverse (in particular ggplot2 and dplyr).
 * Course Tentative Schedule
-** 1. 25/09/24  [           ] Presentation of the lecture | Processing data with the Tidyverse, beautiful viz with ggplot
+** 1. 25/09/24  [ AL        ] Presentation of the lecture | Processing data with the Tidyverse, beautiful viz with ggplot
 *** Slides
 - [[file:../../lectures/lecture_SMPE_overview.pdf][Overview of the lecture]]
 - Demo of =dplyr= and =ggplot= (update of the  [[https://htmlpreview.github.io/?https://github.com/alegrand/SMPE/blob/master/sessions/2022_10_Grenoble/R_crash_course.html][R crash course for computer scientists]]). You may want to look at these [[file:../../lectures/lecture_R_crash_course.pdf][slides]].
@@ -201,8 +201,8 @@ I'm not adding more work (like doing the peer evaluation of module 3, or writing
 - Try to complete the peer-evaluation of the MOOC
 ** 9. 04/12/24  [ CL        ] Scientific Integrity 1
 *** Slides and resources
-- [[file:06_Scientific_Publications.pdf][Introduction to the publication system]]
-- [[file:08_Scientific_Publications.pdf][More on the publication system]]  
+- [[file:../2024_10_Grenoble/06_Scientific_Publications.pdf][Introduction to the publication system]]
+- [[file:../2024_10_Grenoble/08_Scientific_Publications.pdf][More on the publication system]]  
   # [[file:../../lectures/lecture_scientific_integrity.pdf][Introduction to scientific integrity, deontology and ethics]]
   # - Fonctions/structures/rôles de la Publication, Citation \to bibliométrie
   # - Où trouver l'info, Archives ouvertes, open access
