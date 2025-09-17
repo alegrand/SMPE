@@ -1,0 +1,590 @@
+#+TITLE:     Scientific Methodology and (emPirical|exPerimental) Evaluation
+#+AUTHOR:    Cyril Labbé, Arnaud Legrand, and Jean-Marc Vincent
+#+DATE: October 2025
+#+STARTUP: overview indent
+
+*Teachers*: Cyril Labbé, Arnaud Legrand, and Jean-Marc Vincent
+[[file:../2024_10_Grenoble/cyril.jpg][file:../2024_10_Grenoble/cyril.jpg]][[file:../2021_10_Grenoble/arnaud.png][file:../2021_10_Grenoble/arnaud.png]][[file:../2021_10_Grenoble/jean-marc.png][file:../2021_10_Grenoble/jean-marc.png]]
+
+
+#+BEGIN_QUOTE
+*Reporting errors*: Although I do my best there may definitely be typos
+and broken links. This is github so please report me everything you
+find so that I can improve for others. :)
+#+END_QUOTE
+
+This webpage gathers information about the lectures given at the
+[[https://mosig-m2-592ef6.gricad-pages.univ-grenoble-alpes.fr/scientific_methodo/][University of Grenoble to the Master students in Computer
+Science (MOSIG) from October 2025 to January 2026]].
+
+* Useful links 
+- Here is the [[https://codimd.math.cnrs.fr/0O2AeqE7TCijWofhF3SK-g][Pad]] you will use to collaborate.
+- Here is the [[https://edt.grenoble-inp.fr/2025-2026/exterieur][lecture schedule on ADE]] (look for =mosig2=). A table summary is [[https://edt.grenoble-inp.fr/2025-2026/exterieur/jsp/custom/modules/plannings/eventInfo.jsp?week=-1&day=-1&slot=0&eventId=20635&activityId=-1&resourceId=-1&sessionId=-1&repetition=-1&order=slot&availableZone=-1][here]] and the lecture takes place in room [[https://maps.app.goo.gl/RsXTPPfGGEccqGAR6][C0004]].
+- Here is the [[https://framateam.org/signup_user_complete/?id=wxuao7urzbbppbzyax1zebzgty&md=link&sbr=su][Invitation link]] for the [[https://framateam.org/smpe-2025-2026/channels/town-square][Mattermost]] we will use to exchange information.
+  - The [[https://www.fun-mooc.fr/fr/cours/recherche-reproductible-principes-methodologiques-pour-une-science-transparente/][MOOC on Reproducible Research 1: Methodological principles for a transparent science]]
+  - The [[https://www.fun-mooc.fr/en/courses/reproducible-research-ii-practices-and-tools-for-managing-comput/][MOOC on Reproducible Research 2: Practices and tools for managing computations and data]]
+Links to the slides are provided below.
+* Course Objective and Organization
+The aim of this course is to provide the fundamental basis for sound
+scientific methodology of empirical evaluation of computer
+systems. This lecture emphasize on methodological aspects of
+measurement and on the statistics needed to analyze computer systems
+(note that most our discussions also apply to e.g., human-computer
+interaction systems or machine learning systems).  We first
+sensibilize the audience to the experiment and analysis
+reproducibility issue in particular in computer science. Then we
+present tools that help answering the analysis problem and may also
+reveal useful for managing the experimental process through
+notebooks. The audience is given the basis of probabilities and
+statistics required to develop sound experiment designs. Finally, we
+address "meta-science" question such as how scientific knowledge is
+built, what is the role of publications, scientific integrity and
+ethic issues.
+
+The content of the lecture is therefore both theoretical and
+practical, illustrated by a lot of case studies and practical
+sessions. The goal is not to provide analysis recipes that people can
+readily apply but to make students really understand some simple (and
+possibly not-so-simple) tools so that they can then dig deeper later
+on.
+
+You may want to look at the [[file:../2024_10_Grenoble/README.org][previous edition]] (, which was given to a
+broader audience with twice more time). to see the kind of material we
+use but we will adapt to the audience on the fly anyway. 
+
+All the examples given in this series of lecture use the [[http://www.r-project.org/][R]] language
+and the source is provided so that people can reuse them. The slides
+are composed with [[http://orgmode.org][org-mode]], beamer, and verbments.
+
+Evaluation process:
+  - *Final exam (3 hours): 1/2*
+  - *Continuous assessment: 1/2*
+* Prerequisite
+- Familiarity with the use of a computational notebook (Jupyter, R, org-mode, …)
+- Familiarity with the use of Git/GitLab/GitHub
+- Having already failed in properly conducting experiments and reaching a sound conclusion
+- All the examples given in this series of lecture use the R language as it is more appropriate than Python for this kind of work but every important concept will be introduced and resources will be provided to allow students to quickly level up.
+* Targeted skills
+- Criticizing (and proposing improvements):
+  - the graphical representation of experimental results presented in slides or articles;
+  - the experimental protocol and its shortcomings;
+  - the quality of the data;
+  - the proposed data analysis and conclusion reached;
+  - the research question.
+- Working in a fully transparent (journal, version tracking, archiving, …), rigorous, and controlled (experiment design, software environment) way
+- Fluency with modern data analysis frameworks such as the Tidyverse (in particular ggplot2 and dplyr).
+* Course Tentative Schedule
+** 1. 25/09/24  [           ] Presentation of the lecture | Processing data with the Tidyverse, beautiful viz with ggplot
+*** Slides
+- [[file:../../lectures/lecture_SMPE_overview.pdf][Overview of the lecture]]
+- Demo of =dplyr= and =ggplot= (update of the  [[https://htmlpreview.github.io/?https://github.com/alegrand/SMPE/blob/master/sessions/2022_10_Grenoble/R_crash_course.html][R crash course for computer scientists]]). You may want to look at these [[file:../../lectures/lecture_R_crash_course.pdf][slides]].
+- See  https://evamaerey.github.io/ggplot_flipbook/ggplot_flipbook_xaringan.html for =ggplot=.
+- See https://evamaerey.github.io/data_manipulation/about for =dplyr=.
+*** Homeworks
+- [ ] Indicate your name on the [[https://codimd.math.cnrs.fr/0O2AeqE7TCijWofhF3SK-g][Pad]]. You will use to collaborate and fill in all the information you can.
+- [ ] Register on the [[https://framateam.org/smpe-2024-2025/channels/town-square][Mattermost]] through this [[https://framateam.org/signup_user_complete/?id=yxk5rpuqdpds5b785t6ka94o4e&md=link&sbr=su][invitation link]]. This is the preferred communication mode.
+- [ ] Set up a *public* github or gitlab project for this lecture. You will take notes on this lecture and turn your homework and computational documents in this project.
+- [ ] Register to the [[https://www.fun-mooc.fr/fr/cours/recherche-reproductible-principes-methodologiques-pour-une-science-transparente/][MOOC on Reproducible Research]]
+- [ ] Follow modules 1 + 2 of the MOOC with as much exercises as possible (except the last one of module2, on /Challenger/; watching interviews is optional)
+- [ ] Set up a computational document system (e.g., [[#rstudio][Rstudio]] or [[#jupyter][Jupyter]] on your laptop or through the [[https://jupyterhub.u-ga.fr/][UGA JupyterHub]]).
+- [ ] Report the URL of your git project, your mattermost ID on the [[https://codimd.math.cnrs.fr/0O2AeqE7TCijWofhF3SK-g][Pad]].
+- [ ] Start learning R by reading this [[https://htmlpreview.github.io/?https://github.com/alegrand/SMPE/blob/master/sessions/2022_10_Grenoble/R_crash_course.html][R crash course for computer scientists]] ([[file:../2022_10_Grenoble/R_crash_course.Rmd][Rmd sources]]).
+** 2. 02/10/24  [ AL        ] Clearly defining the experiment and having the right tools to analyze it
+*** Slides and resources
+1. MOOC status report and feedback on exercises.
+2. We propose you to work in group on the Parallel Quicksort project.
+   Do not waste your time trying to run this on windows (unless you
+   use WSL). Fork this [[https://github.com/alegrand/M2R-ParallelQuicksort][project]] which is toy experiment regarding
+   measuring the performance of a simple parallel quicksort
+   implementation:
+     #+BEGIN_QUOTE
+       One of your colleague just implemented a multi-threaded version of
+       the quicksort algorithm for multi-core machines. He's convinced his
+       code can save significant time saving but unfortunately, he did not
+       follow the performance evaluation lecture and he would like your
+       help to promote his code.
+     #+END_QUOTE
+   Try to re-run this code, compare the results, and improve the
+   experimental design if needed. You could for example:
+   - Improve the experiment design (i.e., the number of repetitions,
+     the range of parameters, the order in which they are run, ...)
+   - Repeat this with various machines.
+   - Make a nicer figure with ggplot
+   - Improve the analysis (confidence interval, continuous trend,
+     extrapolation)
+   
+   # - Empirical evaluation of [[https://en.wikipedia.org/wiki/Fitts%27s_law][Fitts's law]]: Fork this small [[https://gricad-gitlab.univ-grenoble-alpes.fr/coutrixc/m2r_pointingxp][project]]
+   #   #+BEGIN_QUOTE
+   #   Fitts described 1954 the relationship between the distance to a target, its width, and the time needed to acquire it [Fitts, 1954]. To aquire a target, e.g., to move the mouse cursor and click on a file to select it, Fitts' law describes how the distance between the start point and the target (A: amplitude of the movement), and the size of the target (W: width of the target) impacts the index of difficulty of the task (ID) [MacKenzie and Buxton, 1992]:
+
+   #      ID = log2(A/W + 1)
+
+   #   The time (MT: movement time) needed for a user to acquire a target is linearly correlated to ID:
+
+   #       MT = a + b × ID
+
+   #   A large part of Human-Computer Interaction research since then builds on top of Fitts' law. This project aims at finding the values of the a and b parameters.
+   #   #+END_QUOTE
+   #   Try to re-run this analysis, then re-obtain some data and compare
+   #   the results, improve the experimental design if needed.
+*** Homeworks
+- [ ] Complete previous homeworks (Challenger)
+- [ ] Continue the hands-on by improving the experiment design and the analysis. Share your findings on the [[https://codimd.math.cnrs.fr/0O2AeqE7TCijWofhF3SK-g][Pad]] and/or on your public fork of the project.
+** 3. 09/10/24  [ JMV       ] Visualization and Exploratory Data Analysis
+*** Slides and resources
+# +Introduction to the scientific method and computer science epistemology | Publications+ 
+# - [[file:02_lecture_JMV_what-is-science.pdf][Lecture: What is Science?]]
+#   - [[https://undsci.berkeley.edu/understanding-science-101/][Understanding Science (101 at Berkeley)]]
+#   - [[file:02_reading_Popper_Conjectures-and-refutation.pdf][Conjectures and refutations (Karl Popper)]]
+- [[file:../2022_10_Grenoble/02_Intro-Visu.pdf][Slides: What a nice picture ! Data Visualization, an introduction]]
+  - [[file:../2021_10_Grenoble/02_Check-list-good-graphics-tableau-en.pdf][Checklist for good graphics]] and [[file:../2021_10_Grenoble/02_Check-list-good-graphics-en.pdf][Hints for good graphics]] (a similar checklist can be found in
+    [[http://www.cs.wustl.edu/~jain/books/perfbook.htm][The Art of Computer Systems Performance Analysis: Techniques for Experimental Design, Measurement, Simulation, and Modeling]])
+# - [[file:../../lectures/lecture_descriptive_univariate.pdf][Slides: Summarizing data]]
+# - [[file:../2021_10_Grenoble/02_whyvisu.pdf][Slides: Why do we need to visualize data: The Anscombe's Quartet]] and as a bonus: [[https://www.autodesk.com/research/publications/same-stats-different-graphs][The Datasaurus]]. :)
+*** Homeworks
+ # - [ ] Read Popper's text and write a short summary in your GitHub repository
+ - [ ] Criticize every figure of Jean-Marc's slides by:
+   1. Applying the checklist for good graphics;
+   2. Proposing a better representation (hand-drawing is fine) that passes the checklist.
+ - [ ] Report this work for at least 3 figures on you github/gitlab project.
+ - [ ] MOOC: Complete exercise 5 of module 2 (/Challenger/). Write a short text explaining what is good and wrong about this document (you may want to provide an updated version of the notebook) and upload on your github/gitlab space.
+** 4. 16/10/24  [           ] Follow-up experiments | Data management tips (Data Tools)
+*** Feedback
+- Challenger.
+- File organization: how do you feel ? :)
+- Remind with the [[file:../../lectures/lecture_correlation_causation.pdf][Cholesterol case]] that removing and selecting data can be quite harmful and should always be carefully described and justified.
+- Check a subject for module 3 has been chosen.
+*** Slides and resources
+- Slides on [[file:../2024_10_Grenoble/04_DMP.pdf][Data management Plans]]
+- [[https://miro.com/welcomeonboard/M3BNV2FMdmJQUDk3TER4OXFUS2FRQU9GbDlyZ0ZLVDVKUEIyNFVDMTd1b0xxbjlpVEp3Q0VhUTJnWnBlVnJJSHwzNDU4NzY0NjA0MzIzODczNjEyfDI=?share_link_id=315517523028][Miro board]]
+- Slides on [[file:../../lectures/lecture_data_management.pdf][Data management Tools]] (and [[https://github.com/cboettig/noise-phenomena][Carl Boettiger's awesome compendium]])
+*** Homeworks
+- [ ] Complete previous homeworks (Challenger, Checklist for Good Graphics)
+- [ ] Continue the hands-on by improving the experiment design and the analysis. Share your findings on the [[https://codimd.math.cnrs.fr/0O2AeqE7TCijWofhF3SK-g][Pad]] and/or on your public fork
+  of the project.
+  - Eventually use what we have seen in today's lecture to improve the structure of you repos and of the quicksort/pointing repos
+I'm not adding more work (like doing the peer evaluation of module 3, or writing a DMP for the quicksort/pointing project) but please complete the previous homeworks. 
+** 5. 23/11/24  [           ] Probabilities, CI | Correlation, Causality
+*** Slides and resources
+- A few words on [[file:../../lectures/lecture_correlation_causation.pdf][correlation and causality]].
+- [[file:../2021_10_Grenoble/02_whyvisu.pdf][Slides: Why do we need to visualize data: The Anscombe's Quartet]] and as a bonus: [[https://www.autodesk.com/research/publications/same-stats-different-graphs][The Datasaurus]]. :)
+  - [[file:../../lectures/lecture_descriptive_univariate.pdf][Slides: Summarizing data]]
+- Slides: From descriptive statistics to [[file:../../lectures/3_introduction_to_statistics.pdf][estimation]]
+*** Homeworks
+- Compute confidence intervals for the data in https://github.com/alegrand/M2R-ParallelQuicksort
+- MOOC Peer evaluated exercise.
+** Fall Vacations
+** No lecture
+** 6. 13/11/24  [           ] The linear model
+*** Slides and resources
+- Computing independant CIs for the data in https://github.com/alegrand/M2R-ParallelQuicksort
+- Going beyond independant evaluations with the [[file:../../lectures/4_linear_model.pdf][linear model]]
+*** Homeworks
+- Fit a linear model for the data in https://github.com/alegrand/M2R-ParallelQuicksort
+- (For the 28th of November) Read the articles provided [[https://cloud.univ-grenoble-alpes.fr/s/3Ro6LpMbP6fckFH][here]] (about 5
+  min for each paper) and (1) explain how and why citations are used
+  and (2) qualify the journal in a few words.
+- MOOC Peer evaluated exercise.  
+** 7. 20/11/24  [           ] The linear model, Multiple testing and ANOVA (p-hacking), and a bit of DoE
+*** Slides and resources
+- Fitting a linear model for the data in https://github.com/alegrand/M2R-ParallelQuicksort
+- Going beyond independant evaluations with the [[file:../../lectures/4_linear_model.pdf][linear model]]
+*** Homeworks
+- Keep building intuition on linear model
+- Try to complete the peer-evaluation of the MOOC
+** 8. 27/11/24  [ AL        ] DoE
+*** Slides and resources
+- Lecture on [[file:../../lectures/5_design_of_experiments.pdf][Design of Experiments]] (factorial, screening, space-filling)
+*** Homeworks
+- Keep building intuition on linear model
+- Mature the DoE techniques we have seen
+- Try to complete the peer-evaluation of the MOOC
+** 9. 04/12/24  [ CL        ] Scientific Integrity 1
+*** Slides and resources
+- [[file:06_Scientific_Publications.pdf][Introduction to the publication system]]
+- [[file:08_Scientific_Publications.pdf][More on the publication system]]  
+  # [[file:../../lectures/lecture_scientific_integrity.pdf][Introduction to scientific integrity, deontology and ethics]]
+  # - Fonctions/structures/rôles de la Publication, Citation \to bibliométrie
+  # - Où trouver l'info, Archives ouvertes, open access
+  # - Lecture de papier pour trouver des trucs bizarres, rétractation, duplication de données, trafication de données pour pouvoir publier ou même avoir un visa. Réaction à avoir.
+*** Homeworks
+- Read all we've seen, try to get some perspective, make sure to make
+  all the connexions and ask me questions.
+- Move on with the Peer Evaluated exercise of the MOOC
+** 10. 11/12/24 [ CL        ] Scientific integrity 2
+*** Slides and resources
+*** Homeworks
+- MOOC Peer evaluated exercise.
+** 11. 18/12/24 [           ] Ethics 101 
+*** Slides and resources
+- [[file:11_chatbot.pdf][Slides on Lovots and chatbots]]
+- [[file:../../lectures/lecture_scientific_integrity.pdf][Introduction to scientific integrity, deontology and ethics]]
+*** Homeworks
+You'll find is a random student/topic assignment on the bottom of the
+[[https://codimd.math.cnrs.fr/0O2AeqE7TCijWofhF3SK-g][Pad]] (you may trade a topic with someone else if you’re really
+uncomfortable with the one you’ve been assigned; you may even pick an
+other topic if you can’t trade yours but I’d like everyone to work on
+different topics as much as posible). I have only quickly read through
+most of these these documents so do not expect extraordinay
+content. Prepare a short presentation with the pros and cons of each
+technology. You will present (1) the problems it tries to address, (2)
+to what extent it does, (3) whether it unlocked other
+usages/problems. (4) Indicate in which of the 4th scenarios of the
+ADEME (https://transitions2050.ademe.fr/en) this technology is rooted.
+
+** Winter vacations
+** 12. 08/01/25 [          ] Ethics (AI and humain, climate change, societal challenges)
+** 26/01/25: Exam ?
+
+* Course Tentative Schedule                                        :noexport:
+** 1. 26/09/24  [   AL       ] Presentation of the lecture | Processing data with the Tidyverse, beautiful viz with ggplot
+*** Slides
+- [[file:../../lectures/lecture_SMPE_overview.pdf][Overview of the lecture]]
+- Demo of =dplyr= and =ggplot= (update of the  [[https://htmlpreview.github.io/?https://github.com/alegrand/SMPE/blob/master/sessions/2022_10_Grenoble/R_crash_course.html][R crash course for computer scientists]]). You may want to look at these [[file:../../lectures/lecture_R_crash_course.pdf][slides]].
+- See  https://evamaerey.github.io/ggplot_flipbook/ggplot_flipbook_xaringan.html for =ggplot=.
+- See https://evamaerey.github.io/data_manipulation/about for =dplyr=.
+*** Homeworks
+- [ ] Indicate your name on the [[https://codimd.math.cnrs.fr/KuxyhmiYSbq3EewdRL993g#][Pad]]. You will use to collaborate and fill in all the information you can.
+- [ ] Register on the [[https://framateam.org/smpe-2024-2025/channels/town-square][Mattermost]] through this [[https://framateam.org/signup_user_complete/?id=yxk5rpuqdpds5b785t6ka94o4e&md=link&sbr=su][invitation link]]. This is the preferred communication mode.
+- [ ] Set up a *public* github or gitlab project for this lecture. You will take notes on this lecture and turn your homework and computational documents in this project.
+- [ ] Register to the [[https://www.fun-mooc.fr/fr/cours/recherche-reproductible-principes-methodologiques-pour-une-science-transparente/][MOOC on Reproducible Research]]
+- [ ] Follow modules 1 + 2 of the MOOC with as much exercises as possible (except the last one of module2, on /Challenger/; watching interviews is optional)
+- [ ] Set up a computational document system (e.g., [[#rstudio][Rstudio]] or [[#jupyter][Jupyter]] on your laptop or through the [[https://jupyterhub.u-ga.fr/][UGA JupyterHub]]).
+- [ ] Report the URL of your git project, your mattermost ID on the [[https://codimd.math.cnrs.fr/KuxyhmiYSbq3EewdRL993g#][Pad]].
+- [ ] Start learning R by reading this [[https://htmlpreview.github.io/?https://github.com/alegrand/SMPE/blob/master/sessions/2022_10_Grenoble/R_crash_course.html][R crash course for computer scientists]] ([[file:../2022_10_Grenoble/R_crash_course.Rmd][Rmd sources]]).
+** 2. 03/10/24  [  JMV       ] Introduction to the scientific method and computer science epistemology | Publications | Visualization and Exploratory Data Analysis
+*** Slides and resources
+- [[file:02_lecture_JMV_what-is-science.pdf][Lecture: What is Science?]]
+  - [[https://undsci.berkeley.edu/understanding-science-101/][Understanding Science (101 at Berkeley)]]
+  - [[file:02_reading_Popper_Conjectures-and-refutation.pdf][Conjectures and refutations (Karl Popper)]]
+- [[file:../2022_10_Grenoble/02_Intro-Visu.pdf][Slides: What a nice picture ! Data Visualization, an introduction]]
+  - [[file:../2021_10_Grenoble/02_Check-list-good-graphics-tableau-en.pdf][Checklist for good graphics]] and [[file:../2021_10_Grenoble/02_Check-list-good-graphics-en.pdf][Hints for good graphics]] (a similar checklist can be found in
+    [[http://www.cs.wustl.edu/~jain/books/perfbook.htm][The Art of Computer Systems Performance Analysis: Techniques for Experimental Design, Measurement, Simulation, and Modeling]])
+# - [[file:../../lectures/lecture_descriptive_univariate.pdf][Slides: Summarizing data]]
+# - [[file:../2021_10_Grenoble/02_whyvisu.pdf][Slides: Why do we need to visualize data: The Anscombe's Quartet]] and as a bonus: [[https://www.autodesk.com/research/publications/same-stats-different-graphs][The Datasaurus]]. :)
+*** Homeworks
+ - [ ] Read Popper's text and write a short summary in your GitHub repository
+ - [ ] Criticize every figure of Jean-Marc's slides by:
+   1. Applying the checklist for good graphics;
+   2. Proposing a better representation (hand-drawing is fine) that passes the checklist.
+ - [ ] Report this work for at least 3 figures on you github/gitlab project.
+ - [ ] MOOC: Complete exercise 5 of module 2 (/Challenger/). Write a short text explaining what is good and wrong about this document (you may want to provide an updated version of the notebook) and upload on your github/gitlab space.
+** 10/10/23: No lecture
+** 3. 17/10/24  [ AL  CC    ] Clearly defining the experiment and having the right tools to analyze it
+*** Slides and resources
+1. MOOC status report and feedback on exercises.
+2. 2. Hands on in group on one of the following example:
+   - Parallel Quicksort: Fork this small [[https://github.com/alegrand/M2R-ParallelQuicksort][project]] which is toy experiment regarding measuring the performance of a simple parallel quicksort implementation:
+     #+BEGIN_QUOTE
+       One of your colleague just implemented a multi-threaded version of
+       the quicksort algorithm for multi-core machines. He's convinced his
+       code can save significant time saving but unfortunately, he did not
+       follow the performance evaluation lecture and he would like your
+       help to promote his code.
+     #+END_QUOTE
+     Try to re-run this code, compare the results, and improve the experimental design if needed..
+   - Empirical evaluation of [[https://en.wikipedia.org/wiki/Fitts%27s_law][Fitts's law]]: Fork this small [[https://gricad-gitlab.univ-grenoble-alpes.fr/coutrixc/m2r_pointingxp][project]]
+     #+BEGIN_QUOTE
+     Fitts described 1954 the relationship between the distance to a target, its width, and the time needed to acquire it [Fitts, 1954]. To aquire a target, e.g., to move the mouse cursor and click on a file to select it, Fitts' law describes how the distance between the start point and the target (A: amplitude of the movement), and the size of the target (W: width of the target) impacts the index of difficulty of the task (ID) [MacKenzie and Buxton, 1992]:
+
+        ID = log2(A/W + 1)
+
+     The time (MT: movement time) needed for a user to acquire a target is linearly correlated to ID:
+
+         MT = a + b × ID
+
+     A large part of Human-Computer Interaction research since then builds on top of Fitts' law. This project aims at finding the values of the a and b parameters.
+     #+END_QUOTE
+     Try to re-run this analysis, then re-obtain some data and compare
+     the results, improve the experimental design if needed.
+*** Homeworks
+- [ ] Complete previous homeworks (Popper, Challenger, Checklist for Good Graphics)
+- [ ] Continue the hands-on by improving the experiment design and the analysis. Share your findings on the [[https://codimd.math.cnrs.fr/KuxyhmiYSbq3EewdRL993g#][Pad]] and/or on your public fork of the project.
+** 4. 24/10/24  [ AL  CC    ] Follow-up experiments | Data management tips (Data Tools)
+*** Feedback
+- Challenger.
+- File organization: how do you feel ? :)
+- Remind with the [[file:../../lectures/lecture_correlation_causation.pdf][Cholesterol case]] that removing and selecting data can be quite harmful and should always be carefully described and justified.
+- Check a subject for module 3 has been chosen.
+*** Slides and resources
+- Slides on [[file:../2024_10_Grenoble/04_DMP.pdf][Data management Plans]]
+- [[https://miro.com/welcomeonboard/M3BNV2FMdmJQUDk3TER4OXFUS2FRQU9GbDlyZ0ZLVDVKUEIyNFVDMTd1b0xxbjlpVEp3Q0VhUTJnWnBlVnJJSHwzNDU4NzY0NjA0MzIzODczNjEyfDI=?share_link_id=315517523028][Miro board]]
+- Slides on [[file:../../lectures/lecture_data_management.pdf][Data management Tools]] (and [[https://github.com/cboettig/noise-phenomena][Carl Boettiger's awesome compendium]])
+*** Homeworks
+- [ ] Complete previous homeworks (Popper, Challenger, Checklist for Good Graphics)
+- [ ] Continue the hands-on by improving the experiment design and the analysis. Share your findings on the [[https://codimd.math.cnrs.fr/KuxyhmiYSbq3EewdRL993g#][Pad]] and/or on your public fork
+  of the project.
+  - Eventually use what we have seen in today's lecture to improve the structure of you repos and of the quicksort/pointing repos
+I'm not adding more work (like doing the peer evaluation of module 3, or writing a DMP for the quicksort/pointing project) but please complete the previous homeworks. 
+** Fall Vacations
+** 5. 7/11/24   [ AL        ] Probabilities, CI | Correlation, Causality
+*** Slides and resources
+- A few words on [[file:../../lectures/lecture_correlation_causation.pdf][correlation and causality]].
+- [[file:../2021_10_Grenoble/02_whyvisu.pdf][Slides: Why do we need to visualize data: The Anscombe's Quartet]] and as a bonus: [[https://www.autodesk.com/research/publications/same-stats-different-graphs][The Datasaurus]]. :)
+  - [[file:../../lectures/lecture_descriptive_univariate.pdf][Slides: Summarizing data]]
+- Slides: From descriptive statistics to [[file:../../lectures/3_introduction_to_statistics.pdf][estimation]]
+*** Homeworks
+  - Compute confidence intervals for the data in https://github.com/alegrand/M2R-ParallelQuicksort
+** 6. 14/11/24  [ JMV, CL   ] The linear model | Scientific Integrity 1
+*** Slides and resources
+- Computing independant CIs for the data in https://github.com/alegrand/M2R-ParallelQuicksort
+- Going beyond independant evaluations with the [[file:../../lectures/4_linear_model.pdf][linear model]]
+- [[file:06_Scientific_Publications.pdf][Introduction to the publication system]]
+  # [[file:../../lectures/lecture_scientific_integrity.pdf][Introduction to scientific integrity, deontology and ethics]]
+  # - Fonctions/structures/rôles de la Publication, Citation \to bibliométrie
+  # - Où trouver l'info, Archives ouvertes, open access
+  # - Lecture de papier pour trouver des trucs bizarres, rétractation, duplication de données, trafication de données pour pouvoir publier ou même avoir un visa. Réaction à avoir.
+*** Homeworks
+- Fit a linear model for the data in https://github.com/alegrand/M2R-ParallelQuicksort
+- (For the 28th of November) Read the articles provided [[https://cloud.univ-grenoble-alpes.fr/s/3Ro6LpMbP6fckFH][here]] (about 5
+  min for each paper) and (1) explain how and why citations are used
+  and (2) qualify the journal in a few words.
+** 7. 21/11/24  [ AL        ] The linear model, Multiple testing and ANOVA (p-hacking), and a bit of DoE
+*** Slides and resources
+- Fitting a linear model for the data in https://github.com/alegrand/M2R-ParallelQuicksort
+- Going beyond independant evaluations with the [[file:../../lectures/4_linear_model.pdf][linear model]]
+- Feedback on the Challenger case study
+- Beginning of the lecture on [[file:../../lectures/5_design_of_experiments.pdf][Design of Experiments]]
+*** Homeworks
+- Keep building intuition on linear model
+- Try to complete the peer-evaluation of the MOOC
+** 8. 28/11/24  [ AL,  CL   ] DoE | Scientific Integrity 2
+*** Slides and resources
+- Continuing the lecture on [[file:../../lectures/5_design_of_experiments.pdf][Design of Experiments]] (factorial, screening, space-filling)
+- [[file:08_Scientific_Publications.pdf][More on the publication system]]
+*** Homeworks
+- Keep building intuition on linear model
+- Mature the DoE techniques we have seen
+- Try to complete the peer-evaluation of the MOOC
+** 9. 05/12/24  [ AL         ] A Bayesian perspective on regularization and model selection + Sequential DoE (space-filling, D-opt, ...)
+*** Slides and resources
+- End of the lecture on [[file:../../lectures/5_design_of_experiments.pdf][Design of Experiments]]
+- Most part of the [[file:../../lectures/lecture_bayesian_statistics_introduction.pdf][Lecture on Bayesian Statistics]]
+  - A Bayesian coin with discrete alternatives
+  - MLE and credibility region, bias
+  - Importance of the Prior
+  - Extension to more complex models
+  - (Link with the logistic regression)
+  - +Model selection (AIC, BIC)+
+  - +Bayesian linear regression and Regularization (Ridge, LASSO)+
+  #  - Connection with causal inference
+*** Homeworks
+- Read all we've seen, try to get some perspective, make sure to make
+  all the connexions and ask me questions.
+- Move on with the Peer Evaluated exercise of the MOOC
+** 10. 12/12/24 [ (JMV) AL   CL    ] Incremental DoE | Scientific integrity 3
+*** Slides and resources
+- End of the [[file:../../lectures/lecture_bayesian_statistics_introduction.pdf][Lecture on Bayesian Statistics]]
+  - Model selection (AIC, BIC)
+  - Bayesian linear regression and Regularization (Ridge, LASSO)
+- Started discussing the context of [[file:../2020_10_Grenoble/bandits.pdf][online optimization and bandits problems]] (from
+  [[https://gitlab.inria.fr/gast/polaris_days_2019_slides][Nicolas Gast]]).
+*** Homeworks
+- MOOC Peer evaluated exercise.
+- Think about a possible strategy for the bandit problem
+** 11. 19/12/24: [ JMV        (CL) ] Ethics 101 
+*** Slides and resources
+- [[file:11_chatbot.pdf][Slides on Lovots and chatbots]]
+- [[file:../../lectures/lecture_scientific_integrity.pdf][Introduction to scientific integrity, deontology and ethics]]
+*** Homeworks
+You'll find is a random student/topic assignment on the bottom of the
+[[https://codimd.math.cnrs.fr/KuxyhmiYSbq3EewdRL993g#][Pad]] (you may trade a topic with someone else if you’re really
+uncomfortable with the one you’ve been assigned; you may even pick an
+other topic if you can’t trade yours but I’d like everyone to work on
+different topics as much as posible). I have only quickly read through
+most of these these documents so do not expect extraordinay
+content. Prepare a short presentation with the pros and cons of each
+technology. You will present (1) the problems it tries to address, (2)
+to what extent it does, (3) whether it unlocked other
+usages/problems. (4) Indicate in which of the 4th scenarios of the
+ADEME (https://transitions2050.ademe.fr/en) this technology is rooted.
+
+** Winter vacations
+** 12. 09/01/25 [ JMV, AL, CC?, CL ] Ethics (AI and humain, climate change, societal challenges)
+** 27/01/25: Exam
+
+* Hands-on
+In the 3rd module of the [[https://www.fun-mooc.fr/fr/cours/recherche-reproductible-principes-methodologiques-pour-une-science-transparente/][MOOC on Reproducible Research]], there is a
+peer-reviewed homework that will allow you to practically use
+everything you learnt. 
+* Requirements 
+All the examples given in this series of lecture use the [[http://www.r-project.org/][R]] language
+and the source is provided so that people can reuse them. The slides
+are composed with [[http://orgmode.org][org-mode]], beamer, and verbments.
+
+It is not expected that students already knows the R language as I
+will briefly present it. However, they should have already installed
+Rstudio and R (check the next section if you need information) on
+their laptop so as to try out the examples I provide for themselves. 
+
+Alternatively, you may use Jupyter with python or R, either on your
+machine or through the MOOC or the [[https://jupyterhub.u-ga.fr/][UGA JupyterHub]]. Most R verbs have
+now their python counterpart (e.g., =numpy= and =pandas= for vectors and
+dataframes, =plotnine= for =ggplot2=, =statsmodels= for linear regressions,
+...).
+* Using R
+** Installing R, Rstudio, or Jupyter
+*** R
+Here is how to proceed on debian-based distributions:
+#+BEGIN_SRC sh
+sudo apt install r-base r-cran-ggplot2 r-cran-dplyr r-cran-tidyr r-cran-knitr r-cran-magrittr 
+#+END_SRC
+Make sure you have a recent (>= 3.2.0) version or R. For example, here
+is what I have on my machine:
+#+begin_src sh :results output :exports both
+R --version
+#+end_src
+
+#+RESULTS:
+#+begin_example
+R version 4.1.1 (2021-08-10) -- "Kick Things"
+Copyright (C) 2021 The R Foundation for Statistical Computing
+Platform: x86_64-pc-linux-gnu (64-bit)
+
+R is free software and comes with ABSOLUTELY NO WARRANTY.
+You are welcome to redistribute it under the terms of the
+GNU General Public License versions 2 or 3.
+For more information about these matters see
+https://www.gnu.org/licenses/.
+
+#+end_example
+*** Rstudio
+Rstudio and knitr are unfortunately not packaged within debian so the
+easiest is to download the corresponding debian package on the [[http://www.rstudio.com/ide/download/desktop][Rstudio
+webpage]] and then to install it manually (depending on when you do this
+and on the version of your OS, *you should obviously change the version
+number*).
+
+#+BEGIN_SRC sh
+wget https://download1.rstudio.org/desktop/bionic/amd64/rstudio-2021.09.0%2B351-amd64.deb
+sudo dpkg -i rstudio-2021.09.0+351-amd64.deb
+sudo apt -f install # to fix possibly missing dependencies
+#+END_SRC
+# You will also need to install knitr. To this end, you should simply
+# run R (or Rstudio) and use the following command.
+# #+BEGIN_SRC R
+# install.packages("knitr")
+# #+END_SRC
+If some packages like =r-cran-ggplot2= or =r-cran-reshape= could not be installed for some
+reason, you can also install it through R by doing:
+#+BEGIN_SRC R
+install.packages("ggplot2")
+#+END_SRC
+*** Jupyter
+Now regarding jupyter, here is how to proceed on a debian-based distribution:
+#+begin_src sh
+sudo apt install jupyter r-cran-irkernel r-cran-irdisplay
+#+end_src
+Then you can simply run:
+#+begin_src sh
+jupyter notebook
+#+end_src
+
+If you want a cooler Jupyter environment, [[https://jupyterlab.readthedocs.io/en/stable/getting_started/installation.html][install JupyterLab]], for example as follows:
+#+begin_src sh
+pip3 install jupyterlab
+export PATH=$HOME/.local/bin:$HOME
+jupyter lab
+#+end_src
+
+** Producing documents
+The easiest way to go is probably to [[http://www.rstudio.com/ide/docs/authoring/using_markdown][use R+Markdown (Rmd files) in
+Rstudio]] and to export them via [[http://www.rpubs.com/][Rpubs]] to make available [[http://www.rpubs.com/tucano/zombies][whatever you
+want]].
+
+We can roughly distinguish between three kinds of documents:
+1. Lab notebook (with everything you try and that is meant mainly
+   for yourself)
+2. Experimental report (selected results and explanations with
+   enough details to discuss with your advisor)
+3. Result description (rather short with only the main point and,
+   which could be embedded in an article)
+We expect you to provide us the last two ones and to make them
+publicly available so as to allow others to [[http://rpubs.com/RobinLovelace/ratmog11][comment]] on them.
+** Learning R
+For a quick start, you may want to look at [[http://cran.r-project.org/doc/contrib/Paradis-rdebuts_en.pdf][R for Beginners]]. A probably
+more entertaining way to go is to follow a good online lecture
+providing an introduction to R and to data analysis such as this one:
+https://www.coursera.org/course/compdata. 
+
+A quite effective way (if you have time) is to use [[http://swirlstats.com/students.html][SWIRL]], an
+interactive learning environment that will guide through self-paced
+lesson.
+#+begin_src R :results output :session :exports both
+install.packages("swirl")
+library(swirl)
+install_from_swirl("R Programming")
+swirl()
+#+end_src
+I suggest in particular to follow the following lessons from R
+programming (max 10 minutes each):
+#+BEGIN_EXAMPLE
+ 1: Basic Building Blocks      2: Workspace and Files     
+ 3: Sequences of Numbers       4: Vectors                 
+ 5: Missing Values             6: Subsetting Vectors      
+ 7: Matrices and Data Frames   8: Logic                   
+ 9: Functions                 12: Looking at Data         
+#+END_EXAMPLE
+
+Finally, you may want to read this [[http://ww2.coastal.edu/kingw/statistics/R-tutorials/dataframes.html][excellent tutorial on data frames]]
+(=attach=, =with=, =rownames=, =dimnames=, notions of scope...).
+** Learning the tidyverse (ggplot2, dplyr, tidyR)
+All these packages have been developed by hadley wickam and are gathered [[https://www.tidyverse.org/][here]]. There are [[https://rstudio.github.io/cheatsheets/][amazing cheatsheets]] you may want to refer to, as well as nice [[https://seananderson.ca/ggplot2-fish554/][introductions to ggplot2]].
+* References
++ R. Jain, [[http://www.cs.wustl.edu/~jain/books/perfbook.htm][The Art of Computer Systems Performance Analysis:
+  Techniques for Experimental Design, Measurement, Simulation, and
+  Modeling]], Wiley-Interscience, New York, NY, April 1991.
+  [[http://www.amazon.com/Art-Computer-Systems-Performance-Analysis/dp/1118858425/ref%3Dsr_1_2?s%3Dbooks&ie%3DUTF8&qid%3D1435137636&sr%3D1-2&keywords%3Dperformance%2Bmeasurement%2Bcomputer][A new edition will be available in September 2015]].
+  #+BEGIN_QUOTE
+  This is an easy-to-read self-content book for practical performance
+  evaluation. The numerous checklists make it a great book for
+  engineers and every CS experimental scientist should have read it.
+  #+END_QUOTE
++ David J. Lilja, Measuring Computer Performance: A Practitioner’s
+  Guide, Cambridge University Press 2005
+  #+BEGIN_QUOTE
+  A short book suited for brief presentations. I follow a similar
+  organization but I really don't like the content of this book. I
+  feel it provides very little insight on why the theory applies or
+  not. I also think it is too general and lacks practical examples. It
+  may be interesting for those willing a quick and broad presentation
+  of the main concepts and "recipes" to apply.
+  #+END_QUOTE
++ Jean-Yves Le Boudec. [[http://www.cl.cam.ac.uk/~dq209/others/perf.pdf][Methods, practice and theory for the
+  performance evaluation of computer and communication
+  systems, 2006. EPFL electronic book]].
+  #+BEGIN_QUOTE
+  A very good book, with a much more theoretical treatment than the
+  Jain. It goes way farther on many aspects and I can only recommand
+  it.
+  #+END_QUOTE
++ Douglas C. Montgomery, [[http://www.wiley.com/WileyCDA/WileyTitle/productCd-EHEP002024.html][Design and Analysis of Experiments]], 8th
+  Edition. Wiley 2013.
+  #+BEGIN_QUOTE
+  This is a good and thorough textbook on design of experiments. It's
+  so unfortunate it relies on "exotic" softwares like JMP and minitab
+  instead of R...
+  #+END_QUOTE
++ Julian J. Faraway, [[https://cran.r-project.org/doc/contrib/Faraway-PRA.pdf][Practical Regression and Anova using R]],
+  University of Bath, 2002.
+  #+BEGIN_QUOTE
+  This book is derived from material that Pr. Faraway used in a Master
+  level class on Statistics at the University of Michigan. It is
+  mathematically involved but presents in details how linear
+  regression, ANOVA work and can be done with R. It works out many
+  examples in details and is very pleasant to read. A must-read if you
+  want to understand this topic more thoroughly.
+  #+END_QUOTE
++ Peter Kosso, [[http://www.amazon.fr/Summary-Scientific-Method-Peter-Kosso-ebook/dp/B008D5IYU2][A Summary of Scientific Method]], Springer, 2011.
+  #+BEGIN_QUOTE
+  A short nice book summarizing the main steps of the scientific
+  method and why having a clear definition is not that simple. It
+  illustrates these points with several nice historical examples that
+  allow the reader to take some perspective on this epistemological
+  question.
+  #+END_QUOTE
++ R. Nelson, Probability stochastic processes and queuing theory: the
+  mathematics of computer performance modeling. Springer Verlag 1995.
+  #+BEGIN_QUOTE
+  For those willing to know more about queuing theory.
+  #+END_QUOTE
