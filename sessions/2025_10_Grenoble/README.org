@@ -76,6 +76,35 @@ Evaluation process:
   - the proposed data analysis and conclusion reached;
 - Criticizing and improving the research question.
 * Course Tentative Schedule
+Here are the topics that are typically covered during the lecture.
+
+- Epistemology of computer science
+  - Computer Science is an Experimental Science: Randomness is unavoidable whenever human beings are involved but can also not be ignored anymore given the complexity of modern computer systems (network, cpus, hardware/software stack) or when working in a machine learning context which relies on observational data and remains empirical.
+  - Science is defined by its method, not by its results: Claude Bernard, Karl Popper, Thomas Kuhn, Imre Lakatos, ...
+  - Credibility crisis, scientific integrity
+- Open Science and Reproducible Research
+  - Laboratory notebook
+  - Computational document (jupyter, Rstudio, orgmode)
+  - Version control, data management, and archiving
+  - Data curation (missing data, outliers, typing issues)
+  - Data visualization and hypothesis checking (Exploratory Data Analysis)
+  - Communicating results
+- Introduction to statistics
+  - Random variables, central limit theorem, confidence interval, statistical test
+  - Bayesian framework: Bayes rules, Maximum likelihood vs. Posterior sampling, Credible interval [if time allows]
+  - ANOVA, Linear regression, and extensions (mostly logistic [if time allows])
+  - Gaussian Process [if time allows]
+- Observation vs. Experiment
+  - Correlation, Causation: mostly "dont's"
+  - Notions of bias (statistical, experimental, observational/sampling, etc.)
+  - Metrology: measurement and tracing, precision, practical computer science issues and tools
+- Experimental Design
+  - Methodology (fishbone, experiment structure)
+  - Difference between quantitative/qualitative observational/experimental data/analysis
+  - Sequential vs. incremental approach [if time allows]
+  - 2-level factorial designs, screening designs, LHS/MaxiMin designs
+  - Active/online learning with bandits (\epsilon-Greedy, UCB, Thompson) and extensions (surrogates: GP-UCB, EI) [if time allows]
+
 ** 1. 25/09/25  [ AL        ] Presentation of the lecture | Processing data with the Tidyverse, beautiful viz with ggplot
 *** Slides
 - [[file:../../lectures/lecture_SMPE_overview.pdf][Overview of the lecture]]
