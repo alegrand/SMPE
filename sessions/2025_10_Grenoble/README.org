@@ -68,7 +68,7 @@ Evaluation process:
 - All the examples given in this series of lecture use the R language as it is more appropriate than Python for this kind of work but every important concept will be introduced and resources will be provided to allow students to quickly level up.
 * Targeted skills
 - Working in a fully transparent (journal, version tracking, archiving, …), rigorous, and controlled (experiment design, software environment) way
-- Fluency with modern data analysis frameworks such as the Tidyverse (in particular ggplot2 and dplyr).
+- Fluency with modern data analysis frameworks such as the [[https://www.tidyverse.org/)][Tidyverse]] (in particular [[https://ggplot2.tidyverse.org/][ggplot2]] and [[https://dplyr.tidyverse.org/][dplyr]]).
 - Criticizing (and proposing improvements):
   - the experimental protocol and its shortcomings;
   - the quality of the data;
