@@ -76,6 +76,25 @@ Evaluation process:
   - the proposed data analysis and conclusion reached;
 - Criticizing and improving the research question.
 * Course Tentative Schedule
+
+#+begin_src shell :results output raw :exports results
+cat README.org | grep '^\*\*.* \[' | sed -e 's/^\*\* //'
+#+end_src
+
+#+RESULTS:
+1. 25/09/25  [ AL        ] Presentation of the lecture | Processing data with the Tidyverse, beautiful viz with ggplot
+2. 02/10/25  [ AL        ] Clearly defining the experiment and having the right tools to analyze it
+3. 09/10/25  [ JMV       ] Visualization and Exploratory Data Analysis
+4. 16/10/25  [ AL        ] Follow-up experiments | Data management tips (Data Tools)
+5. 23/10/25  [ AL|JMV    ] Probabilities, CI, estimation
+6. 13/11/25  [ AL|JMV    ] Correlation and the linear model
+7. 20/11/25  [ AL|JMV    ] The linear model, Multiple testing and ANOVA (p-hacking), and a bit of DoE
+8. 04/12/25  [ CL        ] Scientific Integrity 1
+9. 11/12/25  [ AL        ] DoE
+10. 18/12/25 [ CL        ] Scientific integrity 2
+11. 08/01/26 [ AL|JMV    ] Ethics 101 
+12. 15/01/26 [ AL|JMV    ] Ethics (AI and humain, climate change, societal challenges)
+
 Here are the topics that are typically covered during the lecture.
 
 - Epistemology of computer science
