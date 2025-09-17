@@ -16,7 +16,8 @@ find so that I can improve for others. :)
 
 This webpage gathers information about the lectures given at the
 [[https://mosig-m2-592ef6.gricad-pages.univ-grenoble-alpes.fr/scientific_methodo/][University of Grenoble to the Master students in Computer
-Science (MOSIG) from October 2025 to January 2026]].
+Science (MOSIG) from October 2025 to January 2026]], on Thursday from
+11h15 to 12h45 in in room [[https://maps.app.goo.gl/RsXTPPfGGEccqGAR6][C0004]].
 
 * Useful links 
 - Here is the [[https://codimd.math.cnrs.fr/0O2AeqE7TCijWofhF3SK-g][Pad]] you will use to collaborate.
