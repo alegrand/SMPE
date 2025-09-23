@@ -133,11 +133,12 @@ Here are the topics that are typically covered during the lecture.
 *** Homeworks
 - [ ] Indicate your name on the [[https://codimd.math.cnrs.fr/0O2AeqE7TCijWofhF3SK-g][Pad]]. You will use to collaborate and fill in all the information you can.
 - [ ] Register on the [[https://framateam.org/smpe-2024-2025/channels/town-square][Mattermost]] through this [[https://framateam.org/signup_user_complete/?id=yxk5rpuqdpds5b785t6ka94o4e&md=link&sbr=su][invitation link]]. This is the preferred communication mode.
-- [ ] Set up a *public* github or gitlab project for this lecture. You will take notes on this lecture and turn your homework and computational documents in this project.
-- [ ] Register to the [[https://www.fun-mooc.fr/fr/cours/recherche-reproductible-principes-methodologiques-pour-une-science-transparente/][MOOC on Reproducible Research]]
-- [ ] Follow modules 1 + 2 of the MOOC with as much exercises as possible (except the last one of module2, on /Challenger/; watching interviews is optional)
-- [ ] Set up a computational document system (e.g., [[#rstudio][Rstudio]] or [[#jupyter][Jupyter]] on your laptop or through the [[https://jupyterhub.u-ga.fr/][UGA JupyterHub]]).
+- [ ] Fill this [[https://sondages.inria.fr/index.php/562526?lang=en][survey]] (it will expire on October 2nd at 1AM)
+- [ ] Set up a *public* github or gitlab project for this lecture. You will take notes on this lecture, report your progression, and turn your homeworks and computational documents in this project.
 - [ ] Report the URL of your git project, your mattermost ID on the [[https://codimd.math.cnrs.fr/0O2AeqE7TCijWofhF3SK-g][Pad]].
+- [ ] Register to the [[https://www.fun-mooc.fr/fr/cours/recherche-reproductible-principes-methodologiques-pour-une-science-transparente/][MOOC on Reproducible Research]]
+- [ ] Start following modules 1 + 2 of the MOOC with as much exercises as possible (except the last one of module2, on /Challenger/; watching interviews is optional)
+- [ ] Set up a computational document system (e.g., [[#rstudio][Rstudio]] or [[#jupyter][Jupyter]] on your laptop or through the [[https://jupyterhub.u-ga.fr/][UGA JupyterHub]]).
 - [ ] Start learning R by reading this [[https://htmlpreview.github.io/?https://github.com/alegrand/SMPE/blob/master/sessions/2022_10_Grenoble/R_crash_course.html][R crash course for computer scientists]] ([[file:../2022_10_Grenoble/R_crash_course.Rmd][Rmd sources]]).
 ** 2. 02/10/25  [ AL        ] Clearly defining the experiment and having the right tools to analyze it
 *** Slides and resources
