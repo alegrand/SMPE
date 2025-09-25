@@ -2,7 +2,7 @@
 # -*- mode: org -*-
 #+Title:  Scientific Methodology and \newline (Empirical|Experimental) Evaluation
 #+Author: Arnaud Legrand\medskip\newline\logoInstitutions
-#+DATE:  \vspace{3cm}\JDEVlogo Master 2 MOSIG\newline 2024-2025 \newline\begin{overlayarea}{1.05\linewidth}{0cm}\vspace{-3.2cm}\hfill{\mylogo}\end{overlayarea}\vspace{-1.0cm}
+#+DATE:  \vspace{3cm}\JDEVlogo Master 2 MOSIG\newline 2025-2026 \newline\begin{overlayarea}{1.05\linewidth}{0cm}\vspace{-3.2cm}\hfill{\mylogo}\end{overlayarea}\vspace{-1.0cm}
 #+LANGUAGE: en
 #+STARTUP: beamer indent inlineimages logdrawer
 #+TAGS: noexport(n)
@@ -151,7 +151,7 @@
 # #+latex: \includegraphics[height=3cm]{../sessions/2021_10_Grenoble/elise.png}
 
 #+begin_center
-#+latex: \includegraphics[height=3cm]{../sessions/2021_10_Grenoble/celine.png}
+# #+latex: \includegraphics[height=3cm]{../sessions/2021_10_Grenoble/celine.png}
 #+latex: \includegraphics[height=3cm]{../sessions/2024_10_Grenoble/cyril.jpg}
 #+latex: \includegraphics[height=3cm]{../sessions/2021_10_Grenoble/arnaud.png}
 #+latex: \includegraphics[height=3cm]{../sessions/2021_10_Grenoble/jean-marc.png}
@@ -163,39 +163,57 @@
   - Pad    \hfill (notes and homework reporting)
   - Mattermost\hfill (questions, references, ...)
 ** Quick Poll
-- Python
-- R
+Fill the \textbf{Survey} for next week
+- Python | R
 - Notebooks (Rstudio, Jupyter, Org-Mode)
 - Git
 - Zenodo, Software Heritage
-- Docker
+- Docker | Singularity
 - Confidence Interval
 - P-value, P-hacking
 - Linear regression
 - Model Selection
 - Design of Experiments
-- Reinforcement Learning
+- Reinforcement|Active Learning
 ** Tentative schedule
 
-12 lectures \hfill Many practical homeworks (50%) \hfill A final Exam (50%)
+12 lectures \hfill _Many practical homeworks (50%)_ \hfill _A final Exam (50%)_
 \scriptsize
-1. \fbox{Epistemology: scientific method and computer science} \hfill \fbox{Presentation of the lecture}
-2. \fbox{Visualization and Exploratory Data Analysis} \hfill \fbox{Correlation/causality, spurious correlation}\smallskip
+1. \fbox{Presentation of the lecture} \hfill \fbox{Beautiful Viz with ggplot}
+2. \fbox{Conducting Experiments}
+3. \fbox{Good Graphics}
+4. \fbox{Conducting Experiments debrief} \hfill \fbox{Data management tools (tidyverse, git-annex)}\smallskip
+5. \fbox{Analysis tools: probabilities, CI, estimation}
+   - \scriptsize \textbf{Fall vacations}\smallskip
    - \scriptsize \textbf{No lecture}\smallskip
-3. \fbox{Data curation with the tidyverse} \hfill \fbox{Beautiful Viz with ggplot} 
-4. \fbox{Data management: theory} \hfill \fbox{Data management: tools}\smallskip
-   - \scriptsize \textbf{Fall Vacations}\smallskip
-5. \fbox{Measurement and tracing}
-6. \fbox{Clearly defining the experiment} \hfill \fbox{Having the right tools to analyze (e.g., C.I)}
-7. \fbox{The linear model}
-8. \fbox{Multiple testing, ANOVA, and p-hacking}
-9. \fbox{Scientific integrity}
-10. \fbox{A Bayesian perspective on model selection} \hfill \fbox{Sequential DoE (screening, LHS, D-opt, ...)}\smallskip
-11. \fbox{Ethics (AI and humain, climate change, societal challenges)}
+6. \fbox{Correlation/causality, the Linear model}\smallskip
+7. \fbox{The Linear model}\smallskip
+   - \scriptsize \textbf{No lecture}\smallskip
+8. \fbox{The academic system}
+9. \fbox{Design of Experiments}
+10. \fbox{The academic system}
     - \scriptsize \textbf{Winter vacations}\smallskip
-12. \fbox{Incremental DoE: Bayesian perspective, Reinforcement Learning, Surrogates (Bandit, GP)}\smallskip
+11. \fbox{Ethics 101}\smallskip
+12. \fbox{Ethics (AI and humain, climate change, societal challenges)}
     - \scriptsize \textbf{Exam}
 
+# 1. \fbox{Epistemology: scientific method and computer science} \hfill \fbox{Presentation of the lecture}
+# 2. \fbox{Visualization and Exploratory Data Analysis} \hfill \fbox{Correlation/causality, spurious correlation}\smallskip
+#    - \scriptsize \textbf{No lecture}\smallskip
+# 3. \fbox{Data curation with the tidyverse} \hfill \fbox{Beautiful Viz with ggplot} 
+# 4. \fbox{Data management: theory} \hfill \fbox{Data management: tools}\smallskip
+#    - \scriptsize \textbf{Fall Vacations}\smallskip
+# 5. \fbox{Measurement and tracing}
+# 6. \fbox{Clearly defining the experiment} \hfill \fbox{Having the right tools to analyze (e.g., C.I)}
+# 7. \fbox{The linear model}
+# 8. \fbox{Multiple testing, ANOVA, and p-hacking}
+# 9. \fbox{Scientific integrity}
+# 10. \fbox{A Bayesian perspective on model selection} \hfill \fbox{Sequential DoE (screening, LHS, D-opt, ...)}\smallskip
+# 11. \fbox{Ethics (AI and humain, climate change, societal challenges)}
+#     - \scriptsize \textbf{Winter vacations}\smallskip
+# 12. \fbox{Incremental DoE: Bayesian perspective, Reinforcement Learning, Surrogates (Bandit, GP)}\smallskip
+#     - \scriptsize \textbf{Exam}
+      
 ** Towards a Rigorous and Ethical Computer Science
 \vspace{.5cm}
 #+latex: \hbox{\hspace{-1cm}\includegraphics[width=1.19\linewidth]{images/SMPE_overview.pdf}}
@@ -480,15 +498,16 @@ increasingly numerous and complex/
 :END:
 \alert{MOOC} [[https://learninglab.inria.fr/en/mooc-recherche-reproductible-principes-methodologiques-pour-une-science-transparente/][Reproducible Research: Methodological]] [[https://learninglab.inria.fr/en/mooc-recherche-reproductible-principes-methodologiques-pour-une-science-transparente/][principles for a
 transparent science]], Learning Lab 
-- Konrad Hinsen, Christophe Pouzat
-- *3rd Edition*: March 2020 -- _March 2023_ (15,000+)
-- In French but fully subtitled in English
+- \small Konrad Hinsen, Christophe Pouzat \vspace{-.2em}
+- \small *3rd Edition*: March 2020 -- ... (25,000+)\vspace{-.2em}
+- \small In French, /fully subtitled in English/\vspace{-.2em}
 *** MOOC pic                                                        :BMCOL:
 :PROPERTIES:
 :BEAMER_col: .35
 :BEAMER_OPT: t
 :END:
 #+LaTeX: \includegraphics[width=\linewidth,valign=t]{images/mooc_rr.png}
+\vspace{-1em}
 *** Modules                                                      :B_ignoreheading:
 :PROPERTIES:
 :BEAMER_env: ignoreheading
@@ -504,10 +523,14 @@ transparent science]], Learning Lab
 :PROPERTIES:
 :BEAMER_env: ignoreheading
 :END:
-The 2nd *MOOC "Advanced RR"* has been released in +2021+ 2024
-  - \footnotesize Managing data
-  - \footnotesize Software environment control
-  - \footnotesize Scientific workflow
+
+#+latex: \rlap{\hspace{-2em}
+The *MOOC* [[https://www.fun-mooc.fr/fr/cours/reproducible-research-ii-practices-and-tools-for-managing-comput/][RR2: Practices and tools for managing computations and data]], 2024
+#+latex: }
+
+  - Module :: Managing data
+  - Module :: Software environment control
+  - Module :: Scientific workflow
 \vspace{-.7cm}
 
 ** Homeworks 
