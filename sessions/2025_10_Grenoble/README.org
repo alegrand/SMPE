@@ -180,8 +180,9 @@ cat README.org | grep '^\*\*.* \[' | sed -e 's/^\*\* //'
    #   Try to re-run this analysis, then re-obtain some data and compare
    #   the results, improve the experimental design if needed.
 *** Homeworks
-- [ ] Complete previous homeworks (Challenger)
-- [ ] Continue the hands-on by improving the experiment design and the analysis. Share your findings on the [[https://codimd.math.cnrs.fr/0O2AeqE7TCijWofhF3SK-g][Pad]] and/or on your public fork of the project.
+You have two weeks for doing these two assignments, we will debrief them during the 4th lecture.
+- [ ] Continue working on the MOOC (in particular, the Challenger exercise of module 2)
+- [ ] Continue the hands-on by improving the experiment design and the analysis (see above). Share your findings on the [[https://codimd.math.cnrs.fr/0O2AeqE7TCijWofhF3SK-g][Pad]] and/or on your public fork of the project. 
 ** 3. 09/10/25  [ JMV       ] Visualization and Exploratory Data Analysis
 *** Slides and resources
 # +Introduction to the scientific method and computer science epistemology | Publications+ 
