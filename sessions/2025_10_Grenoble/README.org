@@ -227,14 +227,18 @@ You have two weeks for doing these two assignments, we will debrief them during 
 ** No lecture
 ** 6. 13/11/25  [ AL|JMV    ] Correlation and the linear model
 *** Slides and resources
-- Computing independant CIs for the data in https://github.com/alegrand/M2R-ParallelQuicksort
+- Feedback on Challenger. See
+  - https://utstat.toronto.edu/reid/sta2101f/shuttle.pdf
+  - https://gitlab.inria.fr/learninglab/mooc-rr/moocrr-reproducibility-study/-/blob/master/challenger.pdf
+  - file:challenger/exo5_en2.Rmd
+  - https://gitlab.inria.fr/learninglab/mooc-rr/moocrr-reproducibility-study.
+  - file:challenger/Tufte_Visual_Explanations_Challenger.pdf
+- Quick reminder regarding transparency trhough the [[file:../../lectures/lecture_correlation_causation.pdf][correlation and causality]] issue.
 - Going beyond independant evaluations with the [[file:../../lectures/4_linear_model.pdf][linear model]]
 *** Homeworks
+- Compute independant CIs for the data in https://github.com/alegrand/M2R-ParallelQuicksort if you haven't done so yet
 - Fit a linear model for the data in https://github.com/alegrand/M2R-ParallelQuicksort
-- (For the 28th of November) Read the articles provided [[https://cloud.univ-grenoble-alpes.fr/s/3Ro6LpMbP6fckFH][here]] (about 5
-  min for each paper) and (1) explain how and why citations are used
-  and (2) qualify the journal in a few words.
-- MOOC Peer evaluated exercise.  
+- Advance the MOOC Peer evaluated exercise.  
 ** 7. 20/11/25  [ AL|JMV    ] The linear model, Multiple testing and ANOVA (p-hacking), and a bit of DoE
 *** Slides and resources
 - Fitting a linear model for the data in https://github.com/alegrand/M2R-ParallelQuicksort
