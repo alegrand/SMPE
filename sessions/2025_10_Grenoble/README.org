@@ -249,15 +249,19 @@ You have two weeks for doing these two assignments, we will debrief them during 
 ** No lecture
 ** 8. 04/12/25  [ CL        ] Scientific Integrity 1
 *** Slides and resources
-- [[file:../2024_10_Grenoble/06_Scientific_Publications.pdf][Introduction to the publication system]]
-- [[file:../2024_10_Grenoble/08_Scientific_Publications.pdf][More on the publication system]]  
+- [[file:CL_SMPE_P1.pdf][Scientific Publications and Scientific Integrity]]
+# - [[file:../2024_10_Grenoble/06_Scientific_Publications.pdf][Introduction to the publication system]]
+# - [[file:../2024_10_Grenoble/08_Scientific_Publications.pdf][More on the publication system]]  
   # [[file:../../lectures/lecture_scientific_integrity.pdf][Introduction to scientific integrity, deontology and ethics]]
   # - Fonctions/structures/rôles de la Publication, Citation \to bibliométrie
   # - Où trouver l'info, Archives ouvertes, open access
   # - Lecture de papier pour trouver des trucs bizarres, rétractation, duplication de données, trafication de données pour pouvoir publier ou même avoir un visa. Réaction à avoir.
 *** Homeworks
-- Read all we've seen, try to get some perspective, make sure to make
-  all the connexions and ask me questions.
+- For the 18/12, read the papers available [[https://cloud.univ-grenoble-alpes.fr/s/3Ro6LpMbP6fckFH][here]]. Spend no more than
+  10-15 minutes per article and try to answer the following questions:
+  - Is this paper worth being read?
+  - Is it a famous paper?
+  - Any other point about it you would like to make...
 - Move on with the Peer Evaluated exercise of the MOOC
 ** 9. 11/12/25  [ AL        ] DoE
 *** Slides and resources
