@@ -2,6 +2,7 @@
 #+AUTHOR:    Cyril Labbé, Arnaud Legrand, and Jean-Marc Vincent
 #+DATE: October 2025
 #+STARTUP: overview indent
+#+PROPERTY: header-args :eval never-export
 
 *Teachers*: Cyril Labbé, Arnaud Legrand, and Jean-Marc Vincent
 
@@ -273,6 +274,7 @@ You have two weeks for doing these two assignments, we will debrief them during 
 
 ** 10. 18/12/25 [ CL        ] Scientific integrity 2
 *** Slides and resources
+- [[file:CL_SMPE_P2.pdf][Scientific Publications and Scientific Integrity (2)]]
 *** Homeworks
 - MOOC Peer evaluated exercise.
 ** Winter vacations
