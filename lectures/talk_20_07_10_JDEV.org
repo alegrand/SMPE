@@ -280,7 +280,7 @@ file:images/platform_diversity.png
 :BEAMER_env: block
 :END:
 - GitHub, BitBucket, GitLab, ... make it more human-friendly
-- Note that \textbf{none} of these platforms is _perenial_ (see
+- Note that \textbf{none} of these platforms is _perennial_ (see
   Roberto's presentation on \alert{S}oft\alert{W}are \alert{H}eritage)
 - Git tracks a single software project: \hfill$\leadsto$ [[https://git-scm.com/book/fr/v2/Utilitaires-Git-Sous-modules][_Git submodule_]]
   $\smiley$ or [[https://www.atlassian.com/git/tutorials/git-subtree][Git subtree]] $\Sey[1][cyan]$
@@ -326,7 +326,7 @@ file:images/platform_diversity.png
 \vspace{-.3em}
    - [[https://docs.conda.io/en/latest/][Anaconda]] is OS agnostic and popular for data science
      - Reinstalling a basic environment even after a few months can
-       reveal impossible
+       turn out to be impossible
    - Debian *commits* to reproducibility: [[https://snapshot.debian.org/][snapshots]] (March 2005) and
      [[https://reproducible-builds.org/projects/][reproducible builds]]
      - You may freeze a Dockerfile by wisely freezing sources
@@ -338,7 +338,7 @@ file:images/platform_diversity.png
 :BEAMER_act: <2->
 :END:
 \vspace{-.3em}
-   - Allows to rebuild a software stack in a *controled* way\hfill (sources,
+   - Allows to rebuild a software stack in a *controlled* way\hfill (sources,
      compiling options)
    - Use *caches* to save compiling time
    - [[https://guix.gnu.org/blog/2020/reproducible-computations-with-guix/][Time machine mechanism and export to docker/...]]
@@ -353,7 +353,7 @@ file:images/platform_diversity.png
 [[https://twitter.com/GaelVaroquaux/status/1280850571201851392][The /REPL/ (Read–eval–print loop) vs. /Notebook/ vs /IDE/ debate]]
 
 - In the beginning was the Mathematica (1988) and the Maple (1989)
-  notebooks, which allow to tell a story (*litterate programming*)\pause
+  notebooks, which allow to tell a story (*literate programming*)\pause
 
 - Then IJulia, IPython, and IR merged into the [[https://jupyter.org/][Jupyter]] notebook $\Cooley[1][yellow]$
   - The coolest kid on the block without  +*IDE/Structure*+, \hfill
@@ -422,7 +422,7 @@ smtweb
 +concurrent executions+ \vspace{-.5em}
 
 [[https://pypet.readthedocs.io/en/latest/][PyPet]] extends Sumatra with Parameter Sweep (Fork-Join, store trajectories in HDF5)
-** Tracking Data with [[https://www.datalad.org/][DataLad]] (an other NeuroScience project)
+** Tracking Data with [[https://www.datalad.org/][DataLad]] (another NeuroScience project)
 Builds on =git annex= and =git submodule= plus small =JSON= metadata   \vspace{-1em}
 #+begin_src shell :results output :exports both
 datalad create myfirstrepo # datalad clone/update
@@ -535,9 +535,9 @@ file:images/deepkit-v2020.jpg
   - Tracks key model metrics, hyperparams, visualizations, artifacts
     and resources,
   - Version control code and data
-  - Kunbernetes
+  - Kubernetes
 - [[https://www.pachyderm.com/][Pachyderm]] (Version-controlled data science)
-  - Versionned data without +=git=+: [[https://docs.pachyderm.com/latest/concepts/data-concepts/repo/][a centralized location (no
+  - Versioned data without +=git=+: [[https://docs.pachyderm.com/latest/concepts/data-concepts/repo/][a centralized location (no
     conflict, allows removal,...)]]
   - Pipelines and distributed computer: Kubernetes/KubeFlow
 - [[https://github.com/AITRICS/kono][Kono]]
