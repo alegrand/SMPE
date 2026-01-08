@@ -248,7 +248,7 @@ You have two weeks for doing these two assignments, we will debrief them during 
 - Keep building intuition on linear model
 - Try to complete the peer-evaluation of the MOOC
 ** No lecture
-** 8. 04/12/25  [ CL        ] Scientific Integrity 1
+** 8. 04/12/25  [ CL        ] The publication system 1
 *** Slides and resources
 - [[file:CL_SMPE_P1.pdf][Scientific Publications and Scientific Integrity]]
 # - [[file:../2024_10_Grenoble/06_Scientific_Publications.pdf][Introduction to the publication system]]
@@ -272,29 +272,29 @@ You have two weeks for doing these two assignments, we will debrief them during 
 - Mature the DoE techniques we have seen
 - Try to complete the peer-evaluation of the MOOC
 
-** 10. 18/12/25 [ CL        ] Scientific integrity 2
+** 10. 18/12/25 [ CL        ] The publication system 2
 *** Slides and resources
 - [[file:CL_SMPE_P2.pdf][Scientific Publications and Scientific Integrity (2)]]
 *** Homeworks
 - MOOC Peer evaluated exercise.
 ** Winter vacations
-** 11. 08/01/26 [ AL|JMV    ] Ethics 101 
+** 11. 08/01/26 [ AL|JMV    ] Scientific Integrity
 *** Slides and resources
-- [[file:11_chatbot.pdf][Slides on Lovots and chatbots]]
 - [[file:../../lectures/lecture_scientific_integrity.pdf][Introduction to scientific integrity, deontology and ethics]]
+# - [[file:11_chatbot.pdf][Slides on Lovots and chatbots]]
 *** Homeworks
-You'll find is a random student/topic assignment on the bottom of the
-[[https://codimd.math.cnrs.fr/0O2AeqE7TCijWofhF3SK-g][Pad]] (you may trade a topic with someone else if you’re really
-uncomfortable with the one you’ve been assigned; you may even pick an
-other topic if you can’t trade yours but I’d like everyone to work on
-different topics as much as posible). I have only quickly read through
-most of these these documents so do not expect extraordinay
-content. Prepare a short presentation with the pros and cons of each
-technology. You will present (1) the problems it tries to address, (2)
-to what extent it does, (3) whether it unlocked other
-usages/problems. (4) Indicate in which of the 4th scenarios of the
-ADEME (https://transitions2050.ademe.fr/en) this technology is rooted.
-
+- Complete the Peer Evaluated exercise from the MOOC.
+# You'll find is a random student/topic assignment on the bottom of the
+# [[https://codimd.math.cnrs.fr/0O2AeqE7TCijWofhF3SK-g][Pad]] (you may trade a topic with someone else if you’re really
+# uncomfortable with the one you’ve been assigned; you may even pick an
+# other topic if you can’t trade yours but I’d like everyone to work on
+# different topics as much as posible). I have only quickly read through
+# most of these these documents so do not expect extraordinay
+# content. Prepare a short presentation with the pros and cons of each
+# technology. You will present (1) the problems it tries to address, (2)
+# to what extent it does, (3) whether it unlocked other
+# usages/problems. (4) Indicate in which of the 4th scenarios of the
+# ADEME (https://transitions2050.ademe.fr/en) this technology is rooted.
 ** 12. 15/01/26 [ AL|JMV    ] Ethics (AI and humain, climate change, societal challenges)
 ** 26/01/25: Exam ?
 
