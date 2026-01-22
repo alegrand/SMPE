@@ -2,7 +2,7 @@
 # -*- mode: org -*-
 #+Title:  Reproducibility Research and Open Science
 #+Author: Arnaud Legrand et Konrad Hinsen\medskip\newline\logoInstitutions
-#+DATE:  \vspace{3cm}\JDEVlogo /INSEE seminar on Open Science/\newline January 206\newline\begin{overlayarea}{1.05\linewidth}{0cm}\vspace{-3.2cm}\hfill{\mylogo}\end{overlayarea}\vspace{-1.0cm}
+#+DATE:  \vspace{3cm}\JDEVlogo /INSEE seminar on Open Science/\newline January 202q6\newline\begin{overlayarea}{1.05\linewidth}{0cm}\vspace{-3.2cm}\hfill{\mylogo}\end{overlayarea}\vspace{-1.0cm}
 #+LANGUAGE: en
 #+STARTUP: beamer indent inlineimages logdrawer
 #+TAGS: noexport(n)
