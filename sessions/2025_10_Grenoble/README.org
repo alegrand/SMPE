@@ -116,15 +116,15 @@ cat README.org | grep '^\*\*.* \[' | sed -e 's/^\*\* //'
 1. 25/09/25  [ AL        ] Presentation of the lecture | Processing data with the Tidyverse, beautiful viz with ggplot
 2. 02/10/25  [ AL        ] Clearly defining the experiment and having the right tools to analyze it
 3. 09/10/25  [ JMV       ] Visualization and Exploratory Data Analysis
-4. 16/10/25  [ AL        ] Follow-up experiments | Data management tips (Data Tools)
-5. 23/10/25  [ AL|JMV    ] Probabilities, CI, estimation
-6. 13/11/25  [ AL|JMV    ] Correlation and the linear model
-7. 20/11/25  [ AL|JMV    ] The linear model, Multiple testing and ANOVA (p-hacking), and a bit of DoE
-8. 04/12/25  [ CL        ] Scientific Integrity 1
+4. 16/10/25  [ AL        ] Probabilities, CI, estimation
+5. 23/10/25  [ JMV       ] Estimation, correlation
+6. 13/11/25  [ AL        ] Correlation and the linear model
+7. 20/11/25  [ AL        ] The linear model, Multiple testing and ANOVA (p-hacking), and a bit of DoE
+8. 04/12/25  [ CL        ] The publication system 1
 9. 11/12/25  [ AL        ] DoE
-10. 18/12/25 [ CL        ] Scientific integrity 2
-11. 08/01/26 [ AL|JMV    ] Ethics 101 
-12. 15/01/26 [ AL|JMV    ] Ethics (AI and humain, climate change, societal challenges)
+10. 18/12/25 [ CL        ] The publication system 2
+11. 08/01/26 [ AL        ] Scientific Integrity
+12. 15/01/26 [ AL        ] Ethics (AI and humain, climate change, societal challenges)
 
 ** 1. 25/09/25  [ AL        ] Presentation of the lecture | Processing data with the Tidyverse, beautiful viz with ggplot
 *** Slides
@@ -226,7 +226,7 @@ You have two weeks for doing these two assignments, we will debrief them during 
 - Follow the module 3 if you haven't done so yet, choose a topic for the peer-evaluated final exercise of module 3, and start working on it.
 ** Fall Vacations
 ** No lecture
-** 6. 13/11/25  [ AL|JMV    ] Correlation and the linear model
+** 6. 13/11/25  [ AL        ] Correlation and the linear model
 *** Slides and resources
 - Feedback on Challenger. See
   - https://utstat.toronto.edu/reid/sta2101f/shuttle.pdf
@@ -234,13 +234,13 @@ You have two weeks for doing these two assignments, we will debrief them during 
   - file:challenger/exo5_en2.Rmd
   - https://gitlab.inria.fr/learninglab/mooc-rr/moocrr-reproducibility-study.
   - file:challenger/Tufte_Visual_Explanations_Challenger.pdf
-- Quick reminder regarding transparency trhough the [[file:../../lectures/lecture_correlation_causation.pdf][correlation and causality]] issue.
+- Quick reminder regarding transparency through the [[file:../../lectures/lecture_correlation_causation.pdf][correlation and causality]] issue.
 - Going beyond independant evaluations with the [[file:../../lectures/4_linear_model.pdf][linear model]]
 *** Homeworks
 - Compute independant CIs for the data in https://github.com/alegrand/M2R-ParallelQuicksort if you haven't done so yet
 - Fit a linear model for the data in https://github.com/alegrand/M2R-ParallelQuicksort
 - Advance the MOOC Peer evaluated exercise.  
-** 7. 20/11/25  [ AL|JMV    ] The linear model, Multiple testing and ANOVA (p-hacking), and a bit of DoE
+** 7. 20/11/25  [ AL        ] The linear model, Multiple testing and ANOVA (p-hacking), and a bit of DoE
 *** Slides and resources
 - Fitting a linear model for the data in https://github.com/alegrand/M2R-ParallelQuicksort
 - Going beyond independant evaluations with the [[file:../../lectures/4_linear_model.pdf][linear model]]
@@ -278,7 +278,7 @@ You have two weeks for doing these two assignments, we will debrief them during 
 *** Homeworks
 - MOOC Peer evaluated exercise.
 ** Winter vacations
-** 11. 08/01/26 [ AL|JMV    ] Scientific Integrity
+** 11. 08/01/26 [ AL        ] Scientific Integrity
 *** Slides and resources
 - [[file:../../lectures/lecture_scientific_integrity.pdf][Introduction to scientific integrity, deontology and ethics]]
 # - [[file:11_chatbot.pdf][Slides on Lovots and chatbots]]
@@ -295,7 +295,7 @@ You have two weeks for doing these two assignments, we will debrief them during 
 # to what extent it does, (3) whether it unlocked other
 # usages/problems. (4) Indicate in which of the 4th scenarios of the
 # ADEME (https://transitions2050.ademe.fr/en) this technology is rooted.
-** 12. 15/01/26 [ AL|JMV    ] Ethics (AI and humain, climate change, societal challenges)
+** 12. 15/01/26 [ AL        ] Ethics (AI and humain, climate change, societal challenges)
 ** 26/01/25: Exam ?
 
 * Hands-on
