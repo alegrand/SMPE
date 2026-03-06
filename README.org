@@ -25,7 +25,7 @@ University of Rio Grande do Sul]], at [[http://www.ens-lyon.fr][ENS Lyon]] and [
 This website also gathers a list of keynotes I gave on reproducible
 research. The most recent ones are:
 #+begin_src shell :results output raw :exports results
-for i in `ls lectures/talk*.pdf | sort -r | head -n 9`;  do
+for i in `ls lectures/talk*.pdf | sort -r | head -n 10`;  do
     date=`echo $i | sed 's/.*talk_//'`;
     place=$date;
     date=`echo $date | sed 's/_[^0-9].*//g'`;
@@ -36,6 +36,8 @@ done
 #+end_src
 
 #+RESULTS:
+- [[file:lectures/talk_26_01_22_INSEE_Paris.pdf][INSEE_Paris (22/01/2026)]]
+- [[file:lectures/talk_25_12_09_Inria_Grenoble.pdf][Inria_Grenoble (09/12/2025)]]
 - [[file:lectures/talk_25_02_27_ROADEF_Paris.pdf][ROADEF_Paris (27/02/2025)]]
 - [[file:lectures/talk_24_12_11_M1_UGA.pdf][M1_UGA (11/12/2024)]]
 - [[file:lectures/talk_24_11_27_theory_days.pdf][theory_days (27/11/2024)]]
@@ -44,7 +46,6 @@ done
 - [[file:lectures/talk_24_03_15_ORAP_1.pdf][ORAP_1 (15/03/2024)]]
 - [[file:lectures/talk_24_02_07_RSD_School_Pleynet.pdf][RSD_School_Pleynet (07/02/2024)]]
 - [[file:lectures/talk_24_01_24_L3_ENSL.pdf][L3_ENSL (24/01/2024)]]
-- [[file:lectures/talk_23_12_14_M1_UGA.pdf][M1_UGA (14/12/2023)]]
 
 * Table of Contents                                                     :TOC:
 - [[#course-objective-and-organization][Course Objective and Organization]]
