@@ -19,7 +19,7 @@ Science in Informatics at Grenoble]] and more recently at [[http://www.ufrgs.br/
 University of Rio Grande do Sul]], at [[http://www.ens-lyon.fr][ENS Lyon]] and [[http://ens-rennes.fr][ENS Rennes]]. Most sessions I gave are listed [[file:sessions/][here]].
 
 #+begin_center
-*If you are a MOSIG student, the webpage for your session is [[file:sessions/2025_10_Grenoble/README.org][here]]*.
+*If you are a MOSIG student, the webpage for your session is [[file:sessions/2026_10_Grenoble/README.org][here]]*.
 #+end_center
 
 This website also gathers a list of keynotes I gave on reproducible
