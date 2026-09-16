@@ -17,12 +17,12 @@ find so that I can improve for others. :)
 
 This webpage gathers information about the lectures given at the
 [[https://mosig-m2-592ef6.gricad-pages.univ-grenoble-alpes.fr/scientific_methodo/][University of Grenoble to the Master students in Computer
-Science (MOSIG) from October 2026 to January 2027]], on Tuesday from
-14h00 to 15h30 in in room [[https://maps.app.goo.gl/RsXTPPfGGEccqGAR6][C0004]].
+Science (MOSIG) from October 2026 to January 2027]], on Thursday from
+11h15 to 12h45 in in room [[https://maps.app.goo.gl/RsXTPPfGGEccqGAR6][C0004]].
 
 * Useful links 
 - Here is the [[https://codimd.math.cnrs.fr/L-taV29nRnaiskzgygrdHA][Pad]] you will use to collaborate.
-- Here is the [[https://edt.grenoble-inp.fr/2026-2027/exterieur][lecture schedule on ADE]] (look for =mosig2=). A table summary is [[https://edt.grenoble-inp.fr/2026-2027/exterieur/jsp/custom/modules/plannings/eventInfo.jsp?week=-1&day=-1&slot=0&eventId=31978&activityId=-1&resourceId=-1&sessionId=-1&repetition=-1&order=slot&availableZone=-1][here]] and the lecture takes place in room [[https://maps.app.goo.gl/RsXTPPfGGEccqGAR6][C0004]].
+- Here is the [[https://edt.grenoble-inp.fr/2026-2027/exterieur][lecture schedule on ADE]] (look for =mosig2=). A table summary is [[https://edt.grenoble-inp.fr/2026-2027/exterieur/jsp/custom/modules/plannings/eventInfo.jsp?week=-1&day=-1&slot=0&eventId=31978&activityId=-1&resourceId=-1&sessionId=-1&repetition=-1&order=slot&availableZone=-1][here]] and the lecture takes mostly place in room [[https://maps.app.goo.gl/RsXTPPfGGEccqGAR6][C0007]] (lecture 1 is in C009, lecture 2 in H206, and lecture 3 in H105).
 - Here is the [[https://framateam.org/signup_user_complete/?id=jotsbkxj9tff7eti54qbgnc4hw&md=link&sbr=su][Invitation link]] for the [[(https://framateam.org/smpe-2026-2027/channels/town-square][Mattermost]] we will use to exchange information.
   - The [[https://www.fun-mooc.fr/fr/cours/recherche-reproductible-principes-methodologiques-pour-une-science-transparente/][MOOC on Reproducible Research 1: Methodological principles for a transparent science]]
   - The [[https://www.fun-mooc.fr/en/courses/reproducible-research-ii-practices-and-tools-for-managing-comput/][MOOC on Reproducible Research 2: Practices and tools for managing computations and data]]
@@ -112,20 +112,20 @@ cat README.org | grep '^\*\*.* \[' | sed -e 's/^\*\* //'
 #+end_src
 
 #+RESULTS:
-1. 22/09/26  [ AL        ] Presentation of the lecture | Processing data with the Tidyverse, beautiful viz with ggplot
-2. 29/09/26  [ AL        ] Clearly defining the experiment and having the right tools to analyze it
-3. 06/10/26  [ AL        ] Visualization and Exploratory Data Analysis
-4. 13/10/26  [ AL        ] Probabilities, CI, estimation
-5. 20/10/26  [ AL        ] Estimation, correlation
-6. 03/11/26  [ AL        ] Correlation and the linear model
-7. 10/11/26  [ AL        ] The linear model, Multiple testing and ANOVA (p-hacking), and a bit of DoE
-8. 17/11/26  [ CL        ] The publication system 1
-9. 01/12/26  [ AL        ] DoE
-10. 08/12/26 [ CL        ] The publication system 2
-11. 15/12/26 [ AL        ] Scientific Integrity
-12. 05/01/27 [ AL        ] Ethics (AI and humain, climate change, societal challenges)
+1. 24/09/26  [ AL        ] Presentation of the lecture | Processing data with the Tidyverse, beautiful viz with ggplot
+2. 01/10/26  [ AL        ] Clearly defining the experiment and having the right tools to analyze it
+3. 08/10/26  [ AL        ] Visualization and Exploratory Data Analysis
+4. 22/10/26  [ AL        ] Probabilities, CI, estimation
+5. 05/11/26  [ AL        ] Estimation, correlation
+6. 12/11/26  [ AL        ] Correlation and the linear model
+7. 19/11/26  [ AL        ] The linear model, Multiple testing and ANOVA (p-hacking), and a bit of DoE
+8. 03/12/26  [ CL        ] The publication system 1
+9. 10/12/26  [ AL        ] DoE
+10. 17/12/26 [ CL        ] The publication system 2
+11. 07/01/26 [ AL        ] Scientific Integrity
+12. 14/01/27 [ AL        ] Ethics (AI and humain, climate change, societal challenges)
 
-** 1. 22/09/26  [ AL        ] Presentation of the lecture | Processing data with the Tidyverse, beautiful viz with ggplot
+** 1. 24/09/26  [ AL        ] Presentation of the lecture | Processing data with the Tidyverse, beautiful viz with ggplot
 *** Slides
 - [[file:../../lectures/lecture_SMPE_overview.pdf][Overview of the lecture]]
 - Demo of =dplyr= and =ggplot= (update of the  [[https://htmlpreview.github.io/?https://github.com/alegrand/SMPE/blob/master/sessions/2022_10_Grenoble/R_crash_course.html][R crash course for computer scientists]]). You may want to look at these [[file:../../lectures/lecture_R_crash_course.pdf][slides]].
@@ -141,7 +141,7 @@ cat README.org | grep '^\*\*.* \[' | sed -e 's/^\*\* //'
 - [ ] Start following modules 1 + 2 of the MOOC and complete as much exercises as possible (except the last one of module2, on /Challenger/; watching interviews is optional)
 - [ ] Set up a computational document system (e.g., [[#rstudio][Rstudio]] or [[#jupyter][Jupyter]] on your laptop or through the [[https://jupyterhub.u-ga.fr/][UGA JupyterHub]]).
 - [ ] Start learning R by reading this [[https://htmlpreview.github.io/?https://github.com/alegrand/SMPE/blob/master/sessions/2022_10_Grenoble/R_crash_course.html][R crash course for computer scientists]] ([[file:../2022_10_Grenoble/R_crash_course.Rmd][Rmd sources]]).
-** 2. 29/09/26  [ AL        ] Clearly defining the experiment and having the right tools to analyze it
+** 2. 01/10/26  [ AL        ] Clearly defining the experiment and having the right tools to analyze it
 # *** Slides and resources
 # 1. MOOC status report and feedback on exercises.
 # 2. We propose you to work in group on the Parallel Quicksort project.
@@ -183,7 +183,7 @@ cat README.org | grep '^\*\*.* \[' | sed -e 's/^\*\* //'
 # You have two weeks for doing these two assignments, we will debrief them during the 4th lecture.
 # - [ ] Continue working on the MOOC (in particular, the Challenger exercise of module 2)
 # - [ ] Continue the hands-on by improving the experiment design and the analysis (see above). Share your findings on the [[https://codimd.math.cnrs.fr/0O2AeqE7TCijWofhF3SK-g][Pad]] and/or on your public fork of the project. 
-** 3. 06/10/26  [ AL        ] Visualization and Exploratory Data Analysis
+** 3. 08/10/26  [ AL        ] Visualization and Exploratory Data Analysis
 # *** Slides and resources
 # # +Introduction to the scientific method and computer science epistemology | Publications+ 
 # # - [[file:02_lecture_JMV_what-is-science.pdf][Lecture: What is Science?]]
@@ -201,7 +201,8 @@ cat README.org | grep '^\*\*.* \[' | sed -e 's/^\*\* //'
 #    2. Proposing a better representation (hand-drawing is fine) that passes the checklist.
 #  - [ ] Report this work for at least 3 figures on you github/gitlab project.
 #  - [ ] MOOC: Complete exercise 5 of module 2 (/Challenger/). Write a short text explaining what is good and wrong about this document (you may want to provide an updated version of the notebook) and upload on your github/gitlab space.
-** 4. 13/10/26  [ AL        ] Probabilities, CI, estimation
+** No lecture (project)
+** 4. 22/10/26  [ AL        ] Probabilities, CI, estimation
 # *** Feedback
 # - No feedback (except for the need for CI) as I could not access most of your work
 # *** Slides and resources
@@ -212,7 +213,7 @@ cat README.org | grep '^\*\*.* \[' | sed -e 's/^\*\* //'
 # - [ ] Complete previous homeworks (Challenger, Checklist for Good Graphics)
 # - [ ] Continue the hands-on by improving the experiment design and the analysis. Share your findings on the [[https://codimd.math.cnrs.fr/0O2AeqE7TCijWofhF3SK-g][Pad]] and/or on your public fork
 #   of the project. Use what we have seen in today's lecture to improve estimation.
-** 5. 20/10/26  [ AL        ] Estimation, correlation
+** 5. 05/11/26  [ AL        ] Estimation, correlation
 # *** Feedback
 # - See the pad
 # *** Slides and resources
@@ -223,8 +224,7 @@ cat README.org | grep '^\*\*.* \[' | sed -e 's/^\*\* //'
 # *** Homeworks
 # - Finish the previous homeworks and report your progress in your git project.
 # - Follow the module 3 if you haven't done so yet, choose a topic for the peer-evaluated final exercise of module 3, and start working on it.
-** Fall Vacations
-** 6. 03/11/26  [ AL        ] Correlation and the linear model
+** 6. 12/11/26  [ AL        ] Correlation and the linear model
 # *** Slides and resources
 # - Feedback on Challenger. See
 #   - https://utstat.toronto.edu/reid/sta2101f/shuttle.pdf
@@ -238,14 +238,15 @@ cat README.org | grep '^\*\*.* \[' | sed -e 's/^\*\* //'
 # - Compute independant CIs for the data in https://github.com/alegrand/M2R-ParallelQuicksort if you haven't done so yet
 # - Fit a linear model for the data in https://github.com/alegrand/M2R-ParallelQuicksort
 # - Advance the MOOC Peer evaluated exercise.  
-** 7. 10/11/26  [ AL        ] The linear model, Multiple testing and ANOVA (p-hacking), and a bit of DoE
+** 7. 19/11/26  [ AL        ] The linear model, Multiple testing and ANOVA (p-hacking), and a bit of DoE
 # *** Slides and resources
 # - Fitting a linear model for the data in https://github.com/alegrand/M2R-ParallelQuicksort
 # - Going beyond independant evaluations with the [[file:../../lectures/4_linear_model.pdf][linear model]]
 # *** Homeworks
 # - Keep building intuition on linear model
 # - Try to complete the peer-evaluation of the MOOC
-** 8. 17/11/26  [ CL        ] The publication system 1
+** No lecture (project)
+** 8. 03/12/26  [ CL        ] The publication system 1
 # *** Slides and resources
 # - [[file:CL_SMPE_P1.pdf][Scientific Publications and Scientific Integrity]]
 # # - [[file:../2024_10_Grenoble/06_Scientific_Publications.pdf][Introduction to the publication system]]
@@ -261,20 +262,20 @@ cat README.org | grep '^\*\*.* \[' | sed -e 's/^\*\* //'
 #   - Is it a famous paper?
 #   - Any other point about it you would like to make...
 # - Move on with the Peer Evaluated exercise of the MOOC
-** No lecture (project)
-** 9. 01/12/26  [ AL        ] DoE
+** 9. 10/12/26  [ AL        ] DoE
 # *** Slides and resources
 # - Lecture on [[file:../../lectures/5_design_of_experiments.pdf][Design of Experiments]] (factorial, screening, space-filling)
 # *** Homeworks
 # - Keep building intuition on linear model
 # - Mature the DoE techniques we have seen
 # - Try to complete the peer-evaluation of the MOOC
-** 10. 08/12/26 [ CL        ] The publication system 2
+** 10. 17/12/26 [ CL        ] The publication system 2
 # *** Slides and resources
 # - [[file:CL_SMPE_P2.pdf][Scientific Publications and Scientific Integrity (2)]]
 # *** Homeworks
 # - MOOC Peer evaluated exercise.
-** 11. 15/12/26 [ AL        ] Scientific Integrity
+** Winter vacations
+** 11. 07/01/26 [ AL        ] Scientific Integrity
 # *** Slides and resources
 # - [[file:../../lectures/lecture_scientific_integrity.pdf][Introduction to scientific integrity, deontology and ethics]]
 # # - [[file:11_chatbot.pdf][Slides on Lovots and chatbots]]
@@ -291,8 +292,7 @@ cat README.org | grep '^\*\*.* \[' | sed -e 's/^\*\* //'
 # # to what extent it does, (3) whether it unlocked other
 # # usages/problems. (4) Indicate in which of the 4th scenarios of the
 # # ADEME (https://transitions2050.ademe.fr/en) this technology is rooted.
-** Winter vacations
-** 12. 05/01/27 [ AL        ] Ethics (AI and humain, climate change, societal challenges)
+** 12. 14/01/27 [ AL        ] Ethics (AI and humain, climate change, societal challenges)
 ** 26/01/27: Exam ?
 
 * Hands-on
