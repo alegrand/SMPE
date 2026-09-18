@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*-
+o# -*- coding: utf-8 -*-
 # -*- mode: org -*-
 #+Title:  Scientific Methodology and \newline (Empirical|Experimental) Evaluation
 #+Author: Arnaud Legrand\medskip\newline\logoInstitutions
@@ -180,7 +180,7 @@
 # 4. *Fiabilité*. Une IAg répond toujours, y compris des choses fausses ou inventées et, sur les sujets de société, répond avec des biais problématiques reproduisant et amplifiant ceux des données d’entrainement (sexisme, racisme, …). 
 # 5. *Datacenters*. L’IAg nécessite l’installation de nombreux datacenters, avec des impacts environnementaux sur les populations riveraines – souvent déjà défavorisées – et notamment des conflits d’usage sur l’eau et l’électricité.
 # 6. *Réchauffement climatique*. L’IAg contribue à l’accélération du réchauffement climatique et à la destruction des écosystèmes de manière directe et indirecte (accélération de l’économie).
-\textbf{Why you shouldn't use GenAI for your studies}
+#+latex: \textbf{Why \uline{you} shouldn't use GenAI for your studies}
 1. *Training and Cognitive Deficit* \textbf{You’re here to learn, not to produce}. AI may accelerate production but it _undermines training_: by letting AI think and produce for you, you’re not exercising your own abilities\newline\null\hfill /[[mail:][Studies on the subject are starting to become available]]/
 2. *Occupation* Jobs that involve verifying content produced by AI are _demeaning, exhausting, stressful, and depressing_. Getting into the habit of working with AI during your studies means running the risk of no longer feeling capable of doing anything else and spending your professional life in a way that is not fulfilling
 3. *Satisfaction* Succeeding on your own, without AI, brings pleasure and a sense of _confidence in your own abilities_
@@ -188,13 +188,13 @@
   # 4. *Fiabilité*. Une IAg répond toujours, y compris des choses fausses ou inventées et, sur les sujets de société, répond avec des biais problématiques reproduisant et amplifiant ceux des données d’entrainement (sexisme, racisme, …). 
   # 5. *Datacenters*. L’IAg nécessite l’installation de nombreux datacenters, avec des impacts environnementaux sur les populations riveraines – souvent déjà défavorisées – et notamment des conflits d’usage sur l’eau et l’électricité.
   # 6. *Réchauffement climatique*. L’IAg contribue à l’accélération du réchauffement climatique et à la destruction des écosystèmes de manière directe et indirecte (accélération de l’économie).
-  \smallskip\hspace{-.8cm} \textbf{Why you shouldn't use GenAI at all}
+  #+latex: \smallskip\hspace{-.8cm} \textbf{Why \uline{I} decided not to use GenAI at all}
 5. *Working Conditions* The growth of GenAI relies on the _exploitation_ of hundreds of millions of clickworkers
 6. *Intellectual Property* AI is based on the _illegal appropriation_ of tens of millions of human artworks
 7. *Humanism* GenAI is driven by Big Tech companies whose leaders are pushing an _anti-humanist and anti-democratic agenda_
 8. *Reliability* An AI system always provides answers —including false or fabricated ones— and responds with _problematic biases_ that replicate and amplify already existing ones (sexism, racism, etc.)
 9. *Data centers* GenAI requires the construction of data centers, which have environmental impacts on nearby communities --often already _disadvantaged_-- and lead to _conflicts over the use of water and electricity_
-10. *Global Warming* GenAI contributes to the acceleration of global warming and destruction of ecosystems both _directly_ and _indirectly_ (through economic growth)
+10. *Global Warming* GenAI contributes to the acceleration of global warming and destruction of ecosystems both _directly_ and _indirectly_ (through economic growth and deflecting attention)
      # 7. *Formation et déficit cognitif* : Vous êtes ici pour vous former, pas pour produire. L’IAg accélère la production mais dégrade la formation : en laissant l’IAg réfléchir et produire à votre place, vous n’exercez pas vos propres capacités. /[[mail:][Des études sur le sujet commencent à être disponibles]]/.
      # 8. *Métier*. Les métiers qui consistent à vérifier le contenu produit par de l’IAg sont avilissants, fatigants, stressants et déprimants. Prendre l’habitude de travailler avec l’IAg pendant ses études, c’est prendre le risque de ne plus se sentir capable de faire autre chose et de passer une vie professionnelle peu épanouissante.
      # 9. *Satisfaction*: Réussir à faire par soi-même, sans IAg, procure du plaisir et un sentiment de confiance dans ses propres compétences.
