@@ -18,7 +18,7 @@ find so that I can improve for others. :)
 This webpage gathers information about the lectures given at the
 [[https://mosig-m2-592ef6.gricad-pages.univ-grenoble-alpes.fr/scientific_methodo/][University of Grenoble to the Master students in Computer
 Science (MOSIG) from October 2026 to January 2027]], on Thursday from
-11h15 to 12h45 in in room [[https://maps.app.goo.gl/RsXTPPfGGEccqGAR6][C0004]].
+11h15 to 12h45, usually in room [[https://maps.app.goo.gl/RsXTPPfGGEccqGAR6][C0007]].
 
 * Useful links 
 - Here is the [[https://codimd.math.cnrs.fr/L-taV29nRnaiskzgygrdHA][Pad]] you will use to collaborate.
@@ -122,7 +122,7 @@ cat README.org | grep '^\*\*.* \[' | sed -e 's/^\*\* //'
 8. 03/12/26  [ CL        ] The publication system 1
 9. 10/12/26  [ AL        ] DoE
 10. 17/12/26 [ CL        ] The publication system 2
-11. 07/01/26 [ AL        ] Scientific Integrity
+11. 07/01/27 [ AL        ] Scientific Integrity
 12. 14/01/27 [ AL        ] Ethics (AI and humain, climate change, societal challenges)
 
 ** 1. 24/09/26  [ AL        ] Presentation of the lecture | Processing data with the Tidyverse, beautiful viz with ggplot
@@ -213,6 +213,7 @@ cat README.org | grep '^\*\*.* \[' | sed -e 's/^\*\* //'
 # - [ ] Complete previous homeworks (Challenger, Checklist for Good Graphics)
 # - [ ] Continue the hands-on by improving the experiment design and the analysis. Share your findings on the [[https://codimd.math.cnrs.fr/0O2AeqE7TCijWofhF3SK-g][Pad]] and/or on your public fork
 #   of the project. Use what we have seen in today's lecture to improve estimation.
+** Fall vacations
 ** 5. 05/11/26  [ AL        ] Estimation, correlation
 # *** Feedback
 # - See the pad
@@ -238,7 +239,7 @@ cat README.org | grep '^\*\*.* \[' | sed -e 's/^\*\* //'
 # - Compute independant CIs for the data in https://github.com/alegrand/M2R-ParallelQuicksort if you haven't done so yet
 # - Fit a linear model for the data in https://github.com/alegrand/M2R-ParallelQuicksort
 # - Advance the MOOC Peer evaluated exercise.  
-** 7. 19/11/26  [ AL        ] The linear model, Multiple testing and ANOVA (p-hacking), and a bit of DoE
+** 7. 19/11/26  [ *JMV*       ] The linear model, Multiple testing and ANOVA (p-hacking), and a bit of DoE
 # *** Slides and resources
 # - Fitting a linear model for the data in https://github.com/alegrand/M2R-ParallelQuicksort
 # - Going beyond independant evaluations with the [[file:../../lectures/4_linear_model.pdf][linear model]]
@@ -246,7 +247,7 @@ cat README.org | grep '^\*\*.* \[' | sed -e 's/^\*\* //'
 # - Keep building intuition on linear model
 # - Try to complete the peer-evaluation of the MOOC
 ** No lecture (project)
-** 8. 03/12/26  [ CL        ] The publication system 1
+** 8. 03/12/26  [ *CL*        ] The publication system 1
 # *** Slides and resources
 # - [[file:CL_SMPE_P1.pdf][Scientific Publications and Scientific Integrity]]
 # # - [[file:../2024_10_Grenoble/06_Scientific_Publications.pdf][Introduction to the publication system]]
@@ -269,13 +270,7 @@ cat README.org | grep '^\*\*.* \[' | sed -e 's/^\*\* //'
 # - Keep building intuition on linear model
 # - Mature the DoE techniques we have seen
 # - Try to complete the peer-evaluation of the MOOC
-** 10. 17/12/26 [ CL        ] The publication system 2
-# *** Slides and resources
-# - [[file:CL_SMPE_P2.pdf][Scientific Publications and Scientific Integrity (2)]]
-# *** Homeworks
-# - MOOC Peer evaluated exercise.
-** Winter vacations
-** 11. 07/01/26 [ AL        ] Scientific Integrity
+** 10. 17/12/26 [ AL        ] Scientific Integrity
 # *** Slides and resources
 # - [[file:../../lectures/lecture_scientific_integrity.pdf][Introduction to scientific integrity, deontology and ethics]]
 # # - [[file:11_chatbot.pdf][Slides on Lovots and chatbots]]
@@ -292,6 +287,12 @@ cat README.org | grep '^\*\*.* \[' | sed -e 's/^\*\* //'
 # # to what extent it does, (3) whether it unlocked other
 # # usages/problems. (4) Indicate in which of the 4th scenarios of the
 # # ADEME (https://transitions2050.ademe.fr/en) this technology is rooted.
+** Winter vacations
+** 11. 07/01/27 [ *CL*        ] The publication system 2
+# *** Slides and resources
+# - [[file:CL_SMPE_P2.pdf][Scientific Publications and Scientific Integrity (2)]]
+# *** Homeworks
+# - MOOC Peer evaluated exercise.
 ** 12. 14/01/27 [ AL        ] Ethics (AI and humain, climate change, societal challenges)
 ** 26/01/27: Exam ?
 
