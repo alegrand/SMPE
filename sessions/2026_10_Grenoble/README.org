@@ -125,7 +125,7 @@ cat README.org | grep '^\*\*.* \[' | sed -e 's/^\*\* //'
 11. 07/01/27 [ AL        ] Scientific Integrity
 12. 14/01/27 [ AL        ] Ethics (AI and humain, climate change, societal challenges)
 
-** 1. 24/09/26  [ AL        ] Presentation of the lecture | Processing data with the Tidyverse, beautiful viz with ggplot
+** 1. 24/09/26  [ AL        ] Presentation of the lecture | Processing data with the R
 *** Slides
 - [[file:../../lectures/lecture_SMPE_overview.pdf][Overview of the lecture]]
 - [[https://htmlpreview.github.io/?https://github.com/alegrand/SMPE/blob/master/sessions/2022_10_Grenoble/R_crash_course.html][R crash course for computer scientists]] (without the ~dplyr~ / ~ggplot~ part).
@@ -139,7 +139,7 @@ cat README.org | grep '^\*\*.* \[' | sed -e 's/^\*\* //'
 - [ ] Start following modules 1 + 2 of the MOOC and complete as much exercises as possible (except the last one of module2, on /Challenger/; watching interviews is optional)
 - [ ] Set up a computational document system (e.g., [[#rstudio][Rstudio]] or [[#jupyter][Jupyter]] on your laptop or through the [[https://jupyterhub.u-ga.fr/][UGA JupyterHub]]).
 - [ ] Start learning R by reading this [[https://htmlpreview.github.io/?https://github.com/alegrand/SMPE/blob/master/sessions/2022_10_Grenoble/R_crash_course.html][R crash course for computer scientists]] ([[file:../2022_10_Grenoble/R_crash_course.Rmd][Rmd sources]]). If you want more resources, look below in the "Learning R" section or ask me.
-** 2. 01/10/26  [ AL        ] Visualization and Exploratory Data Analysis
+** 2. 01/10/26  [ AL        ] Visualization and Exploratory Data Analysis with the tidyverse and ggplot
 *** Slides and resources
 # +Introduction to the scientific method and computer science epistemology | Publications+ 
 # - [[file:02_lecture_JMV_what-is-science.pdf][Lecture: What is Science?]]
