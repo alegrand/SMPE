@@ -112,17 +112,17 @@ cat README.org | grep '^\*\*.* \[' | sed -e 's/^\*\* //'
 #+end_src
 
 #+RESULTS:
-1. 24/09/26  [ AL        ] Presentation of the lecture | Processing data with the Tidyverse, beautiful viz with ggplot
-2. 01/10/26  [ AL        ] Clearly defining the experiment and having the right tools to analyze it
-3. 08/10/26  [ AL        ] Visualization and Exploratory Data Analysis
+1. 24/09/26  [ AL        ] Presentation of the lecture | Processing data with the R
+2. 01/10/26  [ AL        ] Visualization and Exploratory Data Analysis with the tidyverse and ggplot
+3. 03/10/26  [ AL        ] Clearly defining the experiment and having the right tools to analyze it
 4. 22/10/26  [ AL        ] Probabilities, CI, estimation
 5. 05/11/26  [ AL        ] Estimation, correlation
 6. 12/11/26  [ AL        ] Correlation and the linear model
-7. 19/11/26  [ AL        ] The linear model, Multiple testing and ANOVA (p-hacking), and a bit of DoE
-8. 03/12/26  [ CL        ] The publication system 1
+7. 19/11/26  [ *JMV*       ] The linear model, Multiple testing and ANOVA (p-hacking), and a bit of DoE
+8. 03/12/26  [ *CL*        ] The publication system 1
 9. 10/12/26  [ AL        ] DoE
-10. 17/12/26 [ CL        ] The publication system 2
-11. 07/01/27 [ AL        ] Scientific Integrity
+10. 17/12/26 [ AL        ] Scientific Integrity
+11. 07/01/27 [ *CL*        ] The publication system 2
 12. 14/01/27 [ AL        ] Ethics (AI and humain, climate change, societal challenges)
 
 ** 1. 24/09/26  [ AL        ] Presentation of the lecture | Processing data with the R
@@ -148,19 +148,22 @@ cat README.org | grep '^\*\*.* \[' | sed -e 's/^\*\* //'
 - [[file:../2022_10_Grenoble/02_Intro-Visu.pdf][Slides: What a nice picture ! Data Visualization, an introduction]]
   - [[file:../2021_10_Grenoble/02_Check-list-good-graphics-tableau-en.pdf][Checklist for good graphics]] and [[file:../2021_10_Grenoble/02_Check-list-good-graphics-en.pdf][Hints for good graphics]] (a similar checklist can be found in
     [[http://www.cs.wustl.edu/~jain/books/perfbook.htm][The Art of Computer Systems Performance Analysis: Techniques for Experimental Design, Measurement, Simulation, and Modeling]])
-- Exploratory Data Analysis with =dplyr= and =ggplot2=. 
-  - See  https://evamaerey.github.io/ggplot_flipbook/ggplot_flipbook_xaringan.html for =ggplot=.
+- Exploratory Data Analysis 
+  - [[file:../2021_10_Grenoble/02_whyvisu.pdf][Slides: Why do we need to visualize data: The Anscombe's Quartet]] and as a bonus: [[https://www.autodesk.com/research/publications/same-stats-different-graphs][The Datasaurus]]. :)
+  - [[file:../../lectures/lecture_descriptive_univariate.pdf][Slides: Summarizing data (slide 8 on trends)]]
+  - [[file:../../lectures/3_introduction_to_statistics.pdf][Slides: Graphical checks (slides 41-48 on trends)]]
+- [[file:../../lectures/lecture_R_crash_course.pdf][Introduction to =dplyr= and =ggplot2= (slides 21-36)]]
   - See https://evamaerey.github.io/data_manipulation/about for =dplyr=.
-    - [[file:../2021_10_Grenoble/02_whyvisu.pdf][Slides: Why do we need to visualize data: The Anscombe's Quartet]] and as a bonus: [[https://www.autodesk.com/research/publications/same-stats-different-graphs][The Datasaurus]]. :)
-    - [[file:../../lectures/lecture_descriptive_univariate.pdf][Slides: Summarizing data]]
+  - See https://evamaerey.github.io/ggplot_flipbook/ggplot_flipbook_xaringan.html for =ggplot=.
+  - Want more ? Check https://r4ds.had.co.nz/
 *** Homeworks
  # - [ ] Read Popper's text and write a short summary in your GitHub repository
  - [ ] Criticize every figure of Jean-Marc's slides by:
    1. Applying the checklist for good graphics;
    2. Proposing a better representation (hand-drawing is fine but feel free to give a try to =ggplot2=) that passes the checklist.
  - [ ] Report this work for at least 3 figures on you github/gitlab project.
- - [ ] MOOC: Complete exercise 5 of module 2 (/Challenger/). Write a short text explaining what is good and wrong about this document (you may want to provide an updated version of the notebook) and upload on your github/gitlab space.
-** 2. 03/10/26  [ AL        ] Clearly defining the experiment and having the right tools to analyze it
+ - [ ] MOOC: Complete exercise 5 of module 2 (/Challenger/). Write a short text explaining what is good and wrong about this document (you may want to provide an updated version of the notebook) and upload it on your github/gitlab space.
+** 3. 03/10/26  [ AL        ] Clearly defining the experiment and having the right tools to analyze it
 # *** Slides and resources
 # 1. MOOC status report and feedback on exercises.
 # 2. We propose you to work in group on the Parallel Quicksort project.
