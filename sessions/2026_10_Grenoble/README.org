@@ -114,7 +114,7 @@ cat README.org | grep '^\*\*.* \[' | sed -e 's/^\*\* //'
 #+RESULTS:
 1. 24/09/26  [ AL        ] Presentation of the lecture | Processing data with the R
 2. 01/10/26  [ AL        ] Visualization and Exploratory Data Analysis with the tidyverse and ggplot
-3. 03/10/26  [ AL        ] Clearly defining the experiment and having the right tools to analyze it
+3. 08/10/26  [ AL        ] Clearly defining the experiment and having the right tools to analyze it
 4. 22/10/26  [ AL        ] Probabilities, CI, estimation
 5. 05/11/26  [ AL        ] Estimation, correlation
 6. 12/11/26  [ AL        ] Correlation and the linear model
@@ -152,59 +152,60 @@ cat README.org | grep '^\*\*.* \[' | sed -e 's/^\*\* //'
   - [[file:../2021_10_Grenoble/02_whyvisu.pdf][Slides: Why do we need to visualize data: The Anscombe's Quartet]] and as a bonus: [[https://www.autodesk.com/research/publications/same-stats-different-graphs][The Datasaurus]]. :)
   - [[file:../../lectures/lecture_descriptive_univariate.pdf][Slides: Summarizing data (slide 8 on trends)]]
   - [[file:../../lectures/3_introduction_to_statistics.pdf][Slides: Graphical checks (slides 41-48 on trends)]]
-- [[file:../../lectures/lecture_R_crash_course.pdf][Introduction to =dplyr= and =ggplot2= (slides 21-36)]]
-  - See https://evamaerey.github.io/data_manipulation/about for =dplyr=.
-  - See https://evamaerey.github.io/ggplot_flipbook/ggplot_flipbook_xaringan.html for =ggplot=.
-  - Want more ? Check https://r4ds.had.co.nz/
 *** Homeworks
  # - [ ] Read Popper's text and write a short summary in your GitHub repository
+ - [ ] MOOC: Complete exercise 5 of module 2 (/Challenger/). Write a short text explaining what is good and wrong about this document (you may want to provide an updated version of the notebook) and upload it on your github/gitlab space.
  - [ ] Criticize every figure of Jean-Marc's slides by:
    1. Applying the checklist for good graphics;
    2. Proposing a better representation (hand-drawing is fine but feel free to give a try to =ggplot2=) that passes the checklist.
  - [ ] Report this work for at least 3 figures on you github/gitlab project.
- - [ ] MOOC: Complete exercise 5 of module 2 (/Challenger/). Write a short text explaining what is good and wrong about this document (you may want to provide an updated version of the notebook) and upload it on your github/gitlab space.
-** 3. 03/10/26  [ AL        ] Clearly defining the experiment and having the right tools to analyze it
-# *** Slides and resources
-# 1. MOOC status report and feedback on exercises.
-# 2. We propose you to work in group on the Parallel Quicksort project.
-#    Do not waste your time trying to run this on windows (unless you
-#    use WSL). Fork this [[https://github.com/alegrand/M2R-ParallelQuicksort][project]] which is toy experiment regarding
-#    measuring the performance of a simple parallel quicksort
-#    implementation:
-#      #+BEGIN_QUOTE
-#        One of your colleague just implemented a multi-threaded version of
-#        the quicksort algorithm for multi-core machines. He's convinced his
-#        code can save significant time saving but unfortunately, he did not
-#        follow the performance evaluation lecture and he would like your
-#        help to promote his code.
-#      #+END_QUOTE
-#    Try to re-run this code, compare the results, and improve the
-#    experimental design if needed. You could for example:
-#    - Improve the experiment design (i.e., the number of repetitions,
-#      the range of parameters, the order in which they are run, ...)
-#    - Repeat this with various machines.
-#    - Make a nicer figure with ggplot
-#    - Improve the analysis (confidence interval, continuous trend,
-#      extrapolation)
+** 3. 08/10/26  [ AL        ] Clearly defining the experiment and having the right tools to analyze it
+*** Slides and resources
+1. MOOC status report (Challenger) and feedback on exercises.
+2. What does a computer science laboratory notebook look like ?
+3. [[file:../../lectures/lecture_R_crash_course.pdf][Introduction to =dplyr= and =ggplot2= (slides 21-36)]]
+   - See https://evamaerey.github.io/data_manipulation/about for =dplyr=.
+   - See https://evamaerey.github.io/ggplot_flipbook/ggplot_flipbook_xaringan.html for =ggplot=.
+   - Want more ? Check https://r4ds.had.co.nz/
+4. We propose you to work in group (2-3 people) on the Parallel
+   Quicksort project. Do not waste your time trying to run this on
+   windows (unless you use WSL). Fork this [[https://github.com/alegrand/M2R-ParallelQuicksort][project]] which is toy
+   experiment regarding measuring the performance of a simple parallel
+   quicksort implementation:
+   #+BEGIN_QUOTE
+     One of your colleague just implemented a multi-threaded version of
+     the quicksort algorithm for multi-core machines. He's convinced his
+     code can save significant time saving but unfortunately, he did not
+     follow the performance evaluation lecture and he would like your
+     help to promote his code.
+   #+END_QUOTE
+   Try to re-run this code, compare the results, and improve the
+   experimental design if needed. You could for example:
+   - Improve the experiment design (i.e., the number of repetitions,
+     the range of parameters, the order in which they are run, ...)
+   - Repeat this with various machines.
+   - Make a nicer figure with ggplot
+   - Improve the analysis (confidence interval, continuous trend,
+     extrapolation)
    
-#    # - Empirical evaluation of [[https://en.wikipedia.org/wiki/Fitts%27s_law][Fitts's law]]: Fork this small [[https://gricad-gitlab.univ-grenoble-alpes.fr/coutrixc/m2r_pointingxp][project]]
-#    #   #+BEGIN_QUOTE
-#    #   Fitts described 1954 the relationship between the distance to a target, its width, and the time needed to acquire it [Fitts, 1954]. To aquire a target, e.g., to move the mouse cursor and click on a file to select it, Fitts' law describes how the distance between the start point and the target (A: amplitude of the movement), and the size of the target (W: width of the target) impacts the index of difficulty of the task (ID) [MacKenzie and Buxton, 1992]:
+   # - Empirical evaluation of [[https://en.wikipedia.org/wiki/Fitts%27s_law][Fitts's law]]: Fork this small [[https://gricad-gitlab.univ-grenoble-alpes.fr/coutrixc/m2r_pointingxp][project]]
+   #   #+BEGIN_QUOTE
+   #   Fitts described 1954 the relationship between the distance to a target, its width, and the time needed to acquire it [Fitts, 1954]. To aquire a target, e.g., to move the mouse cursor and click on a file to select it, Fitts' law describes how the distance between the start point and the target (A: amplitude of the movement), and the size of the target (W: width of the target) impacts the index of difficulty of the task (ID) [MacKenzie and Buxton, 1992]:
 
-#    #      ID = log2(A/W + 1)
+   #      ID = log2(A/W + 1)
 
-#    #   The time (MT: movement time) needed for a user to acquire a target is linearly correlated to ID:
+   #   The time (MT: movement time) needed for a user to acquire a target is linearly correlated to ID:
 
-#    #       MT = a + b × ID
+   #       MT = a + b × ID
 
-#    #   A large part of Human-Computer Interaction research since then builds on top of Fitts' law. This project aims at finding the values of the a and b parameters.
-#    #   #+END_QUOTE
-#    #   Try to re-run this analysis, then re-obtain some data and compare
-#    #   the results, improve the experimental design if needed.
-# *** Homeworks
-# You have two weeks for doing these two assignments, we will debrief them during the 4th lecture.
-# - [ ] Continue working on the MOOC (in particular, the Challenger exercise of module 2)
-# - [ ] Continue the hands-on by improving the experiment design and the analysis (see above). Share your findings on the [[https://codimd.math.cnrs.fr/0O2AeqE7TCijWofhF3SK-g][Pad]] and/or on your public fork of the project. 
+   #   A large part of Human-Computer Interaction research since then builds on top of Fitts' law. This project aims at finding the values of the a and b parameters.
+   #   #+END_QUOTE
+   #   Try to re-run this analysis, then re-obtain some data and compare
+   #   the results, improve the experimental design if needed.
+*** Homeworks
+You have several weeks for doing these two assignments. We will debrief the Quicksort assignment during the 6th lecture.
+- [ ] Continue the hands-on by improving the experiment design and the analysis (see above). Share your findings on the Pad and/or on your public fork of the project. 
+- [ ] Continue working on the MOOC and start thinking about which topic you'd like to work on for the peer evaluation of module 3. There is neither a deadline nor a global debrief on this personnal assignment. I will give you some personnal debrief on the pad as things go along.
 ** No lecture (project)
 ** 4. 22/10/26  [ AL        ] Probabilities, CI, estimation
 # *** Feedback
