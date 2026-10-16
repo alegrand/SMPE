@@ -1,0 +1,1076 @@
+# -*- coding: utf-8 -*-
+# -*- mode: org -*-
+#+Title:  +Reproducibility Research and Open Science+ \newline Ethics, Scientific Integrity, Deontology, and \dots GenAI
+#+Author: Arnaud Legrand, ADN team (Anthropocene, Degrowth, and ICT)\medskip\newline\logoInstitutions
+#+DATE:  \vspace{3cm}\JDEVlogo /Doing a PhD, good practice and pitfalls to avoid/\newline October 2026\newline\begin{overlayarea}{1.05\linewidth}{0cm}\vspace{-3.2cm}\hfill{\mylogo}\end{overlayarea}\vspace{-1.0cm}
+#+LANGUAGE: en
+#+STARTUP: beamer indent inlineimages logdrawer
+#+TAGS: noexport(n)
+#+LATEX_COMPILER: lualatex -shell-escape
+
+#+PROPERTY: header-args  :session :eval never-export :exports both
+#+DRAWERS: latex_headers
+
+:latex_headers:
+#+LaTeX_CLASS: beamer
+#+LATEX_CLASS_OPTIONS: [10pt,presentation,xcolor={usenames,dvipsnames,svgnames,table}]
+# # aspectratio=169
+#+OPTIONS:   H:2 num:t toc:nil \n:nil @:t ::t |:t ^:nil -:t f:t *:t <:t
+#+LATEX_HEADER: \usedescriptionitemofwidthas{bl}
+#+LATEX_HEADER: \usepackage[T1]{fontenc}
+#+LATEX_HEADER: \usepackage[utf8]{inputenc}
+#+LATEX_HEADER: \usepackage{figlatex}
+#+LATEX_HEADER: \usepackage[french]{babel}
+#+LATEX_HEADER: %\usepackage{DejaVuSansMono}
+#+LATEX_HEADER: \usepackage{ifthen,amsmath,amstext,gensymb,amssymb}
+#+LATEX_HEADER: \usepackage{relsize}
+#+LATEX_HEADER: \usepackage{boxedminipage,xspace,multicol}
+#+LATEX_HEADER: %%%%%%%%% Begin of Beamer Layout %%%%%%%%%%%%%
+#+LATEX_HEADER: \ProcessOptionsBeamer
+#+LATEX_HEADER: \usetheme[numbering=fraction,titleformat=smallcaps,progressbar=frametitle]{metropolis}
+#+LATEX_HEADER: \usepackage{fontawesome}
+#+LATEX_HEADER: \usecolortheme[named=BrickRed]{structure}
+#+LATEX_HEADER: %%%%%%%%% End of Beamer Layout %%%%%%%%%%%%%
+
+#+LATEX_HEADER: %%%%%%%%% Begin of Minted Configuration %%%%%%%%%%%%%
+#+LATEX_HEADER: \usepackage{minted}
+#+LATEX_HEADER: \makeatletter\newcommand{\verbatimfont}[1]{\renewcommand{\verbatim@font}{\ttfamily#1}}\makeatother
+#+LATEX_HEADER: \usepackage{fancyvrb}
+#+LATEX_HEADER: \verbatimfont{\scriptsize}%
+#+LATEX_HEADER: \let\oldendminted=\endminted
+#+LATEX_HEADER: \def\endminted{\oldendminted\vspace{-2em}}
+#+LATEX_HEADER: \definecolor{minted-background}{rgb}{.94,.94,.94}
+#+LATEX_HEADER: \setminted{style=default}
+#+LATEX_HEADER: \setminted{bgcolor=minted-background}
+#+LATEX_HEADER: \setminted{frame=lines}
+#+LATEX_HEADER: \setminted{linenos=true}
+#+LATEX_HEADER: \renewcommand{\theFancyVerbLine}{\sffamily{\tiny\arabic{FancyVerbLine}}}
+
+#+LATEX_HEADER: \setminted{fontsize=\scriptsize}
+#+LATEX_HEADER: \usepackage{iftex}
+#+LATEX_HEADER: \ifpdftex\usepackage{pmboxdraw}\else\usepackage{fontspec}\setmonofont{DejaVu Sans Mono}\fi % to enable characters like ├ and ─ 
+
+#+LATEX_HEADER: %%%%%%%%% End of Minted Configuration %%%%%%%%%%%%%
+
+#+LATEX_HEADER: \usepackage{array}
+#+LATEX_HEADER: \newcolumntype{L}[1]{>{\raggedright\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+#+LATEX_HEADER: \newcolumntype{C}[1]{>{\centering\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+#+LATEX_HEADER: \newcolumntype{R}[1]{>{\raggedleft\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+
+#+LATEX_HEADER: \usepackage{verbments}
+#+LATEX_HEADER: \usepackage{xcolor}
+#+LATEX_HEADER: \usepackage{color}
+#+LATEX_HEADER: \usepackage{url} \urlstyle{sf}
+#+LATEX_HEADER: \let\alert=\structure % to make sure the org * * works of tools
+#+LATEX_HEADER: %\let\tmptableofcontents=\tableofcontents
+#+LATEX_HEADER: %\def\tableofcontents{}
+#+LATEX_HEADER: \let\hrefold=\href
+#+LATEX_HEADER: \usepackage{ifluatex}
+#+LATEX_HEADER: \ifpdftex
+#+LATEX_HEADER:   \usepackage[normalem]{ulem}\usepackage{soul}
+#+LATEX_HEADER:   % \usepackage{color}
+#+LATEX_HEADER:   \definecolor{lightorange}{rgb}{1,.9,.7}
+#+LATEX_HEADER:   \sethlcolor{lightorange}
+#+LATEX_HEADER:   \definecolor{lightgreen}{rgb}{.7,.9,.7}
+#+LATEX_HEADER:   \makeatother
+#+LATEX_HEADER:      \renewcommand{\href}[2]{\hrefold{#1}{\SoulColor{lightorange}\hl{#2}}}
+#+LATEX_HEADER:      % \renewcommand{\uline}[1]{\SoulColor{lightorange}\hl{#1}}
+#+LATEX_HEADER:      % \renewcommand{\emph}[1]{\SoulColor{lightorange}\hl{#1}}
+#+LATEX_HEADER:   \makeatletter
+#+LATEX_HEADER:   \newcommand\SoulColor[1]{%
+#+LATEX_HEADER:   \sethlcolor{#1}%
+#+LATEX_HEADER:   \let\set@color\beamerorig@set@color%
+#+LATEX_HEADER:   \let\reset@color\beamerorig@reset@color}
+#+LATEX_HEADER: \else
+#+LATEX_HEADER:    \usepackage[soul]{lua-ul}
+#+LATEX_HEADER:    \usepackage{tcolorbox}
+#+LATEX_HEADER:      \renewcommand{\href}[2]{\hrefold{#1}{\begin{tcolorbox}[colback=orange!30!white,size=minimal,hbox,on line]{#2}\end{tcolorbox}}}
+#+LATEX_HEADER:      \let\textttold=\texttt
+#+LATEX_HEADER:      \renewcommand\texttt[1]{\begin{tcolorbox}[colback=green!30!white,size=minimal,hbox,on line]{\smaller\textttold{#1}}\end{tcolorbox}}
+#+LATEX_HEADER: \fi
+#+LATEX_HEADER: % 
+#+LATEX_HEADER: % \renewcommand\alert[1]{\SoulColor{lightgreen}\hl{#1}}
+#+LATEX_HEADER: % \AtBeginSection{\begin{frame}{Outline}\tableofcontents\end{frame}}
+#+LATEX_HEADER: \usepackage[export]{adjustbox}
+#+LATEX_HEADER: \graphicspath{{fig/}}
+#+LATEX_HEADER: \usepackage{tikzsymbols}
+#+LATEX_HEADER: \def\smiley{\Smiley[1][green!80!white]}
+#+LATEX_HEADER: \def\frowny{\Sadey[1][red!80!white]}
+#+LATEX_HEADER: \def\winkey{\Winkey[1][yellow]}
+#+LATEX_HEADER: \def\JDEVlogo{}%\includegraphics[height=1cm]{./images/jdevLogo.pdf}}
+#+LATEX_HEADER: \def\mylogo{\includegraphics[height=2.5cm]{./images/in_science_we_trust.jpg}}
+#+LATEX_HEADER: \def\logoInstitutions{\includegraphics[height=.7cm]{./images/Logo-UGA2020.pdf}\quad\includegraphics[height=.7cm]{./images/Logo-CNRS.pdf}\quad\includegraphics[height=.7cm]{./images/Logo-Inria.pdf}\includegraphics[height=.7cm]{./images/Logo-Lig2.pdf}\vspace{-.7cm}}
+#+LATEX_HEADER: %\usepackage{pgf}  
+#+LATEX_HEADER: %\logo{\pgfputat{\pgfxy(-2,6.5)}{\pgfbox[center,base]{\includegraphics[height=1cm]{./images/jdevLogo.pdf}}}}
+#+LATEX_HEADER: \usepackage{tikz}
+#+LATEX_HEADER: \newcommand{\prohibition}[1]{%
+#+LATEX_HEADER:   \begin{tikzpicture}[baseline=-0.5ex, line width=0.12em, red]
+#+LATEX_HEADER:     \node at (0,0) {\small\textcolor{white}{#1}};
+#+LATEX_HEADER:     \draw (0,0) circle (0.8em);
+#+LATEX_HEADER:     \draw (-0.5em, -0.5em) -- (0.5em, 0.5em);
+#+LATEX_HEADER:   \end{tikzpicture}%
+#+LATEX_HEADER: }
+
+#+LaTeX: \newsavebox{\temp}
+
+#+BEGIN_EXPORT latex
+  \newcommand{\myfbox}[2][gray!20]{\bgroup\scalebox{.7}{\colorbox{#1}{{\vphantom{pS}#2}}}\egroup} % \fbox
+  %\def\myfbox#1{#1} % \fbox
+  \def\HPC{\myfbox[gray!40]{HPC}}
+  \def\NET{\myfbox[gray!40]{Network}}
+  \def\SG{\myfbox[gray!40]{Smart Grids}}
+  \def\ECO{\myfbox[gray!40]{Economics}}
+  \def\PRIV{\myfbox[gray!40]{Privacy}}
+  \def\TRACING{\myfbox[red!20]{Tracing}}
+  \def\SIM{\myfbox[green!20]{Simulation}}
+  \def\VIZ{\myfbox[red!40]{Visualization}}
+  \def\MODELING{\myfbox[green!40]{Stochastic Models}}
+  \def\OPT{\myfbox[blue!20]{Optimization}}
+  \def\GT{\myfbox[blue!40]{Game Theory}}
+#+END_EXPORT
+
+#+BEGIN_EXPORT latex
+\def\etal{\textit{et al.}\xspace}
+\def\eg{e.g.,\xspace}
+#+END_EXPORT
+
+#+BEGIN_EXPORT latex
+\def\changefont#1{%
+  \setbeamertemplate{itemize/enumerate body begin}{#1}
+  \setbeamertemplate{itemize/enumerate subbody begin}{#1}
+  #1}
+% \makeatletter
+% \newcommand{\verbatimfont}[1]{\renewcommand{\verbatim@font}{\ttfamily#1}}
+% \makeatother
+% \verbatimfont{\scriptsize}%small
+% \let\endmintedbak=\endminted
+% \def\endminted{\endmintedbak\vspace{-1cm}}
+
+\def\rv#1{\ensuremath{\textcolor{blue}{#1}}\xspace} % DarkBlue
+#+END_EXPORT
+
+#+BEGIN_EXPORT latex
+\newcommand{\Norm}{\ensuremath{\mathcal{N}}\xspace}
+\newcommand{\Unif}{\ensuremath{\mathcal{U}}\xspace}
+\newcommand{\Triang}{\ensuremath{\mathcal{T}}\xspace}
+\newcommand{\Exp}{\ensuremath{\mathcal{E}}\xspace}
+\newcommand{\Bernouilli}{\ensuremath{\mathcal{B}}\xspace}
+\newcommand{\Like}{\ensuremath{\mathcal{L}}\xspace}
+\newcommand{\Model}{\ensuremath{\mathcal{M}}\xspace}
+\newcommand{\E}{\ensuremath{\mathbb{E}}\xspace}
+\def\T{\ensuremath{\theta}\xspace}
+\def\Th{\ensuremath{\hat{\theta}}\xspace}
+\def\Tt{\ensuremath{\tilde{\theta}}\xspace}
+\def\Y{\ensuremath{y}\xspace}
+\def\Yh{\ensuremath{\hat{y}}\xspace}
+\def\Yt{\ensuremath{\tilde{y}}\xspace}
+\let\epsilon=\varepsilon
+\let\leq=\leqslant
+\let\geq=\geqslant
+
+\def\Scalebox#1{\scalebox{.9}{#1}}
+\def\ScaleboxI#1{\Scalebox{\textit{#1}}}
+
+\def\pillar#1#2{~\hbox{\hspace{-1em}\rlap{#1}\hspace{4cm}\includegraphics[height=1cm]{#2}}}
+#+END_EXPORT
+:end:
+
+** Scientific Consensus
+#+latex: \includegraphics<1>[width=\linewidth]{images/false_balance_med.jpg}%
+#+latex: \hbox{\hspace{-.1\linewidth}\includegraphics<2>[width=1.2\linewidth]{images/logo/open-review.png}\hspace{-.1\linewidth}}
+** Different Reproducibility Concerns in Modern Science
+# _Distinguish between:_
+# #+LaTeX: \begin{columns}\begin{column}[b]{.4\linewidth}
+# - experimental science
+# - observational science
+# #+LaTeX: \end{column}\begin{column}[b]{.6\linewidth}
+# - computational science (simulation)
+# - (big) data analysis
+# #+LaTeX: \end{column}\end{columns}%\bigskip
+\small
+- Social Sciences, Oncology, ... :: methodology, statistics, pre-registration
+- Genomics :: software engineering, computational reproducibility,
+  provenance
+- Computational fluid dynamics :: numerical issues
+- /Artificial Intelligence/ :: most of the above\medskip
+
+\vspace{-1em}
+/The processing steps between raw observations and findings have gotten
+increasingly numerous and complex/
+#+BEGIN_EXPORT latex
+\begin{center}
+  \includegraphics<+>[width=.8\linewidth]{images/iceberg_publication-1.png}%
+  \includegraphics<+>[width=.8\linewidth]{images/iceberg_publication-2.png}%
+  \includegraphics<+>[width=.8\linewidth]{images/iceberg_publication-3.png}%
+  \includegraphics<+>[width=.8\linewidth]{images/iceberg_publication-4.png}%
+  \includegraphics<+->[width=.8\linewidth]{images/iceberg_publication-5.png}\medskip
+  
+  \uncover<+>{\normalsize\bf Reproducible Research = Bridging the Gap by working Transparently}
+\end{center}
+#+END_EXPORT
+
+** Useful resources 
+*** Book pic                                                        :BMCOL:
+:PROPERTIES:
+:BEAMER_col: .17
+:BEAMER_OPT: t
+:END:
+#+LaTeX: \fbox{\includegraphics[width=\linewidth,valign=t]{images/book_rr.pdf}}
+*** Book                                                            :BMCOL:
+:PROPERTIES:
+:BEAMER_col: .83
+:BEAMER_OPT: t
+:END:
+  # \vspace{1cm}
+
+[[https://rr-france.github.io/bookrr/][A non-technical introduction to reproducibility issues]]\pause
+  # :Loïc Desquilbet, Sabrina Granger, Boris Hejblum, Pascal Pernot,
+  #   Nicolas Rougier
+
+#+latex: \includegraphics[width=.5\linewidth,valign=t]{images/FRRN_Poster.pdf}%
+#+latex: \includegraphics[width=.5\linewidth,valign=t]{images/rn-world-map.png}
+*** squeeze                                               :B_ignoreheading:
+:PROPERTIES:
+:BEAMER_env: ignoreheading
+:END:
+\vspace{2mm}\pause
+*** MOOC RR1                                                        :BMCOL:
+:PROPERTIES:
+:BEAMER_col: .72
+:BEAMER_OPT: t
+:END:
+\alert{MOOC} [[https://learninglab.inria.fr/en/mooc-recherche-reproductible-principes-methodologiques-pour-une-science-transparente/][Reproducible Research: Methodological]]
+[[https://learninglab.inria.fr/en/mooc-recherche-reproductible-principes-methodologiques-pour-une-science-transparente/][principles for a transparent science]], Learning Lab
+- Konrad Hinsen, Christophe Pouzat
+- Laurence Farhi, Madeline Montigny, ...
+- 2018 -- _..._ \rlap{(25,000+)}
+*** MOOC RR1 pic                                                    :BMCOL:
+:PROPERTIES:
+:BEAMER_col: .35
+:BEAMER_OPT: t
+:END:
+#+LaTeX: \includegraphics[width=\linewidth,valign=t]{images/mooc_rr.png}
+
+*** squeeze                                               :B_ignoreheading:
+:PROPERTIES:
+:BEAMER_env: ignoreheading
+:END:
+\vspace{2mm}\pause
+*** MOOC RR2 pic                                                    :BMCOL:
+:PROPERTIES:
+:BEAMER_col: .34
+:BEAMER_OPT: t
+:END:
+#+LaTeX: \includegraphics[width=1.05\linewidth,valign=t]{images/mooc_rr2.jpg}
+*** MOOC RR2                                              :B_ignoreheading:
+:PROPERTIES:
+:BEAMER_col: .77
+:BEAMER_OPT: t
+:END:
+*MOOC* RR2: [[https://www.fun-mooc.fr/fr/cours/reproducible-research-ii-practices-and-tools-for-managing-comput/][Practices and tools for managing]] [[https://www.fun-mooc.fr/fr/cours/reproducible-research-ii-practices-and-tools-for-managing-comput/][computations and data]] 2024 -- ...
+\rlap{(3,000+)}
+  - \footnotesize Managing data \hfill (=git annex=, Zenodo, SWH)
+  - \footnotesize Software environment control \hfill (=docker=,
+    =singularity=, =guix=)
+  - \footnotesize Scientific workflow \hfill (=make=, =snakemake=)
+\vspace{-.7cm}
+
+** Law evolution (in France)
+- \textbf{2015}: EU puts forward as a priorities the /opening of science/, of
+  /innovation/ and /openness to the world/ $\leadsto$ *Societal science*
+- \textbf{2016}: Doctoral training on ethics and scientific integrity is 
+  [[https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000032587086/][mandatory]] (doctoral schools)
+  - Related to the [[https://cache.media.enseignementsup-recherche.gouv.fr/file/Actus/84/2/Rapport_Corvol_29-06-2016_601842.pdf][Corvol report]] (*Bilan et propositions de mise en œuvre de la charte nationale d'intégrité scientifique*)
+- \textbf{2018}: National Plan for Open science
+  - open access (HAL) and  open data (FAIR)
+    #+latex: \hfill\raisebox{0pt}[0pt][0pt]{\includegraphics[height=1cm]{images/logo/open-access.png}}
+  - sustainable and international movement
+    #+latex: \hfill\raisebox{-1.8em}{\includegraphics[height=1cm]{images/logo/FAIR_data_principles.jpg}}\vspace{-1em}
+- \textbf{2021}: 2nd National Plan for Open science 
+  - 100% open access data by 2030
+  - \bgroup\bf *open source/data/articles/ science is the new norm*\egroup
+- \textbf{2022}: [[https://www.hceres.fr/fr/actualites/lofis-decrypte-le-nouveau-serment-doctoral-dintegrite-scientifique-dans-une-fiche][the +Hippocratic+ PhD Oath]]
+
+#+begin_quote
+\scriptsize In the presence of my peers. Having completed my doctorate in [discipline], and having thus practiced, in my quest for knowledge, the exercise of a demanding scientific research, cultivating intellectual rigor, *ethical reflexivity* and respect for the principles of *scientific integrity*, I commit myself, for what will depend on me, in the continuation of my professional career, whatever the sector or the field of activity, to maintain an honest conduct in my relationship to knowledge, my methods and my results. 
+#+end_quote
+** Three pillars for a Responsible Science
+# https://drive.google.com/file/d/15zfLUiWTgk390lyU6DGciNnwnVG-4Fr8/view
+# https://www.cnrs.fr/fr/ethique-deontologie-integrite-scientifique-et-lancement-dalerte
+[[https://www.hceres.fr/fr/office-francais-de-lintegrite-scientifique-ofis][HCERES OFIS]], [[https://comite-ethique.cnrs.fr/][CNRS COMETS]], [[https://www.inria.fr/fr/comite-operationnel-devaluation-des-risques-legaux-et-ethiques][Inria COERLE]], [[http://cerna-ethics-allistene.org/][CERNA]]
+
+1. \textbf{Deontology}
+   - *Le Pors 1983 rév. 2016*: "/Le fonctionnaire exerce ses fonctions avec dignité, impartialité, intégrité et probité/"
+     - Independence, equity, private activities, ... of *civil servants*
+     - Conflicts of interest, connection w. industry, intel. property, \rlap{harassment, ...}
+   - Law, deontology referent
+2. \textbf{Ethics}
+   - Deep questions raised by science progress on *society*; *Moral values* motivating our acts and their consequences
+   - Regular discussions, connection with society [COMETS/COERLE/...]
+   - *Retrospective* [law, approval] vs *prospective* view
+3. \textbf{Scientific Integrity}
+   - Rules governing *research practices*. *Code of conduct* for *trustable*
+     research. Domain dependant
+   - Universal, */soft law/ professional code* [Scientific integrity, whistleblowers referent]
+** Then came GenAI\dots
+*\bf Timeline*
+- \textbf{Dec. 2022}: ChatGPT (OpenAI, \bgroup\scriptsize Sam Altman and Elon Musk, Peter Thiel, AWS\egroup)
+- \textbf{Feb. 2023}: LLaMA (Meta), open model
+- \textbf{March 2023}: Claude (Anthropic, \bgroup\scriptsize former OpenAI members, Dario and \rlap{Daniela Amodei\normalsize)}\egroup
+- \textbf{April 2023}: Qwen (Alibaba), based on LLaMA architecture
+- \textbf{Dec. 2023}: Gemini (Google)
+- \textbf{Feb. 2024}: Le Chat/Vibe (Mistral, \bgroup\scriptsize Arthur Mensch\egroup)
+
+\bgroup\small These platforms/services are owned and operated by *private entities* acting on behalf of *foreign powers* (possible ingerence), and their use *distorts* academics capabilities and raises serious concerns about *scientific integrity*\egroup
+
+*\bf Institutional Responses*
+- [[https://hal.inrae.fr/hal-05382841v1][INRAE Guide to the *Proper Use* of GenAI-Based Assistants]] \rlap{(Dec. 2025)}
+- CNRS "deploys" a sovereign AI assistant for research: [[https:/​​/emmy.cnrs.fr][Emmy]] \rlap{(Dec. 2025)}
+- What about us ?! (Inria, CUMI-gra, June 2026)
+** The publication system collapse (1/2)
+\small
+- \textbf{Dec 2025}: overwhelmed by AI-generated article submissions,
+  arXiv enforces [[https://next.ink/207264/submergee-de-prepublications-generees-par-ia-sur-lia-arxiv-va-moderer-plus-strictement/][stricter moderation]] (no more survey).
+- \textbf{May 2026}: [[https://next.ink/238213/arxiv-les-chercheurs-qui-soumettent-des-articles-genai-errones-seront-suspendus-un-an/][Arxiv suspends researchers for one year]] if they submit erroneous AI-generated articles.
+- \textbf{AAAI-26}: *29,000* submissions. After removing non fully compliant papers (missing PDFs, non-anonymized manuscripts, over-length papers, etc.), $\approx$ *23,000* papers under review, *nearly \times 2 compared to AAAI-25!*\newline
+  \textbf{AAAI-27}: now asks for a payment for the second submission to slow down the LLM article injection rate.
+- \textbf{ICLR'27}: submissions \times 3 compared to ICLR'26 (\times 2 compared to ICLR'25), [[https://reviewer3.com/evidence/iclr-submissions-2027][from 490 Submissions to 62,000 in Ten Years]]
+- \textbf{TMLR}: /The fraction of *desk rejected papers* at TMLR used to be about 6% in 2023 but is now at about *53%*/ ([[https://medium.com/@TmlrOrg/asking-authors-about-their-own-papers-3d2e04e5dee0][Asking Authors About Their Own Papers/, by Nihar B. Shah, 09/26]])
+
+** The publication system collapse (2/2)
+\small
+
+- \textbf{Nov. 2025}: A “bug” in the OpenReview platform led to a database leak in the \textbf{ICLR'26} conference submission and peer review system, which *breached the double anonymous peer review process* and made it possible for anyone to *identify reviewers of specific submissions*:
+  - \approx 21% of the 75,000 ICLR peer _reviews_ were *completely AI-generated*
+  - over 50% of the _reviews_ showed some *traces of AI use*\smallskip
+  - nearly 200 of the _submissions_ were found to be *completely AI generated* and 9% of the papers had *over 50% of their text generated by AI*
+  [[https://www.nature.com/articles/d41586-025-03506-6][Major AI conference flooded with peer reviews written fully by AI]]
+
+- \textbf{Jan 2026}: \textbf{NeurIPS 2025}, 100 *hallucinated citations* in 51 *accepted articles* (https://gptzero.me/news/neurips/) 
+
+
+#+begin_center
+  \bgroup\bf [[https://reviewer3.com/evidence/acceleration-of-scientific-publishing][Publication growth is accelerating]] and it is not a good news!\egroup
+
+   /from 6.8% (2016–2022) to 8.3% (2022–2025), with 2025 alone at +11.9%/
+#+end_center
+
+** Generative AI and Scientific Integrity (1/2)
+\small
+
+\textbf{Sep. 2026}: Nicholas Polson (statistics, University of Chicago Booth) authored or co-authored *250+ papers* on a diversity of topics and as many as *14 books* released in a year ([[https://www.washingtonpost.com/education/2026/09/23/nine-months-200-academic-papers-one-professors-ai-assisted-output/][Washington Post]]) $\leadsto$ major retractation on the Social Science Research Network ([[https://www.thecollegefix.com/publisher-removes-200-papers-university-of-chicago-statistician-wrote-in-under-1-year/][The College Fix]])
+
+- Ivan Oransky (*Retraction Watch*): /it would be better to look at the system than Polson's specific case/.
+
+- Publish or perish, papermills, /tortured phrases/ with SciGen, ... are not new (see the work of [[https://www.ins2i.cnrs.fr/fr/cnrsinfo/guillaume-cabanac-et-cyril-labbe-unis-contre-la-fraude-scientifique][Cabanac and Labbé]])
+
+Yet, the [[https://research.google/blog/accelerating-scientific-breakthroughs-with-an-ai-co-scientist/ ][Google AI coscientist]], [[https://arxiv.org/abs/2504.08066][AI scientist]], [[https://github.com/kotama7/HPC-AutoResearch][AutoResearch]], fully align with the new US [[https://legrandcontinent.eu/fr/2026/07/24/la-doctrine-kratsios-et-la-nouvelle-puissance-scientifique-americaine/][Kratsios Doctrine /Genesis : Science, a new golden age/]] (Jul. 2026).
+- While *Vannevar Bush* (Roosevelt and Truman advisor) was laying in 1945 (/Science: The Endless Frontier/) the groundwork for a new universalism and a state-funded, open science, Kratsios sought to *reorganize science to serve American sovereignty and dominance*. It is the exact opposite. 
+- The /[[https://www.science.org/content/article/what-does-trump-s-call-gold-standard-science-really-mean][Gold Standard science]]/ promoted by Trump in May 2025 and "rooted in the /reproducibility crisis/" is actually a smokescreen to get rid of "woke science" (social science, climate, etc.).
+
+** Scientific Misconduct
+From [[https://en.wikipedia.org/wiki/Scientific_misconduct][https://en.wikipedia.org/wiki/Scientific_misconduct]]
+- Danish definition :: /Intention/ or /gross negligence/ leading to
+  *fabrication* of the scientific message or a *false credit* or emphasis
+  given to a scientist
+- Swedish definition :: /Intentional/ distortion of the research
+  process by *fabrication* of data, text, hypothesis, or methods *from
+  another researcher*'s manuscript form or publication; or *distortion*
+  of the research process in other ways
+- US NSF definition :: Scientific misconduct revolves around the three following issues:
+  1. *fabrication* (completely made up results).
+  2. *falsification* (you obtain result and change them)
+  3. *plagiarism* (stealing someone else's sentence or idea without giving credit)
+** Data fabrication Examples
+#+LaTeX: \hbox{\hspace{-.08\linewidth}\begin{overlayarea}{1.15\linewidth}{8cm}\vspace{-.3cm}\small
+
+- [[https://en.wikipedia.org/wiki/Dong-Pyou_Han][Dong-Pyou Han]] :: Assistant professor, Biomedical
+   sciences, Iowa State University, 2013\footnotesize
+
+  /*Falsified blood results* to make it appear as though a vaccine exhibited anti-HIV activity/
+  - Han and his team received
+    #+LaTeX: $\approx \$19$ million from NIH
+  - _*1 retracted publication*_ and *resignation* of university. Sentenced
+    in 2015 to *57 months imprisonment* for fabricating and falsifying
+    data in HIV vaccine trials.
+    #+LaTeX: \alert{$\$7.2$ million!}\pause
+  \normalsize
+- [[https://en.wikipedia.org/wiki/Diederik_Stapel][Diederik Stapel]] :: Professor, Social Psychology, Univ. Tilburg, 2011
+  # https://en.wikipedia.org/wiki/Diederik_Stapel#Scientific_misconduct
+  # - /Carnivores are more selfish than vegetarians/, 
+  #+BEGIN_QUOTE
+  \footnotesize
+  I failed as a scientist. I *adapted research data* and *fabricated
+  research*. Not once, but *several times*, not for a short period, but
+  *over a longer period of time*. [..] I am aware of the suffering and
+  sorrow that I caused to my colleagues... I *did not withstand the pressure
+  to score, to publish, the pressure to get better in time*. I wanted
+  too much, too fast. In a system where there are few checks and
+  balances, where people work alone, I took the wrong turn. \hfill _*58 retracted publications*_\pause
+  #+END_QUOTE
+- [[https://en.wikipedia.org/wiki/Brian_Wansink][Brian Wansink]] :: Professor, Psychological Nutrition, Cornell, 2016
+  # https://blogs.sciencemag.org/pipeline/archives/2018/02/26/gotta-be-a-conclusion-in-here-somewhere
+  # - /Mindless Eating/, /Obesity/, /Attractive names sustain increased vegetable intake in schools/
+  #+BEGIN_QUOTE
+  \footnotesize 
+  *I gave her a data set of a self-funded, failed study
+  which had null results*. I said "This cost us a lot of time and our
+  own money to collect. *There's got to be something here we can
+  salvage because it's a cool (rich & unique) data set*." I told her
+  what the analyses should be.
+  [..] Every day she came back with puzzling new results, and *every
+  day we would scratch our heads*, ask "Why," *and come up with another
+  way to reanalyze the data* with yet another set of plausible
+  hypotheses\hfill _*17 retracted publications*_
+  #+END_QUOTE
+#+LaTeX: \end{overlayarea}}
+
+** Data falsification
+#+begin_export latex
+\centering
+
+
+\includegraphics<1>[height=8cm]{images/bik/data_fab1_1.jpg}%
+\includegraphics<2>[height=8cm]{images/bik/data_fab1_2.jpg}%
+
+\vspace{-.3cm}\scriptsize
+\only<1-2>{\url{https://twitter.com/MicrobiomDigest/status/1416838153583927304}}%
+#+end_export
+** Photo Manipulation
+#+begin_export latex
+\centering
+
+\includegraphics<1>[height=8cm]{images/bik/image_fab1_2.jpg}%
+\includegraphics<2>[height=8cm]{images/bik/image_fab2_1.jpg}%
+\includegraphics<3>[height=8cm]{images/bik/image_fab2_2.jpg}%
+
+\vspace{-.3cm}\scriptsize
+\only<1>{\url{https://twitter.com/MicrobiomDigest/status/1476307790494781441}}%
+\only<2-3>{\url{https://twitter.com/MicrobiomDigest/status/1476091603563417603}}%
+#+end_export
+
+** Generative AI and Scientific Integrity (2/2)
+\small \textbf{Feb. 2024}: [[https://www.ofis-france.fr/wp-content/uploads/2024/11/LOfisfaitlepointFevrier2024_AI.pdf][Systèmes d'IA gén.: quelques points de vigilance]] (OFIS)
+  
+- Responsibility :: Researchers remain _responsible_ for the content generated by these systems and reproduced in their articles, including, among other things, the content’s reliability and compliance with applicable\rlap{ regulations}
+- Transparency :: Since June 2023, the European Code of Conduct for Scientific Integrity has recommended transparency. Concealing the use of AI in *content creation* or in the *drafting of publications* is now considered a _breach of scientific integrity_
+- Reliability :: GenAI systems make up information ("hallucinations"), which exposes to the diffusion of false information,
+  #+latex: \rlap{
+  _data fabrication and falsification_
+  #+latex: }  
+- Ownership :: GenAI content may be derived from training data protected by copyright. There is therefore a _risk of plagiarism_ by users who appropriate this content.
+  - A GenAI system cannot be recognized as the author of an article or other research outputs (see
+    #+latex: \rlap{
+    "[[https://www.ofis-france.fr/wp-content/uploads/2023/04/FocusChatGPTInfolettreOfisN5.pdf][ChatGPT: Author of a Scientific Publication?]])
+    #+latex: }
+  - Details regarding _the use of LLMs must be disclosed_ in the Methods section and/or the Acknowledgments
+** Maths under attacks (1/2)
+\small
+- \textbf{Dec. 2025}: /Extremal descendant integrals on moduli spaces of curves: An inequality discovered and proved in collaboration with AI/, by Johannes Schmitt ([[https://arxiv.org/abs/2512.14575][ArXiv]])
+  #+begin_quote
+    The proof of the above result was found and formulated by the AI models GPT-5 and Gemini 3 Pro. Large parts of the paper were *drafted by Claude* Opus 4.5, and a part of the argument was *formalized in Lean* with the help of Claude Code and GPT-5.2. The paper aims for *maximal transparency on the authorship* of different sections and the employed AI tools (including prompts and conversation logs).
+  #+end_quote
+  # https://gpt.gekko.de/when-language-models-discover-new-mathematics/
+- \textbf{April 2026}: Liam Price, a 23-year-old with no advanced mathematics \rlap{training,}\newline was just "vibe maths-ing" with ChatGPT and
+   #+latex: \rlap{
+   [[https://blog.buildfastwithai.com/gpt-5-4-solved-a-60-year-math-problem-what-happened][solves Erdös problem #1196]].
+   #+latex: }
+   
+   in 80 minutes from a single prompt
+   
+   \hfill /Btw, ChatGPT = 114.2 million users per day/
+
+** Maths under attacks (2/2) 
+\small
+
+- \textbf{Sep. 2026}: Solution to the /Navier–Stokes existence and smoothness problem/ by [[https://en.wikipedia.org/wiki/Navier%E2%80%93Stokes_priority_controversy][OpenAI]] (1 M\textdollar  Millennium Prize Problem)
+  #+begin_quote
+    \scriptsize
+    The group that produced the Navier–Stokes resolution involved on the order of *10,000 concurrent agents* [..]. The agents arrived at their resolution on Saturday, September 5, about 88 hours after the first agents were launched. Lean formalization and verification took an additional 17 hours via GPT‑6 Astra.
+
+    Across all attempted problems, the agents sent 4.9 million messages and used about 300 billion output tokens. In the process of resolving the Navier–Stokes problem, the agents sent 2.7 million messages and used approximately 130 billion output tokens (i.e., *10 M\textdollar to 40 M\textdollar*).
+  #+end_quote
+  # https://gpt.gekko.de/when-language-models-discover-new-mathematics/
+  - *Controversy*: Tristan Buckmaster and Levent Alpöge claimed their own interaction with ChatGPT may have inspired OpenAI's prompts
+  - *This isn't science*. It's a dick-measuring contest between OpenAI and Anthropic. Maths isn't about solving problems (nor Science is about producing articles) but to understand things ([[http://www.madore.org/~david/weblog/d.2026-09-10.2861.ai-and-math-destruction.html#d.2026-09-10.2861][David Madore]])
+- \textbf{October 2026}: OpenAI releases 722 mathematical papers
+  - /“They've annihilated my field of research”/ ([[https://www.lemonde.fr/sciences/article/2026/10/10/nouveau-coup-de-massue-d-openai-sur-les-mathematiciens-ils-ont-annihile-mon-domaine-de-recherche_6790951_1650684.html][Hugo Duminil-Copin]], Fields medal 2022)
+
+A double sense to /[[https://en.wikipedia.org/wiki/Weapons_of_Math_Destruction][Weapons of Math Destruction]]/
+** Ten Reasons why GenAI is banned from this lecture \prohibition{GenAI}
+#+latex:     \hbox{\hspace{-.08\linewidth}\begin{overlayarea}{1.16\linewidth}{10cm}\scriptsize
+#+latex: \textbf{Why \uline{you} shouldn't use GenAI for your studies}\hfill{\scriptsize\href{https://atecopol.hypotheses.org/13082}{Objection de conscience, AtEcoPol}}
+1. *Training and Cognitive Deficit* \textbf{You’re here to learn, not to produce}. AI may accelerate production but it _undermines training_: by letting AI think and produce for you, you’re not exercising your own abilities\newline\null\hfill /[[https://cepr.org/publications/dp21577][Studies on the subject are starting to become available]]/
+2. *Satisfaction* Succeeding on your own, without AI, brings pleasure and a sense of _confidence in your own abilities_
+3. *Occupation* Jobs that involve verifying content produced by AI are _demeaning, exhausting, stressful, and depressing_. Getting into the habit of working with AI during your studies means running the risk of no longer feeling capable of doing anything else and spending your professional life in a way that is not fulfilling
+4. *Reciprocity* _I will never use AI to create content for you_, nor will I ever correct your work using AI. Reading AI-generated content or realizing that you’ve used it saddens me and _undermines my trust_
+
+  #+latex: \smallskip\hspace{-.8cm} \textbf{Why \uline{I} decided not to use GenAI at all}
+5. *Working Conditions* The growth of GenAI relies on the _exploitation_ of hundreds of millions of clickworkers
+6. *Intellectual Property* AI is based on the _illegal appropriation_ of tens of millions of human artworks
+7. *Humanism* GenAI is driven by Big Tech companies whose leaders are pushing an _anti-humanist and anti-democratic agenda_
+8. *Reliability* An AI system always provides answers —including false or fabricated ones— and responds with _problematic biases_ that replicate and amplify already existing ones (sexism, racism, etc.)
+9. *Data centers* GenAI requires the construction of data centers, which have environmental impacts on nearby communities --often already _disadvantaged_-- and lead to _conflicts over the use of water and electricity_
+10. *Global Warming* GenAI contributes to the acceleration of global warming and destruction of ecosystems both _directly_ and _indirectly_ (through economic growth and deflecting attention)
+     # 7. *Formation et déficit cognitif* : Vous êtes ici pour vous former, pas pour produire. L’IAg accélère la production mais dégrade la formation : en laissant l’IAg réfléchir et produire à votre place, vous n’exercez pas vos propres capacités. /[[mail:][Des études sur le sujet commencent à être disponibles]]/.
+     # 8. *Métier*. Les métiers qui consistent à vérifier le contenu produit par de l’IAg sont avilissants, fatigants, stressants et déprimants. Prendre l’habitude de travailler avec l’IAg pendant ses études, c’est prendre le risque de ne plus se sentir capable de faire autre chose et de passer une vie professionnelle peu épanouissante.
+     # 9. *Satisfaction*: Réussir à faire par soi-même, sans IAg, procure du plaisir et un sentiment de confiance dans ses propres compétences.
+     # 10. *Réciprocité*. Je n’utiliserai jamais l’IAg pour produire du contenu pour vous et ne corrigerai jamais vos rendus avec de l’IAg. Lire de l’IAg ou me rendre compte que vous l’avez utilisée m’énerve, m’attriste et me fatigue. 
+#+latex:     \end{overlayarea}}
+
+** What do we do next ?
+
+Complaining about this and conscientious objection $\ne$ *reactionary* movement
+
+It is sad that *Taylorism* and *proletarianization* had to eventually affect even state intellectuals before they would care about the problem. Yet, [[https://actionnetwork.org/events/academia-under-attack-how-do-we-speak-up-and-organize][Academia under attack - How do we speak up and organize?]]\medskip
+
+***                                                                 :BMCOL:
+:PROPERTIES:
+:BEAMER_col: .6
+:END:
+In 2003: Let's Save Research ([[https://fr.wikipedia.org/wiki/Sauvons_la_recherche][Sauvons la recherche]])... of what? Liberal reforms? Herself?\medskip
+
+I recommend reading /Une autre science est possible/, Isabelle Stengers, 2013.
+
+***                                                                 :BMCOL:
+:PROPERTIES:
+:BEAMER_col: .3
+:END:
+#+latex: \includegraphics[width=\linewidth]{images/une_autre_science_est_possible.jpg}
+
+* That's all Folks!
+* Cruft                                                            :noexport:
+** Computational Documents...
+# #+LaTeX: \includegraphics<+>[width=\linewidth]{images/example_pi_full-1.pdf}%
+# #+LaTeX: \includegraphics<+>[width=\linewidth]{images/example_pi_full-2.pdf}%
+# #+LaTeX: \includegraphics<+>[width=\linewidth]{images/example_pi_full-3.pdf}%
+# #+LaTeX: \includegraphics<+>[width=\linewidth]{images/example_pi_full-4.pdf}%
+# #+LaTeX: \includegraphics<+>[width=\linewidth]{images/example_pi_full-5.pdf}%
+#+LaTeX: \includegraphics<+->[width=\linewidth]{images/example_pi_full-6.pdf}%
+
+#+BEGIN_EXPORT latex
+\begin{overlayarea}{\linewidth}{0cm}
+  \vspace{-1.2cm}
+  \begin{center}
+    \includegraphics<+>[height=.8cm]{images/logo/Jupyter_logo.png}
+    \includegraphics<.>[height=.8cm]{images/logo/OrgMode_logo.png}
+    \includegraphics<.>[height=.8cm]{images/logo/RStudio_logo.png}
+  \end{center}
+\end{overlayarea}
+#+END_EXPORT
+- +mattermost+...
+** ... and Laboratory Notebooks
+
+\it\small
+
+_Subject: Fin des pièces jointes dans Mattermost (Inria)_
+
+> Mattermost est le principal outil de communication et d'échanges
+dans certaines équipes. Nous avons un *canal par projet*, un *canal avec
+chaque doctorant*, etc. Ce ne sont pas de simples chats “informels”…
+ce sont de vraiment outils de *travail dans la durée* !
+
+> Comme XXX, nous aussi l’utilisons beaucoup pour *échanger des
+fichiers*, des PDF de *papiers*, faire la *biblio*…
+
+- Nous avons positionné Mattermost comme un _service de discussion
+  instantanée_ (ou asynchrone, mais pour des messages à court terme).
+- Sa finalité ([..]) n'est ni la +gestion
+  documentaire+, ni +l'archivage de documents+, ni le +suivi des
+  expérimentations+ (au sens carnet de laboratoire), même si,
+  finalement, on peut l'utiliser de cette manière.
+- Si des documents importants pour votre activité au sein d'Inria sont
+  stockés dans Mattermost, et conservés seulement ici, *c'est un _risque_
+  pour Inria* (et pour *vous*): que se passe-t-il en cas de *départ des
+  agents*? *remplacement du service* par un autre ? *évolution d'une
+  équipe de recherche* ? Qui est le *propriétaire d'un document* partagé
+  ici ?
+
+#+end_quote   
+** Common Horror Stories 2/4: /Argh... damned computers/
+- Hey! Here is my code. It's on GitHub so feel free to play with it! I’m doing open
+  science $\smiley$
+  - \textbf{Alice}: I got 3.123123 \hfill \textbf{Bob}: I got segfault
+    \hfill \textbf{Cal}: I got 3.12312\underline{5}\medskip
+- Damned! It used to work!!! Whenever I upgrade my computer, things
+  break so I try to stay away from this $\frowny$ \smallskip
+# - Anyway, I don’t have the root password \hfill The what?...\medskip
+- Whenever trying the code of my colleague, I had to install =Foo= but
+  I broke everything and now neither his code nor mine works! $\frowny$ \medskip
+#+begin_center
+Seriously ? It's 21st century. \winkey How come all this is so painful ?
+#+end_center
+** Containers and Package Managers
+#+ATTR_LATEX: :align C{3cm}C{3cm}C{3cm}
+| The good                                                                                                      | The bad                                                                                                                        | The uggly                                               |
+| \includegraphics[height=1cm]{images/logo/Guix_logo.png}\includegraphics[height=1cm]{images/logo/nix_logo.png} | \includegraphics[height=1cm]{images/logo/docker_logo.png} \includegraphics[height=1cm]{images/logo/singularity_logo.png}\qquad | \includegraphics[height=.8cm]{images/logo/reprozip.png} |
+*** Automatic tracking\pause
+*** Containers
+- *Pros*: \quad Lightweight, \quad Good isolation, \quad Easy to use
+   #+latex: \only<2>{
+  - Running as easy as =docker run <img> <cmd>=
+  - Building images: =docker build -f <Dockerfile>=
+  - Sharing through the [[https://hub.docker.com/][Docker Hub]]: =docker pull/push <img>=
+  #+latex: }\pause
+- *Cons*: \quad Opaque, \quad Container build is generally not reproducible
+  #+latex: \begin{block}{}<3>\vspace{-1.2cm}
+  #+latex: \hspace{.8cm}\begin{overlayarea}{.8\linewidth}{4cm}
+  - Recipes rarely follow /reproducible good practices/\vspace{-.2cm}
+    #+begin_src shell :results output :exports both
+    FROM ubuntu:20.04
+    RUN apt-get update
+         && apt-get upgrade -y
+         && apt-get install -y ...
+    #+end_src
+    #+latex: \vspace{.2cm}
+    + Choose a stable image (and the smallest possible)
+    + Include only the necessary libraries (e.g. no graphics libs)
+    + Avoid system updates (instead freeze sources)
+  #+latex: \end{overlayarea}
+  #+latex: \end{block}
+  \pause
+#+latex: \vspace{-4cm}  
+*** Package managers \quad (the uggly and the good)
+- Language specific:
+  #+latex: \hbox{
+    =pip/pipenv/virtualenv=, =conda,= =CRAN/Bioconductor=
+  #+latex: \hspace{-3cm}}
+  - *Limits*:
+    #+latex: \hbox{version management, durability, permeable, language centric\hspace{-1cm}}
+- *\bf GUIX/NiX* \textbf{= Full-fledged functional package manager}
+  - Native support for environment (/à la git/)
+  - Isolation through =--pure=
+  - Recompile from source (cache recommended)
+    
+# #+LaTeX: \begin{center}
+# #+LaTeX: \includegraphics[height=1cm]{images/logo/Guix_logo.png}
+# #+LaTeX: \includegraphics[height=1cm]{images/logo/nix_logo.png}
+# #+LaTeX: \includegraphics[height=1cm]{images/logo/docker_logo.png}
+# #+LaTeX: \includegraphics[height=1cm]{images/logo/singularity_logo.png}\qquad
+# #+LaTeX: \includegraphics[height=.8cm]{images/logo/reprozip.png} \qquad
+# #+LaTeX: \end{center}
+
+** Common Horror Stories 3/4: /Please hold on/
+\small
+#+BEGIN_EXPORT latex
+  \begin{columns}
+    \begin{column}{.47\linewidth}
+      ~\hspace{-1.7em}\includegraphics[height=3.7cm]{images/repeatability_arizona.pdf}
+    \end{column}
+    \begin{column}{.55\linewidth}
+      \small
+  \fbox{\vbox{\footnotesize Collberg, Christian \textit{et Al.}, \textit{Measuring
+      Reproducibility in Computer Systems Research},
+    \url{http://reproducibility.cs.arizona.edu/} 2013}}
+
+      \begin{itemize}
+      \item 8 ACM conferences ({\scriptsize ASPLOS'12, CCS'12, OOPSLA'12, OSDI'12,
+        PLDI'12, SIGMOD'12, SOSP'11, VLDB'12}) and 5 journals
+      \item 
+        $\text{EM}^{\text{no}}$= \alert{the code cannot be provided}
+      \end{itemize}
+    \end{column}
+  \end{columns}
+#+END_EXPORT
+
+#+BEGIN_EXPORT latex
+%  \vspace{-1cm}
+  \begin{multicols}{2}
+    \begin{itemize}[<+->]
+    \item \alert<.>{Versionning Problems}
+    \item \alert<.>{Bad Backup Practices}
+    \item \alert<.>{Code Will be Available Soon}
+    \item \alert<.>{No Intention to Release}
+    \item \alert<.>{Programmer Left}
+    \item \alert<.>{Commercial Code}
+    \item \alert<.>{Proprietary Academic Code}
+    \item \alert<.>{Research vs. Sharing}
+    \end{itemize}
+  \end{multicols}\vspace{-1em}
+
+
+    \hbox{\hspace{-.1\linewidth}\begin{overlayarea}{1.2\linewidth}{4cm}
+      \small
+      \only<1>{\scriptsize
+        \begin{quote}
+          Thanks for your interest in the implementation of our
+          paper. The good news is that I was able to find some code. I
+          am just \alert{hoping} that \alert{it} is a stable working
+          version of the code, and \alert{matches the implementation we
+            finally used for the paper}. Unfortunately, I have
+          \alert{lost some data} when \alert{my laptop was stolen} last
+          year. The bad news is that the code is not commented and/or
+          clean.
+        \end{quote}
+        \begin{quote}
+          Attached is the $\langle$system$\rangle$ source code of our
+          algorithm. I’m \alert{not} very \alert{sure whether it is the
+            final version of the code used in our paper}, but it should
+          be at least 99\% close. Hope it will help.
+        \end{quote}}%
+      \only<2>{
+        \begin{quote}
+          Unfortunately, the server in which my implementation was
+          stored had a \alert{disk crash in April and three disks
+            crashed simultaneously}. While the help desk made
+          significant effort to save the data, my entire implementation
+          for this paper was not found.
+        \end{quote}}
+      \only<3>{
+        \begin{quote}
+          Unfortunately the
+          current system is \alert{not mature enough at the moment}, so
+          it’s not yet publicly available. We are actively working on a
+          number of extensions and \alert{things are somewhat
+            volatile}. However, once things stabilize we plan to release
+          it to outside users. At that point, we would be happy to send
+          you a copy.
+        \end{quote}}%
+      \only<4>{
+        \begin{quote}
+          I am afraid that the source code was never released. The code
+          was \alert{never intended to be released so is not in any shape
+            for general use}.
+        \end{quote}}%
+      \only<5>{\scriptsize
+        \begin{quote}
+          $\langle$STUDENT$\rangle$ was a graduate student in our
+          program but \alert{he left a while back} so I am responding
+          instead. For the paper we used a prototype that included many
+          moving pieces that only $\langle$STUDENT$\rangle$ knew how to
+          operate and we did not have the time to integrate them in a
+          ready-to-share implementation before he left. Still, I hope
+          you can build on the ideas/technique of the paper. 
+        \end{quote}
+        \begin{quote}
+          Unfortunately, the author who has done most of the coding for
+          this paper has \alert{passed away} and the code is no longer
+          maintained.
+        \end{quote}
+      }%
+      \only<6>{
+        \begin{quote}
+          Since this work has been done at $\langle$COMPANY$\rangle$
+          \alert{we don't open-source code} unless there is a compelling
+          business reason to do so. So unfortunately I don’t think we’ll
+          be able to share it with you.
+        \end{quote}
+        \begin{quote}
+          The code \alert{owned by $\langle$COMPANY$\rangle$}, and AFAIK
+          the code is not open-source.  Your best bet is to reimplement
+          :( Sorry.
+        \end{quote}}%
+      \only<7>{\scriptsize
+        \begin{quote}
+          Unfortunately, the $\langle$SYSTEM$\rangle$
+          sources are \alert{not meant to be opensource} (the code is partially
+          \alert{property of $\langle$UNIVERSITY 1$\rangle$,
+            $\langle$UNIVERSITY 2$\rangle$ and $\langle$UNIVERSITY
+            3$\rangle$.})
+
+          If this will change I will let you know, albeit I do not
+          think there is an intention to make the
+          $\langle$SYSTEM$\rangle$ sources opensource in the near
+          future.
+        \end{quote}
+        \begin{quote}
+          If you're interested in obtaining the code, \alert{we only ask
+            for a description of the research project} that the code
+          will be used in (\alert{which may lead to some joint
+            research}), and we also have a software license agreement
+          that the University would need to sign.
+        \end{quote}}
+      \only<8>{
+        \begin{quote}
+          In the past when we attempted to share it, we found ourselves
+          spending more time getting outsiders up to speed than on our
+          own research. So \alert{I finally had to establish the policy
+            that we will not provide the source code outside the group}.
+        \end{quote}
+      }
+    \end{overlayarea}\hspace{-.1\linewidth}}
+#+END_EXPORT
+
+** Changing Research Practices
+#+LaTeX: \hbox{\bf\normalsize \uline{Soft. Engineering}, \uline{Statistics}, and Reproducible Research in the \alert{curricula}}
+\bigskip
+# #+LaTeX: \begin{columns}\begin{column}{.5\linewidth}
+# file:images/mooc_rr.png
+# #+LaTeX: \end{column}\hspace{-.1\linewidth}\begin{column}{.6\linewidth}\vspace{-.8em}
+# # - [[https://rr-france.github.io/bookrr/][Webinars on RR]] 2016-2017
+# - [[https://rr-france.github.io/bookrr/][Book on RR]]
+#   \bgroup\footnotesize /Vers une recherche reproductible: Faire évoluer ses pratiques/\egroup
+# - [[https://learninglab.inria.fr/en/mooc-recherche-reproductible-principes-methodologiques-pour-une-science-transparente/][\bf MOOC on RR]] \bgroup\small(3rd edition, ongoing)\egroup
+# - A *new "Advanced RR" MOOC* \scalebox{.8}{(2021?)}\footnotesize
+#   - \footnotesize Software environment control
+#   - \footnotesize Scientific workflow
+#   - \footnotesize Managing data
+# #+LaTeX: \end{column}\end{columns}
+
+#+begin_export latex
+\begin{overlayarea}{\linewidth}{0cm}
+\hbox{\hspace{.7\linewidth}\includegraphics[width=.4\linewidth]{images/barba_manifesto.png}}
+\end{overlayarea}
+#+end_export
+*Manifesto*: "\textit{I solemnly pledge}" ([[https://hal.inria.fr/hal-01367344/document][WSSSPE]], [[http://lorenabarba.com/gallery/reproducibility-pi-manifesto/][Lorena Barba]], [[https://www.go-fair.org/fair-principles/][FAIR]])\footnotesize\vspace{-.4em}
+  1. I will teach my graduate students about _reproducibility_
+  2. All our research code (and writing) is under _version control_
+  3. We will always carry out _verification_ and _validation_
+  4. We will _share_ data, plotting script & figure _under CC-BY_
+  5. We will upload the _preprint_ to arXiv at the time of submission of a paper
+  6. We will _release code_ at the time of submission of a paper
+  7. We will add a _"Reproducibility" declaration_ at the end of each paper
+  8. I will keep an _up-to-date web presence_
+
+\normalsize
+*Learn and Teach* using online resources like
+- [[https://software-carpentry.org/][Software Carpentry]], [[https://the-turing-way.netlify.app/welcome.html][The Turing Way]], ...
+** Changing Publishing Practices
+- Artifact evaluation and ACM badges ::  
+     #+BEGIN_CENTER
+     \includegraphics[height=1cm]{images/ae_badge1.png}
+     \includegraphics[height=1cm]{images/ae_badge2.png}
+     \includegraphics[height=1cm]{images/acm_badges.pdf}     
+     #+END_CENTER
+- Major conferences ::  
+  - [[https://sc19.supercomputing.org/submit/reproducibility-initiative/][Supercomputing]]: Artifact Description (AD) *mandatory*, Artifact
+    Evaluation (AE) still *optional*, *Double blind* vs. *RR*
+  - [[https://nips.cc/Conferences/2019/CallForPapers][NeurIPS]], [[https://reproducibility-challenge.github.io/iclr_2019/][ICLR]]: *open reviews*, reproducibility challenge
+
+    [[https://www.youtube.com/watch?v=Kee4ch3miVA][Joelle Pineau @ NeurIPS'18]]
+    #+LaTeX: \includegraphics[width=.4\linewidth]{images/joelle_pineau.jpg}
+  - [[http://db-reproducibility.seas.harvard.edu/papers/index.html][ACM SIGMOD 2015-2019]], Most Reproducible Paper Award... \medskip
+- Mentalitie are evolving :: people care, make stuff available, *errors
+     are found and fixed*
+** Changing Academic Practices (+Publish or Perish+)                :noexport:
+\small
+- [[https://thegradient.pub/over-optimization-of-academic-publishing-metrics/][Goodhart’s Law: Are Academic Metrics Being Gamed?]], M. Fire 2019
+  - AI: over 1,000 ranked journals ($\times10$ in 15 years)
+  - Shorter papers with increasing self references
+  - More and more papers without any citation
+  - Sharp increase in the number of new authors publishing at a much
+    faster rate given their career age
+    # - Authors: We noticed a sharp increase in the number of new
+    #   authors These new authors are publishing at a much faster rate
+    #   given their career age than they have in previous
+    #   decades. Additionally, the average number of coauthors per
+    #   author considerably increased over time. Lastly, we observed
+    #   that in recent years there has been a growing trend for authors
+    #   to publish more in conferences.
+    # - Papers: We observed that over time, papers became shorter while
+    #   other features, such as titles, abstracts, and author lists,
+    #   became longer. While the number of references and the number of
+    #   self-citations considerably increased, the total number of
+    #   papers without any citations grew rapidly as well.
+    # - Traditional measures (e.g., number of papers, number of
+    #   citations, h-index, and impact factor) have become targets 
+    # - Citation number has become a target for some researchers
+    # - Exponential growth in the number of new researchers who publish
+    #   papers, likely due to career pressures
+- [[http://users.cecs.anu.edu.au/~steveb/downloads/pdf/evaluate-toplas-2016.pdf][The Truth, The Whole Truth, and Nothing But the Truth: A Pragmatic]],
+  [[http://users.cecs.anu.edu.au/~steveb/downloads/pdf/evaluate-toplas-2016.pdf][Guide to Assessing Empirical Evaluations]], \textit{TOPLAS} 2016
+  #+latex: \hfill\begin{columns}\begin{column}{.5\linewidth}
+    #+ATTR_LaTeX: :width \linewidth :center nil
+    file:images/evaluate-toplas-2016_fig10.pdf
+  #+latex: \end{column}\begin{column}{.3\linewidth}\pause
+    #+ATTR_LaTeX: :height  2.8cm :center nil
+    file:images/ReScience-moto-bordered.pdf
+  #+latex: \end{column}\end{columns}
+- [[https://www.nature.com/articles/d41586-021-01759-5][Impact factor abandoned by Dutch university in hiring and promotion]],
+  [[https://www.nature.com/articles/d41586-021-01759-5][decisions]]. Nature, June 2021. /Faculty and staff members at Utrecht
+  University will be evaluated by their commitment to open science/
+** Horror Stories 4/4: Fighting Information Loss with Archives
+\small
+
+#+LaTeX: \hfill \raisebox{-1ex}{\includegraphics[height=.8cm]{images/logo/git_logo.png}}
+#+LaTeX: \raisebox{-.5ex}{\includegraphics[height=.8cm]{images/logo/github_logo.png}} or
+#+LaTeX: \raisebox{-1.4ex}{\includegraphics[height=.8cm]{images/logo/gitlab_logo.png}}
+$=$ awesome collaborations ($\ne$ archive)\hfill\null
+
+- D. Spinellis. /[[https://www.spinellis.gr/sw/url-decay/][The Decay and Failures of URL References]]/. CACM, 46(1),
+  2003
+    
+  #+BEGIN_QUOTE
+    The half-life of a referenced URL is approximately 4 years\vspace{-.5em}
+  #+END_QUOTE
+- P. Habibzadeh. /[[https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3885908/][Decay of References to Web sites in Articles
+  Published in]]/ /[[https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3885908/][General Medical Journals: Mainstream vs Small
+  Journals]]/. Applied Clinical Informatics. 4 (4), 2013
+  #+BEGIN_QUOTE
+    half life ranged from 2.2 years in EMHJ to 5.3 years in BMJ\vspace{-.5em}
+  #+END_QUOTE
+- Discontinuated forges: Code Space, Gitorious, Google code, Inria Gforge
+\normalsize\pause
+- Article archives :: 
+  #+LaTeX: \raisebox{-1.5ex}{\includegraphics[height=.6cm]{images/logo/ArXiv-web.png}}
+  #+LaTeX: \raisebox{-1.5ex}{\includegraphics[height=.6cm]{images/logo/LogoHAL.png}}
+  #+LaTeX: \hfill\raisebox{-3em}{\includegraphics[height=1.5cm]{images/logo/Internet-archive.png}}\vspace{-2em}
+- Data archives ::
+  #+LaTeX: \raisebox{-1.5ex}{\includegraphics[height=.6cm]{images/logo/Figshare-logo.png}}
+  #+LaTeX: \raisebox{-1.5ex}{\includegraphics[height=.6cm]{images/logo/Zenodo-logo.jpg}}
+
+- Software Archive ::
+  #+LaTeX: \raisebox{-2.4ex}{\includegraphics[height=1cm]{images/logo/swh-logo.png}} 
+  Collect/Preserve/Share
+- Plan for disaster :: with =git= and =git-annex= (not =git LFS=!)\vspace{-.5em}
+
+#+begin_center
+\normalsize\bf Separation between articles, code, and data is not so simple though
+#+end_center
+
+** Common Horror Stories 1/4:  /What did I do?/
+:PROPERTIES:
+:BEAMER_OPT: fragile
+:END:
+# , shrink=1
+
+#+begin_export latex
+\begin{overlayarea}{\linewidth}{0cm}
+  \vspace{-1.9cm}
+  \hbox{\hspace{.89\linewidth}\includegraphics[height=2cm]{images/fuuu_plz.png}\hspace{-4cm}}
+\end{overlayarea}
+\vspace{-.4cm}
+#+end_export
+
+\small
+*** Enlarge frame                                         :B_ignoreheading:
+:PROPERTIES:
+:BEAMER_env: ignoreheading
+:END:
+#+latex: \hbox{\hspace{-.05\linewidth}\begin{overlayarea}{1.1\linewidth}{8cm}
+*** Author
+- I thought I used the same parameters but *I'm getting different results*!
+- The new student wants to compare with *the method I proposed last year*
+- My advisor asked me whether I took care of setting this or this but
+  *I can't remember*
+- The damned fourth reviewer asked for a major revision and wants me
+  to *change Figure 3*. *Which code and which data set did I use?*
+- *It worked yesterday!*  6 months later: *Why did I do that?*
+*** Reviewer
+- As usual, there is *no confidence interval*, I wonder about the
+  variability and whether the difference is *significant* or not
+- That can't be true, I'm sure *they removed some points*
+- Why is this graph in logscale? *How would it look like otherwise?*
+  *I'm not even sure* of what this value means. If only I could access
+  the generation script
+*** Enlarge frame                                         :B_ignoreheading:
+:PROPERTIES:
+:BEAMER_env: ignoreheading
+:END:
+#+latex: \end{overlayarea}}
+
+** Mythbusters: Science vs. Screwing Around                        :B_frame:
+:PROPERTIES:
+:BEAMER_env: frame
+:BEAMER_OPT: plain
+:END:
+
+#+BEGIN_EXPORT latex
+\begin{overlayarea}{\linewidth}{0cm}
+\vspace{-4.7cm}
+\hbox{\hspace{-.1\linewidth}\includegraphics[width=1.2\linewidth,height=9cm]{images/remember_kids.jpg}}
+\end{overlayarea}
+#+END_EXPORT
+** Different Reproducibility Concerns in Modern Science
+# _Distinguish between:_
+# #+LaTeX: \begin{columns}\begin{column}[b]{.4\linewidth}
+# - experimental science
+# - observational science
+# #+LaTeX: \end{column}\begin{column}[b]{.6\linewidth}
+# - computational science (simulation)
+# - (big) data analysis
+# #+LaTeX: \end{column}\end{columns}%\bigskip
+\small
+- Social Sciences, Oncology, ... :: methodology, statistics, pre-registration
+- Genomics :: software engineering, computational reproducibility,
+  provenance
+- Computational fluid dynamics :: numerical issues
+- /Artificial Intelligence/ :: most of the above\medskip
+
+\vspace{-1em}
+/The processing steps between raw observations and findings have gotten
+increasingly numerous and complex/
+#+BEGIN_EXPORT latex
+\begin{center}
+  \includegraphics<+>[width=.8\linewidth]{images/iceberg_publication-1.png}%
+  \includegraphics<+>[width=.8\linewidth]{images/iceberg_publication-2.png}%
+  \includegraphics<+>[width=.8\linewidth]{images/iceberg_publication-3.png}%
+  \includegraphics<+>[width=.8\linewidth]{images/iceberg_publication-4.png}%
+  \includegraphics<+->[width=.8\linewidth]{images/iceberg_publication-5.png}\medskip
+  
+  \uncover<+>{\normalsize\bf Reproducible Research = Bridging the Gap by working Transparently}
+\end{center}
+#+END_EXPORT
+
+** Reproducible Research $\sim$ Open Science ?
+[[https://www.ouvrirlascience.fr/][Plan National pour la Science Ouverte]] (BSN $\leadsto$ CoSO)
+- [[https://www.science-ouverte.cnrs.fr/][CNRS]], [[https://hal.inria.fr/page/inria-soutient-la-science-ouverte][Inria]], [[https://www.inrae.fr/actualites/inrae-engage-louverture-sciences-societe][INRAE]], ...
+- Many flavors: /Citizen Science/
+
+\small *\bf Main pillars*:\vspace{-.8cm}
+#+begin_export latex
+\begin{enumerate}
+\item Open access \qquad\includegraphics[height=1cm]{images/logo/open-access.png}
+\item Open data \qquad\raisebox{-1.8em}{\includegraphics[height=1cm]{images/logo/FAIR_data_principles.jpg}}\vspace{-1em}
+\item Open source \hspace{3cm}\raisebox{-1.8em}{\includegraphics[height=1cm]{images/logo/open-source.png}}\vspace{-1.5em}
+  \begin{itemize}
+  \item \emph{Open hardware}
+  \end{itemize}
+\item \textbf{Open methodology} (\alert{Reproducible Research})
+  \begin{itemize}
+  \item \emph{Open-notebook science}
+  \item \emph{Open science infrastructures}
+  \end{itemize}%\vspace{-.8cm}
+\item \alert{Open peer review} (avoid \href{https://cacm.acm.org/magazines/2021/6/252840-collusion-rings-threaten-the-integrity-of-computer-science-research/fulltext}{collusion})
+  \begin{overlayarea}{\linewidth}{0cm}
+      \vspace{-2.7cm}\hbox{\hspace{.7\linewidth}%
+         \includegraphics[height=2cm]{images/logo/open-review.png}}
+  \end{overlayarea}\vspace{-\baselineskip}
+\item Open educational resources
+  \begin{overlayarea}{\linewidth}{0cm}
+   \vspace{-1.4cm}\hspace{6cm}\includegraphics[height=.7cm]{images/logo/open-educational-resources.png}
+  \end{overlayarea}\vspace{-\baselineskip}
+\end{enumerate}
+#+end_export
+
+\normalsize\bf Obviously *making code/data available for the reproduction of results* from
+published papers *has become the new norm*
+** What about Open Science ?                                      :noexport:
+[[https://www.ouvrirlascience.fr/][Plan National pour la Science Ouverte]] (BSN $\leadsto$ CoSO)
+- [[https://www.science-ouverte.cnrs.fr/][CNRS]], [[https://hal.inria.fr/page/inria-soutient-la-science-ouverte][Inria]], [[https://www.inrae.fr/actualites/inrae-engage-louverture-sciences-societe][INRAE]], ...
+- Many flavors: /Citizen Science/
+
+*Main pillars*:\vspace{-.8cm}
+#+begin_export latex
+\begin{enumerate}
+\item Open access \qquad\includegraphics[height=1cm]{images/logo/open-access.png}
+\item Open data \qquad\raisebox{-1.8em}{\includegraphics[height=1cm]{images/logo/FAIR_data_principles.jpg}}\vspace{-1em}
+\item Open source \hspace{3cm}\raisebox{-1.8em}{\includegraphics[height=1cm]{images/logo/open-source.png}}\vspace{-1.5em}
+  \begin{itemize}
+  \item \emph{Open hardware}
+  \end{itemize}
+\item \textbf{Open methodology} (\alert{Reproducible Research})
+  \begin{itemize}
+  \item \emph{Open-notebook science}
+  \item \emph{Open science infrastructures}
+  \end{itemize}\vspace{-.8cm}
+\item \alert{Open peer review} (avoid \href{https://cacm.acm.org/magazines/2021/6/252840-collusion-rings-threaten-the-integrity-of-computer-science-research/fulltext}{collusion}) \hfill\raisebox{-.8cm}{\includegraphics[height=2cm]{images/logo/open-review.png}}\vspace{-.5cm}
+\item Open educational resources \includegraphics[height=1cm]{images/logo/open-educational-resources.png}
+\end{enumerate}
+#+end_export
+
+* Emacs Setup                                                      :noexport:
+This document has local variables in its postembule, which should
+allow Org-mode (9) to work seamlessly without any setup. If you're
+uncomfortable using such variables, you can safely ignore them at
+startup. Exporting may require that you copy them in your .emacs.
+
+# ###############################
+# Local Variables:
+# eval: (setq my-utils-file "ox-extra.el")
+# eval: (load-file (expand-file-name my-utils-file (file-name-directory (buffer-file-name))))
+# eval: (ox-extras-activate '(ignore-headlines))
+# eval: (setq org-latex-listings 'minted)
+# eval: (setq org-latex-tables-centered nil)
+# eval: (setq org-latex-pdf-process '("lualatex -shell-escape -interaction nonstopmode -output-directory %o %f"))
+# End:
