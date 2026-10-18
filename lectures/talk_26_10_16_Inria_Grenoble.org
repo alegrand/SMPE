@@ -223,7 +223,7 @@ increasingly numerous and complex/
 :END:
   # \vspace{1cm}
 
-[[https://rr-france.github.io/bookrr/][A non-technical introduction to reproducibility issues]]\pause
+[[https://rr-france.github.io/bookrr/][A non-technical introduction to reproducibility issues]]
   # :Loïc Desquilbet, Sabrina Granger, Boris Hejblum, Pascal Pernot,
   #   Nicolas Rougier
 
@@ -360,13 +360,12 @@ increasingly numerous and complex/
 
 \textbf{Sep. 2026}: Nicholas Polson (statistics, University of Chicago Booth) authored or co-authored *250+ papers* on a diversity of topics and as many as *14 books* released in a year ([[https://www.washingtonpost.com/education/2026/09/23/nine-months-200-academic-papers-one-professors-ai-assisted-output/][Washington Post]]) $\leadsto$ major retractation on the Social Science Research Network ([[https://www.thecollegefix.com/publisher-removes-200-papers-university-of-chicago-statistician-wrote-in-under-1-year/][The College Fix]])
 
-- Ivan Oransky (*Retraction Watch*): /it would be better to look at the system than Polson's specific case/.
+- \footnotesize Ivan Oransky (*Retraction Watch*): /it would be better to look at the system than Polson's specific case/
+- \footnotesize Publish or perish, papermills, /tortured phrases/ with SciGen, ... are not new (see the work of [[https://www.ins2i.cnrs.fr/fr/cnrsinfo/guillaume-cabanac-et-cyril-labbe-unis-contre-la-fraude-scientifique][Cabanac and Labbé]]) and *temporarily joining the dark side can be tempting when under pressure*
 
-- Publish or perish, papermills, /tortured phrases/ with SciGen, ... are not new (see the work of [[https://www.ins2i.cnrs.fr/fr/cnrsinfo/guillaume-cabanac-et-cyril-labbe-unis-contre-la-fraude-scientifique][Cabanac and Labbé]])
-
-Yet, the [[https://research.google/blog/accelerating-scientific-breakthroughs-with-an-ai-co-scientist/ ][Google AI coscientist]], [[https://arxiv.org/abs/2504.08066][AI scientist]], [[https://github.com/kotama7/HPC-AutoResearch][AutoResearch]], fully align with the new US [[https://legrandcontinent.eu/fr/2026/07/24/la-doctrine-kratsios-et-la-nouvelle-puissance-scientifique-americaine/][Kratsios Doctrine /Genesis : Science, a new golden age/]] (Jul. 2026).
-- While *Vannevar Bush* (Roosevelt and Truman advisor) was laying in 1945 (/Science: The Endless Frontier/) the groundwork for a new universalism and a state-funded, open science, Kratsios sought to *reorganize science to serve American sovereignty and dominance*. It is the exact opposite. 
-- The /[[https://www.science.org/content/article/what-does-trump-s-call-gold-standard-science-really-mean][Gold Standard science]]/ promoted by Trump in May 2025 and "rooted in the /reproducibility crisis/" is actually a smokescreen to get rid of "woke science" (social science, climate, etc.).
+Yet, [[https://research.google/blog/accelerating-scientific-breakthroughs-with-an-ai-co-scientist/ ][Google AI coscientist]], [[https://arxiv.org/abs/2504.08066][AI scientist]], or [[https://github.com/kotama7/HPC-AutoResearch][AutoResearch]] fully align with the new US [[https://legrandcontinent.eu/fr/2026/07/24/la-doctrine-kratsios-et-la-nouvelle-puissance-scientifique-americaine/][Kratsios Doctrine /Genesis : Science, a new golden age/]] (Jul. 2026)
+- \footnotesize While *Vannevar Bush* (Roosevelt and Truman advisor) was laying in 1945 (/Science: The Endless Frontier/) the groundwork for a new universalism and a state-funded, open science, Kratsios seeks to *reorganize science to serve American sovereignty and dominance*. It is the exact opposite
+- \footnotesize The /[[https://www.science.org/content/article/what-does-trump-s-call-gold-standard-science-really-mean][Gold Standard science]]/ promoted by Trump in May 2025 and "rooted in the /reproducibility crisis/" is actually a smokescreen to *get rid of "woke science"* (social science, climate, etc.) and *publicize pseudo-science*
 
 ** Scientific Misconduct
 From [[https://en.wikipedia.org/wiki/Scientific_misconduct][https://en.wikipedia.org/wiki/Scientific_misconduct]]
@@ -379,7 +378,7 @@ From [[https://en.wikipedia.org/wiki/Scientific_misconduct][https://en.wikipedia
   of the research process in other ways
 - US NSF definition :: Scientific misconduct revolves around the three following issues:
   1. *fabrication* (completely made up results).
-  2. *falsification* (you obtain result and change them)
+  2. *falsification* (you obtain results and change them)
   3. *plagiarism* (stealing someone else's sentence or idea without giving credit)
 ** Data fabrication Examples
 #+LaTeX: \hbox{\hspace{-.08\linewidth}\begin{overlayarea}{1.15\linewidth}{8cm}\vspace{-.3cm}\small
@@ -450,7 +449,7 @@ From [[https://en.wikipedia.org/wiki/Scientific_misconduct][https://en.wikipedia
 #+end_export
 
 ** Generative AI and Scientific Integrity (2/2)
-\small \textbf{Feb. 2024}: [[https://www.ofis-france.fr/wp-content/uploads/2024/11/LOfisfaitlepointFevrier2024_AI.pdf][Systèmes d'IA gén.: quelques points de vigilance]] (OFIS)
+\small \textbf{Feb. 2024}: [[https://www.ofis-france.fr/wp-content/uploads/2024/11/LOfisfaitlepointFevrier2024_AI.pdf][Systèmes d'IA gén. : quelques points de vigilance]] (OFIS)
   
 - Responsibility :: Researchers remain _responsible_ for the content generated by these systems and reproduced in their articles, including, among other things, the content’s reliability and compliance with applicable\rlap{ regulations}
 - Transparency :: Since June 2023, the European Code of Conduct for Scientific Integrity has recommended transparency. Concealing the use of AI in *content creation* or in the *drafting of publications* is now considered a _breach of scientific integrity_
@@ -483,7 +482,7 @@ From [[https://en.wikipedia.org/wiki/Scientific_misconduct][https://en.wikipedia
 ** Maths under attacks (2/2) 
 \small
 
-- \textbf{Sep. 2026}: Solution to the /Navier–Stokes existence and smoothness problem/ by [[https://en.wikipedia.org/wiki/Navier%E2%80%93Stokes_priority_controversy][OpenAI]] (1 M\textdollar  Millennium Prize Problem)
+- \textbf{Sep. 2026}: *Solution* to the /Navier–Stokes existence and smoothness problem/ by [[https://en.wikipedia.org/wiki/Navier%E2%80%93Stokes_priority_controversy][OpenAI]] (1 M\textdollar  Millennium Prize Problem)
   #+begin_quote
     \scriptsize
     The group that produced the Navier–Stokes resolution involved on the order of *10,000 concurrent agents* [..]. The agents arrived at their resolution on Saturday, September 5, about 88 hours after the first agents were launched. Lean formalization and verification took an additional 17 hours via GPT‑6 Astra.
@@ -491,15 +490,15 @@ From [[https://en.wikipedia.org/wiki/Scientific_misconduct][https://en.wikipedia
     Across all attempted problems, the agents sent 4.9 million messages and used about 300 billion output tokens. In the process of resolving the Navier–Stokes problem, the agents sent 2.7 million messages and used approximately 130 billion output tokens (i.e., *10 M\textdollar to 40 M\textdollar*).
   #+end_quote
   # https://gpt.gekko.de/when-language-models-discover-new-mathematics/
-  - *Controversy*: Tristan Buckmaster and Levent Alpöge claimed their own interaction with ChatGPT may have inspired OpenAI's prompts
-  - *This isn't science*. It's a dick-measuring contest between OpenAI and Anthropic. Maths isn't about solving problems (nor Science is about producing articles) but to understand things ([[http://www.madore.org/~david/weblog/d.2026-09-10.2861.ai-and-math-destruction.html#d.2026-09-10.2861][David Madore]])
+  - *Controversy*: Tristan Buckmaster and Levent Alpöge claimed their own interaction with ChatGPT [[https://en.wikipedia.org/wiki/Navier%E2%80%93Stokes_priority_controversy][may have inspired OpenAI's prompts]]
+  - *This isn't science*. It's a pissing contest between OpenAI and Anthropic. Maths isn't about solving problems (nor Science is about producing articles) but to understand things ([[http://www.madore.org/~david/weblog/d.2026-09-10.2861.ai-and-math-destruction.html#d.2026-09-10.2861][David Madore]])
 - \textbf{October 2026}: OpenAI releases 722 mathematical papers
-  - /“They've annihilated my field of research”/ ([[https://www.lemonde.fr/sciences/article/2026/10/10/nouveau-coup-de-massue-d-openai-sur-les-mathematiciens-ils-ont-annihile-mon-domaine-de-recherche_6790951_1650684.html][Hugo Duminil-Copin]], Fields medal 2022)
+  - /“They've annihilated my field of research”/ ([[https://www.lemonde.fr/sciences/article/2026/10/10/nouveau-coup-de-massue-d-openai-sur-les-mathematiciens-ils-ont-annihile-mon-domaine-de-recherche_6790951_1650684.html][Hugo Duminil-Copin]])
 
-A double sense to /[[https://en.wikipedia.org/wiki/Weapons_of_Math_Destruction][Weapons of Math Destruction]]/
-** Ten Reasons why GenAI is banned from this lecture \prohibition{GenAI}
+This gives a double meaning to /[[https://en.wikipedia.org/wiki/Weapons_of_Math_Destruction][Weapons of Math Destruction]]/ 
+** Ten Reasons why GenAI is banned from this lecture \prohibition{GenAI} :noexport:
 #+latex:     \hbox{\hspace{-.08\linewidth}\begin{overlayarea}{1.16\linewidth}{10cm}\scriptsize
-#+latex: \textbf{Why \uline{you} shouldn't use GenAI for your studies}\hfill{\scriptsize\href{https://atecopol.hypotheses.org/13082}{Objection de conscience, AtEcoPol}}
+#+latex: \textbf{Why \uline{you} shouldn't use GenAI for your studies}\hfill{\scriptsize\href{https://atecopol.hypotheses.org/13082}{Conscientious objection, AtEcoPol}}
 1. *Training and Cognitive Deficit* \textbf{You’re here to learn, not to produce}. AI may accelerate production but it _undermines training_: by letting AI think and produce for you, you’re not exercising your own abilities\newline\null\hfill /[[https://cepr.org/publications/dp21577][Studies on the subject are starting to become available]]/
 2. *Satisfaction* Succeeding on your own, without AI, brings pleasure and a sense of _confidence in your own abilities_
 3. *Occupation* Jobs that involve verifying content produced by AI are _demeaning, exhausting, stressful, and depressing_. Getting into the habit of working with AI during your studies means running the risk of no longer feeling capable of doing anything else and spending your professional life in a way that is not fulfilling
@@ -518,6 +517,26 @@ A double sense to /[[https://en.wikipedia.org/wiki/Weapons_of_Math_Destruction][
      # 10. *Réciprocité*. Je n’utiliserai jamais l’IAg pour produire du contenu pour vous et ne corrigerai jamais vos rendus avec de l’IAg. Lire de l’IAg ou me rendre compte que vous l’avez utilisée m’énerve, m’attriste et me fatigue. 
 #+latex:     \end{overlayarea}}
 
+** Ten Reasons why GenAI should not be used during PhD \prohibition{GenAI}
+#+latex:     \hbox{\hspace{-.08\linewidth}\begin{overlayarea}{1.16\linewidth}{10cm}\scriptsize
+#+latex: \textbf{Why \uline{you} shouldn't use GenAI for your studies}\hfill{\scriptsize\href{https://atecopol.hypotheses.org/13082}{Conscientious objection, AtEcoPol}}
+1. *Training and Cognitive Deficit* \textbf{You’re here to learn, not to produce}. AI may accelerate production but it _undermines training_: by letting AI think and produce for you, you’re not exercising your own abilities
+2. *Satisfaction* Succeeding on your own, without AI, brings pleasure and a sense of _confidence in your own abilities_, far more rewarding than verifying an AI generated content, which is _demeaning and depressing_
+3. *Reciprocity* _I will never use AI to create content_, _nor will I ever review articles using AI_. Reading AI-generated content or realizing that it's been used it saddens me and _undermines my trust_
+4. *Paranoia and social withdrawal* If anyone can solve hundreds of open problems using openly shared ideas, then quickly none will share anything and _people will not exchange ideas anymore_
+
+  #+latex: \smallskip\hspace{-.8cm} \textbf{Why \uline{I} decided not to use GenAI at all}
+5. *Working Conditions* The growth of GenAI relies on the _exploitation_ of hundreds of millions of clickworkers
+6. *Intellectual Property* AI is based on the _illegal appropriation_ of tens of millions of human artworks
+7. *Humanism* GenAI is driven by Big Tech companies whose leaders are pushing an _anti-humanist and anti-democratic agenda_
+8. *Reliability* An AI system always provides answers —including false or fabricated ones— and responds with _problematic biases_ that replicate and amplify already existing ones (sexism, racism, etc.)
+9. *Data centers* GenAI requires the construction of data centers, which have environmental impacts on nearby communities --often already _disadvantaged_-- and lead to _conflicts over the use of water and electricity_
+10. *Global Warming* GenAI contributes to the acceleration of global warming and destruction of ecosystems both _directly_ and _indirectly_ (through economic growth and deflecting attention)
+     # 7. *Formation et déficit cognitif* : Vous êtes ici pour vous former, pas pour produire. L’IAg accélère la production mais dégrade la formation : en laissant l’IAg réfléchir et produire à votre place, vous n’exercez pas vos propres capacités. /[[mail:][Des études sur le sujet commencent à être disponibles]]/.
+     # 8. *Métier*. Les métiers qui consistent à vérifier le contenu produit par de l’IAg sont avilissants, fatigants, stressants et déprimants. Prendre l’habitude de travailler avec l’IAg pendant ses études, c’est prendre le risque de ne plus se sentir capable de faire autre chose et de passer une vie professionnelle peu épanouissante.
+     # 9. *Satisfaction*: Réussir à faire par soi-même, sans IAg, procure du plaisir et un sentiment de confiance dans ses propres compétences.
+     # 10. *Réciprocité*. Je n’utiliserai jamais l’IAg pour produire du contenu pour vous et ne corrigerai jamais vos rendus avec de l’IAg. Lire de l’IAg ou me rendre compte que vous l’avez utilisée m’énerve, m’attriste et me fatigue. 
+#+latex:     \end{overlayarea}}
 ** What do we do next ?
 
 Complaining about this and conscientious objection $\ne$ *reactionary* movement
@@ -538,7 +557,18 @@ I recommend reading /Une autre science est possible/, Isabelle Stengers, 2013.
 :END:
 #+latex: \includegraphics[width=\linewidth]{images/une_autre_science_est_possible.jpg}
 
+**                                                         :B_ignoreheading:
+:PROPERTIES:
+:BEAMER_env: ignoreheading
+:END:
+\appendix
 * That's all Folks!
+** Moving debate
+1. Given your centers of interest and your practice, do you rather consider yourself as a mathematician or as a \rlap{computer scientist?} \medskip
+   
+2. GenAI is mostly beneficial to my professional life \medskip
+   
+3. The use of GenAI should be regulated \medskip
 * Cruft                                                            :noexport:
 ** Computational Documents...
 # #+LaTeX: \includegraphics<+>[width=\linewidth]{images/example_pi_full-1.pdf}%
