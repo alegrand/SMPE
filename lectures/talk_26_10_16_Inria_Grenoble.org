@@ -566,11 +566,11 @@ I recommend reading /Une autre science est possible/, Isabelle Stengers, 2013.
 * That's all Folks!
 # @@latex:\newline\centerline{\includegraphics[height=4cm]{images/dont_do_drugs.jpg}}\vspace{-5cm}\newline@@
 ** Moving debate
-1. Given your centers of interest and your practice, do you rather consider yourself as a mathematician or as a \rlap{computer scientist?} \medskip
+1. Given your centers of interest and your practice, do you rather consider yourself as a mathematician or as a \rlap{computer scientist?} \bigskip\pause
    
-2. GenAI is mostly beneficial to my professional life \medskip
+2. GenAI is mostly beneficial to my professional life \bigskip\pause
    
-3. The use of GenAI should be regulated \medskip
+3. The use of GenAI should be regulated 
 * Cruft                                                            :noexport:
 ** Computational Documents...
 # #+LaTeX: \includegraphics<+>[width=\linewidth]{images/example_pi_full-1.pdf}%
