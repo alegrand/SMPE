@@ -116,9 +116,9 @@ cat README.org | grep '^\*\*.* \[' | sed -e 's/^\*\* //'
 2. 01/10/26  [ AL        ] Visualization and Exploratory Data Analysis with the tidyverse and ggplot
 3. 08/10/26  [ AL        ] Clearly defining the experiment and having the right tools to analyze it
 4. 22/10/26  [ AL        ] Probabilities, CI, and estimation
-5. 05/11/26  [ *CL*        ] The publication system 1
+5. 05/11/26  [ CL        ] The publication system 1
 6. 12/11/26  [ AL        ] Correlation, causality, and the linear model
-7. 19/11/26  [ *JMV*       ] The linear model, Multiple testing and ANOVA (p-hacking), and a bit of DoE
+7. 19/11/26  [ JMV       ] The linear model, Multiple testing and ANOVA (p-hacking), and a bit of DoE
 8. 03/12/26  [ AL        ] Estimation, correlation
 9. 10/12/26  [ AL        ] DoE
 10. 17/12/26 [ AL        ] Scientific Integrity
@@ -226,22 +226,22 @@ Same as last week. Keep working on the two assignments. We will debrief the Quic
 # - [ ] Continue the hands-on by improving the experiment design and the analysis. Share your findings on the [[https://codimd.math.cnrs.fr/0O2AeqE7TCijWofhF3SK-g][Pad]] and/or on your public fork
 #   of the project. Use what we have seen in today's lecture to improve estimation.
 ** Fall vacations
-** 5. 05/11/26  [ *CL*        ] The publication system 1
-# *** Slides and resources
-# - [[file:CL_SMPE_P1.pdf][Scientific Publications and Scientific Integrity]]
-# # - [[file:../2024_10_Grenoble/06_Scientific_Publications.pdf][Introduction to the publication system]]
-# # - [[file:../2024_10_Grenoble/08_Scientific_Publications.pdf][More on the publication system]]  
-#   # [[file:../../lectures/lecture_scientific_integrity.pdf][Introduction to scientific integrity, deontology and ethics]]
-#   # - Fonctions/structures/rôles de la Publication, Citation \to bibliométrie
-#   # - Où trouver l'info, Archives ouvertes, open access
-#   # - Lecture de papier pour trouver des trucs bizarres, rétractation, duplication de données, trafication de données pour pouvoir publier ou même avoir un visa. Réaction à avoir.
-# *** Homeworks
-# - For the 18/12, read the papers available [[https://cloud.univ-grenoble-alpes.fr/s/3Ro6LpMbP6fckFH][here]]. Spend no more than
-#   10-15 minutes per article and try to answer the following questions:
-#   - Is this paper worth being read?
-#   - Is it a famous paper?
-#   - Any other point about it you would like to make...
-# - Move on with the Peer Evaluated exercise of the MOOC
+** 5. 05/11/26  [ CL        ] The publication system 1
+*** Slides and resources
+- [[file:CL_SMPE_P1_26.pdf][Scientific Publications and Scientific Integrity]]
+# - [[file:../2024_10_Grenoble/06_Scientific_Publications.pdf][Introduction to the publication system]]
+# - [[file:../2024_10_Grenoble/08_Scientific_Publications.pdf][More on the publication system]]  
+  # [[file:../../lectures/lecture_scientific_integrity.pdf][Introduction to scientific integrity, deontology and ethics]]
+  # - Fonctions/structures/rôles de la Publication, Citation \to bibliométrie
+  # - Où trouver l'info, Archives ouvertes, open access
+  # - Lecture de papier pour trouver des trucs bizarres, rétractation, duplication de données, trafication de données pour pouvoir publier ou même avoir un visa. Réaction à avoir.
+*** Homeworks
+- For the 07/01, read the papers available [[https://cloud.univ-grenoble-alpes.fr/s/3Ro6LpMbP6fckFH][here]]. Spend no more than
+  10-15 minutes per article and try to answer the following questions:
+  - Is this paper worth being read?
+  - Is it a famous paper?
+  - Any other point about it you would like to make...
+- Move on with the Peer Evaluated exercise of the MOOC
 ** 6. 12/11/26  [ AL        ] Correlation, causality, and the linear model
 # *** Slides and resources
 # - Feedback on Challenger. See
@@ -256,7 +256,7 @@ Same as last week. Keep working on the two assignments. We will debrief the Quic
 # - Compute independant CIs for the data in https://github.com/alegrand/M2R-ParallelQuicksort if you haven't done so yet
 # - Fit a linear model for the data in https://github.com/alegrand/M2R-ParallelQuicksort
 # - Advance the MOOC Peer evaluated exercise.  
-** 7. 19/11/26  [ *JMV*       ] The linear model, Multiple testing and ANOVA (p-hacking), and a bit of DoE
+** 7. 19/11/26  [ JMV       ] The linear model, Multiple testing and ANOVA (p-hacking), and a bit of DoE
 # *** Slides and resources
 # - Fitting a linear model for the data in https://github.com/alegrand/M2R-ParallelQuicksort
 # - Going beyond independant evaluations with the [[file:../../lectures/4_linear_model.pdf][linear model]]
