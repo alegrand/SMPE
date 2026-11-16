@@ -209,7 +209,7 @@ cat README.org | grep '^\*\*.* \[' | sed -e 's/^\*\* //'
 *** Homeworks
 You have several weeks for doing these two assignments. We will debrief the Quicksort assignment during the 6th lecture.
 - [ ] Continue the hands-on by improving the experiment design and the analysis (see above). Share your findings on the Pad and/or on your public fork of the project. 
-- [ ] Continue working on the MOOC and start thinking about which topic you'd like to work on for the peer evaluation of module 3. There is neither a deadline nor a global debrief on this personnal assignment. I will give you some personnal debrief on the pad as things go along.
+- [ ] Continue working on the MOOC and start thinking about which topic you'd like to work on for the peer evaluation of module 3. There is neither a deadline nor a global debrief on this personal assignment. I will give you some personal debrief on the pad as things go along.
 ** No lecture (project)
 ** 4. 22/10/26  [ AL        ] Probabilities, CI, and estimation
 *** Feedback
@@ -219,7 +219,7 @@ You have several weeks for doing these two assignments. We will debrief the Quic
 *** Homeworks
 Same as last week. Keep working on the two assignments. We will debrief the Quicksort assignment during the 6th lecture.
 - [ ] Continue the hands-on by improving the experiment design and the analysis (see above). Share your findings on the Pad and/or on your public fork of the project. 
-- [ ] Pick a topic you'd like to work on for the peer evaluation of module 3. There is neither a deadline nor a global debrief on this personnal assignment. I will give you some personnal debrief on the pad as things go along. 
+- [ ] Pick a topic you'd like to work on for the peer evaluation of module 3. There is neither a deadline nor a global debrief on this personal assignment. I will give you some personal debrief on the pad as things go along. 
 
 # *** Homeworks
 # - [ ] Complete previous homeworks (Challenger, Checklist for Good Graphics)
@@ -246,7 +246,10 @@ Same as last week. Keep working on the two assignments. We will debrief the Quic
 *** Slides and resources
 - Feedback on student homeworks. Too many students obviously used GenAI to produce their homeworks without any reflexive perspective and produced analysis and experiments way beyond their reach. This is a breach of scientific integrity.
 - [[file:../../lectures/talk_26_10_16_Inria_Grenoble.pdf][Slides on scientific integrity, plagiarism, licencing issue and the ongoing disruption of Generative AI on scientific research]].
-- *If GenAI is ever used (even though I explicitly said it was forbidden in this lecture in the [[file:../../lectures/lecture_SMPE_overview.pdf][very first lecture]]), the least you should do is disclose its use (e.g., with https://casrai.org/credit + https://daliascale.org/fr/).*
+*** Homeworks
+- [ ]  *If GenAI was ever used (even though I explicitly said it was forbidden in this lecture on the [[file:../../lectures/lecture_SMPE_overview.pdf][very first day]]), you have to  disclose its use using https://casrai.org/credit in combination with https://daliascale.org/ in a `GenAI_disclosure.md` file.*
+- [ ] Continue the quicksort hands-on by improving the experiment design and the analysis. Share your findings on the Pad and/or on your public fork of the project. 
+- [ ] Pick a topic for the peer evaluation of module 3. There is neither a deadline nor a global debrief on this personal assignment. I will give you some personal debrief on the pad as things go along. Again, using GenAI for this is forbidden, I want to see *your* contribution. Doing so will constitute a breach of scientific integrity.
 ** 7. 19/11/26  [ JMV       ] Correlation, causality, and the linear model, Multiple testing and ANOVA (p-hacking), and a bit of DoE
 # *** Slides and resources
 # - Feedback on Challenger. See
